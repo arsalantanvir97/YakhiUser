@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="251" height="256" viewBox="0 0 251 256">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #791111;
+      }
+    </style>
+  </defs>
+  <g id="elementsCircle" transform="translate(-273 -4589)">
+    <image id="peach_citcl" data-name="peach citcl" width="251" height="256" transform="translate(273 4589)" xlink:href="elementsCircle-image.png"/>
+    <circle id="maroon_cecl" data-name="maroon cecl" class="cls-1" cx="87" cy="87" r="87" transform="translate(276 4667)"/>
+  </g>
+</svg>

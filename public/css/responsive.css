@@ -1,0 +1,1168 @@
+@media screen and (min-width:1600px) {
+    .thumb-prev:after {
+        width: 80px;
+        right: -120%;
+    }
+    .thumb-next:before{
+        width: 80px;
+        left: -120%;
+    }
+    .thumb-prev-arrow {
+        left: 260px;
+    }
+    .thumb-next-arrow {
+        right: 250px;
+    }
+}
+@media screen and (max-width:1600px) {
+    img.cinnamon {
+        left: 80%;
+    }
+    img.tea-anim {
+        left: -15px;
+    }
+    .w-70 {
+        width: 55%;
+    }
+    #regForm {
+        width: 100%;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+    .selections {
+        padding: 50px 22px;
+    }
+    .thumb-prev:after {
+        right: -90%;
+    }
+    .thumb-next:before {
+        left: -90%;
+    }
+}
+@media screen and (max-width: 1565px) {
+    .thumb-prev:after {
+        right: -80%;
+    }
+    .thumb-next:before {
+        left: -80%;
+    }
+}
+@media screen and (max-width:1440px) {
+    .g-box-3-content .g-package-price, .g-box-4-content .g-package-price {
+        margin-left: -30px;
+    }
+    .thumb-prev:after {
+        width: 35px;
+        right: -60%;
+    }
+    .thumb-next:before {
+        width: 35px;
+        left: -60%;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+    img.tea-anim{
+        left: -35px;
+        width: 95%;
+    }
+    img.herbs-anim {
+        left: 15px;
+    }
+    img.cinnamon {
+        left: 70%;
+    }
+    h5.selection-title-lg{
+        font-size: 26px;
+    }
+    h5.selection-title-sm-2, h5.selection-title-sm-3{
+        top: 55%;
+        left: 0px;
+    }
+    h5.selection-title-sm-1{
+        top: 55%;
+    }
+    section.offer {
+        background: url(../images/star.svg) left 135px top 70px/ 100px no-repeat,
+                url(../images/selection-tea-leaf-1.svg) right -35px top 95px/ 100px no-repeat,
+                url(../images/star.svg) left 135px top 70px/ 100px no-repeat,
+                url(../images/Cinnamon.svg) right 15px bottom 95px/ 190px no-repeat,
+                url(../images/red-hollow.svg) right 170px top 275px/ 70px no-repeat;
+    }
+    ul.foot-links li a{
+        font-size: 15px;
+    }
+    .w-70 {
+        width: 60%;
+    }
+    #herbalist {
+        background: url(../images/herbalist-tea.png) right -125px top -50px/ auto no-repeat;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .thumb-prev:after {
+        width: 35px;
+        right: -52%;
+    }
+    .thumb-next:before {
+        width: 35px;
+        left: -52%;
+    }
+}
+@media screen and (max-width: 1356px) {
+    ul.foot-links li a {
+        font-size: 14px;
+    }
+    .about-bottom-banner {
+        padding: 100px 0px;
+    }
+}
+@media screen and (max-width: 1280px) {
+    ul.foot-links li a {
+        font-size: 13px;
+    }
+    .about-bottom-banner h3{
+        width: 80%;
+    }
+    .maroon-btn-solid{
+        font-size: 15px;
+    }
+    span.star-number, .star-percent {
+        font-size: 15px;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+    .thumb-prev:after, .thumb-next::before {
+        display: none;
+    }
+    .thumb-prev-arrow {
+        left: 130px;
+    }
+    .thumb-next-arrow {
+        right: 130px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .genetics-para {
+        width: 100%;
+    }
+    .pay-with {
+        padding: 30px 30px;
+    }
+    .red-btn-solid {
+        font-size: 13px;
+    }
+    img.tea-anim {
+        left: 12px;
+        width: 80%;
+    }
+    .category-capsules {
+        margin-top: 6em;
+        margin-left: 8em;
+    }
+    img.cinnamon {
+        left: 65%;
+    }
+    img.star-spice {
+        left: -215px;
+    }
+    h5.selection-title-lg {
+        font-size: 24px;
+        top: 60%;
+    }
+    section.offer {
+        background: url(../images/selection-tea-leaf-1.svg) right -35px top 95px/ 100px no-repeat,
+                    url(../images/star.svg) left 135px top 70px/ 100px no-repeat,
+                    url(../images/Cinnamon.svg) right 15px bottom 95px/ 190px no-repeat,
+                    url(../images/red-hollow.svg) right 150px top 285px/ 70px no-repeat;
+    }
+    h4.retail-title {
+        line-height: 30px;
+        font-size: 23px;
+    }
+    p.grand-total, p.summary-title {
+        font-size: 18px;
+    }
+    .team-member-box {
+        height: 610px;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+}
+@media screen and (max-width:1199px) {
+    #herbalist {
+        background: url(../images/herbalist-tea.png) right -100px top 550px/ auto no-repeat;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .g-box-3-content .g-package-price, .g-box-4-content .g-package-price {
+        margin-left: -35px;
+        font-size: 16px !important;
+    }
+    .scat-1 {
+        top: 245px;
+        right: 0px;
+        width: 95px;
+    }
+    .scat-2 {
+        position: absolute;
+        left: 0px;
+        top: 30px;
+    }
+    .scat-3{
+        display: none;
+    }
+    .donation-box  .account-form {
+        padding: 26px;
+    }
+    .money-orders h4, .money-orders h3 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+    .member-email a {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    ul.member-features li {
+        font-size: 14px;
+    }
+    .member-info-card h3 {
+        font-size: 22px;
+    }
+    .ship-to-different label {
+        font-size: 13px;
+    }
+    input.quantity{
+        width: 25px;
+    }
+    .about-bottom-banner p{
+        width: 90%;
+    }
+    .about-bottom-banner h3 {
+        width: 95%;
+    }
+    .featured-product {
+        padding: 0 14px;
+    }
+    #carousel .slick-dots {
+        bottom: 16px;
+        left: -30%;
+    }
+    #carousel button.slick-next.slick-arrow, button.slick-prev.slick-arrow{
+        width: 29px;
+        bottom: -1% !important;
+        height: 29px;
+    }
+    #carousel button.slick-next.slick-arrow {
+        left: 32%;
+    }
+    #carousel button.slick-prev.slick-arrow {
+        left: 25%;
+    }
+    #carousel .slick-next:before {
+        left: -15px;
+        top: -1px;
+    }
+    #carousel .slick-prev:before {
+        left: 8px;
+        top: -1px;
+    }
+    #carousel .category-capsules {
+        margin-top: 4em;
+        margin-left: 5em;
+    }
+    h4.herbal-tea-offer{
+            top: 43%;
+            font-size: 13px;
+            left: -55px;
+    }
+    .cat-title-box {
+        right: -45px;
+    }
+    h4.herbs-offer {
+        top: 34%;
+        font-size: 14px;
+    }
+    .cat-title-box h3, .herbs-cat-title-box h3, .capsules-cat-title-box h3 {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    #carousel button.slick-next.slick-arrow, #carousel button.slick-prev.slick-arrow {
+        bottom: -1% !important;
+        top: auto;
+        border-radius: 100%;
+        position: absolute;
+        width: 29px;
+        height: 29px;
+    }
+    .red-link{
+        font-size: 15px;
+    }
+    .herbs-cat-title-box{
+        bottom: -80px;
+    }
+    .category-capsules {
+        margin-top: 3em;
+    }
+    h1.slider-heading {
+        font-size: 40px;
+        line-height: 45px;
+    }
+    .outline{
+        width: 530px;
+    }
+    .menu a.nav-link{
+        font-size: 14px;
+    }
+    .menu li.nav-item {
+        padding: 10px 10px;
+    }
+    img.red-hollow{
+        width: 15%;
+        top: -35px;
+        left: -35px;
+    }
+    img.star-spice {
+        width: 25%;
+        left: -140px;
+    }
+    img.cinnamon{
+        width: 40%;
+    }
+    img.cinnamon {
+        left: 85%;
+        top: -195px;
+    }
+    .offer-box {
+        width: 335px;
+        height: 335px;
+    }
+    .offer-box h4 {
+        font-size: 29px;
+        line-height: 39px;
+    }
+    .offer-box h5.maroon, .offer-box h5.purple{
+        font-size: 70px;
+    }
+    .curve-leaf {
+        width: 70px;
+    }
+    .elementsCircle {
+        width: 130px;
+    }
+    section.offer {
+        background: url(../images/selection-tea-leaf-1.svg) right -35px top 95px/ 100px no-repeat,
+                        url(../images/star.svg) left 75px top 70px/ 60px no-repeat,
+                        url(../images/Cinnamon.svg) right 15px bottom 95px/ 135px no-repeat,
+                        url(../images/red-hollow.svg) right 68px top 160px/ 55px no-repeat;
+    }
+    .elementsCircle {
+        margin-top: -75px;
+    }
+    .newsletter-box {
+        width: 400px;
+    }
+    ul.foot-links li a {
+        font-size: 15px;
+    }
+    .banner-outline {
+        height: auto;
+        width: 480px;
+        background-image: linear-gradient(to right, #528900 5%, #528900 5%, #528900 20%, #528900 20%), linear-gradient(to bottom, #528900 15%, transparent 15%, transparent 86%, #528900 55%), linear-gradient(to bottom, #528900 45%, #528900 45%, #528900 55%, #528900 55%);
+        background-size: 100% 6px, 6px 100%, 6px 100%;
+        background-position: top left, top left, top right;
+        background-repeat: no-repeat;
+        border-bottom: 6px solid #528900;
+        padding: 55px 4px;
+        margin-left: 315px;
+        background-color: rgb(255 255 255 / 20%);
+    }
+    .btn-resource {
+        font-size: 19px;
+        line-height: 37px;
+    }
+    #regForm {
+        background-color: #ffffff;
+        margin: 100px auto;
+        padding: 40px;
+        width: 100%;
+        min-width: 300px;
+    }
+}
+@media screen and (max-width: 991px) {
+    .g-box-3-content .g-package-price, .g-box-4-content .g-package-price {
+        margin-left: 0;
+        font-size: 16px !important;
+        margin-top: 5px;
+    }
+    .money-orders {
+        height: 280px;
+    }
+    .donation-box  .account-form {
+        padding: 45px;
+    }
+    .pay-with {
+        padding: 20px 30px;
+        height: 130px;
+    }
+    #herbalist {
+        background: url(../images/herbalist-tea.png) right -65px top 550px/ 260px no-repeat;
+    }
+    img.img-fluid.over-image-2 {
+        width: 120px;
+    }
+    span.instock-label {
+        padding: 7px 19px;
+        font-size: 15px;
+    }
+    .w-70 {
+        width: 70%;
+    }
+    .order-summary.has-margin {
+        margin-top: 0;
+    }
+    #cart-table thead tr th {
+        font-size: 15px;
+    }
+    span.star-number, .star-percent {
+        font-size: 12px;
+    }
+    section.reviews-detail i.rate {
+        font-size: 25px;
+    }
+    h2.p-title {
+        font-size: 30px;
+    }
+    .big-price {
+        font-size: 35px;
+    }
+    .weight, div#field1 {
+        font-size: 20px;
+    }
+    .about-bottom-banner h3 {
+        font-size: 32px;
+    }
+    #carousel .slick-dots {
+        bottom: 16px;
+        left: -30%;
+    }
+    #carousel button.slick-next.slick-arrow, button.slick-prev.slick-arrow{
+        width: 29px;
+        bottom: -1% !important;
+        height: 29px;
+    }
+    #carousel button.slick-next.slick-arrow {
+        left: 32%;
+    }
+    #carousel button.slick-prev.slick-arrow {
+        left: 25%;
+    }
+    #carousel .slick-next:before {
+        left: -15px;
+        top: -1px;
+    }
+    #carousel .slick-prev:before {
+        left: 8px;
+        top: -1px;
+    }
+    #carousel .slider-content {
+        top: 12%;
+    }
+    .menu li.nav-item {
+        padding: 0px 10px;
+    }
+    img.cinnamon {
+        left: 70%;
+        top: -195px;
+    }
+    .featured {
+        background: url(../images/Cinnamon.svg) left 5% top 30%/ 100px no-repeat,
+                    url(../images/red-hollow.svg) right 6% top 40%/ 35px no-repeat;
+    }
+    .offer-box {
+        margin: 0 auto;
+        width: 450px;
+        height: 450px;
+    }
+    .elementsCircle {
+        margin-top: -40px;
+        float: none;
+        margin-left: -130px;
+        width: 150px;
+    }
+    section.offer {
+        background: url(../images/selection-tea-leaf-1.svg) right -35px top 95px/ 105px no-repeat,
+                    url(../images/star.svg) left 170px top 75px/ 100px no-repeat,
+                    url(../images/Cinnamon.svg) right 40px bottom 89px/ 185px no-repeat,
+                    url(../images/red-hollow.svg) right 136px bottom 450px/ 70px no-repeat,
+                    url(../images/selection-tea-leaf-1.svg) left -35px top 375px/ 135px no-repeat,
+                    url(../images/star.svg) right 96px top 330px/ 55px no-repeat,
+                    url(../images/Cinnamon.svg) right -77px bottom 550px/ 185px no-repeat,
+                    url(../images/red-hollow.svg) left 136px bottom 118px/ 100px no-repeat;
+    }
+    .offer-box h4 {
+        font-size: 40px;
+        line-height: 60px;
+    }
+    .curve-leaf {
+        width: 100px;
+    }
+    .offer-box h5.maroon, .offer-box h5.purple {
+        font-size: 100px;
+    }
+    .banner-outline {
+        height: auto;
+        width: 450px;
+        background-image: linear-gradient(to right, #528900 5%, #528900 5%, #528900 20%, #528900 20%), linear-gradient(to bottom, #528900 15%, transparent 15%, transparent 86%, #528900 55%), linear-gradient(to bottom, #528900 45%, #528900 45%, #528900 55%, #528900 55%);
+        background-size: 100% 6px, 6px 100%, 6px 100%;
+        background-position: top left, top left, top right;
+        background-repeat: no-repeat;
+        border-bottom: 6px solid #528900;
+        padding: 55px 4px;
+        margin-left: 470px;
+        background-color: rgb(255 255 255 / 20%);
+    }
+    .red-btn-solid {
+        padding: 12px 30px !important;
+    }
+    .team-member-box {
+        height: 630px;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .pay-with {
+        padding: 20px 30px;
+        height: 160px;
+    }
+    .banner-outline {
+        margin-left: 200px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .scat-2 {
+        top: -170px;
+        width: 26px;
+    }
+    .scat-1 {
+        top: 280px;
+    }
+    #donation-shapes {
+        background: url(../images/Cinnamon.svg) left -15px top 0px/ 120px no-repeat,
+                    url(../images/green-ellipse.png) right 45px top 100px/ 60px no-repeat,
+                    url(../images/herbalist-tea.png) right -66px top 50%/ 240px no-repeat,
+                    url(../images/star.svg) left 35px bottom 25%/ 100px no-repeat;
+    }
+    .pay-with {
+        padding: 20px 30px;
+        height: 150px;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+    .step-icon {
+        height: 64px;
+        width: 64px;
+        padding-top: 20px;
+    }
+    .step-icon i {
+        color: #fff;
+        font-size: 25px;
+    }
+    .about-bottom-banner h3 {
+        font-size: 26px;
+    }
+    section.offer {
+        background: url(../images/selection-tea-leaf-1.svg) right -35px top 95px/ 105px no-repeat,
+                        url(../images/star.svg) left 75px top 75px/ 100px no-repeat,
+                        url(../images/Cinnamon.svg) right 40px bottom 89px/ 185px no-repeat,
+                        url(../images/red-hollow.svg) right 100px bottom 360px/ 70px no-repeat,
+                        url(../images/selection-tea-leaf-1.svg) left -35px top 375px/ 135px no-repeat,
+                        url(../images/star.svg) right 96px top 330px/ 55px no-repeat,
+                        url(../images/Cinnamon.svg) right -77px bottom 550px/ 185px no-repeat,
+                        url(../images/red-hollow.svg) left 136px bottom 117px/ 100px no-repeat;
+    }
+    h4.herbal-tea-offer {
+        top: 43%;
+        font-size: 13px;
+        left: -44px;
+        letter-spacing: 0;
+    }
+    .cat-title-box {
+        right: -25px;
+    }
+    .cat-title-box h3, .herbs-cat-title-box h3, .capsules-cat-title-box h3 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+    h1.slider-heading {
+        font-size: 26px;
+        line-height: 28px;
+    }
+    p.slider-para {
+        font-size: 13px;
+        line-height: 19px;
+        margin-top: 1em;
+    }
+    #carousel .outline {
+        width: 440px;
+        padding: 16px 15px;
+    }
+    #carousel .slider-content {
+        top: 8%;
+    }
+    .red-btn-solid {
+        font-size: 12px;
+        padding: 8px 13px;
+    }
+    #carousel p.slider-para{
+        font-size: 12px;
+    }
+    #carousel .slick-dots {
+        bottom: 30px;
+        left: -28%;
+    }
+    #carousel button.slick-next.slick-arrow, button.slick-prev.slick-arrow {
+        bottom: 3% !important;
+    }
+    #carousel button.slick-prev.slick-arrow {
+        left: 30%;
+    }
+    #carousel button.slick-next.slick-arrow {
+        left: 40%;
+    }
+    img.cinnamon {
+        left: 70%;
+        top: -195px;
+    }
+    img.star-spice {
+        left: -100px;
+    }
+    h5.selection-title-sm-1 {
+        top: 45%;
+    }
+    h5.selection-title-sm-1 {
+        top: 45%;
+        left: 0%;
+        font-size: 18px;
+    }
+    h5.selection-title-sm-2, h5.selection-title-sm-3 {
+        top: 44%;
+        left: -5px;
+        font-size: 18px;
+    }
+    h4.prod-title {
+        font-size: 14px;
+    }
+    .featured-product h5{
+        font-size: 16px;
+    }
+    .banner-outline {
+        height: auto;
+        width: 400px;
+        background-image: linear-gradient(to right, #528900 5%, #528900 5%, #528900 20%, #528900 20%), linear-gradient(to bottom, #528900 15%, transparent 15%, transparent 86%, #528900 55%), linear-gradient(to bottom, #528900 45%, #528900 45%, #528900 55%, #528900 55%);
+        background-size: 100% 6px, 6px 100%, 6px 100%;
+        background-position: top left, top left, top right;
+        background-repeat: no-repeat;
+        border-bottom: 6px solid #528900;
+        padding: 40px 15px;
+        margin-left: 330px;
+        background-color: #ffffff66;
+    }
+    #cart-table button#add, #cart-table button#sub {
+        font-size: 14px;
+    }
+    #cart-table td {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:767px) {
+    h5.selection-title-lg {
+        font-size: 36px;
+        top: 60%;
+        left: -55px;
+    }
+    h5.selection-title-sm-1 {
+        top: 55%;
+        left: 4%;
+        font-size: 26px;
+    }
+    h5.selection-title-sm-2, h5.selection-title-sm-3 {
+        top: 60%;
+        left: 10px;
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: 560px) {
+    .g-package-heading {
+        font-size: 15px !important;
+    }
+    .g-package-price {
+        font-size: 16px !important;
+    }
+    .thumb-next-arrow {
+        right: 45px;
+    }
+    .thumb-prev-arrow {
+        left: 45px;
+    }
+    .scat-2 {
+        top: -550px;
+        width: 26px;
+    }
+    .faq {
+        padding: 16px 12px;
+    }
+    h3.faq-title {
+        font-size: 14px;
+    }
+    .faq.active {
+        padding: 16px 12px;
+    }
+    .faq-toggle {
+        font-size: 15px;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        height: 25px;
+        width: 25px;
+    }
+    .faq.active .faq-text {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    #donation-shapes {
+        background: url(../images/Cinnamon.svg) left -12px top 43px/ 70px no-repeat,
+                            url(../images/green-ellipse.png) right 10px top 160px/ 43px no-repeat,
+                            url(../images/herbalist-tea.png) right -30px top 59%/ 130px no-repeat,
+                            url(../images/star.svg) left 4px bottom 25%/ 62px no-repeat;
+    }
+    h3.main-heading {
+        font-size: 27px;
+        line-height: 1.3;
+    }
+    .money-orders {
+        height: 360px;
+        padding: 40px 25px;
+    }
+    .pay-with {
+        padding: 20px 30px;
+        height: 150px;
+    }
+    .team-member-box {
+        height: 590px;
+    }
+    .send-msg {
+        margin-top: -52px;
+    }
+    #herbalist {
+        background: url(../images/herbalist-tea.png) right -42px bottom 465px/ 160px no-repeat;
+    }
+    .mission p {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 15px 0px;
+    }
+    section.orders p {
+        font-size: 17px;
+        line-height: 28px;
+    }
+    section.orders h2, section.orders h3 {
+        font-size: 32px;
+    }
+    .account-form {
+        padding: 50px 15px;
+    }
+    .account-form input {
+        height: 40px;
+    }
+    .right-icon {
+        top: 12px;
+    }
+    .w-70 {
+        width: 100%;
+    }
+    .checkout-form textarea, .checkout-form input.form-control {
+        font-size: 16px;
+        color: var(--grey);
+    }
+    .checkout-form h3 {
+        font-size: 23px;
+        line-height: 30px;
+    }
+    #cart-table button#add, #cart-table button#sub {
+        font-size: 10px;
+    }
+    #cart-table button#add, #cart-table button#sub {
+        font-size: 10px;
+    }
+    input.quantity {
+        width: 10px;
+    }
+    h4.cta-line {
+        color: #160000;
+        font-size: 15px;
+        line-height: 1.3;
+    }
+    .about-bottom-banner {
+        padding: 60px 0px;
+    }
+    #carousel .slick-slide img {
+        height: 230px;
+    }
+    #carousel h1.slider-heading {
+        font-size: 20px;
+        line-height: 22px;
+    }
+    #carousel .outline {
+        width: 330px;
+        padding: 7px 15px;
+    }
+    #carousel .slider-content {
+        top: 8%;
+        left: 7%;
+    }
+    #carousel .slick-dots {
+        bottom: 14px;
+        left: 0%;
+    }
+    #carousel button.slick-next.slick-arrow, #carousel button.slick-prev.slick-arrow {
+        bottom: -2% !important;
+    }
+    #carousel button.slick-next.slick-arrow {
+        left: 85%;
+    }
+    #carousel  button.slick-prev.slick-arrow {
+        left: 67%;
+    }
+    .category-herbs {
+        margin-top: 8em;
+    }
+    img.red-hollow {
+        width: 9%;
+        top: -16px;
+        left: -16px;
+    }
+    img.star-spice{
+        left: -80px;
+        width: 15%;
+        bottom: -28px;
+    }
+    img.cinnamon {
+        left: 82%;
+        top: -106px;
+        width: 25%;
+    }
+    h5.selection-title-lg {
+        font-size: 18px;
+        top: 54%;
+        left: -40px;
+    }
+    img.title-line {
+        top: -4px;
+    }
+    h5.selection-title-sm-1 {
+        left: 0%;
+        text-align: left;
+        top: 38%;
+        font-size: 18px;
+    }
+    h5.selection-title-sm-2, h5.selection-title-sm-3 {
+        top: 45%;
+        left: 0;
+        text-align: left;
+        font-size: 18px;
+    }
+    .offer-box {
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
+    }
+    section.offer {
+        background: url(../images/selection-tea-leaf-1.svg) right -35px top 95px/ 105px no-repeat,
+                                url(../images/star.svg) left 15px top 100px/ 60px no-repeat,
+                                url(../images/Cinnamon.svg) right 15px bottom 78px/ 99px no-repeat,
+                                url(../images/red-hollow.svg) right 45px bottom 260px/ 40px no-repeat;
+    }
+    .offer-box h5.maroon, .offer-box h5.purple {
+        font-size: 60px;
+    }
+    #fproducts .slick-next{
+        right: -36px;
+    }
+    #fproducts .slick-prev {
+        left: -36px;
+    }
+    #fproducts .slick-prev, #fproducts .slick-next {
+        width: 35px;
+        height: 20px;
+    }
+    .newsletter-box {
+        width: 300px;
+    }
+    .banner-outline {
+        height: auto;
+        width: 330px;
+        background-image: linear-gradient(to right, #528900 5%, #528900 5%, #528900 20%, #528900 20%), linear-gradient(to bottom, #528900 15%, transparent 15%, transparent 86%, #528900 55%), linear-gradient(to bottom, #528900 45%, #528900 45%, #528900 55%, #528900 55%);
+        background-size: 100% 6px, 6px 100%, 6px 100%;
+        background-position: top left, top left, top right;
+        background-repeat: no-repeat;
+        border-bottom: 6px solid #528900;
+        padding: 19px 15px;
+        margin-left: 54px;
+        background-color: #ffffff82;
+    }
+    p.general-para {
+        font-size: 15px;
+    }
+    .step-icon {
+        height: 54px;
+        width: 54px;
+        padding-top: 15px;
+    }
+    #regForm {
+        padding: 40px 0;
+    }
+    span.step p {
+        font-size: 14px;
+    }
+    .tab.consultation-form {
+        padding: 18px 0;
+    }
+    span.step {
+        margin: 0 10px;
+    }
+    .sortby-label {
+        font-size: 17px;
+        margin: 10px 0;
+    }
+    .about-bottom-banner{
+        height: 100%;
+    }
+    .offer-box {
+        width: 260px;
+        height: 260px;
+    }
+    .offer-box h4 {
+        font-size: 26px;
+        line-height: 40px;
+    }
+    .offer-box h5.maroon, .offer-box h5.purple {
+        font-size: 28px;
+    }
+    .purple > span.characters {
+        font-size: 28px;
+    }
+    .maroon > span.characters {
+        font-size: 28px;
+    }
+    h3.testi-heading {
+        font-family: var(--righteous);
+        color: var(--white);
+        font-size: 25px;
+        line-height: 1.6;
+    }
+    h3.testi-heading {
+        font-size: 25px;
+    }
+    .feedback-slider-item {
+        padding: 60px 0;
+        margin-top: -22px;
+    }
+    .thumb-next, .thumb-prev{
+        display: none;
+    }
+    .falling-leaves .f-2 {
+        width: 20px;
+    }
+    .f-2 {
+        right: -28px;
+    }
+    .selections h3, .featured h3 {
+        font-size: 25px;
+        line-height: 1.6;
+    }
+    .category-capsules {
+        margin-top: 6em;
+        margin-left: 0em;
+    }
+    #carousel .outline {
+        width: 80%;
+    }
+    #carousel .slick-dots {
+        display: none !important;
+    }
+    .featured {
+        background: url(../images/Cinnamon.svg) left 0 top 3%/ 110px no-repeat,
+        url(../images/red-hollow.svg) right 2% top 50%/ 40px no-repeat;
+    }
+    .elementsCircle {
+        width: 112px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .donation-box  .account-form {
+        padding: 45px 15px;
+    }
+    .pay-with {
+        padding: 20px 30px;
+        height: 130px;
+    }
+    .banner-outline {
+        margin-left: 12px;
+        margin-top: -168px;
+    }
+    .account-form input, select.form-control {
+        height: 34px;
+        font-size: 12px;
+    }
+    .browse-images{
+        font-size: 14px;
+        padding: 10px;
+        height: 38px;
+    }
+    .account-form input::placeholder, select.form-control::placeholder {
+        height: 34px;
+        font-size: 12px;
+    }
+    label.custom-img-upload {
+        padding: 1px 12px;
+        right: 4px;
+        font-size: 12px;
+    }
+    .browse-images:before{
+        font-size: 14px;
+        padding: 0;
+    }
+    section.orders h2, section.orders h3 {
+        font-size: 26px;
+    }
+}
+@media screen and (max-width: 360px) {
+    .offer-box {
+        width: 260px;
+        height: 260px;
+    }
+    .offer-box h4 {
+        font-size: 26px;
+        line-height: 40px;
+    }
+    .offer-box h5.maroon, .offer-box h5.purple {
+        font-size: 28px;
+    }
+    .purple > span.characters {
+        font-size: 28px;
+    }
+    .maroon > span.characters {
+        font-size: 28px;
+    }
+    h3.testi-heading {
+        font-family: var(--righteous);
+        color: var(--white);
+        font-size: 25px;
+        line-height: 1.6;
+    }
+    h3.testi-heading {
+        font-size: 25px;
+    }
+    .feedback-slider-item {
+        padding: 60px 0;
+        margin-top: -22px;
+    }
+    .thumb-next, .thumb-prev{
+        display: none;
+    }
+    .falling-leaves .f-2 {
+        width: 20px;
+    }
+    .f-2 {
+        right: -28px;
+    }
+    .selections h3, .featured h3 {
+        font-size: 25px;
+        line-height: 1.6;
+    }
+    .category-capsules {
+        margin-top: 6em;
+        margin-left: 0em;
+    }
+    #carousel .outline {
+        width: 100%;
+    }
+    #carousel .slick-dots {
+        display: none !important;
+    }
+    .featured {
+        background: url(../images/Cinnamon.svg) left 0 top 3%/ 110px no-repeat,
+        url(../images/red-hollow.svg) right 2% top 50%/ 40px no-repeat;
+    }
+    .elementsCircle {
+        width: 112px;
+    }
+    h5.selection-title-sm-1 {
+        left: 0%;
+        text-align: left;
+        top: 38%;
+        font-size: 16px;
+    }
+    h5.selection-title-sm-2, h5.selection-title-sm-3 {
+        top: 45%;
+        left: 0;
+        text-align: left;
+        font-size: 14px;
+    }
+    h3.main-heading {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+    .pay-with {
+        padding: 15px 20px;
+        height: 100px;
+    }
+    #herbalist {
+        background: url(../images/herbalist-tea.png) right -42px bottom 410px/ 160px no-repeat;
+    }
+    .showing-results {
+        font-size: 17px;
+    }
+    .banner-outline {
+        margin-left: 0;
+        margin-top: -168px;
+    }
+    .newsletter-box {
+        width: 260px;
+    }
+    .social-icon {
+        height: 39px !important;
+        width: 39px !important;
+        line-height: 40px;
+    }
+    .about-bottom-banner h3 {
+        font-size: 15px;
+    }
+    .about-bottom-banner p {
+        font-size: 12px;
+    }
+    h1.slider-heading {
+        font-size: 20px;
+        line-height: 23px;
+    }
+    p.slider-para {
+        font-size: 11px;
+        line-height: 17px;
+    }
+    .banner-outline{
+        width: 290px;
+    }
+}
