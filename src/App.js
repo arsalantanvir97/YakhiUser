@@ -42,7 +42,7 @@ function App() {
       <Route path="/VerificationCode" component={VerificationCode} exact />
       <Route path="/ResetPassword" component={ResetPassword} exact />
       <PrivateRoute exact path="/Home" component={Index} />{" "}
-      <PrivateRoute exact path="/MyCart" component={MyCart} />{" "}
+      <PrivateRoute exact path="/MyCart/:id?" component={MyCart} />{" "}
       <PrivateRoute exact path="/WishList" component={WishList} />{" "}
       <PrivateRoute exact path="/Checkout" component={Checkout} />{" "}
       <PrivateRoute exact path="/GeoGenetics" component={GeoGenetics} />{" "}

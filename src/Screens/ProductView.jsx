@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import { baseURL, imageURL } from "../utils/api";
 import axios from "axios";
 import InnerPageBanner from "./InnerPageBanner";
-const ProductView = ({ match }) => {
+const ProductView = ({ match, history }) => {
   const [product, setproduct] = useState([]);
+  const [quantity, setquantity] = useState(0);
   useEffect(() => {
     getSingleProduct();
   }, []);
+
+  useEffect(() => {
+    console.log("quantity", quantity);
+  }, [quantity]);
 
   const getSingleProduct = async () => {
     try {
@@ -20,6 +25,10 @@ const ProductView = ({ match }) => {
     } catch (err) {
       console.log(err);
     }
+  };
+  const addToCartHandler = async () => {
+    console.log("addToCartHandler");
+    history.push(`/MyCart/${match.params.id}?qty=${quantity}`);
   };
   return (
     <>
@@ -72,7 +81,8 @@ const ProductView = ({ match }) => {
                   <h2 className="p-title">{product?.name}</h2>
                   <ul className="list-inline py-4">
                     <li className="list-inline-item">
-                      <i style={{color:'#F3DE43'}}
+                      <i
+                        style={{ color: "#F3DE43" }}
                         className={
                           product?.rating >= 1
                             ? "fas fa-star"
@@ -83,7 +93,8 @@ const ProductView = ({ match }) => {
                       />
                     </li>
                     <li className="list-inline-item">
-                      <i style={{color:'#F3DE43'}}
+                      <i
+                        style={{ color: "#F3DE43" }}
                         className={
                           product?.rating >= 2
                             ? "fas fa-star"
@@ -94,7 +105,8 @@ const ProductView = ({ match }) => {
                       />
                     </li>
                     <li className="list-inline-item">
-                      <i style={{color:'#F3DE43'}}
+                      <i
+                        style={{ color: "#F3DE43" }}
                         className={
                           product?.rating >= 3
                             ? "fas fa-star"
@@ -105,7 +117,8 @@ const ProductView = ({ match }) => {
                       />
                     </li>
                     <li className="list-inline-item">
-                      <i style={{color:'#F3DE43'}}
+                      <i
+                        style={{ color: "#F3DE43" }}
                         className={
                           product?.rating >= 4
                             ? "fas fa-star"
@@ -116,7 +129,8 @@ const ProductView = ({ match }) => {
                       />
                     </li>
                     <li className="list-inline-item">
-                      <i style={{color:'#F3DE43'}}
+                      <i
+                        style={{ color: "#F3DE43" }}
                         className={
                           product?.rating >= 5
                             ? "fas fa-star"
@@ -138,10 +152,13 @@ const ProductView = ({ match }) => {
                       <input
                         type="number"
                         id={1}
-                        defaultValue={1}
-                        min={1}
+                        min={0}
                         className="quantity quantity p-2"
-                        max={10}
+                        value={quantity}
+                        onChange={(e) => {
+                          setquantity(Number(e.target.value));
+                        }}
+                        max={product?.countInStock}
                       />
                       <button type="button" id="add" className="plus">
                         <i className="fas fa-plus" />
@@ -154,8 +171,10 @@ const ProductView = ({ match }) => {
                     </p>
                   </div>
                   <button
+                    onClick={addToCartHandler}
                     type="button"
                     className="btn maroon-btn-solid px-5 py-2"
+                    disabled={product?.countInStock == 0}
                   >
                     <img
                       src="images/add-to-cart.png"
