@@ -90,7 +90,7 @@ const Header = () => {
                       </div>
                     </li>
                     <li className="list-inline-item">
-                      <Link to="#" className="mr-2">
+                      <Link to="/Capsules" className="mr-2">
                         <img
                           src="images/search.svg"
                           alt=""

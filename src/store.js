@@ -4,12 +4,25 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import { UserLoginReducer } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducers";
-
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  orderDeliverReducer,
+  orderListMyReducer,
+  orderListReducer,
+} from "./reducers/orderReducers";
 // import { NotifReducer } from './reducers/notifReducers'
 
 const reducer = combineReducers({
   userLogin: UserLoginReducer,
   cart: cartReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
+  orderDeliver: orderDeliverReducer,
+  orderListMy: orderListMyReducer,
+  orderList: orderListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -23,13 +36,19 @@ const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
   ? JSON.parse(localStorage.getItem("shippingAddress"))
   : {};
 
+const paymentInfoFromStorage = localStorage.getItem("paymentMethod")
+  ? JSON.parse(localStorage.getItem("paymentMethod"))
+  : {};
+
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
   cart: {
     cartItems: cartItemsFromStorage,
 
     shippingAddress: shippingAddressFromStorage,
+    paymentInfo: paymentInfoFromStorage,
   },
+
   // Notif: { notifcationdata:notifdataFromStorage },
 };
 

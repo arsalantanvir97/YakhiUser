@@ -10,6 +10,7 @@ body {
   padding-right: 15px;
   cursor: pointer;
   float: right;
+  color: #000;
 }
 
 .pagination > li {
@@ -26,6 +27,6 @@ body {
 }
 
 .pagination > li > a:hover:not(.active) {
-  background-color: #1CC2F6;
+  background-color: #720215;
   border-radius: 5px;
 }

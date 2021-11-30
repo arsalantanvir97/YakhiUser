@@ -31,8 +31,13 @@ const MyCart = ({ match, location, history }) => {
           <section className="my-cart mt-5">
             <div className="row align-items-start">
               <div className="col-12 my-4">
-                <h2>My Cart</h2>
+              {cartItems?.length>0?(
+              <h2>My Cart</h2>):
+              <h2>Your Cart is Empty <Link to='/Home'>Go Back</Link></h2>
+}
               </div>
+
+              {cartItems?.length>0&& 
               <div className="col-xl-9 col-md-12">
                 {/* cart table */}
                 <div className="table-responsive">
@@ -166,7 +171,8 @@ const MyCart = ({ match, location, history }) => {
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div>}
+              {cartItems?.length>0&& 
               <div className="col-xl-3 col-md-6 mt-lg-0 mt-5">
                 <div className="order-summary">
                   <div className="order-summary-head">
@@ -248,9 +254,10 @@ const MyCart = ({ match, location, history }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>}
             </div>
           </section>
+
           <div className="row mt-5">
             <div className="col-12 text-center">
               <div className="about-bottom-banner">

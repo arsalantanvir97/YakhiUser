@@ -71,7 +71,7 @@ function App() {
       />{" "}
       <PrivateRoute exact path="/ProductView/:id" component={ProductView} />{" "}
       <PrivateRoute exact path="/ProductResource" component={ProductResource} />{" "}
-      <PrivateRoute exact path="/OrderLogDetail" component={OrderLogDetail} />{" "}
+      <PrivateRoute exact path="/OrderLogDetail/:id" component={OrderLogDetail} />{" "}
       <PrivateRoute exact path="/OrderandPayment" component={OrderandPayment} />{" "}
       <PrivateRoute exact path="/MeettheTeam" component={MeettheTeam} />{" "}
       <PrivateRoute exact path="/MasterHerbalist" component={MasterHerbalist} />{" "}
