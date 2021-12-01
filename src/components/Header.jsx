@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/userAction";
 const Header = () => {
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state?.cart);
+  const { cartItems } = cart;
+ 
   const logOutHandler = async () => {
     console.log("logout");
     dispatch(logout());
@@ -50,7 +53,8 @@ const Header = () => {
                   </select>
                 </div>
                 <div className="col-md-4 col-12 text-center order-1 order-md-2">
-                  <img src="images/logo.png" alt="" className="img-fluid" />
+                  <Link to='/Home'>
+                  <img src="images/logo.png" alt="" className="img-fluid" /></Link>
                 </div>
                 <div className="col-md-4 col-sm-6 col-12 text-right order-2 order-md-3 mt-3 mt-md-0">
                   <ul className="list-inline">
@@ -116,7 +120,7 @@ const Header = () => {
                             className="img-fluid"
                           />
                         </Link>
-                        <span className="cart-count">0</span>
+                        <span className="cart-count">{cartItems?.length}</span>
                       </div>
                     </li>
                   </ul>

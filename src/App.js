@@ -33,6 +33,8 @@ import ProductView from "./Screens/ProductView";
 import ProductViewOutStock from "./Screens/ProductViewOutStock";
 import ReturnsandRefund from "./Screens/ReturnsandRefund";
 import ShippingandPickup from "./Screens/ShippingandPickup";
+import ViewCollection from "./Screens/ViewCollection";
+
 function App() {
   return (
     <Router>
@@ -56,6 +58,11 @@ function App() {
       <PrivateRoute exact path="/OrderLog" component={OrderLog} />{" "}
       <PrivateRoute
         exact
+        path="/ViewCollection/:id"
+        component={ViewCollection}
+      />{" "}
+      <PrivateRoute
+        exact
         path="/ShippingandPickup"
         component={ShippingandPickup}
       />{" "}
@@ -71,7 +78,11 @@ function App() {
       />{" "}
       <PrivateRoute exact path="/ProductView/:id" component={ProductView} />{" "}
       <PrivateRoute exact path="/ProductResource" component={ProductResource} />{" "}
-      <PrivateRoute exact path="/OrderLogDetail/:id" component={OrderLogDetail} />{" "}
+      <PrivateRoute
+        exact
+        path="/OrderLogDetail/:id"
+        component={OrderLogDetail}
+      />{" "}
       <PrivateRoute exact path="/OrderandPayment" component={OrderandPayment} />{" "}
       <PrivateRoute exact path="/MeettheTeam" component={MeettheTeam} />{" "}
       <PrivateRoute exact path="/MasterHerbalist" component={MasterHerbalist} />{" "}

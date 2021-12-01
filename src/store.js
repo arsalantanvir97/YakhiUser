@@ -40,11 +40,15 @@ const paymentInfoFromStorage = localStorage.getItem("paymentMethod")
   ? JSON.parse(localStorage.getItem("paymentMethod"))
   : {};
 
+  const cartnumberFromStorage = localStorage.getItem("cartNumber")
+  ? JSON.parse(localStorage.getItem("cartNumber"))
+  : {};
+
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
   cart: {
     cartItems: cartItemsFromStorage,
-
+    cartnumber:cartnumberFromStorage,
     shippingAddress: shippingAddressFromStorage,
     paymentInfo: paymentInfoFromStorage,
   },

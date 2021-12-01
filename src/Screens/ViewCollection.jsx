@@ -9,7 +9,7 @@ import moment from "moment";
 import Pagination from "../components/Padgination";
 import InnerPageBanner from "./InnerPageBanner";
 let allcategoryofProducts = [];
-const Capsules = ({ history }) => {
+const ViewCollection = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -29,10 +29,20 @@ const Capsules = ({ history }) => {
     getProducts();
   }, [page, perPage, from, to, status, searchString, category]);
 
+  const categoryid =
+    match?.params?.id == "HerbalTea"
+      ? "Herbal Tea"
+      : match?.params?.id == "HerbalCapsules"
+      ? "Herbal Capsules"
+      : match?.params?.id == "Herbal"
+      ? "Herbal"
+      : null;
+  console.log("categoryid", categoryid);
+
   const getProducts = async () => {
     try {
       const res = await axios({
-        url: `${baseURL}/product/productlogs`,
+        url: `${baseURL}/product/productbycategorylogs/${categoryid}`,
         method: "GET",
         params: {
           page,
@@ -50,12 +60,11 @@ const Capsules = ({ history }) => {
       if (allcategoryofProducts?.length == 0) {
         res.data?.product?.docs?.map((prod) => {
           console.log("prod", prod);
-          if (allcategoryofProducts?.includes(prod.category)) {
-            console.log("blockkk");
-          } else {
-            allcategoryofProducts.push(prod.category);
-            console.log("allcategoryofProducts", allcategoryofProducts);
-          }
+          if(allcategoryofProducts?.includes(prod.categoryz)){
+console.log('blockkk');
+          }else{
+          allcategoryofProducts.push(prod.category);
+          console.log("allcategoryofProducts", allcategoryofProducts);}
           setrenderproductcategories([...allcategoryofProducts]);
         });
       }
@@ -349,13 +358,13 @@ const Capsules = ({ history }) => {
                             <Link to={`/ProductView/${prod?._id}`}>
                               {" "}
                               <img
+                              style={{
+                                height: 242,
+                                width: 242,
+                              }}
                                 src={`${imageURL}${prod?.productimage}`}
                                 alt=""
                                 className="img-fluid"
-                                style={{
-                                  height: 242,
-                                  width: 242,
-                                }}
                               />{" "}
                             </Link>
                             <h5 className="product-name">
@@ -488,4 +497,4 @@ const Capsules = ({ history }) => {
   );
 };
 
-export default Capsules;
+export default ViewCollection;

@@ -7,7 +7,7 @@ import InnerPageBanner from "./InnerPageBanner";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const DetoxHome = ({history}) => {
+const DetoxHome = ({ history }) => {
   const dispatch = useDispatch();
 
   const [detoxproductlist, setdetoxproductlist] = useState([]);
@@ -17,16 +17,18 @@ const DetoxHome = ({history}) => {
 
   const getDetoxProducts = async () => {
     try {
-      const { data } = await axios.get(`${baseURL}/product/detoxProducts`);
+      const { data } = await axios.post(`${baseURL}/product/detoxProducts`, {
+        category: "Detox",
+      });
       console.log("data", data);
       setdetoxproductlist(data);
     } catch (error) {
       console.log("error", error);
     }
   };
-  const addToCartHandler=async(productId, qty)=>{
+  const addToCartHandler = async (productId, qty) => {
     history.push(`/MyCart/${productId}?qty=${qty}`);
-  }
+  };
   return (
     <>
       <InnerPageBanner />
@@ -123,8 +125,8 @@ const DetoxHome = ({history}) => {
                       className="btn maroon-btn-solid"
                       data-toggle="modal"
                       data-target="#appointment"
-                      onClick={()=>{
-                        addToCartHandler(det?._id,1)
+                      onClick={() => {
+                        addToCartHandler(det?._id, 1);
                       }}
                     >
                       <img
@@ -136,11 +138,17 @@ const DetoxHome = ({history}) => {
                     </Link>
                   </div>
                   <div className="col-md-5 my-4 offset-xl-1 ">
-                    <img
-                      src={`${imageURL}${det?.productimage}`}
-                      alt=""
-                      className="img-fluid"
-                    />
+                    <Link to={`/ProductView/${det?._id}`}>
+                      <img
+                        style={{
+                          height: 440,
+                          width: 488,
+                        }}
+                        src={`${imageURL}${det?.productimage}`}
+                        alt=""
+                        className="img-fluid"
+                      />
+                    </Link>
                   </div>
                 </div>
               ))}
