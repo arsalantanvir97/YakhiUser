@@ -37,7 +37,7 @@ import ViewCollection from "./Screens/ViewCollection";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/yakhi/user">
       <Route path="/" component={Login} exact />
       <Route path="/Signup" component={Signup} exact />
       <Route path="/PasswordRecovery" component={PasswordRecovery} exact />
