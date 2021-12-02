@@ -61,7 +61,6 @@ const WishList = () => {
                       </tr>
                     </thead>
                     <tbody>
-                     
                       {wishtlistuser?.length > 0 &&
                         wishtlistuser?.map((wish, index) => (
                           <tr>
@@ -82,6 +81,10 @@ const WishList = () => {
                                     type="button"
                                     id="sub"
                                     className="minus"
+                                    value={quantity[index]}
+                                    onClick={() =>
+                                      setquantity((quantity[index] - 1))
+                                    }
                                   >
                                     <i className="fas fa-minus" />
                                   </button>
@@ -101,6 +104,10 @@ const WishList = () => {
                                     type="button"
                                     id="add"
                                     className="plus"
+                                    value={quantity[index]}
+                                    onClick={() =>
+                                      setquantity(Number(quantity[index] + 1))
+                                    }
                                   >
                                     <i className="fas fa-plus" />
                                   </button>

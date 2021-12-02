@@ -173,7 +173,7 @@ const Checkout = ({ history }) => {
             {/* Step form */}
             <div className="row">
               <div className="col-12 mb-xl-0 mb-5">
-                <form id="checkoutForm" action>
+                <form >
                   {/* Circles which indicates the steps of the form: */}
                   <div className="row mb-5">
                     {togglecheckout == 0 && (
@@ -200,7 +200,7 @@ const Checkout = ({ history }) => {
                         </div>
                         {/* One "tab" for each step in the form: */}
                         {/* ADDRESS TAB  */}
-                        <div className="tab">
+                        <div className="">
                           <div className="row">
                             <div className="col-xl-7 col-lg-7 col-md-10">
                               <div className="checkout-form">
@@ -819,6 +819,15 @@ const Checkout = ({ history }) => {
                                                   type="button"
                                                   id="sub"
                                                   className="minus"
+                                                  value={cart?.qty}
+                                                  onClick={() =>
+                                                    dispatch(
+                                                      addToCart(
+                                                        cart?.product,
+                                                        Number(cart?.qty-1)
+                                                      )
+                                                    )
+                                                  }
                                                 >
                                                   <i className="fas fa-minus" />
                                                 </button>
@@ -843,6 +852,15 @@ const Checkout = ({ history }) => {
                                                   type="button"
                                                   id="add"
                                                   className="plus"
+                                                  value={cart?.qty}
+                                                  onClick={() =>
+                                                    dispatch(
+                                                      addToCart(
+                                                        cart?.product,
+                                                        Number(cart?.qty+1)
+                                                      )
+                                                    )
+                                                  }
                                                 >
                                                   <i className="fas fa-plus" />
                                                 </button>

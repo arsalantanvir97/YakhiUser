@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { baseURL, imageURL } from "../utils/api";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+
 import axios from "axios";
 import InnerPageBanner from "./InnerPageBanner";
 const ProductView = ({ match, history }) => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const [product, setproduct] = useState([]);
   const [quantity, setquantity] = useState(0);
+  const [recommendedproducts, setrecommendedproducts] = useState([]);
   useEffect(() => {
     getSingleProduct();
   }, []);
@@ -20,8 +26,15 @@ const ProductView = ({ match, history }) => {
         url: `${baseURL}/product/getProductDetails/${match?.params?.id}`,
         method: "GET",
       });
-      console.log("res", res);
+      console.log("res", res?.data?.product?.category);
       setproduct(res?.data?.product);
+      const category = await res?.data?.product?.category;
+      console.log("category", category);
+      const { data } = await axios.post(`${baseURL}/product/detoxProducts`, {
+        category: category,
+      });
+      console.log("data", data);
+      setrecommendedproducts(data);
     } catch (err) {
       console.log(err);
     }
@@ -29,6 +42,51 @@ const ProductView = ({ match, history }) => {
   const addToCartHandler = async () => {
     console.log("addToCartHandler");
     history.push(`/MyCart/${match.params.id}?qty=${quantity}`);
+  };
+  const addtoWishLIstHandler = async (product) => {
+    console.log("product", product);
+    const formData = new FormData();
+    formData.append("user_image", product?.productimage);
+    formData.append("id", userInfo?._id);
+    formData.append("price", product?.price);
+    formData.append("brand", product?.brand);
+    formData.append("weight", product?.weight);
+    formData.append("category", product?.category);
+    formData.append("countInStock", product?.countInStock);
+    formData.append("name", product?.name);
+
+    formData.append("description", product?.description);
+
+    const body = formData;
+    try {
+      console.log("createWishList");
+
+      const res = await axios.post(`${baseURL}/wishList/createWishList`, body);
+
+      console.log("res", res);
+      if (res?.status == 201) {
+        history.replace("/WishList");
+      }
+      // else if(res?.status==201){
+      //   Toasty('error',`Invalid Email or Password`);
+      //   dispatch({
+      //     type: ADMIN_LOGIN_FAIL,
+      //     payload:
+      //     res?.data?.message
+      //   })
+      //   document.location.href = '/'
+
+      // }
+    } catch (error) {
+      console.log("error", error);
+      Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text: "Internal Server Error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
   return (
     <>
@@ -146,7 +204,13 @@ const ProductView = ({ match, history }) => {
                   <div id="field1">
                     Quantity
                     <div className="quantifier">
-                      <button type="button" id="sub" className="minus">
+                      <button
+                        type="button"
+                        id="sub"
+                        className="minus"
+                        value={quantity}
+                        onClick={() => setquantity(Number(quantity - 1))}
+                      >
                         <i className="fas fa-minus" />
                       </button>
                       <input
@@ -160,7 +224,13 @@ const ProductView = ({ match, history }) => {
                         }}
                         max={product?.countInStock}
                       />
-                      <button type="button" id="add" className="plus">
+                      <button
+                        type="button"
+                        id="add"
+                        className="plus"
+                        value={quantity}
+                        onClick={() => setquantity(Number(quantity + 1))}
+                      >
                         <i className="fas fa-plus" />
                       </button>
                     </div>
@@ -418,226 +488,124 @@ const ProductView = ({ match, history }) => {
                 <div className="col-12 mb-4">
                   <h3>Recommended Products</h3>
                 </div>
-                <div className="col-xl-3 col-md-6">
-                  {/* Product 1 */}
-                  <div className="product-card">
-                    <button type="button" className="wishlist-btn">
-                      <i className="wishlist-icon far fa-heart maroon" />
-                    </button>
-                    <a href="product-view.php">
-                      {" "}
-                      <img
-                        src="images/recommended-p1.png"
-                        alt=""
-                        className="img-fluid"
-                      />{" "}
-                    </a>
-                    <h5 className="product-name">
-                      <a href="product-view.php" className="f-21">
-                        {" "}
-                        Boston Cloths for Women
-                      </a>
-                    </h5>
-                    <ul className="list-inline py-2">
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                    </ul>
-                    <div className="row justify-content-between align-items-center mt-3">
-                      <div className="col-4">
-                        <p className="p-price">Price</p>
-                        <span className="red-color">$999</span>
-                      </div>
-                      <div className="col-8 text-right">
-                        <a href="#" className="btn maroon-btn-solid ">
+                {recommendedproducts?.detoxproduct?.length > 0 &&
+                  recommendedproducts?.detoxproduct?.map((rec) => (
+                    <div className="col-xl-3 col-md-6">
+                      {/* Product 4 */}
+                      <div className="product-card">
+                        <button
+                          type="button"
+                          className="wishlist-btn"
+                          onClick={() => {
+                            addtoWishLIstHandler(rec);
+                          }}
+                        >
+                          <i className="wishlist-icon far fa-heart maroon" />
+                        </button>
+                        <a href="product-view.php">
+                          {" "}
                           <img
-                            src="images/add-to-cart.png"
+                            src="images/recommended-p4.png"
                             alt=""
-                            className="img-fluid mr-2 pt-1"
-                          />
-                          Add to cart
+                            className="img-fluid"
+                          />{" "}
                         </a>
+                        <h5 className="product-name">
+                          <Link
+                            to={`/ProductView/${rec?._id}`}
+                            className="f-21"
+                          >
+                            {" "}
+                            {rec?.name}
+                          </Link>
+                        </h5>
+                        <ul className="list-inline py-2">
+                          <li className="list-inline-item">
+                            <i
+                              style={{ color: "#F3DE43" }}
+                              className={
+                                rec?.rating >= 1
+                                  ? "fas fa-star"
+                                  : rec?.rating >= 0.5
+                                  ? "fas fa-star-half-alt"
+                                  : "far fa-star"
+                              }
+                            />
+                          </li>
+                          <li className="list-inline-item">
+                            <i
+                              style={{ color: "#F3DE43" }}
+                              className={
+                                rec?.rating >= 2
+                                  ? "fas fa-star"
+                                  : rec?.rating >= 1.5
+                                  ? "fas fa-star-half-alt"
+                                  : "far fa-star"
+                              }
+                            />
+                          </li>
+                          <li className="list-inline-item">
+                            <i
+                              style={{ color: "#F3DE43" }}
+                              className={
+                                rec?.rating >= 3
+                                  ? "fas fa-star"
+                                  : rec?.rating >= 2.5
+                                  ? "fas fa-star-half-alt"
+                                  : "far fa-star"
+                              }
+                            />
+                          </li>
+                          <li className="list-inline-item">
+                            <i
+                              style={{ color: "#F3DE43" }}
+                              className={
+                                rec?.rating >= 4
+                                  ? "fas fa-star"
+                                  : rec?.rating >= 3.5
+                                  ? "fas fa-star-half-alt"
+                                  : "far fa-star"
+                              }
+                            />
+                          </li>
+                          <li className="list-inline-item">
+                            <i
+                              style={{ color: "#F3DE43" }}
+                              className={
+                                rec?.rating >= 5
+                                  ? "fas fa-star"
+                                  : rec?.rating >= 4.5
+                                  ? "fas fa-star-half-alt"
+                                  : "far fa-star"
+                              }
+                            />
+                          </li>
+                        </ul>
+                        <div className="row justify-content-between align-items-center mt-3">
+                          <div className="col-4">
+                            <p className="p-price">Price</p>
+                            <span className="red-color">${rec?.price}</span>
+                          </div>
+                          <div className="col-8 text-right">
+                            <Link
+                              to="#"
+                              className="btn maroon-btn-solid "
+                              onClick={() => {
+                                addToCartHandler(rec?._id, 1);
+                              }}
+                            >
+                              <img
+                                src="images/add-to-cart.png"
+                                alt=""
+                                className="img-fluid mr-2 pt-1"
+                              />
+                              Add to cart
+                            </Link>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-md-6">
-                  {/* Product 2 */}
-                  <div className="product-card">
-                    <button type="button" className="wishlist-btn">
-                      <i className="wishlist-icon far fa-heart maroon" />
-                    </button>
-                    <a href="product-view.php">
-                      {" "}
-                      <img
-                        src="images/recommended-p2.png"
-                        alt=""
-                        className="img-fluid"
-                      />{" "}
-                    </a>
-                    <h5 className="product-name">
-                      <a href="product-view.php" className="f-21">
-                        {" "}
-                        Boston Cloths for Women
-                      </a>
-                    </h5>
-                    <ul className="list-inline py-2">
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                    </ul>
-                    <div className="row justify-content-between align-items-center mt-3">
-                      <div className="col-4">
-                        <p className="p-price">Price</p>
-                        <span className="red-color">$999</span>
-                      </div>
-                      <div className="col-8 text-right">
-                        <a href="#" className="btn maroon-btn-solid ">
-                          <img
-                            src="images/add-to-cart.png"
-                            alt=""
-                            className="img-fluid mr-2 pt-1"
-                          />
-                          Add to cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-md-6">
-                  {/* Product 3 */}
-                  <div className="product-card">
-                    <button type="button" className="wishlist-btn">
-                      <i className="wishlist-icon far fa-heart maroon" />
-                    </button>
-                    <a href="product-view.php">
-                      {" "}
-                      <img
-                        src="images/recommended-p3.png"
-                        alt=""
-                        className="img-fluid"
-                      />{" "}
-                    </a>
-                    <h5 className="product-name">
-                      <a href="product-view.php" className="f-21">
-                        {" "}
-                        Boston Cloths for Women
-                      </a>
-                    </h5>
-                    <ul className="list-inline py-2">
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                    </ul>
-                    <div className="row justify-content-between align-items-center mt-3">
-                      <div className="col-4">
-                        <p className="p-price">Price</p>
-                        <span className="red-color">$999</span>
-                      </div>
-                      <div className="col-8 text-right">
-                        <a href="#" className="btn maroon-btn-solid ">
-                          <img
-                            src="images/add-to-cart.png"
-                            alt=""
-                            className="img-fluid mr-2 pt-1"
-                          />
-                          Add to cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-md-6">
-                  {/* Product 4 */}
-                  <div className="product-card">
-                    <button type="button" className="wishlist-btn">
-                      <i className="wishlist-icon far fa-heart maroon" />
-                    </button>
-                    <a href="product-view.php">
-                      {" "}
-                      <img
-                        src="images/recommended-p4.png"
-                        alt=""
-                        className="img-fluid"
-                      />{" "}
-                    </a>
-                    <h5 className="product-name">
-                      <a href="product-view.php" className="f-21">
-                        {" "}
-                        Boston Cloths for Women
-                      </a>
-                    </h5>
-                    <ul className="list-inline py-2">
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                      <li className="list-inline-item">
-                        <i className="fas fa-star rate" />
-                      </li>
-                    </ul>
-                    <div className="row justify-content-between align-items-center mt-3">
-                      <div className="col-4">
-                        <p className="p-price">Price</p>
-                        <span className="red-color">$999</span>
-                      </div>
-                      <div className="col-8 text-right">
-                        <a href="#" className="btn maroon-btn-solid ">
-                          <img
-                            src="images/add-to-cart.png"
-                            alt=""
-                            className="img-fluid mr-2 pt-1"
-                          />
-                          Add to cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))}
               </div>
             </section>
             <div className="row mt-5">
