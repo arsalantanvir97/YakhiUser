@@ -24,6 +24,12 @@ const MyCart = ({ match, location, history }) => {
     dispatch(removeFromCart(id));
   };
 
+  const subQuantity = async (prod, qty) => {
+    console.log("cart?.product", prod, qty);
+    qty == 0 || qty <= 0
+      ? dispatch(addToCart(prod, Number(qty + 0)))
+      : dispatch(addToCart(prod, Number(qty - 1)));
+  };
   return (
     <div className="container-fluid">
       <div className="row">
@@ -76,9 +82,9 @@ const MyCart = ({ match, location, history }) => {
                               </div>
                             </div>
                           </td>
-                          <td>£100.00</td>
-                          <td>£100.00</td>
-                          <td>£05.00</td>
+                          <td>$100.00</td>
+                          <td>$100.00</td>
+                          <td>$05.00</td>
                           <td>
                             <button type="button" className="btn trash-btn"><i className="far fa-trash-alt" /></button>
                           </td>
@@ -99,9 +105,9 @@ const MyCart = ({ match, location, history }) => {
                               </div>
                             </div>
                           </td>
-                          <td>£100.00</td>
-                          <td>£100.00</td>
-                          <td>£05.00</td>
+                          <td>$100.00</td>
+                          <td>$100.00</td>
+                          <td>$05.00</td>
                           <td>
                             <button type="button" className="btn trash-btn"><i className="far fa-trash-alt" /></button>
                           </td>
@@ -115,6 +121,7 @@ const MyCart = ({ match, location, history }) => {
                                     src={`${imageURL}${cart?.image}`}
                                     alt=""
                                     className="img-fluid mx-auto"
+                                    style={{ width: 96, height: 83 }}
                                   />
                                 </div>
                               </td>
@@ -128,12 +135,13 @@ const MyCart = ({ match, location, history }) => {
                                       className="minus"
                                       value={cart?.qty}
                                       onClick={() =>
-                                        dispatch(
-                                          addToCart(
-                                            cart?.product,
-                                            Number(cart?.qty - 1)
-                                          )
-                                        )
+                                        // dispatch(
+                                        //   addToCart(
+                                        //     cart?.product,
+                                        //     Number(cart?.qty - 1)
+                                        //   )
+                                        // )
+                                        subQuantity(cart?.product, cart?.qty)
                                       }
                                     >
                                       <i className="fas fa-minus" />
@@ -173,9 +181,9 @@ const MyCart = ({ match, location, history }) => {
                                   </div>
                                 </div>
                               </td>
-                              <td>£{cart?.price}</td>
-                              <td>£{cart?.qty * cart?.price}</td>
-                              <td>£0</td>
+                              <td>${cart?.price}</td>
+                              <td>${cart?.qty * cart?.price}</td>
+                              <td>$0</td>
                               <td>
                                 <button
                                   type="button"

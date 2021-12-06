@@ -10,7 +10,7 @@ const ProductView = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [product, setproduct] = useState([]);
-  const [quantity, setquantity] = useState(0);
+  const [quantity, setquantity] = useState(1);
   const [recommendedproducts, setrecommendedproducts] = useState([]);
   useEffect(() => {
     getSingleProduct();
@@ -88,6 +88,12 @@ const ProductView = ({ match, history }) => {
       });
     }
   };
+  const subQuantity = async () => {
+    quantity == 0 || quantity <= 0
+      ? setquantity(0)
+      : setquantity(Number(quantity - 1));
+  };
+ 
   return (
     <>
       <InnerPageBanner />
@@ -200,7 +206,7 @@ const ProductView = ({ match, history }) => {
                     </li>
                   </ul>
                   <p className="short-desc">{product?.description} </p>
-                  <h4 className="big-price">$ {product?.price} </h4>
+                  <h4 className="big-price">${product?.price} </h4>
                   <div id="field1">
                     Quantity
                     <div className="quantifier">
@@ -209,7 +215,10 @@ const ProductView = ({ match, history }) => {
                         id="sub"
                         className="minus"
                         value={quantity}
-                        onClick={() => setquantity(Number(quantity - 1))}
+                        onClick={() =>
+                          // setquantity(Number(quantity - 1))
+                          subQuantity()
+                        }
                       >
                         <i className="fas fa-minus" />
                       </button>
@@ -229,7 +238,10 @@ const ProductView = ({ match, history }) => {
                         id="add"
                         className="plus"
                         value={quantity}
-                        onClick={() => setquantity(Number(quantity + 1))}
+                        onClick={
+                          () => 
+                          setquantity(Number(quantity + 1))
+                        }
                       >
                         <i className="fas fa-plus" />
                       </button>
@@ -505,7 +517,8 @@ const ProductView = ({ match, history }) => {
                         <a href="product-view.php">
                           {" "}
                           <img
-                            src="images/recommended-p4.png"
+                            src={`${imageURL}${rec?.productimage}`}
+                            style={{width:238,height:239}}
                             alt=""
                             className="img-fluid"
                           />{" "}

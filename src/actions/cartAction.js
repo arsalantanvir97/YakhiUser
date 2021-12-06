@@ -8,6 +8,7 @@ import {
 import { baseURL } from "../utils/api";
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
+  console.log('addToCartid',id,qty)
   const { data } = await axios.get(
     `${baseURL}/product/getProductDetails/${id}`
   );

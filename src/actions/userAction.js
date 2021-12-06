@@ -76,7 +76,7 @@ export const userLoginAction =
         });
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data));
-        history?.replace("/Home");
+        history?.replace("/");
       } else if (res?.status == 201) {
         Toasty("error", `Invalid Email or Password`);
         dispatch({
@@ -92,7 +92,7 @@ export const userLoginAction =
     }
   };
 export const userResetPasswordAction =
-  (password, confirm_password, code, email) => async (dispatch) => {
+  (password, confirm_password, code, email,history) => async (dispatch) => {
     try {
       // dispatch({
       //   type: ADMIN_LOGIN_REQUEST,
@@ -111,7 +111,7 @@ export const userResetPasswordAction =
         });
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data));
-        document.location.href = "/Home";
+        history.push('/Home')
       }
       // else if(res?.status==201){
       //   Toasty('error',`Invalid Email or Password`);

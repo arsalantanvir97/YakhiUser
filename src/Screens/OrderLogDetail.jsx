@@ -214,9 +214,9 @@ const OrderLogDetail = ({ match, history }) => {
                             <td>
                               <td>{ord?.qty}</td>
                             </td>
-                            <td>£{ord?.price}</td>
-                            <td>£{ord?.qty * ord?.price}</td>
-                            <td>£0</td>
+                            <td>${ord?.price}</td>
+                            <td>${ord?.qty * ord?.price}</td>
+                            <td>$0</td>
                           </tr>
                         ))}
                     </tbody>
@@ -270,7 +270,7 @@ const OrderLogDetail = ({ match, history }) => {
                       </div>
                       <div className="col-5 mb-3 text-right">
                         <p className="summary-value">
-                          ${orderdetaills?.totalPrice}
+                        ${orderdetaills?.totalPrice}
                         </p>
                       </div>
                       {/* tax */}
@@ -294,7 +294,7 @@ const OrderLogDetail = ({ match, history }) => {
                       </div>
                       <div className="col-5 mb-3 text-right">
                         <p className="grand-total-value">
-                          ${orderdetaills?.totalPrice}
+                        ${orderdetaills?.totalPrice}
                         </p>
                       </div>
                       {orderdetaills?.status== 'Paid' ||orderdetaills?.status== 'Refunded' ||orderdetaills?.status== 'Delivered' ? null :

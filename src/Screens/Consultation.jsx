@@ -184,7 +184,7 @@ const Consultation = () => {
                             </div>
                             <div className="col-12">
                               <label>Phone</label>
-                              <input className="form-control" placeholder="Enter Phone Number" type="tel" oninput="this.className = ''" />
+                              <input className="form-control" maxlength="11" placeholder="Enter Phone Number" type="tel" oninput="this.className = ''" />
                             </div>
                             <div className="col-12">
                               <label>Email</label>

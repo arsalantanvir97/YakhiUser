@@ -165,6 +165,12 @@ const Checkout = ({ history }) => {
       })
     );
   };
+  const subQuantity = async (prod, qty) => {
+    console.log("cart?.product", prod, qty);
+    qty == 0 || qty <= 0
+      ? dispatch(addToCart(prod, Number(qty + 0)))
+      : dispatch(addToCart(prod, Number(qty - 1)));
+  };
   return (
     <section className="about-page">
       <div className="container-fluid">
@@ -173,7 +179,7 @@ const Checkout = ({ history }) => {
             {/* Step form */}
             <div className="row">
               <div className="col-12 mb-xl-0 mb-5">
-                <form >
+                <form>
                   {/* Circles which indicates the steps of the form: */}
                   <div className="row mb-5">
                     {togglecheckout == 0 && (
@@ -227,6 +233,7 @@ const Checkout = ({ history }) => {
                                     <input
                                       type="tel"
                                       className="form-control"
+                                      maxlength="11"
                                       placeholder="Enter Phone Number"
                                       value={phone}
                                       onChange={(e) => {
@@ -632,8 +639,9 @@ const Checkout = ({ history }) => {
                                   <div className="col-6 mb-4">
                                     <label>CVV Number*</label>
                                     <input
-                                      type="number"
+                                      type="tel"
                                       className="form-control"
+                                      maxlength="11"
                                       placeholder="Enter CVV"
                                       value={cvvnumber}
                                       onChange={(e) => {
@@ -645,8 +653,10 @@ const Checkout = ({ history }) => {
                                     <label>Expiry date*</label>
 
                                     <input
-                                      type="date"
+                                      type="month"
                                       className="form-control"
+                                      id="start"
+                                      name="start"
                                       placeholder="Enter Expiry Date"
                                       value={expirydate}
                                       onChange={(e) => {
@@ -821,11 +831,15 @@ const Checkout = ({ history }) => {
                                                   className="minus"
                                                   value={cart?.qty}
                                                   onClick={() =>
-                                                    dispatch(
-                                                      addToCart(
-                                                        cart?.product,
-                                                        Number(cart?.qty-1)
-                                                      )
+                                                    // dispatch(
+                                                    //   addToCart(
+                                                    //     cart?.product,
+                                                    //     Number(cart?.qty-1)
+                                                    //   )
+                                                    // )
+                                                    subQuantity(
+                                                      cart?.product,
+                                                      cart?.qty
                                                     )
                                                   }
                                                 >
@@ -857,7 +871,7 @@ const Checkout = ({ history }) => {
                                                     dispatch(
                                                       addToCart(
                                                         cart?.product,
-                                                        Number(cart?.qty+1)
+                                                        Number(cart?.qty + 1)
                                                       )
                                                     )
                                                   }
@@ -867,9 +881,9 @@ const Checkout = ({ history }) => {
                                               </div>
                                             </div>
                                           </td>
-                                          <td>£{cart?.price}</td>
-                                          <td>£{cart?.qty * cart?.price}</td>
-                                          <td>£{cart?.price}</td>
+                                          <td>${cart?.price}</td>
+                                          <td>${cart?.qty * cart?.price}</td>
+                                          <td>${cart?.price}</td>
                                           <td>
                                             <button
                                               type="button"

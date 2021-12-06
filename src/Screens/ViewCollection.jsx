@@ -21,13 +21,26 @@ const ViewCollection = ({ history, match }) => {
   const [status, setStatus] = useState("");
   const [category, setcategory] = useState("");
   const [latestfilter, setlatestfilter] = useState("");
-
+  const [sort, setsort] = useState("");
+  const [pricefrom, setpricefrom] = useState();
+  const [priceto, setpriceto] = useState();
   const [productlogs, setproductlogs] = useState("");
   const [renderproductcategories, setrenderproductcategories] = useState([]);
 
   useEffect(() => {
     getProducts();
-  }, [page, perPage, from, to, status, searchString, category]);
+  }, [
+    page,
+    perPage,
+    from,
+    to,
+    status,
+    searchString,
+    category,
+    sort,
+    priceto,
+    pricefrom,
+  ]);
 
   const categoryid =
     match?.params?.id == "HerbalTea"
@@ -52,6 +65,9 @@ const ViewCollection = ({ history, match }) => {
           to,
           status,
           category,
+          sort,
+          priceto,
+          pricefrom,
         },
       });
 
@@ -60,11 +76,12 @@ const ViewCollection = ({ history, match }) => {
       if (allcategoryofProducts?.length == 0) {
         res.data?.product?.docs?.map((prod) => {
           console.log("prod", prod);
-          if(allcategoryofProducts?.includes(prod.categoryz)){
-console.log('blockkk');
-          }else{
-          allcategoryofProducts.push(prod.category);
-          console.log("allcategoryofProducts", allcategoryofProducts);}
+          if (allcategoryofProducts?.includes(prod.categoryz)) {
+            console.log("blockkk");
+          } else {
+            allcategoryofProducts.push(prod.category);
+            console.log("allcategoryofProducts", allcategoryofProducts);
+          }
           setrenderproductcategories([...allcategoryofProducts]);
         });
       }
@@ -168,26 +185,40 @@ console.log('blockkk');
                       </h4>
                       <ul className="px-4 pt-3">
                         <li className="mb-4">
-                          <a href="#">Popularity</a>{" "}
+                          <Link to="#">Popularity</Link>{" "}
                         </li>
                         <li className="mb-4">
-                          <a href="#">Avg. Rating</a>{" "}
+                          <Link to="#">Avg. Rating</Link>{" "}
                         </li>
                         <li className="mb-4">
                           <Link
                             to="#"
                             onClick={() => {
-                              setlatestfilter(-1);
+                              setsort("latest");
                             }}
                           >
                             Latest
                           </Link>
                         </li>
                         <li className="mb-4">
-                          <a href="#">Price Low To High</a>
+                          <Link
+                            to="#"
+                            onClick={() => {
+                              setsort("asc");
+                            }}
+                          >
+                            Price Low To High
+                          </Link>
                         </li>
                         <li className="mb-4">
-                          <a href="#">Price High To Low</a>
+                          <Link
+                            to="#"
+                            onClick={() => {
+                              setsort("des");
+                            }}
+                          >
+                            Price High To Low
+                          </Link>
                         </li>
                       </ul>
                       {/* Price Range */}
@@ -198,13 +229,21 @@ console.log('blockkk');
                         <input
                           type="number"
                           className="form-control mb-2 mr-sm-2 range-field"
-                          placeholder={1000}
+                          placeholder={0}
+                          value={pricefrom}
+                          onChange={(e) => {
+                            setpricefrom(e.target.value);
+                          }}
                         />
                         <label htmlFor>To</label>
                         <input
                           type="number"
                           className="form-control mb-2 mr-sm-2 range-field"
                           placeholder={10000}
+                          value={priceto}
+                          onChange={(e) => {
+                            setpriceto(e.target.value);
+                          }}
                         />
                       </form>
                       {/* Rating */}
@@ -328,9 +367,16 @@ console.log('blockkk');
                         <label htmlFor="sortBy" className="sortby-label">
                           Sorted By
                         </label>
-                        <select className="form-control ml-md-4" id="sortBy">
-                          <option>A - Z</option>
-                          <option>--</option>
+                        <select
+                          className="form-control ml-md-4"
+                          id="sortBy"
+                          value={sort}
+                          onChange={(e) => {
+                            setsort(e.target.value);
+                          }}
+                        >
+                          <option value={"nameasc"}>A - Z</option>
+                          <option value={"namedes"}>Z - A</option>
                         </select>
                       </form>
                     </div>
@@ -358,17 +404,17 @@ console.log('blockkk');
                             <Link to={`/ProductView/${prod?._id}`}>
                               {" "}
                               <img
-                              style={{
-                                height: 242,
-                                width: 242,
-                              }}
+                                style={{
+                                  height: 242,
+                                  width: 242,
+                                }}
                                 src={`${imageURL}${prod?.productimage}`}
                                 alt=""
                                 className="img-fluid"
                               />{" "}
                             </Link>
                             <h5 className="product-name">
-                              <a href="product-view.php"> {prod?.name}</a>
+                              <Link to="#"> {prod?.name}</Link>
                             </h5>
                             <ul className="list-inline py-2">
                               <li className="list-inline-item">

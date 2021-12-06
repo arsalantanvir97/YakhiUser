@@ -338,9 +338,9 @@ const Index = () => {
                           </span>
                         </h5>
                       </div>
-                      <a href="#" className="red-link">
+                      <Link to="/Capsules" className="red-link">
                         Shop Now
-                      </a>
+                      </Link>
                     </div>
                     <img
                       src="images/elementsCircle.png"

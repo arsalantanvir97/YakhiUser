@@ -34,10 +34,16 @@ import ProductViewOutStock from "./Screens/ProductViewOutStock";
 import ReturnsandRefund from "./Screens/ReturnsandRefund";
 import ShippingandPickup from "./Screens/ShippingandPickup";
 import ViewCollection from "./Screens/ViewCollection";
+import ScrollToTop from "./components/ScrollToTop";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    return <ScrollToTop />;
+  }, []);
   return (
     <Router basename="/yakhi/user">
+      <ScrollToTop />
       <Route path="/" component={Login} exact />
       <Route path="/Signup" component={Signup} exact />
       <Route path="/PasswordRecovery" component={PasswordRecovery} exact />

@@ -54,7 +54,7 @@ const WishList = () => {
                       <tr>
                         <th>IMAGE</th>
                         <th>PRODUCT</th>
-                        <th>QUANTITY</th>
+                        {/* <th>QUANTITY</th> */}
                         <th>UNIT PRICE</th>
                         <th>Availability</th>
                         <th>ACTION</th>
@@ -74,7 +74,7 @@ const WishList = () => {
                               </div>
                             </td>
                             <td>{wish?.name}</td>
-                            <td>
+                            {/* <td>
                               <div id="field1">
                                 <div className="quantifier ml-0">
                                   <button
@@ -83,7 +83,7 @@ const WishList = () => {
                                     className="minus"
                                     value={quantity[index]}
                                     onClick={() =>
-                                      setquantity((quantity[index] - 1))
+                                      setquantity(quantity[index] - 1)
                                     }
                                   >
                                     <i className="fas fa-minus" />
@@ -105,16 +105,14 @@ const WishList = () => {
                                     id="add"
                                     className="plus"
                                     value={quantity[index]}
-                                    onClick={() =>
-                                      setquantity(Number(quantity[index] + 1))
-                                    }
+                                    onClick={() => {}}
                                   >
                                     <i className="fas fa-plus" />
                                   </button>
                                 </div>
                               </div>
-                            </td>
-                            <td>£100.00</td>
+                            </td> */}
+                            <td>${wish?.price}</td>
                             <td>
                               <span className="instock-label">
                                 {wish?.countInStock > 0

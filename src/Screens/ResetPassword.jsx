@@ -29,7 +29,8 @@ const ResetPassword = (props) => {
         password,
         confirm_password,
         props?.location?.state?.code,
-        props?.location?.state?.email
+        props?.location?.state?.email,
+        props?.history
       )
     );
   };
