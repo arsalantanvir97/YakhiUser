@@ -59,7 +59,7 @@ const OrderLogDetail = ({ match, history }) => {
     if (status === "succeeded") {
       console.log("kir", abc);
       await dispatch(payOrder(match?.params?.id, abc));
-      history.push("/Home");
+      history.push("/");
       console.log(status, "succes");
     } else {
       console.log(status, "fail");

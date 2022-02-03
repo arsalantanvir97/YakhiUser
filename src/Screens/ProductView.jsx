@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 import axios from "axios";
 import InnerPageBanner from "./InnerPageBanner";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 const ProductView = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -96,7 +97,7 @@ const ProductView = ({ match, history }) => {
  
   return (
     <>
-      <InnerPageBanner />
+     
       <div className="container-fluid">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -604,7 +605,8 @@ const ProductView = ({ match, history }) => {
                               to="#"
                               className="btn maroon-btn-solid "
                               onClick={() => {
-                                addToCartHandler(rec?._id, 1);
+                                userInfo?
+                                addToCartHandler(rec?._id, 1) : UnauthorizedAlert()
                               }}
                             >
                               <img

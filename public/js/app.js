@@ -6,9 +6,11 @@ toggles.forEach(toggle=>{
         toggle.parentNode.classList.toggle("active");
     });
 });
-  
+
 // For Wishlist icon
   $(".wishlist-icon").click(function() { $(this).toggleClass("fas fa-heart maroon far fa-heart maroon") });
+
+
 
   // Slick slider on the homepage
     var slickOpts = {
@@ -29,14 +31,12 @@ toggles.forEach(toggle=>{
       dots: true,
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 1024,
           settings: {
-            arrows: false
+            arrows: false,
+            dots: true
           }
         }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
       ]
     });
     var input = $('.quantity'),
@@ -203,6 +203,20 @@ function fixStepIndicator(n) {
 
 
 
+
+$('.dmenu').hover(function () {
+  $(this).find('.sm-menu').first().stop(true, true).slideDown(150);
+  }, 
+function () {
+  $(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+}
+); 
+
+$(document).ready(function() {
+  $(".megamenu").on("click", function(e) {
+    e.stopPropagation();
+  });
+});
 
 
 

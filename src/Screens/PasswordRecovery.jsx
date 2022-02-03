@@ -64,7 +64,7 @@ const PasswordRecovery = ({history}) => {
               </div>
               <div className="row pb-5">
                 <div className="col-12 text-center">
-                  <Link className="red" to="/">Back To Login</Link>
+                  <Link className="red" to="/Login">Back To Login</Link>
                 </div>
               </div>  
             </div>

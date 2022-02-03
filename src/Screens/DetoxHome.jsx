@@ -6,10 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import InnerPageBanner from "./InnerPageBanner";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 
 const DetoxHome = ({ history }) => {
   const dispatch = useDispatch();
-
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const [detoxproductlist, setdetoxproductlist] = useState([]);
   useEffect(() => {
     getDetoxProducts();
@@ -18,7 +22,7 @@ const DetoxHome = ({ history }) => {
   const getDetoxProducts = async () => {
     try {
       const { data } = await axios.post(`${baseURL}/product/detoxProducts`, {
-        category: "Detox",
+        category: "Detox"
       });
       console.log("data", data);
       setdetoxproductlist(data);
@@ -31,7 +35,27 @@ const DetoxHome = ({ history }) => {
   };
   return (
     <>
-      <InnerPageBanner />
+      <Header />
+      <section className="inner-banner">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
+              <div className="banner-content">
+                <div className="banner-outline">
+                  <h1 className="slider-heading">
+                    Healing The Illusion We Call disease
+                  </h1>
+                  <p className="slider-para">
+                    You deserve healing! We are not currently accepting detox
+                    home clients.{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="container-fluid my-5 py-4" id="detox">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -126,7 +150,8 @@ const DetoxHome = ({ history }) => {
                       data-toggle="modal"
                       data-target="#appointment"
                       onClick={() => {
-                        addToCartHandler(det?._id, 1);
+                        userInfo? 
+                        addToCartHandler(det?._id, 1): UnauthorizedAlert()
                       }}
                     >
                       <img
@@ -138,11 +163,11 @@ const DetoxHome = ({ history }) => {
                     </Link>
                   </div>
                   <div className="col-md-5 my-4 offset-xl-1 ">
-                    <Link to={`/ProductView/${det?._id}`}>
+                    <Link to={`/ProductView/${det?._id}`} onClick={()=>{!userInfo && UnauthorizedAlert()} }>
                       <img
                         style={{
                           height: 440,
-                          width: 488,
+                          width: 488
                         }}
                         src={`${imageURL}${det?.productimage}`}
                         alt=""
@@ -153,79 +178,7 @@ const DetoxHome = ({ history }) => {
                 </div>
               ))}
             {/* FAQS */}
-            <div className="col-10 mx-auto my-5">
-              <h4 className="sub-heading text-center">Faqs</h4>
-              <h3 className="main-heading text-center">
-                Frequently Asked Questions
-              </h3>
-              {/* FAQS container starts */}
-              <div className="faq-container my-3">
-                {/* FAQ 1 */}
-                <div className="faq ">
-                  <h3 className="faq-title">How Much Does It Cost?</h3>
-                  <p className="faq-text">
-                    $1500 dollars per week includes herbs. There is a one-week
-                    minimum stay. Full payment will be required to book your
-                    stay.
-                  </p>
-                  <button className="faq-toggle">
-                    <i className="fas fa-chevron-down" />
-                    <i className="fas fa-times" />
-                  </button>
-                </div>
-                {/* FAQ 2 */}
-                <div className="faq ">
-                  <h3 className="faq-title">How Long I Can Stay?</h3>
-                  <p className="faq-text">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Sit, reprehenderit!
-                  </p>
-                  <button className="faq-toggle">
-                    <i className="fas fa-chevron-down" />
-                    <i className="fas fa-times" />
-                  </button>
-                </div>
-                {/* FAQ 3 */}
-                <div className="faq">
-                  <h3 className="faq-title">
-                    Can the Yahki Detoxification Home Accommodate Everyone?
-                  </h3>
-                  <p className="faq-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Soluta, vel.
-                  </p>
-                  <button className="faq-toggle">
-                    <i className="fas fa-chevron-down" />
-                    <i className="fas fa-times" />
-                  </button>
-                </div>
-                {/* FAQ 4 */}
-                <div className="faq ">
-                  <h3 className="faq-title">What Do I Need to Bring?</h3>
-                  <p className="faq-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nam, ipsum.
-                  </p>
-                  <button className="faq-toggle">
-                    <i className="fas fa-chevron-down" />
-                    <i className="fas fa-times" />
-                  </button>
-                </div>
-                {/* FAQ 5 */}
-                <div className="faq ">
-                  <h3 className="faq-title">Can I Bring Someone With Me?</h3>
-                  <p className="faq-text">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Animi, placeat.
-                  </p>
-                  <button className="faq-toggle">
-                    <i className="fas fa-chevron-down" />
-                    <i className="fas fa-times" />
-                  </button>
-                </div>
-                {/* FAQS container ends */}
-              </div>
-            </div>
+
             <div className="row mt-5 pt-5">
               <div className="col-12 text-center">
                 <div className="about-bottom-banner">
@@ -246,6 +199,7 @@ const DetoxHome = ({ history }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

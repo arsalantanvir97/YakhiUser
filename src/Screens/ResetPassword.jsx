@@ -77,7 +77,7 @@ const ResetPassword = (props) => {
                     </div>
                     <div className="row pb-5">
                       <div className="col-12 text-center">
-                        <Link to="/" className="red" >Back To Login</Link>
+                        <Link to="/Login" className="red" >Back To Login</Link>
                       </div>
                     </div>  
                   </div>

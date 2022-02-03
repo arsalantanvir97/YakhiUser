@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLoginAction } from "../actions/userAction";
+import Toasty from "../utils/toast";
 const Login = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -10,9 +11,8 @@ const Login = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const submitHandler = async (e) => {
+  const submitHandler = async () => {
     console.log("submitHandler");
-    e.preventDefault();
     await dispatch(userLoginAction(email, password, history));
     setemail("");
     setpassword("");
@@ -20,7 +20,7 @@ const Login = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.replace("/Home");
+      history.replace("/");
     }
   }, [userInfo]);
   return (
@@ -81,9 +81,7 @@ const Login = ({ history }) => {
                         </div>
                         <div className="col-md-6 col-12 text-right">
                           <h6 className="f-18">
-                            <Link to='/PasswordRecovery'
-                              className="red-link"
-                            >
+                            <Link to="/PasswordRecovery" className="red-link">
                               Forgot Password
                             </Link>
                           </h6>
@@ -96,7 +94,14 @@ const Login = ({ history }) => {
                             className="btn red-btn-solid ml-0 px-5 py-2"
                             data-toggle="modal"
                             data-target="#confirmOrder"
-                            onClick={submitHandler}
+                            onClick={() =>
+                              email?.length > 0 && password?.length > 0
+                                ? submitHandler()
+                                : Toasty(
+                                    "error",
+                                    `Please fill out all the required fields`
+                                  )
+                            }
                           >
                             Login
                           </Link>

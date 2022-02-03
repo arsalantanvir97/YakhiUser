@@ -36,7 +36,7 @@ export const userSignUpAction =
         });
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data));
-        history?.replace("/Home");
+        history?.replace("/");
       }
       //   else if (res?.status == 400) {
       //     Toasty("error", res?.data?.message);
@@ -111,7 +111,7 @@ export const userResetPasswordAction =
         });
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data));
-        history.push('/Home')
+        history.push('/')
       }
       // else if(res?.status==201){
       //   Toasty('error',`Invalid Email or Password`);

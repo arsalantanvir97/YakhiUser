@@ -8,6 +8,9 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import Pagination from "../components/Padgination";
 import InnerPageBanner from "./InnerPageBanner";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 let allcategoryofProducts = [];
 const Capsules = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -134,6 +137,7 @@ const Capsules = ({ history }) => {
   }, [allcategoryofProducts]);
   return (
     <>
+    <Header/>
       <section className="capsules">
         <InnerPageBanner />
         <div className="container-fluid">
@@ -383,7 +387,8 @@ const Capsules = ({ history }) => {
                               type="button"
                               className="wishlist-btn"
                               onClick={() => {
-                                addtoWishLIstHandler(prod);
+                                userInfo? 
+                                addtoWishLIstHandler(prod) : UnauthorizedAlert()
                               }}
                             >
                               <i className="wishlist-icon fas fa-heart maroon" />
@@ -475,7 +480,8 @@ const Capsules = ({ history }) => {
                                   to="#"
                                   className="btn maroon-btn-solid "
                                   onClick={() => {
-                                    addToCartHandler(prod?._id, 1);
+                                    userInfo ?
+                                    addToCartHandler(prod?._id, 1): UnauthorizedAlert()
                                   }}
                                 >
                                   <img
@@ -526,6 +532,7 @@ const Capsules = ({ history }) => {
           </div>
         </div>
       </section>
+      <Footer/>
     </>
   );
 };

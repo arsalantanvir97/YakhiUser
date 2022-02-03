@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
+import PrivateRouteSlider from "./PrivateRouteSlider";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
   return (
     <Route
       {...rest}
@@ -18,6 +18,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         ) : (
           <>
             <Header />
+            <PrivateRouteSlider/>
             {/* <Sidebar /> */}
             <Component {...props} />
 

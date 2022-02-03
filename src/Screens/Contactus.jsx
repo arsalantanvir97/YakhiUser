@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { baseURL } from "../utils/api";
 import Swal from "sweetalert2";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Toasty from "../utils/toast";
 
 const Contactus = () => {
-  const [firstName, setfirstName] = useState();
-  const [lastName, setlastName] = useState();
-  const [email, setemail] = useState();
-  const [reasonforcontacting, setreasonforcontacting] = useState();
-  const [message, setmessage] = useState();
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setemail] = useState("");
+  const [reasonforcontacting, setreasonforcontacting] = useState("");
+  const [message, setmessage] = useState("");
 
   const contactusHandler = async () => {
     try {
@@ -18,7 +21,7 @@ const Contactus = () => {
         lastName,
         email,
         reasonforcontacting,
-        message,
+        message
       });
       console.log("res", res);
       Swal.fire({
@@ -26,11 +29,9 @@ const Contactus = () => {
         title: "",
         text: "Message sent Successfully",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1500
       });
-    } catch (error) {
-    
-    }
+    } catch (error) {}
     setfirstName("");
     setlastName("");
     setemail("");
@@ -39,151 +40,185 @@ const Contactus = () => {
   };
 
   return (
-    <div className="container-fluid my-5 py-4">
-      <div className="row">
-        <div className="col-11 mx-auto">
-          <div className="contact-us">
-            <div className="row">
-              <div className="col-md-9 col-12 mx-auto text-center">
-                <h4 className="sub-heading">
-                  Yah'ki Awakened Eye of Lotus Botanical Health Club
-                </h4>
-                <h3 className="main-heading">Contact Us</h3>
-                <p className="general-para mb-4">
-                  Though this form is secure, please do not include any personal
-                  information in this contact form aside from what is already
-                  requested.
-                </p>
+    <>
+      <Header />
+      <section className="inner-banner">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
+              <div className="banner-content">
+                <div className="banner-outline">
+                  <h1 className="slider-heading">
+                    Healing The Illusion We Call disease
+                  </h1>
+                  <p className="slider-para">
+                    You deserve healing! We are not currently accepting detox
+                    home clients.{" "}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="row py-5">
-              <div className="col-md-10 col-12 mx-auto">
-                <div className="account-form">
-                  <form>
-                    <div className="row align-items-center justify-content-center">
-                      <div className="col-12">
-                        <div className="row justify-content-md-center">
-                          <div className="col-md-12 mt-2">
-                            {/* first and last name */}
-                            <div className="row">
-                              <div className="col-md-6 mt-3">
-                                <label htmlFor className="my-label">
-                                  First Name<span className="red">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  className="form-control my-textbox"
-                                  placeholder="Enter First Name"
-                                  value={firstName}
-                                  onChange={(e) => {
-                                    setfirstName(e.target.value);
-                                  }}
-                                />
+          </div>
+        </div>
+      </section>
+
+      <div className="container-fluid my-5 py-4">
+        <div className="row">
+          <div className="col-11 mx-auto">
+            <div className="contact-us">
+              <div className="row">
+                <div className="col-md-9 col-12 mx-auto text-center">
+                  <h4 className="sub-heading">
+                    Yah'ki Awakened Eye of Lotus Botanical Health Club
+                  </h4>
+                  <h3 className="main-heading">Contact Us</h3>
+                  <p className="general-para mb-4">
+                    Though this form is secure, please do not include any
+                    personal information in this contact form aside from what is
+                    already requested.
+                  </p>
+                </div>
+              </div>
+              <div className="row py-5">
+                <div className="col-md-10 col-12 mx-auto">
+                  <div className="account-form">
+                    <form>
+                      <div className="row align-items-center justify-content-center">
+                        <div className="col-12">
+                          <div className="row justify-content-md-center">
+                            <div className="col-md-12 mt-2">
+                              {/* first and last name */}
+                              <div className="row">
+                                <div className="col-md-6 mt-3">
+                                  <label htmlFor className="my-label">
+                                    First Name<span className="red">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    className="form-control my-textbox"
+                                    placeholder="Enter First Name"
+                                    value={firstName}
+                                    onChange={(e) => {
+                                      setfirstName(e.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <div className="col-md-6 mt-3">
+                                  <label htmlFor className="my-label">
+                                    Last Name<span className="red">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    className="form-control my-textbox"
+                                    placeholder="Enter Last Name"
+                                    value={lastName}
+                                    onChange={(e) => {
+                                      setlastName(e.target.value);
+                                    }}
+                                  />
+                                </div>
                               </div>
-                              <div className="col-md-6 mt-3">
-                                <label htmlFor className="my-label">
-                                  Last Name<span className="red">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  className="form-control my-textbox"
-                                  placeholder="Enter Last Name"
-                                  value={lastName}
-                                  onChange={(e) => {
-                                    setlastName(e.target.value);
-                                  }}
-                                />
+                              {/* email address and Reason for Contacting Us*/}
+                              <div className="row">
+                                <div className="col-md-6 mt-3">
+                                  <label htmlFor className="my-label">
+                                    Email Address <span className="red">*</span>
+                                  </label>
+                                  <input
+                                    type="email"
+                                    className="form-control my-textbox"
+                                    placeholder="Enter Email Address"
+                                    value={email}
+                                    onChange={(e) => {
+                                      setemail(e.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <div className="col-md-6 mt-3">
+                                  <label htmlFor className="my-label">
+                                    Reason for Contacting Us{" "}
+                                    <span className="red">*</span>
+                                  </label>
+                                  <select
+                                    className="form-control"
+                                    value={reasonforcontacting}
+                                    onChange={(e) => {
+                                      setreasonforcontacting(e.target.value);
+                                    }}
+                                  >
+                                    <option>Please Select</option>
+                                    <option value={"Issue 1"}>Issue 1</option>
+                                    <option value={"Issue 2"}>Issue 2</option>
+                                    <option value={"Issue 3"}>Issue 3</option>
+                                    <option value={"Issue 4"}>Issue 4</option>
+                                  </select>
+                                </div>
                               </div>
-                            </div>
-                            {/* email address and Reason for Contacting Us*/}
-                            <div className="row">
-                              <div className="col-md-6 mt-3">
-                                <label htmlFor className="my-label">
-                                  Email Address <span className="red">*</span>
-                                </label>
-                                <input
-                                  type="email"
-                                  className="form-control my-textbox"
-                                  placeholder="Enter Email Address"
-                                  value={email}
-                                  onChange={(e) => {
-                                    setemail(e.target.value);
-                                  }}
-                                />
+                              {/* Your Message*/}
+                              <div className="row">
+                                <div className="col-md-12 mt-3">
+                                  <label htmlFor className="my-label">
+                                    Your Message <span className="red">*</span>
+                                  </label>
+                                  <textarea
+                                    className="form-control"
+                                    id="exampleFormControlTextarea1"
+                                    placeholder="Message"
+                                    rows={5}
+                                    value={message}
+                                    onChange={(e) => {
+                                      setmessage(e.target.value);
+                                    }}
+                                  />
+                                </div>
                               </div>
-                              <div className="col-md-6 mt-3">
-                                <label htmlFor className="my-label">
-                                  Reason for Contacting Us{" "}
-                                  <span className="red">*</span>
-                                </label>
-                                <select
-                                  className="form-control"
-                                  value={reasonforcontacting}
-                                  onChange={(e) => {
-                                    setreasonforcontacting(e.target.value);
-                                  }}
-                                >
-                                  <option>Please Select</option>
-                                  <option value={"Issue 1"}>Issue 1</option>
-                                  <option value={"Issue 2"}>Issue 2</option>
-                                  <option value={"Issue 3"}>Issue 3</option>
-                                  <option value={"Issue 4"}>Issue 4</option>
-                                </select>
-                              </div>
-                            </div>
-                            {/* Your Message*/}
-                            <div className="row">
-                              <div className="col-md-12 mt-3">
-                                <label htmlFor className="my-label">
-                                  Your Message <span className="red">*</span>
-                                </label>
-                                <textarea
-                                  className="form-control"
-                                  id="exampleFormControlTextarea1"
-                                  placeholder="Message"
-                                  rows={5}
-                                  value={message}
-                                  onChange={(e) => {
-                                    setmessage(e.target.value);
-                                  }}
-                                />
-                              </div>
-                            </div>
-                            <div className="row mb-5">
-                              <div className="col-12 text-center">
-                                <Link
-                                  to="#"
-                                  className="btn red-btn-solid ml-0 px-5 py-2"
-                                  onClick={contactusHandler}
-                                >
-                                  Send
-                                </Link>
+                              <div className="row mb-5">
+                                <div className="col-12 text-center">
+                                  <Link
+                                    to="#"
+                                    className="btn red-btn-solid ml-0 px-5 py-2"
+                                    onClick={() =>
+                                      firstName?.length > 0 &&
+                                      lastName?.length > 0 &&
+                                      email?.length > 0 &&
+                                      reasonforcontacting?.length > 0 &&
+                                      message?.length > 0
+                                        ? contactusHandler()
+                                        : Toasty(
+                                            "error",
+                                            `Please fill out all the required fields`
+                                          )
+                                    }
+                                  >
+                                    Send
+                                  </Link>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </form>
-                </div>
-                {/* contact cards */}
-                <div className="row justify-content-centetr align-items-start">
-                  <div className="col-md-4 my-4">
-                    <div className="contact-card text-center">
-                      <h4>Address</h4>
-                      <p>3533 Dunn Rd Ste. 224-226 St. Louis, MO 63033</p>
-                    </div>
+                    </form>
                   </div>
-                  <div className="col-md-4 my-4">
-                    <div className="contact-card text-center">
-                      <h4>Business</h4>
-                      <p>+1 (888) 360-4448</p>
+                  {/* contact cards */}
+                  <div className="row justify-content-centetr align-items-start">
+                    <div className="col-md-4 my-4">
+                      <div className="contact-card text-center">
+                        <h4>Address</h4>
+                        <p>3533 Dunn Rd Ste. 224-226 St. Louis, MO 63033</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-md-4 my-4">
-                    <div className="contact-card text-center">
-                      <h4>Email</h4>
-                      <p>info@yahkiawakened.com</p>
+                    <div className="col-md-4 my-4">
+                      <div className="contact-card text-center">
+                        <h4>Business</h4>
+                        <p>+1 (888) 360-4448</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 my-4">
+                      <div className="contact-card text-center">
+                        <h4>Email</h4>
+                        <p>info@yahkiawakened.com</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -192,7 +227,8 @@ const Contactus = () => {
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

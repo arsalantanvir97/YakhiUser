@@ -26,6 +26,9 @@ import Instruction from "./Screens/Instruction";
 import MasterHerbalist from "./Screens/MasterHerbalist";
 import MeettheTeam from "./Screens/MeettheTeam";
 import OrderandPayment from "./Screens/OrderandPayment";
+import PrivacyPolicy from "./Screens/PrivacyPolicy";
+import IntegumentarySystem from "./Screens/IntegumentarySystem";
+
 import OrderLog from "./Screens/OrderLog";
 import OrderLogDetail from "./Screens/OrderLogDetail";
 import ProductResource from "./Screens/ProductResource";
@@ -44,23 +47,39 @@ function App() {
   return (
     <Router basename="/yakhi/user">
       <ScrollToTop />
-      <Route path="/" component={Login} exact />
+      <Route exact path="/" component={Index} />{" "}
+      <Route path="/Login" component={Login} exact />
       <Route path="/Signup" component={Signup} exact />
       <Route path="/PasswordRecovery" component={PasswordRecovery} exact />
       <Route path="/VerificationCode" component={VerificationCode} exact />
       <Route path="/ResetPassword" component={ResetPassword} exact />
-      <PrivateRoute exact path="/Home" component={Index} />{" "}
+      <Route exact path="/GeoGenetics" component={GeoGenetics} />{" "}
+      <Route exact path="/AboutCompany" component={AboutCompany} />{" "}
+      <Route exact path="/Document" component={Document} />{" "}
+      <Route exact path="/Instruction" component={Instruction} />{" "}
+      <Route exact path="/OrderandPayment" component={OrderandPayment} />{" "}
+      <Route exact path="/ShippingandPickup" component={ShippingandPickup} />{" "}
+      <Route exact path="/ReturnsandRefund" component={ReturnsandRefund} />{" "}
+      <Route exact path="/Faqs" component={Faqs} />{" "}
+      <Route exact path="/PrivacyPolicy" component={PrivacyPolicy} />{" "}
+      <Route exact path="/Donate" component={Donate} />{" "}
+      <Route exact path="/DetoxHome" component={DetoxHome} />{" "}
+      <Route exact path="/MasterHerbalist" component={MasterHerbalist} />{" "}
+      <Route exact path="/MeettheTeam" component={MeettheTeam} />{" "}
+      <Route exact path="/Consultation" component={Consultation} />{" "}
+      <Route exact path="/Contactus" component={Contactus} />{" "}
+      <Route exact path="/Capsules" component={Capsules} />{" "}
+      <Route exact path="/ProductResource" component={ProductResource} />{" "}
+      <Route
+        exact
+        path="/IntegumentarySystem"
+        component={IntegumentarySystem}
+      />{" "}
+      <Route exact path="/BodySystem" component={BodySystem} />{" "}
+      <Route exact path="/EattotLive" component={EattotLive} />{" "}
       <PrivateRoute exact path="/MyCart/:id?" component={MyCart} />{" "}
       <PrivateRoute exact path="/WishList" component={WishList} />{" "}
       <PrivateRoute exact path="/Checkout" component={Checkout} />{" "}
-      <PrivateRoute exact path="/GeoGenetics" component={GeoGenetics} />{" "}
-      <PrivateRoute exact path="/EattotLive" component={EattotLive} />{" "}
-      <PrivateRoute exact path="/Capsules" component={Capsules} />{" "}
-      <PrivateRoute exact path="/DetoxHome" component={DetoxHome} />{" "}
-      <PrivateRoute exact path="/Donate" component={Donate} />{" "}
-      <PrivateRoute exact path="/AboutCompany" component={AboutCompany} />{" "}
-      <PrivateRoute exact path="/Document" component={Document} />{" "}
-      <PrivateRoute exact path="/Instruction" component={Instruction} />{" "}
       <PrivateRoute exact path="/OrderLog" component={OrderLog} />{" "}
       <PrivateRoute
         exact
@@ -69,34 +88,16 @@ function App() {
       />{" "}
       <PrivateRoute
         exact
-        path="/ShippingandPickup"
-        component={ShippingandPickup}
-      />{" "}
-      <PrivateRoute
-        exact
-        path="/ReturnsandRefund"
-        component={ReturnsandRefund}
-      />{" "}
-      <PrivateRoute
-        exact
         path="/ProductViewOutStock"
         component={ProductViewOutStock}
       />{" "}
       <PrivateRoute exact path="/ProductView/:id" component={ProductView} />{" "}
-      <PrivateRoute exact path="/ProductResource" component={ProductResource} />{" "}
       <PrivateRoute
         exact
         path="/OrderLogDetail/:id"
         component={OrderLogDetail}
       />{" "}
-      <PrivateRoute exact path="/OrderandPayment" component={OrderandPayment} />{" "}
-      <PrivateRoute exact path="/MeettheTeam" component={MeettheTeam} />{" "}
-      <PrivateRoute exact path="/MasterHerbalist" component={MasterHerbalist} />{" "}
-      <PrivateRoute exact path="/Faqs" component={Faqs} />{" "}
       <PrivateRoute exact path="/DamageClaims" component={DamageClaims} />{" "}
-      <PrivateRoute exact path="/Contactus" component={Contactus} />{" "}
-      <PrivateRoute exact path="/Consultation" component={Consultation} />{" "}
-      <PrivateRoute exact path="/BodySystem" component={BodySystem} />{" "}
     </Router>
   );
 }

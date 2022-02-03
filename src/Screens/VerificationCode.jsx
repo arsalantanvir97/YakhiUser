@@ -99,7 +99,7 @@ const VerificationCode = (props) => {
                     </div>
                     <div className="row pb-5">
                       <div className="col-12 text-center">
-                        <Link to='/' className="red" href="login.php">Back To Login</Link>
+                        <Link to='/Login' className="red" href="login.php">Back To Login</Link>
                       </div>
                     </div>  
                   </div>

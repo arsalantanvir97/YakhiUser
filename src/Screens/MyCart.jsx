@@ -41,7 +41,7 @@ const MyCart = ({ match, location, history }) => {
                   <h2>My Cart</h2>
                 ) : (
                   <h2>
-                    Your Cart is Empty <Link to="/Home">Go Back</Link>
+                    Your Cart is Empty <Link to="/">Go Back</Link>
                   </h2>
                 )}
               </div>

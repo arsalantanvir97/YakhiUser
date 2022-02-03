@@ -6,20 +6,23 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Donate = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const [amount, setamount] = useState();
-  const [notes, setnotes] = useState();
+  const [amount, setamount] = useState(0);
+  const [notes, setnotes] = useState("");
 
   async function handleToken(token) {
     let product = Number(amount);
     console.log("product", product);
     const config = {
       header: {
-        Authorization: "Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V",
-      },
+        Authorization: "Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V"
+      }
     };
     const response = await axios.post(
       `${baseURL}/checkout`,
@@ -33,7 +36,7 @@ const Donate = () => {
       title: "",
       text: "Donation done Successfully",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 1500
     });
     console.log(
       "res",
@@ -47,7 +50,27 @@ const Donate = () => {
   }
   return (
     <>
-      <InnerPageBanner />
+      <Header />
+      <section className="inner-banner">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
+              <div className="banner-content">
+                <div className="banner-outline">
+                  <h1 className="slider-heading">
+                    Healing The Illusion We Call disease
+                  </h1>
+                  <p className="slider-para">
+                    You deserve healing! We are not currently accepting detox
+                    home clients.{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="container-fluid my-5 py-4" id="donation-shapes">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -110,12 +133,13 @@ const Donate = () => {
                               </div>
                             </div>
                           </form>
-                          <StripeCheckout
-                            stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                            token={handleToken}
-                            amount={amount * 100}
-                            email={userInfo?.email}
-                          ></StripeCheckout>
+                          {amount > 0 && notes?.length > 0 ? (
+                            <StripeCheckout
+                              stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
+                              token={handleToken}
+                              amount={amount * 100}
+                            ></StripeCheckout>
+                          ) : null}
                         </div>
                       </div>
                       <div className="col-xl-5 col-lg-6 my-auto">
@@ -162,12 +186,12 @@ const Donate = () => {
                             className="img-fluid"
                           />
                         </div>
-                        <a
-                          href="#"
+                        <Link
+                          to="#"
                           className="btn maroon-btn-solid mx-auto my-4 "
                         >
                           Donate with Paypal
-                        </a>
+                        </Link>
                       </div>
                       <div className="col-lg-5 col-md-6 col-12">
                         <div className="pay-with">
@@ -177,12 +201,12 @@ const Donate = () => {
                             className="img-fluid"
                           />
                         </div>
-                        <a
-                          href="#"
+                        <Link
+                          to="#"
                           className="btn maroon-btn-solid mx-auto my-4 "
                         >
                           Donate with Cash App
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -209,6 +233,7 @@ const Donate = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

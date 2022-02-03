@@ -6,8 +6,13 @@ import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import InnerPageBanner from "./InnerPageBanner";
 import ProductSlider from "../components/ProductSlider";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const GeoGenetics = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [organicproductlist, setorganicproductlist] = useState([]);
   useEffect(() => {
     getDetoxProducts();
@@ -16,7 +21,7 @@ const GeoGenetics = () => {
   const getDetoxProducts = async () => {
     try {
       const { data } = await axios.post(`${baseURL}/product/detoxProducts`, {
-        category: "Organic Soap",
+        category: "Organic Soap"
       });
       console.log("data", data);
       setorganicproductlist(data);
@@ -24,183 +29,470 @@ const GeoGenetics = () => {
       console.log("error", error);
     }
   };
-
   return (
     <>
-      <div>
-        <InnerPageBanner />
-        <section className="featured">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-11 mx-auto">
-                <div className="row">
-                  <div className="col-md-12 text-center">
-                    <h4>Tranding Products</h4>
-                    <h3>Featured Products</h3>
-                  </div>
-                </div>
-                <div className="row mt-5">
-                  <div className="col-md-10 mx-auto text-center">
-                    <div id="">
-                      
-                      <ProductSlider images={organicproductlist?.detoxproduct} />
-                    </div>
-                  </div>
+      <Header />
+      <section className="inner-banner" id="geo">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-3 offset-1">
+              <div className="banner-content">
+                <div className="banner-outline">
+                  <h1 className="slider-heading">Geo'Genetics</h1>
+                  <p className="slider-para mt-2">
+                    You deserve healing! We are not currently accepting detox
+                    home clients.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Shop Selections */}
-        <section className="selections mt-0">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12 px-4 mx-auto">
-                <div className="row justify-content-start">
-                  <div className="col-md-12 text-center">
-                    <h3>Geo' Genetics Pacakges</h3>
-                    <h4>
-                      Yah’ki uses a very unique and effective herbal therapy
-                      approach when addressing disease!
-                    </h4>
-                    <p className="mt-4 text-white genetics-para">
-                      The Geo’Genetics Therapeutic Package was created to
-                      cleanse every cellular structure and system of your body.
-                      It breaks up mucus and calcification, kills parasites, and
-                      revitalizes and rinses the cells while supplying carbon,
-                      oxygen, and hydrogen, pairing them with a monosaccharide
-                      sugar, phosphate and nitrogen base!
-                    </p>
-                  </div>
+      <div className="bread-crumbs">
+        <div className="container-fluid">
+          <div className="row mt-3 mb-5 pb-5">
+            <div className="col-11 mx-auto">
+              <div className="row">
+                <div className="col-md-6">
+                  <ul className="crumbs">
+                    <li>
+                      <Link to="/">Homepage</Link>
+                    </li>
+                    <li>GEO’GENETIC HERBAL THERAPY</li>
+                  </ul>
                 </div>
-                <div className="row justify-content-start mt-5 px-padding">
-                  <div className="col-xl-6 col-lg-8 col-md-10 col-12 mx-auto text-center">
-                    <div className="genetics-box mb-4 mb-md-0 box-1">
-                      <img
-                        src="images/genetics-package-1.jpg"
-                        alt=""
-                        className="img-fluid mb-0"
-                      />
-                      <div className="g-box-1-content">
-                        <div className="row align-items-center justify-content-center px-4">
-                          <div className="col-lg-8 text-left">
-                            <h4 className="g-package-heading">
-                              DE-VAXXED HERBAL THERAPY
-                            </h4>
-                          </div>
-                          <div className="col-lg-4 text-right">
-                            <h4 className="g-package-price">$750.00</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-8 col-md-10 col-12 mx-auto text-center my-5 my-xl-0">
-                    <div className="genetics-box mb-4 mb-md-0 box-2">
-                      <img
-                        src="images/genetics-package-2.jpg"
-                        alt=""
-                        className="img-fluid mb-0"
-                      />
-                      <div className="g-box-2-content">
-                        <div className="row align-items-center justify-content-center px-4">
-                          <div className="col-lg-8 text-left">
-                            <h4 className="g-package-heading">
-                              GEO’GENETICS THERAPEUTIC PACKAGE
-                              <br />
-                              LEVEL 1
-                            </h4>
-                          </div>
-                          <div className="col-lg-4 text-right">
-                            <h4 className="g-package-price">$1,000.00</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row mt-4">
-                      <div className="col-md-6">
-                        <div className="genetics-box mb-4 mb-md-0 box-3">
-                          <img
-                            src="images/genetics-package-3.jpg"
-                            alt=""
-                            className="img-fluid mb-0"
-                          />
-                          <div className="g-box-3-content">
-                            <div className="row align-items-center justify-content-center px-3">
-                              <div className="col-lg-9 text-left">
-                                <h4 className="g-package-heading">
-                                  GEO’GENETICS THERAPEUTIC <br />
-                                  PACKAGELEVEL 2
-                                </h4>
-                              </div>
-                              <div className="col-lg-3 text-left">
-                                <h4 className="g-package-price">$1,500.00</h4>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="genetics-box mb-4 mb-md-0 box-4">
-                          <img
-                            src="images/genetics-package-4.jpg"
-                            alt=""
-                            className="img-fluid mb-0"
-                          />
-                          <div className="g-box-4-content">
-                            <div className="row align-items-center justify-content-center px-3">
-                              <div className="col-lg-9 text-left">
-                                <h4 className="g-package-heading">
-                                  GEO’GENETICS THERAPEUTIC <br />
-                                  PACKAGELEVEL 3
-                                </h4>
-                              </div>
-                              <div className="col-lg-3 text-left">
-                                <h4 className="g-package-price">$2,000.00</h4>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="col-md-6 text-right">
+                  <h5>HEALING THE ILLUSION WE CALL DISEASE</h5>
+                  <p className="mt-5">
+                    TO HAVE YOUR QUESTIONS ON TUESDAYS LIVE, SEND THEM TO
+                    QUESTIONS@YAHKIAWAKENED.COM
+                  </p>
                 </div>
+              </div>
+              <div className="row mt-4">
+                <ul className="media-icon">
+                  <li>
+                    <Link to="#">
+                      <i className="fab fa-facebook-f" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="#">
+                      <i className="fab fa-twitter" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="#">
+                      <i className="fab fa-instagram" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="#">
+                      <i className="fab fa-youtube" />
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          {/* <div class="scattered-images">
-  <img src="images/selection-tea-leaf-1.svg" alt="" class="img-fluid scat-1">
-  <img src="images/selection-tea-leaf-2.svg" alt="" class="img-fluid scat-2">
-  <img src="images/selection-tea.png" alt="" class="img-fluid scat-3">
-    </div> */}
-        </section>
-        <section className="about-page">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-md-11 mx-auto">
-                <div className="row mt-5">
-                  <div className="col-12 text-center">
-                    <div className="about-bottom-banner">
-                      <h3>
-                        All Herbs Are Organic Alkaline and Are Naturally
-                        Wildcrafted from the Land of their Origin
-                      </h3>
-                      <p>
-                        All herbs used in our products are 100% naturally
-                        organic and are selectively picked and tested by a
-                        laboratory before use. Each herbal compound is
-                        personally prepared with gratification for the purpose
-                        of restoring health to our clients.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
       </div>
+
+      <div className="container">
+        <div className="row py-5 mt-5 intro-geo">
+          <div className="col-12 text-center">
+            <p>
+              Yah’ki uses a very unique and effective herbal therapy approach
+              when addressing disease!
+            </p>
+          </div>
+          <div className="col-12 mt-4 text-left">
+            <p>
+              The Geo’Genetics Therapeutic Package was created to cleanse every
+              cellular structure and system of your body. It breaks up mucus and
+              calcification, kills parasites, and revitalizes and rinses the
+              cells while supplying carbon, oxygen, and hydrogen, pairing them
+              with a monosaccharide sugar, phosphate and nitrogen base!
+            </p>
+          </div>
+        </div>
+      
+        
+      </div>
+
+      <section className="yahki-protocols py-5">
+        <div className="container">
+          <div className="row mt-5 ">
+            <div className="col-12">
+              <h3 className="protocol-heading orange">GEO'GENETICS PACKAGES</h3>
+            </div>
+          </div>
+          <ProductSlider images={organicproductlist?.detoxproduct} userInfo={userInfo} />
+          {/* <div className="row">
+            <div className="col-12 my-5">
+              <div id="protocols" className="owl-carousel owl-theme">
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-1.jpeg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">DE-VAXXED HERBAL THERAPY</p>
+                      <div className="d-flex flex-column">
+                        <p className="discount-price">900.00</p>
+                        <p className="product-price">750.00</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-2.jpg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">
+                        WEEK 1-2 GEO’GENETICS PROTOCOL (formerly amino acid
+                        herbal protocol)
+                      </p>
+                      <p className="product-price">600.00</p>
+                    </div>
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-2.jpg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">
+                        WEEK 11-12 GEO’GENETICS PROTOCOL (formerly amino acid
+                        herbal protocol)
+                      </p>
+                      <p className="product-price">300.00</p>
+                    </div>
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-2.jpg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">
+                        WEEK 13-14 GEO’GENETICS PROTOCOL(formerly amino acid
+                        herbal protocol)
+                      </p>
+                      <p className="product-price">300.00</p>
+                    </div>
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-1.jpeg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">
+                        WEEK 3-4 GEO’GENETICS PROTOCOL(formerly amino acid
+                        herbal protocol)
+                      </p>
+                      <div className="d-flex flex-column">
+                        <p className="discount-price">300.00</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-2.jpg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">
+                        ELDERBERRY (Sambucus Nigra) Whole Berries
+                      </p>
+                      <p className="product-price">70.00</p>
+                    </div>
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-2.jpg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">Black Seed Oil</p>
+                      <p className="product-price">45.00</p>
+                    </div>
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <div className="product-box">
+                      <img
+                        src="images/pckg-2.jpg"
+                        alt=""
+                        className="img-fluid protocol"
+                      />
+                      <div className="product-actions">
+                        <button
+                          type="button"
+                          href="#"
+                          className="quickview-button"
+                        >
+                          <i className="fas fa-eye" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="wishlist_button"
+                        >
+                          <i className="far fa-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          href="#"
+                          className="cart-_button"
+                          title="Add to cart"
+                        >
+                          <i className="fal fa-shopping-cart" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-meta mt-3">
+                      <p className="product-title">
+                        PARASITIC ELIMINATION PRO TINCTURE
+                      </p>
+                      <p className="product-price">60.00</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div> */}
+        </div>
+      </section>
+
+      <div className="yahki-features">
+        <div className="container py-3">
+          <div className="row text-center">
+            <div className="col-12 text-center">
+              <div className="fixed-banner">
+                <h4>
+                  ALL HERBS ARE ORGANIC ALKALINE BOTANICALS AND ARE NATURALLY
+                  WILDCRAFTED FROM THE LAND OF THEIR ORIGIN
+                </h4>
+                <p className="mt-5">
+                  All herbs used in our products are 100% naturally organic and
+                  are selectively picked and tested by a laboratory before use.
+                  Each herbal compound is personally prepared with gratification
+                  for the purpose of restoring health to our clients.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };

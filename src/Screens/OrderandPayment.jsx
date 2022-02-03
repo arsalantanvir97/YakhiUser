@@ -1,8 +1,31 @@
-import React from 'react'
+import React from "react";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const OrderandPayment = () => {
-    return (
-        <div className="container-fluid my-5 py-3">
+  return (
+    <>
+      <Header />
+      <section className="inner-banner">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
+              <div className="banner-content">
+                <div className="banner-outline">
+                  <h1 className="slider-heading">
+                    Healing The Illusion We Call disease
+                  </h1>
+                  <p className="slider-para">
+                    You deserve healing! We are not currently accepting detox
+                    home clients.{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="container-fluid my-5 py-3">
         <div className="row">
           <div className="col-11 mx-auto">
             <section className="orders">
@@ -19,65 +42,74 @@ const OrderandPayment = () => {
                 {/* Placing An Order */}
                 <div className="col-12 mt-3">
                   <h4>Placing An Order</h4>
-                  <p> 
-                    It may take up to 10 business days before your order is processed,
-                    and processing may take up to 5 or 10 business days. After your order is
-                    processed it takes additional time for packaging, shipping, and delivery. 
-                    It is unlikely but it may take your order anywhere between 5 – 30 business days before delivery.
-                    (this does not include the day your order was placed, weekends, or holydays).
-                    Please note that it’s our priority to get your orders out to you a soon as possible.
-                  </p>
-                  <p className="bottom-note mt-2">
-                    Orders can be placed on our website 24 hours a day, 7 days a week
-                  </p>
-                </div>
-                <div className="col-12 mt-3">
-                  <h4 className="order-note">Please Note:</h4>
-                  <p> 
-                    Expedited shipping options are NOT available online and must be phoned in to our office.
-                    Once an order has been placed it cannot be changed, added to, or combined. Any additions will
-                    be billed and shipped as a separate order.
-                  </p>
-                </div>
-                {/* Phone Orders */}
-                <div className="col-12 mt-5">
-                  <h4>Phone Orders</h4>
-                  <p> 
-                    We do not take orders over the phone. Orders can only be placed on website.
-                    If a health club member is having issues ordering on website, please contact us through our website live
-                    chat and a staff member will assist.
+                  <p>
+                    <span className="bottom-note">
+                      Orders can be placed on our website 24 hours a day, 7 days
+                      a week.{" "}
+                    </span>
+                    Processing may take up to 5 or 10 business days. After your
+                    order is processed it takes additional time for packaging,
+                    shipping, and delivery. Please allow 7-30 business days to
+                    receive your order (does not include the day your order was
+                    placed, weekends, or holydays). It’s our priority to get
+                    your orders out to you a soon as possible.
                   </p>
                 </div>
                 <div className="col-12 mt-3">
                   <h4 className="order-note">Please Note:</h4>
                   <p>
-                    We are a very busy office and will require a voicemail to be left if there is not a 
-                    representative available at the time of your call. All voicemails are returned in the order 
-                    in which they are received. Please allow up to 72 hours (Monday -Thursday) for a return call. 
-                    International orders must be placed on our website or via email. Thank you in advance for your understanding 
-                    and willful cooperation.
+                    Once an order has been placed it cannot be changed, added
+                    to, or combined. Any additions will be billed and shipped as
+                    a separate order.
                   </p>
                 </div>
+                {/* Phone Orders */}
+                <div className="col-12 mt-5">
+                  <h4>Phone Orders</h4>
+                  <p>
+                    Soon you will be able to place your orders over the phone.
+                    We will provide the phone number for phone orders once it
+                    launches. When placing a phone order please have a general
+                    idea of what you need and form payment ready. We accept all
+                    debit and major credit cards.
+                  </p>
+                </div>
+                {/* <div class="col-12 mt-3">
+                  <h4 class="order-note">Please Note:</h4>
+                  <p>
+                      We are a very busy office and will require a voicemail to be left if there is not a 
+                      representative available at the time of your call. All voicemails are returned in the order 
+                      in which they are received. Please allow up to 72 hours (Monday -Thursday) for a return call. 
+                      International orders must be placed on our website or via email. Thank you in advance for your understanding 
+                      and willful cooperation.
+                  </p>
+              </div> */}
                 {/* Local Pickup */}
                 <div className="col-12 mt-5">
                   <h4>Local Pickup</h4>
-                  <p> 
-                    We don’t offer any onsite pickups. All orders must be shipped.
+                  <p>
+                    We don’t currently offer any onsite pickups. All orders must
+                    be shipped.
                   </p>
                   <h4 className="mt-5">Mail In Orders</h4>
-                  <p> 
-                    To order by mail, we ask that you first phone our office to receive a grand total with Shipping 
-                    and Handling costs included.  Please send a personal or business check or money order payable to YAH’KI 
-                    AWAKENED LLC along with a list of the items you wish to purchase to:
+                  <p>
+                    To order by mail, we ask that you first phone our office to
+                    receive a grand total with Shipping and Handling costs
+                    included. Please send a personal or business check or money
+                    order payable to YAH’KI AWAKENED LLC along with a list of
+                    the items you wish to purchase to:
                   </p>
                   <p className="bottom-note mt-2">
-                    Yah’ki Awakened LLC 1650 Shackelford Rd, Unit 1529 Florissant, MO 63031
+                    Yah’ki Awakened LLC 1650 Shackelford Rd, Unit 1529
+                    Florissant, MO 63031
                   </p>
                   <h4 className="mt-5">Out of Stock Items</h4>
-                  <p> 
-                    If there is not a suitable substitution to be made, the remainder of the order will
-                    be sent without the out of stock item(s).  No item will be placed on back-order. Out of stock
-                    items must be reordered by the Member when the item is back in stock.
+                  <p>
+                    If there is not a suitable substitution to be made, the
+                    remainder of the order will be sent without the out of stock
+                    item(s). No item will be placed on back-order. Out of stock
+                    items must be reordered by the Member when the item is back
+                    in stock.
                   </p>
                 </div>
               </div>
@@ -89,55 +121,73 @@ const OrderandPayment = () => {
                 {/* Credit Card */}
                 <div className="col-12 mt-3">
                   <h4>Credit Card</h4>
-                  <p> 
-                    ICredit card payments are processed through Stripe and PayPal.<br />
-                    Please include the Name that appears on the card, Account Number, Expiration Date, CVV security code (if requested), and Billing Address that is associated with the Credit Card.
+                  <p>
+                    Credit card payments are processed through Stripe and
+                    PayPal. Please include the Name that appears on the card,
+                    Account Number, Expiration Date, CVV security code (if
+                    requested), and Billing Address that is associated with the
+                    Credit Card.
                   </p>
                 </div>
                 {/* Paypal */}
                 <div className="col-12 mt-5">
                   <h4>Paypal</h4>
-                  <p> 
-                    Once you have received an invoice from a member of our processing team with your grand total, please submit payment to
+                  <p>
+                    Once you have received an invoice from a member of our
+                    processing team be sure to update your shipping address and
+                    complete payment to ensure your order is received.
+                  </p>
+                </div>
+                <div className="col-12 mt-3">
+                  <h4 className="order-note">International Orders</h4>
+                  <p>
+                    International orders must be placed on our website or via
+                    email. Thank you in advance for your understanding and
+                    willful cooperation. <br />
+                    <a href="paypal.me/YahkiAwakenedLLC" className="red">
+                      paypal.me/YahkiAwakenedLLC
+                    </a>
                   </p>
                 </div>
                 <div className="col-12 mt-3">
                   <h4 className="order-note">Please Note:</h4>
                   <p>
-                    We are a very busy office and will require a voicemail to be left if there is not a 
-                    representative available at the time of your call. All voicemails are returned in the order 
-                    in which they are received. Please allow up to 72 hours (Monday -Thursday) for a return call.
-                    International orders must be placed on our website or via email. Thank you in advance for your 
-                    understanding and willful cooperation. <br />
-                    <a href="paypal.me/YahkiAwakenedLLC" className="red">paypal.me/YahkiAwakenedLLC</a>
+                    All standard orders shipped within the USA will ship via UPS
+                    Ground, UPS Flat Rate (if requirements are met, available
+                    online ONLY) or USPS Priority mail 2-3 day, depending on the
+                    members request at the time of placing the order. All orders
+                    are processed in the order in which they are received.
                   </p>
                 </div>
                 <div className="col-12 mt-3">
-                  <h4 className="order-note">Please Note:</h4>
-                  <p>
-                    When paying via PayPal for phone orders or additions made to an online order, 
-                    your order will be held until all funds have been processed/received. This may result in a delay to your order.
+                  <p className="mt-3">
+                    *All information and tools on this website are strictly for
+                    members only. Use of any of the information given on this
+                    website by a non-member is strictly prohibited.
+                    <br />
+                    *ALL orders placed with Yah’ki Awakened Eye Of Lotus
+                    Botanical Health Club must be addressed and shipped to a
+                    Health Club Member. All shipping details are verified with
+                    registered members. Any orders placed with shipping of any
+                    product to a non-member will result in immediate
+                    cancellation of the order.
                   </p>
-                  <p className="mt-3"> All standard orders shipped within the USA will ship via UPS Ground, UPS Flat Rate (if requirements are met, 
-                    available online ONLY) or USPS Priority mail 2-3 day, depending on the members request at the time of placing the order. 
-                    All orders are processed in the order in which they are received.</p>
-                </div>
-                <div className="col-12 mt-3">
-                  <p className="red">
-                    *All information and tools on this website are strictly for members only.
-                    Use of any of the information given on this website by a non-member is strictly prohibited.
-                  </p>
-                  <p className="bottom-note mt-2">
-                    ALL orders placed with Yah’ki Awakened Eye Of Lotus Botanical Health 
-                    Club must be addressed and shipped to a Health Club Member. All shipping details are verified with registered members. 
-                    Any orders placed with shipping of any product to a non-member will result in immediate cancellation of the order.</p>
                 </div>
               </div>
               <div className="row mt-5">
                 <div className="col-12 text-center">
                   <div className="about-bottom-banner">
-                    <h3>All Herbs Are Organic Alkaline and Are Naturally Wildcrafted from the Land of their Origin</h3>
-                    <p>All herbs used in our products are 100% naturally organic and are selectively picked and tested by a laboratory before use. Each herbal compound is personally prepared with gratification for the purpose of restoring health to our clients.</p>
+                    <h3>
+                      All Herbs Are Organic Alkaline and Are Naturally
+                      Wildcrafted from the Land of their Origin
+                    </h3>
+                    <p>
+                      All herbs used in our products are 100% naturally organic
+                      and are selectively picked and tested by a laboratory
+                      before use. Each herbal compound is personally prepared
+                      with gratification for the purpose of restoring health to
+                      our clients.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -145,8 +195,9 @@ const OrderandPayment = () => {
           </div>
         </div>
       </div>
-      
-    )
-}
+      <Footer />
+    </>
+  );
+};
 
-export default OrderandPayment
+export default OrderandPayment;

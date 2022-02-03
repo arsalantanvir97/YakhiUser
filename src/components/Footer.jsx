@@ -1,11 +1,11 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const [newsletter, setnewsletter] = useState('')
-  const newsLetterHandler=()=>{
-    setnewsletter('')
-  }
+  const [newsletter, setnewsletter] = useState("");
+  const newsLetterHandler = () => {
+    setnewsletter("");
+  };
   return (
     <>
       <footer className="site-footer">
@@ -23,9 +23,9 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <a href="#" data-hover="Counselors">
+                      <Link to="#" data-hover="Counselors">
                         Counselors
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <Link to="/Document" data-hover="Documents">
@@ -38,14 +38,14 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <a href="#" data-hover="Member Agreement">
+                      <Link to="#" data-hover="Member Agreement">
                         Member Agreement
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" data-hover="Membership Help">
+                      <Link to="#" data-hover="Membership Help">
                         Membership Help
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -57,14 +57,16 @@ const Footer = () => {
                       Subscribe for information on new products, courses, media
                       and more
                     </p>
-                    <div  onClick={newsLetterHandler} className="newsletter-box">
-                      <i  className="fas fa-paper-plane" />
+                    <div onClick={newsLetterHandler} className="newsletter-box">
+                      <i className="fas fa-paper-plane" />
                       <input
-                      value={newsletter}
+                        value={newsletter}
                         type="email"
                         className="form-control newsletter p-3 mt-3"
                         placeholder="Email Address Here...."
-                        onChange={(e)=>{setnewsletter(e.target.value)}}
+                        onChange={(e) => {
+                          setnewsletter(e.target.value);
+                        }}
                       />
                     </div>
                     <ul className="mt-4 list-inline">
@@ -111,19 +113,28 @@ const Footer = () => {
                   <h4 className="footer-title">SUPPORT</h4>
                   <ul className="foot-links">
                     <li>
-                      <Link href="/OrderLog" data-hover="Orders & Payments">
+                      <Link
+                        to="/OrderandPayment"
+                        data-hover="Orders & Payments"
+                      >
                         Orders &amp; Payments
                       </Link>
                     </li>
                     <li>
-                      <a href="#" data-hover="Shipping & Pickups">
+                      <Link
+                        to="/ShippingandPickup"
+                        data-hover="Shipping & Pickups"
+                      >
                         Shipping &amp; Pickups
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" data-hover="Returns % Cancellations">
+                      <Link
+                        to="/ReturnsandRefund"
+                        data-hover="Returns % Cancellations"
+                      >
                         Returns &amp; Cancellations
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <Link to="/Faqs" data-hover="Questions & Answers">
@@ -131,14 +142,14 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <a href="#" data-hover="Privacy Policy">
+                      <Link to="/PrivacyPolicy" data-hover="Privacy Policy">
                         Privacy Policy
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#" data-hover="Terms of Service">
+                      <Link to="#" data-hover="Terms of Service">
                         Terms of Service
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -152,7 +163,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-12 text-center">
               <p>
-                COPYRIGHT © 2021 <a href="#">YAH'KI AWAKENED</a>, LLC. ALL
+                COPYRIGHT © 2021 <Link to="#">YAH'KI AWAKENED</Link>, LLC. ALL
                 RIGHTS RESERVED.
               </p>
             </div>

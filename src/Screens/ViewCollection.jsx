@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import Pagination from "../components/Padgination";
 import InnerPageBanner from "./InnerPageBanner";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 let allcategoryofProducts = [];
 const ViewCollection = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -39,7 +40,7 @@ const ViewCollection = ({ history, match }) => {
     category,
     sort,
     priceto,
-    pricefrom,
+    pricefrom
   ]);
 
   const categoryid =
@@ -67,8 +68,8 @@ const ViewCollection = ({ history, match }) => {
           category,
           sort,
           priceto,
-          pricefrom,
-        },
+          pricefrom
+        }
       });
 
       console.log("res", res);
@@ -135,7 +136,7 @@ const ViewCollection = ({ history, match }) => {
         title: "ERROR",
         text: "Internal Server Error",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1500
       });
     }
   };
@@ -145,7 +146,6 @@ const ViewCollection = ({ history, match }) => {
   return (
     <>
       <section className="capsules">
-        <InnerPageBanner />
         <div className="container-fluid">
           <div className="row">
             <div className="col-11 mx-auto">
@@ -406,7 +406,7 @@ const ViewCollection = ({ history, match }) => {
                               <img
                                 style={{
                                   height: 242,
-                                  width: 242,
+                                  width: 242
                                 }}
                                 src={`${imageURL}${prod?.productimage}`}
                                 alt=""
@@ -488,7 +488,9 @@ const ViewCollection = ({ history, match }) => {
                                   to="#"
                                   className="btn maroon-btn-solid "
                                   onClick={() => {
-                                    addToCartHandler(prod?._id, 1);
+                                    userInfo
+                                      ? addToCartHandler(prod?._id, 1)
+                                      : UnauthorizedAlert();
                                   }}
                                 >
                                   <img

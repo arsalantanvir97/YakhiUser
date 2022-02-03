@@ -7,11 +7,12 @@ import {
   addToCart,
   removeFromCart,
   saveShippingAddress,
-  savePaymentMethod,
+  savePaymentMethod
 } from "../actions/cartAction";
 import { createOrder } from "../actions/orderAction";
 import DatePicker from "react-datepicker";
 import { imageURL } from "../utils/api";
+import Toasty from "../utils/toast";
 
 const Checkout = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -43,6 +44,9 @@ const Checkout = ({ history }) => {
   // onchange = (e)=>{
   //   setFormData({...FormData,[e.target.name]:"e.target.value"})
   // }
+useEffect(() => {
+console.log('email',email);
+}, [email]);
 
   const [billingcity, setbillingcity] = useState(shippingAddress?.billingcity);
   const [billingzipcode, setbillingzipcode] = useState(
@@ -105,7 +109,7 @@ const Checkout = ({ history }) => {
         shippingcity,
         shippingzipcode,
         shippingcountry,
-        shippingstate,
+        shippingstate
       })
     );
   };
@@ -118,7 +122,7 @@ const Checkout = ({ history }) => {
         cardholdername,
         cardnumber,
         cvvnumber,
-        expirydate,
+        expirydate
       })
     );
   };
@@ -144,7 +148,7 @@ const Checkout = ({ history }) => {
         title: "",
         text: "Order Completed Successfully",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1500
       });
       history.push(`/OrderLogDetail/${order._id}`);
     }
@@ -161,7 +165,7 @@ const Checkout = ({ history }) => {
         itemsPrice: cart?.itemsPrice,
         shippingPrice: cart?.shippingPrice,
         taxPrice: cart?.taxPrice,
-        totalPrice: cart?.totalPrice,
+        totalPrice: cart?.totalPrice
       })
     );
   };
@@ -1058,11 +1062,33 @@ const Checkout = ({ history }) => {
                         type="button"
                         className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         onClick={() => {
-                          togglecheckout == 0
+                          togglecheckout == 0 &&
+                          email &&
+                          phone &&
+                          billingname &&
+                          billingaddress &&
+                          billingcity &&
+                          billingzipcode &&
+                          billingcountry &&
+                          billingstate &&
+                          shippingname &&
+                          shippingaddress &&
+                          shippingcity &&
+                          shippingzipcode &&
+                          shippingcountry &&
+                          shippingstate
                             ? saveShippingHandler()
-                            : togglecheckout == 1
+                            : togglecheckout == 1 && paymentmethod &&
+                            cardholdername &&
+                            cardnumber &&
+                            cvvnumber
                             ? savePaymentMethodHandler()
-                            : togglecheckoutHandler();
+                            : togglecheckout == 2
+                            ? togglecheckoutHandler()
+                            : Toasty(
+                                "error",
+                                `Please fill out all the required fields`
+                              );
                         }}
                       >
                         Continue
