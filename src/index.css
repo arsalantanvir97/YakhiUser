@@ -16,8 +16,7 @@ body {
 .pagination > li {
   display: inline-block;
   background-color: #fff;
-  
-}
+  }
 
 .pagination > li > a {
   float: left;
@@ -29,4 +28,9 @@ body {
 .pagination > li > a:hover:not(.active) {
   background-color: #720215;
   border-radius: 5px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

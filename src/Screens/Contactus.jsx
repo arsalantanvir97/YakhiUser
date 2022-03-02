@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Toasty from "../utils/toast";
+import { validateEmail } from "../utils/ValidateEmail";
 
 const Contactus = () => {
   const [firstName, setfirstName] = useState("");
@@ -13,30 +14,46 @@ const Contactus = () => {
   const [email, setemail] = useState("");
   const [reasonforcontacting, setreasonforcontacting] = useState("");
   const [message, setmessage] = useState("");
+  const [loading, setloading] = useState(false);
 
   const contactusHandler = async () => {
-    try {
-      const res = await axios.post(`${baseURL}/feedback/create-feedback`, {
-        firstName,
-        lastName,
-        email,
-        reasonforcontacting,
-        message
-      });
-      console.log("res", res);
-      Swal.fire({
-        icon: "success",
-        title: "",
-        text: "Message sent Successfully",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    } catch (error) {}
-    setfirstName("");
-    setlastName("");
-    setemail("");
-    setreasonforcontacting("");
-    setmessage("");
+    const emailvalidation = validateEmail(email);
+    console.log("emmmm", emailvalidation);
+    console.log("addEmployeeHandler");
+    if (emailvalidation == true) {
+      try {
+        setloading(true);
+        const res = await axios.post(`${baseURL}/feedback/create-feedback`, {
+          firstName,
+          lastName,
+          email,
+          reasonforcontacting,
+          message
+        });
+        setloading(false);
+
+        console.log("res", res);
+        Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Message sent Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      } catch (error) {
+        setloading(false);
+      }
+      setfirstName("");
+      setlastName("");
+      setemail("");
+      setreasonforcontacting("");
+      setmessage("");
+      setloading(false);
+    } else {
+      setloading(false);
+
+      Toasty("error", `Please enter a valid email`);
+    }
   };
 
   return (
@@ -174,24 +191,28 @@ const Contactus = () => {
                               </div>
                               <div className="row mb-5">
                                 <div className="col-12 text-center">
-                                  <Link
-                                    to="#"
-                                    className="btn red-btn-solid ml-0 px-5 py-2"
-                                    onClick={() =>
-                                      firstName?.length > 0 &&
-                                      lastName?.length > 0 &&
-                                      email?.length > 0 &&
-                                      reasonforcontacting?.length > 0 &&
-                                      message?.length > 0
-                                        ? contactusHandler()
-                                        : Toasty(
-                                            "error",
-                                            `Please fill out all the required fields`
-                                          )
-                                    }
-                                  >
-                                    Send
-                                  </Link>
+                                  {!loading ? (
+                                    <Link
+                                      to="#"
+                                      className="btn red-btn-solid ml-0 px-5 py-2"
+                                      onClick={() =>
+                                        firstName?.length > 0 &&
+                                        lastName?.length > 0 &&
+                                        email?.length > 0 &&
+                                        reasonforcontacting?.length > 0 &&
+                                        message?.length > 0
+                                          ? contactusHandler()
+                                          : Toasty(
+                                              "error",
+                                              `Please fill out all the required fields`
+                                            )
+                                      }
+                                    >
+                                      Send
+                                    </Link>
+                                  ) : (
+                                    <i className="fas fa-spinner fa-pulse"></i>
+                                  )}
                                 </div>
                               </div>
                             </div>

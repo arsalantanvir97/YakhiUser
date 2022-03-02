@@ -18,7 +18,7 @@ const WishList = () => {
 
   const getUsersWishList = async () => {
     const res = await axios.post(`${baseURL}/wishList/userWishList`, {
-      id: userInfo?._id,
+      id: userInfo?._id
     });
     console.log("res", res);
     setwishtlistuser(res?.data?.wishListofUser);
@@ -27,10 +27,17 @@ const WishList = () => {
   const deleteWishHandler = async (id) => {
     const res = await axios({
       url: `${baseURL}/wishList/deleteAWish/${id}`,
-      method: "GET",
+      method: "GET"
     });
     if (res?.status == 200) {
       setrerenderWishList(!rerenderWishList);
+      Swal.fire({
+        icon: "success",
+        title: "",
+        text: "Removed Successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   };
 
@@ -67,7 +74,7 @@ const WishList = () => {
                             <td>
                               <div className="cart-product">
                                 <img
-                                  src={`${imageURL}${wish?.productimage}`}
+                                  src={wish?.productimage?.length>0 &&`${imageURL}${wish?.productimage[0]}`}
                                   alt=""
                                   className="img-fluid mx-auto"
                                 />

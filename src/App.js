@@ -51,7 +51,7 @@ function App() {
       <Route path="/Login" component={Login} exact />
       <Route path="/Signup" component={Signup} exact />
       <Route path="/PasswordRecovery" component={PasswordRecovery} exact />
-      <Route path="/VerificationCode" component={VerificationCode} exact />
+      <Route path="/VerificationCode:email" component={VerificationCode} exact />
       <Route path="/ResetPassword" component={ResetPassword} exact />
       <Route exact path="/GeoGenetics" component={GeoGenetics} />{" "}
       <Route exact path="/AboutCompany" component={AboutCompany} />{" "}
@@ -83,7 +83,7 @@ function App() {
       <PrivateRoute exact path="/OrderLog" component={OrderLog} />{" "}
       <PrivateRoute
         exact
-        path="/ViewCollection/:id"
+        path="/ViewCollection"
         component={ViewCollection}
       />{" "}
       <PrivateRoute

@@ -9,6 +9,7 @@ import moment from "moment";
 import Pagination from "../components/Padgination";
 import InnerPageBanner from "./InnerPageBanner";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import InputNumber from "../components/InputNumber";
 let allcategoryofProducts = [];
 const ViewCollection = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -102,7 +103,7 @@ const ViewCollection = ({ history, match }) => {
     formData.append("id", userInfo?._id);
     formData.append("price", product?.price);
     formData.append("brand", product?.brand);
-    formData.append("weight", product?.weight);
+    // formData.append("weight", product?.weight);
     formData.append("category", product?.category);
     formData.append("countInStock", product?.countInStock);
     formData.append("name", product?.name);
@@ -117,6 +118,13 @@ const ViewCollection = ({ history, match }) => {
 
       console.log("res", res);
       if (res?.status == 201) {
+        await Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Added to Wislist",
+          showConfirmButton: false,
+          timer: 1500
+        });
         history.replace("/WishList");
       }
       // else if(res?.status==201){
@@ -226,24 +234,19 @@ const ViewCollection = ({ history, match }) => {
                         Price Range
                       </h4>
                       <form className="form-inline mt-3">
-                        <input
-                          type="number"
-                          className="form-control mb-2 mr-sm-2 range-field"
-                          placeholder={0}
+                        <InputNumber
                           value={pricefrom}
-                          onChange={(e) => {
-                            setpricefrom(e.target.value);
-                          }}
-                        />
-                        <label htmlFor>To</label>
-                        <input
-                          type="number"
+                          onChange={setpricefrom}
+                          max={12}
                           className="form-control mb-2 mr-sm-2 range-field"
-                          placeholder={10000}
+                        />
+
+                        <label htmlFor>To</label>
+                        <InputNumber
                           value={priceto}
-                          onChange={(e) => {
-                            setpriceto(e.target.value);
-                          }}
+                          onChange={setpriceto}
+                          max={12}
+                          className="form-control mb-2 mr-sm-2 range-field"
                         />
                       </form>
                       {/* Rating */}

@@ -61,7 +61,7 @@ const MyCart = ({ match, location, history }) => {
                           <th>QUANTITY</th>
                           <th>UNIT PRICE</th>
                           <th>Sub Total</th>
-                          <th>TAX</th>
+                         
                           <th> </th>
                         </tr>
                       </thead>
@@ -118,7 +118,7 @@ const MyCart = ({ match, location, history }) => {
                               <td>
                                 <div className="cart-product">
                                   <img
-                                    src={`${imageURL}${cart?.image}`}
+                                    src={`${imageURL}${cart?.image[0]}`}
                                     alt=""
                                     className="img-fluid mx-auto"
                                     style={{ width: 96, height: 83 }}
@@ -183,7 +183,7 @@ const MyCart = ({ match, location, history }) => {
                               </td>
                               <td>${cart?.price}</td>
                               <td>${cart?.qty * cart?.price}</td>
-                              <td>$0</td>
+                              
                               <td>
                                 <button
                                   type="button"
@@ -225,10 +225,10 @@ const MyCart = ({ match, location, history }) => {
                           </p>
                         </div>
                         <div className="col-7 mb-3">
-                          <p className="summary-title">Tax 0%</p>
+                          <p className="summary-title">Tax </p>
                         </div>
                         <div className="col-5 mb-3 text-right">
-                          <p className="summary-value">$0</p>
+                          <p className="summary-value">to be counted</p>
                         </div>
                         <div className="col-12 border-top border-grey mb-2" />
                         {/* grand total */}
@@ -250,21 +250,21 @@ const MyCart = ({ match, location, history }) => {
                       </div>
                       <div className="row mt-4">
                         <div className="col-12">
-                          <h4 className="coupon-heading">Apply Coupon</h4>
+                          {/* <h4 className="coupon-heading">Apply Coupon</h4> */}
                           <div className="input-group mb-3">
-                            <input
+                            {/* <input
                               type="text"
                               className="form-control coupon-field"
                               aria-describedby="basic-addon2"
-                            />
-                            <div className="input-group-append">
+                            /> */}
+                            {/* <div className="input-group-append">
                               <span
                                 className="input-group-text"
                                 id="basic-addon2"
                               >
                                 Apply
                               </span>
-                            </div>
+                            </div> */}
                           </div>
                           <Link
                             to="/Checkout"

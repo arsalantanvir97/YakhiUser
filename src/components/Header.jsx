@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/userAction";
 import UnauthorizedAlert from "./UnauthorizedAlert";
 const Header = () => {
+
   const dispatch = useDispatch();
   const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;

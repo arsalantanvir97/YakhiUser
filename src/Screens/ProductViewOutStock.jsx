@@ -50,9 +50,9 @@ const ProductViewOutStock = () => {
                       <button type="button" id="add" className="plus"><i className="fas fa-plus" /></button>
                     </div>
                   </div>
-                  <div className="weight my-4">
+                  {/* <div className="weight my-4">
                     <p>Weight<span>30.2 oz</span></p>
-                  </div>
+                  </div> */}
                   <button type="button" className="btn maroon-btn-solid px-5 py-2 disabled" disabled><img src="images/add-to-cart.png" alt="" className="img-fluid mr-2 pt-1" />Add to cart</button>
                   <span className="out-of-stock">Out of Stock</span>
                 </div>

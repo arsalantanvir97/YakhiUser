@@ -31,13 +31,13 @@ export default class ProductSlider extends Component {
                   height: 216,
                   width: 214
                 }}
-                src={`${imageURL}${pro?.productimage}`}
+                src={pro?.productimage?.length>0&&`${imageURL}${pro?.productimage[0]}`}
                 alt=""
                 className="img-fluid mx-auto"
               />
             </Link>
-            <h4 className="prod-title">{pro?.name}</h4>
-            <h5 className="prod-price">${pro?.price}</h5>
+            <h4 className="prod-title text-center">{pro?.name}</h4>
+            <h5 className="prod-price text-center">${pro?.price}</h5>
           </div>
         ))}
       </Slider>

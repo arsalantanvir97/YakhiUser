@@ -20,9 +20,7 @@ const GeoGenetics = () => {
 
   const getDetoxProducts = async () => {
     try {
-      const { data } = await axios.post(`${baseURL}/product/detoxProducts`, {
-        category: "Organic Soap"
-      });
+      const { data } = await axios.get(`${baseURL}/product/detoxProducts`);
       console.log("data", data);
       setorganicproductlist(data);
     } catch (error) {
@@ -118,18 +116,19 @@ const GeoGenetics = () => {
             </p>
           </div>
         </div>
-      
-        
       </div>
 
       <section className="yahki-protocols py-5">
         <div className="container">
           <div className="row mt-5 ">
             <div className="col-12">
-              <h3 className="protocol-heading orange">GEO'GENETICS PACKAGES</h3>
+              <h3 className="protocol-heading orange  mb-4">GEO'GENETICS PACKAGES</h3>
             </div>
           </div>
-          <ProductSlider images={organicproductlist?.detoxproduct} userInfo={userInfo} />
+          <ProductSlider
+            images={organicproductlist?.detoxproduct}
+            userInfo={userInfo}
+          />
           {/* <div className="row">
             <div className="col-12 my-5">
               <div id="protocols" className="owl-carousel owl-theme">

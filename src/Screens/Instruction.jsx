@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -70,9 +71,9 @@ const Instruction = () => {
                   </h4>
                 </div>
                 <div className="col-lg-4 col-12 mt-3 mt-lg-0 text-lg-right">
-                  <a href="#" className="btn red-btn-solid ml-md-0">
+                  <Link to="#" className="btn red-btn-solid ml-md-0">
                     Download Document
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="row mt-5">

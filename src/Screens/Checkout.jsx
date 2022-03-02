@@ -11,8 +11,12 @@ import {
 } from "../actions/cartAction";
 import { createOrder } from "../actions/orderAction";
 import DatePicker from "react-datepicker";
-import { imageURL } from "../utils/api";
+import { baseURL, imageURL } from "../utils/api";
 import Toasty from "../utils/toast";
+import InputNumber from "../components/InputNumber";
+import InputPhone from "../components/InputPhone";
+import { validateEmail } from "../utils/ValidateEmail";
+import axios from "axios";
 
 const Checkout = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -20,6 +24,7 @@ const Checkout = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const dispatch = useDispatch();
+  const [taxofstate, settaxofstate] = useState(0);
 
   const [email, setemail] = useState(shippingAddress?.email);
   const [phone, setphone] = useState(shippingAddress?.phone);
@@ -44,9 +49,9 @@ const Checkout = ({ history }) => {
   // onchange = (e)=>{
   //   setFormData({...FormData,[e.target.name]:"e.target.value"})
   // }
-useEffect(() => {
-console.log('email',email);
-}, [email]);
+  useEffect(() => {
+    console.log("email", email);
+  }, [email]);
 
   const [billingcity, setbillingcity] = useState(shippingAddress?.billingcity);
   const [billingzipcode, setbillingzipcode] = useState(
@@ -91,27 +96,61 @@ console.log('email',email);
     console.log("togglecheckoutHandler");
     settogglecheckout(togglecheckout + 1);
   };
-  const saveShippingHandler = (e) => {
-    console.log("saveShippingHandler");
-    settogglecheckout(togglecheckout + 1);
-    dispatch(
-      saveShippingAddress({
-        email,
-        phone,
-        billingname,
-        billingaddress,
-        billingcity,
-        billingzipcode,
-        billingcountry,
-        billingstate,
-        shippingname,
-        shippingaddress,
-        shippingcity,
-        shippingzipcode,
-        shippingcountry,
-        shippingstate
-      })
-    );
+  const saveShippingHandler = async (e) => {
+    const emailvalidation = validateEmail(email);
+    console.log("emmmm", emailvalidation);
+    console.log("addEmployeeHandler");
+    if (emailvalidation == true) {
+      console.log("saveShippingHandler");
+      settogglecheckout(togglecheckout + 1);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      };
+      const res = await axios.post(
+        `${baseURL}/tax/gettaxdetails`,
+        { state: shippingstate },
+        config
+      );
+
+      console.log("ress", res);
+      if (res?.data?.tax == null) {
+        settaxofstate(0);
+      } else {
+        settaxofstate(res?.data?.tax?.percent);
+      }
+      cart.itemsPrice = cart.cartItems.reduce(
+        (acc, item) => acc + item.price * item.qty,
+        0
+      );
+      cart.shippingPrice = Number(0);
+      cart.taxPrice =
+        Number(res?.data?.tax == null ? 0 : res?.data?.tax?.percent / 100) *
+        Number(cart.itemsPrice);
+        cart.taxPrice=cart.taxPrice.toFixed(0)
+      cart.totalPrice = Number(cart.itemsPrice) + Number(cart.taxPrice);
+      dispatch(
+        saveShippingAddress({
+          email,
+          phone,
+          billingname,
+          billingaddress,
+          billingcity,
+          billingzipcode,
+          billingcountry,
+          billingstate,
+          shippingname,
+          shippingaddress,
+          shippingcity,
+          shippingzipcode,
+          shippingcountry,
+          shippingstate
+        })
+      );
+    } else {
+      Toasty("error", `Please enter a valid email`);
+    }
   };
   const savePaymentMethodHandler = (e) => {
     console.log("savePaymentMethodHandler");
@@ -130,13 +169,14 @@ console.log('email',email);
     console.log("removeFromCartHandler", removeFromCartHandler);
     dispatch(removeFromCart(id));
   };
-  cart.itemsPrice = cart.cartItems.reduce(
+  cart.itemsPrice = cart?.cartItems?.reduce(
     (acc, item) => acc + item.price * item.qty,
     0
   );
-  cart.shippingPrice = Number(cart.itemsPrice);
-  cart.taxPrice = Number(cart.itemsPrice);
-  cart.totalPrice = Number(cart.itemsPrice).toFixed(2);
+  cart.shippingPrice = Number(0);
+  cart.taxPrice = Number(taxofstate / 100) * Number(cart?.itemsPrice);
+  cart.taxPrice=cart.taxPrice.toFixed(0)
+  cart.totalPrice = Number(cart?.itemsPrice) + Number(cart?.taxPrice);
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
@@ -156,6 +196,8 @@ console.log('email',email);
   }, [history, success]);
 
   const placeOrderHandler = async () => {
+    cart.cartItems=cart?.cartItems?.filter(cartt=>(cartt?.qty!==0 && cart))
+    console.log('cart.cartItems',cart?.cartItems);
     dispatch(
       createOrder({
         userid: userInfo?._id,
@@ -165,7 +207,8 @@ console.log('email',email);
         itemsPrice: cart?.itemsPrice,
         shippingPrice: cart?.shippingPrice,
         taxPrice: cart?.taxPrice,
-        totalPrice: cart?.totalPrice
+        totalPrice: cart?.totalPrice,
+        taxperproduct: Number(taxofstate)
       })
     );
   };
@@ -234,15 +277,9 @@ console.log('email',email);
                                   </div>
                                   <div className="col mb-4">
                                     <label>Phone Number</label>
-                                    <input
-                                      type="tel"
-                                      className="form-control"
-                                      maxlength="11"
-                                      placeholder="Enter Phone Number"
+                                    <InputPhone
                                       value={phone}
-                                      onChange={(e) => {
-                                        setphone(e.target.value);
-                                      }}
+                                      onChange={setphone}
                                     />
                                   </div>
                                 </div>
@@ -292,14 +329,11 @@ console.log('email',email);
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Zip Code*</label>
-                                    <input
-                                      type="number"
-                                      className="form-control"
-                                      placeholder="Enter Zip Code"
+                                    <InputNumber
                                       value={billingzipcode}
-                                      onChange={(e) => {
-                                        setbillingzipcode(e.target.value);
-                                      }}
+                                      onChange={setbillingzipcode}
+                                      max={5}
+                                      className="form-control"
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -316,7 +350,125 @@ console.log('email',email);
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>State*</label>
-                                    <input
+                                    <select
+                                      name
+                                      className="form-control"
+                                      value={billingstate}
+                                      onChange={(e) => {
+                                        setbillingstate(e.target.value);
+                                      }}
+                                    >
+                                      <option value>select</option>
+                                      <option value={"Alabama"}>Alabama</option>
+                                      <option value={"Alaska"}>Alaska</option>
+                                      <option value={"Arizona"}>Arizona</option>
+                                      <option value={"Arkansas"}>
+                                        Arkansas
+                                      </option>
+                                      <option value={"California"}>
+                                        California
+                                      </option>
+                                      <option value={"Colorado"}>
+                                        Colorado
+                                      </option>
+                                      <option value={"Connecticut"}>
+                                        Connecticut
+                                      </option>
+                                      <option value={"Delaware"}>
+                                        Delaware
+                                      </option>
+                                      <option value={"Florida"}>Florida</option>
+                                      <option value={"Georgia"}>Georgia</option>
+                                      <option value={"Hawaii"}>Hawaii</option>
+                                      <option value={"Idaho"}>Idaho</option>
+                                      <option value={"IllinoisIndiana"}>
+                                        IllinoisIndiana
+                                      </option>
+                                      <option value={"Iowa"}>Iowa</option>
+                                      <option value={"Kansas"}>Kansas</option>
+                                      <option value={"Kentucky"}>
+                                        Kentucky
+                                      </option>
+                                      <option value={"Louisiana"}>
+                                        Louisiana
+                                      </option>
+                                      <option value={"Maine"}>Maine</option>
+                                      <option value={"Maryland"}>
+                                        Maryland
+                                      </option>
+                                      <option value={"Massachusetts"}>
+                                        Massachusetts
+                                      </option>
+                                      <option value={"Michigan"}>
+                                        Michigan
+                                      </option>
+                                      <option value={"Minnesota"}>
+                                        Minnesota
+                                      </option>
+                                      <option value={"Mississippi"}>
+                                        Mississippi
+                                      </option>
+                                      <option value={"Missouri"}>
+                                        Missouri
+                                      </option>
+                                      <option value={"MontanaNebraska"}>
+                                        MontanaNebraska
+                                      </option>
+                                      <option value={"New Hampshire"}>
+                                        New Hampshire
+                                      </option>
+                                      <option value={"New Jersey"}>
+                                        New Jersey
+                                      </option>
+                                      <option value={"New Mexico"}>
+                                        New Mexico
+                                      </option>
+                                      <option value={"New York"}>
+                                        New York
+                                      </option>
+                                      <option value={"North Carolina"}>
+                                        North Carolina
+                                      </option>
+                                      <option value={"North Dakota"}>
+                                        North Dakota
+                                      </option>
+                                      <option value={"Ohio"}>Ohio</option>
+                                      <option value={"Oklahoma"}>
+                                        Oklahoma
+                                      </option>
+                                      <option value={"Oregon"}>Oregon</option>
+                                      <option
+                                        value={"PennsylvaniaRhode Island"}
+                                      >
+                                        PennsylvaniaRhode Island
+                                      </option>
+                                      <option value={"South Carolina"}>
+                                        South Carolina
+                                      </option>
+                                      <option value={"South Dakota"}>
+                                        South Dakota
+                                      </option>
+                                      <option value={"Tennessee"}>
+                                        Tennessee
+                                      </option>
+                                      <option value={"Texas"}>Texas</option>
+                                      <option value={"Utah"}>Utah</option>
+                                      <option value={"Vermont"}>Vermont</option>
+                                      <option value={"Virginia"}>
+                                        Virginia
+                                      </option>
+                                      <option value={"Washington"}>
+                                        Washington
+                                      </option>
+                                      <option value={"West Virginia"}>
+                                        West Virginia
+                                      </option>
+                                      <option value={"Wisconsin"}>
+                                        Wisconsin
+                                      </option>
+                                      <option value={"Wyoming"}>Wyoming</option>
+                                    </select>
+                                    {/* <input
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter State"
@@ -324,9 +476,9 @@ console.log('email',email);
                                       onChange={(e) => {
                                         setbillingstate(e.target.value);
                                       }}
-                                    />
+                                    /> */}
                                   </div>
-                                  <div className="col-12">
+                                  {/* <div className="col-12">
                                     <div className="ship-to-different">
                                       <div className="checkbox-group">
                                         <input type="checkbox" id="html" />
@@ -335,7 +487,7 @@ console.log('email',email);
                                         </label>
                                       </div>
                                     </div>
-                                  </div>
+                                  </div> */}
                                 </div>
                                 {/* Shipping Address */}
                                 <div className="row mb-4">
@@ -381,14 +533,11 @@ console.log('email',email);
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Zip Code*</label>
-                                    <input
-                                      type="number"
-                                      className="form-control"
-                                      placeholder="Enter Zip Code"
+                                    <InputNumber
                                       value={shippingzipcode}
-                                      onChange={(e) => {
-                                        setshippingzipcode(e.target.value);
-                                      }}
+                                      onChange={setshippingzipcode}
+                                      max={5}
+                                      className="form-control"
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -405,15 +554,124 @@ console.log('email',email);
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>State*</label>
-                                    <input
-                                      type="text"
+                                    <select
+                                      name
                                       className="form-control"
-                                      placeholder="Enter State"
                                       value={shippingstate}
                                       onChange={(e) => {
                                         setshippingstate(e.target.value);
                                       }}
-                                    />
+                                    >
+                                      <option value>select</option>
+                                      <option value={"Alabama"}>Alabama</option>
+                                      <option value={"Alaska"}>Alaska</option>
+                                      <option value={"Arizona"}>Arizona</option>
+                                      <option value={"Arkansas"}>
+                                        Arkansas
+                                      </option>
+                                      <option value={"California"}>
+                                        California
+                                      </option>
+                                      <option value={"Colorado"}>
+                                        Colorado
+                                      </option>
+                                      <option value={"Connecticut"}>
+                                        Connecticut
+                                      </option>
+                                      <option value={"Delaware"}>
+                                        Delaware
+                                      </option>
+                                      <option value={"Florida"}>Florida</option>
+                                      <option value={"Georgia"}>Georgia</option>
+                                      <option value={"Hawaii"}>Hawaii</option>
+                                      <option value={"Idaho"}>Idaho</option>
+                                      <option value={"IllinoisIndiana"}>
+                                        IllinoisIndiana
+                                      </option>
+                                      <option value={"Iowa"}>Iowa</option>
+                                      <option value={"Kansas"}>Kansas</option>
+                                      <option value={"Kentucky"}>
+                                        Kentucky
+                                      </option>
+                                      <option value={"Louisiana"}>
+                                        Louisiana
+                                      </option>
+                                      <option value={"Maine"}>Maine</option>
+                                      <option value={"Maryland"}>
+                                        Maryland
+                                      </option>
+                                      <option value={"Massachusetts"}>
+                                        Massachusetts
+                                      </option>
+                                      <option value={"Michigan"}>
+                                        Michigan
+                                      </option>
+                                      <option value={"Minnesota"}>
+                                        Minnesota
+                                      </option>
+                                      <option value={"Mississippi"}>
+                                        Mississippi
+                                      </option>
+                                      <option value={"Missouri"}>
+                                        Missouri
+                                      </option>
+                                      <option value={"MontanaNebraska"}>
+                                        MontanaNebraska
+                                      </option>
+                                      <option value={"New Hampshire"}>
+                                        New Hampshire
+                                      </option>
+                                      <option value={"New Jersey"}>
+                                        New Jersey
+                                      </option>
+                                      <option value={"New Mexico"}>
+                                        New Mexico
+                                      </option>
+                                      <option value={"New York"}>
+                                        New York
+                                      </option>
+                                      <option value={"North Carolina"}>
+                                        North Carolina
+                                      </option>
+                                      <option value={"North Dakota"}>
+                                        North Dakota
+                                      </option>
+                                      <option value={"Ohio"}>Ohio</option>
+                                      <option value={"Oklahoma"}>
+                                        Oklahoma
+                                      </option>
+                                      <option value={"Oregon"}>Oregon</option>
+                                      <option
+                                        value={"PennsylvaniaRhode Island"}
+                                      >
+                                        PennsylvaniaRhode Island
+                                      </option>
+                                      <option value={"South Carolina"}>
+                                        South Carolina
+                                      </option>
+                                      <option value={"South Dakota"}>
+                                        South Dakota
+                                      </option>
+                                      <option value={"Tennessee"}>
+                                        Tennessee
+                                      </option>
+                                      <option value={"Texas"}>Texas</option>
+                                      <option value={"Utah"}>Utah</option>
+                                      <option value={"Vermont"}>Vermont</option>
+                                      <option value={"Virginia"}>
+                                        Virginia
+                                      </option>
+                                      <option value={"Washington"}>
+                                        Washington
+                                      </option>
+                                      <option value={"West Virginia"}>
+                                        West Virginia
+                                      </option>
+                                      <option value={"Wisconsin"}>
+                                        Wisconsin
+                                      </option>
+                                      <option value={"Wyoming"}>Wyoming</option>
+                                    </select>
                                   </div>
                                 </div>
                               </div>
@@ -442,7 +700,7 @@ console.log('email',email);
                                           <>
                                             <div className="col-4 mb-3">
                                               <img
-                                                src={`${imageURL}${cart?.image}`}
+                                                src={`${imageURL}${cart?.image[0]}`}
                                                 alt=""
                                                 className="img-fluid"
                                               />
@@ -477,10 +735,14 @@ console.log('email',email);
                                     </div>
                                     {/* tax */}
                                     <div className="col-7 mb-3">
-                                      <p className="summary-title">Tax 0%</p>
+                                      <p className="summary-title">
+                                        Tax {taxofstate}%
+                                      </p>
                                     </div>
                                     <div className="col-5 mb-3 text-right">
-                                      <p className="summary-value">$0</p>
+                                      <p className="summary-value">
+                                        ${cart?.taxPrice}
+                                      </p>
                                     </div>
                                     {/* Shipping rates */}
                                     <div className="col-7 mb-3">
@@ -489,7 +751,9 @@ console.log('email',email);
                                       </p>
                                     </div>
                                     <div className="col-5 mb-3 text-right">
-                                      <p className="summary-value">$0</p>
+                                      <p className="summary-value">
+                                        ${cart?.shippingPrice}
+                                      </p>
                                     </div>
                                     <div className="col-12 border-top border-grey mb-2" />
                                     {/* grand total */}
@@ -499,14 +763,7 @@ console.log('email',email);
                                     <div className="col-5 mb-3 text-right">
                                       <p className="grand-total-value">
                                         {" "}
-                                        $
-                                        {cartItems
-                                          .reduce(
-                                            (acc, item) =>
-                                              acc + item.qty * item.price,
-                                            0
-                                          )
-                                          .toFixed(2)}
+                                        ${cart?.totalPrice.toFixed(0)}
                                       </p>
                                     </div>
                                   </div>
@@ -543,7 +800,7 @@ console.log('email',email);
                         <div className="row">
                           <div className="col-xl-7 col-lg-7 col-md-10">
                             <div className="checkout-form">
-                              <h3>CHOOSE PAYMENT METHOD</h3>
+                              <h3>SELECT PAYMENT METHOD</h3>
                               <form>
                                 <div className="row my-4">
                                   <div className="col-lg-2 col-md-3 col-4">
@@ -572,14 +829,14 @@ console.log('email',email);
                                       <input
                                         type="radio"
                                         name="emotion"
-                                        id="apple"
+                                        id="Apple Pay"
                                         className="input-hidden"
                                         value={paymentmethod}
                                         onChange={() => {
-                                          setpaymentmethod("apple");
+                                          setpaymentmethod("Apple Pay");
                                         }}
                                       />
-                                      <label htmlFor="apple">
+                                      <label htmlFor="Apple Pay">
                                         <img
                                           src="images/applepay.png"
                                           alt=""
@@ -696,7 +953,7 @@ console.log('email',email);
                                         <>
                                           <div className="col-4 mb-3">
                                             <img
-                                              src={`${imageURL}${cart?.image}`}
+                                              src={`${imageURL}${cart?.image[0]}`}
                                               alt=""
                                               className="img-fluid"
                                             />
@@ -731,10 +988,14 @@ console.log('email',email);
                                   </div>
                                   {/* tax */}
                                   <div className="col-7 mb-3">
-                                    <p className="summary-title">Tax 0%</p>
+                                    <p className="summary-title">
+                                      Tax {taxofstate}%
+                                    </p>
                                   </div>
                                   <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">$0</p>
+                                    <p className="summary-value">
+                                      ${cart?.taxPrice}
+                                    </p>
                                   </div>
                                   {/* Shipping rates */}
                                   <div className="col-7 mb-3">
@@ -743,7 +1004,9 @@ console.log('email',email);
                                     </p>
                                   </div>
                                   <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">$0</p>
+                                    <p className="summary-value">
+                                      ${cart?.shippingPrice}
+                                    </p>
                                   </div>
                                   <div className="col-12 border-top border-grey mb-2" />
                                   {/* grand total */}
@@ -753,14 +1016,7 @@ console.log('email',email);
                                   <div className="col-5 mb-3 text-right">
                                     <p className="grand-total-value">
                                       {" "}
-                                      $
-                                      {cartItems
-                                        .reduce(
-                                          (acc, item) =>
-                                            acc + item.qty * item.price,
-                                          0
-                                        )
-                                        .toFixed(2)}
+                                      ${cart?.totalPrice.toFixed(0)}
                                     </p>
                                   </div>
                                 </div>
@@ -819,7 +1075,7 @@ console.log('email',email);
                                           <td>
                                             <div className="cart-product">
                                               <img
-                                                src={`${imageURL}${cart?.image}`}
+                                                src={`${imageURL}${cart?.image[0]}`}
                                                 alt=""
                                                 className="img-fluid mx-auto"
                                               />
@@ -932,7 +1188,7 @@ console.log('email',email);
                                         <>
                                           <div className="col-4 mb-3">
                                             <img
-                                              src={`${imageURL}${cart?.image}`}
+                                              src={`${imageURL}${cart?.image[0]}`}
                                               alt=""
                                               className="img-fluid"
                                             />
@@ -967,10 +1223,14 @@ console.log('email',email);
                                   </div>
                                   {/* tax */}
                                   <div className="col-7 mb-3">
-                                    <p className="summary-title">Tax 0%</p>
+                                    <p className="summary-title">
+                                      Tax {taxofstate}%
+                                    </p>
                                   </div>
                                   <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">$0</p>
+                                    <p className="summary-value">
+                                      ${cart?.taxPrice}
+                                    </p>
                                   </div>
                                   {/* Shipping rates */}
                                   <div className="col-7 mb-3">
@@ -979,7 +1239,9 @@ console.log('email',email);
                                     </p>
                                   </div>
                                   <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">$0</p>
+                                    <p className="summary-value">
+                                      ${cart?.shippingPrice}
+                                    </p>
                                   </div>
                                   <div className="col-12 border-top border-grey mb-2" />
                                   {/* grand total */}
@@ -989,14 +1251,7 @@ console.log('email',email);
                                   <div className="col-5 mb-3 text-right">
                                     <p className="grand-total-value">
                                       {" "}
-                                      $
-                                      {cartItems
-                                        .reduce(
-                                          (acc, item) =>
-                                            acc + item.qty * item.price,
-                                          0
-                                        )
-                                        .toFixed(2)}
+                                      ${cart?.totalPrice.toFixed(0)}
                                     </p>
                                   </div>
                                 </div>
@@ -1018,14 +1273,14 @@ console.log('email',email);
                                   </div>
                                 </div>
                               </div>
-                              <div className="ship-to-different mt-4 text-center">
+                              {/* <div className="ship-to-different mt-4 text-center">
                                 <div className="checkbox-group">
                                   <input type="checkbox" id="html" />
                                   <label htmlFor="html">
                                     I Agree To The Terms And Conditions{" "}
                                   </label>
                                 </div>
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </div>
@@ -1078,10 +1333,11 @@ console.log('email',email);
                           shippingcountry &&
                           shippingstate
                             ? saveShippingHandler()
-                            : togglecheckout == 1 && paymentmethod &&
-                            cardholdername &&
-                            cardnumber &&
-                            cvvnumber
+                            : togglecheckout == 1 &&
+                              paymentmethod &&
+                              cardholdername &&
+                              cardnumber &&
+                              cvvnumber
                             ? savePaymentMethodHandler()
                             : togglecheckout == 2
                             ? togglecheckoutHandler()

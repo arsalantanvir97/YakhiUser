@@ -145,7 +145,7 @@ const OrderLog = () => {
                                       </td>
 
                                       <td>{ord?.orderItems?.length}</td>
-                                      <td>${ord?.totalPrice}</td>
+                                      <td>${ord?.isPaid == false ? 0 : ord?.totalPrice}</td>
                                       <td>
                                         <span className="stat-pending">
                                           {ord?.status}

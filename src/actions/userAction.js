@@ -13,7 +13,7 @@ import {
   USER_SIGNUP_FAIL,
   NOTIFICATION_REQUEST,
   NOTIFICATION_SUCCESS,
-  USER_LOGOUT,
+  USER_LOGOUT
 } from "../constants/userConstants";
 
 export const userSignUpAction =
@@ -32,7 +32,7 @@ export const userSignUpAction =
       if (res?.status == 201) {
         dispatch({
           type: USER_LOGIN_SUCCESS,
-          payload: res?.data,
+          payload: res?.data
         });
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data));
@@ -51,7 +51,7 @@ export const userSignUpAction =
 
       dispatch({
         type: USER_LOGIN_FAIL,
-        payload: error,
+        payload: error
       });
     }
   };
@@ -72,7 +72,7 @@ export const userLoginAction =
       if (res?.status == 200) {
         dispatch({
           type: USER_LOGIN_SUCCESS,
-          payload: res?.data,
+          payload: res?.data
         });
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data));
@@ -81,18 +81,18 @@ export const userLoginAction =
         Toasty("error", `Invalid Email or Password`);
         dispatch({
           type: USER_LOGIN_FAIL,
-          payload: res?.data?.message,
+          payload: res?.data?.message
         });
       }
     } catch (error) {
       dispatch({
         type: USER_LOGIN_FAIL,
-        payload: error,
+        payload: error
       });
     }
   };
 export const userResetPasswordAction =
-  (password, confirm_password, code, email,history) => async (dispatch) => {
+  (password, confirm_password, code, email, history) => async (dispatch) => {
     try {
       // dispatch({
       //   type: ADMIN_LOGIN_REQUEST,
@@ -107,11 +107,18 @@ export const userResetPasswordAction =
       if (res?.status == 201) {
         dispatch({
           type: USER_LOGIN_SUCCESS,
-          payload: res?.data,
+          payload: res?.data
         });
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data));
-        history.push('/')
+        await Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Password reset successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        history.push("/");
       }
       // else if(res?.status==201){
       //   Toasty('error',`Invalid Email or Password`);
@@ -129,7 +136,7 @@ export const userResetPasswordAction =
 
       dispatch({
         type: USER_LOGIN_FAIL,
-        payload: error,
+        payload: error
       });
     }
   };

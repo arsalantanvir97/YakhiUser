@@ -11,6 +11,7 @@ import InnerPageBanner from "./InnerPageBanner";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import InputNumber from "../components/InputNumber";
 let allcategoryofProducts = [];
 const Capsules = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -26,6 +27,7 @@ const Capsules = ({ history }) => {
   const [latestfilter, setlatestfilter] = useState("");
   const [pricefrom, setpricefrom] = useState();
   const [priceto, setpriceto] = useState();
+  const [allofcategory, setallofcategory] = useState([]);
 
   const [productlogs, setproductlogs] = useState("");
   const [renderproductcategories, setrenderproductcategories] = useState([]);
@@ -42,8 +44,18 @@ const Capsules = ({ history }) => {
     category,
     sort,
     priceto,
-    pricefrom,
+    pricefrom
   ]);
+
+  useEffect(() => {
+    gettingallCategoriesHandler();
+  }, []);
+
+  const gettingallCategoriesHandler = async () => {
+    const res = await axios.get(`${baseURL}/category/allOfCategories`, {});
+    console.log("res", res);
+    setallofcategory(res?.data?.getAllCategories);
+  };
 
   const getProducts = async () => {
     try {
@@ -60,24 +72,12 @@ const Capsules = ({ history }) => {
           category,
           sort,
           priceto,
-          pricefrom,
-        },
+          pricefrom
+        }
       });
 
       console.log("res", res);
       setproductlogs(res.data?.product);
-      if (allcategoryofProducts?.length == 0) {
-        res.data?.product?.docs?.map((prod) => {
-          console.log("prod", prod);
-          if (allcategoryofProducts?.includes(prod.category)) {
-            console.log("blockkk");
-          } else {
-            allcategoryofProducts.push(prod.category);
-            console.log("allcategoryofProducts", allcategoryofProducts);
-          }
-          setrenderproductcategories([...allcategoryofProducts]);
-        });
-      }
     } catch (err) {
       console.log("err", err);
     }
@@ -94,7 +94,7 @@ const Capsules = ({ history }) => {
     formData.append("id", userInfo?._id);
     formData.append("price", product?.price);
     formData.append("brand", product?.brand);
-    formData.append("weight", product?.weight);
+    // formData.append("weight", product?.weight);
     formData.append("category", product?.category);
     formData.append("countInStock", product?.countInStock);
     formData.append("name", product?.name);
@@ -109,6 +109,13 @@ const Capsules = ({ history }) => {
 
       console.log("res", res);
       if (res?.status == 201) {
+        await Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Added to Wislist",
+          showConfirmButton: false,
+          timer: 1500
+        });
         history.replace("/WishList");
       }
       // else if(res?.status==201){
@@ -128,16 +135,14 @@ const Capsules = ({ history }) => {
         title: "ERROR",
         text: "Internal Server Error",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1500
       });
     }
   };
-  useEffect(() => {
-    console.log("allcategoryofProducts", allcategoryofProducts);
-  }, [allcategoryofProducts]);
+
   return (
     <>
-    <Header/>
+      <Header />
       <section className="capsules">
         <InnerPageBanner />
         <div className="container-fluid">
@@ -159,16 +164,16 @@ const Capsules = ({ history }) => {
                     <div className="card card-body categories-body px-0">
                       {/* categories */}
                       <ul className="px-4">
-                        {renderproductcategories?.length > 0 &&
-                          renderproductcategories?.map((prod, index) => (
+                        {allofcategory?.length > 0 &&
+                          allofcategory?.map((allcat) => (
                             <li className="mb-4">
                               <Link
                                 to="#"
                                 onClick={() => {
-                                  setcategory(prod);
+                                  setcategory(allcat?._id);
                                 }}
                               >
-                                {prod}
+                                {allcat?.categorytitle}
                               </Link>
                             </li>
                           ))}
@@ -220,26 +225,19 @@ const Capsules = ({ history }) => {
                         Price Range
                       </h4>
                       <form className="form-inline mt-3">
-                        <input
-                          type="number"
-                          className="form-control mb-2 mr-sm-2 range-field"
-
-                          placeholder={0}
-
+                        <InputNumber
                           value={pricefrom}
-                          onChange={(e) => {
-                            setpricefrom(e.target.value);
-                          }}
-                        />
-                        <label htmlFor>To</label>
-                        <input
-                          type="number"
+                          onChange={setpricefrom}
+                          max={12}
                           className="form-control mb-2 mr-sm-2 range-field"
-                          placeholder={10000}
+                        />
+
+                        <label htmlFor>To</label>
+                        <InputNumber
                           value={priceto}
-                          onChange={(e) => {
-                            setpriceto(e.target.value);
-                          }}
+                          onChange={setpriceto}
+                          max={12}
+                          className="form-control mb-2 mr-sm-2 range-field"
                         />
                       </form>
                       {/* Rating */}
@@ -363,11 +361,16 @@ const Capsules = ({ history }) => {
                         <label htmlFor="sortBy" className="sortby-label">
                           Sorted By
                         </label>
-                        <select className="form-control ml-md-4" id="sortBy" value={sort}  onChange={(e) => {
-                              setsort(e.target.value);
-                            }}>
-                          <option value={'nameasc'}>A - Z</option>
-                          <option value={'namedes'}>Z - A</option>
+                        <select
+                          className="form-control ml-md-4"
+                          id="sortBy"
+                          value={sort}
+                          onChange={(e) => {
+                            setsort(e.target.value);
+                          }}
+                        >
+                          <option value={"nameasc"}>A - Z</option>
+                          <option value={"namedes"}>Z - A</option>
                         </select>
                       </form>
                     </div>
@@ -387,8 +390,9 @@ const Capsules = ({ history }) => {
                               type="button"
                               className="wishlist-btn"
                               onClick={() => {
-                                userInfo? 
-                                addtoWishLIstHandler(prod) : UnauthorizedAlert()
+                                userInfo
+                                  ? addtoWishLIstHandler(prod)
+                                  : UnauthorizedAlert();
                               }}
                             >
                               <i className="wishlist-icon fas fa-heart maroon" />
@@ -396,12 +400,15 @@ const Capsules = ({ history }) => {
                             <Link to={`/ProductView/${prod?._id}`}>
                               {" "}
                               <img
-                                src={`${imageURL}${prod?.productimage}`}
+                                src={
+                                  prod?.productimage?.length > 0 &&
+                                  `${imageURL}${prod?.productimage[0]}`
+                                }
                                 alt=""
                                 className="img-fluid"
                                 style={{
                                   height: 242,
-                                  width: 242,
+                                  width: 242
                                 }}
                               />{" "}
                             </Link>
@@ -480,8 +487,9 @@ const Capsules = ({ history }) => {
                                   to="#"
                                   className="btn maroon-btn-solid "
                                   onClick={() => {
-                                    userInfo ?
-                                    addToCartHandler(prod?._id, 1): UnauthorizedAlert()
+                                    userInfo
+                                      ? addToCartHandler(prod?._id, 1)
+                                      : UnauthorizedAlert();
                                   }}
                                 >
                                   <img
@@ -532,7 +540,7 @@ const Capsules = ({ history }) => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 };

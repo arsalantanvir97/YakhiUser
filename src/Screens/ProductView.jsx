@@ -15,7 +15,7 @@ const ProductView = ({ match, history }) => {
   const [recommendedproducts, setrecommendedproducts] = useState([]);
   useEffect(() => {
     getSingleProduct();
-  }, []);
+  }, [match?.params?.id]);
 
   useEffect(() => {
     console.log("quantity", quantity);
@@ -25,15 +25,13 @@ const ProductView = ({ match, history }) => {
     try {
       const res = await axios({
         url: `${baseURL}/product/getProductDetails/${match?.params?.id}`,
-        method: "GET",
+        method: "GET"
       });
-      console.log("res", res?.data?.product?.category);
+      console.log("res", res?.data?.product);
       setproduct(res?.data?.product);
       const category = await res?.data?.product?.category;
       console.log("category", category);
-      const { data } = await axios.post(`${baseURL}/product/detoxProducts`, {
-        category: category,
-      });
+      const { data } = await axios.get(`${baseURL}/product/detoxProducts`);
       console.log("data", data);
       setrecommendedproducts(data);
     } catch (err) {
@@ -51,7 +49,7 @@ const ProductView = ({ match, history }) => {
     formData.append("id", userInfo?._id);
     formData.append("price", product?.price);
     formData.append("brand", product?.brand);
-    formData.append("weight", product?.weight);
+    // formData.append("weight", product?.weight);
     formData.append("category", product?.category);
     formData.append("countInStock", product?.countInStock);
     formData.append("name", product?.name);
@@ -66,6 +64,13 @@ const ProductView = ({ match, history }) => {
 
       console.log("res", res);
       if (res?.status == 201) {
+        await Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Added to Wislist",
+          showConfirmButton: false,
+          timer: 1500
+        });
         history.replace("/WishList");
       }
       // else if(res?.status==201){
@@ -85,7 +90,7 @@ const ProductView = ({ match, history }) => {
         title: "ERROR",
         text: "Internal Server Error",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1500
       });
     }
   };
@@ -94,10 +99,9 @@ const ProductView = ({ match, history }) => {
       ? setquantity(0)
       : setquantity(Number(quantity - 1));
   };
- 
+
   return (
     <>
-     
       <div className="container-fluid">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -107,13 +111,30 @@ const ProductView = ({ match, history }) => {
                 <div className="col-lg-6 col-md-8">
                   <div className="p-view-main">
                     <img
-                      src={`${imageURL}${product?.productimage}`}
+                      src={
+                        product?.productimage?.length > 0 &&
+                        `${imageURL}${product?.productimage[0]}`
+                      }
                       alt=""
                       className="img-fluid h-100"
                     />
                   </div>
+
                   <div className="row">
-                    <div className="col-4">
+                    {/* {recommendedproducts?.} */}
+                    {product?.productimage?.length > 0 &&
+                      product?.productimage?.slice(1)?.map((img) => (
+                        <div className="col-4">
+                          <div className="p-view-thumb">
+                            <img
+                              src={`${imageURL}${img}`}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    {/* <div className="col-4">
                       <div className="p-view-thumb">
                         <img
                           src={`${imageURL}${product?.productimage}`}
@@ -130,16 +151,7 @@ const ProductView = ({ match, history }) => {
                           className="img-fluid"
                         />
                       </div>
-                    </div>
-                    <div className="col-4">
-                      <div className="p-view-thumb">
-                        <img
-                          src={`${imageURL}${product?.productimage}`}
-                          alt=""
-                          className="img-fluid"
-                        />
-                      </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-10">
@@ -239,24 +251,21 @@ const ProductView = ({ match, history }) => {
                         id="add"
                         className="plus"
                         value={quantity}
-                        onClick={
-                          () => 
-                          setquantity(Number(quantity + 1))
-                        }
+                        onClick={() => setquantity(Number(quantity + 1))}
                       >
                         <i className="fas fa-plus" />
                       </button>
                     </div>
                   </div>
-                  <div className="weight my-4">
+                  {/* <div className="weight my-4">
                     <p>
                       Weight<span>{product?.weight}</span>
                     </p>
-                  </div>
+                  </div> */}
                   <button
                     onClick={addToCartHandler}
                     type="button"
-                    className="btn maroon-btn-solid px-5 py-2"
+                    className="btn maroon-btn-solid px-5 py-2 mt-2"
                     disabled={product?.countInStock == 0}
                   >
                     <img
@@ -515,15 +524,15 @@ const ProductView = ({ match, history }) => {
                         >
                           <i className="wishlist-icon far fa-heart maroon" />
                         </button>
-                        <a href="product-view.php">
+                        <Link to={`/ProductView/${rec?._id}`}>
                           {" "}
                           <img
-                            src={`${imageURL}${rec?.productimage}`}
-                            style={{width:238,height:239}}
+                            src={`${imageURL}${rec?.productimage[0]}`}
+                            style={{ width: 238, height: 239 }}
                             alt=""
                             className="img-fluid"
                           />{" "}
-                        </a>
+                        </Link>
                         <h5 className="product-name">
                           <Link
                             to={`/ProductView/${rec?._id}`}
@@ -605,8 +614,9 @@ const ProductView = ({ match, history }) => {
                               to="#"
                               className="btn maroon-btn-solid "
                               onClick={() => {
-                                userInfo?
-                                addToCartHandler(rec?._id, 1) : UnauthorizedAlert()
+                                userInfo
+                                  ? addToCartHandler(rec?._id, 1)
+                                  : UnauthorizedAlert();
                               }}
                             >
                               <img

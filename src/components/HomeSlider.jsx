@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 export default class HomeSlider extends Component {
@@ -34,12 +35,11 @@ export default class HomeSlider extends Component {
                             The YAH'KI Detoxification Home.
                           </p>
                         </div>
-                        <a
-                          href="#"
+                        <Link to='#'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           FIND OUT NOW!
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -63,12 +63,11 @@ export default class HomeSlider extends Component {
                             The YAH'KI Detoxification Home.
                           </p>
                         </div>
-                        <a
-                          href="#"
+                        <Link to='#'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           FIND OUT NOW!
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -92,12 +91,11 @@ export default class HomeSlider extends Component {
                             The YAH'KI Detoxification Home.
                           </p>
                         </div>
-                        <a
-                          href="#"
+                        <Link to='#'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           FIND OUT NOW!
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -121,12 +119,11 @@ export default class HomeSlider extends Component {
                             The YAH'KI Detoxification Home.
                           </p>
                         </div>
-                        <a
-                          href="#"
+                        <Link to='#'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           FIND OUT NOW!
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -150,12 +147,11 @@ export default class HomeSlider extends Component {
                             The YAH'KI Detoxification Home.
                           </p>
                         </div>
-                        <a
-                          href="#"
+                        <Link to='#'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           FIND OUT NOW!
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -179,12 +175,11 @@ export default class HomeSlider extends Component {
                             The YAH'KI Detoxification Home.
                           </p>
                         </div>
-                        <a
-                          href="#"
+                        <Link to='#'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           FIND OUT NOW!
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

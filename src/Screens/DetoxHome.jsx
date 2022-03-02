@@ -21,9 +21,7 @@ const DetoxHome = ({ history }) => {
 
   const getDetoxProducts = async () => {
     try {
-      const { data } = await axios.post(`${baseURL}/product/detoxProducts`, {
-        category: "Detox"
-      });
+      const { data } = await axios.get(`${baseURL}/product/detoxProducts`);
       console.log("data", data);
       setdetoxproductlist(data);
     } catch (error) {
@@ -150,8 +148,9 @@ const DetoxHome = ({ history }) => {
                       data-toggle="modal"
                       data-target="#appointment"
                       onClick={() => {
-                        userInfo? 
-                        addToCartHandler(det?._id, 1): UnauthorizedAlert()
+                        userInfo
+                          ? addToCartHandler(det?._id, 1)
+                          : UnauthorizedAlert();
                       }}
                     >
                       <img
@@ -163,13 +162,18 @@ const DetoxHome = ({ history }) => {
                     </Link>
                   </div>
                   <div className="col-md-5 my-4 offset-xl-1 ">
-                    <Link to={`/ProductView/${det?._id}`} onClick={()=>{!userInfo && UnauthorizedAlert()} }>
+                    <Link
+                      to={`/ProductView/${det?._id}`}
+                      onClick={() => {
+                        !userInfo && UnauthorizedAlert();
+                      }}
+                    >
                       <img
                         style={{
                           height: 440,
                           width: 488
                         }}
-                        src={`${imageURL}${det?.productimage}`}
+                        src={`${imageURL}${det?.productimage[0]}`}
                         alt=""
                         className="img-fluid"
                       />

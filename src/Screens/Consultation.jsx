@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-let showformm=1
+let showformm = 1;
 const Consultation = () => {
   const [showform, setshowform] = useState(1);
   const [firstName, setfirstName] = useState("");
@@ -10,7 +10,6 @@ const Consultation = () => {
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
   const [timing, settiming] = useState("");
-
 
   return (
     <>
@@ -58,25 +57,47 @@ const Consultation = () => {
                     <div className="row mb-5">
                       <div className="col-12 text-center">
                         <div className="d-flex justify-content-around">
-                          <span className={showform ==1 ? "step active" : 'step finish'}>
+                          <span
+                            className={
+                              showform == 1 ? "step active" : "step finish"
+                            }
+                          >
                             <div className="step-icon">
                               <i className="fas fa-calendar" />
                             </div>
                             <p className="mt-4">Choose Appoinment</p>
                           </span>
-                          <span className={showform ==2 ? "step active" : showform >2 ? 'step finish' : null}>
+                          <span
+                            className={
+                              showform == 2
+                                ? "step active"
+                                : showform > 2
+                                ? "step finish"
+                                : null
+                            }
+                          >
                             <div className="step-icon">
                               <i className="fas fa-address-card" />
                             </div>
                             <p className="mt-4">Your Information</p>
                           </span>
-                          <span className={showform ==3 ? "step active" : showform >3 ? 'step finish' : null}>
+                          <span
+                            className={
+                              showform == 3
+                                ? "step active"
+                                : showform > 3
+                                ? "step finish"
+                                : null
+                            }
+                          >
                             <div className="step-icon">
                               <i className="fas fa-credit-card" />
                             </div>
                             <p className="mt-4">Payment</p>
                           </span>
-                          <span className={showform ==4 ? "step active" : null}>
+                          <span
+                            className={showform == 4 ? "step active" : null}
+                          >
                             <div className="step-icon">
                               <i className="fas fa-check-square" />
                             </div>
@@ -517,10 +538,10 @@ const Consultation = () => {
                                   className="form-control"
                                   placeholder="Enter First Name"
                                   type="text"
-                                 value={firstName}
-onChange={(e)=>{
-  setfirstName(e.target.value)
-}}
+                                  value={firstName}
+                                  onChange={(e) => {
+                                    setfirstName(e.target.value);
+                                  }}
                                 />
                               </div>
                               <div className="col-6">
@@ -532,8 +553,8 @@ onChange={(e)=>{
                                   placeholder="Enter Last Name"
                                   type="text"
                                   value={lastName}
-                                  onChange={(e)=>{
-                                    setlastName(e.target.value)
+                                  onChange={(e) => {
+                                    setlastName(e.target.value);
                                   }}
                                 />
                               </div>
@@ -544,8 +565,8 @@ onChange={(e)=>{
                                   placeholder="Enter Phone Number"
                                   type="tel"
                                   value={phone}
-                                  onChange={(e)=>{
-                                    setphone(e.target.value)
+                                  onChange={(e) => {
+                                    setphone(e.target.value);
                                   }}
                                 />
                               </div>
@@ -556,13 +577,13 @@ onChange={(e)=>{
                                   placeholder="Enter Email"
                                   type="email"
                                   value={email}
-                                  onChange={(e)=>{
-                                    setemail(e.target.value)
+                                  onChange={(e) => {
+                                    setemail(e.target.value);
                                   }}
                                 />
                               </div>
                               <div className="col-12 text-right">
-                                <Link to='#' className="red-link">
+                                <Link to="#" className="red-link">
                                   Redeem Coupon
                                 </Link>
                               </div>
@@ -646,10 +667,9 @@ onChange={(e)=>{
                         type="button"
                         className="red-btn-outline"
                         id="prevBtn"
-                       onClick={()=>{
-                        setshowform(showform==1 ? 1 :showform-1)
-                       }}
-
+                        onClick={() => {
+                          setshowform(showform == 1 ? 1 : showform - 1);
+                        }}
                       >
                         Back
                       </button>
@@ -657,13 +677,11 @@ onChange={(e)=>{
                         type="button"
                         className="red-btn-solid"
                         id="nextBtn"
-                        onClick={()=>{
-                          setshowform(showform==4 ? 4 :showform+1)
-                         }}
+                        onClick={() => {
+                          setshowform(showform == 4 ? 4 : showform + 1);
+                        }}
                       >
-                      
-                          Continue
-                    
+                        Continue
                       </button>
                     </div>
                   </form>
