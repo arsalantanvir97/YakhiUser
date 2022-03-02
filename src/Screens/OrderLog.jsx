@@ -34,8 +34,8 @@ const OrderLog = () => {
           searchString,
           from,
           to,
-          status,
-        },
+          status
+        }
       });
 
       console.log("res", res);
@@ -93,16 +93,20 @@ const OrderLog = () => {
                       </div>
                       <div className="col">
                         <label>Status:</label>
-                        <select className="form-control logSelect" value={status}
-                    onChange={(e) => {
-                      setStatus(e.target.value);
-                      setPage(1);
-                    }}>
-                          <option value={'Pending'}>Pending</option>
-                          <option value={'Refunded'}>Refunded</option>
-                          <option value={'Delivered'}>Delivered</option>
-                          <option value={'In Process'}>In Process</option>
-                          <option value={'Paid'}>Paid</option>
+                        <select
+                          className="form-control logSelect"
+                          value={status}
+                          onChange={(e) => {
+                            setStatus(e.target.value);
+                            setPage(1);
+                          }}
+                        >
+                          <option value={""}>All</option>
+                          <option value={"Pending"}>Pending</option>
+                          <option value={"Refunded"}>Refunded</option>
+                          <option value={"Delivered"}>Delivered</option>
+                          <option value={"In Process"}>In Process</option>
+                          <option value={"Paid"}>Paid</option>
                         </select>
                       </div>
                       <div className="col-5">
@@ -111,6 +115,16 @@ const OrderLog = () => {
                           type="text"
                           className="searchbox form-control logSelect"
                           placeholder="Search"
+                          value={searchString}
+                          onChange={(e) => {
+                            setSearchString(e.target.value);
+                            setPage(1);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              getSchedules();
+                            }
+                          }}
                         />
                       </div>
                     </div>
@@ -145,7 +159,12 @@ const OrderLog = () => {
                                       </td>
 
                                       <td>{ord?.orderItems?.length}</td>
-                                      <td>${ord?.isPaid == false ? 0 : ord?.totalPrice}</td>
+                                      <td>
+                                        $
+                                        {ord?.isPaid == false
+                                          ? 0
+                                          : ord?.totalPrice}
+                                      </td>
                                       <td>
                                         <span className="stat-pending">
                                           {ord?.status}

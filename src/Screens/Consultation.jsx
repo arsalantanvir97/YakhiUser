@@ -43,10 +43,34 @@ const Consultation = () => {
                   <h4 className="sub-heading">Consultation Scheduling Form</h4>
                   <h3 className="main-heading">YAH'KI AWAKENED CONSULTATION</h3>
                   <p className="general-para">
-                    If you miss your scheduled appointment time without prior
-                    notice of at least 24 hours to reschedule, you will have to
-                    book another appointment at the same rate.
+                    We are honored and do not take it lightly that you have
+                    chosen to do a consultation with the Yahkiawakend Team.
+                    Below is some general information about your consultation.
                   </p>
+                </div>
+                <div className="col-md-8 mx-auto text-left">
+                  <ul className="consultation-rules">
+                    <li>
+                      1. Consultations can have up to a 30 minute duration.
+                    </li>
+                    <li>
+                      2. Please be available for an hour as your consultation
+                      may not start exactly at your scheduled time. It's like
+                      going to the doctor's office. For example, if your
+                      consultation starts at 8:30am you should be available from
+                      8:30am -9:30am.
+                    </li>
+                    <li>
+                      3. If the internet connection is bad you will receive a
+                      phone call instead of a zoom call so look out for
+                      (636-345-5010) just in case.
+                    </li>
+                    <li>
+                      4. Consultations are designed for 1 person --if you would
+                      like to address several people at once it limits the depth
+                      of your consultation--use your time wisely.{" "}
+                    </li>
+                  </ul>
                 </div>
               </div>
               {/* Step form */}
@@ -63,9 +87,9 @@ const Consultation = () => {
                             }
                           >
                             <div className="step-icon">
-                              <i className="fas fa-calendar" />
+                              <i className="fas fa-address-card" />
                             </div>
-                            <p className="mt-4">Choose Appoinment</p>
+                            <p className="mt-4">Your Information</p>
                           </span>
                           <span
                             className={
@@ -77,9 +101,9 @@ const Consultation = () => {
                             }
                           >
                             <div className="step-icon">
-                              <i className="fas fa-address-card" />
+                              <i className="fas fa-calendar" />
                             </div>
-                            <p className="mt-4">Your Information</p>
+                            <p className="mt-4">Choose Appoinment</p>
                           </span>
                           <span
                             className={
@@ -108,6 +132,191 @@ const Consultation = () => {
                     </div>
                     {/* One "tab" for each step in the form: */}
                     {showform == 1 ? (
+                      <div className="">
+                        <div className="consultation-form">
+                          <div className="form-group">
+                            <div className="form-row">
+                              <div className="col-md-6">
+                                <label>
+                                  First Name <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter First Name"
+                                  type="text"
+                                  value={firstName}
+                          onChange={(e) => {
+                            setfirstName(e.target.value);
+                          }}
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Last Name <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Last Name"
+                                  type="text"
+                                  value={lastName}
+                                  onChange={(e) => {
+                                    setlastName(e.target.value);
+                                  }}
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Phone <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Phone Number"
+                                  type="tel"
+                                  value={phone}
+                                  onChange={(e) => {
+                                    setphone(e.target.value);
+                                  }}
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Email <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Email"
+                                  type="email"
+                                  value={email}
+                                  onChange={(e) => {
+                                    setemail(e.target.value);
+                                  }}
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Age <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Age"
+                                  type="text"
+                                  oninput="this.className = ''"
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Height <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Height"
+                                  type="number"
+                                  oninput="this.className = ''"
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Weight <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Weight"
+                                  type="number"
+                                  oninput="this.className = ''"
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Ethnicity <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Ethnicity"
+                                  type="text"
+                                  oninput="this.className = ''"
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Consultation For<span className="red">*</span>
+                                </label>
+                                <select
+                                  className="form-control text-left"
+                                  id="timeZone"
+                                >
+                                  <option>General cleanse</option>
+                                  <option>HSV &amp; HPV</option>
+                                  <option>Diabetes</option>
+                                  <option>Cancer/ Tumors</option>
+                                  <option>Chronic Condition</option>
+                                  <option>Multiple Conditions</option>
+                                </select>
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Current Medication
+                                  <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Current Medication"
+                                  type="text"
+                                  oninput="this.className = ''"
+                                />
+                              </div>
+                              <div className="col-md-12">
+                                <label>
+                                  Reason for Consultation{" "}
+                                  <span className="red">*</span>
+                                </label>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter Reason for Consultation"
+                                  type="text"
+                                  oninput="this.className = ''"
+                                />
+                              </div>
+                              <div className="col-md-12">
+                                <label>
+                                  Current Diagnoses (provided by MD)
+                                  <span className="red">*</span>
+                                </label>
+                                <textarea
+                                  className="form-control"
+                                  id="exampleFormControlTextarea1"
+                                  placeholder="Message"
+                                  rows={5}
+                                  defaultValue={""}
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label>
+                                  Upload Valid Government Issued ID{" "}
+                                  <span className="red">*</span>
+                                </label>
+                                <input
+                                  type="file"
+                                  name
+                                  id="govt-id"
+                                  className="form-control"
+                                />
+                                <label
+                                  htmlFor="govt-id"
+                                  className="d-block id-upload"
+                                >
+                                  <i className="fas fa-upload fa-2x" />
+                                </label>
+                              </div>
+                              <div className="col-12 text-right">
+                                 <Link to="#"  className="red-link">
+                                  Redeem Coupon
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : showform == 2 ? (
                       <div className="">
                         <div className="consultation-form">
                           <div className="row mb-5">
@@ -524,72 +733,6 @@ const Consultation = () => {
                         <p className="text-right consultation-meta mt-3">
                           Consultation: <span>30 Minutes @ $100.00</span>
                         </p>
-                      </div>
-                    ) : showform == 2 ? (
-                      <div className="">
-                        <div className="consultation-form">
-                          <div className="form-group">
-                            <div className="form-row">
-                              <div className="col-6">
-                                <label>
-                                  First Name <span className="red">*</span>
-                                </label>
-                                <input
-                                  className="form-control"
-                                  placeholder="Enter First Name"
-                                  type="text"
-                                  value={firstName}
-                                  onChange={(e) => {
-                                    setfirstName(e.target.value);
-                                  }}
-                                />
-                              </div>
-                              <div className="col-6">
-                                <label>
-                                  Last Name <span className="red">*</span>
-                                </label>
-                                <input
-                                  className="form-control"
-                                  placeholder="Enter Last Name"
-                                  type="text"
-                                  value={lastName}
-                                  onChange={(e) => {
-                                    setlastName(e.target.value);
-                                  }}
-                                />
-                              </div>
-                              <div className="col-12">
-                                <label>Phone</label>
-                                <input
-                                  className="form-control"
-                                  placeholder="Enter Phone Number"
-                                  type="tel"
-                                  value={phone}
-                                  onChange={(e) => {
-                                    setphone(e.target.value);
-                                  }}
-                                />
-                              </div>
-                              <div className="col-12">
-                                <label>Email</label>
-                                <input
-                                  className="form-control"
-                                  placeholder="Enter Email"
-                                  type="email"
-                                  value={email}
-                                  onChange={(e) => {
-                                    setemail(e.target.value);
-                                  }}
-                                />
-                              </div>
-                              <div className="col-12 text-right">
-                                <Link to="#" className="red-link">
-                                  Redeem Coupon
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     ) : showform == 3 ? (
                       <div className="">

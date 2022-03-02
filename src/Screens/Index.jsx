@@ -66,7 +66,7 @@ const Index = () => {
       </section>
 
       <div className="container">
-        <div className="row align-items-center justify-content-center my-5 py-5">
+        <div className="row align-items-center justify-content-center my-5 pt-5 pb-3">
           <div
             className="col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate"
             data-aos="fade-up"
@@ -77,10 +77,9 @@ const Index = () => {
               alt=""
               className="img-fluid"
             />
-            <Link to="#" className="shop-now-btn mt-4">
-              shop now
-            </Link>
+            
           </div>
+          
           <div
             className="col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate"
             data-aos="fade-down"
@@ -99,6 +98,69 @@ const Index = () => {
               className="img-fluid w-55 mt-4"
             />
           </div>
+          <div className="filteration">
+        <div className="container py-4">
+          <div className="row my-5 align-items-start justify-content-between">
+            <div className="col-12">
+              {" "}
+              <h6 className="text-uppercase">SEARCH PRODUCTS</h6>
+            </div>
+            <div className="col-md-4 mb-3">
+              <div className="form-group my-3">
+                <select className="form-control" id="helpWith">
+                  <option selected disabled>
+                    I need help with
+                  </option>
+                  <option>Digestive Health</option>
+                  <option>Endocrine</option>
+                  <option>Men's Health</option>
+                  <option>Women's Health</option>
+                  <option>Children's Health</option>
+                  <option>Pregnancy/Postpartum</option>
+                </select>
+              </div>
+            </div>
+            <div className="col-md-4 mb-3">
+              <div className="form-group my-3">
+                <select className="form-control" id="formula">
+                  <option selected disabled>
+                    Formula...
+                  </option>
+                  <option>Capsule</option>
+                  <option>Capsule Blend</option>
+                  <option>Glycerin</option>
+                  <option>Loose Tea</option>
+                  <option>Powder Blend</option>
+                  <option>Tincture</option>
+                </select>
+              </div>
+            </div>
+            <div className="col-md-4 mb-3">
+              <div className="form-group my-3">
+                <select className="form-control" id="detoxGoal">
+                  <option selected disabled>
+                    Detox Goal...
+                  </option>
+                  <option>Deep</option>
+                  <option>Maintenance</option>
+                  <option>Mild</option>
+                  <option>Moderate</option>
+                  <option>Rebuilding</option>
+                </select>
+              </div>
+            </div>
+            <div className="col-12 my-2 text-center">
+              <Link
+                to="#"
+                className="btn maroon-btn-solid d-inline-block py-2 px-5"
+              >
+                Find
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
         </div>
       </div>
 
@@ -178,7 +240,7 @@ const Index = () => {
               </div>
               <div className="row mt-5">
                 <div className="col-md-10 mx-auto text-center">
-                  <div id="">
+                  <div id="fproducts">
                     {/* <div className="featured-product animate__animated animate__slideInUp">
                       <img
                         src="images/featured-prod-1.jpg"
@@ -276,69 +338,7 @@ const Index = () => {
         </div>
       </section>
 
-      <div className="filteration">
-        <div className="container py-4">
-          <div className="row my-5 align-items-start justify-content-between">
-            <div className="col-12">
-              {" "}
-              <h6 className="text-uppercase">SEARCH PRODUCTS</h6>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="form-group my-3">
-                <select className="form-control" id="helpWith">
-                  <option selected disabled>
-                    I need help with
-                  </option>
-                  <option>Digestive Health</option>
-                  <option>Endocrine</option>
-                  <option>Men's Health</option>
-                  <option>Women's Health</option>
-                  <option>Children's Health</option>
-                  <option>Pregnancy/Postpartum</option>
-                </select>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="form-group my-3">
-                <select className="form-control" id="formula">
-                  <option selected disabled>
-                    Formula...
-                  </option>
-                  <option>Capsule</option>
-                  <option>Capsule Blend</option>
-                  <option>Glycerin</option>
-                  <option>Loose Tea</option>
-                  <option>Powder Blend</option>
-                  <option>Tincture</option>
-                </select>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="form-group my-3">
-                <select className="form-control" id="detoxGoal">
-                  <option selected disabled>
-                    Detox Goal...
-                  </option>
-                  <option>Deep</option>
-                  <option>Maintenance</option>
-                  <option>Mild</option>
-                  <option>Moderate</option>
-                  <option>Rebuilding</option>
-                </select>
-              </div>
-            </div>
-            <div className="col-12 my-2 text-center">
-              <Link
-                to="#"
-                className="btn maroon-btn-solid d-inline-block py-2 px-5"
-              >
-                Find
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
+     
       <div className="must-watch-video">
         <div className="container-fluid">
           <div className="row g-0">
@@ -383,54 +383,39 @@ const Index = () => {
       </div>
 
       <section className="offer">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-11 mx-auto">
-              <div className="row align-items-start justify-content-center text-center">
-                <div className="col-xl-3 col-lg-5 col-md-10 mx-auto">
-                  <div className="offer-box animate__animated animate__fadeInUp">
-                    <img
-                      src="images/leaf.png"
-                      alt=""
-                      className="img-fluid mb-3 curve-leaf "
-                    />
-                    <h4>Iv Elements</h4>
-                    <div className="overlay-heading">
-                      <h5 className="purple">
-                        40
-                        <span className="characters">
-                          %<br /> Off
-                        </span>
-                      </h5>
-                      <h5 className="maroon">
-                        40
-                        <span className="characters">
-                          %<br /> Off
-                        </span>
-                      </h5>
-                    </div>
-                    <Link to="#" className="red-link">
-                      Shop Now
-                    </Link>
-                  </div>
-                  <img
-                    src="images/elementsCircle.png"
-                    alt=""
-                    className="img-fluid elementsCircle"
-                  />
-                </div>
-                <div className="col-xl-6 col-lg-6 col-md-10 mx-auto offset-lg-1">
-                  <img
-                    src="images/IVElements.png"
-                    alt=""
-                    className="img-fluid animate__animated animate__fadeInUp"
-                  />
-                </div>
+  <div className="container-fluid">
+    <div className="row">
+      <div className="col-11 mx-auto">
+        <div className="row align-items-start justify-content-center text-center">
+          <div className="col-xl-3 col-lg-5 col-md-10 mx-auto">
+            <div className="offer-box animate__animated animate__fadeInUp">
+              <img src="images/leaf.png" alt="" className="img-fluid mb-3 curve-leaf " />
+              <h4>Iv Elements</h4>
+              <div className="overlay-heading">
+                <h5 className="purple">40
+                  <span className="characters">
+                    %<br /> Off
+                  </span>
+                </h5>
+                <h5 className="maroon">40
+                  <span className="characters">
+                    %<br /> Off
+                  </span>
+                </h5>
               </div>
+              <Link to='#' className="red-link">Shop Now</Link>
             </div>
+            <img src="images/elementsCircle.png" alt="" className="img-fluid elementsCircle" />
+          </div>
+          <div className="col-xl-6 col-lg-6 col-md-10 mx-auto offset-lg-1">
+            <img src="images/IVElements.png" alt="" className="img-fluid animate__animated animate__fadeInUp" />
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       <div className="container my-5 py-3">
         <div className="row my-4">

@@ -933,8 +933,11 @@ h4.prod-title {
 }
 .featured-product img {
   border-radius: 10px;
+  width: 318px;
+  height: 320px;
+  object-fit: contain;
+  border: 1px solid #f7f7f7;
 }
-
 /* HOMEPAGE TESTIMONIALS SECTION */
 .testimonials {
   padding: 98px 22px;
@@ -1721,16 +1724,19 @@ p.quote-from {
 }
 
 .diets h3 {
-  color: #2b2541;
+  color: #da4f49;
   font-size: 36px;
   font-family: "Rubik", sans-serif;
   font-weight: 800;
   line-height: 45px;
 }
 .diet-chart {
-  background: #f8e3e4;
+  background: #ffffff;
   padding: 40px 30px;
   margin-bottom: 30px;
+  border: 1px solid rgb(225 225 225 / 45%);
+  border-radius: 5px;
+  box-shadow: 0 0 3px 2px rgb(233 233 233 / 17%);
 }
 .diet-chart h4,
 .diets h4 {
@@ -1969,7 +1975,7 @@ span.step.finish .step-icon {
 span.step.finish p {
   color: #99cd4e;
 }
-.tab .consultation-form {
+.consultation-form {
   background: #f6eeec;
   padding: 55px;
   border-radius: 4px;
@@ -2990,7 +2996,7 @@ input[type="radio"] + label > img {
 }
 
 .order-summary.has-margin {
-  margin-top: -100px;
+  margin-top: -170px;
 }
 
 span.instock-label {
@@ -4438,4 +4444,23 @@ ul.media-icon li a {
 #headerPopup iframe{
   width:100%;
   margin:0 auto;
+}
+
+
+/* CR CHANGES */
+ul.consultation-rules {
+  color: #666666;
+  line-height: 1.4;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+ul.consultation-rules li{
+  margin-bottom: 10px;
+}
+.tab .consultation-form select.form-control{
+  height: 38px;
+}
+.id-upload{
+  cursor: pointer;
 }

@@ -110,6 +110,7 @@ const ProductView = ({ match, history }) => {
               <div className="row align-items-start justify-content-center my-5 py-5">
                 <div className="col-lg-6 col-md-8">
                   <div className="p-view-main">
+                    
                     <img
                       src={
                         product?.productimage?.length > 0 &&

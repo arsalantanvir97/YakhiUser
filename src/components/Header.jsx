@@ -23,9 +23,9 @@ const Header = () => {
           {/* topbar */}
           <div className="row align-items-center justify-content-center top-bar">
             <div className="col-11 mx-auto">
-              <div className="row align-items-center">
+              <div className="row align-items-center justify-content-end">
                 <div className="col-md-6 text-center text-md-left">
-                  <p>Free Shipping for order over $80!</p>
+                  {/* <p>Free Shipping for order over $80!</p> */}
                 </div>
                 <div className="col-md-6 text-center text-md-right">
                   <ul className="list-inline topbar-links">
