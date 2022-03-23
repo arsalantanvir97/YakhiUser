@@ -39,7 +39,6 @@ const Signup = ({ history }) => {
     } else {
       Toasty("error", `Please enter a valid email`);
       setloading(false);
-
     }
   };
 

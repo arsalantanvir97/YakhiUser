@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { baseURL, imageURL } from "../utils/api";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-
 import axios from "axios";
 import InnerPageBanner from "./InnerPageBanner";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import Toasty from "../utils/toast";
+
 const ProductView = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -99,7 +100,6 @@ const ProductView = ({ match, history }) => {
       ? setquantity(0)
       : setquantity(Number(quantity - 1));
   };
-
   return (
     <>
       <div className="container-fluid">
@@ -110,7 +110,6 @@ const ProductView = ({ match, history }) => {
               <div className="row align-items-start justify-content-center my-5 py-5">
                 <div className="col-lg-6 col-md-8">
                   <div className="p-view-main">
-                    
                     <img
                       src={
                         product?.productimage?.length > 0 &&
@@ -120,9 +119,7 @@ const ProductView = ({ match, history }) => {
                       className="img-fluid h-100"
                     />
                   </div>
-
                   <div className="row">
-                    {/* {recommendedproducts?.} */}
                     {product?.productimage?.length > 0 &&
                       product?.productimage?.slice(1)?.map((img) => (
                         <div className="col-4">
@@ -135,24 +132,6 @@ const ProductView = ({ match, history }) => {
                           </div>
                         </div>
                       ))}
-                    {/* <div className="col-4">
-                      <div className="p-view-thumb">
-                        <img
-                          src={`${imageURL}${product?.productimage}`}
-                          alt=""
-                          className="img-fluid"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-4">
-                      <div className="p-view-thumb">
-                        <img
-                          src={`${imageURL}${product?.productimage}`}
-                          alt=""
-                          className="img-fluid"
-                        />
-                      </div>
-                    </div> */}
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-10">
@@ -219,8 +198,8 @@ const ProductView = ({ match, history }) => {
                       />
                     </li>
                   </ul>
-                  <p className="short-desc">{product?.description} </p>
-                  <h4 className="big-price">${product?.price} </h4>
+                  <p className="short-desc">{product?.description}</p>
+                  <h4 className="big-price">${product?.price}</h4>
                   <div id="field1">
                     Quantity
                     <div className="quantifier">
@@ -260,13 +239,13 @@ const ProductView = ({ match, history }) => {
                   </div>
                   {/* <div className="weight my-4">
                     <p>
-                      Weight<span>{product?.weight}</span>
+                      Weight<span>30.2 oz</span>
                     </p>
                   </div> */}
                   <button
-                    onClick={addToCartHandler}
                     type="button"
-                    className="btn maroon-btn-solid px-5 py-2 mt-2"
+                    onClick={()=>{quantity > 0 ? addToCartHandler():Toasty("error", `Quantity must be more than 0`);}}
+                    className="btn maroon-btn-solid px-5 py-2"
                     disabled={product?.countInStock == 0}
                   >
                     <img
@@ -279,22 +258,77 @@ const ProductView = ({ match, history }) => {
                 </div>
               </div>
             </section>
-            {/* specifications */}
-            <section className="specifications">
+            {/* Details tabs */}
+            <section className="detail-tabs">
               <div className="row">
-                <div className="col-11">
-                  <h3>Product Specification</h3>
-                  <p className="my-3">{product?.description}</p>
+                <div className="col-12">
+                  <div className="tabs">
+                    <input
+                      type="radio"
+                      name="tab-btn"
+                      id="tab-btn-1"
+                      defaultValue
+                      defaultChecked
+                    />
+                    <label htmlFor="tab-btn-1">Description </label>
+                    <input
+                      type="radio"
+                      name="tab-btn"
+                      id="tab-btn-2"
+                      defaultValue
+                    />
+                    <label htmlFor="tab-btn-2">Additional information</label>
+                    <input
+                      type="radio"
+                      name="tab-btn"
+                      id="tab-btn-3"
+                      defaultValue
+                    />
+                    <label htmlFor="tab-btn-3">
+                      Claims <span className="review-counts" />
+                    </label>
+                    <div id="content-1">
+                      {/* specifications */}
+                      <div className="specifications py-4">
+                        <div className="row">
+                          <div className="col-11">
+                            <h3>Product Specification</h3>
+
+                            <p className="my-3">{product?.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div id="content-2">
+                      <div className="row py-4 align-items-center">
+                        <div className="col-md-2">
+                          <h5 className="weight">Weight</h5>
+                        </div>
+                        <div className="col-md-2 text-right">
+                          <p> 224 oz</p>
+                        </div>
+                      </div>
+                    </div> */}
+                    <div id="content-3">
+                      <div className="specifications py-4">
+                        <div className="row">
+                          <div className="col-11">
+                            <p className="my-3">{product?.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
             {/* reviews */}
-            <section className="reviews-detail mt-5 border-top border-grey pt-5">
+            <section className="reviews-detail mt-lg-5">
               <div className="row">
                 <div className="col-lg-4 col-md-6">
-                  <h3>Reviews</h3>
-                  <p className="star-numbers">4.5 Star</p>
-                  <ul className="list-inline mb-3">
+                  <h3>Customer Reviews</h3>
+                  {/* <p class="star-numbers">4.5 Star</p> */}
+                  <ul className="list-inline my-3">
                     <li className="list-inline-item">
                       <i className="fas fa-star rate" />
                     </li>
@@ -311,113 +345,206 @@ const ProductView = ({ match, history }) => {
                       <i className="far fa-star rate" />
                     </li>
                   </ul>
-                  <span className="rate-total">
-                    4.5 Ratings &amp; 2 Reviews
-                  </span>
+                  <span className="rate-total">Base on 20 reviews</span>
                 </div>
                 <div className="col-lg-6 col-md-10 mt-lg-0 mt-5">
-                  <div className="row justify-content-center align-items-center text-center">
+                  <div className="row justify-content-center align-items-center text-right">
                     {/* 1  STAR*/}
-                    <div className="col-2 mb-4">
-                      <span className="star-number">1 Star</span>
+                    <div className="col-md-4 mb-1">
+                      <ul className="list-inline my-3">
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                      </ul>
                     </div>
-                    <div className="col-8 mb-4">
+                    <div className="col-md-6 col-6 mb-1">
                       <div className="progress">
                         <div
                           className="progress-bar"
                           role="progressbar"
-                          style={{ width: "30%" }}
+                          style={{ width: "85%" }}
                           aria-valuenow={10}
                           aria-valuemin={0}
-                          aria-valuemax={100}
+                          aria-valuemax={85}
                         />
                       </div>
                     </div>
-                    <div className="col-2 mb-4">
-                      <span className="star-percent">10 %</span>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-percent">85%</span>
+                    </div>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-number">(17)</span>
                     </div>
                     {/* 2  STAR*/}
-                    <div className="col-2 mb-4">
-                      <span className="star-number">2 Stars</span>
+                    <div className="col-md-4 mb-1">
+                      <ul className="list-inline my-3">
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="far fa-star rate fs-18" />
+                        </li>
+                      </ul>
                     </div>
-                    <div className="col-8 mb-4">
+                    <div className="col-md-6 col-6 mb-1">
                       <div className="progress">
                         <div
                           className="progress-bar"
                           role="progressbar"
-                          style={{ width: "40%" }}
-                          aria-valuenow={20}
+                          style={{ width: "20%" }}
+                          aria-valuenow={10}
                           aria-valuemin={0}
-                          aria-valuemax={100}
+                          aria-valuemax={20}
                         />
                       </div>
                     </div>
-                    <div className="col-2 mb-4">
-                      <span className="star-percent">20 %</span>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-percent">10%</span>
+                    </div>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-number">(2)</span>
                     </div>
                     {/* 3  STAR*/}
-                    <div className="col-2 mb-4">
-                      <span className="star-number">3 Stars</span>
+                    <div className="col-md-4 mb-1">
+                      <ul className="list-inline my-3">
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="far fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="far fa-star rate fs-18" />
+                        </li>
+                      </ul>
                     </div>
-                    <div className="col-8 mb-4">
+                    <div className="col-md-6 col-6 mb-1">
                       <div className="progress">
                         <div
                           className="progress-bar"
                           role="progressbar"
-                          style={{ width: "50%" }}
-                          aria-valuenow={20}
+                          style={{ width: "10%" }}
+                          aria-valuenow={10}
                           aria-valuemin={0}
-                          aria-valuemax={100}
+                          aria-valuemax={10}
                         />
                       </div>
                     </div>
-                    <div className="col-2 mb-4">
-                      <span className="star-percent">10 %</span>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-percent">5%</span>
+                    </div>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-number">(1)</span>
                     </div>
                     {/* 4  STAR*/}
-                    <div className="col-2 mb-4">
-                      <span className="star-number">4 Stars</span>
+                    <div className="col-md-4 mb-1">
+                      <ul className="list-inline my-3">
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="far fa-star rate fs-18" />
+                        </li>
+                      </ul>
                     </div>
-                    <div className="col-8 mb-4">
+                    <div className="col-md-6 col-6 mb-1">
                       <div className="progress">
                         <div
                           className="progress-bar"
                           role="progressbar"
-                          style={{ width: "60%" }}
-                          aria-valuenow={20}
+                          style={{ width: "0%" }}
+                          aria-valuenow={10}
                           aria-valuemin={0}
-                          aria-valuemax={100}
+                          aria-valuemax={0}
                         />
                       </div>
                     </div>
-                    <div className="col-2 mb-4">
-                      <span className="star-percent">50 %</span>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-percent">0%</span>
+                    </div>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-number">(0)</span>
                     </div>
                     {/* 5  STAR*/}
-                    <div className="col-2 mb-4">
-                      <span className="star-number">5 Stars</span>
+                    <div className="col-md-4 mb-1">
+                      <ul className="list-inline my-3">
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="fas fa-star rate fs-18" />
+                        </li>
+                        <li className="list-inline-item mr-0">
+                          <i className="far fa-star rate fs-18" />
+                        </li>
+                      </ul>
                     </div>
-                    <div className="col-8 mb-4">
+                    <div className="col-md-6 col-6 mb-1">
                       <div className="progress">
                         <div
                           className="progress-bar"
                           role="progressbar"
-                          style={{ width: "70%" }}
-                          aria-valuenow={20}
+                          style={{ width: "0%" }}
+                          aria-valuenow={10}
                           aria-valuemin={0}
-                          aria-valuemax={100}
+                          aria-valuemax={0}
                         />
                       </div>
                     </div>
-                    <div className="col-2 mb-4">
-                      <span className="star-percent">10 %</span>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-percent">0%</span>
+                    </div>
+                    <div className="col-md-1 col-3 mb-1">
+                      <span className="star-number">(0)</span>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
             {/* user review cards */}
-            <section className="user-reviews">
+            <section className="user-reviews mt-5">
               <div className="row">
                 <div className="col-12">
                   <div className="review-card">
@@ -514,7 +641,7 @@ const ProductView = ({ match, history }) => {
                 {recommendedproducts?.detoxproduct?.length > 0 &&
                   recommendedproducts?.detoxproduct?.map((rec) => (
                     <div className="col-xl-3 col-md-6">
-                      {/* Product 4 */}
+                      {/* Product 1 */}
                       <div className="product-card">
                         <button
                           type="button"
@@ -545,64 +672,19 @@ const ProductView = ({ match, history }) => {
                         </h5>
                         <ul className="list-inline py-2">
                           <li className="list-inline-item">
-                            <i
-                              style={{ color: "#F3DE43" }}
-                              className={
-                                rec?.rating >= 1
-                                  ? "fas fa-star"
-                                  : rec?.rating >= 0.5
-                                  ? "fas fa-star-half-alt"
-                                  : "far fa-star"
-                              }
-                            />
+                            <i className="fas fa-star rate" />
                           </li>
                           <li className="list-inline-item">
-                            <i
-                              style={{ color: "#F3DE43" }}
-                              className={
-                                rec?.rating >= 2
-                                  ? "fas fa-star"
-                                  : rec?.rating >= 1.5
-                                  ? "fas fa-star-half-alt"
-                                  : "far fa-star"
-                              }
-                            />
+                            <i className="fas fa-star rate" />
                           </li>
                           <li className="list-inline-item">
-                            <i
-                              style={{ color: "#F3DE43" }}
-                              className={
-                                rec?.rating >= 3
-                                  ? "fas fa-star"
-                                  : rec?.rating >= 2.5
-                                  ? "fas fa-star-half-alt"
-                                  : "far fa-star"
-                              }
-                            />
+                            <i className="fas fa-star rate" />
                           </li>
                           <li className="list-inline-item">
-                            <i
-                              style={{ color: "#F3DE43" }}
-                              className={
-                                rec?.rating >= 4
-                                  ? "fas fa-star"
-                                  : rec?.rating >= 3.5
-                                  ? "fas fa-star-half-alt"
-                                  : "far fa-star"
-                              }
-                            />
+                            <i className="fas fa-star rate" />
                           </li>
                           <li className="list-inline-item">
-                            <i
-                              style={{ color: "#F3DE43" }}
-                              className={
-                                rec?.rating >= 5
-                                  ? "fas fa-star"
-                                  : rec?.rating >= 4.5
-                                  ? "fas fa-star-half-alt"
-                                  : "far fa-star"
-                              }
-                            />
+                            <i className="fas fa-star rate" />
                           </li>
                         </ul>
                         <div className="row justify-content-between align-items-center mt-3">
@@ -613,12 +695,12 @@ const ProductView = ({ match, history }) => {
                           <div className="col-8 text-right">
                             <Link
                               to="#"
-                              className="btn maroon-btn-solid "
                               onClick={() => {
                                 userInfo
                                   ? addToCartHandler(rec?._id, 1)
                                   : UnauthorizedAlert();
                               }}
+                              className="btn maroon-btn-solid "
                             >
                               <img
                                 src="images/add-to-cart.png"

@@ -9,7 +9,7 @@ import ProductSlider from "../components/ProductSlider";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const GeoGenetics = () => {
+const GeoGenetics = ({history}) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -128,6 +128,7 @@ const GeoGenetics = () => {
           <ProductSlider
             images={organicproductlist?.detoxproduct}
             userInfo={userInfo}
+            history={history}
           />
           {/* <div className="row">
             <div className="col-12 my-5">

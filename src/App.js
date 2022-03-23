@@ -92,6 +92,7 @@ function App() {
         component={ProductViewOutStock}
       />{" "}
       <PrivateRoute exact path="/ProductView/:id" component={ProductView} />{" "}
+
       <PrivateRoute
         exact
         path="/OrderLogDetail/:id"

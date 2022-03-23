@@ -8,7 +8,7 @@ import HomeSlider from "../components/HomeSlider";
 import ProductSlider from "../components/ProductSlider";
 import ClientsSlider from "../components/ClientsSlider";
 import { useSelector } from "react-redux";
-const Index = () => {
+const Index = ({ history }) => {
   const [product, setproduct] = useState([]);
   useEffect(() => {
     gettingProducts();
@@ -77,9 +77,8 @@ const Index = () => {
               alt=""
               className="img-fluid"
             />
-            
           </div>
-          
+
           <div
             className="col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate"
             data-aos="fade-down"
@@ -99,68 +98,67 @@ const Index = () => {
             />
           </div>
           <div className="filteration">
-        <div className="container py-4">
-          <div className="row my-5 align-items-start justify-content-between">
-            <div className="col-12">
-              {" "}
-              <h6 className="text-uppercase">SEARCH PRODUCTS</h6>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="form-group my-3">
-                <select className="form-control" id="helpWith">
-                  <option selected disabled>
-                    I need help with
-                  </option>
-                  <option>Digestive Health</option>
-                  <option>Endocrine</option>
-                  <option>Men's Health</option>
-                  <option>Women's Health</option>
-                  <option>Children's Health</option>
-                  <option>Pregnancy/Postpartum</option>
-                </select>
+            <div className="container py-4">
+              <div className="row my-5 align-items-start justify-content-between">
+                <div className="col-12">
+                  {" "}
+                  <h6 className="text-uppercase">SEARCH PRODUCTS</h6>
+                </div>
+                <div className="col-md-4 mb-3">
+                  <div className="form-group my-3">
+                    <select className="form-control" id="helpWith">
+                      <option selected disabled>
+                        I need help with
+                      </option>
+                      <option>Digestive Health</option>
+                      <option>Endocrine</option>
+                      <option>Men's Health</option>
+                      <option>Women's Health</option>
+                      <option>Children's Health</option>
+                      <option>Pregnancy/Postpartum</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-4 mb-3">
+                  <div className="form-group my-3">
+                    <select className="form-control" id="formula">
+                      <option selected disabled>
+                        Formula...
+                      </option>
+                      <option>Capsule</option>
+                      <option>Capsule Blend</option>
+                      <option>Glycerin</option>
+                      <option>Loose Tea</option>
+                      <option>Powder Blend</option>
+                      <option>Tincture</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-4 mb-3">
+                  <div className="form-group my-3">
+                    <select className="form-control" id="detoxGoal">
+                      <option selected disabled>
+                        Detox Goal...
+                      </option>
+                      <option>Deep</option>
+                      <option>Maintenance</option>
+                      <option>Mild</option>
+                      <option>Moderate</option>
+                      <option>Rebuilding</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col-12 my-2 text-center">
+                  <Link
+                    to="#"
+                    className="btn maroon-btn-solid d-inline-block py-2 px-5"
+                  >
+                    Find
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="form-group my-3">
-                <select className="form-control" id="formula">
-                  <option selected disabled>
-                    Formula...
-                  </option>
-                  <option>Capsule</option>
-                  <option>Capsule Blend</option>
-                  <option>Glycerin</option>
-                  <option>Loose Tea</option>
-                  <option>Powder Blend</option>
-                  <option>Tincture</option>
-                </select>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="form-group my-3">
-                <select className="form-control" id="detoxGoal">
-                  <option selected disabled>
-                    Detox Goal...
-                  </option>
-                  <option>Deep</option>
-                  <option>Maintenance</option>
-                  <option>Mild</option>
-                  <option>Moderate</option>
-                  <option>Rebuilding</option>
-                </select>
-              </div>
-            </div>
-            <div className="col-12 my-2 text-center">
-              <Link
-                to="#"
-                className="btn maroon-btn-solid d-inline-block py-2 px-5"
-              >
-                Find
-              </Link>
             </div>
           </div>
-        </div>
-      </div>
-
         </div>
       </div>
 
@@ -329,7 +327,11 @@ const Index = () => {
                       </h4>
                       <h5 className="prod-price">$350.00</h5>
                     </div> */}
-                    <ProductSlider images={product} userInfo={userInfo}/>
+                    <ProductSlider
+                      history={history}
+                      images={product}
+                      userInfo={userInfo}
+                    />
                   </div>
                 </div>
               </div>
@@ -338,7 +340,6 @@ const Index = () => {
         </div>
       </section>
 
-     
       <div className="must-watch-video">
         <div className="container-fluid">
           <div className="row g-0">
@@ -349,12 +350,7 @@ const Index = () => {
                 </video>
                 <div className="caption">
                   <h4 className="mb-4">MUST WATCH</h4>
-                  <Link
-                    to="#"
-                    className="play-btn"
-                    id="headerVideoLink"
-
-                  >
+                  <Link to="#" className="play-btn" id="headerVideoLink">
                     <i className="far fa-play my-4" />
                   </Link>
                   <p className="mt-4">
@@ -383,39 +379,54 @@ const Index = () => {
       </div>
 
       <section className="offer">
-  <div className="container-fluid">
-    <div className="row">
-      <div className="col-11 mx-auto">
-        <div className="row align-items-start justify-content-center text-center">
-          <div className="col-xl-3 col-lg-5 col-md-10 mx-auto">
-            <div className="offer-box animate__animated animate__fadeInUp">
-              <img src="images/leaf.png" alt="" className="img-fluid mb-3 curve-leaf " />
-              <h4>Iv Elements</h4>
-              <div className="overlay-heading">
-                <h5 className="purple">40
-                  <span className="characters">
-                    %<br /> Off
-                  </span>
-                </h5>
-                <h5 className="maroon">40
-                  <span className="characters">
-                    %<br /> Off
-                  </span>
-                </h5>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-11 mx-auto">
+              <div className="row align-items-start justify-content-center text-center">
+                <div className="col-xl-3 col-lg-5 col-md-10 mx-auto">
+                  <div className="offer-box animate__animated animate__fadeInUp">
+                    <img
+                      src="images/leaf.png"
+                      alt=""
+                      className="img-fluid mb-3 curve-leaf "
+                    />
+                    <h4>Iv Elements</h4>
+                    <div className="overlay-heading">
+                      <h5 className="purple">
+                        40
+                        <span className="characters">
+                          %<br /> Off
+                        </span>
+                      </h5>
+                      <h5 className="maroon">
+                        40
+                        <span className="characters">
+                          %<br /> Off
+                        </span>
+                      </h5>
+                    </div>
+                    <Link to="#" className="red-link">
+                      Shop Now
+                    </Link>
+                  </div>
+                  <img
+                    src="images/elementsCircle.png"
+                    alt=""
+                    className="img-fluid elementsCircle"
+                  />
+                </div>
+                <div className="col-xl-6 col-lg-6 col-md-10 mx-auto offset-lg-1">
+                  <img
+                    src="images/IVElements.png"
+                    alt=""
+                    className="img-fluid animate__animated animate__fadeInUp"
+                  />
+                </div>
               </div>
-              <Link to='#' className="red-link">Shop Now</Link>
             </div>
-            <img src="images/elementsCircle.png" alt="" className="img-fluid elementsCircle" />
-          </div>
-          <div className="col-xl-6 col-lg-6 col-md-10 mx-auto offset-lg-1">
-            <img src="images/IVElements.png" alt="" className="img-fluid animate__animated animate__fadeInUp" />
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      </section>
 
       <div className="container my-5 py-3">
         <div className="row my-4">

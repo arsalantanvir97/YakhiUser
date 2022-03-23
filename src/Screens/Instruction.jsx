@@ -71,7 +71,7 @@ const Instruction = () => {
                   </h4>
                 </div>
                 <div className="col-lg-4 col-12 mt-3 mt-lg-0 text-lg-right">
-                  <Link to="#" className="btn red-btn-solid ml-md-0">
+                  <Link to="/Document" className="btn red-btn-solid ml-md-0">
                     Download Document
                   </Link>
                 </div>

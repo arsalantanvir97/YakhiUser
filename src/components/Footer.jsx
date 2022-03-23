@@ -1,10 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import Toasty from "../utils/toast";
+import { validateEmail } from "../utils/ValidateEmail";
 
 const Footer = () => {
   const [newsletter, setnewsletter] = useState("");
   const newsLetterHandler = () => {
-    setnewsletter("");
+    if (newsletter?.length > 0) {
+      const emailvalidation = validateEmail(newsletter);
+      console.log("emmmm", emailvalidation);
+      console.log("addEmployeeHandler");
+      if (emailvalidation == true) {
+        Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Added to Wislist",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setnewsletter("");
+      } else {
+        Toasty("error", `Please enter a valid email`);
+      }
+    } else {
+      Toasty("error", `Please fill out all the required fields`);
+    }
   };
   return (
     <>
@@ -57,8 +78,8 @@ const Footer = () => {
                       Subscribe for information on new products, courses, media
                       and more
                     </p>
-                    <div onClick={newsLetterHandler} className="newsletter-box">
-                      <i className="fas fa-paper-plane" />
+                    <div className="newsletter-box">
+                      
                       <input
                         value={newsletter}
                         type="email"
@@ -68,6 +89,7 @@ const Footer = () => {
                           setnewsletter(e.target.value);
                         }}
                       />
+                      <i className="fas fa-paper-plane" onClick={newsLetterHandler}></i>
                     </div>
                     <ul className="mt-4 list-inline">
                       <li className="list-inline-item">

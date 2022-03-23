@@ -362,6 +362,14 @@ const OrderLogDetail = ({ match, history }) => {
                             )}
                           </div>
                         )}
+                          {orderdetaills?.status == "Paid" && <>    <div className="col-7 mb-3">
+                          <p className="grand-total">Order Status</p>
+                        </div>
+                        <div className="col-5 mb-3 text-right">
+                          <p className="grand-total-value">
+                            Paid
+                          </p>
+                        </div></>}
                       </div>
                     </div>
                   </div>

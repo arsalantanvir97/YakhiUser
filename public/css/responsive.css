@@ -627,13 +627,10 @@
         font-size: 12px;
     }
     section.reviews-detail i.rate {
-        font-size: 25px;
+        font-size: 21px;
     }
     h2.p-title {
         font-size: 30px;
-    }
-    .big-price {
-        font-size: 35px;
     }
     .weight, div#field1 {
         font-size: 20px;
@@ -1254,6 +1251,12 @@
     #main-nav{
         width: 100%;
     }
+    .tabs > input[type="radio"]:checked + label, .tabs > label  {
+        padding: 6px;
+    }
+    .p-view-main {
+        height: auto;
+    }
 }
 @media screen and (max-width: 456px) {
     .main-banner {
@@ -1382,13 +1385,14 @@
         padding-top: 12px;
     }
     .inner-banner {
-        padding: 56px 0 !important;
+        padding: 106px 0 !important;
     }
      #geo {
         padding: 70px 0 !important;
     }
 }
 @media screen and (max-width: 360px) {
+
     .offer-box {
         width: 260px;
         height: 260px;
@@ -1493,5 +1497,8 @@
     p.slider-para {
         font-size: 11px;
         line-height: 17px;
+    }
+    .maroon-btn-solid {
+        padding: 6px 18px;
     }
 }

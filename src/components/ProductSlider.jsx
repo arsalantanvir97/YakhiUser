@@ -21,17 +21,23 @@ export default class ProductSlider extends Component {
         {this?.props?.images?.map((pro) => (
           <div className="featured-product animate__animated animate__slideInUp">
             <Link
-              to={this?.props?.userInfo ? `/ProductView/${pro._id}` : "#"}
-              onClick={() => {
-                !this?.props?.userInfo && UnauthorizedAlert();
-              }}
+              to="#"
+            
             >
               <img
+                onClick={() => {
+                  !this?.props?.userInfo
+                    ? UnauthorizedAlert()
+                    : this.props?.history?.push(`/ProductView/${pro._id}`);
+                }}
                 style={{
                   height: 216,
                   width: 214
                 }}
-                src={pro?.productimage?.length>0&&`${imageURL}${pro?.productimage[0]}`}
+                src={
+                  pro?.productimage?.length > 0 &&
+                  `${imageURL}${pro?.productimage[0]}`
+                }
                 alt=""
                 className="img-fluid mx-auto"
               />

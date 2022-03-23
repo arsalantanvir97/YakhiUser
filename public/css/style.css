@@ -908,14 +908,16 @@ h4.prod-title {
   line-height: 22px;
   margin-top: 4px;
 }
-
+/* 
 #fproducts .slick-prev,
 #fproducts .slick-next {
   width: 63px;
   height: 30px;
   background: #2b2541;
+} */
+.slick-next.slick-disabled:before, .slick-prev.slick-disabled:before {
+  opacity: 1;
 }
-
 #fproducts .slick-prev {
   left: -86px;
 }
@@ -923,9 +925,17 @@ h4.prod-title {
   right: -90px;
 }
 
-#fproducts .slick-prev:before,
+#fproducts .slick-prev:before{
+  content: '\f060' !important;
+  font-family: 'Font Awesome 5';
+  font-size: 45px;
+  color: #000;
+}
 #fproducts .slick-next:before {
-  content: "" !important;
+  content: '\f061' !important;
+  font-family: 'Font Awesome 5';
+  font-size: 45px;
+  color: #000;
 }
 
 .featured-product {
@@ -2130,7 +2140,7 @@ p.p-price {
 }
 .product-card span {
   color: #528900;
-  font-size: 28px;
+  font-size: calc(20px + (28 - 20) * ((100vw - 300px) / (1600 - 300)));
   font-family: "Rubik", sans-serif;
   font-weight: 800;
 }
@@ -2548,6 +2558,7 @@ h2.p-title {
   font-family: "Rubik", sans-serif;
   font-weight: 800;
   font-size: 40px;
+  font-size: calc(22px + (40 - 22) * ((100vw - 300px) / (1600 - 300))) !important;
 }
 p.short-desc {
   color: #666666;
@@ -2599,7 +2610,8 @@ div#field1 {
 }
 .big-price {
   color: #528900;
-  font-size: 50px;
+  font-size: calc(25px + (50 - 25) * ((100vw - 300px) / (1600 - 300))) !important;
+
   font-family: "Rubik", sans-serif;
   font-weight: 800;
   margin: 20px 0;
@@ -2612,14 +2624,14 @@ section.specifications h3 {
   font-weight: 800;
 }
 .specifications p {
-  font-size: 18px;
+  font-size: calc(14px + (18 - 14) * ((100vw - 300px) / (1600 - 300))) !important;
   color: #666666;
   line-height: 30px;
   font-weight: 600;
 }
 section.reviews-detail h3 {
   color: #160000;
-  font-size: 40px;
+  font-size: calc(20px + (40 - 20) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 53px;
   font-family: "Rubik", sans-serif;
   font-weight: 800;
@@ -2686,14 +2698,15 @@ p.comment {
   margin-top: 12px;
 }
 .f-21 {
-  font-size: 21px !important;
+  font-size: calc(17px + (21 - 17) * ((100vw - 300px) / (1600 - 300))) !important;
+
 }
 .red-color {
   color: #81191a !important;
 }
 section.recomended-products h3 {
   color: #160000;
-  font-size: 40px;
+  font-size: calc(20px + (40 - 20) * ((100vw - 300px) / (1600 - 300)));
   line-height: 53px;
   font-family: "Rubik", sans-serif;
   font-weight: 800;
@@ -4463,4 +4476,69 @@ ul.consultation-rules li{
 }
 .id-upload{
   cursor: pointer;
+}
+strong{
+  font-weight: bold;
+  color: #160000;
+}
+.tabs {
+  margin: 0 auto;
+}
+
+.tabs > input[type="radio"] {
+  display: none;
+}
+
+.tabs > div {
+  display: none;
+  border-top: 1px solid #e0e0e0;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+#tab-btn-1:checked ~ #content-1,
+#tab-btn-2:checked ~ #content-2,
+#tab-btn-3:checked ~ #content-3 {
+  display: block;
+}
+
+.tabs > label {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: 0;
+  padding: 15px;
+  border-radius: 0;
+  font-size: calc(17px + (23 - 17) * ((100vw - 300px) / (1600 - 300))) !important;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+}
+
+.tabs > label:not(:first-of-type) {
+  border-left: none;
+}
+
+.tabs > input[type="radio"]:checked + label {
+  background-color: #fff;
+  border: 0;
+  border-bottom: 1px solid #666666;
+  color: #666666;
+  font-size: 23px;
+  font-size: calc(17px + (23 - 17) * ((100vw - 300px) / (1600 - 300))) !important;
+  padding: 15px;
+  border-radius: 0;
+}
+.specifications h3{
+  font-size: calc(22px + (30 - 22) * ((100vw - 300px) / (1600 - 300))) !important;
+}
+.weight{
+  font-size: 20px;
+}
+.fs-18{
+  font-size: 18px !important;
 }

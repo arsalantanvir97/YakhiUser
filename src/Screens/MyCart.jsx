@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartAction";
 import { useDispatch, useSelector } from "react-redux";
 import { imageURL } from "../utils/api";
-
+import Toasty from "../utils/toast";
+let qtybool=false
 const MyCart = ({ match, location, history }) => {
   const productId = match?.params?.id;
 
@@ -30,6 +31,20 @@ const MyCart = ({ match, location, history }) => {
       ? dispatch(addToCart(prod, Number(qty + 0)))
       : dispatch(addToCart(prod, Number(qty - 1)));
   };
+  const checkCartQty=()=>{
+    let arr=[]
+    cartItems?.length > 0 &&
+      cartItems?.map((cart) => {
+        cart?.qty > 0 ? arr.push(0):arr.push(1)
+      })
+      console.log('arr',arr);
+      if(arr?.includes(1)){
+        Toasty("error", `Quantity of all items must be greater than 0`);
+      }
+      else{
+        history?.push('/Checkout')
+      }
+     }
   return (
     <div className="container-fluid">
       <div className="row">
@@ -267,7 +282,10 @@ const MyCart = ({ match, location, history }) => {
                             </div> */}
                           </div>
                           <Link
-                            to="/Checkout"
+                            to="#"
+                            onClick={()=>{
+                              checkCartQty()
+                            }}
                             className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0 py-2 px-4 text-capitalize"
                           >
                             Proceed to Checkout
