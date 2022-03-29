@@ -10,6 +10,10 @@ import ClientsSlider from "../components/ClientsSlider";
 import { useSelector } from "react-redux";
 const Index = ({ history }) => {
   const [product, setproduct] = useState([]);
+  const [allofcategory, setallofcategory] = useState([]);
+  const [catid, setcatid] = useState("");
+  const [prdouctbycategories, setprdouctbycategories] = useState([]);
+
   useEffect(() => {
     gettingProducts();
   }, []);
@@ -26,6 +30,26 @@ const Index = ({ history }) => {
     } catch (err) {
       console.log(err);
     }
+  };
+  useEffect(() => {
+    gettingallCategoriesHandler();
+  }, []);
+
+  const gettingallCategoriesHandler = async () => {
+    const res = await axios.get(`${baseURL}/category/allOfCategories`, {});
+    console.log("res", res);
+    setallofcategory(res?.data?.getAllCategories);
+  };
+
+  const gettingproductsbyCategoryidHandler = async (id) => {
+    const res = await axios.get(
+      `${baseURL}/product/getproductsbycategoryid/${id}`
+    );
+    console.log("res", res);
+    setprdouctbycategories(res?.data?.products);
+  };
+  const productViewRedirectHandler = async (id) => {
+    history?.push(`/ProductView/${id}`);
   };
   return (
     <>
@@ -106,48 +130,45 @@ const Index = ({ history }) => {
                 </div>
                 <div className="col-md-4 mb-3">
                   <div className="form-group my-3">
-                    <select className="form-control" id="helpWith">
-                      <option selected disabled>
-                        I need help with
+                    <select
+                      className="form-control"
+                      id="helpWith"
+                      value={catid}
+                      onChange={(event) => {
+                        setcatid(event.target.value);
+                        gettingproductsbyCategoryidHandler(event.target.value);
+                      }}
+                    >
+                      <option >
+                        Categories
                       </option>
-                      <option>Digestive Health</option>
-                      <option>Endocrine</option>
-                      <option>Men's Health</option>
-                      <option>Women's Health</option>
-                      <option>Children's Health</option>
-                      <option>Pregnancy/Postpartum</option>
+                      {allofcategory?.length > 0 &&
+                        allofcategory?.map((cat) => (
+                          <option value={cat?._id}>{cat?.categorytitle}</option>
+                        ))}
                     </select>
                   </div>
                 </div>
                 <div className="col-md-4 mb-3">
                   <div className="form-group my-3">
-                    <select className="form-control" id="formula">
-                      <option selected disabled>
-                        Formula...
+                    <select
+                      className="form-control"
+                      id="formula"
+                      onChange={(event) => {
+                        productViewRedirectHandler(event.target.value);
+                      }}
+                    >
+                      <option >
+                        Products
                       </option>
-                      <option>Capsule</option>
-                      <option>Capsule Blend</option>
-                      <option>Glycerin</option>
-                      <option>Loose Tea</option>
-                      <option>Powder Blend</option>
-                      <option>Tincture</option>
+                      {prdouctbycategories?.length > 0 &&
+                        prdouctbycategories?.map((prod) => (
+                          <option value={prod?._id}>{prod?.name}</option>
+                        ))}
                     </select>
                   </div>
                 </div>
-                <div className="col-md-4 mb-3">
-                  <div className="form-group my-3">
-                    <select className="form-control" id="detoxGoal">
-                      <option selected disabled>
-                        Detox Goal...
-                      </option>
-                      <option>Deep</option>
-                      <option>Maintenance</option>
-                      <option>Mild</option>
-                      <option>Moderate</option>
-                      <option>Rebuilding</option>
-                    </select>
-                  </div>
-                </div>
+
                 <div className="col-12 my-2 text-center">
                   <Link
                     to="#"
@@ -188,7 +209,7 @@ const Index = ({ history }) => {
                 Members can shop online 24/7 from our exclusive Members Only Top
                 Quality Herbal Alkaline products.
               </p>
-              <Link to="#" className="linear-white-link my-5">
+              <Link to="/Capsules" className="linear-white-link my-5">
                 learn more
               </Link>
             </div>
@@ -238,7 +259,7 @@ const Index = ({ history }) => {
               </div>
               <div className="row mt-5">
                 <div className="col-md-10 mx-auto text-center">
-                  <div id="fproducts">
+                  <div id="">
                     {/* <div className="featured-product animate__animated animate__slideInUp">
                       <img
                         src="images/featured-prod-1.jpg"
@@ -405,7 +426,7 @@ const Index = ({ history }) => {
                         </span>
                       </h5>
                     </div>
-                    <Link to="#" className="red-link">
+                    <Link to="/Capsules" className="red-link">
                       Shop Now
                     </Link>
                   </div>

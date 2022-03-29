@@ -300,7 +300,7 @@ const Header = () => {
                                     </h4>
                                     <ul>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/MuscularSystem">
                                           The Muscular System
                                         </Link>
                                       </li>
@@ -310,57 +310,57 @@ const Header = () => {
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/SkeletalSystem">
                                           The Skeletal System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/NervousSystem">
                                           The Nervous System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/UrinarySystem">
                                           The Urinary System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/DigestiveSystem">
                                           The Digestive System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/OralSystem">
                                           The Oral Cavity System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/RespiratorySystem">
                                           The Respiratory System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/CardioSystem">
                                           The Cardiovascular System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/LymphaticSystem">
                                           The Lymphatic System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/ReproductiveSystem">
                                           The Reproductive System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/EndocrineSystem">
                                           The Endocrine System
                                         </Link>
                                       </li>
                                       <li>
-                                        <Link to="/IntegumentarySystem">
+                                        <Link to="/BodySystem">
                                           All Body Systems
                                         </Link>
                                       </li>
@@ -796,7 +796,7 @@ const Header = () => {
                             </li>
                             <li className="list-inline-item">
                               <select name id="switcher">
-                                <option value>GBP</option>
+                                <option value>USD</option>
                               </select>
                             </li>
                           </ul>

@@ -146,6 +146,9 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("shippingAddress");
   localStorage.removeItem("paymentMethod");
   localStorage.removeItem("cartNumber");
+  localStorage.removeItem("consultationAddress");
+
+  
 
   dispatch({ type: USER_LOGOUT });
 

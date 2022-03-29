@@ -4,6 +4,7 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
+  CART_SAVE_CONSULTATION_ADDRESS
 } from "../constants/cartConstants";
 import { baseURL } from "../utils/api";
 
@@ -44,6 +45,15 @@ export const saveShippingAddress = (data) => (dispatch) => {
 console.log('shippingAddressshippingAddresss')
   localStorage.setItem("shippingAddress", JSON.stringify(data));
 };
+export const savConsultaionAddress = (data) => (dispatch) => {
+  dispatch({
+    type: CART_SAVE_CONSULTATION_ADDRESS,
+    payload: data,
+  });
+console.log('consultationAddressconsultationAddress')
+  localStorage.setItem("consultationAddress", JSON.stringify(data));
+};
+
 export const savePaymentMethod = (data) => (dispatch) => {
   console.log("savePaymentMethoddata", data);
   dispatch({

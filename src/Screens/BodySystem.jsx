@@ -67,7 +67,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Tissues</h6>
                         <h4>The Muscular System</h4>
-                        <Link to='#'
+                        <Link to='/MuscularSystem'
                         
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
@@ -87,7 +87,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Bones</h6>
                         <h4>The Skeletal System</h4>
-                        <Link to='#'
+                        <Link to='/SkeletalSystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -106,7 +106,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Brain, Nerves and Adrenals</h6>
                         <h4>The Nervous System</h4>
-                        <Link to='#'
+                        <Link to='/NervousSystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -125,7 +125,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Hormones</h6>
                         <h4>The Endocrine System</h4>
-                        <Link to='#'
+                        <Link to='/EndocrineSystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -144,7 +144,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Lungs</h6>
                         <h4>The Respiratory System</h4>
-                        <Link to='#'
+                        <Link to='/RespiratorySystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -163,7 +163,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Lymph Nodes, Vessels, Spleen</h6>
                         <h4>The Lymphatic System</h4>
-                        <Link to='#'
+                        <Link to='/LymphaticSystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -182,7 +182,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Skin, Hair, &amp; Nails</h6>
                         <h4>The Integumentary System</h4>
-                        <Link to='#'
+                        <Link to='/IntegumentarySystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -201,7 +201,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Kidneys, Bladder</h6>
                         <h4>The Urinary System</h4>
-                        <Link to='#'
+                        <Link to='/UrinarySystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -220,7 +220,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Gastrointestinal Tract</h6>
                         <h4>The Digestive System</h4>
-                        <Link to='#'
+                        <Link to='/DigestiveSystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -239,7 +239,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Heart, Blood</h6>
                         <h4>Cardiovascular System</h4>
-                        <Link to='#'
+                        <Link to='/CardioSystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -258,7 +258,7 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Male &amp; Female Productive System</h6>
                         <h4>The Reproductive System</h4>
-                        <Link to='#'
+                        <Link to='/ReproductiveSystem'
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product
@@ -277,7 +277,8 @@ const BodySystem = () => {
                       <div className="body-system-content">
                         <h6>Teeth, Gums</h6>
                         <h4>ORAL HEALTH</h4>
-                        <Link to='#'
+                        <Link to='/OralSystem'
+
                           className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         >
                           View Product

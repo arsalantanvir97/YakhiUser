@@ -138,6 +138,7 @@ const Donate = () => {
                               stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
                               token={handleToken}
                               amount={amount * 100}
+                              email={userInfo?.email}
                             ></StripeCheckout>
                           ) : null}
                         </div>

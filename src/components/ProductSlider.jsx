@@ -19,11 +19,8 @@ export default class ProductSlider extends Component {
     return (
       <Slider {...settings}>
         {this?.props?.images?.map((pro) => (
-          <div className="featured-product animate__animated animate__slideInUp">
-            <Link
-              to="#"
-            
-            >
+          <div className="featured-product animate__animated animate__slideInUp ">
+           
               <img
                 onClick={() => {
                   !this?.props?.userInfo
@@ -39,9 +36,9 @@ export default class ProductSlider extends Component {
                   `${imageURL}${pro?.productimage[0]}`
                 }
                 alt=""
-                className="img-fluid mx-auto"
+                className="img-fluid mx-auto abcccc"
               />
-            </Link>
+            
             <h4 className="prod-title text-center">{pro?.name}</h4>
             <h5 className="prod-price text-center">${pro?.price}</h5>
           </div>

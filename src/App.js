@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
-
 import Login from "./Screens/Login";
 import Signup from "./Screens/Signup";
 import Index from "./Screens/Index";
@@ -27,8 +26,6 @@ import MasterHerbalist from "./Screens/MasterHerbalist";
 import MeettheTeam from "./Screens/MeettheTeam";
 import OrderandPayment from "./Screens/OrderandPayment";
 import PrivacyPolicy from "./Screens/PrivacyPolicy";
-import IntegumentarySystem from "./Screens/IntegumentarySystem";
-
 import OrderLog from "./Screens/OrderLog";
 import OrderLogDetail from "./Screens/OrderLogDetail";
 import ProductResource from "./Screens/ProductResource";
@@ -37,6 +34,18 @@ import ProductViewOutStock from "./Screens/ProductViewOutStock";
 import ReturnsandRefund from "./Screens/ReturnsandRefund";
 import ShippingandPickup from "./Screens/ShippingandPickup";
 import ViewCollection from "./Screens/ViewCollection";
+import CardioSystem from "./Screens/CardioSystem";
+import DigestiveSystem from "./Screens/DigestiveSystem";
+import EndocrineSystem from "./Screens/EndocrineSystem";
+import IntegumentarySystem from "./Screens/IntegumentarySystem";
+import LymphaticSystem from "./Screens/LymphaticSystem";
+import MuscularSystem from "./Screens/MuscularSystem";
+import NervousSystem from "./Screens/NervousSystem";
+import OralSystem from "./Screens/OralSystem";
+import ReproductiveSystem from "./Screens/ReproductiveSystem";
+import RespiratorySystem from "./Screens/RespiratorySystem";
+import SkeletalSystem from "./Screens/SkeletalSystem";
+import UrinarySystem from "./Screens/UrinarySystem";
 import ScrollToTop from "./components/ScrollToTop";
 import { useEffect } from "react";
 
@@ -51,9 +60,24 @@ function App() {
       <Route path="/Login" component={Login} exact />
       <Route path="/Signup" component={Signup} exact />
       <Route path="/PasswordRecovery" component={PasswordRecovery} exact />
-      <Route path="/VerificationCode:email" component={VerificationCode} exact />
+      <Route
+        path="/VerificationCode:email"
+        component={VerificationCode}
+        exact
+      />
       <Route path="/ResetPassword" component={ResetPassword} exact />
       <Route exact path="/GeoGenetics" component={GeoGenetics} />{" "}
+      <Route exact path="/CardioSystem" component={CardioSystem} />{" "}
+      <Route exact path="/DigestiveSystem" component={DigestiveSystem} />{" "}
+      <Route exact path="/EndocrineSystem" component={EndocrineSystem} />{" "}
+      <Route exact path="/LymphaticSystem" component={LymphaticSystem} />{" "}
+      <Route exact path="/MuscularSystem" component={MuscularSystem} />{" "}
+      <Route exact path="/NervousSystem" component={NervousSystem} />{" "}
+      <Route exact path="/OralSystem" component={OralSystem} />{" "}
+      <Route exact path="/ReproductiveSystem" component={ReproductiveSystem} />{" "}
+      <Route exact path="/RespiratorySystem" component={RespiratorySystem} />{" "}
+      <Route exact path="/SkeletalSystem" component={SkeletalSystem} />{" "}
+      <Route exact path="/UrinarySystem" component={UrinarySystem} />{" "}
       <Route exact path="/AboutCompany" component={AboutCompany} />{" "}
       <Route exact path="/Document" component={Document} />{" "}
       <Route exact path="/Instruction" component={Instruction} />{" "}
@@ -81,18 +105,13 @@ function App() {
       <PrivateRoute exact path="/WishList" component={WishList} />{" "}
       <PrivateRoute exact path="/Checkout" component={Checkout} />{" "}
       <PrivateRoute exact path="/OrderLog" component={OrderLog} />{" "}
-      <PrivateRoute
-        exact
-        path="/ViewCollection"
-        component={ViewCollection}
-      />{" "}
+      <PrivateRoute exact path="/ViewCollection" component={ViewCollection} />{" "}
       <PrivateRoute
         exact
         path="/ProductViewOutStock"
         component={ProductViewOutStock}
       />{" "}
       <PrivateRoute exact path="/ProductView/:id" component={ProductView} />{" "}
-
       <PrivateRoute
         exact
         path="/OrderLogDetail/:id"

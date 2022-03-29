@@ -1,16 +1,299 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { savConsultaionAddress } from "../actions/cartAction";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import InputNumber from "../components/InputNumber";
+import InputPhone from "../components/InputPhone";
+import Toasty from "../utils/toast";
+import DatePicker from "react-datepicker";
+import moment from "moment";
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
+import { baseURL } from "../utils/api";
+import Swal from "sweetalert2";
 let showformm = 1;
-const Consultation = () => {
+let timings = [
+  { time: "9 CST" },
+  { time: "9:30 CST" },
+
+  { time: "10 CST" },
+  { time: "10:30 CST" },
+
+  { time: "11 CST" },
+  { time: "11:30 CST" },
+
+  { time: "12 CST" },
+  { time: "12:30 CST" },
+
+  { time: "1 CST" },
+  { time: "1:30 CST" },
+
+  { time: "2 CST" },
+  { time: "2:30 CST" },
+
+  { time: "3 CST" },
+  { time: "3:30 CST" },
+
+  { time: "4 CST" },
+  { time: "4:30 CST" },
+
+  { time: "5 CST" },
+  { time: "5:30 CST" },
+
+  { time: "6 CST" },
+  { time: "6:30 CST" },
+
+  { time: "7 CST" },
+  { time: "7:30 CST" },
+
+  { time: "8 CST" },
+  { time: "8:30 CST" },
+
+  { time: "9 CST" },
+  { time: "9:30 CST" },
+
+  { time: "10 CST" },
+  { time: "10:30 CST" }
+];
+const Consultation = ({ history }) => {
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const [loading, setloading] = useState(false);
+
   const [showform, setshowform] = useState(1);
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
-  const [timing, settiming] = useState("");
+  const [paymentconfirm, setpaymentconfirm] = useState(false);
 
+  const [age, setage] = useState("");
+  const [height, setheight] = useState("");
+  const [weight, setweight] = useState("");
+  const [ethnicity, setethnicity] = useState("");
+  const [consultaionfor, setconsultaionfor] = useState("");
+  const [currentmedication, setcurrentmedication] = useState("");
+  const [reason, setreason] = useState("");
+  const [diagnosis, setdiagnosis] = useState("");
+  const [doc_schedule, setdoc_schedule] = useState("");
+  const [appointment, setappointment] = useState("");
+  const [appointmentdate, setappointmentdate] = useState("");
+
+  const [paymentname, setpaymentname] = useState("");
+  const [cardnumber, setcardnumber] = useState("");
+  const [expirymonth, setexpirymonth] = useState("");
+  const [expiryyear, setexpiryyear] = useState("");
+
+  // const [cvv, setcvv] = useState("");
+
+  const [confirmationname, setconfirmationname] = useState("");
+  const [confirmationpassword, setconfirmationpassword] = useState("");
+
+  const filedocsHandler = (e) => {
+    console.log("eeee", e?.target?.files[0]);
+    setdoc_schedule(e?.target?.files[0]);
+  };
+
+  const saveConsultationAddressHandler = async () => {
+    if (
+      firstName?.length > 0 &&
+      lastName?.length > 0 &&
+      phone?.length > 0 &&
+      email?.length > 0 &&
+      age > 0 &&
+      height > 0 &&
+      weight > 0 &&
+      ethnicity?.length > 0 &&
+      consultaionfor?.length > 0 &&
+      currentmedication?.length > 0 &&
+      reason?.length > 0 &&
+      diagnosis?.length > 0 &&
+      doc_schedule?.name?.length > 0
+    ) {
+      await dispatch(
+        savConsultaionAddress({
+          firstName,
+          lastName,
+          phone,
+          email,
+          age,
+          height,
+          weight,
+          ethnicity,
+          consultaionfor,
+          currentmedication,
+          reason,
+          diagnosis,
+          governmentid: doc_schedule?.name
+        })
+      );
+      setshowform(showform == 4 ? 4 : showform + 1);
+    } else {
+      Toasty("error", `Please fill out all the required fields`);
+    }
+  };
+  const chooseAppointmentHandler = async () => {
+    if (appointment?.length > 0 && appointmentdate) {
+      setshowform(showform == 4 ? 4 : showform + 1);
+    } else {
+      Toasty("error", `Please fill out all the required fields`);
+    }
+  };
+  // const consultationPaymentHandler = async () => {
+  //   if (
+  //     paymentname?.length > 0 &&
+  //     cardnumber?.length > 0 
+  //     // cvv > 0 &&
+  //   ) {
+     
+  //   } else {
+  //     Toasty("error", `Please fill out all the required fields`);
+  //   }
+  // };
+  const confirmationHandler = async () => {
+    if (confirmationname?.length > 0 && confirmationpassword?.length > 0) {
+      const formData = new FormData();
+      const consultationaddress = {
+        firstName,
+        lastName,
+        phone,
+        email,
+        age,
+        height,
+        weight,
+        ethnicity,
+        consultaionfor,
+        currentmedication,
+        reason,
+        diagnosis
+      };
+      const paymentinfo = { paymentname, cardnumber, expirymonth,expiryyear };
+
+      const confirmationinfo = { confirmationname, confirmationpassword };
+
+      formData.append("doc_schedule", doc_schedule);
+      formData.append("appointmenttime", appointment);
+      formData.append("appointmentdate", appointmentdate);
+      formData.append("paymentinfo", JSON.stringify(paymentinfo));
+      formData.append(
+        "consultationaddress",
+        JSON.stringify(consultationaddress)
+      );
+
+      // formData.append("weight", product?.weight);
+      formData.append("confirmationinfo", JSON.stringify(confirmationinfo));
+      formData.append("user", userInfo?._id);
+
+      const body = formData;
+      try {
+        console.log("createConsultation");
+        const config = {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`
+          }
+        };
+        const res = await axios.post(
+          `${baseURL}/consultationRoutes/createConsultation`,
+          body,
+          config
+        );
+
+        console.log("res", res);
+        if (res?.status == 201) {
+          Swal.fire({
+            icon: "success",
+            title: "",
+            text: "Your Appointment Has Been Created",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          history.replace("/");
+        }
+        // else if(res?.status==201){
+        //   Toasty('error',`Invalid Email or Password`);
+        //   dispatch({
+        //     type: ADMIN_LOGIN_FAIL,
+        //     payload:
+        //     res?.data?.message
+        //   })
+        //   document.location.href = '/'
+
+        // }
+      } catch (error) {
+        console.log("error", error?.response?.data?.message);
+        Swal.fire({
+          icon: "error",
+          title: "ERROR",
+          text: error?.response?.data?.message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+      setshowform(showform == 4 ? 4 : showform + 1);
+    } else {
+      Toasty("error", `Please fill out all the required fields`);
+    }
+  };
+  const disableWeekends = (current) => {
+    return current.day() !== 0 && current.day() !== 6;
+  };
+  async function handleToken(token) {
+    setloading(true);
+
+    const config = {
+      header: {
+        Authorization: "Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V"
+      }
+    };
+    const response = await axios.post(
+      `${baseURL}/checkout`,
+      { token, product: 100 },
+      config
+    );
+    console.log("response", response);
+    const { status } = response.data;
+
+    console.log(
+      "res",
+      response.data.id,
+      response.data.status,
+      response.headers.date,
+      response.data.receipt_email
+    );
+    if (status === "succeeded") {
+      setloading(false);
+      setpaymentname(response?.data?.receipt_email)
+setcardnumber(response?.data?.payment_method_details?.card?.last4)
+// setcvv(response?.data?.payment_method_details?.card?.last4)
+setexpirymonth(response?.data?.payment_method_details?.card?.exp_month)
+setexpiryyear(response?.data?.payment_method_details?.card?.exp_year)
+setpaymentconfirm(true)
+setshowform(showform == 4 ? 4 : showform + 1);
+      console.log(status, "succes");
+    } else {
+      console.log(status, "fail");
+      setloading(false);
+    }
+  }
+  const setappointmentdateHandler = (dayy) => {
+    console.log(dayy);
+    const datee = new Date(dayy);
+    console.log("datee", datee);
+    console.log(datee.getDay());
+    if (datee.getDay() == 0 || datee.getDay() == 6) {
+      Toasty(
+        "error",
+        `Saturday and Sundays are off. Please select another day for appointment`
+      );
+    } else {
+      console.log("456");
+      setappointmentdate(dayy);
+    }
+  };
   return (
     <>
       <Header />
@@ -145,9 +428,9 @@ const Consultation = () => {
                                   placeholder="Enter First Name"
                                   type="text"
                                   value={firstName}
-                          onChange={(e) => {
-                            setfirstName(e.target.value);
-                          }}
+                                  onChange={(e) => {
+                                    setfirstName(e.target.value);
+                                  }}
                                 />
                               </div>
                               <div className="col-md-6">
@@ -168,15 +451,7 @@ const Consultation = () => {
                                 <label>
                                   Phone <span className="red">*</span>
                                 </label>
-                                <input
-                                  className="form-control"
-                                  placeholder="Enter Phone Number"
-                                  type="tel"
-                                  value={phone}
-                                  onChange={(e) => {
-                                    setphone(e.target.value);
-                                  }}
-                                />
+                                <InputPhone value={phone} onChange={setphone} />
                               </div>
                               <div className="col-md-6">
                                 <label>
@@ -196,33 +471,34 @@ const Consultation = () => {
                                 <label>
                                   Age <span className="red">*</span>
                                 </label>
-                                <input
+                                <InputNumber
+                                  value={age}
+                                  onChange={setage}
+                                  max={99}
                                   className="form-control"
-                                  placeholder="Enter Age"
-                                  type="text"
-                                  oninput="this.className = ''"
                                 />
                               </div>
                               <div className="col-md-6">
                                 <label>
-                                  Height <span className="red">*</span>
+                                  Height in meters<span className="red">*</span>
                                 </label>
-                                <input
+                                <InputNumber
+                                  value={height}
+                                  onChange={setheight}
+                                  max={1000}
+                                  placeholder={"Heigth in meters"}
                                   className="form-control"
-                                  placeholder="Enter Height"
-                                  type="number"
-                                  oninput="this.className = ''"
                                 />
                               </div>
                               <div className="col-md-6">
                                 <label>
-                                  Weight <span className="red">*</span>
+                                  Weight in kgs<span className="red">*</span>
                                 </label>
-                                <input
+                                <InputNumber
+                                  value={weight}
+                                  onChange={setweight}
+                                  max={1000}
                                   className="form-control"
-                                  placeholder="Enter Weight"
-                                  type="number"
-                                  oninput="this.className = ''"
                                 />
                               </div>
                               <div className="col-md-6">
@@ -233,7 +509,10 @@ const Consultation = () => {
                                   className="form-control"
                                   placeholder="Enter Ethnicity"
                                   type="text"
-                                  oninput="this.className = ''"
+                                  value={ethnicity}
+                                  onChange={(e) => {
+                                    setethnicity(e.target.value);
+                                  }}
                                 />
                               </div>
                               <div className="col-md-6">
@@ -243,13 +522,27 @@ const Consultation = () => {
                                 <select
                                   className="form-control text-left"
                                   id="timeZone"
+                                  value={consultaionfor}
+                                  onChange={(e) => {
+                                    setconsultaionfor(e.target.value);
+                                  }}
                                 >
-                                  <option>General cleanse</option>
-                                  <option>HSV &amp; HPV</option>
-                                  <option>Diabetes</option>
-                                  <option>Cancer/ Tumors</option>
-                                  <option>Chronic Condition</option>
-                                  <option>Multiple Conditions</option>
+                                  <option value={"General cleanse"}>
+                                    General cleanse
+                                  </option>
+                                  <option value={"HSV & HPV"}>
+                                    HSV &amp; HPV
+                                  </option>
+                                  <option value={"Diabetes"}>Diabetes</option>
+                                  <option value={"Cancer/ Tumors"}>
+                                    Cancer/ Tumors
+                                  </option>
+                                  <option value={"Chronic Condition"}>
+                                    Chronic Condition
+                                  </option>
+                                  <option value={"Multiple Conditions"}>
+                                    Multiple Conditions
+                                  </option>
                                 </select>
                               </div>
                               <div className="col-md-6">
@@ -261,7 +554,10 @@ const Consultation = () => {
                                   className="form-control"
                                   placeholder="Enter Current Medication"
                                   type="text"
-                                  oninput="this.className = ''"
+                                  value={currentmedication}
+                                  onChange={(e) => {
+                                    setcurrentmedication(e.target.value);
+                                  }}
                                 />
                               </div>
                               <div className="col-md-12">
@@ -272,8 +568,10 @@ const Consultation = () => {
                                 <input
                                   className="form-control"
                                   placeholder="Enter Reason for Consultation"
-                                  type="text"
-                                  oninput="this.className = ''"
+                                  value={reason}
+                                  onChange={(e) => {
+                                    setreason(e.target.value);
+                                  }}
                                 />
                               </div>
                               <div className="col-md-12">
@@ -286,7 +584,10 @@ const Consultation = () => {
                                   id="exampleFormControlTextarea1"
                                   placeholder="Message"
                                   rows={5}
-                                  defaultValue={""}
+                                  value={diagnosis}
+                                  onChange={(e) => {
+                                    setdiagnosis(e.target.value);
+                                  }}
                                 />
                               </div>
                               <div className="col-md-6">
@@ -298,17 +599,23 @@ const Consultation = () => {
                                   type="file"
                                   name
                                   id="govt-id"
+                                  accept="application/pdf,application/vnd.ms-excel"
+                                  onChange={filedocsHandler}
                                   className="form-control"
                                 />
                                 <label
                                   htmlFor="govt-id"
                                   className="d-block id-upload"
                                 >
-                                  <i className="fas fa-upload fa-2x" />
+                                  {doc_schedule?.name ? (
+                                    <i className="fas fa-file-upload fa-2x" />
+                                  ) : (
+                                    <i className="fas fa-upload fa-2x" />
+                                  )}
                                 </label>
                               </div>
                               <div className="col-12 text-right">
-                                 <Link to="#"  className="red-link">
+                                <Link to="#" className="red-link">
                                   Redeem Coupon
                                 </Link>
                               </div>
@@ -323,409 +630,48 @@ const Consultation = () => {
                             <div className="col-3 text-center mx-auto">
                               <div className="timezone">
                                 <h3>Your Time Zone</h3>
-                                <select className="form-control" id="timeZone">
+                                {/* <select className="form-control" id="timeZone">
                                   <option>( GMT + 4:00 ) DUBAI</option>
                                   <option>( GMT + 4:00 ) DUBAI</option>
-                                </select>
+                                </select> */}
                               </div>
                             </div>
                           </div>
+                          <div className="col-md-12">
+                            <label>
+                              Select a date<span className="red">*</span>
+                            </label>
+                            <DatePicker
+                              minDate={moment().toDate()}
+                              isValidDate={disableWeekends}
+                              selected={appointmentdate}
+                              onChange={(e) => setappointmentdateHandler(e)}
+                              className="sort-date customdate form-control"
+                            />{" "}
+                          </div>
                           <div className="table-responsive">
                             <table className="table table-borderless">
-                              <thead>
-                                <tr>
-                                  <th scope="col">
-                                    Mon <p>6 Oct</p>
-                                  </th>
-                                  <th scope="col">
-                                    tue <p>7 Oct</p>
-                                  </th>
-                                  <th scope="col">
-                                    wed <p>8 Oct</p>
-                                  </th>
-                                  <th scope="col">
-                                    thu <p>9 Oct</p>
-                                  </th>
-                                  <th scope="col">
-                                    fri <p>10 Oct</p>
-                                  </th>
-                                </tr>
-                              </thead>
+                              <thead></thead>
                               <tbody>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t1" name="jeff" />
-                                    <label htmlFor="t1">8:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t2" name="jeff" />
-                                    <label htmlFor="t2">8:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t3" name="jeff" />
-                                    <label htmlFor="t3">8:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t4" name="jeff" />
-                                    <label htmlFor="t4">8:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t5" name="jeff" />
-                                    <label htmlFor="t5">8:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t8" name="jeff" />
-                                    <label htmlFor="t8">9:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t9" name="jeff" />
-                                    <label htmlFor="t9">9:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t10" name="jeff" />
-                                    <label htmlFor="t10">9:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t11" name="jeff" />
-                                    <label htmlFor="t11">9:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t12" name="jeff" />
-                                    <label htmlFor="t12">9:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t15" name="jeff" />
-                                    <label htmlFor="t15">9:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t16" name="jeff" />
-                                    <label htmlFor="t16">9:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t17" name="jeff" />
-                                    <label htmlFor="t17">9:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t18" name="jeff" />
-                                    <label htmlFor="t18">9:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t19" name="jeff" />
-                                    <label htmlFor="t19">9:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t22" name="jeff" />
-                                    <label htmlFor="t22">10:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t23" name="jeff" />
-                                    <label htmlFor="t23">10:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t24" name="jeff" />
-                                    <label htmlFor="t24">10:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t25" name="jeff" />
-                                    <label htmlFor="t25">10:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t26" name="jeff" />
-                                    <label htmlFor="t26">10:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t29" name="jeff" />
-                                    <label htmlFor="t29">10:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t30" name="jeff" />
-                                    <label htmlFor="t30">10:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t31" name="jeff" />
-                                    <label htmlFor="t31">10:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t32" name="jeff" />
-                                    <label htmlFor="t32">10:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t33" name="jeff" />
-                                    <label htmlFor="t33">10:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t36" name="jeff" />
-                                    <label htmlFor="t36">11:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t37" name="jeff" />
-                                    <label htmlFor="t37">11:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t38" name="jeff" />
-                                    <label htmlFor="t38">11:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t39" name="jeff" />
-                                    <label htmlFor="t39">11:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t40" name="jeff" />
-                                    <label htmlFor="t40">11:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t43" name="jeff" />
-                                    <label htmlFor="t43">11:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t44" name="jeff" />
-                                    <label htmlFor="t44">11:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t45" name="jeff" />
-                                    <label htmlFor="t45">11:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t46" name="jeff" />
-                                    <label htmlFor="t46">11:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t47" name="jeff" />
-                                    <label htmlFor="t47">11:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t50" name="jeff" />
-                                    <label htmlFor="t50">12:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t51" name="jeff" />
-                                    <label htmlFor="t51">12:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t52" name="jeff" />
-                                    <label htmlFor="t52">12:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t53" name="jeff" />
-                                    <label htmlFor="t53">12:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t54" name="jeff" />
-                                    <label htmlFor="t54">12:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t55" name="jeff" />
-                                    <label htmlFor="t55">12:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t56" name="jeff" />
-                                    <label htmlFor="t56">12:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t57" name="jeff" />
-                                    <label htmlFor="t57">12:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t58" name="jeff" />
-                                    <label htmlFor="t58">12:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t59" name="jeff" />
-                                    <label htmlFor="t59">12:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t60" name="jeff" />
-                                    <label htmlFor="t60">01:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t61" name="jeff" />
-                                    <label htmlFor="t61">01:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t62" name="jeff" />
-                                    <label htmlFor="t62">01:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t63" name="jeff" />
-                                    <label htmlFor="t63">01:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t64" name="jeff" />
-                                    <label htmlFor="t64">01:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t65" name="jeff" />
-                                    <label htmlFor="t65">01:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t66" name="jeff" />
-                                    <label htmlFor="t66">01:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t67" name="jeff" />
-                                    <label htmlFor="t67">01:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t68" name="jeff" />
-                                    <label htmlFor="t68">01:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t69" name="jeff" />
-                                    <label htmlFor="t69">01:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t70" name="jeff" />
-                                    <label htmlFor="t70">02:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t71" name="jeff" />
-                                    <label htmlFor="t71">02:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t72" name="jeff" />
-                                    <label htmlFor="t72">02:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t73" name="jeff" />
-                                    <label htmlFor="t73">02:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t74" name="jeff" />
-                                    <label htmlFor="t74">02:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t75" name="jeff" />
-                                    <label htmlFor="t75">02:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t76" name="jeff" />
-                                    <label htmlFor="t76">02:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t77" name="jeff" />
-                                    <label htmlFor="t77">02:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t78" name="jeff" />
-                                    <label htmlFor="t78">02:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t79" name="jeff" />
-                                    <label htmlFor="t79">02:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t80" name="jeff" />
-                                    <label htmlFor="t80">03:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t81" name="jeff" />
-                                    <label htmlFor="t81">03:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t82" name="jeff" />
-                                    <label htmlFor="t82">03:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t83" name="jeff" />
-                                    <label htmlFor="t83">03:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t84" name="jeff" />
-                                    <label htmlFor="t84">03:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t85" name="jeff" />
-                                    <label htmlFor="t85">03:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t86" name="jeff" />
-                                    <label htmlFor="t86">03:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t87" name="jeff" />
-                                    <label htmlFor="t87">03:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t88" name="jeff" />
-                                    <label htmlFor="t88">03:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t89" name="jeff" />
-                                    <label htmlFor="t89">03:30 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t90" name="jeff" />
-                                    <label htmlFor="t90">04:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t91" name="jeff" />
-                                    <label htmlFor="t91">04:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t92" name="jeff" />
-                                    <label htmlFor="t92">04:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t93" name="jeff" />
-                                    <label htmlFor="t93">04:00 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t94" name="jeff" />
-                                    <label htmlFor="t94">04:00 Cst</label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input type="radio" id="t95" name="jeff" />
-                                    <label htmlFor="t95">04:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t96" name="jeff" />
-                                    <label htmlFor="t96">04:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t97" name="jeff" />
-                                    <label htmlFor="t97">04:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t98" name="jeff" />
-                                    <label htmlFor="t98">04:30 Cst</label>
-                                  </td>
-                                  <td>
-                                    <input type="radio" id="t99" name="jeff" />
-                                    <label htmlFor="t99">04:30 Cst</label>
-                                  </td>
-                                </tr>
+                                {timings?.length > 0 &&
+                                  timings?.map((tim, index) => (
+                                    <tr>
+                                      <td>
+                                        <input
+                                          type="radio"
+                                          value={appointment}
+                                          onChange={() => {
+                                            setappointment(tim?.time);
+                                          }}
+                                          id={index}
+                                          name={`jeff${index}`}
+                                        />
+                                        <label htmlFor={index}>
+                                          {tim?.time}
+                                        </label>
+                                      </td>
+                                    </tr>
+                                  ))}
                               </tbody>
                             </table>
                           </div>
@@ -738,51 +684,87 @@ const Consultation = () => {
                       <div className="">
                         <div className="consultation-form">
                           <div className="form-group">
+                            {/* <div className="form-row" style={{justifyContent:'center',display:'flex',textAlign:'center'}}> */}
+                            {/* <div className="form-row">
+                              <div className="col-6">
+                             
+                              </div>
+                            </div>
                             <div className="form-row">
                               <div className="col-6">
                                 <label>
                                   Name <span className="red">*</span>
                                 </label>
+
                                 <input
                                   className="form-control"
                                   placeholder="Enter Name"
                                   type="text"
-                                  oninput="this.className = ''"
+                                  value={paymentname}
+                                  onChange={(e) => {
+                                    setpaymentname(e.target.value);
+                                  }}
                                 />
                               </div>
                               <div className="col-6">
-                                <label>
+                                <label for="ccn">
                                   Card Number <span className="red">*</span>
                                 </label>
                                 <input
-                                  className="form-control"
-                                  placeholder="Enter Card Number"
-                                  type="number"
-                                  oninput="this.className = ''"
+                                  id="ccn"
+                                  value={cardnumber}
+                                  onChange={(e) => {
+                                    setcardnumber(e.target.value);
+                                  }}
+                                  type="tel"
+                                  inputmode="numeric"
+                                  pattern="[0-9\s]{13,19}"
+                                  autocomplete="cc-number"
+                                  maxlength="19"
+                                  placeholder="xxxx xxxx xxxx xxxx"
                                 />
                               </div>
                               <div className="col-12">
                                 <label>
                                   Expiry Date <span className="red">*</span>
                                 </label>
-                                <input
-                                  className="form-control"
-                                  placeholder="Enter Expiry Date"
-                                  type="date"
-                                  oninput="this.className = ''"
-                                />
+                                <DatePicker
+                                  minDate={moment().toDate()}
+                                  selected={expirydate}
+                                  onChange={(expirydate) =>
+                                    setexpirydate(expirydate)
+                                  }
+                                  className="sort-date customdate form-control"
+                                />{" "}
                               </div>
                               <div className="col-12">
                                 <label>
                                   CVV <span className="red">*</span>
                                 </label>
-                                <input
+                                <InputNumber
+                                  value={cvv}
+                                  onChange={setcvv}
+                                  max={99}
                                   className="form-control"
-                                  placeholder="Enter Your CVV"
-                                  type="email"
-                                  oninput="this.className = ''"
                                 />
                               </div>
+                              
+                            </div> */}
+                            <div className="form-row" style={{justifyContent:'center',display:'flex',textAlign:'center'}}>
+                             
+                             {loading ? (
+                           <i className="fas fa-spinner fa-pulse"></i>) : (
+                           <StripeCheckout
+                          //  cardnumber={cardnumber}
+                          //  cvv={cvv}
+                           email={userInfo?.email}
+                          //  expirydate={expirydate}
+                             stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
+                             token={handleToken}
+                             amount={100 * 100}
+                           ></StripeCheckout>
+                           )}
+                            
                             </div>
                           </div>
                         </div>
@@ -793,19 +775,25 @@ const Consultation = () => {
                           <p>
                             <input
                               placeholder="Username..."
-                              oninput="this.className = ''"
+                              value={confirmationname}
+                              onChange={(e) => {
+                                setconfirmationname(e.target.value);
+                              }}
                             />
                           </p>
                           <p>
                             <input
                               placeholder="Password..."
-                              oninput="this.className = ''"
+                              value={confirmationpassword}
+                              onChange={(e) => {
+                                setconfirmationpassword(e.target.value);
+                              }}
                             />
                           </p>
                         </div>
                       </div>
                     ) : null}
-                    <div className="text-center mt-5 pt-5">
+                    <div className="text-center mt-5 pt-5 ">
                       <button
                         type="button"
                         className="red-btn-outline"
@@ -821,7 +809,13 @@ const Consultation = () => {
                         className="red-btn-solid"
                         id="nextBtn"
                         onClick={() => {
-                          setshowform(showform == 4 ? 4 : showform + 1);
+                          showform == 1
+                            ? saveConsultationAddressHandler()
+                            : showform == 2
+                            ? chooseAppointmentHandler()
+                            : showform == 3 && paymentconfirm==true
+                            ? setshowform(showform+1)
+                            : showform == 4 && confirmationHandler();
                         }}
                       >
                         Continue
@@ -851,42 +845,6 @@ const Consultation = () => {
           </div>
         </div>
       </section>
-
-      <div
-        className="modal fade"
-        id="appointment"
-        tabIndex={-1}
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          className="modal-dialog modal-md modal-dialog-centered "
-          role="document"
-        >
-          <div className="modal-content">
-            {/* <button type="button" class="close text-right mr-1 mt-1" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&#10006;</span>
-      </button> */}
-            <div className="pt-1 pb-5 px-sm-5 px-1">
-              <div className="text-center">
-                <img src="images/success-icon.png" alt="" className="mt-4" />
-                <h2 className=" mt-2">Congratulations!</h2>
-                <p className="mt-2">Your Appointment Has Been Confirmed</p>
-              </div>
-              <div className="text-center mt-2">
-                <a
-                  href="#"
-                  className="btn red-btn-solid mt-lg-4 mt-3"
-                  data-dismiss="modal"
-                >
-                  OK
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <Footer />
     </>

@@ -7,6 +7,8 @@ import axios from "axios";
 import InnerPageBanner from "./InnerPageBanner";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import Toasty from "../utils/toast";
+import { Parser } from "html-to-react";
+const htmlToReactParser = new Parser();
 
 const ProductView = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -32,7 +34,15 @@ const ProductView = ({ match, history }) => {
       setproduct(res?.data?.product);
       const category = await res?.data?.product?.category;
       console.log("category", category);
-      const { data } = await axios.get(`${baseURL}/product/detoxProducts`);
+      const {data} = await axios({
+        url:  `${baseURL}/product/productsbycategoryid`,
+        method: "GET",
+        params: {
+          productid:res?.data?.product?._id,
+          id:res?.data?.product?.category?._id
+        }
+      });
+    
       console.log("data", data);
       setrecommendedproducts(data);
     } catch (err) {
@@ -40,8 +50,11 @@ const ProductView = ({ match, history }) => {
     }
   };
   const addToCartHandler = async () => {
+    if(product?.category?.categorytitle=="Geo'Genetics"){
+      console.log('abc')
+    }else{
     console.log("addToCartHandler");
-    history.push(`/MyCart/${match.params.id}?qty=${quantity}`);
+    history.push(`/MyCart/${match.params.id}?qty=${quantity}`);}
   };
   const addtoWishLIstHandler = async (product) => {
     console.log("product", product);
@@ -198,7 +211,7 @@ const ProductView = ({ match, history }) => {
                       />
                     </li>
                   </ul>
-                  <p className="short-desc">{product?.description}</p>
+                  {/* <p className="short-desc">{product?.description}</p> */}
                   <h4 className="big-price">${product?.price}</h4>
                   <div id="field1">
                     Quantity
@@ -244,8 +257,12 @@ const ProductView = ({ match, history }) => {
                   </div> */}
                   <button
                     type="button"
-                    onClick={()=>{quantity > 0 ? addToCartHandler():Toasty("error", `Quantity must be more than 0`);}}
-                    className="btn maroon-btn-solid px-5 py-2"
+                    onClick={() => {
+                      quantity > 0
+                        ? addToCartHandler(product?._id)
+                        : Toasty("error", `Quantity must be greater than 0`);
+                    }}
+                    className="btn maroon-btn-solid px-5 py-2 mt-4"
                     disabled={product?.countInStock == 0}
                   >
                     <img
@@ -294,7 +311,10 @@ const ProductView = ({ match, history }) => {
                           <div className="col-11">
                             <h3>Product Specification</h3>
 
-                            <p className="my-3">{product?.description}</p>
+                            <p className="my-3">
+                              {" "}
+                              {htmlToReactParser.parse(product?.description)}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -313,7 +333,21 @@ const ProductView = ({ match, history }) => {
                       <div className="specifications py-4">
                         <div className="row">
                           <div className="col-11">
-                            <p className="my-3">{product?.description}</p>
+                            <p className="my-3">
+                              Lorem ipsum dolor sit amet, consetetur sadipscing
+                              elitr, sed diam nonumy eirmod tempor invidunt ut
+                              labore et dolore magna aliquyam erat, sed diam
+                              voluptua. At vero eos et accusam et justo duo
+                              dolores et ea rebum. Stet clita kasd gubergren, no
+                              sea takimata sanctus est Lorem ipsum dolor sit
+                              amet. Lorem ipsum dolor sit amet, consetetur
+                              sadipscing elitr, sed diam nonumy eirmod tempor
+                              invidunt ut labore et dolore magna aliquyam erat,
+                              sed diam voluptua. At vero eos et accusam et justo
+                              duo dolores et ea rebum. Stet clita kasd
+                              gubergren, no sea takimata sanctus est Lorem ipsum
+                              dolor sit amet.
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -635,11 +669,13 @@ const ProductView = ({ match, history }) => {
             {/* recommended products */}
             <section className="recomended-products mt-5 border-top border-grey pt-4">
               <div className="row">
-                <div className="col-12 mb-4">
-                  <h3>Recommended Products</h3>
-                </div>
-                {recommendedproducts?.detoxproduct?.length > 0 &&
-                  recommendedproducts?.detoxproduct?.map((rec) => (
+                {recommendedproducts?.products?.length > 0 && (
+                  <div className="col-12 mb-4">
+                    <h3>Recommended Products</h3>
+                  </div>
+                )}
+                {recommendedproducts?.products?.length > 0 &&
+                  recommendedproducts?.products?.map((rec) => (
                     <div className="col-xl-3 col-md-6">
                       {/* Product 1 */}
                       <div className="product-card">

@@ -3289,6 +3289,7 @@ label.custom-img-upload:hover {
   background: #6b6767;
   cursor: pointer;
 }
+.abcccc:hover {cursor: pointer;}
 .browse-images:before {
   content: attr(textholder) !important;
   color: #c2c2c2;

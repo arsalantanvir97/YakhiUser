@@ -1,14 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import ShopnowButton from "../components/ShopnowButton";
+import React from 'react'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import ShopnowButton from '../components/ShopnowButton'
 
-const IntegumentarySystem = () => {
+const RespiratorySystem = () => {
   return (
-    <>
-      <Header />
-      <section className="inner-banner">
+    <><Header/>
+<section className="inner-banner">
   <div className="container-fluid">
     <div className="row">
       <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
@@ -27,21 +25,22 @@ const IntegumentarySystem = () => {
     <div className="col-11 mx-auto">
       <div className="row">
         <div className="col-12 text-center my-3">
-          <h4 className="sub-heading">Skin, Hair, &amp; Nails</h4>
-          <h3 className="main-heading">The Integumentary System</h3>
+          <h4 className="sub-heading">Lungs</h4>
+          <h3 className="main-heading">Respiratory System</h3>
         </div>
       </div>
       <div className="about-company">
         <div className="row justify-content-center align-items-center">
           <div className="col-xl-6 col-10 text-center">
-            <img src="images/integumentary-system.jpg" alt="" className="img-fluid" />
+            <img src="images/respiratory-system.jpg" alt="" className="img-fluid" />
           </div>
           <div className="col-xl-6 col-12 mt-xl-0 mt-5">
             <p className="general-para">
-              Organs of the integumentary system include the skin, hair, and nails. 
-              The skin is the largest organ in the body. It encloses and protects the body and 
-              is the site of many sensory receptors. The skin is the body’s first defense against 
-              pathogens, and it also helps regulate body temperature and eliminate wastes in sweat.
+              Organs and other structures of the respiratory system include the nasal passages, 
+              lungs, and a long tube called the trachea, which carries air between the nasal passages and lungs. 
+              The main function of the respiratory system is to deliver oxygen to the blood and remove carbon dioxide 
+              from the body. Gases are exchanged between the lungs and blood across the walls of capillaries lining tiny 
+              air sacs (alveoli) in the lungs.
             </p>
             <h4 className="red system-sub-heading my-3">Suggested Products</h4>
             <div className="panel-group mb-4" id="accordion" role="tablist" aria-multiselectable="true">
@@ -57,17 +56,18 @@ const IntegumentarySystem = () => {
                 <div id="capsules" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                   <div className="panel-body">
                     <ul className="system-list ml-4 py-4">
-                      <li>Intracellular Cleanse Capsules</li>
-                      <li>Parasite Elimination Capsules</li>
-                      <li>Brain-Nerve Vital Max Capsules</li>
-                      <li>Brain-Nerve &amp; Adrenal Support Capsules</li>
-                      <li>Endocrino Balance Capsules</li>
+                      <li>Brain Nerve Vitalmax Capsules</li>
+                      <li>CardioTonic Capsules</li>
+                      <li>Inner-Cellular Cleanse Capsules</li>
+                      <li>Circulatory System HIGH Capsules</li>
                       <li>Blood Purifier Capsules</li>
-                      <li>Liver and Gall Bladder Capsules</li>
-                      <li>Atomic Strengthener Capsules</li>
-                      <li>Cayenne Pepper Capsules</li>
-                      <li>Turmeric Infusion Capsules</li>
-                      <li>Adult All Purpose Vitamin Capsules</li>
+                      <li>Parasite Elimination Capsules</li>
+                      <li>Heavy Metal Detox Capsules</li>
+                      <li>Astringent X Capsules</li>
+                      <li>Brain, Nerve, &amp; Adrenal Capsules</li>
+                      <li>Lymphatic Sweep Tonic Capsules</li>
+                      <li>Black Seed Oil (Nigella Sativa) Capsules</li>
+                      <li>Foundation Fours Capsules</li>
                     </ul>
                   </div>
                 </div>
@@ -84,21 +84,17 @@ const IntegumentarySystem = () => {
                 <div id="tinctures" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                   <div className="panel-body">
                     <ul className="system-list ml-4 py-4">
-                      <li>Intracellular Cleanse Tincture</li>
-                      <li>Parasite Elimination Tincture</li>
-                      <li>Brain-Nerve Vital Max Tincture</li>
-                      <li>Brain-Nerve &amp; Adrenal Support Tincture</li>
-                      <li>Endocrino Balance Tincture</li>
+                      <li>Brain Nerve Vitalmax Tincture</li>
+                      <li>CardioTonic Tincture</li>
+                      <li>Inner-Cellular Cleanse Tincture</li>
+                      <li>Circulatory System HIGH Tincture</li>
                       <li>Blood Purifier Tincture</li>
-                      <li>Liver and Gall Bladder Tincture</li>
-                      <li>Atomic Strengthener Tincture</li>
-                      <li>Cayenne Pepper Tincture</li>
-                      <li>Turmeric Infusion Tincture</li>
+                      <li>Parasite Elimination Tincture</li>
+                      <li>Heavy Metal Detox Tincture</li>
+                      <li>Astringent X Tincture</li>
+                      <li>Brain, Nerve, &amp; Adrenal Tincture</li>
                       <li>Lymphatic Sweep Tonic Tincture</li>
-                      <li>Heavy Metal Tincture</li>
-                      <li>Iron Phosphate Tincture</li>
-                      <li>Thyroid Support Tincture</li>
-                      <li>Parathyroid Support Tincture</li>
+                      <li>Foundation Fours Tincture</li>
                     </ul>
                   </div>
                 </div>
@@ -116,9 +112,29 @@ const IntegumentarySystem = () => {
                   <div className="panel-body">
                     <ul className="system-list ml-4 py-4">
                       <li>Brain Nerve Vitalmax Tea</li>
+                      <li>CardioTonic Tea</li>
                       <li>Cellular Regeneration Tea</li>
                       <li>Revitalizer Tea</li>
                       <li>3BITTERS</li>
+                      <li>Neem Leaf Tea</li>
+                      <li>Burdock Root Tea</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              {/* SEAWEED & POWDERS */}
+              <div className="panel panel-default mb-3">
+                <div className="panel-heading" role="tab" id="headingThree">
+                  <h4 className="panel-title">
+                    <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#powder" aria-expanded="false" aria-controls="powder">
+                      SEAWEED &amp; POWDERS
+                    </a>
+                  </h4>
+                </div>
+                <div id="powder" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div className="panel-body">
+                    <ul className="system-list ml-4 py-4">
+                      <li>Lung Cleanser (Tar Remover) Powder</li>
                     </ul>
                   </div>
                 </div>
@@ -135,25 +151,28 @@ const IntegumentarySystem = () => {
                 <div id="oil" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                   <div className="panel-body">
                     <ul className="system-list ml-4 py-4">
-                      <li>Wild Neem Oil</li>
-                      <li>Mediterranean Oregano Oil</li>
+                      <li>Black seed Oil</li>
                     </ul>
                   </div>
                 </div>
               </div>
-              {/* SALVES */}
+              {/* Kits & Bundles */}
               <div className="panel panel-default mb-3">
                 <div className="panel-heading" role="tab" id="headingThree">
                   <h4 className="panel-title">
-                    <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#salves" aria-expanded="false" aria-controls="salves">
-                      SALVES
+                    <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#kits" aria-expanded="false" aria-controls="kits">
+                      Kits &amp; Bundles
                     </a>
                   </h4>
                 </div>
-                <div id="salves" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div id="kits" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                   <div className="panel-body">
                     <ul className="system-list ml-4 py-4">
-                      <li>Coming Soon</li>
+                      <li>Foundation Fours Bundle</li>
+                      <li>Respiratory Support Kit</li>
+                      <li>Blood Purifier Bundle</li>
+                      <li>Inner-Cellular Cleanse Bundle</li>
+                      <li>Brain, Nerve &amp; Adrenal Bundle</li>
                     </ul>
                   </div>
                 </div>
@@ -175,9 +194,9 @@ const IntegumentarySystem = () => {
   </div>
 </div>
 
-      <Footer />
+    <Footer/>
     </>
-  );
-};
+  )
+}
 
-export default IntegumentarySystem;
+export default RespiratorySystem
