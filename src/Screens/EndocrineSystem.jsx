@@ -2,8 +2,70 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
+let capsules = [
+'Brain Nerve Vitalmax Capsules',
+'CardioTonic Capsules',
+'Inner-Cellular Cleanse Capsules',
+'Parasitic Elimination Capsules',
+'Brain, Nerve and Adrenal Support Capsules',
+'Endocrino Balance Capsules',
+'Iron Phosphate Biomineral Balance Capsules',
+'Lymphatic System Detox Capsules',
+'Atomic Strengthener Capsules',
+'GI Super Mover Capsules',
+'Superfood Powder Plus Capsules',
+'Cayenne Pepper Capsules',
+'Adult All Purpose Vitamins',
+'Turmeric Infusion Capsules',
+'Liver Detox Capsules',
+'Foundation Fours Capsules',
+];
 
-const EndocrineSystem = () => {
+let Tinctures = [
+'Brain Nerve Vitalmax Tincture',
+'CardioTonic Tinctures',
+'Inner-Cellular Cleanse Tincture',
+'Parasite Elimination Tinctures',
+'Brain-Nerve Adrenal Support Tincture',
+'Endocrino Balance Tincture',
+'Iron Phosphate Tincture',
+'Lymphatic System Detox Tincture',
+'Atomic Strengthener Tincture',
+'GI Super Mover Tincture',
+'Superfood Plus Powder Tincture',
+'Foundation Fours Tincture',
+];
+
+let Teas = [
+'Brain Nerve Vitalmax Tea',
+'CardioTonic Tea',
+'Cellular Regeneration Tea',
+'Revitalizer Tea',
+'3BITTERS',
+'IV Elements',
+'Neem Leaf Tea',
+'Red Clover Leaf Tea',
+'Raspberry Leaf Tea',
+'Hibiscus Leaf Tea',
+'Burdock Root Tea',
+'Soursop Leaf Very High Potency Tea',
+];
+let powders = [
+  'Sea Moss Raw, Organic Wildcrafted',
+  'IV Elements Infusion',
+  'Bladderwrack from the Aeolian Islands',
+  'Superfood+ Powder',
+  'Kelp Granules from Ireland',
+  'Lung Cleanser (Tar Remover) Powder',
+];
+
+let bundles = [
+'Essential Glandular Endocrine Kit',
+'Foundation Fours Bundle',
+'Diabetes Reversal Kit (Pancreas Healing)',
+];
+let oils = ["Black seed Oil"];
+const EndocrineSystem = ({history}) => {
   return (
     <>
       <Header />
@@ -89,24 +151,17 @@ const EndocrineSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Capsules</li>
-                            <li>CardioTonic Capsules</li>
-                            <li>Inner-cellular Cleanse Capsules</li>
-                            <li>Parasitic Elimination Capsules</li>
-                            <li>
-                              Brain, Nerve, &amp; Adrenal Support Capsules
-                            </li>
-                            <li>Endocrino Balance Capsules</li>
-                            <li>Iron Phosphate Biomineral Balance Capsules</li>
-                            <li>Lymphatic System Detox Capsules</li>
-                            <li>Atomic Strengthener Capsules</li>
-                            <li>GI Super Mover Capsules</li>
-                            <li>Superfood Plus Powder Capsules</li>
-                            <li>Cayenne Pepper Capsules</li>
-                            <li>Adult All Purpose Vitamins</li>
-                            <li>Turmeric Infusion Capsules</li>
-                            <li>Liver Detox Capsules</li>
-                            <li>Foundation Fours Capsules</li>
+                          {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -135,20 +190,17 @@ const EndocrineSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tinctures</li>
-                            <li>CardioTonic Tinctures</li>
-                            <li>Inner-cellular Cleanse Tinctures</li>
-                            <li>Parasite Elimination Tinctures</li>
-                            <li>
-                              Brain, Nerve, &amp; Adrenal Support Tincture
-                            </li>
-                            <li>Endocrino Balance Tincture</li>
-                            <li>Iron Phosphate Tincture</li>
-                            <li>Lymphatic System Detox Tincture</li>
-                            <li>Atomic Strengthener Tincture</li>
-                            <li>GI Super Mover Tincture</li>
-                            <li>Superfood Plus Powder Tincture</li>
-                            <li>Foundation Fours Tinctures</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -181,18 +233,17 @@ const EndocrineSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tea</li>
-                            <li>CardioTonic Tea</li>
-                            <li>Cellular Regeneration Tea</li>
-                            <li>Revitalizer Tea</li>
-                            <li>3BITTERS</li>
-                            <li>IV Elements</li>
-                            <li>Neem Leaf Tea</li>
-                            <li>Red Clover Leaf Tea</li>
-                            <li>Raspberry Leaf Tea</li>
-                            <li>Hibiscus Leaf Tea</li>
-                            <li>Burdock Root Tea</li>
-                            <li>Soursop Leaf Very High Potency Tea</li>
+                          {Teas?.length > 0 &&
+                              Teas?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -225,12 +276,17 @@ const EndocrineSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Sea Moss 100% Raw, Organic Wildcrafted</li>
-                            <li>IV Elements Infusion</li>
-                            <li>Bladderwrack from the Aeolian Islands</li>
-                            <li>Superfood+ Powder</li>
-                            <li>Kelp Granules from Ireland</li>
-                            <li>Lung Cleanser (Tar Remover) Powder</li>
+                          {powders?.length > 0 &&
+                              powders?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -263,9 +319,17 @@ const EndocrineSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Essential Glandular Endocrine Kit</li>
-                            <li>Foundation Fours Bundle</li>
-                            <li>Diabetes Reversal Kit (Pancreas Healing)</li>
+                          {bundles?.length > 0 &&
+                              bundles?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>

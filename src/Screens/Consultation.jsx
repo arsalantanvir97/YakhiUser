@@ -15,6 +15,8 @@ import { baseURL } from "../utils/api";
 import Swal from "sweetalert2";
 let showformm = 1;
 let timings = [
+  { time: "8:30 CST" },
+
   { time: "9 CST" },
   { time: "9:30 CST" },
 
@@ -39,23 +41,7 @@ let timings = [
   { time: "4 CST" },
   { time: "4:30 CST" },
 
-  { time: "5 CST" },
-  { time: "5:30 CST" },
-
-  { time: "6 CST" },
-  { time: "6:30 CST" },
-
-  { time: "7 CST" },
-  { time: "7:30 CST" },
-
-  { time: "8 CST" },
-  { time: "8:30 CST" },
-
-  { time: "9 CST" },
-  { time: "9:30 CST" },
-
-  { time: "10 CST" },
-  { time: "10:30 CST" }
+  
 ];
 const Consultation = ({ history }) => {
   const dispatch = useDispatch();
@@ -652,11 +638,11 @@ setshowform(showform == 4 ? 4 : showform + 1);
                           <div className="table-responsive">
                             <table className="table table-borderless">
                               <thead></thead>
-                              <tbody>
+                              <tbody >
                                 {timings?.length > 0 &&
                                   timings?.map((tim, index) => (
-                                    <tr>
-                                      <td>
+                                    <tr >
+                                      <td >
                                         <input
                                           type="radio"
                                           value={appointment}

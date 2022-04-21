@@ -2,8 +2,71 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
+let capsules = [
+  "Brain Nerve Vitalmax Capsules",
+  "CardioTonic Capsules",
+  "Inner-Cellular Cleanse Capsules",
+  "Parasite Elimination Capsules",
+  "Brain, Nerve & Adrenal Capsules	",
+  "Endocrino Capsules",
+  "GI Supermover Capsules",
+  "Lymphatic System Capsules",
+  "Black Seed Oil (Nigella Sativa) Capsules",
+  "Iron Phosphate BioMineral Capsules",
+  "Cayenne Pepper Capsules",
+  "Adult All Purpose Vitamin Capsules",
+  "Turmeric Capsules",
+  "Blood Purifier Capsules",
+  "Liver Detox Capsules"
+];
 
-const CardioSystem = () => {
+let Tinctures = [
+  'Brain Nerve Vitalmax Tincture',
+  'CardioTonic Tincture',
+  'Inner-Cellular Cleanse Tincture',
+  'Parasite Elimination Tincture',
+  'Brain, Nerve & Adrenal Tincture',
+  'Endocrino Tincture',
+  'Lymphatic System Tincture',
+  'Black Seed Oil (Nigella Sativa) Tincture',
+  'Iron Phosphate BioMineral Tincture',
+  'Blood Purifier Tincture',
+  'Liver Detox Tincture',
+];
+
+let Teas = [
+  'Brain Nerve Vitalmax Tea',
+  'Cellular Regeneration Tea',
+  'CardioTonic Tea',
+  'Revitalizer Tea',
+  '3BITTERS',
+  'Neem Leaf Tea',
+  'Burdock Root Tea',
+];
+let powders = [
+'Sea Moss Raw, Organic Wildcrafted',
+'IV Elements Infusion',
+'Bladderwrack from the Aeolian Islands',
+'Kelp Granules from Ireland',
+'Superfood Powder Plus',
+'Teeth & Gum Restoration Powder',
+'Lung Cleanser (Tar Remover) Powder',
+];
+
+let bundles = [
+  'Cardiovascular Cardio Tonic Kit',
+  'Foundation Fours Bundle',
+  'Parasite Elimination Bundle',
+  'Brain, Nerve & Adrenal Support Bundle',
+  'Blood Purifier Bundle',
+  'Inner-Cellular Cleanse Bundle',
+  'Tonic Kit',
+  'Circulatory System High & Low Tincture Bundles',
+  'Revitalizer and Rebuilder Kit',
+];
+let oils = ["Black seed Oil"];
+
+const CardioSystem = ({ history }) => {
   return (
     <>
       <Header />
@@ -92,21 +155,17 @@ const CardioSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Capsules</li>
-                            <li>CardioTonic Capsules</li>
-                            <li>Inner-Cellular Cleanse Capsules</li>
-                            <li>Parasite Elimination Capsules</li>
-                            <li>Brain, Nerve, &amp; Adrenal Capsules</li>
-                            <li>Endocrino Capsules</li>
-                            <li>GI Supermover Capsules</li>
-                            <li>Lymphatic System Capsules</li>
-                            <li>Black Seed Oil (Nigella Sativa) Capsules</li>
-                            <li>Iron Phosphate BioMineral Capsules</li>
-                            <li>Cayenne Pepper Capsules</li>
-                            <li>Adult All Purpose Vitamin Capsules</li>
-                            <li>Turmeric Capsules</li>
-                            <li>Blood Purifier Capsules</li>
-                            <li>Liver Detox Capsules</li>
+                          {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -135,17 +194,17 @@ const CardioSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tincture</li>
-                            <li>CardioTonic Tincture</li>
-                            <li>Inner-Cellular Cleanse Tincture</li>
-                            <li>Parasite Elimination Tincture</li>
-                            <li>Brain, Nerve, &amp; Adrenal Tincture</li>
-                            <li>Endocrino Tincture</li>
-                            <li>Lymphatic System Tincture</li>
-                            <li>Black Seed Oil (Nigella Sativa) Tincture</li>
-                            <li>Iron Phosphate BioMineral Tincture</li>
-                            <li>Blood Purifier Tincture</li>
-                            <li>Liver Detox Tincture</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -178,13 +237,17 @@ const CardioSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tea</li>
-                            <li>Cellular Regeneration Tea</li>
-                            <li>CardioTonic Tea</li>
-                            <li>Revitalizer Tea</li>
-                            <li>3BITTERS</li>
-                            <li>Neem Leaf Tea</li>
-                            <li>Burdock Root Tea</li>
+                          {Teas?.length > 0 &&
+                              Teas?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -217,7 +280,17 @@ const CardioSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Black seed Oil</li>
+                          {oils?.length > 0 &&
+                              oils?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -250,13 +323,17 @@ const CardioSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Sea Moss 100% Raw, Organic Wildcrafted</li>
-                            <li>IV Elements Infusion</li>
-                            <li>Bladderwrack from the Aeolian Islands</li>
-                            <li>Kelp Granules from Ireland</li>
-                            <li>Superfood Powder Plus</li>
-                            <li>Teeth &amp; Gum Restoration Powder</li>
-                            <li>Lung Cleanser (Tar Remover) Powder</li>
+                          {powders?.length > 0 &&
+                              powders?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -289,23 +366,23 @@ const CardioSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Cardiovascular Cardio Tonic Kit</li>
-                            <li>Foundation Fours Bundle</li>
-                            <li>Parasite Elimination Bundle</li>
-                            <li>Brain, Nerve &amp; Adrenal Support Bundle</li>
-                            <li>Blood Purifier Bundle</li>
-                            <li>Inner-Cellular Cleanse Bundle</li>
-                            <li>Tonic Kit</li>
-                            <li>
-                              Circulatory System High &amp; Low Tincture Bundles
-                            </li>
-                            <li>Revitalize &amp; Rebuild Kit</li>
+                          {bundles?.length > 0 &&
+                              bundles?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
                     </div>
                   </div>
-                <ShopnowButton/>
+                  <ShopnowButton />
                 </div>
               </div>
             </div>

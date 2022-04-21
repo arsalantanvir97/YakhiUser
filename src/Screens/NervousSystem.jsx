@@ -2,8 +2,56 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
+let capsules = [
+  'Brain, Nerve & Vital Max Capsules	',
+  'CardioTonic Capsules',
+  'Inner-Cellular Cleanse Capsules',
+  'Circulatory System HIGH Capsules',
+  'Circulatory System LOW Capsules',
+  'Iron Phosphate Capsules',
+  'Atomic Strengthener Capsules',
+  'Liver and Gall Bladder Capsules	',
+  'Brain, Nerve & Adrenal Capsules',
+  'Astringent X Capsules',
+  'Foundation Fours Capsules'
+];
 
-const NervousSystem = () => {
+let Tinctures = [
+  'Brain Nerve Vitalmax Tincture',
+'CardioTonic Tincture',
+'Inner-Cellular Cleanse Tincture',
+'Circulatory System HIGH Tincture',
+'Circulatory System LOW Tincture',
+'Iron Phosphate Tincture',
+'Atomic Strengthener Tincture',
+'Liver and Gall Bladder Tincture',
+'Brain, Nerve &amp; Adrenal Tincture',
+'Astringent X Tincture',
+'Foundation Fours Tincture'
+];
+
+let Teas = [
+  'Brain Nerve Vitalmax Tea',
+'CardioTonic Tea',
+'Cellular Regeneration Tea',
+'Revitalizer Tea',
+'3BITTERS',
+'IV Elements',
+'Neem Leaf Tea',
+'Hibiscus Tea'
+];
+let powders = [
+  'Sea Moss Raw, Organic Wildcrafted',
+  'IV Elements Infusion',
+  'Bladderwrack from the Aeolian Islands',
+  'Superfood+ Powder',
+  'Kelp Granules from Ireland'
+];
+let bundles = [
+  'Brain & Nervous System Kit',
+  'Brain, Nerve & Adrenal Support Bundle'
+];
+const NervousSystem = ({history}) => {
   return (
     <>
       <Header />
@@ -86,17 +134,16 @@ const NervousSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain, Nerve &amp; Vital Max Capsules</li>
-                            <li>CardioTonic&nbsp; Capsules</li>
-                            <li>Inner-Cellular Cleanse Capsules</li>
-                            <li>Circulatory System HIGH Capsules</li>
-                            <li>Circulatory System LOW Capsules</li>
-                            <li>Iron Phosphate Capsules</li>
-                            <li>Atomic Strengthener Capsules</li>
-                            <li>Liver &amp; Gall Bladder Capsules</li>
-                            <li>Brain, Nerve &amp; Adrenal Capsules</li>
-                            <li>Astringent X Capsules</li>
-                            <li>Foundation Fours Capsules</li>
+                          {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -125,17 +172,16 @@ const NervousSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain, Nerve &amp; Vital Max Tincture</li>
-                            <li>CardioTonic&nbsp; Tincture</li>
-                            <li>Inner-Cellular Cleanse Tincture</li>
-                            <li>Circulatory System HIGH Tincture</li>
-                            <li>Circulatory System LOW Tincture</li>
-                            <li>Iron Phosphate Tincture</li>
-                            <li>Atomic Strengthener Tincture</li>
-                            <li>Liver &amp; Gall Bladder Tincture</li>
-                            <li>Brain, Nerve &amp; Adrenal Tincture</li>
-                            <li>Astringent X Tincture</li>
-                            <li>Foundation Fours Tincture</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -168,14 +214,16 @@ const NervousSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tea</li>
-                            <li>CardioTonic Tea</li>
-                            <li>Cellular Regeneration Tea</li>
-                            <li>Revitalizer Tea</li>
-                            <li>3BITTERS</li>
-                            <li>IV Elements</li>
-                            <li>Neem Leaf Tea</li>
-                            <li>Hibiscus Tea</li>
+                          {Teas?.length > 0 &&
+                              Teas?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -208,11 +256,16 @@ const NervousSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Sea Moss 100% Raw, Organic Wildcrafted</li>
-                            <li>IV Elements Infusion</li>
-                            <li>Bladderwrack from the Aeolian Islands</li>
-                            <li>Superfood+ Powder</li>
-                            <li>Kelp Granules from Ireland</li>
+                          {powders?.length > 0 &&
+                              powders?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -245,8 +298,16 @@ const NervousSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain &amp; Nervous System Kit</li>
-                            <li>Brain, Nerve &amp; Adrenal Support Bundle</li>
+                          {bundles?.length > 0 &&
+                              bundles?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>

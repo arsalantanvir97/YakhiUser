@@ -20,7 +20,7 @@ const GeoGenetics = ({history}) => {
 
   const getDetoxProducts = async () => {
     try {
-      const { data } = await axios.get(`${baseURL}/product/detoxProducts`);
+      const { data } = await axios.get(`${baseURL}/product/geoGeneticsProducts`);
       console.log("data", data);
       setorganicproductlist(data);
     } catch (error) {
@@ -126,7 +126,7 @@ const GeoGenetics = ({history}) => {
             </div>
           </div>
           <ProductSlider
-            images={organicproductlist?.detoxproduct}
+            images={organicproductlist?.geoGeneticsproduct}
             userInfo={userInfo}
             history={history}
           />

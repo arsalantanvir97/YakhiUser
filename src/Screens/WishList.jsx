@@ -48,40 +48,50 @@ const WishList = () => {
           <section className="my-cart mt-5">
             <div className="row align-items-start">
               <div className="col-12 my-4">
-                <h2>WhishList</h2>
+                {wishtlistuser?.length > 0 ? (
+                  <h2>Wishlist</h2>
+                ) : (
+                  <h2>
+                    Your Wishlist is Empty <Link to="/">Go Back</Link>
+                  </h2>
+                )}
               </div>
-              <div className="col-xl-11 col-md-12">
-                {/* cart table */}
-                <div className="table-responsive">
-                  <table
-                    className="table table-borderless text-center"
-                    id="cart-table"
-                  >
-                    <thead>
-                      <tr>
-                        <th>IMAGE</th>
-                        <th>PRODUCT</th>
-                        {/* <th>QUANTITY</th> */}
-                        <th>UNIT PRICE</th>
-                        <th>Availability</th>
-                        <th>ACTION</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {wishtlistuser?.length > 0 &&
-                        wishtlistuser?.map((wish, index) => (
-                          <tr>
-                            <td>
-                              <div className="cart-product">
-                                <img
-                                  src={wish?.productimage?.length>0 &&`${imageURL}${wish?.productimage[0]}`}
-                                  alt=""
-                                  className="img-fluid mx-auto"
-                                />
-                              </div>
-                            </td>
-                            <td>{wish?.name}</td>
-                            {/* <td>
+              {wishtlistuser?.length > 0 && (
+                <div className="col-xl-11 col-md-12">
+                  {/* cart table */}
+                  <div className="table-responsive">
+                    <table
+                      className="table table-borderless text-center"
+                      id="cart-table"
+                    >
+                      <thead>
+                        <tr>
+                          <th>IMAGE</th>
+                          <th>PRODUCT</th>
+                          {/* <th>QUANTITY</th> */}
+                          <th>UNIT PRICE</th>
+                          <th>Availability</th>
+                          <th>ACTION</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {wishtlistuser?.length > 0 &&
+                          wishtlistuser?.map((wish, index) => (
+                            <tr>
+                              <td>
+                                <div className="cart-product">
+                                  <img
+                                    src={
+                                      wish?.productimage?.length > 0 &&
+                                      `${imageURL}${wish?.productimage[0]}`
+                                    }
+                                    alt=""
+                                    className="img-fluid mx-auto"
+                                  />
+                                </div>
+                              </td>
+                              <td>{wish?.name}</td>
+                              {/* <td>
                               <div id="field1">
                                 <div className="quantifier ml-0">
                                   <button
@@ -119,31 +129,32 @@ const WishList = () => {
                                 </div>
                               </div>
                             </td> */}
-                            <td>${wish?.price}</td>
-                            <td>
-                              <span className="instock-label">
-                                {wish?.countInStock > 0
-                                  ? "In Stock"
-                                  : "Out of Stock"}
-                              </span>
-                            </td>
-                            <td>
-                              <button
-                                type="button"
-                                className="btn trash-btn"
-                                onClick={() => {
-                                  deleteWishHandler(wish?._id);
-                                }}
-                              >
-                                <i className="far fa-trash-alt" />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
+                              <td>${wish?.price}</td>
+                              <td>
+                                <span className="instock-label">
+                                  {wish?.countInStock > 0
+                                    ? "In Stock"
+                                    : "Out of Stock"}
+                                </span>
+                              </td>
+                              <td>
+                                <button
+                                  type="button"
+                                  className="btn trash-btn"
+                                  onClick={() => {
+                                    deleteWishHandler(wish?._id);
+                                  }}
+                                >
+                                  <i className="far fa-trash-alt" />
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </section>
           <div className="row mt-5">

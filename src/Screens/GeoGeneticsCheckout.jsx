@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-import {
-  addToCart,
-  removeFromCart,
-  saveShippingAddress,
-  savePaymentMethod
-} from "../actions/cartAction";
-import { createOrder } from "../actions/orderAction";
+import { saveShippingAddress, savePaymentMethod } from "../actions/cartAction";
+import { createGeoGeneticsOrder } from "../actions/orderAction";
 import DatePicker from "react-datepicker";
 import { baseURL, imageURL } from "../utils/api";
 import Toasty from "../utils/toast";
@@ -19,13 +14,41 @@ import { validateEmail } from "../utils/ValidateEmail";
 import axios from "axios";
 import moment from "moment";
 
-const Checkout = ({ history }) => {
+const GeoGeneticsCheckout = ({ history, location, match }) => {
+  const [totalPrice, settotalPrice] = useState(0);
+  const [quantity, setquantity] = useState(location?.search ? Number(location?.search?.split("=")[1]) : 1);
+
   const cart = useSelector((state) => state.cart);
-  const { shippingAddress, cartItems, paymentInfo } = cart;
+  const { shippingAddress, paymentInfo } = cart;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    getSingleProduct();
+  }, []);
+
+  const getSingleProduct = async () => {
+    try {
+      const res = await axios({
+        url: `${baseURL}/product/getProductDetails/${match?.params?.id}`,
+        method: "GET"
+      });
+      // const ress = await axios({
+      //   url: `${baseURL}/product/getProductDetailsByName/${match?.params?.id}`,
+      //   method: "GET"
+      // });
+
+      console.log("res", res?.data?.product);
+      setproduct(res?.data?.product);
+      settotalPrice(Number(res?.data?.product?.price * quantity));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const [taxofstate, settaxofstate] = useState(0);
+  const [product, setproduct] = useState();
 
   const [email, setemail] = useState(shippingAddress?.email);
   const [phone, setphone] = useState(shippingAddress?.phone);
@@ -50,6 +73,12 @@ const Checkout = ({ history }) => {
   // onchange = (e)=>{
   //   setFormData({...FormData,[e.target.name]:"e.target.value"})
   // }
+  useEffect(() => {
+    console.log("email", email);
+  }, [email]);
+
+ 
+  const [doc_schedule, setdoc_schedule] = useState("");
 
   const [billingcity, setbillingcity] = useState(shippingAddress?.billingcity);
   const [billingzipcode, setbillingzipcode] = useState(
@@ -89,6 +118,8 @@ const Checkout = ({ history }) => {
   const [expirydate, setexpirydate] = useState();
 
   const [togglecheckout, settogglecheckout] = useState(0);
+  const [taxPrice, settaxPrice] = useState(0);
+  const [shippingPrice, setshippingPrice] = useState(0);
 
   const togglecheckoutHandler = async () => {
     console.log("togglecheckoutHandler");
@@ -118,20 +149,18 @@ const Checkout = ({ history }) => {
       } else {
         settaxofstate(res?.data?.tax?.percent);
       }
-      cart.itemsPrice = cart.cartItems.reduce(
-        (acc, item) => acc + item.price * item.qty,
-        0
-      );
-      cart.shippingPrice = Number(0);
-      cart.taxPrice =
+
+      setshippingPrice(0);
+      settaxPrice(
         Number(res?.data?.tax == null ? 0 : res?.data?.tax?.percent / 100) *
-        Number(cart.itemsPrice);
-      cart.taxPrice = cart.taxPrice.toFixed(0);
-      cart.totalPrice = Number(cart.itemsPrice) + Number(cart.taxPrice);
+          Number(product?.price * quantity)
+      );
+      settotalPrice(Number(product?.price * quantity) + Number(taxPrice));
       dispatch(
         saveShippingAddress({
           email,
           phone,
+          doc_schedule: doc_schedule?.name,
           billingname,
           billingaddress,
           billingcity,
@@ -163,18 +192,6 @@ const Checkout = ({ history }) => {
       })
     );
   };
-  const removeFromCartHandler = (id) => {
-    console.log("removeFromCartHandler", removeFromCartHandler);
-    dispatch(removeFromCart(id));
-  };
-  cart.itemsPrice = cart?.cartItems?.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0
-  );
-  cart.shippingPrice = Number(0);
-  cart.taxPrice = Number(taxofstate / 100) * Number(cart?.itemsPrice);
-  cart.taxPrice = cart.taxPrice.toFixed(0);
-  cart.totalPrice = Number(cart?.itemsPrice) + Number(cart?.taxPrice);
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
@@ -194,30 +211,53 @@ const Checkout = ({ history }) => {
   }, [history, success]);
 
   const placeOrderHandler = async () => {
-    cart.cartItems = cart?.cartItems?.filter(
-      (cartt) => cartt?.qty !== 0 && cart
-    );
-    console.log("cart.cartItems", cart?.cartItems);
+    if(quantity==0){
+      Toasty(
+        "error",
+        `Quantity must be greater than 0`
+      );
+    }else{
+      const orderItems=[{...product,product:product?._id,qty:quantity,image:product?.productimage}]
+      const totalpricee=Number(product?.price * quantity) + Number(taxPrice)
+      const formData = new FormData();
+
+      formData.append("doc_schedule", doc_schedule);
+      formData.append("orderItems", JSON.stringify(orderItems));
+
+      formData.append("userid", userInfo?._id);
+      formData.append("shippingAddress", JSON.stringify(cart?.shippingAddress));
+      formData.append("paymentMethod", JSON.stringify(paymentInfo));
+      formData.append(
+        "itemsPrice",
+        product?.price
+      );
+      formData.append("shippingPrice", shippingPrice);
+      formData.append("taxPrice", taxPrice);
+      formData.append("totalPrice", totalpricee);
+      formData.append("taxperproduct", taxofstate);
+
+      const body = formData;
     dispatch(
-      createOrder({
-        userid: userInfo?._id,
-        orderItems: cart?.cartItems,
-        shippingAddress: cart?.shippingAddress,
-        paymentMethod: paymentInfo,
-        itemsPrice: cart?.itemsPrice,
-        shippingPrice: cart?.shippingPrice,
-        taxPrice: cart?.taxPrice,
-        totalPrice: cart?.totalPrice,
-        taxperproduct: Number(taxofstate)
-      })
+    
+      createGeoGeneticsOrder(body)
+    )}
+  };
+  const subQuantity = async () => {
+    console.log("cart?.product", quantity);
+    quantity == 0 || quantity <= 0 ? setquantity(Number(quantity + 0)) : setquantity(Number(quantity - 1));
+  };
+  
+  const filedocsHandler = (e) => {
+    console.log("eeee", e?.target?.files[0]);
+    setdoc_schedule(e?.target?.files[0]);
+  };
+   useEffect(()=>{
+    settaxPrice(
+      Number(taxofstate / 100) *
+        Number(product?.price * quantity)
     );
-  };
-  const subQuantity = async (prod, qty) => {
-    console.log("cart?.product", prod, qty);
-    qty == 0 || qty <= 0
-      ? dispatch(addToCart(prod, Number(qty + 0)))
-      : dispatch(addToCart(prod, Number(qty - 1)));
-  };
+    settotalPrice(Number(product?.price * quantity) + Number(taxPrice));
+  },[quantity])
   return (
     <section className="about-page">
       <div className="container-fluid">
@@ -281,6 +321,32 @@ const Checkout = ({ history }) => {
                                       value={phone}
                                       onChange={setphone}
                                     />
+                                  </div>
+                                </div>
+
+                                <div className="row mb-4">
+                                  <div className="col mb-4">
+                                    <label>
+                                      Upload Valid Government Issued ID*
+                                    </label>
+                                    <input
+                                      type="file"
+                                      name
+                                      id="govt-id"
+                                      accept="application/pdf,application/vnd.ms-excel"
+                                      onChange={filedocsHandler}
+                                      className="form-control"
+                                    />
+                                    <label
+                                      htmlFor="govt-id"
+                                      className="d-block id-upload"
+                                    >
+                                      {doc_schedule?.name ? (
+                                        <i className="fas fa-file-upload fa-2x" />
+                                      ) : (
+                                        <i className="fas fa-upload fa-2x" />
+                                      )}
+                                    </label>
                                   </div>
                                 </div>
                                 {/* Billing Address */}
@@ -695,22 +761,20 @@ const Checkout = ({ history }) => {
                                       <h4>Abc Product</h4>
                                       <p>$100.00</p>
                                     </div> */}
-                                      {cartItems?.length > 0 &&
-                                        cartItems?.map((cart) => (
-                                          <>
-                                            <div className="col-4 mb-3">
-                                              <img
-                                                src={`${imageURL}${cart?.image[0]}`}
-                                                alt=""
-                                                className="img-fluid"
-                                              />
-                                            </div>
-                                            <div className="col-8 mb-3">
-                                              <td>{cart?.name}</td>
-                                              <p>${cart?.price}</p>
-                                            </div>
-                                          </>
-                                        ))}
+
+                                      <>
+                                        <div className="col-4 mb-3">
+                                          <img
+                                            src={`${imageURL}${product?.productimage[0]}`}
+                                            alt=""
+                                            className="img-fluid"
+                                          />
+                                        </div>
+                                        <div className="col-8 mb-3">
+                                          <td>{product?.name}</td>
+                                          <p>${product?.price}</p>
+                                        </div>
+                                      </>
                                     </div>
                                   </div>
 
@@ -723,14 +787,14 @@ const Checkout = ({ history }) => {
                                     <div className="col-5 mb-3 text-right">
                                       <p className="summary-value">
                                         {" "}
-                                        $
-                                        {cartItems
+                                        ${product?.price * quantity}
+                                        {/* {cartItems
                                           .reduce(
                                             (acc, item) =>
                                               acc + item.qty * item.price,
                                             0
                                           )
-                                          .toFixed(2)}
+                                          .toFixed(2)} */}
                                       </p>
                                     </div>
                                     {/* tax */}
@@ -741,7 +805,7 @@ const Checkout = ({ history }) => {
                                     </div>
                                     <div className="col-5 mb-3 text-right">
                                       <p className="summary-value">
-                                        ${cart?.taxPrice}
+                                       To be Counted
                                       </p>
                                     </div>
                                     {/* Shipping rates */}
@@ -752,7 +816,7 @@ const Checkout = ({ history }) => {
                                     </div>
                                     <div className="col-5 mb-3 text-right">
                                       <p className="summary-value">
-                                        ${cart?.shippingPrice}
+                                        ${shippingPrice}
                                       </p>
                                     </div>
                                     <div className="col-12 border-top border-grey mb-2" />
@@ -763,7 +827,7 @@ const Checkout = ({ history }) => {
                                     <div className="col-5 mb-3 text-right">
                                       <p className="grand-total-value">
                                         {" "}
-                                        ${cart?.totalPrice.toFixed(0)}
+                                        ${totalPrice.toFixed(0)}
                                       </p>
                                     </div>
                                   </div>
@@ -942,22 +1006,20 @@ const Checkout = ({ history }) => {
                                       <h4>Abc Product</h4>
                                       <p>$100.00</p>
                                     </div> */}
-                                    {cartItems?.length > 0 &&
-                                      cartItems?.map((cart) => (
-                                        <>
-                                          <div className="col-4 mb-3">
-                                            <img
-                                              src={`${imageURL}${cart?.image[0]}`}
-                                              alt=""
-                                              className="img-fluid"
-                                            />
-                                          </div>
-                                          <div className="col-8 mb-3">
-                                            <td>{cart?.name}</td>
-                                            <p>${cart?.price}</p>
-                                          </div>
-                                        </>
-                                      ))}
+
+                                    <>
+                                      <div className="col-4 mb-3">
+                                        <img
+                                          src={`${imageURL}${product?.productimage[0]}`}
+                                          alt=""
+                                          className="img-fluid"
+                                        />
+                                      </div>
+                                      <div className="col-8 mb-3">
+                                        <td>{product?.name}</td>
+                                        <p>${product?.price}</p>
+                                      </div>
+                                    </>
                                   </div>
                                 </div>
 
@@ -970,14 +1032,7 @@ const Checkout = ({ history }) => {
                                   <div className="col-5 mb-3 text-right">
                                     <p className="summary-value">
                                       {" "}
-                                      $
-                                      {cartItems
-                                        .reduce(
-                                          (acc, item) =>
-                                            acc + item.qty * item.price,
-                                          0
-                                        )
-                                        .toFixed(2)}
+                                      ${product?.price * quantity}
                                     </p>
                                   </div>
                                   {/* tax */}
@@ -987,9 +1042,7 @@ const Checkout = ({ history }) => {
                                     </p>
                                   </div>
                                   <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">
-                                      ${cart?.taxPrice}
-                                    </p>
+                                    <p className="summary-value">${taxPrice}</p>
                                   </div>
                                   {/* Shipping rates */}
                                   <div className="col-7 mb-3">
@@ -999,7 +1052,7 @@ const Checkout = ({ history }) => {
                                   </div>
                                   <div className="col-5 mb-3 text-right">
                                     <p className="summary-value">
-                                      ${cart?.shippingPrice}
+                                      ${shippingPrice}
                                     </p>
                                   </div>
                                   <div className="col-12 border-top border-grey mb-2" />
@@ -1010,7 +1063,8 @@ const Checkout = ({ history }) => {
                                   <div className="col-5 mb-3 text-right">
                                     <p className="grand-total-value">
                                       {" "}
-                                      ${cart?.totalPrice.toFixed(0)}
+                                      $
+                                      {product?.price * quantity + taxPrice }
                                     </p>
                                   </div>
                                 </div>
@@ -1063,96 +1117,62 @@ const Checkout = ({ history }) => {
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    {cartItems?.length > 0 &&
-                                      cartItems?.map((cart) => (
-                                        <tr>
-                                          <td>
-                                            <div className="cart-product">
-                                              <img
-                                                src={`${imageURL}${cart?.image[0]}`}
-                                                alt=""
-                                                className="img-fluid mx-auto"
-                                              />
-                                            </div>
-                                          </td>
-                                          <td>{cart?.name}</td>
-                                          <td>
-                                            <div id="field1">
-                                              <div className="quantifier ml-0">
-                                                <button
-                                                  type="button"
-                                                  id="sub"
-                                                  className="minus"
-                                                  value={cart?.qty}
-                                                  onClick={() =>
-                                                    // dispatch(
-                                                    //   addToCart(
-                                                    //     cart?.product,
-                                                    //     Number(cart?.qty-1)
-                                                    //   )
-                                                    // )
-                                                    subQuantity(
-                                                      cart?.product,
-                                                      cart?.qty
-                                                    )
-                                                  }
-                                                >
-                                                  <i className="fas fa-minus" />
-                                                </button>
-                                                <input
-                                                  type="number"
-                                                  id={1}
-                                                  defaultValue={1}
-                                                  min={1}
-                                                  value={cart?.qty}
-                                                  onChange={(e) =>
-                                                    dispatch(
-                                                      addToCart(
-                                                        cart?.product,
-                                                        Number(e.target.value)
-                                                      )
-                                                    )
-                                                  }
-                                                  className="quantity p-md-2 p-0"
-                                                  max={cart?.countInStock}
-                                                />
-                                                <button
-                                                  type="button"
-                                                  id="add"
-                                                  className="plus"
-                                                  value={cart?.qty}
-                                                  onClick={() =>
-                                                    dispatch(
-                                                      addToCart(
-                                                        cart?.product,
-                                                        Number(cart?.qty + 1)
-                                                      )
-                                                    )
-                                                  }
-                                                >
-                                                  <i className="fas fa-plus" />
-                                                </button>
-                                              </div>
-                                            </div>
-                                          </td>
-                                          <td>${cart?.price}</td>
-                                          <td>${cart?.qty * cart?.price}</td>
-                                          <td>{taxofstate}%</td>
-                                          <td>
+                                    <tr>
+                                      <td>
+                                        <div className="cart-product">
+                                          <img
+                                            src={`${imageURL}${product?.productimage[0]}`}
+                                            alt=""
+                                            className="img-fluid mx-auto"
+                                          />
+                                        </div>
+                                      </td>
+                                      <td>{product?.name}</td>
+                                      <td>
+                                        <div id="field1">
+                                          <div className="quantifier ml-0">
                                             <button
                                               type="button"
-                                              className="btn trash-btn"
+                                              id="sub"
+                                              className="minus"
+                                              value={quantity}
                                               onClick={() =>
-                                                removeFromCartHandler(
-                                                  cart?.product
-                                                )
+                                                // dispatch(
+                                                //   addToCart(
+                                                //     cart?.product,
+                                                //     Number(cart?.qty-1)
+                                                //   )
+                                                // )
+                                                subQuantity()
                                               }
                                             >
-                                              <i className="far fa-trash-alt" />
+                                              <i className="fas fa-minus" />
                                             </button>
-                                          </td>
-                                        </tr>
-                                      ))}
+                                            <input
+                                              type="number"
+                                              id={1}
+                                              defaultValue={1}
+                                              min={1}
+                                              value={quantity}
+                                              className="quantity p-md-2 p-0"
+                                              max={product?.countInStock}
+                                            />
+                                            <button
+                                              type="button"
+                                              id="add"
+                                              className="plus"
+                                              value={quantity}
+                                              onClick={() =>setquantity(Number(quantity+1)) }
+                                            >
+                                              <i className="fas fa-plus" />
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td>${product?.price}</td>
+                                      <td>${quantity * product?.price}</td>
+                                      <td>{taxofstate}%</td>
+                                    </tr>
                                   </tbody>
                                 </table>
                               </div>
@@ -1177,22 +1197,20 @@ const Checkout = ({ history }) => {
                                       <h4>Abc Product</h4>
                                       <p>$100.00</p>
                                     </div> */}
-                                    {cartItems?.length > 0 &&
-                                      cartItems?.map((cart) => (
-                                        <>
-                                          <div className="col-4 mb-3">
-                                            <img
-                                              src={`${imageURL}${cart?.image[0]}`}
-                                              alt=""
-                                              className="img-fluid"
-                                            />
-                                          </div>
-                                          <div className="col-8 mb-3">
-                                            <td>{cart?.name}</td>
-                                            <p>${cart?.price}</p>
-                                          </div>
-                                        </>
-                                      ))}
+
+                                    <>
+                                      <div className="col-4 mb-3">
+                                        <img
+                                          src={`${imageURL}${product?.productimage[0]}`}
+                                          alt=""
+                                          className="img-fluid"
+                                        />
+                                      </div>
+                                      <div className="col-8 mb-3">
+                                        <td>{product?.name}</td>
+                                        <p>${product?.price}</p>
+                                      </div>
+                                    </>
                                   </div>
                                 </div>
 
@@ -1205,14 +1223,7 @@ const Checkout = ({ history }) => {
                                   <div className="col-5 mb-3 text-right">
                                     <p className="summary-value">
                                       {" "}
-                                      $
-                                      {cartItems
-                                        .reduce(
-                                          (acc, item) =>
-                                            acc + item.qty * item.price,
-                                          0
-                                        )
-                                        .toFixed(2)}
+                                      ${product?.price * quantity}
                                     </p>
                                   </div>
                                   {/* tax */}
@@ -1222,9 +1233,7 @@ const Checkout = ({ history }) => {
                                     </p>
                                   </div>
                                   <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">
-                                      ${cart?.taxPrice}
-                                    </p>
+                                    <p className="summary-value">${taxPrice}</p>
                                   </div>
                                   {/* Shipping rates */}
                                   <div className="col-7 mb-3">
@@ -1234,7 +1243,7 @@ const Checkout = ({ history }) => {
                                   </div>
                                   <div className="col-5 mb-3 text-right">
                                     <p className="summary-value">
-                                      ${cart?.shippingPrice}
+                                      ${shippingPrice}
                                     </p>
                                   </div>
                                   <div className="col-12 border-top border-grey mb-2" />
@@ -1245,7 +1254,7 @@ const Checkout = ({ history }) => {
                                   <div className="col-5 mb-3 text-right">
                                     <p className="grand-total-value">
                                       {" "}
-                                      ${cart?.totalPrice.toFixed(0)}
+                                      ${Number(product?.price * quantity) + taxPrice}
                                     </p>
                                   </div>
                                 </div>
@@ -1256,11 +1265,7 @@ const Checkout = ({ history }) => {
                                       className="btn red-btn-solid mt-lg-4 mt-3 mx-auto py-2 px-4 text-capitalize"
                                       data-toggle="modal"
                                       data-target="#confirmOrder"
-                                      onClick={
-                                        cart.cartItems === 0
-                                          ? null
-                                          : placeOrderHandler
-                                      }
+                                      onClick={placeOrderHandler}
                                     >
                                       Place Order
                                     </Link>
@@ -1313,6 +1318,7 @@ const Checkout = ({ history }) => {
                         onClick={() => {
                           togglecheckout == 0 &&
                           email &&
+                          doc_schedule?.name?.length > 0 &&
                           phone &&
                           billingname &&
                           billingaddress &&
@@ -1371,4 +1377,4 @@ const Checkout = ({ history }) => {
   );
 };
 
-export default Checkout;
+export default GeoGeneticsCheckout;

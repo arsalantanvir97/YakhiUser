@@ -2,8 +2,45 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
-
-const ReproductiveSystem = () => {
+let capsules = [
+'Brain Nerve Vitalmax Capsules',
+'Inner-Cellular Cleanse Capsules',
+'Parasite Elimination Capsules',
+'Brain, Nerve & Adrenal Capsules',
+'Endocrino Capsules',
+'GI Super Mover Capsules',
+'Blood Purifier Capsules',
+'Calcium Tri-Phosphate Capsules',
+'Atomic Strengthener Capsules',
+'Lymphatic System Detox Capsules',
+'Cayenne Pepper Capsules',
+'Adult All Purpose Vitamin Capsules',
+'Turmeric Infusion Capsules',
+'Superfood Powder Plus Capsules',
+  ];
+  
+  let Tinctures = [
+    'Brain Nerve Vitalmax Tincture',
+    'Inner-Cellular Cleanse Tincture',
+    'Parasite Elimination Tincture',
+    'Brain, Nerve, & Adrenal Tincture',
+    'Endocrino Tincture',
+    'GI Super Mover Tincture',
+    'Blood Purifier Tincture',
+    'Calcium Tri-Phosphate Tincture',
+    'Atomic Strengthener Tincture',
+    'Lymphatic System Sweep Tonic Tincture',
+  ];
+  
+  let Teas = [
+    'Brain Nerve Vitalmax Tea',
+    'Cellular Regeneration Tea',
+    'Revitalizer Tea',
+    '3BITTERS',
+    'IV Elements',
+    'Burdock Root Tea',
+  ];
+const ReproductiveSystem = ({history}) => {
   return (
     <>
       <Header />
@@ -86,20 +123,16 @@ const ReproductiveSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Capsules</li>
-                            <li>Inner-Cellular Cleanse Capsules</li>
-                            <li>Parasite Elimination Capsules</li>
-                            <li>Brain, Nerve, &amp; Adrenal Capsules</li>
-                            <li>Endocrino Capsules</li>
-                            <li>GI Super Mover Capsules</li>
-                            <li>Blood Purifier Capsules</li>
-                            <li>Calcium Tri-Phosphate Capsules</li>
-                            <li>Atomic Strengthener Capsules</li>
-                            <li>Lymphatic System Detox Capsules</li>
-                            <li>Cayenne Pepper Capsules</li>
-                            <li>Adult All Purpose Vitamin Capsules</li>
-                            <li>Turmeric Infusion Capsules</li>
-                            <li>Superfood Powder Plus Capsules</li>
+                          {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -128,16 +161,16 @@ const ReproductiveSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tincture</li>
-                            <li>Inner-Cellular Cleanse Tincture</li>
-                            <li>Parasite Elimination Tincture</li>
-                            <li>Brain, Nerve, &amp; Adrenal Tincture</li>
-                            <li>Endocrino Tincture</li>
-                            <li>GI Super Mover Tincture</li>
-                            <li>Blood Purifier Tincture</li>
-                            <li>Calcium Tri-Phosphate Tincture</li>
-                            <li>Atomic Strengthener Tincture</li>
-                            <li>Lymphatic System Sweep Tonic Tincture</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -170,12 +203,16 @@ const ReproductiveSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tea</li>
-                            <li>Cellular Regeneration Tea</li>
-                            <li>Revitalizer Tea</li>
-                            <li>3BITTERS</li>
-                            <li>IV Elements</li>
-                            <li>Burdock Root Tea</li>
+                          {Teas?.length > 0 &&
+                              Teas?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>

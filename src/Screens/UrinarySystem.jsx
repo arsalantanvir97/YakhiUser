@@ -3,7 +3,57 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
 
-const UrinarySystem = () => {
+let capsules = [
+  "Inner-Cellular Cleanse Capsules",
+  "Blood Purifier Capsules",
+  "Parasite Elimination Capsules",
+  "Heavy Metal Detox Capsules",
+  "Lymphatic Sweep Tonic Capsules",
+  "Circulatory System LOW Capsules",
+  "Liver & Gall Bladder Capsules",
+  "Brain, Nerve &amp; Adrenal Capsules",
+  "Astringent X Capsules",
+  "Foundation Fours Capsules"
+];
+
+let Tinctures = [
+  'Inner-Cellular Cleanse Tincture',
+  'Blood Purifier Tincture',
+  'Parasite Elimination Tincture',
+  'Heavy Metal Detox Tincture',
+  'Lymphatic Sweep Tonic Tincture',
+  'Circulatory System LOW Tincture',
+  'Liver and Gall Bladder Tincture',
+  'Brain, Nerve, & Adrenal Tincture',
+  'Astringent X Tincture',
+  'Foundation Fours Tincture'
+];
+
+let Teas = [
+  'Cellular Regeneration Tea',
+  'Revitalizer Tea',
+  '3BITTERS',
+  'IV Elements',
+  'Neem Leaf Tea',
+  'Red Clover Tea',
+  'Raspberry Leaf Tea',
+  'Burdock Root Tea',
+  'Soursop Leaf Very High Potency Tea',
+  'Hibiscus Leaf Tea',
+];
+
+let powders = [
+'Sea Moss Raw, Organic Wildcrafted',
+'IV Elements Infusion',
+'Bladderwrack from the Aeolian Islands',
+'Superfood+ Powder',
+'Kelp Granules from Ireland',
+];
+let tonics = [
+  'Lymphatic Sweep Tonic',
+'Bitter Liquid Mineral Balance Tonic'
+  ];
+const UrinarySystem = ({ history }) => {
   return (
     <>
       <Header />
@@ -90,16 +140,17 @@ const UrinarySystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Inner-Cellular Cleanse Capsules</li>
-                            <li>Blood Purifier Capsules</li>
-                            <li>Parasite Elimination Capsules</li>
-                            <li>Heavy Metal Detox Capsules</li>
-                            <li>Lymphatic Sweep Tonic Capsules</li>
-                            <li>Circulatory System LOW Capsules</li>
-                            <li>Liver &amp; Gall Bladder Capsules</li>
-                            <li>Brain, Nerve &amp; Adrenal Capsules</li>
-                            <li>Astringent X Capsules</li>
-                            <li>Foundation Fours Capsules</li>
+                            {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -128,16 +179,17 @@ const UrinarySystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Inner-Cellular Cleanse Tincture</li>
-                            <li>Blood Purifier Tincture</li>
-                            <li>Parasite Elimination Tincture</li>
-                            <li>Heavy Metal Detox Tincture</li>
-                            <li>Lymphatic Sweep Tonic Tincture</li>
-                            <li>Circulatory System LOW Tincture</li>
-                            <li>Liver &amp; Gall Bladder Tincture</li>
-                            <li>Brain, Nerve &amp; Adrenal Tincture</li>
-                            <li>Astringent X Tincture</li>
-                            <li>Foundation Fours Tincture</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -170,16 +222,17 @@ const UrinarySystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Cellular Regeneration Tea</li>
-                            <li>Revitalizer Tea</li>
-                            <li>3BITTERS</li>
-                            <li>IV Elements</li>
-                            <li>Neem Leaf Tea</li>
-                            <li>Red Clover Tea</li>
-                            <li>Raspberry Leaf Tea</li>
-                            <li>Burdock Root Tea</li>
-                            <li>Soursop Leaf Very High Potency Tea</li>
-                            <li>Hibiscus Leaf Tea</li>
+                          {Teas?.length > 0 &&
+                              Teas?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -212,11 +265,17 @@ const UrinarySystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Sea Moss 100% Raw, Organic Wildcrafted</li>
-                            <li>IV Elements Infusion</li>
-                            <li>Bladderwrack from the Aeolian Islands</li>
-                            <li>Superfood+ Powder</li>
-                            <li>Kelp Granules from Ireland</li>
+                          {powders?.length > 0 &&
+                              powders?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -249,8 +308,17 @@ const UrinarySystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Lymphatic Sweep Tonic</li>
-                            <li>Bitter Liquid Mineral Balance Tonic</li>
+                          {tonics?.length > 0 &&
+                              tonics?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>

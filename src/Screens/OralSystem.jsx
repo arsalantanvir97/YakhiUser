@@ -2,8 +2,37 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
+let capsules = [
+  'Brain Nerve Vitalmax Capsules',
+  'Inner-Cellular Cleanse Capsules',
+  'Parasite Elimination Capsules',
+  'Brain, Nerve & Adrenal Capsules',
+  'Endocrino Balance Capsules',
+  'GI Super Mover Capsules',
+  'Calcium Tri-Phosphate Capsules',
+  'Atomic Strengthener Capsules',
+  'Lymphatic Sweep Tonic Capsules',
+];
 
-const OralSystem = () => {
+let Tinctures = [
+  'Brain Nerve Vitalmax Tincture',
+  'Inner-Cellular Cleanse Tincture',
+  'Parasite Elimination Tincture',
+  'Brain-Nerve Adrenal Support Tincture',
+  'Endocrino Balance Tincture',
+  'Calcium Tri-Phosphate Tincture',
+  'Atomic Strengthener Tincture',
+  'Lymphatic Sweep Tonic Tincture',
+];
+
+
+let powders = [
+  'Teeth & Gum Restoration',
+  'Superfood Powder Plus Powder',
+  'Lung Cleanser (Tar Remover) Powder',
+];
+
+const OralSystem = ({history}) => {
   return (
     <>
       <Header />
@@ -84,15 +113,17 @@ const OralSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Capsules</li>
-                            <li>Inner-Cellular Cleanse Capsules</li>
-                            <li>Parasite Elimination Capsules</li>
-                            <li>Brain, Nerve, &amp; Adrenal Capsules</li>
-                            <li>Endocrino Balance Capsules</li>
-                            <li>GI Super Mover Capsules</li>
-                            <li>Calcium Tri-Phosphate Capsules</li>
-                            <li>Atomic Strengthener Capsules</li>
-                            <li>Lymphatic Sweep Tonic Capsules</li>
+                          {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -121,14 +152,17 @@ const OralSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tincture</li>
-                            <li>Inner-Cellular Cleanse Tincture</li>
-                            <li>Parasite Elimination Tincture</li>
-                            <li>Brain, Nerve, &amp; Adrenal Tincture</li>
-                            <li>Endocrino Balance Tincture</li>
-                            <li>Calcium Tri-Phosphate Tincture</li>
-                            <li>Atomic Strengthener Tincture</li>
-                            <li>Lymphatic Sweep Tonic Tincture</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -161,9 +195,17 @@ const OralSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Teeth &amp; Gum Restoration</li>
-                            <li>Superfood Powder Plus Powder</li>
-                            <li>Lung Cleanser (Tar Remover) Powder</li>
+                          {powders?.length > 0 &&
+                              powders?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>

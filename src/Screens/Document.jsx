@@ -1,28 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { baseURL } from "../utils/api";
+import { baseURL, imageURL } from "../utils/api";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 const Document = () => {
   const [docs, setdocs] = useState([]);
-  const [docsimages, setdocsimages] = useState([
-    "images/abdominal-massage.jpg",
-    "images/neuro-points.jpg",
-    "images/lemonade.jpg",
-    "images/gallbladder-flush.jpg",
-    "images/herbal-enema.jpg",
-    "images/herbal-douche.jpg",
-    "images/castor-packs.jpg",
-    "images/ear-candling.jpg",
-    "images/detoxing.jpg",
-    "images/diet-program.jpg",
-    "images/herbal-instructions.jpg",
-    "images/alkaline-foods.jpg",
-    "images/kidney-filtration.jpg",
-    "images/healing-preparation.jpg"
 
-  ]);
   const gettingAllDOucs = async () => {
     const res = await axios.get(`${baseURL}/document/getallDocuments/`);
     console.log("res", res);
@@ -30,9 +14,7 @@ const Document = () => {
   };
   useEffect(() => {
     gettingAllDOucs();
-  }, [])
-  
-
+  }, []);
 
   return (
     <>
@@ -74,35 +56,37 @@ const Document = () => {
                 </div>
               </div>
               <div className="row mt-5">
-             
-               {docs?.length > 0 &&
-                docs?.map((doc, index) => (
-                  <div className="col-lg-4 col-md-6">
-                    <div className="body-system-type">
-                      <img
-                        src={docsimages[index]}
-                        alt=""
-                        className="img-fluid"
-                      />
-                      <div className="body-system-content">
-                        <h6>Document</h6>
-                        <h4>{doc?.pdfname}</h4>
-                        <Link
-                          to="#"
-                          onClick={() =>
-                            window.open(
-                              `${baseURL}/download/${doc?.pdfdocs}`,
-                              "_blank"
-                            )
+                {docs?.length > 0 &&
+                  docs?.map((doc, index) => (
+                    <div className="col-lg-4 col-md-6">
+                      <div className="body-system-type">
+                        <img
+                          src={
+                            doc?.pdfimage?.length > 0 &&
+                            ` ${imageURL}${doc?.pdfimage}`
                           }
-                          className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
-                        >
-                          Download
-                        </Link>
+                          alt=""
+                          className="img-fluid"
+                        />
+                        <div className="body-system-content">
+                          <h6>Document</h6>
+                          <h4>{doc?.pdfname}</h4>
+                          <Link
+                            to="#"
+                            onClick={() =>
+                              window.open(
+                                `${baseURL}/download/${doc?.pdfdocs}`,
+                                "_blank"
+                              )
+                            }
+                            className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
+                          >
+                            Download
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
                 {/* Castor Packs */}
                 {/* <div className="col-lg-4 col-md-6">
                   <div className="body-system-type">

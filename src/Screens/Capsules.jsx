@@ -407,12 +407,21 @@ const Capsules = ({ history }) => {
                                 alt=""
                                 className="img-fluid"
                                 style={{
-                                  height: 242,
-                                  width: 242
+                                  maxHeight: 242,
+                                  maxWidth: 242,
+                                  minHeight: 242,
+                                  minWidth: 242
                                 }}
                               />{" "}
                             </Link>
-                            <h5 className="product-name">
+                            <h5
+                              style={{
+                                fontSize: 20,
+                                maxHeight: 60,
+                                minHeight: 60
+                              }}
+                              className="product-name"
+                            >
                               <Link to="#"> {prod?.name}</Link>
                             </h5>
                             <ul className="list-inline py-2">

@@ -11,7 +11,7 @@ import { Parser } from "html-to-react";
 import DetailsofProduct from "../components/DetailsofProduct";
 const htmlToReactParser = new Parser();
 
-const ProductView = ({ match, history }) => {
+const ProductViewByName = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [product, setproduct] = useState([]);
@@ -28,14 +28,9 @@ const ProductView = ({ match, history }) => {
   const getSingleProduct = async () => {
     try {
       const res = await axios({
-        url: `${baseURL}/product/getProductDetails/${match?.params?.id}`,
+        url: `${baseURL}/product/getProductDetailsByName/${match?.params?.id}`,
         method: "GET"
       });
-      // const ress = await axios({
-      //   url: `${baseURL}/product/getProductDetailsByName/${match?.params?.id}`,
-      //   method: "GET"
-      // });
-
       console.log("res", res?.data?.product);
       setproduct(res?.data?.product);
       const category = await res?.data?.product?.category;
@@ -139,4 +134,4 @@ const ProductView = ({ match, history }) => {
   );
 };
 
-export default ProductView;
+export default ProductViewByName;

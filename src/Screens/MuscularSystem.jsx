@@ -2,11 +2,51 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
+let capsules = [
+  "Intracellular Cleanse Capsules",
+  "Parasite Elimination Capsules",
+  "Brain-Nerve Adrenal Support Capsules",
+  "Calcium Tri-Phosphate Capsules",
+  "Atomic Strengthener Capsules",
 
-const MuscularSystem = () => {
+  "Superfood+ Capsules",
+  "All Purpose Adult Vitamin Capsules",
+  "Turmeric Infusion Capsules",
+  "Black Seed Oil Capsules"
+];
+let Tinctures = [
+  'Intracellular Cleanse Tincture',
+'Parasite Elimination Tincture',
+'Brain-Nerve Adrenal Support Tincture',
+'Atomic Strengthener Tincture',
+'Superfood+ Tincture',
+'All Purpose Adult Vitamin Tincture',
+'Turmeric Infusion Tincture',
+'Black Seed Oil Tincture',
+'Circulatory High Tincture',
+'Circulatory Low Tincture',
+'Thyroid Support Tincture',
+'Parathyroid Support Tincture'
+
+];
+let Teas = [
+  'Cellular Regeneration Tea',
+  'Revitalizer Tea',
+  '3BITTERS',
+'IV Elements',
+
+];
+let seaherbs = [
+  'Superfood+ Powder',
+  'Aeolian Islands Bladderwrack',
+  'Raw Organic Sea Moss',
+  'Kelp Granules from Ireland',
+];
+
+const MuscularSystem = ({ history }) => {
   return (
     <>
-    <Header/>
+      <Header />
       <section className="inner-banner">
         <div className="container-fluid">
           <div className="row">
@@ -91,15 +131,16 @@ const MuscularSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Intracellular Cleanse Capsules</li>
-                            <li>Parasite Elimination Capsules</li>
-                            <li>Brain-Nerve Adrenal Support Capsules</li>
-                            <li>Calcium Tri-Phosphate Capsules</li>
-                            <li>Atomic Strengthener Capsules</li>
-                            <li>Superfood+ Capsules</li>
-                            <li>All Purpose Adult Vitamin Capsules</li>
-                            <li>Turmeric Infusion Capsules</li>
-                            <li>Black Seed Oil Capsules</li>
+                            {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -128,19 +169,15 @@ const MuscularSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Intracellular Cleanse Tincture</li>
-                            <li>Parasite Elimination Tincture</li>
-                            <li>Brain-Nerve Adrenal Support Tincture</li>
-                            <li>Calcium Tri-Phosphate Tincture</li>
-                            <li>Atomic Strengthener Tincture</li>
-                            <li>Superfood+ Tincture</li>
-                            <li>All Purpose Adult Vitamin Tincture</li>
-                            <li>Turmeric Infusion Tincture</li>
-                            <li>Black Seed Oil Tincture</li>
-                            <li>Circulatory High Tincture</li>
-                            <li>Circulatory Low Tincture</li>
-                            <li>Thyroid Support Tincture</li>
-                            <li>Parathyroid Support Tincture</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((tin) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${tin}`);
+                                  }}
+                                >
+                                  {tin}
+                                </li> ))}
                           </ul>
                         </div>
                       </div>
@@ -173,10 +210,15 @@ const MuscularSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Cellular Regeneration Tea</li>
-                            <li>Revitalizer Tea</li>
-                            <li>3BITTERS</li>
-                            <li>IV Elements</li>
+                          {Teas?.length > 0 &&
+                              Teas?.map((tea) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${tea}`);
+                                  }}
+                                >
+                                  {tea}
+                                </li> ))}
                           </ul>
                         </div>
                       </div>
@@ -209,18 +251,23 @@ const MuscularSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Superfood+ Powder</li>
-                            <li>Aeolian Islands Bladderwrack</li>
-                            <li>100% Raw Organic Sea Moss</li>
-                            <li>Kelp Granules from Ireland</li>
+                          {seaherbs?.length > 0 &&
+                              seaherbs?.map((sea) => (
+                                <li className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${sea}`);
+                                  }}
+                                >
+                                  {sea}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
-                  <ShopnowButton/>
 
+                  <ShopnowButton />
                 </div>
               </div>
             </div>
@@ -244,7 +291,7 @@ const MuscularSystem = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -2041,8 +2041,8 @@ input[type="radio"] {
   display: none;
 }
 input[type="radio"]:checked + label {
-  border: solid 1px #c31f20;
-  border-radius: 5px;
+  /* border: solid 1px #c31f20; */
+  /* border-radius: 5px; */
 }
 .consultation-meta {
   color: #81191a;
@@ -2560,6 +2560,17 @@ h2.p-title {
   font-size: 40px;
   font-size: calc(22px + (40 - 22) * ((100vw - 300px) / (1600 - 300))) !important;
 }
+.media-body p {
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1600 - 300))) !important;
+  color: #555;
+  line-height: 1.4;
+}
+time.time-meta {
+  font-weight: bold;
+  font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1600 - 300))) !important;
+
+  color: #444;
+}
 p.short-desc {
   color: #666666;
   font-size: 18px;
@@ -2852,7 +2863,7 @@ input.coupon-field {
 
 section.my-cart h2 {
   color: #2b2541;
-  font-size: 40px;
+  font-size: calc(22px + (40 - 22) * ((100vw - 300px) / (1600 - 300))) !important;
   font-family: "Rubik", sans-serif;
   font-weight: 800;
 }
@@ -3056,6 +3067,7 @@ select#timeZone {
   color: #666666;
   font-size: 15px !important;
   margin-top: 5px;
+  height: 50px;
 }
 .searchbox {
   background: url(../images/search-icon.svg) right 15px top 10px/ 15px no-repeat,
@@ -3095,6 +3107,7 @@ select#timeZone {
 .log-table .table {
   border-collapse: separate;
   border-spacing: 0px 20px;
+  white-space: nowrap;
 }
 
 .stat-pending {
@@ -3289,7 +3302,10 @@ label.custom-img-upload:hover {
   background: #6b6767;
   cursor: pointer;
 }
-.abcccc:hover {cursor: pointer;}
+.abcccc {
+  cursor: pointer;
+
+}
 .browse-images:before {
   content: attr(textholder) !important;
   color: #c2c2c2;
@@ -3622,7 +3638,7 @@ h4.plan-price {
 .modal-content p {
   font-size: 20px;
   line-height: 27px;
-  font-family: "Jost", sans-serif;
+  font-family: "Jost", sans-serif !important;
   color: #2b2541;
   font-weight: 600;
 }
@@ -4542,4 +4558,97 @@ strong{
 }
 .fs-18{
   font-size: 18px !important;
+}
+
+.btn-resource.hover-0:hover{
+  background: transparent;
+  color: #160000;
+  cursor: default;
+}
+.star-cb-group {
+	 font-size: 0;
+	 unicode-bidi: bidi-override;
+	 direction: rtl;
+}
+ .star-cb-group * {
+	 font-size: 1rem;
+}
+ .star-cb-group > input {
+	 display: none;
+}
+ .star-cb-group > input + label {
+	 display: inline-block;
+	 width: auto;
+	 white-space: nowrap;
+	 cursor: pointer;
+  font-family: 'Font Awesome 5';
+  font-weight: 500;
+  font-size: calc(18px + (26 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  margin: 0 5px;
+}
+ .star-cb-group > input + label:before {
+	 display: inline-block;
+	 content: '\f005';
+   font-family: 'Font Awesome 5';
+	 color: #f5de0d;
+}
+ .star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
+	 content: '\f005';
+   font-family: 'Font Awesome 5';
+	 color: #f5de0d;
+font-weight: 800;}
+ .star-cb-group > .star-cb-clear + label {
+	 text-indent: -9999px;
+	 width: 0.5em;
+	 margin-left: -0.5em;
+}
+ .star-cb-group > .star-cb-clear + label:before {
+	 width: 0.5em;
+}
+ .star-cb-group:hover > input + label:before {
+   content: '';
+   color: #f5de0d;
+   font-family: 'Font Awesome 5';
+}
+ .star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
+	 content: '';
+	 color: #f5de0d;
+}
+.add-review-heading{
+  font-size: calc(20px + (40 - 20) * ((100vw - 300px) / (1600 - 300))) !important;
+}
+
+span.coupon__applied {
+  border: 1px solid #C31F20;
+  border-radius: 50px;
+  background: rgba(195,31,32,7%);
+  font-size: calc(14px + (16 - 14) * (100vw - 300px) / (1600 - 300));
+  color: #C31F20;
+  font-family: 'jost', sans-serif;
+  padding: 8px;
+  display: block;
+  text-align: center;
+}
+.user__name {
+  color: #000000;
+  font-family: 'righteous' !important;
+  font-size: calc(18px + (22 - 18) * (100vw - 300px) / (1600 - 300)) !important;
+}
+.appointment-details p {
+  color: #666666;
+  font-family: 'Jost', sans-serif !important;
+}
+.user__email, .user__phone {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  margin-bottom: 5px;
+}
+.appointment__time, .appointment__date {
+  color: #160000 !important;
+  font-size: calc(15px + (20 - 15) * (100vw - 300px) / (1600 - 300)) !important;
+  margin: 0;
+}
+label {
+  white-space: nowrap;
+  font-size: 16px;
 }

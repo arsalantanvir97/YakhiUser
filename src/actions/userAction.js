@@ -91,6 +91,48 @@ export const userLoginAction =
       });
     }
   };
+  export const userEmailLoginAction =
+  (email, password, history) => async (dispatch) => {
+    try {
+      // dispatch({
+      //   type: ADMIN_LOGIN_REQUEST,
+      // })
+      console.log("userEmailLoginAction");
+
+      const body = { email, password };
+
+      const res = await api.post("/auth/emailLogin", body);
+
+      console.log("adminLoginActionres", res);
+      if (res?.status == 200) {
+        dispatch({
+          type: USER_LOGIN_SUCCESS,
+          payload: res?.data
+        });
+
+        localStorage.setItem("userInfo", JSON.stringify(res?.data));
+        await Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Logged in Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        history?.replace("/");
+      } else if (res?.status == 201) {
+        Toasty("error", `Invalid Email or Password`);
+        dispatch({
+          type: USER_LOGIN_FAIL,
+          payload: res?.data?.message
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: USER_LOGIN_FAIL,
+        payload: error
+      });
+    }
+  };
 export const userResetPasswordAction =
   (password, confirm_password, code, email, history) => async (dispatch) => {
     try {

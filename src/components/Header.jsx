@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/userAction";
-import UnauthorizedAlert from "./UnauthorizedAlert";
-const Header = () => {
+import { userEmailLoginAction } from "../actions/userAction";
 
+import UnauthorizedAlert from "./UnauthorizedAlert";
+import { validateEmail } from "../utils/ValidateEmail";
+import Toasty from "../utils/toast";
+const Header = ({ history }) => {
   const dispatch = useDispatch();
+  const [email, setemail] = useState("");
+  const [loading, setloading] = useState(false);
   const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
 
@@ -16,6 +21,27 @@ const Header = () => {
     console.log("logout");
     dispatch(logout());
   };
+  const submitHandler = async (e) => {
+    console.log("submitHandler");
+    const emailvalidation = validateEmail(email);
+    console.log("emmmm", emailvalidation);
+    console.log("addEmployeeHandler");
+    if (emailvalidation == true) {
+      console.log("submitHandler");
+      setloading(true);
+      await dispatch(userEmailLoginAction(email, history));
+      setloading(false);
+      setemail("");
+    } else {
+      Toasty("error", `Please enter a valid email`);
+      setloading(false);
+    }
+
+    window?.$(".modal").modal("hide");
+
+    window?.$(".modal-backdrop").remove();
+  };
+
   return (
     <>
       <section className="menu">
@@ -30,9 +56,14 @@ const Header = () => {
                 <div className="col-md-6 text-center text-md-right">
                   <ul className="list-inline topbar-links">
                     <li className="list-inline-item">
-                      <Link to="#">
-                        <i className="fas fa-map-marker-alt mr-2" /> Store
-                        Location
+                      <Link
+                        to={userInfo ? "/AppointmentLogs" : "#"}
+                        onClick={() => {
+                          !userInfo && UnauthorizedAlert();
+                        }}
+                      >
+                        <i className="fas fa-calendar-alt mr-2" /> Appointment
+                        Status
                       </Link>
                     </li>
                     <li className="list-inline-item">
@@ -482,41 +513,65 @@ const Header = () => {
                                       </li>
                                       <li>
                                         <Link
-                                            to={userInfo ? "/MyCart" : "#"}
-                                            onClick={() => {
-                                              !userInfo && UnauthorizedAlert();
-                                            }}>View My Cart</Link>
+                                          to={userInfo ? "/MyCart" : "#"}
+                                          onClick={() => {
+                                            !userInfo && UnauthorizedAlert();
+                                          }}
+                                        >
+                                          View My Cart
+                                        </Link>
                                       </li>
                                       <li>
                                         <Link
-                                             to={userInfo ? "/Checkout" : "#"}
-                                             onClick={() => {
-                                               !userInfo && UnauthorizedAlert();
-                                             }}>Checkout</Link>
+                                          to={userInfo ? "/Checkout" : "#"}
+                                          onClick={() => {
+                                            !userInfo && UnauthorizedAlert();
+                                          }}
+                                        >
+                                          Checkout
+                                        </Link>
                                       </li>
                                       <li>
                                         <Link
-                                           to={userInfo ? "/WishList" : "#"}
-                                           onClick={() => {
-                                             !userInfo && UnauthorizedAlert();
-                                           }}>Wishlist</Link>
+                                          to={userInfo ? "/WishList" : "#"}
+                                          onClick={() => {
+                                            !userInfo && UnauthorizedAlert();
+                                          }}
+                                        >
+                                          Wishlist
+                                        </Link>
                                       </li>
                                       <li>
                                         <Link
-                                           to={userInfo ? "/OrderLog" : "#"}
-                                           onClick={() => {
-                                             !userInfo && UnauthorizedAlert();
-                                           }}>
+                                          to={userInfo ? "/OrderLog" : "#"}
+                                          onClick={() => {
+                                            !userInfo && UnauthorizedAlert();
+                                          }}
+                                        >
                                           Order Tracking
                                         </Link>
                                       </li>
                                       <li>
                                         <Link
-                                             to={userInfo ? "/DamageClaims" : "#"}
-                                             onClick={() => {
-                                               !userInfo && UnauthorizedAlert();
-                                             }}>
+                                          to={userInfo ? "/DamageClaims" : "#"}
+                                          onClick={() => {
+                                            !userInfo && UnauthorizedAlert();
+                                          }}
+                                        >
                                           Damage Claims
+                                        </Link>
+                                      </li>
+                                      <li>
+                                        <Link
+                                          to={
+                                            userInfo ? "/AppointmentLogs" : "#"
+                                          }
+                                          onClick={() => {
+                                            !userInfo && UnauthorizedAlert();
+                                          }}
+                                          // className="dropdown-item"
+                                        >
+                                          My Appointments
                                         </Link>
                                       </li>
                                     </ul>
@@ -558,44 +613,55 @@ const Header = () => {
                                             View My Cart
                                           </Link>
                                           <Link
-                                             to={userInfo ? "/Checkout" : "#"}
-                                             onClick={() => {
-                                               !userInfo && UnauthorizedAlert();
-                                             }}
-                                           
+                                            to={userInfo ? "/Checkout" : "#"}
+                                            onClick={() => {
+                                              !userInfo && UnauthorizedAlert();
+                                            }}
                                             className="dropdown-item"
                                           >
                                             Checkout
                                           </Link>
                                           <Link
-                                           to={userInfo ? "/WishList" : "#"}
-                                           onClick={() => {
-                                             !userInfo && UnauthorizedAlert();
-                                           }}
-                                          
+                                            to={userInfo ? "/WishList" : "#"}
+                                            onClick={() => {
+                                              !userInfo && UnauthorizedAlert();
+                                            }}
                                             className="dropdown-item"
                                           >
                                             Wishlist
                                           </Link>
                                           <Link
-                                           to={userInfo ? "/OrderLog" : "#"}
-                                           onClick={() => {
-                                             !userInfo && UnauthorizedAlert();
-                                           }}
-                                           
+                                            to={userInfo ? "/OrderLog" : "#"}
+                                            onClick={() => {
+                                              !userInfo && UnauthorizedAlert();
+                                            }}
                                             className="dropdown-item"
                                           >
                                             Order Tracking
                                           </Link>
                                           <Link
-                                             to={userInfo ? "/DamageClaims" : "#"}
-                                             onClick={() => {
-                                               !userInfo && UnauthorizedAlert();
-                                             }}
-                                           
+                                            to={
+                                              userInfo ? "/DamageClaims" : "#"
+                                            }
+                                            onClick={() => {
+                                              !userInfo && UnauthorizedAlert();
+                                            }}
                                             className="dropdown-item"
                                           >
                                             Damage Claims
+                                          </Link>
+                                          <Link
+                                            to={
+                                              userInfo
+                                                ? "/AppointmentLogs"
+                                                : "#"
+                                            }
+                                            onClick={() => {
+                                              !userInfo && UnauthorizedAlert();
+                                            }}
+                                            className="dropdown-item"
+                                          >
+                                            My Appointments
                                           </Link>
                                         </div>
                                       </li>
@@ -756,7 +822,7 @@ const Header = () => {
                             ) : (
                               <li className="list-inline-item">
                                 <Link
-                                  to="/Login"
+                                  to="#"
                                   className="mr-2"
                                   data-toggle="modal"
                                   data-target="#loginModal"
@@ -765,7 +831,13 @@ const Header = () => {
                                 </Link>
                               </li>
                             )}
-
+                            {userInfo && (
+                              <li className="list-inline-item">
+                                <Link to="/Notification" className="mr-2">
+                                  <i className="fas fa-bell" />
+                                </Link>
+                              </li>
+                            )}
                             <li className="list-inline-item">
                               <Link to="/Capsules" className="mr-2">
                                 <i className="fas fa-search" />
@@ -773,20 +845,23 @@ const Header = () => {
                             </li>
                             <li className="list-inline-item">
                               <Link
-                                           to={userInfo ? "/WishList" : "#"}
-                                           onClick={() => {
-                                             !userInfo && UnauthorizedAlert();
-                                           }} className="mr-2">
+                                to={userInfo ? "/WishList" : "#"}
+                                onClick={() => {
+                                  !userInfo && UnauthorizedAlert();
+                                }}
+                                className="mr-2"
+                              >
                                 <i className="far fa-heart" />
                               </Link>
                             </li>
                             <li className="list-inline-item">
                               <div className="position-relative">
                                 <Link
-                                           to={userInfo ? "/MyCart" : "#"}
-                                           onClick={() => {
-                                             !userInfo && UnauthorizedAlert();
-                                           }}>
+                                  to={userInfo ? "/MyCart" : "#"}
+                                  onClick={() => {
+                                    !userInfo && UnauthorizedAlert();
+                                  }}
+                                >
                                   <i className="fas fa-shopping-bag" />
                                   <span className="cart-count">
                                     {cartItems?.length}
@@ -810,6 +885,80 @@ const Header = () => {
           </div>
         </div>
       </section>
+
+      <div
+        className="modal fade"
+        id="loginModal"
+        tabIndex={-1}
+        aria-labelledby="exampleModalCenterTitle"
+        style={{ display: "none" }}
+        aria-hidden="true"
+      >
+        <div
+          className="modal-dialog modal-md modal-dialog-centered "
+          role="document"
+        >
+          <div className="modal-content py-5">
+            {/* <button type="button" class="close text-right mr-1 mt-1" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&#10006;</span>
+      </button> */}
+            <div className="pt-1 pb-5 px-sm-5 px-1">
+              <div className="text-center">
+                <h2 className=" mt-2">LOGIN</h2>
+              </div>
+              <div className="text-center mt-2">
+                <form id="modalForm">
+                  <label htmlFor className="my-label">
+                    Email Address <span className="red">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control my-textbox"
+                    placeholder="Enter Email Address"
+                    value={email}
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
+                  />
+                </form>
+                {!loading ? (
+                  <Link
+                    to="#"
+                    className="btn red-btn-solid mt-2"
+                    data-dismiss="modal"
+                    onClick={() =>
+                      email?.length > 0
+                        ? submitHandler()
+                        : Toasty(
+                            "error",
+                            `Please fill out all the required fields`
+                          )
+                    }
+                  >
+                    Login
+                  </Link>
+                ) : (
+                  <i className="fas fa-spinner fa-pulse"></i>
+                )}
+                <p className="modal-note">
+                  Don't Have Account?{" "}
+                  <Link
+                    to="/Signup"
+                    onClick={() => {
+                      window?.$(".modal").modal("hide");
+
+                      window?.$(".modal-backdrop").remove();
+                    }}
+                    className="red"
+                  >
+                    Register!
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

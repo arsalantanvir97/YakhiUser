@@ -23,9 +23,9 @@ export default class ProductSlider extends Component {
            
               <img
                 onClick={() => {
-                  !this?.props?.userInfo
-                    ? UnauthorizedAlert()
-                    : this.props?.history?.push(`/ProductView/${pro._id}`);
+                 
+                  
+                     this.props?.history?.push(`/ProductView/${pro._id}`);
                 }}
                 style={{
                   height: 216,
@@ -41,6 +41,7 @@ export default class ProductSlider extends Component {
             
             <h4 className="prod-title text-center">{pro?.name}</h4>
             <h5 className="prod-price text-center">${pro?.price}</h5>
+            
           </div>
         ))}
       </Slider>

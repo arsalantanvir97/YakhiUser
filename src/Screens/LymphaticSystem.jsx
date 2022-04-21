@@ -2,8 +2,56 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ShopnowButton from "../components/ShopnowButton";
+let capsules = [
+'Brain Nerve Vitalmax Capsules',
+'Brain, Nerve & Adrenal Capsules',
+'Lymphatic System Capsules',
+'Black Seed Oil (Nigella Sativa) Capsules',
+'Inner-Cellular Cleanse Capsules',
+'Iron Phosphate Capsules',
+'Cayenne Pepper Capsules',
+'GI Supermover Capsules',
+'Blood Purifier Capsules',
+'Parasite Elimination Capsules',
+'Liver Detox Capsules',
+'Foundation Fours Capsules',
+];
 
-const LymphaticSystem = () => {
+let Tinctures = [
+  'Brain Nerve Vitalmax Tincture',
+  'Brain, Nerve, & Adrenal Tincture',
+  'Lymphatic System Tincture',
+  'Black Seed Oil (Nigella Sativa) Tincture',
+  'Inner-Cellular Cleanse Tincture',
+  'Iron Phosphate Tincture',
+  'Blood Purifier Tincture',
+  'Parasite Elimination Tincture',
+  'Liver Detox Tincture',
+  'Foundation Fours Tincture',
+];
+
+let Teas = [
+'Brain Nerve Vitalmax Tea',
+'Cellular Regeneration Tea',
+'Revitalizer Tea',
+'3BITTERS',
+];
+let powders = [
+
+'Lung Cleanser (Tar Remover) Powder',
+];
+let oils=['Black seed Oil']
+let bundles=[
+
+'Lymphatic System Sweep Kit',
+'Foundation Fours Bundle',
+'Parasite Elimination Bundle',
+'Brain, Nerve & Adrenal Support Bundle',
+'Blood Purifier Bundle',
+'Inner-Cellular Cleanse Bundle',
+'Tonic Kit',
+]
+const LymphaticSystem = ({history}) => {
   return (
     <>
       <Header />
@@ -90,18 +138,18 @@ const LymphaticSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Capsules</li>
-                            <li>Brain, Nerve, &amp; Adrenal Capsules</li>
-                            <li>Lymphatic System Capsules</li>
-                            <li>Black Seed Oil (Nigella Sativa) Capsules</li>
-                            <li>Inner-Cellular Cleanse Capsules</li>
-                            <li>Iron Phosphate Capsules</li>
-                            <li>Cayenne Pepper Capsules</li>
-                            <li>GI Supermover Capsules</li>
-                            <li>Blood Purifier Capsules</li>
-                            <li>Parasite Elimination Capsules</li>
-                            <li>Liver Detox Capsules</li>
-                            <li>Foundation Fours Capsules</li>
+                          {capsules?.length > 0 &&
+                              capsules?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
+                          
                           </ul>
                         </div>
                       </div>
@@ -130,16 +178,17 @@ const LymphaticSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tincture</li>
-                            <li>Brain, Nerve, &amp; Adrenal Tincture</li>
-                            <li>Lymphatic System Tincture</li>
-                            <li>Black Seed Oil (Nigella Sativa) Tincture</li>
-                            <li>Inner-Cellular Cleanse Tincture</li>
-                            <li>Iron Phosphate Tincture</li>
-                            <li>Blood Purifier Tincture</li>
-                            <li>Parasite Elimination Tincture</li>
-                            <li>Liver Detox Tincture</li>
-                            <li>Foundation Fours Tincture</li>
+                          {Tinctures?.length > 0 &&
+                              Tinctures?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -172,10 +221,17 @@ const LymphaticSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Brain Nerve Vitalmax Tea</li>
-                            <li>Cellular Regeneration Tea</li>
-                            <li>Revitalizer Tea</li>
-                            <li>3BITTERS</li>
+                          {Teas?.length > 0 &&
+                              Teas?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -208,7 +264,17 @@ const LymphaticSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Lung Cleanser (Tar Remover) Powder</li>
+                            <li> {powders?.length > 0 &&
+                              powders?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}</li>
                           </ul>
                         </div>
                       </div>
@@ -241,7 +307,17 @@ const LymphaticSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Black seed Oil</li>
+                          {oils?.length > 0 &&
+                              oils?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>
@@ -274,13 +350,17 @@ const LymphaticSystem = () => {
                       >
                         <div className="panel-body">
                           <ul className="system-list ml-4 py-4">
-                            <li>Lymphatic System Sweep Kit</li>
-                            <li>Foundation Fours Bundle</li>
-                            <li>Parasite Elimination Bundle</li>
-                            <li>Brain, Nerve &amp; Adrenal Support Bundle</li>
-                            <li>Blood Purifier Bundle</li>
-                            <li>Inner-Cellular Cleanse Bundle</li>
-                            <li>Tonic Kit</li>
+                          {bundles?.length > 0 &&
+                              bundles?.map((cap) => (
+                                <li
+                                  className="abccccc"
+                                  onClick={() => {
+                                    history?.push(`/ProductViewByName/${cap}`);
+                                  }}
+                                >
+                                  {cap}
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       </div>

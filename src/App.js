@@ -48,6 +48,11 @@ import SkeletalSystem from "./Screens/SkeletalSystem";
 import UrinarySystem from "./Screens/UrinarySystem";
 import ScrollToTop from "./components/ScrollToTop";
 import { useEffect } from "react";
+import ProductViewByName from "./Screens/ProductViewByName";
+import GeoGeneticsCheckout from "./Screens/GeoGeneticsCheckout";
+import AppointmentLogs from "./Screens/AppointmentLogs";
+import AppointmentDetails from "./Screens/AppointmentDetails";
+import Notification from "./Screens/Notification";
 
 function App() {
   useEffect(() => {
@@ -101,21 +106,38 @@ function App() {
       />{" "}
       <Route exact path="/BodySystem" component={BodySystem} />{" "}
       <Route exact path="/EattotLive" component={EattotLive} />{" "}
+      <Route exact path="/ProductView/:id" component={ProductView} />{" "}
+      <Route
+        exact
+        path="/ProductViewByName/:id"
+        component={ProductViewByName}
+      />{" "}
       <PrivateRoute exact path="/MyCart/:id?" component={MyCart} />{" "}
+      <PrivateRoute
+        exact
+        path="/GeoGeneticsCheckout/:id?"
+        component={GeoGeneticsCheckout}
+      />{" "}
       <PrivateRoute exact path="/WishList" component={WishList} />{" "}
+      <PrivateRoute exact path="/Notification" component={Notification} />{" "}
       <PrivateRoute exact path="/Checkout" component={Checkout} />{" "}
       <PrivateRoute exact path="/OrderLog" component={OrderLog} />{" "}
+      <PrivateRoute exact path="/AppointmentLogs" component={AppointmentLogs} />{" "}
       <PrivateRoute exact path="/ViewCollection" component={ViewCollection} />{" "}
       <PrivateRoute
         exact
         path="/ProductViewOutStock"
         component={ProductViewOutStock}
       />{" "}
-      <PrivateRoute exact path="/ProductView/:id" component={ProductView} />{" "}
       <PrivateRoute
         exact
         path="/OrderLogDetail/:id"
         component={OrderLogDetail}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/AppointmentDetails/:id"
+        component={AppointmentDetails}
       />{" "}
       <PrivateRoute exact path="/DamageClaims" component={DamageClaims} />{" "}
     </Router>

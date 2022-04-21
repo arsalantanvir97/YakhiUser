@@ -21,6 +21,7 @@ import {
   ORDER_DELIVER_FAIL,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_REQUEST,
+  ORDER_CREATE_RESET
 } from "../constants/orderConstants";
 import { logout } from "../actions/userAction";
 import { baseURL } from "../utils/api";
@@ -47,6 +48,35 @@ export const createOrder = (order) => async (dispatch, getState) => {
     Toasty("error", `Order not created`);
   }
 };
+export const createGeoGeneticsOrder = (order) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_CREATE_REQUEST,
+    });
+
+    const { data } = await axios.post(`${baseURL}/order/addGeoGeneticsOrderItems`, order);
+
+    dispatch({
+      type: ORDER_CREATE_SUCCESS,
+      payload: data,
+    });
+  
+  } catch (error) {
+    Toasty("error", `Order not created`);
+  }
+};
+export const resetOrder = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: ORDER_CREATE_RESET,
+    });
+
+   
+  } catch (error) {
+    Toasty("error", `Something went wrong`);
+  }
+};
+
 export const payOrder =
   (orderId, paymentResult) => async (dispatch, getState) => {
     try {

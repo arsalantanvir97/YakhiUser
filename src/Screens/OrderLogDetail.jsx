@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL, imageURL } from "../utils/api";
 import { Link } from "react-router-dom";
-import { payOrder } from "../actions/orderAction";
+import { payOrder, resetOrder } from "../actions/orderAction";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import moment from "moment";
@@ -18,6 +18,7 @@ const OrderLogDetail = ({ match, history }) => {
   const [orderdetaills, setorderdetaills] = useState();
   useEffect(() => {
     getSingleOrder();
+    dispatch(resetOrder())
   }, []);
 
   const getSingleOrder = async () => {
@@ -257,7 +258,7 @@ const OrderLogDetail = ({ match, history }) => {
 
                               <td>${ord?.price}</td>
                               <td>${ord?.qty * ord?.price}</td>
-                              <td>${orderdetaills?.taxperproduct}</td>
+                              <td>{orderdetaills?.taxperproduct}%</td>
                             </tr>
                           ))}
                       </tbody>
