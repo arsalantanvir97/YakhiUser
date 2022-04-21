@@ -20,28 +20,24 @@ export default class ProductSlider extends Component {
       <Slider {...settings}>
         {this?.props?.images?.map((pro) => (
           <div className="featured-product animate__animated animate__slideInUp ">
-           
-              <img
-                onClick={() => {
-                 
-                  
-                     this.props?.history?.push(`/ProductView/${pro._id}`);
-                }}
-                style={{
-                  height: 216,
-                  width: 214
-                }}
-                src={
-                  pro?.productimage?.length > 0 &&
-                  `${imageURL}${pro?.productimage[0]}`
-                }
-                alt=""
-                className="img-fluid mx-auto abcccc"
-              />
-            
+            <img
+              onClick={() => {
+                this.props?.history?.push(`/ProductView/${pro._id}`);
+              }}
+              style={{
+                height: 216,
+                width: 214
+              }}
+              src={
+                pro?.productimage?.length > 0 &&
+                `${imageURL}${pro?.productimage[0]}`
+              }
+              alt=""
+              className="img-fluid mx-auto abcccc"
+            />
+
             <h4 className="prod-title text-center">{pro?.name}</h4>
             <h5 className="prod-price text-center">${pro?.price}</h5>
-            
           </div>
         ))}
       </Slider>
