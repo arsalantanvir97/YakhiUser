@@ -133,15 +133,13 @@ const Index = ({ history }) => {
                     <select
                       className="form-control"
                       id="helpWith"
-                      value={catid}
-                      onChange={(event) => {
-                        setcatid(event.target.value);
-                        gettingproductsbyCategoryidHandler(event.target.value);
-                      }}
+                      // value={catid}
+                      // onChange={(event) => {
+                      //   setcatid(event.target.value);
+                      //   gettingproductsbyCategoryidHandler(event.target.value);
+                      // }}
                     >
-                      <option >
-                        Categories
-                      </option>
+                      <option>I need help with</option>
                       {allofcategory?.length > 0 &&
                         allofcategory?.map((cat) => (
                           <option value={cat?._id}>{cat?.categorytitle}</option>
@@ -158,12 +156,29 @@ const Index = ({ history }) => {
                         productViewRedirectHandler(event.target.value);
                       }}
                     >
-                      <option >
-                        Products
-                      </option>
+                      <option>Products</option>
                       {prdouctbycategories?.length > 0 &&
                         prdouctbycategories?.map((prod) => (
                           <option value={prod?._id}>{prod?.name}</option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-4 mb-3">
+                  <div className="form-group my-3">
+                    <select
+                      className="form-control"
+                      id="helpWith"
+                      value={catid}
+                      onChange={(event) => {
+                        setcatid(event.target.value);
+                        gettingproductsbyCategoryidHandler(event.target.value);
+                      }}
+                    >
+                      <option>Categories</option>
+                      {allofcategory?.length > 0 &&
+                        allofcategory?.map((cat) => (
+                          <option value={cat?._id}>{cat?.categorytitle}</option>
                         ))}
                     </select>
                   </div>
@@ -405,6 +420,55 @@ const Index = ({ history }) => {
             <div className="col-11 mx-auto">
               <div className="row align-items-start justify-content-center text-center">
                 <div className="col-xl-3 col-lg-5 col-md-10 mx-auto">
+                  {/* <div class="offer-box animate__animated animate__fadeInUp">
+                      <img src="images/leaf.png" alt="" class="img-fluid mb-3 curve-leaf ">
+                      <h4>Iv Elements</h4>
+                      <div class="overlay-heading">
+                          <h5 class="purple">40
+                              <span class="characters">
+                                  %<br> Off
+                              </span>
+                          </h5>
+                          <h5 class="maroon">40
+                              <span class="characters">
+                                  %<br> Off
+                              </span>
+                          </h5>
+                      </div>
+                      <a href="#" class="red-link">Shop Now</a>
+                  </div> */}
+                  <div className="animate__animated animate__fadeInUp my-5 py-5">
+                    <img
+                      src="images/three-bitters.png"
+                      alt=""
+                      className="img-fluid"
+                    />
+                  </div>
+                  <img
+                    src="images/elementsCircle.png"
+                    alt=""
+                    className="img-fluid elementsCircle"
+                  />
+                </div>
+                <div className="col-xl-6 col-lg-6 col-md-10 mx-auto offset-lg-1">
+                  <img
+                    src="images/IVElements.png"
+                    alt=""
+                    className="img-fluid animate__animated animate__fadeInUp"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* <section className="offer">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-11 mx-auto">
+              <div className="row align-items-start justify-content-center text-center">
+                <div className="col-xl-3 col-lg-5 col-md-10 mx-auto">
                   <div className="offer-box animate__animated animate__fadeInUp">
                     <img
                       src="images/leaf.png"
@@ -447,7 +511,7 @@ const Index = ({ history }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div className="container my-5 py-3">
         <div className="row my-4">

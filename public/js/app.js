@@ -10,6 +10,20 @@ toggles.forEach(toggle=>{
 // For Wishlist icon
   $(".wishlist-icon").click(function() { $(this).toggleClass("fas fa-heart maroon far fa-heart maroon") });
 
+// Show the first tab by default
+$('.yahki-tabs-stage div.yahki-tab-content').hide();
+$('.yahki-tabs-stage div.yahki-tab-content:first').show();
+$('.yahki-tabs-nav li:first').addClass('yahki-tab-active');
+
+// Change tab class and display content
+$('.yahki-tabs-nav a').on('click', function(event){
+  event.preventDefault();
+  $('.yahki-tabs-nav li').removeClass('yahki-tab-active');
+  $(this).parent().addClass('yahki-tab-active');
+  $('.yahki-tabs-stage div.yahki-tab-content').hide();
+  $($(this).attr('href')).show();
+});
+
 
 
   // Slick slider on the homepage
@@ -217,11 +231,6 @@ $(document).ready(function() {
     e.stopPropagation();
   });
 });
-
-
-
-
-
 
 
 

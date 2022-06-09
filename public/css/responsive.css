@@ -163,6 +163,11 @@
         width: 35px;
         left: -52%;
     }
+    .member-info-card {
+        padding: 35px 10px;
+        position: relative;
+        min-height: 215px;
+    }
 }
 @media screen and (max-width: 1356px) {
     ul.foot-links li a {
@@ -202,9 +207,6 @@
     .about-bottom-banner h3{
         width: 80%;
     }
-    .maroon-btn-solid{
-        font-size: 15px;
-    }
     span.star-number, .star-percent {
         font-size: 15px;
     }
@@ -238,6 +240,9 @@
     }
 }
 @media screen and (max-width: 1200px) {
+    .member-info-card {
+        min-height: 255px;
+    }
     .genetics-para {
         width: 100%;
     }
@@ -279,7 +284,7 @@
         font-size: 18px;
     }
     .team-member-box {
-        height: 610px;
+        height: 580px;
     }
     .send-msg {
         margin-top: -52px;
@@ -890,6 +895,9 @@
     #cart-table td {
         font-size: 16px;
     }
+    .team-member-box {
+        height: 560px;
+    }
 }
 @media screen and (max-width:767px) {
     h5.selection-title-lg {
@@ -1256,6 +1264,34 @@
     }
     .p-view-main {
         height: auto;
+    }
+    .yahki-tabs-nav li a {
+        padding: 15px 10px;
+        white-space: nowrap;
+    }
+    .yahki-tabs-nav {
+        justify-content: center;
+        display: inline-flex;
+        overflow-x: scroll;
+        width: 100%;
+        justify-content: start;
+    }
+    .px-8 {
+        padding: 2% 2%;
+    }
+    .y-tab-heading {
+        text-align: left;
+    }
+    .alert-dismissible, .alert-primary {
+        padding-right: 1rem;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    .card-header {
+        padding: .75rem 0.1rem;
+    }
+    .card-body {
+        padding: 1.25rem 2px;
     }
 }
 @media screen and (max-width: 456px) {
