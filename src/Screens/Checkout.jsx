@@ -19,75 +19,39 @@ import { validateEmail } from "../utils/ValidateEmail";
 import axios from "axios";
 import moment from "moment";
 import USStates from "../components/USStates";
+import { SunspotLoader } from "react-awesome-loaders";
 
 const Checkout = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress, cartItems, paymentInfo } = cart;
+  console.log("shippingAddress", shippingAddress);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const dispatch = useDispatch();
   const [taxofstate, settaxofstate] = useState(0);
+  const [loading, setloading] = useState(false);
 
-  const [email, setemail] = useState(shippingAddress?.email);
-  const [phone, setphone] = useState(shippingAddress?.phone);
-  const [billingname, setbillingname] = useState(shippingAddress?.billingname);
-  const [billingaddress, setbillingaddress] = useState(
-    shippingAddress?.billingaddress
-  );
-
-  //    const [FormDat, setFormDat] = useState({
-
-  //     billingcity: "",
-  //     billingcity1: ""
-  //     billingcity2: ""
-  //     billingcity3: ""
-  //     billingcity4: ""
-  //     billingcity5: ""
-  //     billingcity6: ""
-  //     billingcity7: ""
-
-  //    })
-
-  // onchange = (e)=>{
-  //   setFormData({...FormData,[e.target.name]:"e.target.value"})
-  // }
-
-  const [billingcity, setbillingcity] = useState(shippingAddress?.billingcity);
-  const [billingzipcode, setbillingzipcode] = useState(
-    shippingAddress?.billingzipcode
-  );
-  const [billingcountry, setbillingcountry] = useState(
-    shippingAddress?.billingcountry
-  );
-  const [billingstate, setbillingstate] = useState(
-    shippingAddress?.billingstate
-  );
-  const [shippingname, setshippingname] = useState(
-    shippingAddress?.shippingname
-  );
-  const [shippingaddress, setshippingaddress] = useState(
-    shippingAddress?.shippingaddress
-  );
-  const [shippingcity, setshippingcity] = useState(
-    shippingAddress?.shippingcity
-  );
-  const [shippingzipcode, setshippingzipcode] = useState(
-    shippingAddress?.shippingzipcode
-  );
-  const [shippingcountry, setshippingcountry] = useState(
-    shippingAddress?.shippingcountry
-  );
-  const [shippingstate, setshippingstate] = useState(
-    shippingAddress?.shippingstate
-  );
-  const [paymentmethod, setpaymentmethod] = useState();
-
-  const [cardholdername, setcardholdername] = useState(
-    shippingAddress?.cardholdername
-  );
-  const [cardnumber, setcardnumber] = useState();
-  const [cvvnumber, setcvvnumber] = useState();
-  const [expirydate, setexpirydate] = useState();
+  const [allValues, setAllValues] = useState({
+    email: shippingAddress?.email,
+    phone: shippingAddress?.phone,
+    billingname: shippingAddress?.billingname,
+    billingaddress: shippingAddress?.billingaddress,
+    billingcity: shippingAddress?.billingcity,
+    billingzipcode: shippingAddress?.billingzipcode,
+    billingcountry: shippingAddress?.billingcountry,
+    billingstate: shippingAddress?.billingstate,
+    shippingname: shippingAddress?.shippingname,
+    shippingaddress: shippingAddress?.shippingaddress,
+    shippingcity: shippingAddress?.shippingcity,
+    shippingzipcode: shippingAddress?.shippingzipcode,
+    shippingcountry: shippingAddress?.shippingcountry,
+    shippingstate: shippingAddress?.shippingstate,
+    paymentmethod: paymentInfo?.paymentmethod,
+    cardholdername: paymentInfo?.cardholdername,
+    cardnumber: paymentInfo?.cardnumber,
+    cvvnumber: paymentInfo?.cvvnumber,
+    expirydate: paymentInfo?.expirydate
+  });
 
   const [togglecheckout, settogglecheckout] = useState(0);
 
@@ -96,7 +60,7 @@ const Checkout = ({ history }) => {
     settogglecheckout(togglecheckout + 1);
   };
   const saveShippingHandler = async (e) => {
-    const emailvalidation = validateEmail(email);
+    const emailvalidation = validateEmail(allValues?.email);
     console.log("emmmm", emailvalidation);
     console.log("addEmployeeHandler");
     if (emailvalidation == true) {
@@ -109,7 +73,7 @@ const Checkout = ({ history }) => {
       };
       const res = await axios.post(
         `${baseURL}/tax/gettaxdetails`,
-        { state: shippingstate },
+        { state: allValues?.shippingstate },
         config
       );
 
@@ -131,20 +95,20 @@ const Checkout = ({ history }) => {
       cart.totalPrice = Number(cart.itemsPrice) + Number(cart.taxPrice);
       dispatch(
         saveShippingAddress({
-          email,
-          phone,
-          billingname,
-          billingaddress,
-          billingcity,
-          billingzipcode,
-          billingcountry,
-          billingstate,
-          shippingname,
-          shippingaddress,
-          shippingcity,
-          shippingzipcode,
-          shippingcountry,
-          shippingstate
+          email: allValues?.email,
+          phone: allValues?.phone,
+          billingname: allValues?.billingname,
+          billingaddress: allValues?.billingaddress,
+          billingcity: allValues?.billingcity,
+          billingzipcode: allValues?.billingzipcode,
+          billingcountry: allValues?.billingcountry,
+          billingstate: allValues?.billingstate,
+          shippingname: allValues?.shippingname,
+          shippingaddress: allValues?.shippingaddress,
+          shippingcity: allValues?.shippingcity,
+          shippingzipcode: allValues?.shippingzipcode,
+          shippingcountry: allValues?.shippingcountry,
+          shippingstate: allValues?.shippingstate
         })
       );
     } else {
@@ -156,11 +120,11 @@ const Checkout = ({ history }) => {
     settogglecheckout(togglecheckout + 1);
     dispatch(
       savePaymentMethod({
-        paymentmethod,
-        cardholdername,
-        cardnumber,
-        cvvnumber,
-        expirydate
+        paymentmethod: allValues?.paymentmethod,
+        cardholdername: allValues?.cardholdername,
+        cardnumber: allValues?.cardnumber,
+        cvvnumber: allValues?.cvvnumber,
+        expirydate: allValues?.expirydate
       })
     );
   };
@@ -198,20 +162,29 @@ const Checkout = ({ history }) => {
     cart.cartItems = cart?.cartItems?.filter(
       (cartt) => cartt?.qty !== 0 && cart
     );
-    console.log("cart.cartItems", cart?.cartItems);
-    dispatch(
-      createOrder({
-        userid: userInfo?._id,
-        orderItems: cart?.cartItems,
-        shippingAddress: cart?.shippingAddress,
-        paymentMethod: paymentInfo,
-        itemsPrice: cart?.itemsPrice,
-        shippingPrice: cart?.shippingPrice,
-        taxPrice: cart?.taxPrice,
-        totalPrice: cart?.totalPrice,
-        taxperproduct: Number(taxofstate)
-      })
-    );
+    setloading(true);
+    try {
+      console.log("cart.cartItems", cart?.cartItems);
+
+      dispatch(
+        createOrder({
+          userid: userInfo?._id,
+          orderItems: cart?.cartItems,
+          shippingAddress: cart?.shippingAddress,
+          paymentMethod: paymentInfo,
+          itemsPrice: cart?.itemsPrice,
+          shippingPrice: cart?.shippingPrice,
+          taxPrice: cart?.taxPrice,
+          totalPrice: cart?.totalPrice,
+          taxperproduct: Number(taxofstate)
+        })
+      );
+
+      setloading(false);
+    } catch (error) {
+      Toasty("error", `Order not created`);
+    }
+    setloading(false);
   };
   const subQuantity = async (prod, qty) => {
     console.log("cart?.product", prod, qty);
@@ -219,10 +192,17 @@ const Checkout = ({ history }) => {
       ? dispatch(addToCart(prod, Number(qty + 0)))
       : dispatch(addToCart(prod, Number(qty - 1)));
   };
+
+  const changeHandler = (e, namee) => {
+    setAllValues({
+      ...allValues,
+      [namee ? namee : e.target.name]: namee ? e : e.target.value
+    });
+  };
   useEffect(() => {
-  console.log('billingstate',billingstate)
-  }, [billingstate])
-  
+    console.log("allValues", allValues);
+  }, [allValues]);
+
   return (
     <section className="about-page">
       <div className="container-fluid">
@@ -274,17 +254,19 @@ const Checkout = ({ history }) => {
                                       type="email"
                                       className="form-control"
                                       placeholder="abs@email.com"
-                                      value={email}
-                                      onChange={(e) => {
-                                        setemail(e.target.value);
-                                      }}
+                                      name="email"
+                                      value={allValues?.email}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col mb-4">
                                     <label>Phone Number</label>
                                     <InputPhone
-                                      value={phone}
-                                      onChange={setphone}
+                                      unique={true}
+                                      uniquevalue={allValues}
+                                      name={"phone"}
+                                      value={allValues?.phone}
+                                      onChange={setAllValues}
                                     />
                                   </div>
                                 </div>
@@ -299,10 +281,9 @@ const Checkout = ({ history }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Name"
-                                      value={billingname}
-                                      onChange={(e) => {
-                                        setbillingname(e.target.value);
-                                      }}
+                                      name="billingname"
+                                      value={allValues?.billingname}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-12 mb-4">
@@ -312,10 +293,9 @@ const Checkout = ({ history }) => {
                                       id="exampleFormControlTextarea1"
                                       placeholder="Enter Address"
                                       rows={5}
-                                      value={billingaddress}
-                                      onChange={(e) => {
-                                        setbillingaddress(e.target.value);
-                                      }}
+                                      value={allValues?.billingaddress}
+                                      name="billingaddress"
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                 </div>
@@ -326,17 +306,19 @@ const Checkout = ({ history }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter City"
-                                      value={billingcity}
-                                      onChange={(e) => {
-                                        setbillingcity(e.target.value);
-                                      }}
+                                      name="billingcity"
+                                      value={allValues?.billingcity}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Zip Code*</label>
                                     <InputNumber
-                                      value={billingzipcode}
-                                      onChange={setbillingzipcode}
+                                      unique={true}
+                                      uniquevalue={allValues}
+                                      name={"billingzipcode"}
+                                      onChange={setAllValues}
+                                      value={allValues?.billingzipcode}
                                       max={5}
                                       className="form-control"
                                     />
@@ -347,21 +329,18 @@ const Checkout = ({ history }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Country"
-                                      value={billingcountry}
-                                      onChange={(e) => {
-                                        setbillingcountry(e.target.value);
-                                      }}
+                                      value={allValues?.billingcountry}
+                                      name="billingcountry"
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>State*</label>
                                     <select
-                                      name
                                       className="form-control"
-                                      value={billingstate}
-                                      onChange={(e) => {
-                                        setbillingstate(e.target.value);
-                                      }}
+                                      name="billingstate"
+                                      onChange={changeHandler}
+                                      value={allValues?.billingstate}
                                     >
                                       <option value>select</option>
                                       <USStates />
@@ -398,10 +377,9 @@ const Checkout = ({ history }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Name"
-                                      value={shippingname}
-                                      onChange={(e) => {
-                                        setshippingname(e.target.value);
-                                      }}
+                                      name="shippingname"
+                                      value={allValues?.shippingname}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-12 mb-4">
@@ -411,10 +389,9 @@ const Checkout = ({ history }) => {
                                       id="exampleFormControlTextarea1"
                                       placeholder="Enter Address"
                                       rows={5}
-                                      value={shippingaddress}
-                                      onChange={(e) => {
-                                        setshippingaddress(e.target.value);
-                                      }}
+                                      name="shippingaddress"
+                                      value={allValues?.shippingaddress}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -423,17 +400,19 @@ const Checkout = ({ history }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter City"
-                                      value={shippingcity}
-                                      onChange={(e) => {
-                                        setshippingcity(e.target.value);
-                                      }}
+                                      name="shippingcity"
+                                      value={allValues?.shippingcity}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Zip Code*</label>
                                     <InputNumber
-                                      value={shippingzipcode}
-                                      onChange={setshippingzipcode}
+                                      unique={true}
+                                      uniquevalue={allValues}
+                                      name={"shippingzipcode"}
+                                      onChange={setAllValues}
+                                      value={allValues?.shippingzipcode}
                                       max={5}
                                       className="form-control"
                                     />
@@ -444,21 +423,18 @@ const Checkout = ({ history }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Country"
-                                      value={shippingcountry}
-                                      onChange={(e) => {
-                                        setshippingcountry(e.target.value);
-                                      }}
+                                      name="shippingcountry"
+                                      onChange={changeHandler}
+                                      value={allValues?.shippingcountry}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>State*</label>
                                     <select
-                                      name
                                       className="form-control"
-                                      value={shippingstate}
-                                      onChange={(e) => {
-                                        setshippingstate(e.target.value);
-                                      }}
+                                      name="shippingstate"
+                                      onChange={changeHandler}
+                                      value={allValues?.shippingstate}
                                     >
                                       <option value>select</option>
                                       <USStates />
@@ -598,12 +574,15 @@ const Checkout = ({ history }) => {
                                     <div className="payment-method">
                                       <input
                                         type="radio"
-                                        name="emotion"
                                         id="paypal"
                                         className="input-hidden"
-                                        value={paymentmethod}
-                                        onChange={() => {
-                                          setpaymentmethod("paypal");
+                                        value={allValues?.paymentmethod}
+                                        name="paypal"
+                                        onChange={(e) => {
+                                          changeHandler(
+                                            "paypal",
+                                            "paymentmethod"
+                                          );
                                         }}
                                       />
                                       <label htmlFor="paypal">
@@ -619,12 +598,15 @@ const Checkout = ({ history }) => {
                                     <div className="payment-method">
                                       <input
                                         type="radio"
-                                        name="emotion"
                                         id="Apple Pay"
                                         className="input-hidden"
-                                        value={paymentmethod}
-                                        onChange={() => {
-                                          setpaymentmethod("Apple Pay");
+                                        name="Apple Pay"
+                                        value={allValues?.paymentmethod}
+                                        onChange={(e) => {
+                                          changeHandler(
+                                            "Apple Pay",
+                                            "paymentmethod"
+                                          );
                                         }}
                                       />
                                       <label htmlFor="Apple Pay">
@@ -640,12 +622,15 @@ const Checkout = ({ history }) => {
                                     <div className="payment-method">
                                       <input
                                         type="radio"
-                                        name="emotion"
                                         id="visa"
                                         className="input-hidden"
-                                        value={paymentmethod}
-                                        onChange={() => {
-                                          setpaymentmethod("visa");
+                                        value={allValues?.paymentmethod}
+                                        name="visa"
+                                        onChange={(e) => {
+                                          changeHandler(
+                                            "visa",
+                                            "paymentmethod"
+                                          );
                                         }}
                                       />
                                       <label htmlFor="visa">
@@ -666,10 +651,9 @@ const Checkout = ({ history }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Card Holder Name"
-                                      value={cardholdername}
-                                      onChange={(e) => {
-                                        setcardholdername(e.target.value);
-                                      }}
+                                      name="cardholdername"
+                                      value={allValues?.cardholdername}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -682,10 +666,9 @@ const Checkout = ({ history }) => {
                                       autocomplete="cc-number"
                                       maxlength="19"
                                       placeholder="xxxx xxxx xxxx xxxx"
-                                      value={cardnumber}
-                                      onChange={(e) => {
-                                        setcardnumber(e.target.value);
-                                      }}
+                                      name="cardnumber"
+                                      value={allValues?.cardnumber}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -695,18 +678,33 @@ const Checkout = ({ history }) => {
                                       className="form-control"
                                       maxlength="11"
                                       placeholder="Enter CVV"
-                                      value={cvvnumber}
-                                      onChange={(e) => {
-                                        setcvvnumber(e.target.value);
-                                      }}
+                                      name="cvvnumber"
+                                      value={allValues?.cvvnumber}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Expiry date*</label>
                                     <DatePicker
                                       minDate={moment().toDate()}
-                                      selected={expirydate}
-                                      onChange={(e) => setexpirydate(e)}
+                                      selected={
+                                        new Date(
+                                          allValues?.expirydate
+                                            ? allValues?.expirydate
+                                            : moment().toDate()
+                                        )
+                                      }
+                                      name="expirydate"
+                                      value={
+                                        new Date(
+                                          allValues?.expirydate
+                                            ? allValues?.expirydate
+                                            : moment().toDate()
+                                        )
+                                      }
+                                      onChange={(e) => {
+                                        changeHandler(e, "expirydate");
+                                      }}
                                       className="sort-date customdate form-control"
                                     />{" "}
                                   </div>
@@ -1103,26 +1101,26 @@ const Checkout = ({ history }) => {
                         className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         onClick={() => {
                           togglecheckout == 0 &&
-                          email &&
-                          phone &&
-                          billingname &&
-                          billingaddress &&
-                          billingcity &&
-                          billingzipcode &&
-                          billingcountry &&
-                          billingstate &&
-                          shippingname &&
-                          shippingaddress &&
-                          shippingcity &&
-                          shippingzipcode &&
-                          shippingcountry &&
-                          shippingstate
+                          allValues?.email &&
+                          allValues?.phone &&
+                          allValues?.billingname &&
+                          allValues?.billingaddress &&
+                          allValues?.billingcity &&
+                          allValues?.billingzipcode &&
+                          allValues?.billingcountry &&
+                          allValues?.billingstate &&
+                          allValues?.shippingname &&
+                          allValues?.shippingaddress &&
+                          allValues?.shippingcity &&
+                          allValues?.shippingzipcode &&
+                          allValues?.shippingcountry &&
+                          allValues?.shippingstate
                             ? saveShippingHandler()
                             : togglecheckout == 1 &&
-                              paymentmethod &&
-                              cardholdername &&
-                              cardnumber &&
-                              cvvnumber
+                              allValues?.paymentmethod &&
+                              allValues?.cardholdername &&
+                              allValues?.cardnumber &&
+                              allValues?.cvvnumber
                             ? savePaymentMethodHandler()
                             : togglecheckout == 2
                             ? togglecheckoutHandler()

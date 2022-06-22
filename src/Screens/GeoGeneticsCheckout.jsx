@@ -17,14 +17,16 @@ import USStates from "../components/USStates";
 
 const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [totalPrice, settotalPrice] = useState(0);
-  const [quantity, setquantity] = useState(location?.search ? Number(location?.search?.split("=")[1]) : 1);
+  const [quantity, setquantity] = useState(
+    location?.search ? Number(location?.search?.split("=")[1]) : 1
+  );
 
   const cart = useSelector((state) => state.cart);
   const { shippingAddress, paymentInfo } = cart;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     getSingleProduct();
   }, []);
@@ -51,72 +53,34 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [taxofstate, settaxofstate] = useState(0);
   const [product, setproduct] = useState();
 
-  const [email, setemail] = useState(shippingAddress?.email);
-  const [phone, setphone] = useState(shippingAddress?.phone);
-  const [billingname, setbillingname] = useState(shippingAddress?.billingname);
-  const [billingaddress, setbillingaddress] = useState(
-    shippingAddress?.billingaddress
-  );
 
-  //    const [FormDat, setFormDat] = useState({
 
-  //     billingcity: "",
-  //     billingcity1: ""
-  //     billingcity2: ""
-  //     billingcity3: ""
-  //     billingcity4: ""
-  //     billingcity5: ""
-  //     billingcity6: ""
-  //     billingcity7: ""
 
-  //    })
 
-  // onchange = (e)=>{
-  //   setFormData({...FormData,[e.target.name]:"e.target.value"})
-  // }
-  useEffect(() => {
-    console.log("email", email);
-  }, [email]);
+  const [allValues, setAllValues] = useState({
+    email: shippingAddress?.email,
+    phone: shippingAddress?.phone,
+    doc_schedule: shippingAddress?.doc_schedule,
 
- 
-  const [doc_schedule, setdoc_schedule] = useState("");
+    billingname: shippingAddress?.billingname,
+    billingaddress: shippingAddress?.billingaddress,
+    billingcity: shippingAddress?.billingcity,
+    billingzipcode: shippingAddress?.billingzipcode,
+    billingcountry: shippingAddress?.billingcountry,
+    billingstate: shippingAddress?.billingstate,
+    shippingname: shippingAddress?.shippingname,
+    shippingaddress: shippingAddress?.shippingaddress,
+    shippingcity: shippingAddress?.shippingcity,
+    shippingzipcode: shippingAddress?.shippingzipcode,
+    shippingcountry: shippingAddress?.shippingcountry,
+    shippingstate: shippingAddress?.shippingstate,
+    paymentmethod: paymentInfo?.paymentmethod,
+    cardholdername: paymentInfo?.cardholdername,
+    cardnumber: paymentInfo?.cardnumber,
+    cvvnumber: paymentInfo?.cvvnumber,
+    expirydate: paymentInfo?.expirydate
+  });
 
-  const [billingcity, setbillingcity] = useState(shippingAddress?.billingcity);
-  const [billingzipcode, setbillingzipcode] = useState(
-    shippingAddress?.billingzipcode
-  );
-  const [billingcountry, setbillingcountry] = useState(
-    shippingAddress?.billingcountry
-  );
-  const [billingstate, setbillingstate] = useState(
-    shippingAddress?.billingstate
-  );
-  const [shippingname, setshippingname] = useState(
-    shippingAddress?.shippingname
-  );
-  const [shippingaddress, setshippingaddress] = useState(
-    shippingAddress?.shippingaddress
-  );
-  const [shippingcity, setshippingcity] = useState(
-    shippingAddress?.shippingcity
-  );
-  const [shippingzipcode, setshippingzipcode] = useState(
-    shippingAddress?.shippingzipcode
-  );
-  const [shippingcountry, setshippingcountry] = useState(
-    shippingAddress?.shippingcountry
-  );
-  const [shippingstate, setshippingstate] = useState(
-    shippingAddress?.shippingstate
-  );
-  const [paymentmethod, setpaymentmethod] = useState();
-
-  const [cardholdername, setcardholdername] = useState(
-    shippingAddress?.cardholdername
-  );
-  const [cardnumber, setcardnumber] = useState();
-  const [cvvnumber, setcvvnumber] = useState();
-  const [expirydate, setexpirydate] = useState();
 
   const [togglecheckout, settogglecheckout] = useState(0);
   const [taxPrice, settaxPrice] = useState(0);
@@ -127,7 +91,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     settogglecheckout(togglecheckout + 1);
   };
   const saveShippingHandler = async (e) => {
-    const emailvalidation = validateEmail(email);
+    const emailvalidation = validateEmail(allValues?.email);
     console.log("emmmm", emailvalidation);
     console.log("addEmployeeHandler");
     if (emailvalidation == true) {
@@ -140,7 +104,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       };
       const res = await axios.post(
         `${baseURL}/tax/gettaxdetails`,
-        { state: shippingstate },
+        { state: allValues?.shippingstate },
         config
       );
 
@@ -159,22 +123,24 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       settotalPrice(Number(product?.price * quantity) + Number(taxPrice));
       dispatch(
         saveShippingAddress({
-          email,
-          phone,
-          doc_schedule: doc_schedule?.name,
-          billingname,
-          billingaddress,
-          billingcity,
-          billingzipcode,
-          billingcountry,
-          billingstate,
-          shippingname,
-          shippingaddress,
-          shippingcity,
-          shippingzipcode,
-          shippingcountry,
-          shippingstate
+          email: allValues?.email,
+          doc_schedule: allValues?.doc_schedule?.name,
+
+          phone: allValues?.phone,
+          billingname: allValues?.billingname,
+          billingaddress: allValues?.billingaddress,
+          billingcity: allValues?.billingcity,
+          billingzipcode: allValues?.billingzipcode,
+          billingcountry: allValues?.billingcountry,
+          billingstate: allValues?.billingstate,
+          shippingname: allValues?.shippingname,
+          shippingaddress: allValues?.shippingaddress,
+          shippingcity: allValues?.shippingcity,
+          shippingzipcode: allValues?.shippingzipcode,
+          shippingcountry: allValues?.shippingcountry,
+          shippingstate: allValues?.shippingstate
         })
+
       );
     } else {
       Toasty("error", `Please enter a valid email`);
@@ -185,11 +151,11 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     settogglecheckout(togglecheckout + 1);
     dispatch(
       savePaymentMethod({
-        paymentmethod,
-        cardholdername,
-        cardnumber,
-        cvvnumber,
-        expirydate
+        paymentmethod: allValues?.paymentmethod,
+        cardholdername: allValues?.cardholdername,
+        cardnumber: allValues?.cardnumber,
+        cvvnumber: allValues?.cvvnumber,
+        expirydate: allValues?.expirydate
       })
     );
   };
@@ -212,53 +178,59 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
   }, [history, success]);
 
   const placeOrderHandler = async () => {
-    if(quantity==0){
-      Toasty(
-        "error",
-        `Quantity must be greater than 0`
-      );
-    }else{
-      const orderItems=[{...product,product:product?._id,qty:quantity,image:product?.productimage}]
-      const totalpricee=Number(product?.price * quantity) + Number(taxPrice)
+    if (quantity == 0) {
+      Toasty("error", `Quantity must be greater than 0`);
+    } else {
+      const orderItems = [
+        {
+          ...product,
+          product: product?._id,
+          qty: quantity,
+          image: product?.productimage
+        }
+      ];
+      const totalpricee = Number(product?.price * quantity) + Number(taxPrice);
       const formData = new FormData();
 
-      formData.append("doc_schedule", doc_schedule);
+      formData.append("doc_schedule", allValues?.doc_schedule);
       formData.append("orderItems", JSON.stringify(orderItems));
 
       formData.append("userid", userInfo?._id);
       formData.append("shippingAddress", JSON.stringify(cart?.shippingAddress));
       formData.append("paymentMethod", JSON.stringify(paymentInfo));
-      formData.append(
-        "itemsPrice",
-        product?.price
-      );
+      formData.append("itemsPrice", product?.price);
       formData.append("shippingPrice", shippingPrice);
       formData.append("taxPrice", taxPrice);
       formData.append("totalPrice", totalpricee);
       formData.append("taxperproduct", taxofstate);
 
       const body = formData;
-    dispatch(
-    
-      createGeoGeneticsOrder(body)
-    )}
+      dispatch(createGeoGeneticsOrder(body));
+    }
   };
   const subQuantity = async () => {
     console.log("cart?.product", quantity);
-    quantity == 0 || quantity <= 0 ? setquantity(Number(quantity + 0)) : setquantity(Number(quantity - 1));
+    quantity == 0 || quantity <= 0
+      ? setquantity(Number(quantity + 0))
+      : setquantity(Number(quantity - 1));
   };
-  
+
   const filedocsHandler = (e) => {
-    console.log("eeee", e?.target?.files[0]);
-    setdoc_schedule(e?.target?.files[0]);
+    setAllValues({
+      ...allValues,
+      ['doc_schedule']: e?.target?.files[0]
+    });
   };
-   useEffect(()=>{
-    settaxPrice(
-      Number(taxofstate / 100) *
-        Number(product?.price * quantity)
-    );
+  useEffect(() => {
+    settaxPrice(Number(taxofstate / 100) * Number(product?.price * quantity));
     settotalPrice(Number(product?.price * quantity) + Number(taxPrice));
-  },[quantity])
+  }, [quantity]);
+  const changeHandler = (e, namee) => {
+    setAllValues({
+      ...allValues,
+      [namee ? namee : e.target.name]: namee ? e : e.target.value
+    });
+  };
   return (
     <section className="about-page">
       <div className="container-fluid">
@@ -267,7 +239,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
             {/* Step form */}
             <div className="row">
               <div className="col-12 mb-xl-0 mb-5">
-                <form>
+              
+              .  <form>
                   {/* Circles which indicates the steps of the form: */}
                   <div className="row mb-5">
                     {togglecheckout == 0 && (
@@ -310,17 +283,19 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="email"
                                       className="form-control"
                                       placeholder="abs@email.com"
-                                      value={email}
-                                      onChange={(e) => {
-                                        setemail(e.target.value);
-                                      }}
+                                      name="email"
+                                      value={allValues?.email}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col mb-4">
                                     <label>Phone Number</label>
                                     <InputPhone
-                                      value={phone}
-                                      onChange={setphone}
+                                    unique={true}
+                                    uniquevalue={allValues}
+                                    name={"phone"}
+                                    value={allValues?.phone}
+                                    onChange={setAllValues}
                                     />
                                   </div>
                                 </div>
@@ -342,7 +317,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       htmlFor="govt-id"
                                       className="d-block id-upload"
                                     >
-                                      {doc_schedule?.name ? (
+                                      {allValues?.doc_schedule?.name ? (
                                         <i className="fas fa-file-upload fa-2x" />
                                       ) : (
                                         <i className="fas fa-upload fa-2x" />
@@ -361,10 +336,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Name"
-                                      value={billingname}
-                                      onChange={(e) => {
-                                        setbillingname(e.target.value);
-                                      }}
+                                      name="billingname"
+                                      value={allValues?.billingname}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-12 mb-4">
@@ -374,10 +348,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       id="exampleFormControlTextarea1"
                                       placeholder="Enter Address"
                                       rows={5}
-                                      value={billingaddress}
-                                      onChange={(e) => {
-                                        setbillingaddress(e.target.value);
-                                      }}
+                                      value={allValues?.billingaddress}
+                                      name="billingaddress"
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                 </div>
@@ -388,17 +361,19 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter City"
-                                      value={billingcity}
-                                      onChange={(e) => {
-                                        setbillingcity(e.target.value);
-                                      }}
+                                      name="billingcity"
+                                      value={allValues?.billingcity}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Zip Code*</label>
                                     <InputNumber
-                                      value={billingzipcode}
-                                      onChange={setbillingzipcode}
+                                      unique={true}
+                                      uniquevalue={allValues}
+                                      name={"billingzipcode"}
+                                      onChange={setAllValues}
+                                      value={allValues?.billingzipcode}
                                       max={5}
                                       className="form-control"
                                     />
@@ -409,21 +384,19 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Country"
-                                      value={billingcountry}
-                                      onChange={(e) => {
-                                        setbillingcountry(e.target.value);
-                                      }}
+                                      value={allValues?.billingcountry}
+                                      name="billingcountry"
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>State*</label>
                                     <select
-                                      name
+                                      
                                       className="form-control"
-                                      value={billingstate}
-                                      onChange={(e) => {
-                                        setbillingstate(e.target.value);
-                                      }}
+                                      name="billingstate"
+                                      onChange={changeHandler}
+                                      value={allValues?.billingstate}
                                     >
                                       <option value>select</option>
                                       <USStates />
@@ -460,10 +433,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Name"
-                                      value={shippingname}
-                                      onChange={(e) => {
-                                        setshippingname(e.target.value);
-                                      }}
+                                      name="shippingname"
+                                      value={allValues?.shippingname}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-12 mb-4">
@@ -473,10 +445,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       id="exampleFormControlTextarea1"
                                       placeholder="Enter Address"
                                       rows={5}
-                                      value={shippingaddress}
-                                      onChange={(e) => {
-                                        setshippingaddress(e.target.value);
-                                      }}
+                                      name="shippingaddress"
+                                      value={allValues?.shippingaddress}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -485,17 +456,19 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter City"
-                                      value={shippingcity}
-                                      onChange={(e) => {
-                                        setshippingcity(e.target.value);
-                                      }}
+                                      name="shippingcity"
+                                      value={allValues?.shippingcity}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Zip Code*</label>
                                     <InputNumber
-                                      value={shippingzipcode}
-                                      onChange={setshippingzipcode}
+                                      unique={true}
+                                      uniquevalue={allValues}
+                                      name={"shippingzipcode"}
+                                      onChange={setAllValues}
+                                      value={allValues?.shippingzipcode}
                                       max={5}
                                       className="form-control"
                                     />
@@ -506,21 +479,18 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Country"
-                                      value={shippingcountry}
-                                      onChange={(e) => {
-                                        setshippingcountry(e.target.value);
-                                      }}
+                                      name="shippingcountry"
+                                      onChange={changeHandler}
+                                      value={allValues?.shippingcountry}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>State*</label>
                                     <select
-                                      name
                                       className="form-control"
-                                      value={shippingstate}
-                                      onChange={(e) => {
-                                        setshippingstate(e.target.value);
-                                      }}
+                                      name="shippingstate"
+                                      onChange={changeHandler}
+                                      value={allValues?.shippingstate}
                                     >
                                       <option value>select</option>
                                       <USStates />
@@ -592,7 +562,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     </div>
                                     <div className="col-5 mb-3 text-right">
                                       <p className="summary-value">
-                                       To be Counted
+                                        To be Counted
                                       </p>
                                     </div>
                                     {/* Shipping rates */}
@@ -658,12 +628,15 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     <div className="payment-method">
                                       <input
                                         type="radio"
-                                        name="emotion"
                                         id="paypal"
                                         className="input-hidden"
-                                        value={paymentmethod}
-                                        onChange={() => {
-                                          setpaymentmethod("paypal");
+                                        value={allValues?.paymentmethod}
+                                        name="paypal"
+                                        onChange={(e) => {
+                                          changeHandler(
+                                            "paypal",
+                                            "paymentmethod"
+                                          );
                                         }}
                                       />
                                       <label htmlFor="paypal">
@@ -679,12 +652,15 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     <div className="payment-method">
                                       <input
                                         type="radio"
-                                        name="emotion"
                                         id="Apple Pay"
                                         className="input-hidden"
-                                        value={paymentmethod}
-                                        onChange={() => {
-                                          setpaymentmethod("Apple Pay");
+                                        name="Apple Pay"
+                                        value={allValues?.paymentmethod}
+                                        onChange={(e) => {
+                                          changeHandler(
+                                            "Apple Pay",
+                                            "paymentmethod"
+                                          );
                                         }}
                                       />
                                       <label htmlFor="Apple Pay">
@@ -700,12 +676,14 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     <div className="payment-method">
                                       <input
                                         type="radio"
-                                        name="emotion"
                                         id="visa"
                                         className="input-hidden"
-                                        value={paymentmethod}
-                                        onChange={() => {
-                                          setpaymentmethod("visa");
+                                        name="visa"
+                                        onChange={(e) => {
+                                          changeHandler(
+                                            "visa",
+                                            "paymentmethod"
+                                          );
                                         }}
                                       />
                                       <label htmlFor="visa">
@@ -726,10 +704,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       type="text"
                                       className="form-control"
                                       placeholder="Enter Card Holder Name"
-                                      value={cardholdername}
-                                      onChange={(e) => {
-                                        setcardholdername(e.target.value);
-                                      }}
+                                      name="cardholdername"
+                                      value={allValues?.cardholdername}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -742,10 +719,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       autocomplete="cc-number"
                                       maxlength="19"
                                       placeholder="xxxx xxxx xxxx xxxx"
-                                      value={cardnumber}
-                                      onChange={(e) => {
-                                        setcardnumber(e.target.value);
-                                      }}
+                                      name="cardnumber"
+                                      value={allValues?.cardnumber}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
@@ -755,18 +731,33 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       className="form-control"
                                       maxlength="11"
                                       placeholder="Enter CVV"
-                                      value={cvvnumber}
-                                      onChange={(e) => {
-                                        setcvvnumber(e.target.value);
-                                      }}
+                                      name="cvvnumber"
+                                      value={allValues?.cvvnumber}
+                                      onChange={changeHandler}
                                     />
                                   </div>
                                   <div className="col-6 mb-4">
                                     <label>Expiry date*</label>
                                     <DatePicker
-                                      minDate={moment().toDate()}
-                                      selected={expirydate}
-                                      onChange={(e) => setexpirydate(e)}
+                                       minDate={moment().toDate()}
+                                       selected={
+                                         new Date(
+                                           allValues?.expirydate
+                                             ? allValues?.expirydate
+                                             : moment().toDate()
+                                         )
+                                       }
+                                       name="expirydate"
+                                       value={
+                                         new Date(
+                                           allValues?.expirydate
+                                             ? allValues?.expirydate
+                                             : moment().toDate()
+                                         )
+                                       }
+                                       onChange={(e) => {
+                                         changeHandler(e, "expirydate");
+                                       }}
                                       className="sort-date customdate form-control"
                                     />{" "}
                                   </div>
@@ -850,8 +841,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   <div className="col-5 mb-3 text-right">
                                     <p className="grand-total-value">
                                       {" "}
-                                      $
-                                      {product?.price * quantity + taxPrice }
+                                      ${product?.price * quantity + taxPrice}
                                     </p>
                                   </div>
                                 </div>
@@ -949,7 +939,11 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                               id="add"
                                               className="plus"
                                               value={quantity}
-                                              onClick={() =>setquantity(Number(quantity+1)) }
+                                              onClick={() =>
+                                                setquantity(
+                                                  Number(quantity + 1)
+                                                )
+                                              }
                                             >
                                               <i className="fas fa-plus" />
                                             </button>
@@ -1041,7 +1035,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   <div className="col-5 mb-3 text-right">
                                     <p className="grand-total-value">
                                       {" "}
-                                      ${Number(product?.price * quantity) + taxPrice}
+                                      $
+                                      {Number(product?.price * quantity) +
+                                        taxPrice}
                                     </p>
                                   </div>
                                 </div>
@@ -1104,27 +1100,27 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                         className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
                         onClick={() => {
                           togglecheckout == 0 &&
-                          email &&
-                          doc_schedule?.name?.length > 0 &&
-                          phone &&
-                          billingname &&
-                          billingaddress &&
-                          billingcity &&
-                          billingzipcode &&
-                          billingcountry &&
-                          billingstate &&
-                          shippingname &&
-                          shippingaddress &&
-                          shippingcity &&
-                          shippingzipcode &&
-                          shippingcountry &&
-                          shippingstate
+                          allValues?.email &&
+                          allValues?.doc_schedule?.name?.length > 0 &&
+                          allValues?.phone &&
+                          allValues?.billingname &&
+                          allValues?.billingaddress &&
+                          allValues?.billingcity &&
+                          allValues?.billingzipcode &&
+                          allValues?.billingcountry &&
+                          allValues?.billingstate &&
+                          allValues?.shippingname &&
+                          allValues?.shippingaddress &&
+                          allValues?.shippingcity &&
+                          allValues?.shippingzipcode &&
+                          allValues?.shippingcountry &&
+                          allValues?.shippingstate
                             ? saveShippingHandler()
                             : togglecheckout == 1 &&
-                              paymentmethod &&
-                              cardholdername &&
-                              cardnumber &&
-                              cvvnumber
+                              allValues?.paymentmethod &&
+                              allValues?.cardholdername &&
+                              allValues?.cardnumber &&
+                              allValues?.cvvnumber
                             ? savePaymentMethodHandler()
                             : togglecheckout == 2
                             ? togglecheckoutHandler()

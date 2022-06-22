@@ -1,9 +1,38 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { ListSkeleton } from "../components/MultipleSkeleton";
+import { baseURL, imageURL } from "../utils/api";
 
 const Instruction = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const [instructions, setinstructions] = useState([]);
+  const [loading, setloading] = useState(false);
+
+  useEffect(() => {
+    getInstructions();
+  }, []);
+
+  const getInstructions = async () => {
+    setloading(true);
+    try {
+      const { data } = await axios.get(
+        `${baseURL}/instruction/getallinstructions`
+      );
+      setloading(false);
+
+      console.log("data", data);
+      setinstructions(data?.getallinstructions);
+    } catch (error) {
+      console.log("error", error);
+    }
+    setloading(false);
+  };
   return (
     <>
       <Header />
@@ -49,20 +78,39 @@ const Instruction = () => {
                   </p>
                 </div>
               </div>
-              <div className="row mt-5">
-                <div className="col-12">
-                  <div className="about-video">
-                    <img
-                      src="images/about-video-banner.jpg"
-                      alt=""
-                      className="img-fluid w-100"
-                    />
-                    <button type="button" className="play-banner" tabIndex={0}>
-                      <i className="fas fa-play" />
-                    </button>
-                  </div>
+              {loading ? (
+                <ListSkeleton listsToRender={16} />
+              ) : (
+                <div className="row mt-4">
+                  {instructions?.length > 0 &&
+                    instructions?.map((inst, index) => (
+                      <div className="col-xl-4 col-md-6">
+                        <div className="product-card">
+                          {inst?.videouri && (
+                            <video width="100%" height="60%" controls>
+                              <source
+                                src={`${imageURL}${inst?.videouri}`}
+                                type="video/ogg"
+                              />
+                            </video>
+                          )}
+                          <h5
+                            style={{
+                              fontSize: 20,
+                              maxHeight: 50,
+                              minHeight: 50,
+                              marginTop: 15
+                            }}
+                            // className="product-name"
+                          >
+                            {inst?.videotitle}
+                          </h5>
+                          <p>{inst?.description}</p>
+                        </div>
+                      </div>
+                    ))}
                 </div>
-              </div>
+              )}
               <div className="row align-items-center justify-content-between my-5">
                 <div className="col-lg-8 col-12">
                   <h4 className="cta-line">

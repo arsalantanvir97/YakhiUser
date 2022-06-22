@@ -6,15 +6,19 @@ import { payOrder, resetOrder } from "../actions/orderAction";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import moment from "moment";
+import Loader from "../components/Loader";
 const AppointmentDetails = ({ match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [appointmentdetaills, setappointmentdetaills] = useState();
+  const [loading, setloading] = useState(false);
+
   useEffect(() => {
     getSingleAppointment();
   }, []);
 
   const getSingleAppointment = async () => {
+    setloading(true)
     try {
       const res = await axios({
         url: `${baseURL}/consultationRoutes/getConsultationDetails/${match?.params?.id}`,
@@ -23,17 +27,26 @@ const AppointmentDetails = ({ match }) => {
           Authorization: `Bearer ${userInfo.token}`
         }
       });
+      setloading(false)
+
       console.log("res", res);
       setappointmentdetaills(res?.data?.consultation);
     } catch (err) {
       console.log(err);
+      setloading(false)
+
     }
+    setloading(false)
+
   };
   return (
     <div className="container-fluid mt-5">
       <div className="row">
         <div className="col-md-11 mx-auto">
           <section className="my-cart">
+          {loading ? (
+                    <Loader />
+                  ) : (
             <div className="row mb-5">
               <div className="col-12 my-4">
                 <h2>Appointment Details</h2>
@@ -87,7 +100,7 @@ const AppointmentDetails = ({ match }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>)}
           </section>
         </div>
       </div>

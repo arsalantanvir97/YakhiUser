@@ -7,6 +7,7 @@ import store from "./store";
 import "react-datepicker/dist/react-datepicker.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { ToastContainer } from "react-toastify";
 ReactDOM.render(

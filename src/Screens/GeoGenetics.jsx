@@ -8,24 +8,33 @@ import InnerPageBanner from "./InnerPageBanner";
 import ProductSlider from "../components/ProductSlider";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { ListSkeleton } from "../components/MultipleSkeleton";
+import { SliderSkeleton } from "../components/SliderSkeleton";
 
 const GeoGenetics = ({history}) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const [organicproductlist, setorganicproductlist] = useState([]);
+  const [loading, setloading] = useState(false);
+
   useEffect(() => {
     getDetoxProducts();
   }, []);
 
   const getDetoxProducts = async () => {
+    setloading(true)
     try {
       const { data } = await axios.get(`${baseURL}/product/geoGeneticsProducts`);
+      setloading(false)
+
       console.log("data", data);
       setorganicproductlist(data);
     } catch (error) {
       console.log("error", error);
     }
+    setloading(false)
+
   };
   return (
     <>
@@ -125,11 +134,15 @@ const GeoGenetics = ({history}) => {
               <h3 className="protocol-heading orange  mb-4">GEO'GENETICS PACKAGES</h3>
             </div>
           </div>
+          {loading ? (
+                      <SliderSkeleton listsToRender={4} />
+               
+                    ) : (
           <ProductSlider
             images={organicproductlist?.geoGeneticsproduct}
             userInfo={userInfo}
             history={history}
-          />
+          />)}
           {/* <div className="row">
             <div className="col-12 my-5">
               <div id="protocols" className="owl-carousel owl-theme">

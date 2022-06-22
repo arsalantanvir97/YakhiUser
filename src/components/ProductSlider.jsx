@@ -9,12 +9,42 @@ import UnauthorizedAlert from "./UnauthorizedAlert";
 export default class ProductSlider extends Component {
   render() {
     console.log("this.props", this.props);
+
+    function SampleNextArrow(props) {
+      const { className, style, onClick } = props;
+      return (
+        <div className={className} onClick={onClick}>
+          <i
+            className="fa fa-arrow-right fa-3x"
+            aria-hidden="true"
+            style={{ color: "black" }}
+          ></i>
+        </div>
+      );
+    }
+
+    const SamplePrevArrow = (props) => {
+      const { className, onClick } = props;
+      return (
+        <div className={className} onClick={onClick}>
+          <i
+            className="fa fa-arrow-left fa-3x"
+            aria-hidden="true"
+            style={{ color: "black" }}
+          ></i>
+        </div>
+      );
+    };
+
     const settings = {
-      dots: true,
-      infinite: false,
+      dots: false,
+      infinite: true,
       speed: 500,
-      slidesToShow: 2,
-      slidesToScroll: 1
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />
     };
     return (
       <Slider {...settings}>

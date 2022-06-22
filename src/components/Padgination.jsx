@@ -21,7 +21,7 @@ export default function Pagination({
           {/* Showing 1 to 2 of {totalDocs} entries */}
         </div>
       </div>
-      <div className="col-sm-12 col-md-7">
+      <div className="col-sm-12 col-md-12">
         <ReactPaginate
           previousLabel={"<<"}
           nextLabel={">>"}

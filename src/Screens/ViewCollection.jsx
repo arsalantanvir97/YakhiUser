@@ -511,6 +511,15 @@ const ViewCollection = ({ history, match }) => {
                   </div>
 
                   {/* pagination */}
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: 100,
+                    display: "flex",
+                    justifyContent: "center"
+                  }}
+                >
                   {productlogs?.docs?.length > 0 && (
                     <Pagination
                       totalDocs={productlogs?.totalDocs}

@@ -39,9 +39,7 @@ let timings = [
   { time: "3:30 CST" },
 
   { time: "4 CST" },
-  { time: "4:30 CST" },
-
-  
+  { time: "4:30 CST" }
 ];
 const Consultation = ({ history }) => {
   const dispatch = useDispatch();
@@ -132,10 +130,10 @@ const Consultation = ({ history }) => {
   // const consultationPaymentHandler = async () => {
   //   if (
   //     paymentname?.length > 0 &&
-  //     cardnumber?.length > 0 
+  //     cardnumber?.length > 0
   //     // cvv > 0 &&
   //   ) {
-     
+
   //   } else {
   //     Toasty("error", `Please fill out all the required fields`);
   //   }
@@ -157,7 +155,7 @@ const Consultation = ({ history }) => {
         reason,
         diagnosis
       };
-      const paymentinfo = { paymentname, cardnumber, expirymonth,expiryyear };
+      const paymentinfo = { paymentname, cardnumber, expirymonth, expiryyear };
 
       const confirmationinfo = { confirmationname, confirmationpassword };
 
@@ -252,13 +250,13 @@ const Consultation = ({ history }) => {
     );
     if (status === "succeeded") {
       setloading(false);
-      setpaymentname(response?.data?.receipt_email)
-setcardnumber(response?.data?.payment_method_details?.card?.last4)
-// setcvv(response?.data?.payment_method_details?.card?.last4)
-setexpirymonth(response?.data?.payment_method_details?.card?.exp_month)
-setexpiryyear(response?.data?.payment_method_details?.card?.exp_year)
-setpaymentconfirm(true)
-setshowform(showform == 4 ? 4 : showform + 1);
+      setpaymentname(response?.data?.receipt_email);
+      setcardnumber(response?.data?.payment_method_details?.card?.last4);
+      // setcvv(response?.data?.payment_method_details?.card?.last4)
+      setexpirymonth(response?.data?.payment_method_details?.card?.exp_month);
+      setexpiryyear(response?.data?.payment_method_details?.card?.exp_year);
+      setpaymentconfirm(true);
+      setshowform(showform == 4 ? 4 : showform + 1);
       console.log(status, "succes");
     } else {
       console.log(status, "fail");
@@ -280,6 +278,10 @@ setshowform(showform == 4 ? 4 : showform + 1);
       setappointmentdate(dayy);
     }
   };
+  useEffect(() => {
+    console.log("phone", phone);
+  }, [phone]);
+
   return (
     <>
       <Header />
@@ -638,11 +640,11 @@ setshowform(showform == 4 ? 4 : showform + 1);
                           <div className="table-responsive">
                             <table className="table table-borderless">
                               <thead></thead>
-                              <tbody >
+                              <tbody>
                                 {timings?.length > 0 &&
                                   timings?.map((tim, index) => (
-                                    <tr >
-                                      <td >
+                                    <tr>
+                                      <td>
                                         <input
                                           type="radio"
                                           value={appointment}
@@ -652,7 +654,7 @@ setshowform(showform == 4 ? 4 : showform + 1);
                                           id={index}
                                           name={`jeff${index}`}
                                         />
-                                        <label htmlFor={index}>
+                                        <label htmlFor={index} >
                                           {tim?.time}
                                         </label>
                                       </td>
@@ -736,21 +738,27 @@ setshowform(showform == 4 ? 4 : showform + 1);
                               </div>
                               
                             </div> */}
-                            <div className="form-row" style={{justifyContent:'center',display:'flex',textAlign:'center'}}>
-                             
-                             {loading ? (
-                           <i className="fas fa-spinner fa-pulse"></i>) : (
-                           <StripeCheckout
-                          //  cardnumber={cardnumber}
-                          //  cvv={cvv}
-                           email={userInfo?.email}
-                          //  expirydate={expirydate}
-                             stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                             token={handleToken}
-                             amount={100 * 100}
-                           ></StripeCheckout>
-                           )}
-                            
+                            <div
+                              className="form-row"
+                              style={{
+                                justifyContent: "center",
+                                display: "flex",
+                                textAlign: "center"
+                              }}
+                            >
+                              {loading ? (
+                                <i className="fas fa-spinner fa-pulse"></i>
+                              ) : (
+                                <StripeCheckout
+                                  //  cardnumber={cardnumber}
+                                  //  cvv={cvv}
+                                  email={userInfo?.email}
+                                  //  expirydate={expirydate}
+                                  stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
+                                  token={handleToken}
+                                  amount={100 * 100}
+                                ></StripeCheckout>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -782,7 +790,7 @@ setshowform(showform == 4 ? 4 : showform + 1);
                     <div className="text-center mt-5 pt-5 ">
                       <button
                         type="button"
-                        className="red-btn-outline"
+                        className="red-btn-outline mr-2"
                         id="prevBtn"
                         onClick={() => {
                           setshowform(showform == 1 ? 1 : showform - 1);
@@ -799,8 +807,8 @@ setshowform(showform == 4 ? 4 : showform + 1);
                             ? saveConsultationAddressHandler()
                             : showform == 2
                             ? chooseAppointmentHandler()
-                            : showform == 3 && paymentconfirm==true
-                            ? setshowform(showform+1)
+                            : showform == 3 && paymentconfirm == true
+                            ? setshowform(showform + 1)
                             : showform == 4 && confirmationHandler();
                         }}
                       >

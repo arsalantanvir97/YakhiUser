@@ -73,6 +73,14 @@ const Notification = () => {
             </div>
           </div>
           {/* pagination */}
+          <div
+                  style={{
+                    width: "100%",
+                    height: 100,
+                    display: "flex",
+                    justifyContent: "center"
+                  }}
+                >
           {notifiacitons?.docs?.length > 0 && (
             <Pagination
               totalDocs={notifiacitons?.totalDocs}
@@ -82,7 +90,7 @@ const Notification = () => {
               hasNextPage={notifiacitons?.hasNextPage}
               hasPrevPage={notifiacitons?.hasPrevPage}
             />
-          )}
+          )}</div>
         </div>
       </section>
     </>

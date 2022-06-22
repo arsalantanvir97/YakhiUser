@@ -4,11 +4,13 @@ import { baseURL, imageURL } from "../utils/api";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import Loader from "../components/Loader";
 
 const WishList = () => {
   const [wishtlistuser, setwishtlistuser] = useState([]);
   const [quantity, setquantity] = useState([]);
   const [rerenderWishList, setrerenderWishList] = useState();
+  const [loading, setloading] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -17,9 +19,12 @@ const WishList = () => {
   }, [rerenderWishList]);
 
   const getUsersWishList = async () => {
+    setloading(true);
     const res = await axios.post(`${baseURL}/wishList/userWishList`, {
       id: userInfo?._id
     });
+    setloading(false);
+
     console.log("res", res);
     setwishtlistuser(res?.data?.wishListofUser);
   };
@@ -48,15 +53,17 @@ const WishList = () => {
           <section className="my-cart mt-5">
             <div className="row align-items-start">
               <div className="col-12 my-4">
-                {wishtlistuser?.length > 0 ? (
-                  <h2>Wishlist</h2>
+                {wishtlistuser?.length > 0 && <h2>Wishlist</h2>}
+                {/* {wishtlistuser?.length > 0 ? (
                 ) : (
                   <h2>
                     Your Wishlist is Empty <Link to="/">Go Back</Link>
                   </h2>
-                )}
+                )} */}
               </div>
-              {wishtlistuser?.length > 0 && (
+              {loading ? (
+                <Loader />
+              ) : wishtlistuser?.length > 0 ? (
                 <div className="col-xl-11 col-md-12">
                   {/* cart table */}
                   <div className="table-responsive">
@@ -154,6 +161,10 @@ const WishList = () => {
                     </table>
                   </div>
                 </div>
+              ) : (
+                <h2>
+                  Your Wishlist is Empty <Link to="/">Go Back</Link>
+                </h2>
               )}
             </div>
           </section>

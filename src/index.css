@@ -5,19 +5,21 @@ body {
   display: inline-block;
   padding-left: 15px;
   padding-right: 15px;
+  font-size: 26px;
   cursor: pointer;
-  float: right;
-  color:#000;
+  color:grey;
 }
 .pagination > li {
   display: inline-block;
   background-color: #fff;
+  
   }
 .pagination > li > a {
   float: left;
   padding: 8px 16px;
   text-decoration: none;
-  color:#000;
+  color:grey;
+  
 }
 .pagination > li > a:hover:not(.active) {
   background-color: #720215;
@@ -25,6 +27,25 @@ body {
   border-radius: 5px;
 }
 input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.slick-prev, .slick-next {
+  font-size: 15px !important;
+}
+
+ .slick-prev:before, .slick-next:before  {
+  content: '' !important;
+}.custommloader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #820C1E;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;

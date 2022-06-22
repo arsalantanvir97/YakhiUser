@@ -8,11 +8,13 @@ import HomeSlider from "../components/HomeSlider";
 import ProductSlider from "../components/ProductSlider";
 import ClientsSlider from "../components/ClientsSlider";
 import { useSelector } from "react-redux";
+import { SliderSkeleton } from "../components/SliderSkeleton";
 const Index = ({ history }) => {
   const [product, setproduct] = useState([]);
   const [allofcategory, setallofcategory] = useState([]);
   const [catid, setcatid] = useState("");
   const [prdouctbycategories, setprdouctbycategories] = useState([]);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
     gettingProducts();
@@ -20,16 +22,21 @@ const Index = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const gettingProducts = async () => {
+    setloading(true);
     try {
       const res = await axios({
         url: `${baseURL}/product/getlimitedProducts`,
         method: "GET"
       });
+      setloading(false);
+
       console.log("res", res);
       setproduct(res?.data?.products);
     } catch (err) {
       console.log(err);
+      setloading(false);
     }
+    setloading(false);
   };
   useEffect(() => {
     gettingallCategoriesHandler();
@@ -363,11 +370,15 @@ const Index = ({ history }) => {
                       </h4>
                       <h5 className="prod-price">$350.00</h5>
                     </div> */}
-                    <ProductSlider
-                      history={history}
-                      images={product}
-                      userInfo={userInfo}
-                    />
+                    {loading ? (
+                      <SliderSkeleton listsToRender={4} />
+                    ) : (
+                      <ProductSlider
+                        history={history}
+                        images={product}
+                        userInfo={userInfo}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

@@ -163,7 +163,7 @@ const OrderLogDetail = ({ match, history }) => {
                             <p>Delivery Status</p>
                           </div>
                           <div className="col-6 mb-3">
-                            <p>{orderdetaills?.isDelivered ? 'Delivered' : 'Not Delivered'}</p>
+                            <p>{orderdetaills?.isDelivered }</p>
                           </div>
                           <div className="col-6 mb-3">
                             <p>Payment Method</p>

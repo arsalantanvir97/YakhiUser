@@ -12,6 +12,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import InputNumber from "../components/InputNumber";
+import Loader from "../components/Loader";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { ListSkeleton } from "../components/MultipleSkeleton";
+
 let allcategoryofProducts = [];
 const Capsules = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -31,6 +35,7 @@ const Capsules = ({ history }) => {
 
   const [productlogs, setproductlogs] = useState("");
   const [renderproductcategories, setrenderproductcategories] = useState([]);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
     getProducts();
@@ -58,6 +63,7 @@ const Capsules = ({ history }) => {
   };
 
   const getProducts = async () => {
+    setloading(true)
     try {
       const res = await axios({
         url: `${baseURL}/product/productlogs`,
@@ -75,12 +81,15 @@ const Capsules = ({ history }) => {
           pricefrom
         }
       });
+      setloading(false)
 
       console.log("res", res);
       setproductlogs(res.data?.product);
     } catch (err) {
       console.log("err", err);
     }
+    setloading(false)
+
   };
   const addToCartHandler = async (productId, qty) => {
     history.push(`/MyCart/${productId}?qty=${qty}`);
@@ -374,6 +383,7 @@ const Capsules = ({ history }) => {
                         </select>
                       </form>
                     </div>
+                 
                     {/* <div className="col-md-6 col-8 text-right">
                       <p className="showing-results">
                         Showing 1–09 of 50 results
@@ -381,6 +391,10 @@ const Capsules = ({ history }) => {
                     </div> */}
                   </div>
                   {/* products grid */}
+                  {loading ? (
+                      <ListSkeleton listsToRender={16} />
+               
+                    ) : (
                   <div className="row">
                     {productlogs?.docs?.length > 0 &&
                       productlogs?.docs?.map((prod, index) => (
@@ -514,8 +528,11 @@ const Capsules = ({ history }) => {
                         </div>
                       ))}
                   </div>
-
+                    )}
                   {/* pagination */}
+               
+                </div>
+                <div style={{width:'100%',height:100,display:'flex',justifyContent:'center'}}>
                   {productlogs?.docs?.length > 0 && (
                     <Pagination
                       totalDocs={productlogs?.totalDocs}
@@ -526,7 +543,7 @@ const Capsules = ({ history }) => {
                       hasPrevPage={productlogs?.hasPrevPage}
                     />
                   )}
-                </div>
+                  </div>
               </div>
               <div className="row mt-5">
                 <div className="col-12 text-center">

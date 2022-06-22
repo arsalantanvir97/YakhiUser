@@ -4,11 +4,16 @@ import { baseURL, imageURL } from "../utils/api";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { ListSkeleton } from "../components/MultipleSkeleton";
 const Document = () => {
   const [docs, setdocs] = useState([]);
+  const [loading, setloading] = useState(false);
 
   const gettingAllDOucs = async () => {
+    setloading(true);
     const res = await axios.get(`${baseURL}/document/getallDocuments/`);
+    setloading(false);
+
     console.log("res", res);
     setdocs(res?.data?.getAlldocss);
   };
@@ -56,7 +61,11 @@ const Document = () => {
                 </div>
               </div>
               <div className="row mt-5">
-                {docs?.length > 0 &&
+              {loading ? (
+                      <ListSkeleton listsToRender={16} />
+               
+                    ) : (
+                docs?.length > 0 &&
                   docs?.map((doc, index) => (
                     <div className="col-lg-4 col-md-6">
                       <div className="body-system-type">
@@ -86,7 +95,7 @@ const Document = () => {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  )))}
                 {/* Castor Packs */}
                 {/* <div className="col-lg-4 col-md-6">
                   <div className="body-system-type">

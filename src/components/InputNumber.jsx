@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class InputNumber extends React.Component {
   handleChange = (e) => {
     if (this.props.max ? e.target.value.length <= this.props.max : true)
-      this.props.onChange(e.target.value);
+    this?.props?.unique == true ? this.props?.onChange({ ...this.props?.uniquevalue, [this?.props?.name]: e.target.value }): this.props.onChange(e.target.value);
   };
 
   formatInput = (e) => {
