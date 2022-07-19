@@ -10,10 +10,16 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ListSkeleton } from "../components/MultipleSkeleton";
 import { SliderSkeleton } from "../components/SliderSkeleton";
+import { Parser } from "html-to-react";
+
+const htmlToReactParser = new Parser();
 
 const GeoGenetics = ({history}) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  
+  const [geogeneticstext, setgeogeneticstext] = useState(()=>{
+    ''})
 
   const [organicproductlist, setorganicproductlist] = useState([]);
   const [loading, setloading] = useState(false);
@@ -30,6 +36,7 @@ const GeoGenetics = ({history}) => {
 
       console.log("data", data);
       setorganicproductlist(data);
+      setgeogeneticstext(data?.geogeneticstext?.text)
     } catch (error) {
       console.log("error", error);
     }
@@ -108,22 +115,10 @@ const GeoGenetics = ({history}) => {
       </div>
 
       <div className="container">
-        <div className="row py-5 mt-5 intro-geo">
-          <div className="col-12 text-center">
-            <p>
-              Yah’ki uses a very unique and effective herbal therapy approach
-              when addressing disease!
-            </p>
-          </div>
-          <div className="col-12 mt-4 text-left">
-            <p>
-              The Geo’Genetics Therapeutic Package was created to cleanse every
-              cellular structure and system of your body. It breaks up mucus and
-              calcification, kills parasites, and revitalizes and rinses the
-              cells while supplying carbon, oxygen, and hydrogen, pairing them
-              with a monosaccharide sugar, phosphate and nitrogen base!
-            </p>
-          </div>
+        <div className="row  mt-5 intro-geo">
+          {htmlToReactParser.parse(geogeneticstext)}
+
+
         </div>
       </div>
 

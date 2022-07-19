@@ -151,8 +151,7 @@ const Donate = () => {
                             LLC to:
                           </p>
                           <h3>
-                            Yah’ki Awakened LLC 1650 Shackelford Rd PO Box 1529
-                            Florissant, MO 63031
+                          7217 Watson Rd PO 190563St. Louis, Mo 63119
                           </h3>
                         </div>
                       </div>

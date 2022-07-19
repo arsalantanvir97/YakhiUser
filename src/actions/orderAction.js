@@ -28,12 +28,20 @@ import { baseURL } from "../utils/api";
 import Toasty from "../utils/toast";
 
 export const createOrder = (order) => async (dispatch, getState) => {
+  
   try {
     dispatch({
       type: ORDER_CREATE_REQUEST,
     });
-
-    const { data } = await axios.post(`${baseURL}/order/addOrderItems`, order);
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.post(`${baseURL}/order/addOrderItems`, order,config);
 
     dispatch({
       type: ORDER_CREATE_SUCCESS,
@@ -53,8 +61,16 @@ export const createGeoGeneticsOrder = (order) => async (dispatch, getState) => {
     dispatch({
       type: ORDER_CREATE_REQUEST,
     });
-
-    const { data } = await axios.post(`${baseURL}/order/addGeoGeneticsOrderItems`, order);
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    console.log('configconfigconfig',config)
+    const { data } = await axios.post(`${baseURL}/order/addGeoGeneticsOrderItems`, order,config);
 
     dispatch({
       type: ORDER_CREATE_SUCCESS,

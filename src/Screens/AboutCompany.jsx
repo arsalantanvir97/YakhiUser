@@ -43,52 +43,16 @@ const AboutCompany = () => {
                     </h4>
                     <h3 className="main-heading">Our Company</h3>
                     <p className="general-para dark-text">
-                      Welcome to Yah’ki Awakened LLC where Peace, Health, Energy
-                      and Awareness is always first priority. Yahki Awakened
-                      &amp; Eye of Lotus Botanicals is a committed family who
-                      specializes and focuses on cellular regeneration, DNA
-                      repair, and intracellular detoxification using a high
-                      energetic diet and powerful alkaline botanicals. Our core
-                      belief is that the body has the ability to heal itself
-                      when provided the optimal environment for maximum cellular
-                      potential. Our primary methodology for healing is Amino
-                      Acid Therapy.
+                    Welcome to Yah’ki Awakened LLC where Peace, Health, Energy and Awareness is always first priority. Yahki Awakened & Eye of Lotus Botanicals is a committed family who specializes and focuses on cellular regeneration, DNA repair, and intracellular detoxification using a high energetic diet and powerful alkaline botanicals. Our core belief is that the body has the ability to heal itself when provided the optimal environment for maximum cellular potential. Our primary methodology for healing is Amino Acid Therapy.
                     </p>
                     <p className="general-para dark-text mt-4">
-                      This journey began after our founder, Yah’ki, healed
-                      himself from high blood pressure, diabetes, kidney
-                      failure, rheumatoid arthritis, heart disease, obesity, and
-                      hair loss. Through fasting, a plant based alkaline diet,
-                      and an herbal protocol, he was able to eliminate all of
-                      the Dis-Eases he suffered from and restore his body to
-                      full health. His own healing journey inspired him to start
-                      Yah’Ki Awakened LLC &amp; Eye of Lotus Botanicals so he
-                      could show others how to restore their health as well.
-                    </p>
+                    This journey began after our founder, Yah’ki, healed himself from high blood pressure, diabetes, kidney failure, rheumatoid arthritis, heart disease, obesity, and hair loss. Through fasting, a plant based alkaline diet, and an herbal protocol, he was able to eliminate all of the Dis-Eases he suffered from and restore his body to full health. His own healing journey inspired him to start Yah’Ki Awakened LLC & Eye of Lotus Botanicals so he could show others how to restore their health as well. </p>
                   </div>
                   <div className="col-12 my-5">
                     <p className="general-para dark-text">
-                      Yah’ki is a Master Herbalist and highly knowledgeable in
-                      Theoretical Psychology, Metaphysics, and Biochemistry. He
-                      has been studying and practicing herbalism (Natural
-                      Pathology) for the past 10 years. Yah’ki is a certified
-                      Master Herbalist, Reiki Healer, and Energy Crystal Healer.
-                      He has restored health to people suffering from Diabetes,
-                      Herpes, Sickle Cell Anemia, various Cancers, Autoimmune
-                      Diseases, and many more.
-                    </p>
+                    Yah’ki is a Master Herbalist and highly knowledgeable in Theoretical Psychology, Metaphysics, and Biochemistry. He has been studying and practicing herbalism (Natural Pathology) for the past 10 years. Yah’ki is a certified Master Herbalist, Reiki Healer, and Energy Crystal Healer. He has restored health to people suffering from Diabetes, Herpes, Sickle Cell Anemia, various Cancers, Autoimmune Diseases, and many more.  </p>
                     <p className="general-para dark-text mt-4">
-                      Our ultimate goal is to provide the masses with the
-                      necessary tools for healing. Through proper nutrition,
-                      amino acid therapy, education, for your health can be
-                      restored. We are very misinformed and lead to believe that
-                      many of the Dis-Eases people are suffering from are
-                      incurable, but not anymore! Our Company specializes in
-                      Herbal compounds and formulas designed to aid and
-                      strengthen the cells of the human body. Come take this
-                      amazing journey with us. Enjoy yourself while learning how
-                      to heal yourself and others who are suffering. Let's break
-                      The illusion we call disease!
+                    Our ultimate goal is to provide the masses with the necessary tools for healing. Through proper nutrition, amino acid therapy, education, your health can be restored. We are very misinformed and led to believe that many of the Dis-Eases people are suffering from are incurable, but not anymore! Our Company specializes in Herbal compounds and formulas designed to aid and strengthen the cells of the human body. Come take this amazing journey with us. Enjoy yourself while learning how to heal yourself and others who are suffering. Let's break The illusion we call disease!
                     </p>
                   </div>
                 </div>

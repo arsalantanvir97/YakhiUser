@@ -14,6 +14,7 @@ import { validateEmail } from "../utils/ValidateEmail";
 import axios from "axios";
 import moment from "moment";
 import USStates from "../components/USStates";
+import { Signature } from "../components/Signature";
 
 const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [totalPrice, settotalPrice] = useState(0);
@@ -53,14 +54,12 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [taxofstate, settaxofstate] = useState(0);
   const [product, setproduct] = useState();
 
-
-
-
-
   const [allValues, setAllValues] = useState({
     email: shippingAddress?.email,
     phone: shippingAddress?.phone,
     doc_schedule: shippingAddress?.doc_schedule,
+    disclaimer: shippingAddress?.disclaimer,
+    signature: shippingAddress?.signature,
 
     billingname: shippingAddress?.billingname,
     billingaddress: shippingAddress?.billingaddress,
@@ -80,7 +79,6 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     cvvnumber: paymentInfo?.cvvnumber,
     expirydate: paymentInfo?.expirydate
   });
-
 
   const [togglecheckout, settogglecheckout] = useState(0);
   const [taxPrice, settaxPrice] = useState(0);
@@ -125,7 +123,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
         saveShippingAddress({
           email: allValues?.email,
           doc_schedule: allValues?.doc_schedule?.name,
-
+          signature: shippingAddress?.signature,
+          disclaimer: allValues?.disclaimer,
           phone: allValues?.phone,
           billingname: allValues?.billingname,
           billingaddress: allValues?.billingaddress,
@@ -140,7 +139,6 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
           shippingcountry: allValues?.shippingcountry,
           shippingstate: allValues?.shippingstate
         })
-
       );
     } else {
       Toasty("error", `Please enter a valid email`);
@@ -218,7 +216,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
   const filedocsHandler = (e) => {
     setAllValues({
       ...allValues,
-      ['doc_schedule']: e?.target?.files[0]
+      ["doc_schedule"]: e?.target?.files[0]
     });
   };
   useEffect(() => {
@@ -231,6 +229,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       [namee ? namee : e.target.name]: namee ? e : e.target.value
     });
   };
+  useEffect(() => {
+    console.log("allValues", allValues);
+  }, [allValues]);
   return (
     <section className="about-page">
       <div className="container-fluid">
@@ -239,8 +240,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
             {/* Step form */}
             <div className="row">
               <div className="col-12 mb-xl-0 mb-5">
-              
-              .  <form>
+                .{" "}
+                <form>
                   {/* Circles which indicates the steps of the form: */}
                   <div className="row mb-5">
                     {togglecheckout == 0 && (
@@ -291,17 +292,17 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   <div className="col mb-4">
                                     <label>Phone Number</label>
                                     <InputPhone
-                                    unique={true}
-                                    uniquevalue={allValues}
-                                    name={"phone"}
-                                    value={allValues?.phone}
-                                    onChange={setAllValues}
+                                      unique={true}
+                                      uniquevalue={allValues}
+                                      name={"phone"}
+                                      value={allValues?.phone}
+                                      onChange={setAllValues}
                                     />
                                   </div>
                                 </div>
 
                                 <div className="row mb-4">
-                                  <div className="col mb-4">
+                                  <div className="col-6 mb-4">
                                     <label>
                                       Upload Valid Government Issued ID*
                                     </label>
@@ -323,6 +324,17 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         <i className="fas fa-upload fa-2x" />
                                       )}
                                     </label>
+                                  </div>
+                                  <div className="col-6 ship-to-different text-center">
+                                    <div className="checkbox-group">
+                                      <input
+                                        type="checkbox"
+                                        id="html"
+                                        value={allValues?.disclaimer}
+                                        onChange={changeHandler}
+                                      />
+                                      <label htmlFor="html">Disclaimer </label>
+                                    </div>
                                   </div>
                                 </div>
                                 {/* Billing Address */}
@@ -392,7 +404,6 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   <div className="col-6 mb-4">
                                     <label>State*</label>
                                     <select
-                                      
                                       className="form-control"
                                       name="billingstate"
                                       onChange={changeHandler}
@@ -496,6 +507,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       <USStates />
                                     </select>
                                   </div>
+                                  <label>E Signature*</label>
+                                  <Signature allValues={allValues}  setAllValues={setAllValues}/>
                                 </div>
                               </div>
                             </div>
@@ -739,25 +752,25 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   <div className="col-6 mb-4">
                                     <label>Expiry date*</label>
                                     <DatePicker
-                                       minDate={moment().toDate()}
-                                       selected={
-                                         new Date(
-                                           allValues?.expirydate
-                                             ? allValues?.expirydate
-                                             : moment().toDate()
-                                         )
-                                       }
-                                       name="expirydate"
-                                       value={
-                                         new Date(
-                                           allValues?.expirydate
-                                             ? allValues?.expirydate
-                                             : moment().toDate()
-                                         )
-                                       }
-                                       onChange={(e) => {
-                                         changeHandler(e, "expirydate");
-                                       }}
+                                      minDate={moment().toDate()}
+                                      selected={
+                                        new Date(
+                                          allValues?.expirydate
+                                            ? allValues?.expirydate
+                                            : moment().toDate()
+                                        )
+                                      }
+                                      name="expirydate"
+                                      value={
+                                        new Date(
+                                          allValues?.expirydate
+                                            ? allValues?.expirydate
+                                            : moment().toDate()
+                                        )
+                                      }
+                                      onChange={(e) => {
+                                        changeHandler(e, "expirydate");
+                                      }}
                                       className="sort-date customdate form-control"
                                     />{" "}
                                   </div>

@@ -58,6 +58,8 @@ const Index = ({ history }) => {
   const productViewRedirectHandler = async (id) => {
     history?.push(`/ProductView/${id}`);
   };
+ 
+  
   return (
     <>
       <Header />

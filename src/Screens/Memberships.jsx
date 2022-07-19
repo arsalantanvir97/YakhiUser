@@ -1,0 +1,149 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+
+const Memberships = () => {
+  return (
+    <>
+     <Header />
+      <div>
+        <section className="inner-banner">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
+                <div className="banner-content">
+                  <div className="banner-outline">
+                    <h1 className="slider-heading">
+                      Healing The Illusion We Call disease
+                    </h1>
+                    <p className="slider-para">
+                      You deserve healing! We are not currently accepting detox
+                      home clients.{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="about-page">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-11 mx-auto">
+                <div className="row mb-5 pb-5">
+                  <div className="col-md-12 text-center">
+                    <h3 className="main-heading">Memberships</h3>
+                    <p className="general-para px-sm-5">
+                      Join now for full access to Yahki Awakened Eye of Lotus
+                      Botanical Health Club including exclusive access to the
+                      Yahki Approved Herbal List, All charts and data, Our Detox
+                      center, Cooking Classes, Online Shop and more.
+                    </p>
+                  </div>
+                </div>
+                {/* MEMBERSHIP PACKAGES */}
+                <form>
+                  <div className="row align-items-start justify-content-center text-center my-5 pb-5">
+                    <div className="col-lg-4 col-md-8 mb-5 mx-auto">
+                      <div className="package-box mx-xl-5">
+                        <img
+                          src="images/free.png"
+                          alt=""
+                          className="img-fluid mb-3"
+                        />
+                        <div className="package-selection">
+                          <label className="labl">
+                            {/* <input type="radio" name="radioname" value="one_value" checked="checked"/> */}
+                            <div>
+                              <h3>Melanin Free</h3>
+                              <p>Basic Access</p>
+                              <h4 className="mt-4 membership-price">free</h4>
+                              <Link to='#'
+                                className="btn maroon-btn-solid d-inline-block mt-5 mx-auto"
+                              >
+                                Add to cart
+                              </Link>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-8 mb-5 mx-auto">
+                      <div className="package-box mx-xl-5">
+                        <img
+                          src="images/silver.png"
+                          alt=""
+                          className="img-fluid mb-3"
+                        />
+                        <div className="package-selection">
+                          <label className="labl">
+                            {/* <input type="radio" name="radioname" value="another" /> */}
+                            <div>
+                              <h3>Melanin Silver</h3>
+                              <p>Limited Access</p>
+                              <h4 className="mt-4 membership-price">$10</h4>
+                              <Link to='#'
+                                className="btn maroon-btn-solid d-inline-block mt-5 mx-auto"
+                              >
+                                Add to cart
+                              </Link>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-8 mb-5 mx-auto">
+                      <div className="package-box mx-xl-5">
+                        <img
+                          src="images/gold.png"
+                          alt=""
+                          className="img-fluid mb-3"
+                        />
+                        <div className="package-selection">
+                          <label className="labl">
+                            {/* <input type="radio" name="radioname" value="another" /> */}
+                            <div>
+                              <h3>Melanin Gold</h3>
+                              <p>Full Access</p>
+                              <h4 className="mt-4 membership-price">$25</h4>
+                              <Link to='#'
+                                className="btn maroon-btn-solid d-inline-block mt-5 mx-auto"
+                              >
+                                Add to cart
+                              </Link>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div className="row mt-5">
+                  <div className="col-12 text-center">
+                    <div className="about-bottom-banner">
+                      <h3>
+                        All Herbs Are Organic Alkaline and Are Naturally
+                        Wildcrafted from the Land of their Origin
+                      </h3>
+                      <p>
+                        All herbs used in our products are 100% naturally
+                        organic and are selectively picked and tested by a
+                        laboratory before use. Each herbal compound is
+                        personally prepared with gratification for the purpose
+                        of restoring health to our clients.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <Footer/>
+    </>
+  );
+};
+
+export default Memberships;

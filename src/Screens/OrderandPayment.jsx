@@ -100,8 +100,7 @@ const OrderandPayment = () => {
                     the items you wish to purchase to:
                   </p>
                   <p className="bottom-note mt-2">
-                    Yah’ki Awakened LLC 1650 Shackelford Rd, Unit 1529
-                    Florissant, MO 63031
+                  7217 Watson Rd PO 190563St. Louis, Mo 63119
                   </p>
                   <h4 className="mt-5">Out of Stock Items</h4>
                   <p>

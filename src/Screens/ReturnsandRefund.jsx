@@ -69,7 +69,7 @@ const ReturnsandRefund = () => {
                     membership issues ticket and our memberships department will
                     assist you.
                   </p>
-                  <Link to="#" className="btn red-btn-solid mt-lg-4 mt-3">
+                  <Link to="/Memberships" className="btn red-btn-solid mt-lg-4 mt-3">
                     Submit A Membership Help Ticket
                   </Link>
                 </div>

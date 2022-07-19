@@ -53,6 +53,8 @@ import GeoGeneticsCheckout from "./Screens/GeoGeneticsCheckout";
 import AppointmentLogs from "./Screens/AppointmentLogs";
 import AppointmentDetails from "./Screens/AppointmentDetails";
 import Notification from "./Screens/Notification";
+import Memberships from "./Screens/Memberships";
+import ApprovedHerb from "./Screens/ApprovedHerb";
 
 function App() {
   useEffect(() => {
@@ -71,6 +73,9 @@ function App() {
         exact
       />
       <Route path="/ResetPassword" component={ResetPassword} exact />
+      <Route path="/Memberships" component={Memberships} exact />
+      <Route path="/ApprovedHerb" component={ApprovedHerb} exact />
+
       <Route exact path="/GeoGenetics" component={GeoGenetics} />{" "}
       <Route exact path="/CardioSystem" component={CardioSystem} />{" "}
       <Route exact path="/DigestiveSystem" component={DigestiveSystem} />{" "}

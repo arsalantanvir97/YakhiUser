@@ -142,7 +142,7 @@ const Header = ({ history }) => {
                               <Link to="/BodySystem">12 Body Systems</Link>
                             </li>
                             <li>
-                              <Link to="#">YAH'KI Approved Herbs</Link>
+                              <Link to="/ApprovedHerb">YAH'KI Approved Herbs</Link>
                             </li>
                             <li>
                               <Link to="/ProductResource">

@@ -6,10 +6,16 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { ListSkeleton } from "../components/MultipleSkeleton";
 import { baseURL, imageURL } from "../utils/api";
+import { Parser } from "html-to-react";
+
+const htmlToReactParser = new Parser();
 
 const Instruction = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const [instructiontext, setinstructiontext] = useState(()=>{
+    ''
+  });
 
   const [instructions, setinstructions] = useState([]);
   const [loading, setloading] = useState(false);
@@ -27,6 +33,7 @@ const Instruction = () => {
       setloading(false);
 
       console.log("data", data);
+      setinstructiontext(data?.instructiontext?.text) 
       setinstructions(data?.getallinstructions);
     } catch (error) {
       console.log("error", error);
@@ -65,17 +72,8 @@ const Instruction = () => {
                     Yah'ki Awakened Eye of Lotus Botanical Health Club
                   </h4>
                   <h3 className="main-heading">INSTRUCTIONS</h3>
-                  <p className="general-para">
-                    Take all take herbs on empty stomach. While taking herbal
-                    compounds at least 64 oz. of spring water must be consumed
-                    daily. Unless told otherwise by Yah’ki, Spring water is the
-                    most recommended drink while on herbal compounds. A raw
-                    alkaline plant based diet is required when detoxing the
-                    Mind, Body, and Spirit. The effectiveness of herbal
-                    compounds are greatly compromised when diet is not followed.
-                    Optimal results are only achievable when herbal diet and
-                    regimen are followed correctly.
-                  </p>
+                  {htmlToReactParser.parse(instructiontext)}
+
                 </div>
               </div>
               {loading ? (

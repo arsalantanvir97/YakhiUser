@@ -64,7 +64,7 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" data-hover="Membership Help">
+                      <Link to="/Memberships" data-hover="Membership Help">
                         Membership Help
                       </Link>
                     </li>
