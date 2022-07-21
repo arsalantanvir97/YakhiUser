@@ -1,30 +1,14 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
 const AboutCompany = () => {
   return (
     <>
       <Header />
       <div>
-        <section className="inner-banner">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
-                <div className="banner-content">
-                  <div className="banner-outline">
-                    <h1 className="slider-heading">
-                      Healing The Illusion We Call disease
-                    </h1>
-                    <p className="slider-para">
-                      You deserve healing! We are not currently accepting detox
-                      home clients.{" "}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <PrivateRouteSlider />
+
         <div className="container-fluid my-5 py-4">
           <div className="row">
             <div className="col-11 mx-auto">
@@ -43,16 +27,52 @@ const AboutCompany = () => {
                     </h4>
                     <h3 className="main-heading">Our Company</h3>
                     <p className="general-para dark-text">
-                    Welcome to Yah’ki Awakened LLC where Peace, Health, Energy and Awareness is always first priority. Yahki Awakened & Eye of Lotus Botanicals is a committed family who specializes and focuses on cellular regeneration, DNA repair, and intracellular detoxification using a high energetic diet and powerful alkaline botanicals. Our core belief is that the body has the ability to heal itself when provided the optimal environment for maximum cellular potential. Our primary methodology for healing is Amino Acid Therapy.
+                      Welcome to Yah’ki Awakened LLC where Peace, Health, Energy
+                      and Awareness is always first priority. Yahki Awakened &
+                      Eye of Lotus Botanicals is a committed family who
+                      specializes and focuses on cellular regeneration, DNA
+                      repair, and intracellular detoxification using a high
+                      energetic diet and powerful alkaline botanicals. Our core
+                      belief is that the body has the ability to heal itself
+                      when provided the optimal environment for maximum cellular
+                      potential. Our primary methodology for healing is Amino
+                      Acid Therapy.
                     </p>
                     <p className="general-para dark-text mt-4">
-                    This journey began after our founder, Yah’ki, healed himself from high blood pressure, diabetes, kidney failure, rheumatoid arthritis, heart disease, obesity, and hair loss. Through fasting, a plant based alkaline diet, and an herbal protocol, he was able to eliminate all of the Dis-Eases he suffered from and restore his body to full health. His own healing journey inspired him to start Yah’Ki Awakened LLC & Eye of Lotus Botanicals so he could show others how to restore their health as well. </p>
+                      This journey began after our founder, Yah’ki, healed
+                      himself from high blood pressure, diabetes, kidney
+                      failure, rheumatoid arthritis, heart disease, obesity, and
+                      hair loss. Through fasting, a plant based alkaline diet,
+                      and an herbal protocol, he was able to eliminate all of
+                      the Dis-Eases he suffered from and restore his body to
+                      full health. His own healing journey inspired him to start
+                      Yah’Ki Awakened LLC & Eye of Lotus Botanicals so he could
+                      show others how to restore their health as well.{" "}
+                    </p>
                   </div>
                   <div className="col-12 my-5">
                     <p className="general-para dark-text">
-                    Yah’ki is a Master Herbalist and highly knowledgeable in Theoretical Psychology, Metaphysics, and Biochemistry. He has been studying and practicing herbalism (Natural Pathology) for the past 10 years. Yah’ki is a certified Master Herbalist, Reiki Healer, and Energy Crystal Healer. He has restored health to people suffering from Diabetes, Herpes, Sickle Cell Anemia, various Cancers, Autoimmune Diseases, and many more.  </p>
+                      Yah’ki is a Master Herbalist and highly knowledgeable in
+                      Theoretical Psychology, Metaphysics, and Biochemistry. He
+                      has been studying and practicing herbalism (Natural
+                      Pathology) for the past 10 years. Yah’ki is a certified
+                      Master Herbalist, Reiki Healer, and Energy Crystal Healer.
+                      He has restored health to people suffering from Diabetes,
+                      Herpes, Sickle Cell Anemia, various Cancers, Autoimmune
+                      Diseases, and many more.{" "}
+                    </p>
                     <p className="general-para dark-text mt-4">
-                    Our ultimate goal is to provide the masses with the necessary tools for healing. Through proper nutrition, amino acid therapy, education, your health can be restored. We are very misinformed and led to believe that many of the Dis-Eases people are suffering from are incurable, but not anymore! Our Company specializes in Herbal compounds and formulas designed to aid and strengthen the cells of the human body. Come take this amazing journey with us. Enjoy yourself while learning how to heal yourself and others who are suffering. Let's break The illusion we call disease!
+                      Our ultimate goal is to provide the masses with the
+                      necessary tools for healing. Through proper nutrition,
+                      amino acid therapy, education, your health can be
+                      restored. We are very misinformed and led to believe that
+                      many of the Dis-Eases people are suffering from are
+                      incurable, but not anymore! Our Company specializes in
+                      Herbal compounds and formulas designed to aid and
+                      strengthen the cells of the human body. Come take this
+                      amazing journey with us. Enjoy yourself while learning how
+                      to heal yourself and others who are suffering. Let's break
+                      The illusion we call disease!
                     </p>
                   </div>
                 </div>
@@ -64,30 +84,40 @@ const AboutCompany = () => {
                     <h5>Yah'ki Awakened Eye of Lotus Botanical Health Club</h5>
                     <h3>Our Mission</h3>
                     <p>
-                      My mission is to shake and expose the deceitful tactics of
-                      this westernized system that has a strong hold on my
+                      Our mission is to shake and expose the deceitful tactics
+                      of this westernized system that has a strong hold on our
                       people. Furthermore, to ignite the spark in their
                       melanated, cosmic minds, while lifting the veils from
                       their eyes.
                     </p>
                     <p>
-                      Once we realize that our subconscious mind have been
+                      Once it is realized that our subconscious mind have been
                       programmed by the evils of this world and recognize that
                       there is a diabolical plot to exterminate and eliminate
-                      the so called “black man and woman” off planet earth. Then
+                      the so called “black man and woman” off planet earth—then
                       and only then will we begin to question any and all things
-                      they have ever told and taught us.
+                      that have ever told and taught us.
                     </p>
                     <p>
-                      For instance, who taught you religion, medicine,
+                      [6:09 PM] Rana Omer Akhtar Our mission is to shake and
+                      expose the deceitful tactics of this westernized system
+                      that has a strong hold on our people. Furthermore, to
+                      ignite the spark in their melanated, cosmic minds, while
+                      lifting the veils from their eyes.Once it is realized that
+                      our subconscious mind have been programmed by the evils of
+                      this world and recognize that there is a diabolical plot
+                      to exterminate and eliminate the so called “black man and
+                      woman” off planet earth—then and only then will we begin
+                      to question any and all things that have ever told and
+                      taught us.For instance, who taught us religion, medicine,
                       traditions, education, culture and language? All of these
                       things mold and shape the cerebral frontal lobe and
-                      parietal lobe section of your brain cortex. These main
-                      functions of your brain exercise the emotions, creativity
-                      and intelligent pathways of your thinking. Everything
-                      mentioned, have been taught to you by the same westernized
-                      society that enslaved, raped, hung, murdered and castrated
-                      our people for thousands of years.
+                      parietal lobe section of the brain cortex. These main
+                      functions of the brain exercise the emotions, creativity
+                      and intelligent pathways of  thinking. Everything
+                      mentioned, has been taught by the same westernized society
+                      that enslaved, raped, hung, murdered and castrated our
+                      people for thousands of years.
                     </p>
                   </div>
                   <div className="col-xl-4 col-lg-9 mx-auto text-center">

@@ -2,29 +2,13 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
 const ReturnsandRefund = () => {
   return (
     <>
       <Header />
-      <section className="inner-banner">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
-              <div className="banner-content">
-                <div className="banner-outline">
-                  <h1 className="slider-heading">
-                    Healing The Illusion We Call disease
-                  </h1>
-                  <p className="slider-para">
-                    You deserve healing! We are not currently accepting detox
-                    home clients.{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PrivateRouteSlider />
+
       <div className="container-fluid my-5 py-3">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -69,7 +53,10 @@ const ReturnsandRefund = () => {
                     membership issues ticket and our memberships department will
                     assist you.
                   </p>
-                  <Link to="/Memberships" className="btn red-btn-solid mt-lg-4 mt-3">
+                  <Link
+                    to="/Memberships"
+                    className="btn red-btn-solid mt-lg-4 mt-3"
+                  >
                     Submit A Membership Help Ticket
                   </Link>
                 </div>
@@ -101,14 +88,15 @@ const ReturnsandRefund = () => {
                   <h4>Late or Missing Refunds ( If Applicable )</h4>
                   <p>
                     {" "}
-                    If you haven’t received a refund yet and it has been at
-                    least seven (7) business days, first check your bank account
-                    or credit card account. It may take some time before your
-                    refund is officially posted. Refund processing times vary
-                    for different banks and credit card companies. If your
-                    refund has not posted within 14 days please contact us at{" "}
+                    [6:01 PM] Rana Omer Akhtar If you haven’t received a refund
+                    yet and it has been at least seven (14) business days, first
+                    check your bank account or credit card account. It may take
+                    some time before your refund is officially posted. Refund
+                    processing times vary for different banks and credit card
+                    companies. If your refund has not posted within 14 days
+                    please contact us at 
                     <Link className="grey" to="#">
-                      info@yahkiawakened.com
+                    orders@yahkiawakened.com
                     </Link>
                   </p>
                 </div>

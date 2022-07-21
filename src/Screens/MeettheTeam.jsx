@@ -2,30 +2,66 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
+const data=[
+  {
+  name:"Godis Kawah",
+  title:"Chief Operations Officer - Master Herbalist - Aromatherapist Detoxification Specialist",
+  email:" Kawah@yahkiawakened.com",
+  image:"images/Teammember1.png"
+},
+{
+  name:"Antonio",
+  title:"Counselor - Consultant - Detoxification Specialist",
+  email:"",
+  image:"images/Teammember2.png"
+}, {
+  name:"Cierra",
+  title:"Herbalist - Processing Manager",
+  email:"",
+  image:"images/Teammember3.png"
+}, {
+  name:"Jason (Yadin)",
+  title:"Videographer - Photographer - Graphic Designer - Content Creator",
+  email:"",
+  image:"images/Teammember4.png"
+}, {
+  name:"Jazz",
+  title:"Processor",
+  email:"",
+  image:"images/Teammember5.png"
+}, {
+  name:"Godis Ruby",
+  title:"Warehouse Production Manager",
+  email:"",
+  image:"images/Teammember6.png"
+},
+{
+  name:"Nandi",
+  title:"Shipping & Processing",
+  email:"",
+  image:"images/Teammember5.png"
+},
+{
+  name:"Twanna",
+  title:"Processor",
+  email:"",
+  image:"images/Teammember5.png"
+},
+,
+{
+  name:"Nabi",
+  title:"Yahki Booking/Travel Manager",
+  email:"Nabi@yahkiawakened.com",
+  image:"images/Teammember2.png"
+},
+]
 const MeettheTeam = () => {
   return (
     <>
       <Header />
-      <section className="inner-banner">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
-              <div className="banner-content">
-                <div className="banner-outline">
-                  <h1 className="slider-heading">
-                    Healing The Illusion We Call disease
-                  </h1>
-                  <p className="slider-para">
-                    You deserve healing! We are not currently accepting detox
-                    home clients.{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PrivateRouteSlider/>
+
       <div className="container-fluid my-5 py-4">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -49,116 +85,44 @@ const MeettheTeam = () => {
                 </div>
               </div>
               {/* Team members grid */}
-              <div className="row my-5 align-items-start justify-content-center pb-5">
+              <div className="row my-5  align-items-start justify-content-center pb-5">
+             {data?.map(dat=>(
+              <>
                 <div className="col-lg-4 col-md-6 my-4 my-lg-0">
                   <div className="team-member-box">
-                    <img src="images/team-1.jpg" alt="" className="img-fluid" />
+                    <img src={dat?.image} alt="" style={{maxWidth:528,maxHeight:428}} className="img-fluid" />
                     <div className="member-info-card">
-                      <h3>KAWAH ASHYET</h3>
+                      <h3>{dat?.name}</h3>
                       <ul className="member-features list-inline">
-                        <li className="list-inline-item"> Herbalist</li>
-                        <li className="list-inline-item">Counselor</li>
-                        <li className="list-inline-item">Aromatherapist</li>
-                        <li className="list-inline-item">
-                          Detoxification Specialist
-                        </li>
-                        <li className="list-inline-item">
-                          Processing and Shipping
-                        </li>
+                        
+                        <li className="list-inline-item"> {dat?.title}</li>
+                        
                       </ul>
                       <div className="sepatator" />
+                      {dat?.email &&
                       <p className="text-center member-email">
                         <Link
                           to="#"
-                          onClick={() =>
-                            (window.location = "mailto:kawah@yahkiawakened.com")
-                          }
+                          
+                          onClick={(e) => {
+                            window.location = `mailto:${dat?.email}`;
+                            e.preventDefault();
+                          }}
                         >
                           <i className="fas fa-envelope" />
-                          kawah@yahkiawakened.com
+                          {dat?.email}
                         </Link>
-                      </p>
+                      </p>}
                     </div>
                   </div>
-                  <div className="send-msg mx-auto text-center">
+                  <div className="send-msg mx-auto text-center ">
                     <Link to="#" className="btn red-btn-solid">
                       Send A Message
                     </Link>
                   </div>
                 </div>
-                <div className="col-lg-4 col-md-6 my-4 my-lg-0">
-                  <div className="team-member-box">
-                    <img src="images/team-2.jpg" alt="" className="img-fluid" />
-                    <div className="member-info-card">
-                      <h3>RUBY FOSTER</h3>
-                      <ul className="member-features list-inline">
-                        <li className="list-inline-item"> Counselor</li>
-                        <li className="list-inline-item">
-                          Processing and Shipping
-                        </li>
-                        <li className="list-inline-item">
-                          {" "}
-                          Administrative Assistant
-                        </li>
-                      </ul>
-                      <div className="sepatator" />
-                      <p className="text-center member-email">
-                        <Link
-                          to="#"
-                          onClick={() =>
-                            (window.location =
-                              "mailto:claims@yahkiawakened.com")
-                          }
-                        >
-                          <i className="fas fa-envelope" />
-                          claims@yahkiawakened.com
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="send-msg mx-auto text-center">
-                    <Link to="#" className="btn red-btn-solid">
-                      Send A Message
-                    </Link>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6 my-4 my-lg-0">
-                  <div className="team-member-box">
-                    <img src="images/team-1.jpg" alt="" className="img-fluid" />
-                    <div className="member-info-card">
-                      <h3>ANIYAH AWAKENED</h3>
-                      <ul className="member-features list-inline">
-                        <li className="list-inline-item"> Dietitian</li>
-                        <li className="list-inline-item">Herbalist</li>
-                        <li className="list-inline-item">Counselor</li>
-                        <li className="list-inline-item">
-                          Detoxification Specialist
-                        </li>
-                        <li className="list-inline-item">
-                          Processing and Shipping
-                        </li>
-                      </ul>
-                      <div className="sepatator" />
-                      <p className="text-center member-email">
-                        <Link
-                          to="#"
-                          onClick={() =>
-                            (window.location =
-                              "mailto:Aniyah@yahkiawakened.com")
-                          }
-                        >
-                          <i className="fas fa-envelope" />
-                          Aniyah@yahkiawakened.com
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="send-msg mx-auto text-center">
-                    <Link to="#" className="btn red-btn-solid">
-                      Send A Message
-                    </Link>
-                  </div>
-                </div>
+                </>
+                ))}
               </div>
               <div className="row mt-5">
                 <div className="col-12 text-center">

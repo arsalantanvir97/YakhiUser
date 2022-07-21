@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import { ListSkeleton } from "../components/MultipleSkeleton";
 import { baseURL, imageURL } from "../utils/api";
 import { Parser } from "html-to-react";
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
 
 const htmlToReactParser = new Parser();
 
@@ -43,25 +44,8 @@ const Instruction = () => {
   return (
     <>
       <Header />
-      <section className="inner-banner">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
-              <div className="banner-content">
-                <div className="banner-outline">
-                  <h1 className="slider-heading">
-                    Healing The Illusion We Call disease
-                  </h1>
-                  <p className="slider-para">
-                    You deserve healing! We are not currently accepting detox
-                    home clients.{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PrivateRouteSlider/>
+
       <section className="about-page">
         <div className="container-fluid">
           <div className="row">

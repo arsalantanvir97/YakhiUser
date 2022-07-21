@@ -13,8 +13,7 @@ const PrivateRouteSlider = () => {
                     Healing The Illusion We Call disease
                   </h1>
                   <p className="slider-para">
-                    You deserve healing! We are not currently accepting detox
-                    home clients.{" "}
+                    You deserve healing!
                   </p>
                 </div>
               </div>

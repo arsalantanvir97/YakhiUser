@@ -13,6 +13,7 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { baseURL } from "../utils/api";
 import Swal from "sweetalert2";
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
 let showformm = 1;
 let timings = [
   { time: "8:30 CST" },
@@ -285,25 +286,8 @@ const Consultation = ({ history }) => {
   return (
     <>
       <Header />
-      <section class="inner-banner">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
-              <div class="banner-content">
-                <div class="banner-outline">
-                  <h1 class="slider-heading">
-                    Healing The Illusion We Call disease
-                  </h1>
-                  <p class="slider-para">
-                    You deserve healing! We are not currently accepting detox
-                    home clients.{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PrivateRouteSlider/>
+
 
       <section className="about-page">
         <div className="container-fluid">

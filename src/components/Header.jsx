@@ -7,6 +7,7 @@ import { userEmailLoginAction } from "../actions/userAction";
 import UnauthorizedAlert from "./UnauthorizedAlert";
 import { validateEmail } from "../utils/ValidateEmail";
 import Toasty from "../utils/toast";
+import Swal from "sweetalert2";
 const Header = ({ history }) => {
   const dispatch = useDispatch();
   const [email, setemail] = useState("");
@@ -41,7 +42,18 @@ const Header = ({ history }) => {
 
     window?.$(".modal-backdrop").remove();
   };
-
+  let msg= 'New & Improved Detox Experience \n\
+  Coming Soon :Booking Currently Not Available'
+  const popUpHandler = () => {
+    Swal.fire({
+      icon: 'info',
+      title: "",
+      text: msg
+     ,
+      showConfirmButton: false,
+      timer: 1500
+    });
+  };
   return (
     <>
       <section className="menu">
@@ -777,8 +789,8 @@ const Header = ({ history }) => {
                           </ul>
                         </li>
                         <li className="nav-item">
-                          <Link className="nav-link" to="/DetoxHome">
-                            DETOX HOME
+                          <Link className="nav-link" to="#" onClick={popUpHandler}>
+                            Detox Home
                           </Link>
                         </li>
                         <li className="nav-item">

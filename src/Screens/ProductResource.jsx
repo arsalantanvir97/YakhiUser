@@ -15,10 +15,7 @@ const ProductResource = () => {
                   <h1 className="slider-heading">
                     Healing The Illusion We Call disease
                   </h1>
-                  <p className="slider-para">
-                    You deserve healing! We are not currently accepting detox
-                    home clients.{" "}
-                  </p>
+                  <p className="slider-para">You deserve healing!</p>
                 </div>
               </div>
             </div>
@@ -55,15 +52,15 @@ const ProductResource = () => {
                       aria-expanded="false"
                       aria-controls="waterFilters"
                     >
-                      Water Filters
+                      WATER FILTERS
                     </button>
                     <div className="collapse" id="waterFilters">
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
                             <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
+                              FLUORIDE AND CHEMICAL/ METAL CARBON CHARCOAL WATER
+                              FILTER
                             </p>
                             <a
                               href="#"
@@ -73,7 +70,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
+                            <p>PELICAN WATER HOUSE FILTER</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -82,7 +79,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>PH TEST STRIPS</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -106,16 +103,13 @@ const ProductResource = () => {
                       aria-expanded="false"
                       aria-controls="therapy"
                     >
-                      Therapy
+                      FULL BODY THERAPY
                     </button>
                     <div className="collapse" id="therapy">
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
-                            <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
-                            </p>
+                            <p>ESSENTIAL OIL DIFFUSER (AROMATHERAPY)</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -124,7 +118,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
+                            <p>MINI SAUNA (PERSONAL RADIANT HEALTH SAUNA)</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -133,7 +127,16 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>ULTRASONIC COOL MIST HUMIDIFIER</p>
+                            <a
+                              href="#"
+                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
+                            >
+                              Purchase
+                            </a>
+                          </li>
+                          <li className="mb-4">
+                            <p>SKIN BRUSH (LYMPHATIC MOVER)</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -163,10 +166,7 @@ const ProductResource = () => {
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
-                            <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
-                            </p>
+                            <p>Dash Compact Cold Press Power Juicer - Aqua</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -175,7 +175,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
+                            <p>Nama J2 Cold Press Juicer</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -184,7 +184,16 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>Green Star Elite Juicer</p>
+                            <a
+                              href="#"
+                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
+                            >
+                              Purchase
+                            </a>
+                          </li>
+                          <li className="mb-4">
+                            <p>PURE Juicer</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -208,16 +217,13 @@ const ProductResource = () => {
                       aria-expanded="false"
                       aria-controls="naturalPads"
                     >
-                      Natural Pads
+                      NATURAL PADS
                     </button>
                     <div className="collapse" id="naturalPads">
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
-                            <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
-                            </p>
+                            <p>RAEL</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -226,16 +232,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
-                            <a
-                              href="#"
-                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
-                            >
-                              Purchase
-                            </a>
-                          </li>
-                          <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>IV PURE HERBAL PADS</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -259,34 +256,13 @@ const ProductResource = () => {
                       aria-expanded="false"
                       aria-controls="bpa"
                     >
-                      BPA Free Cups
+                      THERMAL CUPS
                     </button>
                     <div className="collapse" id="bpa">
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
-                            <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
-                            </p>
-                            <a
-                              href="#"
-                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
-                            >
-                              Purchase
-                            </a>
-                          </li>
-                          <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
-                            <a
-                              href="#"
-                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
-                            >
-                              Purchase
-                            </a>
-                          </li>
-                          <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>BPA FREE THERMAL CUPS</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -310,16 +286,13 @@ const ProductResource = () => {
                       aria-expanded="false"
                       aria-controls="cookware"
                     >
-                      Cooper/Glass Cookware
+                      COPPER COOKWARE & GLASS COOKWARE
                     </button>
                     <div className="collapse" id="cookware">
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
-                            <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
-                            </p>
+                            <p>GLASS COOKWARE</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -328,16 +301,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
-                            <a
-                              href="#"
-                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
-                            >
-                              Purchase
-                            </a>
-                          </li>
-                          <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>COPPER COOKWARE</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -361,16 +325,13 @@ const ProductResource = () => {
                       aria-expanded="false"
                       aria-controls="dishware"
                     >
-                      Wooden Dishware
+                      WOODEN DISHWARE
                     </button>
                     <div className="collapse" id="dishware">
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
-                            <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
-                            </p>
+                            <p>RAINFOREST BOWLS</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -379,16 +340,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
-                            <a
-                              href="#"
-                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
-                            >
-                              Purchase
-                            </a>
-                          </li>
-                          <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>WOODEN PLATES</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -412,16 +364,13 @@ const ProductResource = () => {
                       aria-expanded="false"
                       aria-controls="cleaning"
                     >
-                      Detergents &amp; Cleaning
+                      DETERGENT AND CLEANING SUPPLIES
                     </button>
                     <div className="collapse" id="cleaning">
                       <div className="card card-body resource-body">
                         <ul>
                           <li className="mb-4">
-                            <p>
-                              Fluoride and Chemical/Metal Carbon Charcoal Water
-                              Filter
-                            </p>
+                            <p>LAUNDRY DETERGENT</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -430,16 +379,7 @@ const ProductResource = () => {
                             </a>
                           </li>
                           <li className="mb-4">
-                            <p>Pelican Water House Filter</p>
-                            <a
-                              href="#"
-                              className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
-                            >
-                              Purchase
-                            </a>
-                          </li>
-                          <li className="mb-4">
-                            <p>HP Test Strips</p>
+                            <p>CLEANING SUPPLIES</p>
                             <a
                               href="#"
                               className="btn red-btn-solid btn-sm mt-lg-4 mt-3"
@@ -453,7 +393,7 @@ const ProductResource = () => {
                   </div>
                 </div>
                 {/* Retails Store Sources */}
-                <div className="col-lg-4 col-md-6 col-10 mx-auto mx-md-0 mr-md-auto">
+                {/* <div className="col-lg-4 col-md-6 col-10 mx-auto mx-md-0 mr-md-auto">
                   <div className="mx-2 mb-5">
                     <button
                       className="btn btn-resource"
@@ -502,7 +442,7 @@ const ProductResource = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               {/* Retail Sources */}
               <div className="row mt-5">

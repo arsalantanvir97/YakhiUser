@@ -1,30 +1,14 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
 
 const PrivacyPolicy = () => {
   return (
     <>
       <Header />
-      <section className="inner-banner">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1">
-              <div className="banner-content">
-                <div className="banner-outline">
-                  <h1 className="slider-heading">
-                    Healing The Illusion We Call disease
-                  </h1>
-                  <p className="slider-para">
-                    You deserve healing! We are not currently accepting detox
-                    home clients.{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PrivateRouteSlider/>
+
 
       <div className="container-fluid my-5 py-3">
         <div className="row">
@@ -32,12 +16,10 @@ const PrivacyPolicy = () => {
             <section className="orders">
               <div className="row">
                 <div className="col-10 mx-auto">
-                  <p className="dark-text my-3 text-center">
-                    All information and tools on this website are strictly for
-                    members only. Use of any of the information given on this
-                    website by a non-member is strictly prohibited. Yah’ki
-                    Awakened Eye of Lotus Botanical Club owns and operates this
-                    website.
+                  <p className="dark-text my-3 text-center" style={{fontWeight: 'bold'}}>
+                  All information and tools on this website are strictly for members only. Use of any of the information given on this website by a non-member is strictly prohibited. Yah’ki Awakened Eye of Lotus Botanical Club owns and operates this website.
+
+
                   </p>
                 </div>
                 <div className="col-12 text-center">
@@ -48,11 +30,9 @@ const PrivacyPolicy = () => {
               <div className="row my-5">
                 <div className="col-12 my-3">
                   <p>
-                    Yahki Awakened Office respects the privacy needs and
-                    concerns of our customers. That is why we handle any
-                    personal information, such as your name, address, email
-                    address or phone number (“Personal Information”) that you
-                    provide to us with utmost care.
+                  Yahki Awakened Office respects the privacy needs and concerns of our customers. That is why we handle any personal information, such as your name, address, email address or phone number (“Personal Information”) that you provide to us with utmost care.
+
+
                   </p>
                 </div>
                 <div className="col-12 text-left">
@@ -60,11 +40,9 @@ const PrivacyPolicy = () => {
                 </div>
                 <div className="col-12 mt-3">
                   <p>
-                    And its employees and volunteers may ask You to provide Us
-                    with certain personally identifiable information that can be
-                    used to contact or identify You. Personally identifiable
-                    information may include, but is not limited to:
-                  </p>
+                  Yah’ki Awakened Eye of Lotus Botanical Club and its employees and volunteers may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:
+
+</p>
                   <ul className="policy-list ml-4 my-3">
                     <li>Email address</li>
                     <li>First name and last name</li>
@@ -73,54 +51,44 @@ const PrivacyPolicy = () => {
                     <li>Usage Data</li>
                   </ul>
                   <p>
-                    Usage Data is collected automatically when using the
-                    Service.
-                  </p>
+                  Usage Data is collected automatically when using the Service.
+
+</p>
                   <p className="my-3">
-                    Usage Data may include information such as Your Device’s
-                    Internet Protocol address (e.g. IP address), browser type,
-                    browser version, the pages of our Service that You visit,
-                    the time and date of Your visit, the time spent on those
-                    pages, unique device identifiers and other diagnostic data.
-                  </p>
+                  Usage Data may include information such as Your Device’s Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.
+
+</p>
                   <p className="my-3">
-                    When You access the Service by or through a mobile device,
-                    We may collect certain information automatically, including,
-                    but not limited to, the type of mobile device You use, Your
-                    mobile device unique ID, the IP address of Your mobile
-                    device, Your mobile operating system, the type of mobile
-                    Internet browser You use, unique device identifiers and
-                    other diagnostic data.
+When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.
+
                   </p>
                   <p className="mt-3">
-                    We may also collect information that Your browser sends
-                    whenever You visit our Service or when You access the
-                    Service by or through a mobile device.
-                  </p>
+                  We may also collect information that Your browser sends whenever You visit our Service or when You access the Service by or through a mobile device.
+
+</p>
                 </div>
                 {/* Tracking Technologies and Cookies */}
                 <div className="col-12 mt-5">
-                  <h4>Tracking Technologies and Cookies</h4>
+                  <h4>Tracking Technologies and Cookies
+
+</h4>
                   <p className="mt-3">
-                    We use Cookies and similar tracking technologies to track
-                    the activity on Our Service and store certain information
-                    such as the product in your shopping cart and making
-                    purchases. For more information about the cookies we use and
-                    your choices regarding cookies, please visit our Cookies
-                    Policy.
-                  </p>
+                  We use Cookies and similar tracking technologies to track the activity on Our Service and store certain information such as the product in your shopping cart and making purchases.
+
+</p>
+<p className="mt-3">
+
+For more information about the cookies we use and your choices regarding cookies, please visit our Cookies Policy.
+</p>
+
+
                 </div>
                 {/* How We Collect Information About You */}
                 <div className="col-12 mt-5">
                   <h3>How We Collect Information About You</h3>
                   <h4>Yah’ki Awakened Eye of Lotus Botanical Club</h4>
                   <p className="mt-3">
-                    And its employees and volunteers collect data through a
-                    variety of means including but not necessarily limited to
-                    letters, phone calls, emails, voicemails, and from the
-                    submission of applications that are either required by law
-                    or necessary to process applications or other requests for
-                    assistance through our organization.
+                    And its employees and volunteers collect data through a variety of means including but not necessarily limited to letters, phone calls, emails, voicemails, and from the submission of applications that are either required by law or necessary to process applications or other requests for assistance through our organization.
                   </p>
                 </div>
                 {/* What We Do Not Do With Your Information */}

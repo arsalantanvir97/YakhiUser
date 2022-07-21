@@ -15,7 +15,95 @@ const Index = ({ history }) => {
   const [catid, setcatid] = useState("");
   const [prdouctbycategories, setprdouctbycategories] = useState([]);
   const [loading, setloading] = useState(false);
+  const herbalsupport = [
+    {
+      name: `The Muscular System 
+  (Tissue Health)`
+    },
+    {
+      name: `The Integumentary System (Skin/ Hair/ Nails Health)
+  `
+    },
+    {
+      name: `The Skeletal System 
+  (Bone Health) 
 
+  `
+    },
+    {
+      name: `The Nervous System
+  (Brain, Nerves, Adrenal Health)
+  `
+    },
+    {
+      name: `The Urinary System
+  `
+    },
+    {
+      name: `The Digestive System
+  (Gut Health)
+  `
+    },
+    {
+      name: `The Endocrine System
+  (The Glands Health)
+
+  `
+    },
+    {
+      name: `The Respiratory System
+  (Lungs, Bronchial Health)
+  `
+    },
+    {
+      name: `The Lymphatic System Health 
+  `
+    },
+    {
+      name: `The Cardiovascular System
+  Heart/Blood/Arteries Health
+
+
+  `
+    },
+    {
+      name: `Reproductive Systems Health 
+
+  `
+    },
+
+    {
+      name: `Oral Health
+
+  `
+    }
+  ];
+  const herbalproducts = [
+    "Consultation",
+    "Capsules",
+    "Children Products",
+    "Capsule-Less Powders",
+    "Geo’Genetics",
+    "Tinctures",
+    "Teas",
+    "Powders",
+    "Sea Herbs",
+    "Kits & Bundle",
+    "Tonics",
+    "Oils",
+    "Hygiene",
+    "Bulk Herbs",
+    "Crystal, Stones",
+    "Soups",
+    "Salves"
+  ];
+  const detoxdesired = [
+    "Moderate Detox",
+    "Advanced Detox",
+    "Intense Detox",
+    "Revitalize/ReBuild Detox",
+    "Preventive Maintenance Detox"
+  ];
   useEffect(() => {
     gettingProducts();
   }, []);
@@ -58,8 +146,7 @@ const Index = ({ history }) => {
   const productViewRedirectHandler = async (id) => {
     history?.push(`/ProductView/${id}`);
   };
- 
-  
+
   return (
     <>
       <Header />
@@ -135,7 +222,7 @@ const Index = ({ history }) => {
               <div className="row my-5 align-items-start justify-content-between">
                 <div className="col-12">
                   {" "}
-                  <h6 className="text-uppercase">SEARCH PRODUCTS</h6>
+                  <h6 className="text-uppercase">Healing Assistance</h6>
                 </div>
                 <div className="col-md-4 mb-3">
                   <div className="form-group my-3">
@@ -148,10 +235,10 @@ const Index = ({ history }) => {
                       //   gettingproductsbyCategoryidHandler(event.target.value);
                       // }}
                     >
-                      <option>I need help with</option>
-                      {allofcategory?.length > 0 &&
-                        allofcategory?.map((cat) => (
-                          <option value={cat?._id}>{cat?.categorytitle}</option>
+                      <option>I Need Herbal Support For</option>
+                      {herbalsupport?.length > 0 &&
+                        herbalsupport?.map((herb) => (
+                          <option value={herb?.name}>{herb?.name}</option>
                         ))}
                     </select>
                   </div>
@@ -165,10 +252,10 @@ const Index = ({ history }) => {
                         productViewRedirectHandler(event.target.value);
                       }}
                     >
-                      <option>Products</option>
-                      {prdouctbycategories?.length > 0 &&
-                        prdouctbycategories?.map((prod) => (
-                          <option value={prod?._id}>{prod?.name}</option>
+                      <option>Herbal Products</option>
+                      {herbalproducts?.length > 0 &&
+                        herbalproducts?.map((herb) => (
+                          <option value={herb}>{herb}</option>
                         ))}
                     </select>
                   </div>
@@ -184,10 +271,10 @@ const Index = ({ history }) => {
                         gettingproductsbyCategoryidHandler(event.target.value);
                       }}
                     >
-                      <option>Categories</option>
-                      {allofcategory?.length > 0 &&
-                        allofcategory?.map((cat) => (
-                          <option value={cat?._id}>{cat?.categorytitle}</option>
+                      <option>Detox Desired</option>
+                      {detoxdesired?.length > 0 &&
+                        detoxdesired?.map((det) => (
+                          <option value={det}>{det}</option>
                         ))}
                     </select>
                   </div>
@@ -198,7 +285,7 @@ const Index = ({ history }) => {
                     to="#"
                     className="btn maroon-btn-solid d-inline-block py-2 px-5"
                   >
-                    Find
+                    Search
                   </Link>
                 </div>
               </div>
