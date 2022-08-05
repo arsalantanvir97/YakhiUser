@@ -64,58 +64,7 @@ const ProductView = ({ match, history }) => {
       history.push(`/MyCart/${match.params.id}?qty=${quantity}`);
     }
   };
-  const addtoWishLIstHandler = async (product) => {
-    console.log("product", product);
-    const formData = new FormData();
-    formData.append("user_image", product?.productimage);
-    formData.append("id", userInfo?._id);
-    formData.append("price", product?.price);
-    formData.append("brand", product?.brand);
-    // formData.append("weight", product?.weight);
-    formData.append("category", product?.category);
-    formData.append("countInStock", product?.countInStock);
-    formData.append("name", product?.name);
-
-    formData.append("description", product?.description);
-
-    const body = formData;
-    try {
-      console.log("createWishList");
-
-      const res = await axios.post(`${baseURL}/wishList/createWishList`, body);
-
-      console.log("res", res);
-      if (res?.status == 201) {
-        await Swal.fire({
-          icon: "success",
-          title: "",
-          text: "Added to Wislist",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        history.replace("/WishList");
-      }
-      // else if(res?.status==201){
-      //   Toasty('error',`Invalid Email or Password`);
-      //   dispatch({
-      //     type: ADMIN_LOGIN_FAIL,
-      //     payload:
-      //     res?.data?.message
-      //   })
-      //   document.location.href = '/'
-
-      // }
-    } catch (error) {
-      console.log("error", error);
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Internal Server Error",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
-  };
+  
   const subQuantity = async () => {
     quantity == 0 || quantity <= 0
       ? setquantity(0)
@@ -126,12 +75,12 @@ const ProductView = ({ match, history }) => {
       <DetailsofProduct
         product={product}
         quantity={quantity}
+        history={history}
         subQuantity={subQuantity}
         setquantity={setquantity}
         addToCartHandler={addToCartHandler}
         htmlToReactParser={htmlToReactParser}
         recommendedproducts={recommendedproducts}
-        addtoWishLIstHandler={addtoWishLIstHandler}
         userInfo={userInfo}
         UnauthorizedAlert={UnauthorizedAlert}
       />

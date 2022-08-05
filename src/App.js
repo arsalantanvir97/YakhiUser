@@ -18,7 +18,6 @@ import DamageClaims from "./Screens/DamageClaims";
 import DetoxHome from "./Screens/DetoxHome";
 import Document from "./Screens/Document";
 import Donate from "./Screens/Donate";
-import EattotLive from "./Screens/EattotLive";
 import Faqs from "./Screens/Faqs";
 import GeoGenetics from "./Screens/GeoGenetics";
 import Instruction from "./Screens/Instruction";
@@ -75,7 +74,6 @@ function App() {
       <Route path="/ResetPassword" component={ResetPassword} exact />
       <Route path="/Memberships" component={Memberships} exact />
       <Route path="/ApprovedHerb" component={ApprovedHerb} exact />
-
       <Route exact path="/GeoGenetics" component={GeoGenetics} />{" "}
       <Route exact path="/CardioSystem" component={CardioSystem} />{" "}
       <Route exact path="/DigestiveSystem" component={DigestiveSystem} />{" "}
@@ -102,7 +100,7 @@ function App() {
       <Route exact path="/MeettheTeam" component={MeettheTeam} />{" "}
       <Route exact path="/Consultation" component={Consultation} />{" "}
       <Route exact path="/Contactus" component={Contactus} />{" "}
-      <Route exact path="/Capsules" component={Capsules} />{" "}
+      <Route exact path="/Capsules/:id?" component={Capsules} />{" "}
       <Route exact path="/ProductResource" component={ProductResource} />{" "}
       <Route
         exact
@@ -110,7 +108,6 @@ function App() {
         component={IntegumentarySystem}
       />{" "}
       <Route exact path="/BodySystem" component={BodySystem} />{" "}
-      <Route exact path="/EattotLive" component={EattotLive} />{" "}
       <Route exact path="/ProductView/:id" component={ProductView} />{" "}
       <Route
         exact

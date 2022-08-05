@@ -140,6 +140,13 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
           shippingstate: allValues?.shippingstate
         })
       );
+      Swal.fire({
+        icon: "info",
+        title: "",
+        text: "Please recheck your address, the address will not be changed",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } else {
       Toasty("error", `Please enter a valid email`);
     }
@@ -422,6 +429,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       }}
                                     /> */}
                                   </div>
+                                  <label>E Signature*</label>
+                                  <Signature allValues={allValues}  setAllValues={setAllValues}/>
                                   {/* <div className="col-12">
                                     <div className="ship-to-different">
                                       <div className="checkbox-group">
@@ -507,8 +516,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       <USStates />
                                     </select>
                                   </div>
-                                  <label>E Signature*</label>
-                                  <Signature allValues={allValues}  setAllValues={setAllValues}/>
+                               
                                 </div>
                               </div>
                             </div>

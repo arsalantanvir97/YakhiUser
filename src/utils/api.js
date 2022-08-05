@@ -1,4 +1,5 @@
 import axios from "axios";
+//let BaseUrl = "https://localhost:5000/api";
 
 export let baseURL;
 export let imageURL;
@@ -10,32 +11,20 @@ if (window.location.hostname == "localhost") {
   baseURL = "https://dev74.onlinetestingserver.com:5089/api";
   imageURL = "https://dev74.onlinetestingserver.com:5089/";
 }
-
-const api = axios.create({
-  // baseURL: 'https://dev74.onlinetestingserver.com:5021/api',
+let api = axios.create({
   baseURL,
-
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  },
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  }
 });
-//   api.interceptors.request.use((config) => {
-//     document.querySelector('.spinner-container').style.display = 'block';
-//     return config;
-//   }, (error) => {
-//     document.querySelector('.spinner-container').style.display = 'none';
-//     return Promise.reject(error);
-//   });
-
-//   // Add a response interceptor
-//   api.interceptors.response.use((response) => {
-//     document.querySelector('.spinner-container').style.display = 'none';
-//     return response;
-//   }, (error) => {
-//     document.querySelector('.spinner-container').style.display = 'none';
-//     return Promise.reject(error);
-//   });
+api.interceptors.request.use(function (config) {
+  const token = JSON.parse(localStorage.getItem("userInfo"));
+  //   console.log(`'tokentokentoken'.`, token?.token);
+  config.headers.Authorization = token ? `Bearer ${token?.token}` : "";
+  console.log("config", config);
+  return config;
+});
 
 export default api;

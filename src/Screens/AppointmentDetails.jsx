@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { baseURL, imageURL } from "../utils/api";
+import api, { baseURL, imageURL } from "../utils/api";
 import { Link } from "react-router-dom";
 import { payOrder, resetOrder } from "../actions/orderAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,14 +18,10 @@ const AppointmentDetails = ({ match }) => {
 
   const getSingleAppointment = async () => {
     setloading(true)
+    const res = await api.get(`/consultationRoutes/getConsultationDetails/${match?.params?.id}`);
+
     try {
-      const res = await axios({
-        url: `${baseURL}/consultationRoutes/getConsultationDetails/${match?.params?.id}`,
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`
-        }
-      });
+
       setloading(false)
 
       console.log("res", res);

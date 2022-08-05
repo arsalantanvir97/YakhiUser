@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { baseURL, imageURL } from "../utils/api";
+import api, { baseURL, imageURL } from "../utils/api";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
@@ -15,9 +15,10 @@ import InputNumber from "../components/InputNumber";
 import Loader from "../components/Loader";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ListSkeleton } from "../components/MultipleSkeleton";
+import { CreateWishList } from "../hooks/WishList";
 
 let allcategoryofProducts = [];
-const Capsules = ({ history }) => {
+const Capsules = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [sort, setsort] = useState("");
@@ -26,8 +27,12 @@ const Capsules = ({ history }) => {
   const [searchString, setSearchString] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [userwishlist, setuserwishlist] = useState([]);
+
   const [status, setStatus] = useState("");
-  const [category, setcategory] = useState("");
+  const [category, setcategory] = useState(() => {
+    return match?.params?.id && match?.params?.id;
+  });
   const [latestfilter, setlatestfilter] = useState("");
   const [pricefrom, setpricefrom] = useState();
   const [priceto, setpriceto] = useState();
@@ -36,6 +41,9 @@ const Capsules = ({ history }) => {
   const [productlogs, setproductlogs] = useState("");
   const [renderproductcategories, setrenderproductcategories] = useState([]);
   const [loading, setloading] = useState(false);
+  useEffect(() => {
+    setcategory(match?.params?.id);
+  }, [match]);
 
   useEffect(() => {
     getProducts();
@@ -56,14 +64,22 @@ const Capsules = ({ history }) => {
     gettingallCategoriesHandler();
   }, []);
 
+  useEffect(() => {
+    console.log("userwishlist", userwishlist);
+  }, [userwishlist]);
   const gettingallCategoriesHandler = async () => {
-    const res = await axios.get(`${baseURL}/category/allOfCategories`, {});
+    const res = await api.get(`/category/allOfCategories`);
+
     console.log("res", res);
     setallofcategory(res?.data?.getAllCategories);
+    setuserwishlist(
+      localStorage.getItem("wishlist") &&
+        JSON.parse(localStorage.getItem("wishlist"))
+    );
   };
 
   const getProducts = async () => {
-    setloading(true)
+    setloading(true);
     try {
       const res = await axios({
         url: `${baseURL}/product/productlogs`,
@@ -81,72 +97,17 @@ const Capsules = ({ history }) => {
           pricefrom
         }
       });
-      setloading(false)
+      setloading(false);
 
-      console.log("res", res);
+      console.log("resprod", res);
       setproductlogs(res.data?.product);
     } catch (err) {
       console.log("err", err);
     }
-    setloading(false)
-
+    setloading(false);
   };
   const addToCartHandler = async (productId, qty) => {
     history.push(`/MyCart/${productId}?qty=${qty}`);
-  };
-
-  const addtoWishLIstHandler = async (product) => {
-    console.log("product", product);
-    const formData = new FormData();
-
-    formData.append("user_image", product?.productimage);
-    formData.append("id", userInfo?._id);
-    formData.append("price", product?.price);
-    formData.append("brand", product?.brand);
-    // formData.append("weight", product?.weight);
-    formData.append("category", product?.category);
-    formData.append("countInStock", product?.countInStock);
-    formData.append("name", product?.name);
-
-    formData.append("description", product?.description);
-
-    const body = formData;
-    try {
-      console.log("createWishList");
-
-      const res = await axios.post(`${baseURL}/wishList/createWishList`, body);
-
-      console.log("res", res);
-      if (res?.status == 201) {
-        await Swal.fire({
-          icon: "success",
-          title: "",
-          text: "Added to Wislist",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        history.replace("/WishList");
-      }
-      // else if(res?.status==201){
-      //   Toasty('error',`Invalid Email or Password`);
-      //   dispatch({
-      //     type: ADMIN_LOGIN_FAIL,
-      //     payload:
-      //     res?.data?.message
-      //   })
-      //   document.location.href = '/'
-
-      // }
-    } catch (error) {
-      console.log("error", error);
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Internal Server Error",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
   };
 
   return (
@@ -383,7 +344,7 @@ const Capsules = ({ history }) => {
                         </select>
                       </form>
                     </div>
-                 
+
                     {/* <div className="col-md-6 col-8 text-right">
                       <p className="showing-results">
                         Showing 1–09 of 50 results
@@ -392,147 +353,158 @@ const Capsules = ({ history }) => {
                   </div>
                   {/* products grid */}
                   {loading ? (
-                      <ListSkeleton listsToRender={16} />
-               
-                    ) : (
-                  <div className="row">
-                    {productlogs?.docs?.length > 0 &&
-                      productlogs?.docs?.map((prod, index) => (
-                        <div className="col-xl-4 col-md-6">
-                          <div className="product-card">
-                            <button
-                              type="button"
-                              className="wishlist-btn"
-                              onClick={() => {
-                                userInfo
-                                  ? addtoWishLIstHandler(prod)
-                                  : UnauthorizedAlert();
-                              }}
-                            >
-                              <i className="wishlist-icon fas fa-heart maroon" />
-                            </button>
-                            <Link to={`/ProductView/${prod?._id}`}>
-                              {" "}
-                              <img
-                                src={
-                                  prod?.productimage?.length > 0 &&
-                                  `${imageURL}${prod?.productimage[0]}`
-                                }
-                                alt=""
-                                className="img-fluid"
-                                style={{
-                                  maxHeight: 242,
-                                  maxWidth: 242,
-                                  minHeight: 242,
-                                  minWidth: 242
+                    <ListSkeleton listsToRender={16} />
+                  ) : (
+                    <div className="row">
+                      {productlogs?.docs?.length > 0 &&
+                        productlogs?.docs?.map((prod, index) => (
+                          <div className="col-xl-4 col-md-6">
+                            <div className="product-card">
+                              <button
+                                type="button"
+                                className="wishlist-btn"
+                                onClick={() => {
+                                  userInfo
+                                    ? CreateWishList(prod?._id, history)
+                                    : UnauthorizedAlert();
                                 }}
-                              />{" "}
-                            </Link>
-                            <h5
-                              style={{
-                                fontSize: 20,
-                                maxHeight: 60,
-                                minHeight: 60
-                              }}
-                              className="product-name"
-                            >
-                              <Link to="#"> {prod?.name}</Link>
-                            </h5>
-                            <ul className="list-inline py-2">
-                              <li className="list-inline-item">
+                              >
                                 <i
-                                  style={{ color: "#F3DE43" }}
                                   className={
-                                    prod?.rating >= 1
-                                      ? "fas fa-star"
-                                      : prod?.rating >= 0.5
-                                      ? "fas fa-star-half-alt"
-                                      : "far fa-star"
+                                    userwishlist?.includes(prod?._id)
+                                      ? `wishlist-icon fas fa-heart maroon`
+                                      : `wishlist-icon far fa-heart`
                                   }
                                 />
-                              </li>
-                              <li className="list-inline-item">
-                                <i
-                                  style={{ color: "#F3DE43" }}
-                                  className={
-                                    prod?.rating >= 2
-                                      ? "fas fa-star"
-                                      : prod?.rating >= 1.5
-                                      ? "fas fa-star-half-alt"
-                                      : "far fa-star"
+                              </button>
+                              <Link to={`/ProductView/${prod?._id}`}>
+                                {" "}
+                                <img
+                                  src={
+                                    prod?.productimage?.length > 0 &&
+                                    `${imageURL}${prod?.productimage[0]}`
                                   }
-                                />
-                              </li>
-                              <li className="list-inline-item">
-                                <i
-                                  style={{ color: "#F3DE43" }}
-                                  className={
-                                    prod?.rating >= 3
-                                      ? "fas fa-star"
-                                      : prod?.rating >= 2.5
-                                      ? "fas fa-star-half-alt"
-                                      : "far fa-star"
-                                  }
-                                />
-                              </li>
-                              <li className="list-inline-item">
-                                <i
-                                  style={{ color: "#F3DE43" }}
-                                  className={
-                                    prod?.rating >= 4
-                                      ? "fas fa-star"
-                                      : prod?.rating >= 3.5
-                                      ? "fas fa-star-half-alt"
-                                      : "far fa-star"
-                                  }
-                                />
-                              </li>
-                              <li className="list-inline-item">
-                                <i
-                                  style={{ color: "#F3DE43" }}
-                                  className={
-                                    prod?.rating >= 5
-                                      ? "fas fa-star"
-                                      : prod?.rating >= 4.5
-                                      ? "fas fa-star-half-alt"
-                                      : "far fa-star"
-                                  }
-                                />
-                              </li>
-                            </ul>
-                            <div className="row justify-content-between align-items-center mt-3">
-                              <div className="col-4">
-                                <p className="p-price">Price</p>
-                                <span>${prod?.price}</span>
-                              </div>
-                              <div className="col-8 text-right">
-                                <Link
-                                  to="#"
-                                  className="btn maroon-btn-solid "
-                                  onClick={() => {
-                                    userInfo
-                                      ? addToCartHandler(prod?._id, 1)
-                                      : UnauthorizedAlert();
+                                  alt=""
+                                  className="img-fluid"
+                                  style={{
+                                    maxHeight: 242,
+                                    maxWidth: 242,
+                                    minHeight: 242,
+                                    minWidth: 242
                                   }}
-                                >
-                                  <img
-                                    src="images/add-to-cart.png"
-                                    alt=""
-                                    className="img-fluid mr-2 pt-1"
+                                />{" "}
+                              </Link>
+                              <h5
+                                style={{
+                                  fontSize: 20,
+                                  maxHeight: 60,
+                                  minHeight: 60
+                                }}
+                                className="product-name"
+                              >
+                                <Link to="#"> {prod?.name}</Link>
+                              </h5>
+                              <ul className="list-inline py-2">
+                                <li className="list-inline-item">
+                                  <i
+                                    style={{ color: "#F3DE43" }}
+                                    className={
+                                      prod?.rating >= 1
+                                        ? "fas fa-star"
+                                        : prod?.rating >= 0.5
+                                        ? "fas fa-star-half-alt"
+                                        : "far fa-star"
+                                    }
                                   />
-                                  Add to cart
-                                </Link>
+                                </li>
+                                <li className="list-inline-item">
+                                  <i
+                                    style={{ color: "#F3DE43" }}
+                                    className={
+                                      prod?.rating >= 2
+                                        ? "fas fa-star"
+                                        : prod?.rating >= 1.5
+                                        ? "fas fa-star-half-alt"
+                                        : "far fa-star"
+                                    }
+                                  />
+                                </li>
+                                <li className="list-inline-item">
+                                  <i
+                                    style={{ color: "#F3DE43" }}
+                                    className={
+                                      prod?.rating >= 3
+                                        ? "fas fa-star"
+                                        : prod?.rating >= 2.5
+                                        ? "fas fa-star-half-alt"
+                                        : "far fa-star"
+                                    }
+                                  />
+                                </li>
+                                <li className="list-inline-item">
+                                  <i
+                                    style={{ color: "#F3DE43" }}
+                                    className={
+                                      prod?.rating >= 4
+                                        ? "fas fa-star"
+                                        : prod?.rating >= 3.5
+                                        ? "fas fa-star-half-alt"
+                                        : "far fa-star"
+                                    }
+                                  />
+                                </li>
+                                <li className="list-inline-item">
+                                  <i
+                                    style={{ color: "#F3DE43" }}
+                                    className={
+                                      prod?.rating >= 5
+                                        ? "fas fa-star"
+                                        : prod?.rating >= 4.5
+                                        ? "fas fa-star-half-alt"
+                                        : "far fa-star"
+                                    }
+                                  />
+                                </li>
+                              </ul>
+                              <div className="row justify-content-between align-items-center mt-3">
+                                <div className="col-4">
+                                  <p className="p-price">Price</p>
+                                  <span>${prod?.price}</span>
+                                </div>
+                                <div className="col-8 text-right">
+                                  <Link
+                                    to="#"
+                                    className="btn maroon-btn-solid "
+                                    onClick={() => {
+                                      userInfo
+                                        ? addToCartHandler(prod?._id, 1)
+                                        : UnauthorizedAlert();
+                                    }}
+                                  >
+                                    <img
+                                      src="images/add-to-cart.png"
+                                      alt=""
+                                      className="img-fluid mr-2 pt-1"
+                                    />
+                                    Add to cart
+                                  </Link>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
-                  </div>
-                    )}
+                        ))}
+                    </div>
+                  )}
                   {/* pagination */}
-               
                 </div>
-                <div style={{width:'100%',height:100,display:'flex',justifyContent:'center'}}>
+                <div
+                  style={{
+                    width: "100%",
+                    height: 100,
+                    display: "flex",
+                    justifyContent: "center"
+                  }}
+                >
                   {productlogs?.docs?.length > 0 && (
                     <Pagination
                       totalDocs={productlogs?.totalDocs}
@@ -543,7 +515,7 @@ const Capsules = ({ history }) => {
                       hasPrevPage={productlogs?.hasPrevPage}
                     />
                   )}
-                  </div>
+                </div>
               </div>
               <div className="row mt-5">
                 <div className="col-12 text-center">

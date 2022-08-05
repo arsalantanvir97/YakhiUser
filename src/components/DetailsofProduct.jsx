@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CreateWishList } from "../hooks/WishList";
 import { imageURL } from "../utils/api";
 import Toasty from "../utils/toast";
 import Footer from "./Footer";
@@ -12,9 +13,9 @@ const DetailsofProduct = ({
   subQuantity,
   setquantity,
   addToCartHandler,
+  history,
   htmlToReactParser,
   recommendedproducts,
-  addtoWishLIstHandler,
   userInfo,
   UnauthorizedAlert
 }) => {
@@ -595,7 +596,7 @@ const DetailsofProduct = ({
                           onClick={() => {
                             userInfo
                             ?
-                            addtoWishLIstHandler(rec):
+                            CreateWishList(rec?._id,history):
                             UnauthorizedAlert()
                           }}
                         >

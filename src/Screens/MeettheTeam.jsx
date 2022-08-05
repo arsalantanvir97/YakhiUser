@@ -3,64 +3,41 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
-const data=[
+const data = [
   {
-  name:"Godis Kawah",
-  title:"Chief Operations Officer - Master Herbalist - Aromatherapist Detoxification Specialist",
-  email:" Kawah@yahkiawakened.com",
-  image:"images/Teammember1.png"
-},
-{
-  name:"Antonio",
-  title:"Counselor - Consultant - Detoxification Specialist",
-  email:"",
-  image:"images/Teammember2.png"
-}, {
-  name:"Cierra",
-  title:"Herbalist - Processing Manager",
-  email:"",
-  image:"images/Teammember3.png"
-}, {
-  name:"Jason (Yadin)",
-  title:"Videographer - Photographer - Graphic Designer - Content Creator",
-  email:"",
-  image:"images/Teammember4.png"
-}, {
-  name:"Jazz",
-  title:"Processor",
-  email:"",
-  image:"images/Teammember5.png"
-}, {
-  name:"Godis Ruby",
-  title:"Warehouse Production Manager",
-  email:"",
-  image:"images/Teammember6.png"
-},
-{
-  name:"Nandi",
-  title:"Shipping & Processing",
-  email:"",
-  image:"images/Teammember5.png"
-},
-{
-  name:"Twanna",
-  title:"Processor",
-  email:"",
-  image:"images/Teammember5.png"
-},
-,
-{
-  name:"Nabi",
-  title:"Yahki Booking/Travel Manager",
-  email:"Nabi@yahkiawakened.com",
-  image:"images/Teammember2.png"
-},
-]
+    name: "KAWAH ASHYET",
+    title:
+      "Herbalist - Counselor - Aromatherapist - Detoxification Specialist - Processing and Shipping",
+    email: "kawah@yahkiawakened.com",
+    image: "images/Kawah-Ashyet.png"
+  },
+  {
+    name: "RUBY FOSTER",
+    title:
+      "Counselor - Processing and Shipping - Detoxification SpeciaAdministrative Assistantlist",
+    email: "claims@yahkiawakened.com",
+    image: "images/Ruby-Foster.png"
+  },
+  {
+    name: "ANIYAH AWAKENED",
+    title:
+      "Dietitian - Master Alkaline Chef - Herbalist - Counselor - Womb Wellness - Crystal Jeweler",
+    email: "AniYah@yahkiawakened.com",
+    image: "images/Aniyah-bw.jpg"
+  },
+  {
+    name: "CANDICE NELSON",
+    title:
+      "Counselor - Prayer - Motivational Speaker - Processing and Shipping - Computer Tech",
+    email: "candice@yahkiawakened.com",
+    image: "images/Candice-Nelson.png"
+  }
+];
 const MeettheTeam = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
+      <PrivateRouteSlider />
 
       <div className="container-fluid my-5 py-4">
         <div className="row">
@@ -86,42 +63,45 @@ const MeettheTeam = () => {
               </div>
               {/* Team members grid */}
               <div className="row my-5  align-items-start justify-content-center pb-5">
-             {data?.map(dat=>(
-              <>
-                <div className="col-lg-4 col-md-6 my-4 my-lg-0">
-                  <div className="team-member-box">
-                    <img src={dat?.image} alt="" style={{maxWidth:528,maxHeight:428}} className="img-fluid" />
-                    <div className="member-info-card">
-                      <h3>{dat?.name}</h3>
-                      <ul className="member-features list-inline">
-                        
-                        <li className="list-inline-item"> {dat?.title}</li>
-                        
-                      </ul>
-                      <div className="sepatator" />
-                      {dat?.email &&
-                      <p className="text-center member-email">
-                        <Link
-                          to="#"
-                          
-                          onClick={(e) => {
-                            window.location = `mailto:${dat?.email}`;
-                            e.preventDefault();
-                          }}
-                        >
-                          <i className="fas fa-envelope" />
-                          {dat?.email}
+                {data?.map((dat) => (
+                  <>
+                    <div className="col-lg-4 col-md-6 my-4 my-lg-0">
+                      <div className="team-member-box">
+                        <img
+                          src={dat?.image}
+                          alt=""
+                          style={{ maxWidth: 528, maxHeight: 428 }}
+                          className="img-fluid"
+                        />
+                        <div className="member-info-card">
+                          <h3>{dat?.name}</h3>
+                          <ul className="member-features list-inline">
+                            <li className="list-inline-item"> {dat?.title}</li>
+                          </ul>
+                          <div className="sepatator" />
+                          {dat?.email && (
+                            <p className="text-center member-email">
+                              <Link
+                                to="#"
+                                onClick={(e) => {
+                                  window.location = `mailto:${dat?.email}`;
+                                  e.preventDefault();
+                                }}
+                              >
+                                <i className="fas fa-envelope" />
+                                {dat?.email}
+                              </Link>
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="send-msg mx-auto text-center ">
+                        <Link to="#" className="btn red-btn-solid">
+                          Send A Message
                         </Link>
-                      </p>}
+                      </div>
                     </div>
-                  </div>
-                  <div className="send-msg mx-auto text-center ">
-                    <Link to="#" className="btn red-btn-solid">
-                      Send A Message
-                    </Link>
-                  </div>
-                </div>
-                </>
+                  </>
                 ))}
               </div>
               <div className="row mt-5">

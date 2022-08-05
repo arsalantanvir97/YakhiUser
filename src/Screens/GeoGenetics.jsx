@@ -12,17 +12,22 @@ import { ListSkeleton } from "../components/MultipleSkeleton";
 import { SliderSkeleton } from "../components/SliderSkeleton";
 import { Parser } from "html-to-react";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import { CreateWishList } from "../hooks/WishList";
 
 const htmlToReactParser = new Parser();
 
-const GeoGenetics = ({history}) => {
+const GeoGenetics = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  
-  const [geogeneticstext, setgeogeneticstext] = useState(()=>{
-    ''})
 
-  const [organicproductlist, setorganicproductlist] = useState([]);
+  const [geogeneticstext, setgeogeneticstext] = useState(() => {
+    "";
+  });
+
+  const [geoGeneticspackages, setgeoGeneticspackages] = useState([]);
+  const [geoGeneticsprotocols, setgeoGeneticsprotocols] = useState([]);
+
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
@@ -30,25 +35,27 @@ const GeoGenetics = ({history}) => {
   }, []);
 
   const getDetoxProducts = async () => {
-    setloading(true)
+    setloading(true);
     try {
-      const { data } = await axios.get(`${baseURL}/product/geoGeneticsProducts`);
-      setloading(false)
+      const { data } = await axios.get(
+        `${baseURL}/product/geoGeneticsProducts`
+      );
+      setloading(false);
 
       console.log("data", data);
-      setorganicproductlist(data);
-      setgeogeneticstext(data?.geogeneticstext?.text)
+      setgeoGeneticspackages(data?.geoGeneticspackages);
+      setgeoGeneticsprotocols(data?.geoGeneticsprotocols);
+      setgeogeneticstext(data?.geogeneticstext?.text);
     } catch (error) {
       console.log("error", error);
     }
-    setloading(false)
-
+    setloading(false);
   };
+  
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
-
+      <PrivateRouteSlider />
 
       <div className="bread-crumbs">
         <div className="container-fluid">
@@ -103,366 +110,159 @@ const GeoGenetics = ({history}) => {
       <div className="container">
         <div className="row  mt-5 intro-geo">
           {htmlToReactParser.parse(geogeneticstext)}
-
-
         </div>
       </div>
 
       <section className="yahki-protocols py-5">
         <div className="container">
-          <div className="row mt-5 ">
-            <div className="col-12">
-              <h3 className="protocol-heading orange  mb-4">GEO'GENETICS PACKAGES</h3>
+          <div class="row mt-3">
+            <div class="col-12">
+              <h3 class="protocol-heading maroon">GEO'GENETICS PACKAGES</h3>
             </div>
           </div>
           {loading ? (
-                      <SliderSkeleton listsToRender={4} />
-               
-                    ) : (
-          <ProductSlider
-            images={organicproductlist?.geoGeneticsproduct}
-            userInfo={userInfo}
-            history={history}
-          />)}
-          {/* <div className="row">
-            <div className="col-12 my-5">
-              <div id="protocols" className="owl-carousel owl-theme">
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-1.jpeg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
+            <SliderSkeleton listsToRender={4} />
+          ) : (
+            <div className="row">
+              {geoGeneticspackages?.length > 0 &&
+                geoGeneticspackages?.map((geo) => (
+                  <div className="col-xl-4 col-md-6 col-8 mx-md-0 mx-auto my-3">
+                    <Link to="#">
+                      <div className="product-box">
+                        <img
+                          src={
+                            geo?.productimage?.length > 0 &&
+                            `${imageURL}${geo?.productimage[0]}`
+                          }
+                          alt=""
+                          className="img-fluid package"
+                        />
+                        <div className="product-actions">
+                          <button
+                            type="button"
+                            href="#"
+                            className="quickview-button"
+                          >
+                            <i className="fas fa-eye" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              !userInfo
+                                ? UnauthorizedAlert()
+                                : CreateWishList(geo?._id,history);
+                            }}
+                            className="wishlist_button"
+                          >
+                            <i className="far fa-heart" />
+                          </button>
+                          <button
+                            type="button"
+                            className="cart-_button"
+                            onClick={() => {
+                              history?.push(
+                                `/GeoGeneticsCheckout/${geo?._id}?qty=${1}`
+                              );
+                            }}
+                            title="Add to cart"
+                          >
+                            <i className="fal fa-shopping-cart" />
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">DE-VAXXED HERBAL THERAPY</p>
-                      <div className="d-flex flex-column">
-                        <p className="discount-price">900.00</p>
-                        <p className="product-price">750.00</p>
+                      <div className="product-meta mt-3">
+                        <p className="product-title">{geo?.name}</p>
+                        <div className="d-flex flex-column">
+                          {/* <p className="discount-price">900.00</p> */}
+                          <p className="product-price">{geo?.price}</p>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-2.jpg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">
-                        WEEK 1-2 GEO’GENETICS PROTOCOL (formerly amino acid
-                        herbal protocol)
-                      </p>
-                      <p className="product-price">600.00</p>
-                    </div>
-                  </a>
-                </div>
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-2.jpg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">
-                        WEEK 11-12 GEO’GENETICS PROTOCOL (formerly amino acid
-                        herbal protocol)
-                      </p>
-                      <p className="product-price">300.00</p>
-                    </div>
-                  </a>
-                </div>
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-2.jpg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">
-                        WEEK 13-14 GEO’GENETICS PROTOCOL(formerly amino acid
-                        herbal protocol)
-                      </p>
-                      <p className="product-price">300.00</p>
-                    </div>
-                  </a>
-                </div>
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-1.jpeg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">
-                        WEEK 3-4 GEO’GENETICS PROTOCOL(formerly amino acid
-                        herbal protocol)
-                      </p>
-                      <div className="d-flex flex-column">
-                        <p className="discount-price">300.00</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-2.jpg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">
-                        ELDERBERRY (Sambucus Nigra) Whole Berries
-                      </p>
-                      <p className="product-price">70.00</p>
-                    </div>
-                  </a>
-                </div>
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-2.jpg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">Black Seed Oil</p>
-                      <p className="product-price">45.00</p>
-                    </div>
-                  </a>
-                </div>
-                <div className="item">
-                  <a href="#">
-                    <div className="product-box">
-                      <img
-                        src="images/pckg-2.jpg"
-                        alt=""
-                        className="img-fluid protocol"
-                      />
-                      <div className="product-actions">
-                        <button
-                          type="button"
-                          href="#"
-                          className="quickview-button"
-                        >
-                          <i className="fas fa-eye" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="wishlist_button"
-                        >
-                          <i className="far fa-heart" />
-                        </button>
-                        <button
-                          type="button"
-                          href="#"
-                          className="cart-_button"
-                          title="Add to cart"
-                        >
-                          <i className="fal fa-shopping-cart" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="product-meta mt-3">
-                      <p className="product-title">
-                        PARASITIC ELIMINATION PRO TINCTURE
-                      </p>
-                      <p className="product-price">60.00</p>
-                    </div>
-                  </a>
+                    </Link>
+                  </div>
+                ))}
+            </div>
+          )}
+
+          <section className="yahki-protocols mt-5 py-5">
+            <div className="container">
+              <div className="row mt-5 ">
+                <div className="col-12">
+                  <h3 className="protocol-heading orange">
+                    GEO'GENETICS PROTOCOLS
+                  </h3>
                 </div>
               </div>
+              {loading ? (
+                <SliderSkeleton listsToRender={4} />
+              ) : (
+                <div className="row">
+                  <div className="col-12 my-5">
+                    <div className="row" id="protocols">
+                      {geoGeneticsprotocols?.length > 0 &&
+                        geoGeneticsprotocols?.map((geo) => (
+                          <div className="col-lg-3 col-md-4 col-sm-6 mb-5">
+                            {/* de vaxxed therapy */}
+                            <Link to="#">
+                              <div className="product-box">
+                                <img
+                                  src={
+                                    geo?.productimage?.length > 0 &&
+                                    `${imageURL}${geo?.productimage[0]}`
+                                  }
+                                  alt=""
+                                  className="img-fluid protocol"
+                                />
+                                {/* <span className="sale-tag">sale!</span> */}
+                                <div className="product-actions">
+                                  <button
+                                    type="button"
+                                    href="#"
+                                    className="quickview-button"
+                                  >
+                                    <i className="fas fa-eye" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      !userInfo
+                                        ? UnauthorizedAlert()
+                                        : CreateWishList(geo?._id,history);
+                                    }}
+                                    className="wishlist_button"
+                                  >
+                                    <i className="far fa-heart" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      history?.push(
+                                        `/GeoGeneticsCheckout/${
+                                          geo?._id
+                                        }?qty=${1}`
+                                      );
+                                    }}
+                                    className="cart-_button"
+                                    title="Add to cart"
+                                  >
+                                    <i className="fal fa-shopping-cart" />
+                                  </button>
+                                </div>
+                              </div>
+                              <div className="product-meta mt-3">
+                                <p className="product-title">{geo?.name}</p>
+                                <div className="d-flex flex-column">
+                                  <p className="product-price">{geo?.price}</p>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-          </div> */}
+          </section>
         </div>
       </section>
 

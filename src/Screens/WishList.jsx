@@ -19,22 +19,42 @@ const WishList = () => {
   }, [rerenderWishList]);
 
   const getUsersWishList = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
     setloading(true);
-    const res = await axios.post(`${baseURL}/wishList/userWishList`, {
-      id: userInfo?._id
-    });
+
+    const res = await axios.get(`${baseURL}/wishList/userWishList`, config);
     setloading(false);
 
     console.log("res", res);
     setwishtlistuser(res?.data?.wishListofUser);
   };
 
-  const deleteWishHandler = async (id) => {
-    const res = await axios({
-      url: `${baseURL}/wishList/deleteAWish/${id}`,
-      method: "GET"
-    });
+  const deleteWishHandler = async (id,del) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
+    const res = await axios.get(
+      `${baseURL}/wishList/deleteAWish/${id}`,
+      config
+    );
     if (res?.status == 200) {
+      let existing = localStorage.getItem("wishlist")
+        ? JSON.parse(localStorage.getItem("wishlist"))
+        : [];
+      console.log("existing", existing,del);
+      existing = existing.filter((exe) => {
+        console.log('exos',exe,del);
+        return(
+
+        exe !== del)});
+      console.log("existing2", existing);
+      localStorage.setItem("wishlist", JSON.stringify(existing));
       setrerenderWishList(!rerenderWishList);
       Swal.fire({
         icon: "success",
@@ -89,15 +109,15 @@ const WishList = () => {
                                 <div className="cart-product">
                                   <img
                                     src={
-                                      wish?.productimage?.length > 0 &&
-                                      `${imageURL}${wish?.productimage[0]}`
+                                      wish?.product?.productimage?.length > 0 &&
+                                      `${imageURL}${wish?.product?.productimage[0]}`
                                     }
                                     alt=""
                                     className="img-fluid mx-auto"
                                   />
                                 </div>
                               </td>
-                              <td>{wish?.name}</td>
+                              <td>{wish?.product?.name}</td>
                               {/* <td>
                               <div id="field1">
                                 <div className="quantifier ml-0">
@@ -136,10 +156,10 @@ const WishList = () => {
                                 </div>
                               </div>
                             </td> */}
-                              <td>${wish?.price}</td>
+                              <td>${wish?.product?.price}</td>
                               <td>
                                 <span className="instock-label">
-                                  {wish?.countInStock > 0
+                                  {wish?.product?.countInStock > 0
                                     ? "In Stock"
                                     : "Out of Stock"}
                                 </span>
@@ -149,7 +169,7 @@ const WishList = () => {
                                   type="button"
                                   className="btn trash-btn"
                                   onClick={() => {
-                                    deleteWishHandler(wish?._id);
+                                    deleteWishHandler(wish?._id,wish?.product?._id);
                                   }}
                                 >
                                   <i className="far fa-trash-alt" />

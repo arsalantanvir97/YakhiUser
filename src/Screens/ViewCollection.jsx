@@ -10,6 +10,7 @@ import Pagination from "../components/Padgination";
 import InnerPageBanner from "./InnerPageBanner";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import InputNumber from "../components/InputNumber";
+import { CreateWishList } from "../hooks/WishList";
 let allcategoryofProducts = [];
 const ViewCollection = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -95,59 +96,7 @@ const ViewCollection = ({ history, match }) => {
     history.push(`/MyCart/${productId}?qty=${qty}`);
   };
 
-  const addtoWishLIstHandler = async (product) => {
-    console.log("product", product);
-    const formData = new FormData();
-
-    formData.append("user_image", product?.productimage);
-    formData.append("id", userInfo?._id);
-    formData.append("price", product?.price);
-    formData.append("brand", product?.brand);
-    // formData.append("weight", product?.weight);
-    formData.append("category", product?.category);
-    formData.append("countInStock", product?.countInStock);
-    formData.append("name", product?.name);
-
-    formData.append("description", product?.description);
-
-    const body = formData;
-    try {
-      console.log("createWishList");
-
-      const res = await axios.post(`${baseURL}/wishList/createWishList`, body);
-
-      console.log("res", res);
-      if (res?.status == 201) {
-        await Swal.fire({
-          icon: "success",
-          title: "",
-          text: "Added to Wislist",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        history.replace("/WishList");
-      }
-      // else if(res?.status==201){
-      //   Toasty('error',`Invalid Email or Password`);
-      //   dispatch({
-      //     type: ADMIN_LOGIN_FAIL,
-      //     payload:
-      //     res?.data?.message
-      //   })
-      //   document.location.href = '/'
-
-      // }
-    } catch (error) {
-      console.log("error", error);
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Internal Server Error",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
-  };
+ 
   useEffect(() => {
     console.log("allcategoryofProducts", allcategoryofProducts);
   }, [allcategoryofProducts]);
@@ -399,7 +348,7 @@ const ViewCollection = ({ history, match }) => {
                               type="button"
                               className="wishlist-btn"
                               onClick={() => {
-                                addtoWishLIstHandler(prod);
+                                CreateWishList(prod,history)
                               }}
                             >
                               <i className="wishlist-icon fas fa-heart maroon" />

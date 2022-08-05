@@ -6,9 +6,8 @@ const AboutCompany = () => {
   return (
     <>
       <Header />
+      <PrivateRouteSlider />
       <div>
-        <PrivateRouteSlider />
-
         <div className="container-fluid my-5 py-4">
           <div className="row">
             <div className="col-11 mx-auto">
@@ -28,8 +27,8 @@ const AboutCompany = () => {
                     <h3 className="main-heading">Our Company</h3>
                     <p className="general-para dark-text">
                       Welcome to Yah’ki Awakened LLC where Peace, Health, Energy
-                      and Awareness is always first priority. Yahki Awakened &
-                      Eye of Lotus Botanicals is a committed family who
+                      and Awareness is always first priority. Yahki Awakened
+                      &amp; Eye of Lotus Botanicals is a committed family who
                       specializes and focuses on cellular regeneration, DNA
                       repair, and intracellular detoxification using a high
                       energetic diet and powerful alkaline botanicals. Our core
@@ -46,8 +45,8 @@ const AboutCompany = () => {
                       and an herbal protocol, he was able to eliminate all of
                       the Dis-Eases he suffered from and restore his body to
                       full health. His own healing journey inspired him to start
-                      Yah’Ki Awakened LLC & Eye of Lotus Botanicals so he could
-                      show others how to restore their health as well.{" "}
+                      Yah’Ki Awakened LLC &amp; Eye of Lotus Botanicals so he
+                      could show others how to restore their health as well.
                     </p>
                   </div>
                   <div className="col-12 my-5">
@@ -59,13 +58,13 @@ const AboutCompany = () => {
                       Master Herbalist, Reiki Healer, and Energy Crystal Healer.
                       He has restored health to people suffering from Diabetes,
                       Herpes, Sickle Cell Anemia, various Cancers, Autoimmune
-                      Diseases, and many more.{" "}
+                      Diseases, and many more.
                     </p>
                     <p className="general-para dark-text mt-4">
                       Our ultimate goal is to provide the masses with the
                       necessary tools for healing. Through proper nutrition,
-                      amino acid therapy, education, your health can be
-                      restored. We are very misinformed and led to believe that
+                      amino acid therapy, education, for your health can be
+                      restored. We are very misinformed and lead to believe that
                       many of the Dis-Eases people are suffering from are
                       incurable, but not anymore! Our Company specializes in
                       Herbal compounds and formulas designed to aid and
@@ -84,40 +83,30 @@ const AboutCompany = () => {
                     <h5>Yah'ki Awakened Eye of Lotus Botanical Health Club</h5>
                     <h3>Our Mission</h3>
                     <p>
-                      Our mission is to shake and expose the deceitful tactics
-                      of this westernized system that has a strong hold on our
+                      My mission is to shake and expose the deceitful tactics of
+                      this westernized system that has a strong hold on my
                       people. Furthermore, to ignite the spark in their
                       melanated, cosmic minds, while lifting the veils from
-                      their eyes.
+                      their eyes.{" "}
                     </p>
                     <p>
-                      Once it is realized that our subconscious mind have been
+                      Once we realize that our subconscious mind have been
                       programmed by the evils of this world and recognize that
                       there is a diabolical plot to exterminate and eliminate
-                      the so called “black man and woman” off planet earth—then
+                      the so called “black man and woman” off planet earth. Then
                       and only then will we begin to question any and all things
-                      that have ever told and taught us.
+                      they have ever told and taught us.{" "}
                     </p>
                     <p>
-                      [6:09 PM] Rana Omer Akhtar Our mission is to shake and
-                      expose the deceitful tactics of this westernized system
-                      that has a strong hold on our people. Furthermore, to
-                      ignite the spark in their melanated, cosmic minds, while
-                      lifting the veils from their eyes.Once it is realized that
-                      our subconscious mind have been programmed by the evils of
-                      this world and recognize that there is a diabolical plot
-                      to exterminate and eliminate the so called “black man and
-                      woman” off planet earth—then and only then will we begin
-                      to question any and all things that have ever told and
-                      taught us.For instance, who taught us religion, medicine,
+                      For instance, who taught you religion, medicine,
                       traditions, education, culture and language? All of these
                       things mold and shape the cerebral frontal lobe and
-                      parietal lobe section of the brain cortex. These main
-                      functions of the brain exercise the emotions, creativity
-                      and intelligent pathways of  thinking. Everything
-                      mentioned, has been taught by the same westernized society
-                      that enslaved, raped, hung, murdered and castrated our
-                      people for thousands of years.
+                      parietal lobe section of your brain cortex. These main
+                      functions of your brain exercise the emotions, creativity
+                      and intelligent pathways of your thinking. Everything
+                      mentioned, have been taught to you by the same westernized
+                      society that enslaved, raped, hung, murdered and castrated
+                      our people for thousands of years.{" "}
                     </p>
                   </div>
                   <div className="col-xl-4 col-lg-9 mx-auto text-center">
@@ -160,6 +149,7 @@ const AboutCompany = () => {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

@@ -14,6 +14,8 @@ const Index = ({ history }) => {
   const [allofcategory, setallofcategory] = useState([]);
   const [catid, setcatid] = useState("");
   const [prdouctbycategories, setprdouctbycategories] = useState([]);
+  const [bitternadelement, setbitternadelement] = useState([]);
+
   const [loading, setloading] = useState(false);
   const herbalsupport = [
     {
@@ -117,8 +119,12 @@ const Index = ({ history }) => {
         method: "GET"
       });
       setloading(false);
-
-      console.log("res", res);
+      const ress = await axios({
+        url: `${baseURL}/product/bittersandElementProducts`,
+        method: "GET"
+      });
+      await setbitternadelement(ress?.data?.product);
+      console.log("ressss", ress);
       setproduct(res?.data?.products);
     } catch (err) {
       console.log(err);
@@ -129,23 +135,26 @@ const Index = ({ history }) => {
   useEffect(() => {
     gettingallCategoriesHandler();
   }, []);
-
   const gettingallCategoriesHandler = async () => {
     const res = await axios.get(`${baseURL}/category/allOfCategories`, {});
     console.log("res", res);
     setallofcategory(res?.data?.getAllCategories);
+    localStorage.setItem(
+      "categories",
+      JSON.stringify(res?.data?.getAllCategories)
+    );
   };
 
-  const gettingproductsbyCategoryidHandler = async (id) => {
-    const res = await axios.get(
-      `${baseURL}/product/getproductsbycategoryid/${id}`
-    );
-    console.log("res", res);
-    setprdouctbycategories(res?.data?.products);
-  };
-  const productViewRedirectHandler = async (id) => {
-    history?.push(`/ProductView/${id}`);
-  };
+  // const gettingproductsbyCategoryidHandler = async (id) => {
+  //   const res = await axios.get(
+  //     `${baseURL}/product/getproductsbycategoryid/${id}`
+  //   );
+  //   console.log("res", res);
+  //   setprdouctbycategories(res?.data?.products);
+  // };
+  // const productViewRedirectHandler = async (id) => {
+  //   history?.push(`/ProductView/${id}`);
+  // };
 
   return (
     <>
@@ -249,7 +258,7 @@ const Index = ({ history }) => {
                       className="form-control"
                       id="formula"
                       onChange={(event) => {
-                        productViewRedirectHandler(event.target.value);
+                        // productViewRedirectHandler(event.target.value);
                       }}
                     >
                       <option>Herbal Products</option>
@@ -268,7 +277,7 @@ const Index = ({ history }) => {
                       value={catid}
                       onChange={(event) => {
                         setcatid(event.target.value);
-                        gettingproductsbyCategoryidHandler(event.target.value);
+                        // gettingproductsbyCategoryidHandler(event.target.value);
                       }}
                     >
                       <option>Detox Desired</option>
@@ -283,6 +292,11 @@ const Index = ({ history }) => {
                 <div className="col-12 my-2 text-center">
                   <Link
                     to="#"
+                    onClick={() => {
+                      history?.push(
+                        `/ProductViewByName/Turmeric Infusion Capsules`
+                      );
+                    }}
                     className="btn maroon-btn-solid d-inline-block py-2 px-5"
                   >
                     Search
@@ -538,12 +552,26 @@ const Index = ({ history }) => {
                       <a href="#" class="red-link">Shop Now</a>
                   </div> */}
                   <div className="animate__animated animate__fadeInUp my-5 py-5">
-                    <img
-                      src="images/three-bitters.png"
-                      alt=""
-                      className="img-fluid"
-                    />
+                    <h4 class="bitter-heading">
+                      CELLULAR REGENERATION IS REAL!
+                    </h4>
+                    <h5 class="orange-text my-md-1">TRY YAH'KI 3BITTERS!</h5>{" "}
+                    <Link
+                      to={`ProductViewByName/${
+                        bitternadelement?.length > 0 &&
+                        bitternadelement[1]?.name == "3 BITTERS"
+                          ? "3 BITTERS"
+                          : "IV Elements"
+                      }`}
+                    >
+                      <img
+                        src="images/three-bitters.png"
+                        alt=""
+                        className="img-fluid"
+                      />
+                    </Link>
                   </div>
+
                   <img
                     src="images/elementsCircle.png"
                     alt=""
@@ -551,11 +579,22 @@ const Index = ({ history }) => {
                   />
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-10 mx-auto offset-lg-1">
-                  <img
-                    src="images/IVElements.png"
-                    alt=""
-                    className="img-fluid animate__animated animate__fadeInUp"
-                  />
+                  <h4 class="bitter-heading">IV ELEMENTS</h4>
+                  <h5 class="orange-text my-md-1">INFUSION</h5>
+                  <Link
+                    to={`ProductViewByName/${
+                      bitternadelement?.length > 0 &&
+                      bitternadelement[0]?.name == "3 BITTERS"
+                        ? "3 BITTERS"
+                        : "IV Elements"
+                    }`}
+                  >
+                    <img
+                      src="images/IVElements.png"
+                      alt=""
+                      className="img-fluid animate__animated animate__fadeInUp"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>

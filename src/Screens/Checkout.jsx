@@ -20,6 +20,7 @@ import axios from "axios";
 import moment from "moment";
 import USStates from "../components/USStates";
 import { SunspotLoader } from "react-awesome-loaders";
+import { Signature } from "../components/Signature";
 
 const Checkout = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -29,11 +30,18 @@ const Checkout = ({ history }) => {
   const { userInfo } = userLogin;
   const dispatch = useDispatch();
   const [taxofstate, settaxofstate] = useState(0);
+  const [cartpricedummy, setcartpricedummy] = useState(null);
+
+  const [hidebton, sethidebton] = useState(false);
+
   const [loading, setloading] = useState(false);
+  const [promocode, setpromocode] = useState("");
 
   const [allValues, setAllValues] = useState({
     email: shippingAddress?.email,
     phone: shippingAddress?.phone,
+    signature: shippingAddress?.signature,
+
     billingname: shippingAddress?.billingname,
     billingaddress: shippingAddress?.billingaddress,
     billingcity: shippingAddress?.billingcity,
@@ -97,6 +105,8 @@ const Checkout = ({ history }) => {
         saveShippingAddress({
           email: allValues?.email,
           phone: allValues?.phone,
+          signature: shippingAddress?.signature,
+
           billingname: allValues?.billingname,
           billingaddress: allValues?.billingaddress,
           billingcity: allValues?.billingcity,
@@ -111,6 +121,13 @@ const Checkout = ({ history }) => {
           shippingstate: allValues?.shippingstate
         })
       );
+      Swal.fire({
+        icon: "info",
+        title: "",
+        text: "Please recheck your address, the address will not be changed",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } else {
       Toasty("error", `Please enter a valid email`);
     }
@@ -159,6 +176,7 @@ const Checkout = ({ history }) => {
   }, [history, success]);
 
   const placeOrderHandler = async () => {
+    setcartpricedummy(cartpricedummy ? cartpricedummy : cart?.totalPrice);
     cart.cartItems = cart?.cartItems?.filter(
       (cartt) => cartt?.qty !== 0 && cart
     );
@@ -175,7 +193,7 @@ const Checkout = ({ history }) => {
           itemsPrice: cart?.itemsPrice,
           shippingPrice: cart?.shippingPrice,
           taxPrice: cart?.taxPrice,
-          totalPrice: cart?.totalPrice,
+          totalPrice: cartpricedummy,
           taxperproduct: Number(taxofstate)
         })
       );
@@ -199,9 +217,50 @@ const Checkout = ({ history }) => {
       [namee ? namee : e.target.name]: namee ? e : e.target.value
     });
   };
-  useEffect(() => {
-    console.log("allValues", allValues);
-  }, [allValues]);
+
+  const applyPromoCodeHandler = async () => {
+    setloading(true);
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      };
+      const response = await axios.post(
+        `${baseURL}/promo/applypromocode`,
+        { promocode },
+        config
+      );
+      console.log("resssssssss", response);
+      if (response?.status === 201) {
+        await Swal.fire({
+          icon: "success",
+          title: "",
+          text: "PromoCode Successfully Activated",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        sethidebton(true);
+        setcartpricedummy(
+          Number(
+            cart?.totalPrice / response?.data?.promocode?.discount
+          ).toFixed(0)
+        );
+      } else if (response?.status === 208) {
+        await Swal.fire({
+          icon: "info",
+          title: "",
+          text: "Invalid PromoCode",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    } catch (error) {
+      setloading(false);
+    }
+    setpromocode("");
+    setloading(false);
+  };
 
   return (
     <section className="about-page">
@@ -440,6 +499,11 @@ const Checkout = ({ history }) => {
                                       <USStates />
                                     </select>
                                   </div>
+                                  <label>E Signature*</label>
+                                  <Signature
+                                    allValues={allValues}
+                                    setAllValues={setAllValues}
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -1034,9 +1098,44 @@ const Checkout = ({ history }) => {
                                   <div className="col-5 mb-3 text-right">
                                     <p className="grand-total-value">
                                       {" "}
-                                      ${cart?.totalPrice.toFixed(0)}
+                                      $
+                                      {cartpricedummy
+                                        ? cartpricedummy
+                                        : cart?.totalPrice.toFixed(0)}
                                     </p>
                                   </div>
+                                  {!hidebton && (
+                                    <>
+                                      <div className="col-7 mb-3">
+                                        <input
+                                          type="text"
+                                          className="form-control"
+                                          placeholder="Enter PromoCode"
+                                          value={promocode}
+                                          onChange={(e) => {
+                                            setpromocode(e.target.value);
+                                          }}
+                                        />
+                                      </div>
+
+                                      <div className="col-5 mb-3 text-right">
+                                        <Link
+                                          onClick={() => {
+                                            promocode?.length > 0
+                                              ? applyPromoCodeHandler()
+                                              : Toasty(
+                                                  "error",
+                                                  `Please fill out all the required fields`
+                                                );
+                                          }}
+                                          to="#"
+                                          className="btn red-btn-solid  mx-auto py-2 px-4 text-capitalize"
+                                        >
+                                          Apply PromoCode
+                                        </Link>
+                                      </div>
+                                    </>
+                                  )}
                                 </div>
                                 <div className="row mt-4">
                                   <div className="col-12 text-center">

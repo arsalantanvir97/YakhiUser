@@ -67,6 +67,9 @@ export const userLoginAction =
       const body = { email, password };
 
       const res = await api.post("/auth/authUser", body);
+      let wishlist = [];
+      res?.data?.wishlist?.map((wi) => wishlist.push(wi?.product));
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
 
       console.log("adminLoginActionres", res);
       if (res?.status == 200) {
@@ -91,7 +94,7 @@ export const userLoginAction =
       });
     }
   };
-  export const userEmailLoginAction =
+export const userEmailLoginAction =
   (email, password, history) => async (dispatch) => {
     try {
       // dispatch({
@@ -102,7 +105,10 @@ export const userLoginAction =
       const body = { email, password };
 
       const res = await api.post("/auth/emailLogin", body);
-
+      let wishlist = [];
+      res?.data?.wishlist?.map((wi) => wishlist.push(wi?.product));
+      console.log("wishlistwishlistwishlistwishlist", wishlist);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
       console.log("adminLoginActionres", res);
       if (res?.status == 200) {
         dispatch({
@@ -189,8 +195,7 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("paymentMethod");
   localStorage.removeItem("cartNumber");
   localStorage.removeItem("consultationAddress");
-
-  
+  localStorage.removeItem("wishlist");
 
   dispatch({ type: USER_LOGOUT });
 

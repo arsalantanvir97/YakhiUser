@@ -286,8 +286,7 @@ const Consultation = ({ history }) => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
-
+      <PrivateRouteSlider />
 
       <section className="about-page">
         <div className="container-fluid">
@@ -299,14 +298,14 @@ const Consultation = ({ history }) => {
                   <h3 className="main-heading">YAH'KI AWAKENED CONSULTATION</h3>
                   <p className="general-para">
                     We are honored and do not take it lightly that you have
-                    chosen to do a consultation with the Yahkiawakend Team.
-                    Below is some general information about your consultation.
+                    chosen to do a consultation with the Yahki Awakened Team.
+                    Below is some general information about your consultation.{" "}
                   </p>
                 </div>
                 <div className="col-md-8 mx-auto text-left">
                   <ul className="consultation-rules">
                     <li>
-                      1. Consultations can have up to a 30 minute duration.
+                      1. Consultations can have up to a 30 minute duration.{" "}
                     </li>
                     <li>
                       2. Please be available for an hour as your consultation
@@ -318,12 +317,12 @@ const Consultation = ({ history }) => {
                     <li>
                       3. If the internet connection is bad you will receive a
                       phone call instead of a zoom call so look out for
-                      (636-345-5010) just in case.
+                      (636-345-5010) just in case.{" "}
                     </li>
                     <li>
                       4. Consultations are designed for 1 person --if you would
                       like to address several people at once it limits the depth
-                      of your consultation--use your time wisely.{" "}
+                      of your consultation--use your time wisely.
                     </li>
                   </ul>
                 </div>
@@ -464,7 +463,7 @@ const Consultation = ({ history }) => {
                               </div>
                               <div className="col-md-6">
                                 <label>
-                                  Weight in kgs<span className="red">*</span>
+                                  Weight in lbs<span className="red">*</span>
                                 </label>
                                 <InputNumber
                                   value={weight}
@@ -638,7 +637,7 @@ const Consultation = ({ history }) => {
                                           id={index}
                                           name={`jeff${index}`}
                                         />
-                                        <label htmlFor={index} >
+                                        <label htmlFor={index}>
                                           {tim?.time}
                                         </label>
                                       </td>

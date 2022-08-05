@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/userAction";
@@ -10,7 +10,18 @@ import Toasty from "../utils/toast";
 import Swal from "sweetalert2";
 const Header = ({ history }) => {
   const dispatch = useDispatch();
+  const [category, setcategory] = useState(()=>{
+    return(
+    localStorage.getItem("categories") &&
+    JSON.parse(localStorage.getItem("categories")))
+  });
+
   const [email, setemail] = useState("");
+  // let category = [];
+  // category =
+  //   localStorage.getItem("categories") &&
+  //   JSON.parse(localStorage.getItem("categories"));
+
   const [loading, setloading] = useState(false);
   const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
@@ -42,14 +53,14 @@ const Header = ({ history }) => {
 
     window?.$(".modal-backdrop").remove();
   };
-  let msg= 'New & Improved Detox Experience \n\
-  Coming Soon :Booking Currently Not Available'
+  let msg =
+    "New & Improved Detox Experience \n\
+  Coming Soon :Booking Currently Not Available";
   const popUpHandler = () => {
     Swal.fire({
-      icon: 'info',
+      icon: "info",
       title: "",
-      text: msg
-     ,
+      text: msg,
       showConfirmButton: false,
       timer: 1500
     });
@@ -154,7 +165,9 @@ const Header = ({ history }) => {
                               <Link to="/BodySystem">12 Body Systems</Link>
                             </li>
                             <li>
-                              <Link to="/ApprovedHerb">YAH'KI Approved Herbs</Link>
+                              <Link to="/ApprovedHerb">
+                                YAH'KI Approved Herbs
+                              </Link>
                             </li>
                             <li>
                               <Link to="/ProductResource">
@@ -194,45 +207,14 @@ const Header = ({ history }) => {
                                           Consultations
                                         </Link>
                                       </li>
-                                      <li>
-                                        <Link to="/Capsules">Capsules</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/GeoGenetics">
-                                          Geo’Genetics
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">Tinctures</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">Teas</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">Powders</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">
-                                          Seaweed Herbs
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">
-                                          Kits and Bundles
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">Tonics</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">Oils</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">Hygiene</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="/Capsules">Whole Herbs</Link>
-                                      </li>
+                                      {category?.length > 0 &&
+                                        category?.map((cat) => (
+                                          <li>
+                                            <Link to={`/Capsules/${cat?._id}`}>
+                                              {cat?.categorytitle}
+                                            </Link>
+                                          </li>
+                                        ))}
                                     </ul>
                                   </div>
                                   {/* will be visible on screens 1199px and below */}
@@ -789,7 +771,11 @@ const Header = ({ history }) => {
                           </ul>
                         </li>
                         <li className="nav-item">
-                          <Link className="nav-link" to="#" onClick={popUpHandler}>
+                          <Link
+                            className="nav-link"
+                            to="#"
+                            onClick={popUpHandler}
+                          >
                             Detox Home
                           </Link>
                         </li>

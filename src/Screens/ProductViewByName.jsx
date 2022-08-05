@@ -53,64 +53,13 @@ const ProductViewByName = ({ match, history }) => {
   const addToCartHandler = async () => {
     if (product?.category?.categorytitle == "Geo'Genetics") {
       console.log("abc");
-      history?.push(`/GeoGeneticsCheckout/${match.params.id}?qty=${quantity}`);
+      history?.push(`/GeoGeneticsCheckout/${product?._id}?qty=${quantity}`);
     } else {
       console.log("addToCartHandler");
-      history.push(`/MyCart/${match.params.id}?qty=${quantity}`);
+      history.push(`/MyCart/${product?._id}?qty=${quantity}`);
     }
   };
-  const addtoWishLIstHandler = async (product) => {
-    console.log("product", product);
-    const formData = new FormData();
-    formData.append("user_image", product?.productimage);
-    formData.append("id", userInfo?._id);
-    formData.append("price", product?.price);
-    formData.append("brand", product?.brand);
-    // formData.append("weight", product?.weight);
-    formData.append("category", product?.category);
-    formData.append("countInStock", product?.countInStock);
-    formData.append("name", product?.name);
-
-    formData.append("description", product?.description);
-
-    const body = formData;
-    try {
-      console.log("createWishList");
-
-      const res = await axios.post(`${baseURL}/wishList/createWishList`, body);
-
-      console.log("res", res);
-      if (res?.status == 201) {
-        await Swal.fire({
-          icon: "success",
-          title: "",
-          text: "Added to Wislist",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        history.replace("/WishList");
-      }
-      // else if(res?.status==201){
-      //   Toasty('error',`Invalid Email or Password`);
-      //   dispatch({
-      //     type: ADMIN_LOGIN_FAIL,
-      //     payload:
-      //     res?.data?.message
-      //   })
-      //   document.location.href = '/'
-
-      // }
-    } catch (error) {
-      console.log("error", error);
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Internal Server Error",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
-  };
+ 
   const subQuantity = async () => {
     quantity == 0 || quantity <= 0
       ? setquantity(0)
@@ -126,7 +75,7 @@ const ProductViewByName = ({ match, history }) => {
         addToCartHandler={addToCartHandler}
         htmlToReactParser={htmlToReactParser}
         recommendedproducts={recommendedproducts}
-        addtoWishLIstHandler={addtoWishLIstHandler}
+        history={history}
         userInfo={userInfo}
         UnauthorizedAlert={UnauthorizedAlert}
       />

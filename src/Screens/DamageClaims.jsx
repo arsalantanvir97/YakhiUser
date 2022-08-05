@@ -8,9 +8,9 @@ const DamageClaims = () => {
             <h4 className="sub-heading">Complains</h4>
             <h3 className="main-heading">Damage Claims</h3>
             <p className="general-para mb-4">
-              An email must be sent within 7 days of receiving your package alerting us of the damage. <br />
-              In the email to <a href="mailto:info@yahkiawakened.com" className>info@yahkiawakened.com</a>    please include your name, a detailed description of the damage, 
-              the order number, and the tracking number.
+            A damage claim form must be submitted within 7 days after receiving your damaged product. A detailed description of the damage, the order number, and the tracking number is the required info to complete a damage form. Completing a damage form is the initial step in processing a damage claim. Please email orders@yahkiawakened.com for any information on orders.
+
+
             </p>
           </div>
         </div>
