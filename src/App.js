@@ -23,6 +23,8 @@ import GeoGenetics from "./Screens/GeoGenetics";
 import Instruction from "./Screens/Instruction";
 import MasterHerbalist from "./Screens/MasterHerbalist";
 import MeettheTeam from "./Screens/MeettheTeam";
+import EattoLive from "./Screens/EattoLive";
+
 import OrderandPayment from "./Screens/OrderandPayment";
 import PrivacyPolicy from "./Screens/PrivacyPolicy";
 import OrderLog from "./Screens/OrderLog";
@@ -54,6 +56,18 @@ import AppointmentDetails from "./Screens/AppointmentDetails";
 import Notification from "./Screens/Notification";
 import Memberships from "./Screens/Memberships";
 import ApprovedHerb from "./Screens/ApprovedHerb";
+import DeVaxxedHerbalTherapy from "./Screens/DeVaxxedHerbalTherapy";
+import PackageLevelOne from "./Screens/PackageLevelOne";
+import PackageLevelTwo from "./Screens/PackageLevelTwo";
+import PackageLevelThree from "./Screens/PackageLevelThree";
+import Week12Protocol from "./Screens/Week12Protocol";
+import Week56Protocol from "./Screens/Week56Protocol";
+import Week34Protocol from "./Screens/Week34Protocol";
+import Week78Protocol from "./Screens/Week78Protocol";
+import Week910Protocol from "./Screens/Week910Protocol";
+import Week1112Protocol from "./Screens/Week1112Protocol";
+import Week1314Protocol from "./Screens/Week1314Protocol";
+import EditProfile from "./Screens/EditProfile";
 
 function App() {
   useEffect(() => {
@@ -73,6 +87,8 @@ function App() {
       />
       <Route path="/ResetPassword" component={ResetPassword} exact />
       <Route path="/Memberships" component={Memberships} exact />
+      <PrivateRoute path="/EditProfile" component={EditProfile} exact />
+
       <Route path="/ApprovedHerb" component={ApprovedHerb} exact />
       <Route exact path="/GeoGenetics" component={GeoGenetics} />{" "}
       <Route exact path="/CardioSystem" component={CardioSystem} />{" "}
@@ -88,6 +104,7 @@ function App() {
       <Route exact path="/UrinarySystem" component={UrinarySystem} />{" "}
       <Route exact path="/AboutCompany" component={AboutCompany} />{" "}
       <Route exact path="/Document" component={Document} />{" "}
+      <Route exact path="/EattotLive" component={EattoLive} />{" "}
       <Route exact path="/Instruction" component={Instruction} />{" "}
       <Route exact path="/OrderandPayment" component={OrderandPayment} />{" "}
       <Route exact path="/ShippingandPickup" component={ShippingandPickup} />{" "}
@@ -126,6 +143,61 @@ function App() {
       <PrivateRoute exact path="/OrderLog" component={OrderLog} />{" "}
       <PrivateRoute exact path="/AppointmentLogs" component={AppointmentLogs} />{" "}
       <PrivateRoute exact path="/ViewCollection" component={ViewCollection} />{" "}
+      <PrivateRoute
+        exact
+        path="/PackageLevelOne/:id"
+        component={PackageLevelOne}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/PackageLevelTwo/:id"
+        component={PackageLevelTwo}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/PackageLevelThree/:id"
+        component={PackageLevelThree}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/Week12Protocol/:id"
+        component={Week12Protocol}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/Week34Protocol/:id"
+        component={Week34Protocol}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/Week56Protocol/:id"
+        component={Week56Protocol}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/Week78Protocol/:id"
+        component={Week78Protocol}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/Week910Protocol/:id"
+        component={Week910Protocol}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/Week1112Protocol/:id"
+        component={Week1112Protocol}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/Week1314Protocol/:id"
+        component={Week1314Protocol}
+      />{" "}
+      <PrivateRoute
+        exact
+        path="/DeVaxxedHerbalTherapy/:id"
+        component={DeVaxxedHerbalTherapy}
+      />{" "}
       <PrivateRoute
         exact
         path="/ProductViewOutStock"

@@ -275,7 +275,12 @@ const Checkout = ({ history }) => {
                   <div className="row mb-5">
                     {togglecheckout == 0 && (
                       <div className="col-12">
-                        <div className="d-flex justify-content-between text-center w-70 mb-5">
+                        {/* One "tab" for each step in the form: */}
+                        {/* ADDRESS TAB  */}
+                        <div className="">
+                          <div className="row">
+                            <div className="col-xl-8 col-lg-8 col-md-10">
+                            <div className="d-flex justify-content-between text-center w-70 mb-5">
                           <span className="step">
                             <div className="step-icon">
                               <i className="fas fa-address-card" />
@@ -295,11 +300,6 @@ const Checkout = ({ history }) => {
                             <p className="mt-4">Confirm</p>
                           </span>
                         </div>
-                        {/* One "tab" for each step in the form: */}
-                        {/* ADDRESS TAB  */}
-                        <div className="">
-                          <div className="row">
-                            <div className="col-xl-7 col-lg-7 col-md-10">
                               <div className="checkout-form">
                                 <h3> ADDRESS</h3>
                                 {/* Personal info */}
@@ -507,7 +507,7 @@ const Checkout = ({ history }) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-lg-3 col-lg-4 col-md-7 offset-lg-1">
+                            <div className="col-xl-4 col-lg-4 col-md-7">
                               <div className="order-summary has-margin">
                                 <div className="order-summary-head">
                                   <p>Order Summary</p>

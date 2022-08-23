@@ -30,10 +30,11 @@
         padding: 0px 28px;
     }
     .banner-h1 {
-        font-size: 55px;
+        font-size: 40px;
+        line-height: 48px;
     }
     .banner-h2 {
-        font-size: 40px;
+        font-size: 30px;
     }
 }
 @media screen and (max-width:1600px) {
@@ -81,7 +82,7 @@
 }
 @media screen and (max-width:1440px) {
     .main-banner {
-        background: url(../images/main-banner-background.jpg) left 0px bottom 0px/ cover no-repeat;
+        background: url(../images/main-banner-background.png) left 0px bottom 0px/ cover no-repeat;
         height: 700px;
     }
     .banner-h2 {
@@ -1296,7 +1297,7 @@
 }
 @media screen and (max-width: 456px) {
     .main-banner {
-        background: url(../images/main-banner-background.jpg) left -350px bottom 0px/ cover no-repeat;
+        background: url(../images/main-banner-background.png) left -350px bottom 0px/ cover no-repeat;
         height: 700px;
     }
     .banner-h1 {

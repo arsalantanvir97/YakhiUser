@@ -17,6 +17,8 @@ const ProductView = ({ match, history }) => {
   const [product, setproduct] = useState([]);
   const [quantity, setquantity] = useState(1);
   const [recommendedproducts, setrecommendedproducts] = useState([]);
+  const [userwishlist, setuserwishlist] = useState([]);
+
   useEffect(() => {
     getSingleProduct();
   }, [match?.params?.id]);
@@ -27,6 +29,7 @@ const ProductView = ({ match, history }) => {
 
   const getSingleProduct = async () => {
     try {
+      
       const res = await axios({
         url: `${baseURL}/product/getProductDetails/${match?.params?.id}`,
         method: "GET"
@@ -35,7 +38,10 @@ const ProductView = ({ match, history }) => {
       //   url: `${baseURL}/product/getProductDetailsByName/${match?.params?.id}`,
       //   method: "GET"
       // });
-
+      setuserwishlist(
+        localStorage.getItem("wishlist") &&
+          JSON.parse(localStorage.getItem("wishlist"))
+      );
       console.log("res", res?.data?.product);
       setproduct(res?.data?.product);
       const category = await res?.data?.product?.category;
@@ -74,6 +80,7 @@ const ProductView = ({ match, history }) => {
     <>
       <DetailsofProduct
         product={product}
+        userwishlist={userwishlist}
         quantity={quantity}
         history={history}
         subQuantity={subQuantity}

@@ -430,7 +430,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     /> */}
                                   </div>
                                   <label>E Signature*</label>
-                                  <Signature allValues={allValues}  setAllValues={setAllValues}/>
+                                  <Signature
+                                    allValues={allValues}
+                                    setAllValues={setAllValues}
+                                  />
                                   {/* <div className="col-12">
                                     <div className="ship-to-different">
                                       <div className="checkbox-group">
@@ -442,6 +445,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     </div>
                                   </div> */}
                                 </div>
+                                <div style={{ height: 40 }}> </div>
+
                                 {/* Shipping Address */}
                                 <div className="row mb-4">
                                   <div className="col-12 mb-4">
@@ -516,7 +521,6 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       <USStates />
                                     </select>
                                   </div>
-                               
                                 </div>
                               </div>
                             </div>

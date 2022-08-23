@@ -13,6 +13,7 @@ const DetailsofProduct = ({
   subQuantity,
   setquantity,
   addToCartHandler,
+  userwishlist,
   history,
   htmlToReactParser,
   recommendedproducts,
@@ -600,7 +601,12 @@ const DetailsofProduct = ({
                             UnauthorizedAlert()
                           }}
                         >
-                          <i className="wishlist-icon far fa-heart maroon" />
+                          <i className={
+                                    userwishlist?.includes(rec?._id)
+                                      ? `wishlist-icon fas fa-heart maroon`
+                                      : `wishlist-icon far fa-heart`
+                                  }
+                                   />
                         </button>
                         <Link to={`/ProductView/${rec?._id}`}>
                           {" "}

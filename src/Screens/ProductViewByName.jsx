@@ -15,6 +15,8 @@ const ProductViewByName = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [product, setproduct] = useState([]);
+  const [userwishlist, setuserwishlist] = useState([]);
+
   const [quantity, setquantity] = useState(1);
   const [recommendedproducts, setrecommendedproducts] = useState([]);
   useEffect(() => {
@@ -26,6 +28,10 @@ const ProductViewByName = ({ match, history }) => {
   }, [quantity]);
 
   const getSingleProduct = async () => {
+    setuserwishlist(
+      localStorage.getItem("wishlist") &&
+        JSON.parse(localStorage.getItem("wishlist"))
+    );
     try {
       const res = await axios({
         url: `${baseURL}/product/getProductDetailsByName/${match?.params?.id}`,
@@ -69,6 +75,8 @@ const ProductViewByName = ({ match, history }) => {
     <>
       <DetailsofProduct
         product={product}
+        userwishlist={userwishlist}
+
         quantity={quantity}
         subQuantity={subQuantity}
         setquantity={setquantity}

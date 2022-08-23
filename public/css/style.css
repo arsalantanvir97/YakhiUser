@@ -2291,9 +2291,15 @@ button.btn.btn-categories:hover {
 .product-card {
   background: #fff;
   border-radius: 0;
-  padding: 20px;
+  /* padding: 20px; */
   margin-bottom: 30px;
   border: 1px solid #f1f1f1;
+  position: relative;
+}
+.product-card .wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .product-name a {
@@ -3298,13 +3304,41 @@ input[type="radio"]+label>img {
   font-weight: 600;
 }
 
+.modal-body .modal-title {
+  font-size: calc(20px + (30 - 20) * ((100vw - 320px) / (1920 - 320)));
+  color: #000;
+}
+.modal-body .modal-img {
+  width: 97px;
+  height: 97px;
+  background: #1b2996;
+  border: 5px solid #fff;
+  color: #fff;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  position: absolute;
+  top: -30%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.modal-body .modal-sub-content {
+  font-size: calc(15px + (18 - 15) * ((100vw - 320px) / (1920 - 320)));
+  color: #666;
+  margin-bottom: 0;
+}
+
+
 .w-70 {
   width: 70%;
 }
 
-.order-summary.has-margin {
+/* .order-summary.has-margin {
   margin-top: -170px;
-}
+} */
 
 span.instock-label {
   background: #4ecc28;
@@ -3321,6 +3355,79 @@ span.instock-label {
   font-family: "Rubik", sans-serif;
   font-weight: 800;
   line-height: 43px;
+}
+
+/* User Profile Start */
+.user-block {
+  font-size: 18px;
+  font-weight: 500;
+}
+.light-primary-bg {
+  background-color: #F9E8E8;
+  padding: 20px;
+  border-radius: 10px;
+}
+.card .user-block a {
+  text-decoration: underline !important;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+  font-size: 18px !important;
+  font-weight: 500;
+}
+.user-block .detail-row {
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #666666;
+}
+.user-block .lablename {
+  color: #000000;
+  font-weight: 600;
+  font-size: 18px;
+}
+.user-block .lablename label {
+  padding-left: 0px;
+}
+
+.user-block label {
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 20px;
+}
+.user-block p {
+  color: #999999;
+}
+.card .user-block a.update-btn-profile{
+  color: #fff;
+  border-radius: 50px;
+}
+.btn-fixed-190 {
+  max-width: 190px;
+  width: 100%;
+}
+.page-title h1 {
+  font-size: 40px;
+  font-family: 'righteous', sans-serif;
+  margin-top: 0px;
+  text-transform: capitalize;
+  color: #160000;
+  margin-bottom: 0px;
+}
+h1 a i {
+  color: #212121;
+  margin: 5px 7px 0 0px;
+  vertical-align: top;
+  font-size: 30px;
+}
+h1 a {
+  display: inline;
+}
+.btn-primary {
+  color: #fff;
+  background: #c92020;
+  border-color: #c92020;
+  background-image: linear-gradient(to top, #751515, #7d1616, #861718, #8e1819, #97191a, #9e1a1b, #a51b1b, #ac1c1c, #b31d1d, #ba1e1e, #c21f1f, #c92020);
 }
 
 select#timeZone {
@@ -4166,7 +4273,7 @@ span.bottom-note {
 
 /* NEW HOMEPAGE STYLES STARTS HERE */
 .main-banner {
-  background: url(../images/main-banner-background.jpg) center/ cover no-repeat;
+  background: url(../images/main-banner-background.png) center/ cover no-repeat;
   height: 700px;
 }
 .abcccc:hover{
@@ -4184,7 +4291,6 @@ span.bottom-note {
 .banner-h1 {
   line-height: 68px;
   font-size: 65px;
-  text-align: right;
 }
 
 .banner-h2 {
@@ -4202,7 +4308,13 @@ span.bottom-note {
 .w-55 {
   width: 55%;
 }
-
+.userbackbtn {
+  padding-top: 20px;
+  font-size: 25px;
+}
+.userbackbtn a {
+  color: #000;
+}
 a.shop-now-btn {
   box-shadow: 0 0 0 0 #000000;
   background-color: #000000;

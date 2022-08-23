@@ -10,10 +10,11 @@ import Toasty from "../utils/toast";
 import Swal from "sweetalert2";
 const Header = ({ history }) => {
   const dispatch = useDispatch();
-  const [category, setcategory] = useState(()=>{
-    return(
-    localStorage.getItem("categories") &&
-    JSON.parse(localStorage.getItem("categories")))
+  const [category, setcategory] = useState(() => {
+    return (
+      localStorage.getItem("categories") &&
+      JSON.parse(localStorage.getItem("categories"))
+    );
   });
 
   const [email, setemail] = useState("");
@@ -771,13 +772,14 @@ const Header = ({ history }) => {
                           </ul>
                         </li>
                         <li className="nav-item">
-                          <Link
+                          <a
                             className="nav-link"
-                            to="#"
-                            onClick={popUpHandler}
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#detoxModal"
                           >
                             Detox Home
-                          </Link>
+                          </a>
                         </li>
                         <li className="nav-item">
                           <Link to="/Donate" className="nav-link">
@@ -804,7 +806,12 @@ const Header = ({ history }) => {
                                     {/* <button className="dropdown-item" type="button">
                                 Action
                               </button> */}
-
+                                    <Link
+                                      className="dropdown-item"
+                                      to="/EditProfile"
+                                    >
+                                      My Profile
+                                    </Link>
                                     <button
                                       className="dropdown-item"
                                       type="button"
@@ -954,6 +961,32 @@ const Header = ({ history }) => {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="modal fade logout-modal p-0"
+        data-bs-backdrop="static"
+        data-keyboard="false"
+        tabIndex={-1}
+        id="detoxModal"
+        aria-labelledby
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-md modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-body text-center pt-5 pb-3">
+              <div className="modal-img">
+                <i className="fas fa-check" />
+              </div>
+              <h3 className="modal-title pt-3" />
+              <p className="modal-sub-content">
+                New &amp; Improved Detox Experience Coming Soon Booking
+                Currently Not Available"
+              </p>
+            </div>
+            <div className="modal-footer justify-content-center"></div>
           </div>
         </div>
       </div>

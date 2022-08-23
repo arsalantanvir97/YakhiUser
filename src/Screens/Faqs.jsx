@@ -1,13 +1,43 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import { baseURL } from "../utils/api";
 
 const Faqs = () => {
+  const [faqs, setfaqs] = useState([]);
+  const [faqid, setfaqid] = useState([]);
+
+  useEffect(() => {
+    gettingallFAQS();
+  }, []);
+  const gettingallFAQS = async () => {
+    const res = await axios.get(`${baseURL}/faq/getallfaqs`, {});
+    console.log("res", res);
+    setfaqs(res?.data?.faqs);
+  };
+  useEffect(() => {
+   console.log('faqid',faqid)
+  }, [faqid])
+  const handleid=(id)=>{
+    if(faqid.includes(id)){
+      console.log('insideblock');
+      // let faqidd=[]
+      // faqidd=[...faqid]
+      setfaqid(faqid.filter(faq=>(faq!==id)))
+    } 
+    else {
+      let faaiqid=[]
+      console.log('outblock',id);
+      faaiqid=[...faqid,id]
+      setfaqid(faaiqid)
+    }
+  }
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
+      <PrivateRouteSlider />
 
       <div className="container-fluid py-3 my-5">
         <div className="row">
@@ -39,70 +69,25 @@ const Faqs = () => {
                   {/* FAQS container starts */}
                   <div className="faq-container">
                     {/* FAQ 1 */}
-                    <div className="faq ">
-                      <h3 className="faq-title">How Much Does It Cost?</h3>
-                      <p className="faq-text">
-                        $1500 dollars per week includes herbs. There is a
-                        one-week minimum stay. Full payment will be required to
-                        book your stay.
-                      </p>
-                      <button className="faq-toggle">
-                        <i className="fas fa-chevron-down" />
-                        <i className="fas fa-times" />
-                      </button>
-                    </div>
-                    {/* FAQ 2 */}
-                    <div className="faq ">
-                      <h3 className="faq-title">How Long I Can Stay?</h3>
-                      <p className="faq-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Sit, reprehenderit!
-                      </p>
-                      <button className="faq-toggle">
-                        <i className="fas fa-chevron-down" />
-                        <i className="fas fa-times" />
-                      </button>
-                    </div>
-                    {/* FAQ 3 */}
-                    <div className="faq">
-                      <h3 className="faq-title">
-                        Can the Yahki Detoxification Home Accommodate Everyone?
-                      </h3>
-                      <p className="faq-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Soluta, vel.
-                      </p>
-                      <button className="faq-toggle">
-                        <i className="fas fa-chevron-down" />
-                        <i className="fas fa-times" />
-                      </button>
-                    </div>
-                    {/* FAQ 4 */}
-                    <div className="faq ">
-                      <h3 className="faq-title">What Do I Need to Bring?</h3>
-                      <p className="faq-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Nam, ipsum.
-                      </p>
-                      <button className="faq-toggle">
-                        <i className="fas fa-chevron-down" />
-                        <i className="fas fa-times" />
-                      </button>
-                    </div>
-                    {/* FAQ 3 */}
-                    <div className="faq ">
-                      <h3 className="faq-title">
-                        Can I Bring Someone With Me?
-                      </h3>
-                      <p className="faq-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Animi, placeat.
-                      </p>
-                      <button className="faq-toggle">
-                        <i className="fas fa-chevron-down" />
-                        <i className="fas fa-times" />
-                      </button>
-                    </div>
+                    {faqs?.length > 0 &&
+                      faqs?.map((faq) => (
+                        <div
+                          className={`faq ${faqid?.includes(faq?._id) && "active"}`}
+                          key={faq?._id}
+                        >
+                          <h3 className="faq-title">{faq?.question}</h3>
+                          <p className="faq-text">{faq?.answer}</p>
+                          <button
+                            className="faq-toggle"
+                            onClick={() => {
+                              handleid(faq?._id)
+                            }}
+                          >
+                            <i className="fas fa-chevron-down" />
+                            <i className="fas fa-times" />
+                          </button>
+                        </div>
+                      ))}
                     {/* FAQS container ends */}
                   </div>
                 </div>

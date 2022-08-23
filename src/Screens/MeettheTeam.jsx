@@ -31,8 +31,46 @@ const data = [
       "Counselor - Prayer - Motivational Speaker - Processing and Shipping - Computer Tech",
     email: "candice@yahkiawakened.com",
     image: "images/Candice-Nelson.png"
+  },
+  {
+    name: "Jason (Yadin)",
+    title:
+      "Production Manager - Videographer - Photographer - Graphic Designer - Content Creator",
+    // email: "candice@yahkiawakened.com",
+    image: "images/JASON (1).jpg"
+  },
+  {
+    name: "Jazz",
+    title: "Processor",
+    // email: "candice@yahkiawakened.com",
+    image: "images/JAZZ (1).jpg"
+  },
+  {
+    name: "Antonio",
+    title: "Counselor - Consultant - Detoxification Specialist",
+    // email: "candice@yahkiawakened.com",
+    image: "images/ANTONIO (1).jpg"
+  },
+  {
+    name: "Twanna",
+    title: "",
+    // email: "candice@yahkiawakened.com",
+    image: "images/TUWANNA (1).jpg"
+  },
+  {
+    name: "Nandi",
+    title: "Shipping & Processing",
+    // email: "candice@yahkiawakened.com",
+    image: "images/NANDI.jpg"
+  },
+  {
+    name: "moms ruby",
+    title: "",
+    // email: "candice@yahkiawakened.com",
+    image: "images/MOMS RUBY (2).jpg"
   }
 ];
+
 const MeettheTeam = () => {
   return (
     <>
@@ -65,8 +103,8 @@ const MeettheTeam = () => {
               <div className="row my-5  align-items-start justify-content-center pb-5">
                 {data?.map((dat) => (
                   <>
-                    <div className="col-lg-4 col-md-6 my-4 my-lg-0">
-                      <div className="team-member-box">
+                    <div className="col-lg-4 col-md-6 my-4 my-lg-0" >
+                      <div className="team-member-box mt-5">
                         <img
                           src={dat?.image}
                           alt=""

@@ -387,18 +387,14 @@ const Capsules = ({ history, match }) => {
                                   alt=""
                                   className="img-fluid"
                                   style={{
-                                    maxHeight: 242,
-                                    maxWidth: 242,
-                                    minHeight: 242,
-                                    minWidth: 242
+                                    objectFit: 'cover',
+                                    width: '388px%'
                                   }}
                                 />{" "}
                               </Link>
                               <h5
                                 style={{
                                   fontSize: 20,
-                                  maxHeight: 60,
-                                  minHeight: 60
                                 }}
                                 className="product-name"
                               >

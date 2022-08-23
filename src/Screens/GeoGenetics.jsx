@@ -16,7 +16,23 @@ import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import { CreateWishList } from "../hooks/WishList";
 
 const htmlToReactParser = new Parser();
-
+let links = [
+  "DeVaxxedHerbalTherapy",
+  "PackageLevelOne",
+  "PackageLevelTwo",
+  "PackageLevelThree",
+  ,
+];
+let links2 = [
+  "Week12Protocol",
+  "DeVaxxedHerbalTherapy",
+  "Week1112Protocol",
+  "Week1314Protocol",
+  "Week34Protocol",
+  "Week56Protocol",
+  "Week78Protocol",
+  "Week910Protocol"
+];
 const GeoGenetics = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -27,6 +43,7 @@ const GeoGenetics = ({ history }) => {
 
   const [geoGeneticspackages, setgeoGeneticspackages] = useState([]);
   const [geoGeneticsprotocols, setgeoGeneticsprotocols] = useState([]);
+  const [userwishlist, setuserwishlist] = useState([]);
 
   const [loading, setloading] = useState(false);
 
@@ -35,6 +52,10 @@ const GeoGenetics = ({ history }) => {
   }, []);
 
   const getDetoxProducts = async () => {
+    setuserwishlist(
+      localStorage.getItem("wishlist") &&
+        JSON.parse(localStorage.getItem("wishlist"))
+    );
     setloading(true);
     try {
       const { data } = await axios.get(
@@ -51,7 +72,7 @@ const GeoGenetics = ({ history }) => {
     }
     setloading(false);
   };
-  
+
   return (
     <>
       <Header />
@@ -69,6 +90,9 @@ const GeoGenetics = ({ history }) => {
                     </li>
                     <li>GEO’GENETIC HERBAL THERAPY</li>
                   </ul>
+                  <div className="userbackbtn">
+                    <a href="#"><i class="fas fa-long-arrow-alt-left"></i></a>
+                  </div>
                 </div>
                 <div className="col-md-6 text-right">
                   <h5>HEALING THE ILLUSION WE CALL DISEASE</h5>
@@ -125,7 +149,7 @@ const GeoGenetics = ({ history }) => {
           ) : (
             <div className="row">
               {geoGeneticspackages?.length > 0 &&
-                geoGeneticspackages?.map((geo) => (
+                geoGeneticspackages?.map((geo, index) => (
                   <div className="col-xl-4 col-md-6 col-8 mx-md-0 mx-auto my-3">
                     <Link to="#">
                       <div className="product-box">
@@ -140,7 +164,9 @@ const GeoGenetics = ({ history }) => {
                         <div className="product-actions">
                           <button
                             type="button"
-                            href="#"
+                            onClick={() => {
+                              history?.push(`/${links[index]}/${geo?._id}`);
+                            }}
                             className="quickview-button"
                           >
                             <i className="fas fa-eye" />
@@ -150,11 +176,17 @@ const GeoGenetics = ({ history }) => {
                             onClick={() => {
                               !userInfo
                                 ? UnauthorizedAlert()
-                                : CreateWishList(geo?._id,history);
+                                : CreateWishList(geo?._id, history);
                             }}
                             className="wishlist_button"
                           >
-                            <i className="far fa-heart" />
+                            <i
+                              className={
+                                userwishlist?.includes(geo?._id)
+                                  ? `wishlist-icon fas fa-heart maroon`
+                                  : `wishlist-icon far fa-heart`
+                              }
+                            />
                           </button>
                           <button
                             type="button"
@@ -199,7 +231,7 @@ const GeoGenetics = ({ history }) => {
                   <div className="col-12 my-5">
                     <div className="row" id="protocols">
                       {geoGeneticsprotocols?.length > 0 &&
-                        geoGeneticsprotocols?.map((geo) => (
+                        geoGeneticsprotocols?.map((geo, index) => (
                           <div className="col-lg-3 col-md-4 col-sm-6 mb-5">
                             {/* de vaxxed therapy */}
                             <Link to="#">
@@ -216,7 +248,11 @@ const GeoGenetics = ({ history }) => {
                                 <div className="product-actions">
                                   <button
                                     type="button"
-                                    href="#"
+                                    onClick={() => {
+                                      history?.push(
+                                        `/${links2[index]}/${geo?._id}`
+                                      );
+                                    }}
                                     className="quickview-button"
                                   >
                                     <i className="fas fa-eye" />
@@ -226,11 +262,17 @@ const GeoGenetics = ({ history }) => {
                                     onClick={() => {
                                       !userInfo
                                         ? UnauthorizedAlert()
-                                        : CreateWishList(geo?._id,history);
+                                        : CreateWishList(geo?._id, history);
                                     }}
                                     className="wishlist_button"
                                   >
-                                    <i className="far fa-heart" />
+                                    <i
+                                      className={
+                                        userwishlist?.includes(geo?._id)
+                                          ? `wishlist-icon fas fa-heart maroon`
+                                          : `wishlist-icon far fa-heart`
+                                      }
+                                    />
                                   </button>
                                   <button
                                     type="button"

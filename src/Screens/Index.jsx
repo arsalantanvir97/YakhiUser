@@ -162,15 +162,15 @@ const Index = ({ history }) => {
 
       <section className="main-banner">
         <div className="container-fluid h-100">
-          <div className="row align-items-start justify-content-center h-100 pt-5">
-            <div className="col-xl-5 col-lg-7 col-md-10 ml-auto mt-5 pt-5 text-right pr-5">
+          <div className="row align-items-end justify-content-center h-100 pt-5 pb-4">
+            <div className="col-lg-7 col-md-10 col-xl-5 text-center">
               <h1
-                className="banner-h1 mb-4 aos-init aos-animate"
+                className="banner-h1 aos-init aos-animate"
                 data-aos="zoom-in-left"
                 data-aos-duration={1500}
               >
                 the body was created <br />{" "}
-                <span className="heading-break">to heal itself...</span>{" "}
+                <span class="heading-break">to heal itself...</span>
               </h1>
               <h2
                 className="banner-h2 aos-init aos-animate"
@@ -182,7 +182,7 @@ const Index = ({ history }) => {
               </h2>
               <Link
                 to="#"
-                className="btn banner-btn mt-4 mr-5 aos-init aos-animate"
+                className="btn banner-btn aos-init aos-animate"
                 data-aos="zoom-in-left"
                 data-aos-duration={1500}
                 data-aos-delay={400}

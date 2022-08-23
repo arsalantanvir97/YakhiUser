@@ -188,6 +188,65 @@ export const userResetPasswordAction =
       });
     }
   };
+
+export const updateUserInfoAction =
+  (body, history) => async (dispatch, getState) => {
+    try {
+      // dispatch({
+      //   type: ADMIN_LOGIN_REQUEST,
+      // })
+      console.log("updateUserInfoAction");
+      const {
+        userLogin: { userInfo }
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      };
+      const res = await axios.post(
+        `${baseURL}/auth/userEditProfile`,
+        body,
+        config
+      );
+
+      console.log("res", res);
+      if (res?.status == 201) {
+        dispatch({
+          type: USER_LOGIN_SUCCESS,
+          payload: res?.data
+        });
+
+        localStorage.setItem("userInfo", JSON.stringify(res?.data));
+        await Swal.fire({
+          icon: "success",
+          title: "",
+          text: "Profile Updated Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        history("/");
+      }
+
+      // else if(res?.status==201){
+      //   Toasty('error',`Invalid Email or Password`);
+      //   dispatch({
+      //     type: ADMIN_LOGIN_FAIL,
+      //     payload:
+      //     res?.data?.message
+      //   })
+      //   document.location.href = '/'
+
+      // }
+    } catch (error) {
+      console.log("error", error);
+      dispatch({
+        type: USER_LOGIN_FAIL,
+        payload: error
+      });
+    }
+  };
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   localStorage.removeItem("cartItems");
