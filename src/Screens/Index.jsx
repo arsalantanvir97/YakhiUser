@@ -195,7 +195,7 @@ const Index = ({ history }) => {
       </section>
 
       <div className="container">
-        <div className="row align-items-center justify-content-center my-5 pt-5 pb-3">
+        <div className="row align-items-center justify-content-center my-md-5 pt-5 pb-3">
           <div
             className="col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate"
             data-aos="fade-up"
@@ -228,7 +228,7 @@ const Index = ({ history }) => {
           </div>
           <div className="filteration">
             <div className="container py-4">
-              <div className="row my-5 align-items-start justify-content-between">
+              <div className="row my-md-5 align-items-start justify-content-between">
                 <div className="col-12">
                   {" "}
                   <h6 className="text-uppercase">Healing Assistance</h6>
@@ -357,7 +357,7 @@ const Index = ({ history }) => {
         </div>
       </div>
 
-      <div className="container my-5 py-3">
+      <div className="container my-md-5 my-3 py-3">
         <div className="row my-4">
           <div className="col-12 text-center">
             <p className="yahki-blockquote">

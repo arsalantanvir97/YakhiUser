@@ -1559,12 +1559,12 @@ section.copy-rights a:hover {
 }
 
 #geo {
-  background: url(../images/inner-page-bg.jpg) left 0px top 0px/ 100% auto no-repeat;
+  background: url(../images/inner-page-bg.png) left 0px top 0px/ 100% auto no-repeat;
   padding: 150px 0;
 }
 
 .inner-banner {
-  background: url(../images/inner-page-bg.jpg) left 0px top 0px/ 100% auto no-repeat;
+  background: url(../images/inner-page-bg.png) left 0px top 0px/ 100% auto no-repeat;
   display: flex;
   align-items: center;
   position: relative;
@@ -3825,6 +3825,10 @@ section.faqs-video h2 {
 
 .faq-toggle .fa-times {
   display: none;
+}
+.product-view-wish {
+    color: #711011;
+    font-size: 25px;
 }
 
 .faq.active .faq-toggle .fa-times {

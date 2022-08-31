@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import AllHerbs from "../components/AllHerbs";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import Toasty from "../utils/toast";
+const DeVaxxedHerbalTherapy = ({ match, history }) => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const [product, setproduct] = useState([]);
+  const [quantity, setquantity] = useState(1);
+  const [recommendedproducts, setrecommendedproducts] = useState([]);
+  const [userwishlist, setuserwishlist] = useState([]);
+  const addToCartHandler = async () => {
+    console.log("addToCartHandler");
+    history.push(`/GeoGeneticsCheckout/${match.params.id}?qty=${quantity}`);
+  };
 
-const DeVaxxedHerbalTherapy = () => {
+  const subQuantity = async () => {
+    quantity == 0 || quantity <= 0
+      ? setquantity(0)
+      : setquantity(Number(quantity - 1));
+  };
   return (
     <>
       <Header />
-
+      <PrivateRouteSlider />
       <div className="container-fluid">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -78,18 +99,36 @@ const DeVaxxedHerbalTherapy = () => {
                   <div id="field1">
                     Quantity
                     <div className="quantifier">
-                      <button type="button" id="sub" className="minus">
+                      <button
+                        type="button"
+                        id="sub"
+                        className="minus"
+                        value={quantity}
+                        onClick={() =>
+                          // setquantity(Number(quantity - 1))
+                          subQuantity()
+                        }
+                      >
                         <i className="fas fa-minus" />
                       </button>
                       <input
                         type="number"
                         id={1}
                         defaultValue={1}
-                        min={1}
+                        min={0}
                         className="quantity quantity p-2"
-                        max={10}
+                        value={quantity}
+                        onChange={(e) => {
+                          setquantity(Number(e.target.value));
+                        }}
                       />
-                      <button type="button" id="add" className="plus">
+                      <button
+                        type="button"
+                        id="add"
+                        className="plus"
+                        value={quantity}
+                        onClick={() => setquantity(Number(quantity + 1))}
+                      >
                         <i className="fas fa-plus" />
                       </button>
                     </div>
@@ -102,6 +141,13 @@ const DeVaxxedHerbalTherapy = () => {
                   <button
                     type="button"
                     className="btn maroon-btn-solid px-5 py-2"
+                    onClick={() => {
+                      userInfo
+                        ? quantity > 0
+                          ? addToCartHandler(product?._id)
+                          : Toasty("error", `Quantity must be greater than 0`)
+                        : UnauthorizedAlert();
+                    }}
                   >
                     <img
                       src="images/add-to-cart.png"
@@ -857,26 +903,11 @@ const DeVaxxedHerbalTherapy = () => {
                 </div>
               </div>
             </section>
-            <div className="row mt-5">
-              <div className="col-12 text-center">
-                <div className="about-bottom-banner">
-                  <h3>
-                    All Herbs Are Organic Alkaline and Are Naturally Wildcrafted
-                    from the Land of their Origin
-                  </h3>
-                  <p>
-                    All herbs used in our products are 100% naturally organic
-                    and are selectively picked and tested by a laboratory before
-                    use. Each herbal compound is personally prepared with
-                    gratification for the purpose of restoring health to our
-                    clients.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <AllHerbs />
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

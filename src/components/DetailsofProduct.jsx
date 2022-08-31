@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CreateWishList } from "../hooks/WishList";
 import { imageURL } from "../utils/api";
 import Toasty from "../utils/toast";
+import AllHerbs from "./AllHerbs";
 import Footer from "./Footer";
 import Header from "./Header";
 import PrivateRouteSlider from "./PrivateRouteSlider";
@@ -24,7 +25,7 @@ const DetailsofProduct = ({
     <>
       {" "}
       <Header />
-     <PrivateRouteSlider/>
+      <PrivateRouteSlider />
       <div className="container-fluid">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -121,6 +122,26 @@ const DetailsofProduct = ({
                       />
                     </li>
                   </ul>
+                  <div className="d-flex align-items-center">
+                    <h4>Add to wishlist</h4>
+                    <Link
+                      to="#"
+                      onClick={() => {
+                        userInfo
+                          ? CreateWishList(product?._id, history)
+                          : UnauthorizedAlert();
+                      }}
+                      className="ml-3 product-view-wish"
+                    >
+                      <i
+                        className={
+                          userwishlist?.includes(product?._id)
+                            ? `fas fa-heart maroon`
+                            : `far fa-heart`
+                        }
+                      ></i>
+                    </Link>
+                  </div>
                   {/* <p className="short-desc">{product?.description}</p> */}
                   <h4 className="big-price">${product?.price}</h4>
                   <div id="field1">
@@ -596,17 +617,17 @@ const DetailsofProduct = ({
                           className="wishlist-btn"
                           onClick={() => {
                             userInfo
-                            ?
-                            CreateWishList(rec?._id,history):
-                            UnauthorizedAlert()
+                              ? CreateWishList(rec?._id, history)
+                              : UnauthorizedAlert();
                           }}
                         >
-                          <i className={
-                                    userwishlist?.includes(rec?._id)
-                                      ? `wishlist-icon fas fa-heart maroon`
-                                      : `wishlist-icon far fa-heart`
-                                  }
-                                   />
+                          <i
+                            className={
+                              userwishlist?.includes(rec?._id)
+                                ? `wishlist-icon fas fa-heart maroon`
+                                : `wishlist-icon far fa-heart`
+                            }
+                          />
                         </button>
                         <Link to={`/ProductView/${rec?._id}`}>
                           {" "}
@@ -672,23 +693,7 @@ const DetailsofProduct = ({
                   ))}
               </div>
             </section>
-            <div className="row mt-5">
-              <div className="col-12 text-center">
-                <div className="about-bottom-banner">
-                  <h3>
-                    All Herbs Are Organic Alkaline and Are Naturally Wildcrafted
-                    from the Land of their Origin
-                  </h3>
-                  <p>
-                    All herbs used in our products are 100% naturally organic
-                    and are selectively picked and tested by a laboratory before
-                    use. Each herbal compound is personally prepared with
-                    gratification for the purpose of restoring health to our
-                    clients.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <AllHerbs />
           </div>
         </div>
       </div>

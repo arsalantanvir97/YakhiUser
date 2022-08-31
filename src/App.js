@@ -143,57 +143,57 @@ function App() {
       <PrivateRoute exact path="/OrderLog" component={OrderLog} />{" "}
       <PrivateRoute exact path="/AppointmentLogs" component={AppointmentLogs} />{" "}
       <PrivateRoute exact path="/ViewCollection" component={ViewCollection} />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/PackageLevelOne/:id"
         component={PackageLevelOne}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/PackageLevelTwo/:id"
         component={PackageLevelTwo}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/PackageLevelThree/:id"
         component={PackageLevelThree}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/Week12Protocol/:id"
         component={Week12Protocol}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/Week34Protocol/:id"
         component={Week34Protocol}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/Week56Protocol/:id"
         component={Week56Protocol}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/Week78Protocol/:id"
         component={Week78Protocol}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/Week910Protocol/:id"
         component={Week910Protocol}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/Week1112Protocol/:id"
         component={Week1112Protocol}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/Week1314Protocol/:id"
         component={Week1314Protocol}
       />{" "}
-      <PrivateRoute
+      <Route
         exact
         path="/DeVaxxedHerbalTherapy/:id"
         component={DeVaxxedHerbalTherapy}

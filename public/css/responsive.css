@@ -82,8 +82,15 @@
 }
 @media screen and (max-width:1440px) {
     .main-banner {
-        background: url(../images/main-banner-background.png) left 0px bottom 0px/ cover no-repeat;
+        background: url(../images/main-banner-background.png);
         height: 700px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .menu a.nav-link {
+        font-size: 13px;
+        line-height: 20px;
     }
     .banner-h2 {
         line-height: 40px;
@@ -148,8 +155,8 @@
     #carousel button.slick-next.slick-arrow {
         left: 52%;
     }
-    .inner-banner{
-        padding: 90px 0;
+    .inner-banner {
+        padding: 130px 0 50px 0;
     }
     #geo {
         padding: 105px 0;
@@ -387,7 +394,12 @@
         bottom: 15px;
     }
     .inner-banner {
-        padding: 50px 0;
+        padding: 100px 0 40px 0;
+        height: auto;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 }
 @media screen and (max-width: 1024px) {
@@ -580,6 +592,9 @@
     .bitters h4 {
         font-size: 30px;
     }
+    .inner-banner .banner-outline {
+        padding: 20px 20px 20px 10px;
+    }
     .orange-text {
         font-size: 24px;
     }
@@ -761,14 +776,21 @@
     .inner-banner .banner-outline {
         padding: 20px 10px 20px 10px;
     }
-    .inner-banner {
+    /* .inner-banner {
         padding: 29px 0;
-    }
+    } */
 }
 @media screen and (max-width: 768px) {
-    .banner-h2 {
+    /* .banner-h2 {
         max-width: 80%;
         margin-left: auto;
+    } */
+    .banner-h2 {
+        line-height: 28px;
+        font-size: 24px;
+    }
+    .main-banner {
+        height: 470px;
     }
     #main-nav{
         padding: 22px 0;
@@ -1250,12 +1272,15 @@
         font-size: 12px;
     }
     #geo {
-        background: url(../images/inner-page-bg-mobile.jpg) left 0px top 0px/ 100% auto no-repeat;
+        background: url(../images/inner-page-bg-mobile.png) left 0px top 0px/ 100% auto no-repeat;
         padding: 130px 0 !important;
     }
     .inner-banner{
-        background: url(../images/inner-page-bg-dark-mobile.jpg) left 0px top 0px/ 100% auto no-repeat;
-        padding: 115px 0 !important;
+        background: url(../images/inner-page-bg.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 100px 0 40px 0;
     }
     #main-nav{
         width: 100%;
@@ -1296,10 +1321,10 @@
     }
 }
 @media screen and (max-width: 456px) {
-    .main-banner {
+    /* .main-banner {
         background: url(../images/main-banner-background.png) left -350px bottom 0px/ cover no-repeat;
         height: 700px;
-    }
+    } */
     .banner-h1 {
         font-size: 32px;
         line-height: 1.2;

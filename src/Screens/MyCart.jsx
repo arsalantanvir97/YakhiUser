@@ -4,6 +4,7 @@ import { addToCart, removeFromCart } from "../actions/cartAction";
 import { useDispatch, useSelector } from "react-redux";
 import { imageURL } from "../utils/api";
 import Toasty from "../utils/toast";
+import AllHerbs from "../components/AllHerbs";
 let qtybool=false
 const MyCart = ({ match, location, history }) => {
   const productId = match?.params?.id;
@@ -299,22 +300,7 @@ const MyCart = ({ match, location, history }) => {
             </div>
           </section>
 
-          <div className="row mt-5">
-            <div className="col-12 text-center">
-              <div className="about-bottom-banner">
-                <h3>
-                  All Herbs Are Organic Alkaline and Are Naturally Wildcrafted
-                  from the Land of their Origin
-                </h3>
-                <p>
-                  All herbs used in our products are 100% naturally organic and
-                  are selectively picked and tested by a laboratory before use.
-                  Each herbal compound is personally prepared with gratification
-                  for the purpose of restoring health to our clients.
-                </p>
-              </div>
-            </div>
-          </div>
+          <AllHerbs/>
         </div>
       </div>
     </div>

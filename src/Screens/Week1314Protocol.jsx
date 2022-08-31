@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
+import PrivateRouteSlider from "../components/PrivateRouteSlider";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import Toasty from "../utils/toast";
 
@@ -24,6 +26,7 @@ const Week1314Protocol = ({ match, history }) => {
   return (
     <>
       <Header />
+      <PrivateRouteSlider />
       <div className="container-fluid">
         <div className="row">
           <div className="col-11 mx-auto">
@@ -1956,6 +1959,7 @@ const Week1314Protocol = ({ match, history }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

@@ -8,6 +8,11 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import StripeCheckout from "react-stripe-checkout";
 import { SunspotLoader } from "react-awesome-loaders";
+import { PayPalButton } from "react-paypal-button-v2";
+import {
+  SquarePaymentsForm,
+  CreditCardInput
+} from "react-square-web-payments-sdk";
 
 const OrderLogDetail = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -18,7 +23,7 @@ const OrderLogDetail = ({ match, history }) => {
   const [orderdetaills, setorderdetaills] = useState();
   useEffect(() => {
     getSingleOrder();
-    dispatch(resetOrder())
+    dispatch(resetOrder());
   }, []);
 
   const getSingleOrder = async () => {
@@ -163,13 +168,17 @@ const OrderLogDetail = ({ match, history }) => {
                             <p>Delivery Status</p>
                           </div>
                           <div className="col-6 mb-3">
-                            <p>{orderdetaills?.isDelivered }</p>
+                            <p>{orderdetaills?.isDelivered}</p>
                           </div>
                           <div className="col-6 mb-3">
                             <p>Payment Method</p>
                           </div>
                           <div className="col-6 mb-3">
-                            <p>{orderdetaills?.isPaid ? orderdetaills?.paymentMethod?.paymentmethod : 'Not paid'}</p>
+                            <p>
+                              {orderdetaills?.isPaid
+                                ? orderdetaills?.paymentMethod?.paymentmethod
+                                : "Not paid"}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -354,23 +363,95 @@ const OrderLogDetail = ({ match, history }) => {
                             {loading ? (
                               <i className="fas fa-spinner fa-pulse"></i>
                             ) : (
-                              <StripeCheckout
-                                stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                                token={handleToken}
-                                amount={orderdetaills?.totalPrice * 100}
-                                email={userInfo?.email}
-                              ></StripeCheckout>
+                              <>
+                                <PayPalButton
+                                  options={{
+                                    clientId:
+                                      "ASiSqkLrGz972fYCyfH36FFNug0V8UDsDAW9GUWzEx5SOxAmRF0hp1KgfhDTHCRRlvWlDWw3RJXuw6Lp",
+                                    currency: "USD"
+                                  }}
+                                  createOrder={(data, actions) => {
+                                    return actions.order.create({
+                                      purchase_units: [
+                                        {
+                                          description: orderdetaills?._id,
+                                          amount: {
+                                            currency_code: "USD",
+                                            value: orderdetaills?.totalPrice
+                                          }
+                                        }
+                                      ]
+                                    });
+                                  }}
+                                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                  onSuccess={(details, data) => {
+                                    console.log("details");
+                                    console.log(details);
+                                    console.log("data");
+                                    console.log(data);
+                                    alert(
+                                      "Transaction completed by " +
+                                        details.payer.name.given_name
+                                    );
+                                    dispatch(
+                                      payOrder(
+                                        match?.params?.id,
+                                        data, details,
+                                      )
+                                    );
+                                    history.push("/");
+
+                                    // OPTIONAL: Call your server to save the transaction
+                                    // return fetch("/paypal-transaction-complete", {
+                                    //   method: "post",
+                                    //   body: JSON.stringify({
+                                    //     orderID: data.orderID
+                                    //   })
+                                    // });
+                                  }}
+                                />
+                                <hr className="border-bottom"/>
+                                <h5 className="pt-4 pb-2 text-left font-weight-bold">Square Payment</h5>
+                                <SquarePaymentsForm
+                                  applicationId="sandbox-sq0idb-v3tKjw-IGf76LuqkI7U3rQ"
+                                  cardTokenizeResponseReceived={(
+                                    token,
+                                    buyer
+                                  ) => {
+                                    dispatch(
+                                      payOrder(
+                                        match?.params?.id,
+                                        token, buyer,
+                                      )
+                                    );
+                                    history.push("/");
+                                    console.log("token, buyer", token, buyer);
+                                  }}
+                                  locationId="L17RXM5KHXR8D"
+                                >
+                                  <CreditCardInput text={"Pay now"} />
+                                </SquarePaymentsForm>
+                              </>
+                              // <StripeCheckout
+                              //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
+                              //   token={handleToken}
+                              //   amount={orderdetaills?.totalPrice * 100}
+                              //   email={userInfo?.email}
+                              // ></StripeCheckout>
                             )}
                           </div>
                         )}
-                          {orderdetaills?.status == "Paid" && <>    <div className="col-7 mb-3">
-                          <p className="grand-total">Order Status</p>
-                        </div>
-                        <div className="col-5 mb-3 text-right">
-                          <p className="grand-total-value">
-                            Paid
-                          </p>
-                        </div></>}
+                        {orderdetaills?.status == "Paid" && (
+                          <>
+                            {" "}
+                            <div className="col-7 mb-3">
+                              <p className="grand-total">Order Status</p>
+                            </div>
+                            <div className="col-5 mb-3 text-right">
+                              <p className="grand-total-value">Paid</p>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

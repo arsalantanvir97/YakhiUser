@@ -12,8 +12,11 @@ import moment from "moment";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { baseURL } from "../utils/api";
+import { PayPalButton } from "react-paypal-button-v2";
+
 import Swal from "sweetalert2";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import AllHerbs from "../components/AllHerbs";
 let showformm = 1;
 let timings = [
   { time: "8:30 CST" },
@@ -732,15 +735,56 @@ const Consultation = ({ history }) => {
                               {loading ? (
                                 <i className="fas fa-spinner fa-pulse"></i>
                               ) : (
-                                <StripeCheckout
-                                  //  cardnumber={cardnumber}
-                                  //  cvv={cvv}
-                                  email={userInfo?.email}
-                                  //  expirydate={expirydate}
-                                  stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                                  token={handleToken}
-                                  amount={100 * 100}
-                                ></StripeCheckout>
+                                <PayPalButton
+                                amount={100}
+                                  options={{
+                                    clientId:
+                                      "AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey",
+                                    currency: "USD"
+                                  }}
+                                  createOrder={(data, actions) => {
+                                    return actions.order.create({
+                                      purchase_units: [
+                                        {
+                                          description: "REZERWACJA",
+                                          amount: {
+                                            currency_code: "USD",
+                                            value: 100
+                                          }
+                                        }
+                                      ]
+                                    });
+                                  }}
+                                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                  onSuccess={(details, data) => {
+                                    console.log("details");
+                                    console.log(details);
+                                    console.log("data");
+                                    console.log(data);
+                                    alert(
+                                      "Transaction completed by " +
+                                        details.payer.name.given_name
+                                    );
+
+                                    // OPTIONAL: Call your server to save the transaction
+                                    // return fetch("/paypal-transaction-complete", {
+                                    //   method: "post",
+                                    //   body: JSON.stringify({
+                                    //     orderID: data.orderID
+                                    //   })
+                                    // });
+                                  }}
+                                />
+
+                                // <StripeCheckout
+                                //   //  cardnumber={cardnumber}
+                                //   //  cvv={cvv}
+                                //   email={userInfo?.email}
+                                //   //  expirydate={expirydate}
+                                //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
+                                //   token={handleToken}
+                                //   amount={100 * 100}
+                                // ></StripeCheckout>
                               )}
                             </div>
                           </div>
@@ -801,23 +845,7 @@ const Consultation = ({ history }) => {
                   </form>
                 </div>
               </div>
-              <div className="row mt-5">
-                <div className="col-12 text-center">
-                  <div className="about-bottom-banner">
-                    <h3>
-                      All Herbs Are Organic Alkaline and Are Naturally
-                      Wildcrafted from the Land of their Origin
-                    </h3>
-                    <p>
-                      All herbs used in our products are 100% naturally organic
-                      and are selectively picked and tested by a laboratory
-                      before use. Each herbal compound is personally prepared
-                      with gratification for the purpose of restoring health to
-                      our clients.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <AllHerbs />
             </div>
           </div>
         </div>

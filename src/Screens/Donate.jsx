@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import InnerPageBanner from "./InnerPageBanner";
 import StripeCheckout from "react-stripe-checkout";
+import { PayPalButton } from "react-paypal-button-v2";
+import {
+  SquarePaymentsForm,
+  CreditCardInput
+} from "react-square-web-payments-sdk";
 import { baseURL } from "../utils/api";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -10,6 +15,7 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import AllHerbs from "../components/AllHerbs";
 
 const Donate = () => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -52,8 +58,7 @@ const Donate = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
-
+      <PrivateRouteSlider />
 
       <div className="container-fluid my-5 py-4" id="donation-shapes">
         <div className="row">
@@ -78,7 +83,7 @@ const Donate = () => {
                                 <div className="row justify-content-md-center">
                                   <div className="col-md-12 mt-2">
                                     {/* first and last name */}
-                                    <div className="row">
+                                    {/* <div className="row">
                                       <div className="col-md-12 mt-3 text-left">
                                         <label htmlFor className="my-label">
                                           Enter Amount
@@ -93,9 +98,9 @@ const Donate = () => {
                                           }}
                                         />
                                       </div>
-                                    </div>
+                                    </div> */}
                                     {/* Your Message*/}
-                                    <div className="row">
+                                    {/* <div className="row">
                                       <div className="col-md-12 mt-3 text-left">
                                         <label htmlFor className="my-label">
                                           Enter Notes
@@ -111,20 +116,22 @@ const Donate = () => {
                                           }}
                                         />
                                       </div>
-                                    </div>
+                                    </div> */}
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </form>
-                          {amount > 0 && notes?.length > 0 ? (
-                            <StripeCheckout
-                              stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                              token={handleToken}
-                              amount={amount * 100}
-                              email={userInfo?.email}
-                            ></StripeCheckout>
-                          ) : null}
+                          <label htmlFor className="my-label">
+                                          Square Payment
+                                        </label>
+                          <SquarePaymentsForm
+                            applicationId="sandbox-sq0idb-v3tKjw-IGf76LuqkI7U3rQ"
+                            cardTokenizeResponseReceived={(token, buyer) => {console.log('token, buyer',token, buyer);}}
+                            locationId="L17RXM5KHXR8D"
+                          >
+                            <CreditCardInput text={"Pay now"} />
+                          </SquarePaymentsForm>
                         </div>
                       </div>
                       <div className="col-xl-5 col-lg-6 my-auto">
@@ -134,9 +141,7 @@ const Donate = () => {
                             Please send a money order payable to YAHKI AWAKENED
                             LLC to:
                           </p>
-                          <h3>
-                          7217 Watson Rd PO 190563St. Louis, Mo 63119
-                          </h3>
+                          <h3>7217 Watson Rd PO 190563St. Louis, Mo 63119</h3>
                         </div>
                       </div>
                     </div>
@@ -170,12 +175,45 @@ const Donate = () => {
                             className="img-fluid"
                           />
                         </div>
-                        <Link
-                          to="#"
-                          className="btn maroon-btn-solid mx-auto my-4 "
-                        >
-                          Donate with Paypal
-                        </Link>
+                        <PayPalButton
+                          options={{
+                            clientId:
+                              "AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey",
+                            currency: "USD"
+                          }}
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              purchase_units: [
+                                {
+                                  description: "REZERWACJA",
+                                  amount: {
+                                    currency_code: "USD",
+                                    value: 100
+                                  }
+                                }
+                              ]
+                            });
+                          }}
+                          // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                          onSuccess={(details, data) => {
+                            console.log("details");
+                            console.log(details);
+                            console.log("data");
+                            console.log(data);
+                            alert(
+                              "Transaction completed by " +
+                                details.payer.name.given_name
+                            );
+
+                            // OPTIONAL: Call your server to save the transaction
+                            // return fetch("/paypal-transaction-complete", {
+                            //   method: "post",
+                            //   body: JSON.stringify({
+                            //     orderID: data.orderID
+                            //   })
+                            // });
+                          }}
+                        />
                       </div>
                       <div className="col-lg-5 col-md-6 col-12">
                         <div className="pay-with">
@@ -196,23 +234,7 @@ const Donate = () => {
                   </div>
                 </div>
               </div>
-              <div className="row mt-5">
-                <div className="col-12 text-center">
-                  <div className="about-bottom-banner">
-                    <h3>
-                      All Herbs Are Organic Alkaline and Are Naturally
-                      Wildcrafted from the Land of their Origin
-                    </h3>
-                    <p>
-                      All herbs used in our products are 100% naturally organic
-                      and are selectively picked and tested by a laboratory
-                      before use. Each herbal compound is personally prepared
-                      with gratification for the purpose of restoring health to
-                      our clients.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <AllHerbs />
             </div>
           </div>
         </div>

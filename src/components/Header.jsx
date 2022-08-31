@@ -504,7 +504,14 @@ const Header = ({ history }) => {
                                     <h4 className="mb-2">My Account</h4>
                                     <ul>
                                       <li>
-                                        <Link to="#">Account Details</Link>
+                                        <Link
+                                          to={userInfo ? "/EditProfile" : "#"}
+                                          onClick={() => {
+                                            !userInfo && UnauthorizedAlert();
+                                          }}
+                                        >
+                                          Account Details
+                                        </Link>
                                       </li>
                                       <li>
                                         <Link

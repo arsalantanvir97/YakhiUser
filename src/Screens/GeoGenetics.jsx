@@ -14,6 +14,7 @@ import { Parser } from "html-to-react";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import { CreateWishList } from "../hooks/WishList";
+import AllHerbs from "../components/AllHerbs";
 
 const htmlToReactParser = new Parser();
 let links = [
@@ -91,7 +92,9 @@ const GeoGenetics = ({ history }) => {
                     <li>GEO’GENETIC HERBAL THERAPY</li>
                   </ul>
                   <div className="userbackbtn">
-                    <a href="#"><i class="fas fa-long-arrow-alt-left"></i></a>
+                    <Link to='/'>
+                      <i class="fas fa-long-arrow-alt-left"></i>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-md-6 text-right">
@@ -165,6 +168,8 @@ const GeoGenetics = ({ history }) => {
                           <button
                             type="button"
                             onClick={() => {
+                              console.log("abcccccc");
+
                               history?.push(`/${links[index]}/${geo?._id}`);
                             }}
                             className="quickview-button"
@@ -192,6 +197,9 @@ const GeoGenetics = ({ history }) => {
                             type="button"
                             className="cart-_button"
                             onClick={() => {
+                              !userInfo
+                              ? UnauthorizedAlert()
+                              :
                               history?.push(
                                 `/GeoGeneticsCheckout/${geo?._id}?qty=${1}`
                               );
@@ -249,6 +257,7 @@ const GeoGenetics = ({ history }) => {
                                   <button
                                     type="button"
                                     onClick={() => {
+                                      console.log("abcccccc");
                                       history?.push(
                                         `/${links2[index]}/${geo?._id}`
                                       );
@@ -277,11 +286,13 @@ const GeoGenetics = ({ history }) => {
                                   <button
                                     type="button"
                                     onClick={() => {
-                                      history?.push(
-                                        `/GeoGeneticsCheckout/${
-                                          geo?._id
-                                        }?qty=${1}`
-                                      );
+                                      !userInfo
+                                        ? UnauthorizedAlert()
+                                        : history?.push(
+                                            `/GeoGeneticsCheckout/${
+                                              geo?._id
+                                            }?qty=${1}`
+                                          );
                                     }}
                                     className="cart-_button"
                                     title="Add to cart"
@@ -308,26 +319,7 @@ const GeoGenetics = ({ history }) => {
         </div>
       </section>
 
-      <div className="yahki-features">
-        <div className="container py-3">
-          <div className="row text-center">
-            <div className="col-12 text-center">
-              <div className="fixed-banner">
-                <h4>
-                  ALL HERBS ARE ORGANIC ALKALINE BOTANICALS AND ARE NATURALLY
-                  WILDCRAFTED FROM THE LAND OF THEIR ORIGIN
-                </h4>
-                <p className="mt-5">
-                  All herbs used in our products are 100% naturally organic and
-                  are selectively picked and tested by a laboratory before use.
-                  Each herbal compound is personally prepared with gratification
-                  for the purpose of restoring health to our clients.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <AllHerbs />
       <Footer />
     </>
   );

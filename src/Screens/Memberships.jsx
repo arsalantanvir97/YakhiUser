@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AllHerbs from "../components/AllHerbs";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
@@ -103,23 +104,7 @@ const Memberships = () => {
                     </div>
                   </div>
                 </form>
-                <div className="row mt-5">
-                  <div className="col-12 text-center">
-                    <div className="about-bottom-banner">
-                      <h3>
-                        All Herbs Are Organic Alkaline and Are Naturally
-                        Wildcrafted from the Land of their Origin
-                      </h3>
-                      <p>
-                        All herbs used in our products are 100% naturally
-                        organic and are selectively picked and tested by a
-                        laboratory before use. Each herbal compound is
-                        personally prepared with gratification for the purpose
-                        of restoring health to our clients.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <AllHerbs/>
               </div>
             </div>
           </div>
