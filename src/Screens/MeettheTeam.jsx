@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import PrivateRouteSlider from "../components/PrivateRouteSlider";
 const data = [
   {
-    name: "KAWAH ASHYET",
+    name: "Godis Kawah",
     title:
       "Herbalist - Counselor - Aromatherapist - Detoxification Specialist - Processing and Shipping",
     email: "kawah@yahkiawakened.com",
@@ -54,19 +54,25 @@ const data = [
   },
   {
     name: "Twanna",
-    title: "",
+    title: "Processor",
     // email: "candice@yahkiawakened.com",
     image: "images/TUWANNA (1).jpg"
   },
   {
     name: "Nandi",
-    title: "Shipping & Processing",
+    title: "Herbalist - Processing Manager",
     // email: "candice@yahkiawakened.com",
     image: "images/NANDI.jpg"
   },
   {
-    name: "moms ruby",
-    title: "",
+    name: "Cierra",
+    title: "Shipping & Processing",
+    // email: "candice@yahkiawakened.com",
+    image: "images/Cierra.png"
+  },
+  {
+    name: "Godis Ruby",
+    title: "Warehouse Production Manager",
     // email: "candice@yahkiawakened.com",
     image: "images/MOMS RUBY (2).jpg"
   }

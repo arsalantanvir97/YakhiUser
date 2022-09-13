@@ -319,8 +319,8 @@ const Consultation = ({ history }) => {
                     </li>
                     <li>
                       3. If the internet connection is bad you will receive a
-                      phone call instead of a zoom call so look out for
-                      (636-345-5010) just in case.{" "}
+                      phone call instead of a zoom call so look out for 
+                      be sure to answer private and unknown phone numbers so you don’t miss your call just in case.{" "}
                     </li>
                     <li>
                       4. Consultations are designed for 1 person --if you would

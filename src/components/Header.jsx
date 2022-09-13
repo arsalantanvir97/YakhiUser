@@ -97,7 +97,7 @@ const Header = ({ history }) => {
                           !userInfo && UnauthorizedAlert();
                         }}
                       >
-                        <i className="fas fa-shipping-fast mr-2" />
+                        <i className="fas fa-shipping-fast mr-2"  />
                         Order Status
                       </Link>
                     </li>

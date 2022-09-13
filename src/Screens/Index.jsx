@@ -155,7 +155,16 @@ const Index = ({ history }) => {
   // const productViewRedirectHandler = async (id) => {
   //   history?.push(`/ProductView/${id}`);
   // };
-
+  const gettingproductsbyCategoryidHandler = async (id) => {
+    const res = await axios.get(
+      `${baseURL}/product/getproductsbycategoryid/${id}`
+    );
+    console.log("res", res);
+    setprdouctbycategories(res?.data?.products);
+  };
+  const productViewRedirectHandler = async (id) => {
+    history?.push(`/ProductView/${id}`);
+  };
   return (
     <>
       <Header />
@@ -181,7 +190,7 @@ const Index = ({ history }) => {
                 if provided with the right environmental conditions!
               </h2>
               <Link
-                to="#"
+                to="/Capsules"
                 className="btn banner-btn aos-init aos-animate"
                 data-aos="zoom-in-left"
                 data-aos-duration={1500}
@@ -227,7 +236,7 @@ const Index = ({ history }) => {
             />
           </div>
           <div className="filteration">
-            <div className="container py-4">
+          <div className="container py-4">
               <div className="row my-md-5 align-items-start justify-content-between">
                 <div className="col-12">
                   {" "}
@@ -238,16 +247,16 @@ const Index = ({ history }) => {
                     <select
                       className="form-control"
                       id="helpWith"
-                      // value={catid}
-                      // onChange={(event) => {
-                      //   setcatid(event.target.value);
-                      //   gettingproductsbyCategoryidHandler(event.target.value);
-                      // }}
+                      value={catid}
+                      onChange={(event) => {
+                        setcatid(event.target.value);
+                        gettingproductsbyCategoryidHandler(event.target.value);
+                      }}
                     >
-                      <option>I Need Herbal Support For</option>
-                      {herbalsupport?.length > 0 &&
-                        herbalsupport?.map((herb) => (
-                          <option value={herb?.name}>{herb?.name}</option>
+                      <option>Categories</option>
+                      {allofcategory?.length > 0 &&
+                        allofcategory?.map((cat) => (
+                          <option value={cat?._id}>{cat?.categorytitle}</option>
                         ))}
                     </select>
                   </div>
@@ -258,48 +267,25 @@ const Index = ({ history }) => {
                       className="form-control"
                       id="formula"
                       onChange={(event) => {
-                        // productViewRedirectHandler(event.target.value);
+                        productViewRedirectHandler(event.target.value);
                       }}
                     >
-                      <option>Herbal Products</option>
-                      {herbalproducts?.length > 0 &&
-                        herbalproducts?.map((herb) => (
-                          <option value={herb}>{herb}</option>
-                        ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="col-md-4 mb-3">
-                  <div className="form-group my-3">
-                    <select
-                      className="form-control"
-                      id="helpWith"
-                      value={catid}
-                      onChange={(event) => {
-                        setcatid(event.target.value);
-                        // gettingproductsbyCategoryidHandler(event.target.value);
-                      }}
-                    >
-                      <option>Detox Desired</option>
-                      {detoxdesired?.length > 0 &&
-                        detoxdesired?.map((det) => (
-                          <option value={det}>{det}</option>
+                      <option>Products</option>
+                      {prdouctbycategories?.length > 0 &&
+                        prdouctbycategories?.map((prod) => (
+                          <option value={prod?._id}>{prod?.name}</option>
                         ))}
                     </select>
                   </div>
                 </div>
 
+              
                 <div className="col-12 my-2 text-center">
                   <Link
                     to="#"
-                    onClick={() => {
-                      history?.push(
-                        `/ProductViewByName/Turmeric Infusion Capsules`
-                      );
-                    }}
                     className="btn maroon-btn-solid d-inline-block py-2 px-5"
                   >
-                    Search
+                    Find
                   </Link>
                 </div>
               </div>

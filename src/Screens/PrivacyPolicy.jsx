@@ -26,7 +26,7 @@ const PrivacyPolicy = () => {
                     website.
                   </p>
                 </div>
-                <div className="col-12 text-center">
+                <div className="col-12 text-center mt-5">
                   <h4>Last Updated November 1, 2020</h4>
                 </div>
               </div>
@@ -41,10 +41,10 @@ const PrivacyPolicy = () => {
                     provide to us with utmost care.
                   </p>
                 </div>
-                <div className="col-12 text-left">
+                <div className="col-12 text-left mt-5">
                   <h3>What Information We Collect About You</h3>
                 </div>
-                <div className="col-12 mt-3">
+                <div className="col-12 mt-5">
                   <p>
                     Yah’ki Awakened Eye of Lotus Botanical Club and its
                     employees and volunteers may ask You to provide Us with
@@ -52,25 +52,25 @@ const PrivacyPolicy = () => {
                     to contact or identify You. Personally identifiable
                     information may include, but is not limited to:
                   </p>
-                  <ul className="policy-list ml-4 my-3">
+                  <ul className="policy-list ml-4 my-3 mt-5">
                     <li>Email address</li>
                     <li>First name and last name</li>
                     <li>Phone number</li>
                     <li>Address, State, Province, ZIP/Postal code, City</li>
                     <li>Usage Data</li>
                   </ul>
-                  <p>
+                  <p className="mt-5"> 
                     Usage Data is collected automatically when using the
                     Service.
                   </p>
-                  <p className="my-3">
+                  <p className="my-3 mt-5">
                     Usage Data may include information such as Your Device’s
                     Internet Protocol address (e.g. IP address), browser type,
                     browser version, the pages of our Service that You visit,
                     the time and date of Your visit, the time spent on those
                     pages, unique device identifiers and other diagnostic data.
                   </p>
-                  <p className="my-3">
+                  <p className="my-3 mt-5">
                     When You access the Service by or through a mobile device,
                     We may collect certain information automatically, including,
                     but not limited to, the type of mobile device You use, Your
@@ -79,7 +79,7 @@ const PrivacyPolicy = () => {
                     Internet browser You use, unique device identifiers and
                     other diagnostic data.
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     We may also collect information that Your browser sends
                     whenever You visit our Service or when You access the
                     Service by or through a mobile device.
@@ -87,14 +87,14 @@ const PrivacyPolicy = () => {
                 </div>
                 {/* Tracking Technologies and Cookies */}
                 <div className="col-12 mt-5">
-                  <h4>Tracking Technologies and Cookies</h4>
-                  <p className="mt-3">
+                  <h4 >Tracking Technologies and Cookies</h4>
+                  <p className="mt-5">
                     We use Cookies and similar tracking technologies to track
                     the activity on Our Service and store certain information
                     such as the product in your shopping cart and making
                     purchases.
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     For more information about the cookies we use and your
                     choices regarding cookies, please visit our Cookies Policy.
                   </p>
@@ -102,9 +102,9 @@ const PrivacyPolicy = () => {
                 {/* How We Collect Information About You */}
                 <div className="col-12 mt-5">
                   <h3>How We Collect Information About You</h3>
-                  <h4>Yah’ki Awakened Eye of Lotus Botanical Club</h4>
-                  <p className="mt-3">
-                    And its employees and volunteers collect data through a
+                  <h4></h4>
+                  <p className="mt-5">
+                  Yah’ki Awakened Eye of Lotus Botanical Club and its employees and volunteers collect data through a
                     variety of means including but not necessarily limited to
                     letters, phone calls, emails, voicemails, and from the
                     submission of applications that are either required by law
@@ -115,11 +115,11 @@ const PrivacyPolicy = () => {
                 {/* What We Do Not Do With Your Information */}
                 <div className="col-12 mt-5">
                   <h3>What We Do Not Do With Your Information</h3>
-                  <h4>Yah’ki Awakened Eye of Lotus Botanical Club</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Yah’ki Awakened Eye of Lotus Botanical Club</h4>
+                  <p className="mt-5">
                     may use Personal Data for the following purposes:
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     Information about your financial situation and medical
                     conditions and care that you provide to us in writing, via
                     email, on the phone (including information left on
@@ -127,7 +127,7 @@ const PrivacyPolicy = () => {
                     directly or indirectly given to us, is held in strictest
                     confidence.
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     We do not give out, exchange, barter, rent, sell, lend, or
                     disseminate any information about applicants or clients who
                     apply for or actually receive our services that are
@@ -139,12 +139,12 @@ const PrivacyPolicy = () => {
                 {/* How We Do Use Your Information */}
                 <div className="col-12 mt-5">
                   <h3>How We Do Use Your Information</h3>
-                  <h4>Yah’ki Awakened Eye of Lotus Botanical Club</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Yah’ki Awakened Eye of Lotus Botanical Club</h4>
+                  <p className="mt-5">
                     is a Private Health club and refuses all services to
                     non-members.
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     Information is only used as is reasonably necessary to
                     process your application or to provide you with health or
                     counseling services which may require communication between
@@ -153,7 +153,7 @@ const PrivacyPolicy = () => {
                     medical information is accurate; determine the type of
                     medical supplies or any health care services you need, etc.
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     If you apply or attempt to apply to receive assistance
                     through us and provide information with the intent or
                     purpose of fraud or that results in either an actual crime
@@ -165,7 +165,7 @@ const PrivacyPolicy = () => {
                     legal professionals, as well as any other information as
                     permitted by law.
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     In addition, information is used internally to provide
                     needed information to our staff and faculty so they can
                     properly maintain client safety, implement the treatment
@@ -181,17 +181,17 @@ const PrivacyPolicy = () => {
                   <h4 className="my-3">
                     Yah’ki Awakened Eye of Lotus Botanical Health Club
                   </h4>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     may use Personal Data for the following purposes:
                   </p>
                   <ul className="policy-list ml-4 my-3">
-                    <li>
+                    <li className="mt-5">
                       <span className="glossary-word">
                         To provide and maintain our Service:
                       </span>{" "}
                       including to monitor the usage of our Service.{" "}
                     </li>
-                    <li>
+                    <li className="mt-5">
                       <span className="glossary-word">
                         To manage Your Account:
                       </span>{" "}
@@ -200,7 +200,7 @@ const PrivacyPolicy = () => {
                       functionalities of the Service that are available to You
                       as a registered user.
                     </li>
-                    <li>
+                    <li className="mt-5">
                       <span className="glossary-word">
                         For the performance of a contract:{" "}
                       </span>{" "}
@@ -209,7 +209,7 @@ const PrivacyPolicy = () => {
                       have purchased or of any other contract with Us through
                       the Service.
                     </li>
-                    <li>
+                    <li className="mt-5">
                       <span className="glossary-word">To contact You: </span> To
                       contact You by email, telephone calls, SMS, or other
                       equivalent forms of electronic communication, such as a
@@ -219,7 +219,7 @@ const PrivacyPolicy = () => {
                       including the security updates, when necessary or
                       reasonable for their implementation.
                     </li>
-                    <li>
+                    <li className="mt-5"> 
                       <span className="glossary-word">To provide You: </span>{" "}
                       with news, special offers and general information about
                       other goods, services and events which we offer that are
@@ -227,26 +227,26 @@ const PrivacyPolicy = () => {
                       inquired about unless You have opted not to receive such
                       information.
                     </li>
-                    <li>
+                    <li className="mt-5">
                       <span className="glossary-word">
                         To manage Your requests:{" "}
                       </span>{" "}
                       To attend and manage Your requests to Us.
                     </li>
                   </ul>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     We may share your personal information in the following
                     situations:
                   </p>
                   <ul className="policy-list ml-4 my-3">
-                    <li>
+                    <li className="mt-5">
                       <span className="glossary-word">
                         With Service Providers:
                       </span>{" "}
                       We use Your personal information with Service Providers
                       for payment processing.
                     </li>
-                    <li>
+                    <li className="mt-5">
                       <span className="glossary-word">With other users:</span>{" "}
                       when You share personal information or otherwise interact
                       in the public areas such as leaving comments, reviews,
@@ -256,12 +256,12 @@ const PrivacyPolicy = () => {
                 </div>
               </div>
               <div className="row my-3">
-                <div className="col-12 mt-3">
+                <div className="col-12 mt-5">
                   <h4>
                     Limit Right To Use Non-Identifying Personal Information From
                     Biographies, Letters, Notes, And Other Sources:
                   </h4>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     Any pictures, stories, letters, biographies, correspondence,
                     or thank you notes sent to us become the exclusive property
                     of Yah’ki Awakened Eye of Lotus Botanical Health Club. We
@@ -270,14 +270,14 @@ const PrivacyPolicy = () => {
                     through us) for fundraising and promotional purposes that
                     are directly related to our mission.
                   </p>
-                  <p>
+                  <p className="mt-5">
                     Clients will not be compensated for use of this information
                     and no identifying information (photos, addresses, phone
                     numbers, contact information, last names or uniquely
                     identifiable names) will be used without client’s express
                     advance permission.
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     You may specifically request that NO information be used
                     whatsoever for promotional purposes, but you must identify
                     any requested restrictions in writing. We respect your right
@@ -285,8 +285,8 @@ const PrivacyPolicy = () => {
                     photos that you send to us will ever be publicly used
                     without your direct or indirect consent.
                   </p>
-                  <h4 className="mt-3">Payments &amp; Payment Proessing</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Payments &amp; Payment Proessing</h4>
+                  <p className="mt-5">
                     We may provide paid products and/or services within the
                     Service. In that case, we may use third-party services for
                     payment processing (e.g. payment processors). We will not
@@ -300,8 +300,8 @@ const PrivacyPolicy = () => {
                     requirements help ensure the secure handling of payment
                     information.
                   </p>
-                  <h4 className="mt-3">Stripe</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Stripe</h4>
+                  <p className="mt-5">
                     Their Privacy Policy can be viewed at{" "}
                     <a
                       className="dark-text"
@@ -310,8 +310,8 @@ const PrivacyPolicy = () => {
                       https://stripe.com/us/privacy
                     </a>
                   </p>
-                  <h4 className="mt-3">PayPal</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">PayPal</h4>
+                  <p className="mt-5">
                     Their Privacy Policy can be viewed at{" "}
                     <a
                       className="dark-text"
@@ -320,8 +320,8 @@ const PrivacyPolicy = () => {
                       https://www.paypal.com/webapps/mpp/ua/privacy-full
                     </a>
                   </p>
-                  <h4 className="mt-3">Square</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Square</h4>
+                  <p className="mt-5">
                     Their Privacy Policy can be viewed at{" "}
                     <a
                       className="dark-text"
@@ -330,8 +330,8 @@ const PrivacyPolicy = () => {
                       https://squareup.com/legal/privacy-no-account
                     </a>
                   </p>
-                  <h4 className="mt-3">Children's Privacy</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Children's Privacy</h4>
+                  <p className="mt-5">
                     Our Service does not address anyone under the age of 13. We
                     do not knowingly collect personally identifiable information
                     from anyone under the age of 13. If You are a parent or
@@ -347,11 +347,11 @@ const PrivacyPolicy = () => {
                     consent from a parent, We may require Your parent’s consent
                     before We collect and use that information.
                   </p>
-                  <h4 className="mt-3">
+                  <h4 className="mt-5">
                     California Privacy Rights For Minor Users( California
                     Business &amp; Professions Code Section 22581)
                   </h4>
-                  <p className="mt-3">
+                  <p className="mt-5">
                     California Business and Professions Code section 22581 allow
                     California residents under the age of 18 who are registered
                     users of online sites, services or applications to request
@@ -367,8 +367,8 @@ const PrivacyPolicy = () => {
                     information posted online and that the law may not permit or
                     require removal in certain circumstances.
                   </p>
-                  <h4 className="mt-3">Testimonials, Feedback, And Comments</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Testimonials, Feedback, And Comments</h4>
+                  <p className="mt-5">
                     If at any time you send testimonies, ideas, and other
                     materials by email, chat, or by mail you agree that we may
                     edit, copy, publish, distribute and use any material that is
@@ -378,8 +378,8 @@ const PrivacyPolicy = () => {
                     terms of this agreement. You are responsible for your own
                     comments and we will assume no liability for your comments.
                   </p>
-                  <h4 className="mt-3">Changes To This Privacy Policy</h4>
-                  <p className="mt-3">
+                  <h4 className="mt-5">Changes To This Privacy Policy</h4>
+                  <p className="mt-5">
                     We may update our Privacy Policy from time to time. We will
                     notify You of any changes by posting the new Privacy Policy
                     on this page.

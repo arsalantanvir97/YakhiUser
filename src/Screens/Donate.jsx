@@ -73,6 +73,25 @@ const Donate = () => {
                   <h3 className="main-heading">
                     Make A Donation Directly On This Website
                   </h3>
+                  <h3 className="main-heading">
+                    Peace, Love &amp; Light Family
+                  </h3>
+                  <p className="general-para my-3">
+                    Yah’Ki Awakened LLC &amp; Eye of Lotus Botanicals greatly
+                    appreciates your donations. Every cent given is used to help
+                    heal our community which include furthering our research,
+                    creating healing retreats, funds for free herbal programs
+                    &amp; packages, and creating new herbal courses.
+                  </p>
+                  <p className="general-para my-3">
+                    We accept donations in many different forms. Below are a few
+                    different ways to donate to the healing of our people.
+                    Please be sure to list “donation” when paying for money to
+                    be utilized properly.
+                  </p>
+                  <p className="red text-capitalize my-3 f-20">
+                    WE GREATLY APPRECIATE ALL THAT YOU DO!
+                  </p>
                   <div className="donation-box my-5">
                     <div className="row my-4 align-items-center">
                       <div className="col-xl-7 col-lg-6">
@@ -146,25 +165,7 @@ const Donate = () => {
                       </div>
                     </div>
                   </div>
-                  <h3 className="main-heading">
-                    Peace, Love &amp; Light Family
-                  </h3>
-                  <p className="general-para my-3">
-                    Yah’Ki Awakened LLC &amp; Eye of Lotus Botanicals greatly
-                    appreciates your donations. Every cent given is used to help
-                    heal our community which include furthering our research,
-                    creating healing retreats, funds for free herbal programs
-                    &amp; packages, and creating new herbal courses.
-                  </p>
-                  <p className="general-para my-3">
-                    We accept donation in many different forms. Below are a few
-                    different ways to donate to the healing of our people.
-                    Please be sure to list “donation” when paying for money to
-                    be utilized properly.
-                  </p>
-                  <p className="red text-capitalize my-3 f-20">
-                    WE GREATLY APPRECIATE ALL THAT YOU DO!
-                  </p>
+               
                   <div className="payment-options my-5 pt-5 px-5">
                     <div className="row justify-content-between align-items-center">
                       <div className="col-lg-5 col-md-6 col-12">

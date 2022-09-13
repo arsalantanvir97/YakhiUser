@@ -45,7 +45,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <Link to="#" data-hover="Counselors">
-                        Counselors
+                        Staff
                       </Link>
                     </li>
                     <li>

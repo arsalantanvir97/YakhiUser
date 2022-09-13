@@ -42,7 +42,7 @@ const ReturnsandRefund = () => {
                     damage form.
                   </p>
                   <Link to="#" className="btn red-btn-solid mt-lg-4 mt-3">
-                    Submit A Damaged Claim
+                    Submit A Damage Claim
                   </Link>
                   <p className="mt-3">
                     We do not issue refunds on any premium membership
@@ -78,7 +78,7 @@ const ReturnsandRefund = () => {
                     business days. A credit will automatically be applied to
                     your credit card or original method of payment.
                   </p>
-                  <p className="mt-3 bottom-note">
+                  <p className="mt-3 ">
                     REFUNDS ARE ONLY HONORED FOR REPLACEMENT OF DAMAGED PACKAGES
                     THAT ARE NO LONGER AVAILABLE.
                   </p>
@@ -88,15 +88,14 @@ const ReturnsandRefund = () => {
                   <h4>Late or Missing Refunds ( If Applicable )</h4>
                   <p>
                     {" "}
-                    [6:01 PM] Rana Omer Akhtar If you haven’t received a refund
-                    yet and it has been at least seven (14) business days, first
-                    check your bank account or credit card account. It may take
-                    some time before your refund is officially posted. Refund
-                    processing times vary for different banks and credit card
-                    companies. If your refund has not posted within 14 days
-                    please contact us at 
+                    If you haven’t received a refund yet and it has been at
+                    least seven (14) business days, first check your bank
+                    account or credit card account. It may take some time before
+                    your refund is officially posted. Refund processing times
+                    vary for different banks and credit card companies. If your
+                    refund has not posted within 14 days please contact us at 
                     <Link className="grey" to="#">
-                    orders@yahkiawakened.com
+                      orders@yahkiawakened.com
                     </Link>
                   </p>
                 </div>
@@ -104,13 +103,13 @@ const ReturnsandRefund = () => {
                 <div className="col-12 my-5">
                   <h4>Lost or Stolen Packages</h4>
                   <p>
-                    <span className="dark-text">
+                    <span className="">
                       Yah’ki Awakened Eye Of Lotus Botanical Health Club
                     </span>{" "}
                     is not responsible for lost or stolen packages confirmed to
                     be delivered to the address entered for an order. Upon
                     inquiry,{" "}
-                    <span className="dark-text">
+                    <span className="">
                       {" "}
                       Yah’ki Awakened Eye Of Lotus Botanical Health Club{" "}
                     </span>
