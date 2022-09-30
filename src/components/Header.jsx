@@ -68,7 +68,7 @@ const Header = ({ history }) => {
   };
   return (
     <>
-      <section className="menu" style={{ height: 330 }}>
+      <section className="menu" style={{ height: 390 }}>
         <div className="container-fluid">
           {/* topbar */}
           <div className="row align-items-center justify-content-center top-bar">
@@ -902,13 +902,12 @@ const Header = ({ history }) => {
                     </div>
                   </nav>
 
-                  <h6 className="banner-h2 aos-init aos-animate">
+                  <h2 style={{fontWeight:'bold'}} className="banner-h2 aos-init aos-animate">
                     THE WORLDS #1 HIGHEST QUALITY, WILD CRAFTED, HEALING HERBS &
-                    HERBAL PROGRAMS </h6><br></br><h5 className="banner-h3 aos-init aos-animate">Intracellular Detoxification,
+                    HERBAL PROGRAMS </h2><br></br><h5 style={{fontSize:21}} className="banner-h3 aos-init aos-animate">Intracellular Detoxification,
                     Cellular Regeneration, & Holistic Revitalization, Yah'ki
-                    Awakened Keeps Everyone Healthy</h5> <br></br><h6 className="banner-h3 aos-init aos-animate">Become A Club
-                    Member For Free</h6><br></br><h7 className="banner-h3 aos-init aos-animate"> (This Is A Button That takes tho
-                    the website free memberShip)</h7>
+                    Awakened Keeps Everyone Healthy</h5> <br></br><h6 style={{fontSize:21}} className="banner-h3 aos-init aos-animate">Become A Club
+                    Member For Free</h6><br></br>
                
 
                  
