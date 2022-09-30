@@ -68,7 +68,7 @@ const Header = ({ history }) => {
   };
   return (
     <>
-      <section className="menu">
+      <section className="menu" style={{ height: 330 }}>
         <div className="container-fluid">
           {/* topbar */}
           <div className="row align-items-center justify-content-center top-bar">
@@ -97,7 +97,7 @@ const Header = ({ history }) => {
                           !userInfo && UnauthorizedAlert();
                         }}
                       >
-                        <i className="fas fa-shipping-fast mr-2"  />
+                        <i className="fas fa-shipping-fast mr-2" />
                         Order Status
                       </Link>
                     </li>
@@ -789,6 +789,16 @@ const Header = ({ history }) => {
                           </a>
                         </li>
                         <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            to="/Events"
+                            // data-toggle="modal"
+                            // data-target="#detoxModal"
+                          >
+                            Events
+                          </Link>
+                        </li>
+                        <li className="nav-item">
                           <Link to="/Donate" className="nav-link">
                             DONATE
                           </Link>
@@ -891,7 +901,27 @@ const Header = ({ history }) => {
                       </ul>
                     </div>
                   </nav>
+
+                  <h6 className="banner-h2 aos-init aos-animate">
+                    THE WORLDS #1 HIGHEST QUALITY, WILD CRAFTED, HEALING HERBS &
+                    HERBAL PROGRAMS </h6><br></br><h5 className="banner-h3 aos-init aos-animate">Intracellular Detoxification,
+                    Cellular Regeneration, & Holistic Revitalization, Yah'ki
+                    Awakened Keeps Everyone Healthy</h5> <br></br><h6 className="banner-h3 aos-init aos-animate">Become A Club
+                    Member For Free</h6><br></br><h7 className="banner-h3 aos-init aos-animate"> (This Is A Button That takes tho
+                    the website free memberShip)</h7>
+               
+
+                 
                 </div>
+                <Link
+                    to="/Capsules"
+                    className="btn banner-btn aos-init aos-animate mt-3"
+                    data-aos="zoom-in-left"
+                    data-aos-duration={1500}
+                    data-aos-delay={400}
+                  >
+                    Search
+                  </Link>
               </div>
             </div>
           </div>

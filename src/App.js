@@ -71,6 +71,7 @@ const Week910Protocol = lazy(() => import("./Screens/Week910Protocol"));
 const Week1112Protocol = lazy(() => import("./Screens/Week1112Protocol"));
 const Week1314Protocol = lazy(() => import("./Screens/Week1314Protocol"));
 const EditProfile = lazy(() => import("./Screens/EditProfile"));
+const Events = lazy(() => import("./Screens/Events"));
 
 function App() {
   useEffect(() => {
@@ -90,6 +91,8 @@ function App() {
           exact
         />
         <Route path="/ResetPassword" component={ResetPassword} exact />
+        <Route path="/Events" component={Events} exact />
+
         <Route path="/Memberships" component={Memberships} exact />
         <PrivateRoute path="/EditProfile" component={EditProfile} exact />
         <Route path="/ApprovedHerb" component={ApprovedHerb} exact />

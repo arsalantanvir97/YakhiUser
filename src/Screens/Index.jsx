@@ -172,7 +172,7 @@ const Index = ({ history }) => {
       <section className="main-banner">
         <div className="container-fluid h-100">
           <div className="row align-items-end justify-content-center h-100 pt-5 pb-4">
-            <div className="col-lg-7 col-md-10 col-xl-5 text-center">
+            {/* <div className="col-lg-7 col-md-10 col-xl-5 text-center">
               <h1
                 className="banner-h1 aos-init aos-animate"
                 data-aos="zoom-in-left"
@@ -198,7 +198,7 @@ const Index = ({ history }) => {
               >
                 find out how
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -209,12 +209,21 @@ const Index = ({ history }) => {
             className="col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate"
             data-aos="fade-up"
             data-aos-duration={3000}
+            style={{width:540,height:405}}
           >
-            <img
+            <iframe
+              width="100%"
+              height="100%"
+              frameborder="0"
+              allowfullscreen
+              src="https://www.youtube.com/embed/tgbNymZ7vqY"
+            ></iframe>
+
+            {/* <img
               src="images/Yahki-awakened-welcome-image.jpg"
               alt=""
               className="img-fluid"
-            />
+            /> */}
           </div>
 
           <div
@@ -236,7 +245,7 @@ const Index = ({ history }) => {
             />
           </div>
           <div className="filteration">
-          <div className="container py-4">
+            <div className="container py-4">
               <div className="row my-md-5 align-items-start justify-content-between">
                 <div className="col-12">
                   {" "}
@@ -279,7 +288,6 @@ const Index = ({ history }) => {
                   </div>
                 </div>
 
-              
                 <div className="col-12 my-2 text-center">
                   <Link
                     to="#"
@@ -292,86 +300,20 @@ const Index = ({ history }) => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="yahki-features">
-        <div className="container mt-5 pt-3">
-          <div className="row text-center">
-            <div className="col-lg-4">
-              <img
-                src="images/consultant.png"
-                alt=""
-                className="img-fluid mx-auto"
-              />
-              <h3 className="my-4">CONSULT AN EXPERT</h3>
-              <p>Members can chat one on one with a counselor or therapist</p>
-              <Link to="#" className="linear-white-link my-5">
-                learn more
-              </Link>
-            </div>
-            <div className="col-lg-4">
-              <img
-                src="images/shop-online.png"
-                alt=""
-                className="img-fluid mx-auto"
-              />
-              <h3 className="my-4">SHOP ONLINE</h3>
-              <p>
-                Members can shop online 24/7 from our exclusive Members Only Top
-                Quality Herbal Alkaline products.
-              </p>
-              <Link to="/Capsules" className="linear-white-link my-5">
-                learn more
-              </Link>
-            </div>
-            <div className="col-lg-4">
-              <img
-                src="images/multimedia.png"
-                alt=""
-                className="img-fluid mx-auto"
-              />
-              <h3 className="my-4">MULTIMEDIA COURSES</h3>
-              <p>
-                Premiere Members can view our media gallery with exclusive
-                access to all of our videos and courses.
-              </p>
-              <Link to="#" className="linear-white-link my-5">
-                learn more
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container my-md-5 my-3 py-3">
-        <div className="row my-4">
-          <div className="col-12 text-center">
-            <p className="yahki-blockquote">
-              “And by the river upon the bank thereof, on this side and on that
-              side, shall grow all trees for meat, whose leaf shall not fade,
-              neither shall the fruit thereof be consumed: it shall bring forth
-              new fruit according to his months, because their waters they
-              issued out of the sanctuary: and the fruit thereof shall be for
-              meat, and the leaf thereof for medicine.”
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <section className="featured">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-11 mx-auto">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <h4>Tranding Products</h4>
-                  <h3>Featured Products</h3>
+        <section className="featured">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-11 mx-auto">
+                <div className="row">
+                  <div className="col-md-12 text-center">
+                    <h4>Tranding Products</h4>
+                    <h3>Featured Products</h3>
+                  </div>
                 </div>
-              </div>
-              <div className="row mt-5">
-                <div className="col-md-10 mx-auto text-center">
-                  <div id="">
-                    {/* <div className="featured-product animate__animated animate__slideInUp">
+                <div className="row mt-5">
+                  <div className="col-md-10 mx-auto text-center">
+                    <div id="">
+                      {/* <div className="featured-product animate__animated animate__slideInUp">
                       <img
                         src="images/featured-prod-1.jpg"
                         alt=""
@@ -459,22 +401,87 @@ const Index = ({ history }) => {
                       </h4>
                       <h5 className="prod-price">$350.00</h5>
                     </div> */}
-                    {loading ? (
-                      <SliderSkeleton listsToRender={4} />
-                    ) : (
-                      <ProductSlider
-                        history={history}
-                        images={product}
-                        userInfo={userInfo}
-                      />
-                    )}
+                      {loading ? (
+                        <SliderSkeleton listsToRender={4} />
+                      ) : (
+                        <ProductSlider
+                          history={history}
+                          images={product}
+                          userInfo={userInfo}
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+      </div>
+
+      <div className="yahki-features">
+        <div className="container mt-5 pt-3">
+          <div className="row text-center">
+            <div className="col-lg-4">
+              <img
+                src="images/consultant.png"
+                alt=""
+                className="img-fluid mx-auto"
+              />
+              <h3 className="my-4">CONSULT AN EXPERT</h3>
+              <p>Members can chat one on one with a counselor or therapist</p>
+              <Link to="#" className="linear-white-link my-5">
+                learn more
+              </Link>
+            </div>
+            <div className="col-lg-4">
+              <img
+                src="images/shop-online.png"
+                alt=""
+                className="img-fluid mx-auto"
+              />
+              <h3 className="my-4">SHOP ONLINE</h3>
+              <p>
+                Members can shop online 24/7 from our exclusive Members Only Top
+                Quality Herbal Alkaline products.
+              </p>
+              <Link to="/Capsules" className="linear-white-link my-5">
+                learn more
+              </Link>
+            </div>
+            <div className="col-lg-4">
+              <img
+                src="images/multimedia.png"
+                alt=""
+                className="img-fluid mx-auto"
+              />
+              <h3 className="my-4">MULTIMEDIA COURSES</h3>
+              <p>
+                Premiere Members can view our media gallery with exclusive
+                access to all of our videos and courses.
+              </p>
+              <Link to="#" className="linear-white-link my-5">
+                learn more
+              </Link>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
+
+      <div className="container my-md-5 my-3 py-3">
+        <div className="row my-4">
+          <div className="col-12 text-center">
+            <p className="yahki-blockquote" style={{ fontSize: 28 }}>
+              “And by the river upon the bank thereof, on this side and on that
+              side, shall grow all trees for meat, whose leaf shall not fade,
+              neither shall the fruit thereof be consumed: it shall bring forth
+              new fruit according to his months, because their waters they
+              issued out of the sanctuary: and the fruit thereof shall be for
+              meat, and the leaf thereof for medicine.”
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div className="must-watch-video">
         <div className="container-fluid">
