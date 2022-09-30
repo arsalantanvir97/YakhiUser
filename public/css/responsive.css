@@ -82,7 +82,7 @@
 }
 @media screen and (max-width:1440px) {
     .main-banner {
-        background: url(../images/main-banner-background.jpg);
+        background: url(../images/main-banner-background.png);
         height: 960px;
         background-size: cover;
         background-position: center;

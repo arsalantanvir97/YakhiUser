@@ -743,6 +743,7 @@ const Consultation = ({ history }) => {
                                     currency: "USD"
                                   }}
                                   createOrder={(data, actions) => {
+                                    
                                     return actions.order.create({
                                       purchase_units: [
                                         {
@@ -757,6 +758,8 @@ const Consultation = ({ history }) => {
                                   }}
                                   // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                                   onSuccess={(details, data) => {
+                                    setpaymentconfirm(true);
+                                    setshowform(showform == 4 ? 4 : showform + 1);
                                     console.log("details");
                                     console.log(details);
                                     console.log("data");
