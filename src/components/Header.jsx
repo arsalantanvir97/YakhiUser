@@ -907,7 +907,7 @@ const Header = ({ history }) => {
                     HERBAL PROGRAMS{' '}
                   </h1>
                   <br></br>
-                  <p className='bannerpara'>
+                  <p className='Memberships'>
                     Intracellular Detoxification, Cellular Regeneration, &
                     Holistic Revitalization, Yah'ki Awakened Keeps Everyone
                     Healthy
