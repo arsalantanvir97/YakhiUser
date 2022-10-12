@@ -142,44 +142,7 @@ const Header = ({ history }) => {
                             Home
                           </Link>
                         </li>
-                        <li className='nav-item'>
-                          <Link className='nav-link' to='/GeoGenetics'>
-                            GEO'GENETICS
-                          </Link>
-                        </li>
-                        <li className='nav-item dropdown'>
-                          <Link
-                            className='nav-link dropdown-toggle'
-                            data-toggle='dropdown'
-                            to='#'
-                          >
-                            EDUCATION
-                          </Link>
-                          <ul className='dropdown-menu yahki-dropdown'>
-                            <li>
-                              <Link to='/EattotLive'>Eat to Live</Link>
-                            </li>
-                            <li>
-                              <Link to='/Instruction'>Instructions</Link>
-                            </li>
-                            <li>
-                              <Link to='/BodySystem'>12 Body Systems</Link>
-                            </li>
-                            <li>
-                              <Link to='/ApprovedHerb'>
-                                YAH'KI Approved Herbs
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to='/ProductResource'>
-                                List of Resources
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to='/Document'>Document Downloads</Link>
-                            </li>
-                          </ul>
-                        </li>
+
                         {/* herbal store mega menu */}
                         <li className='nav-item dropdown megamenu-li dmenu'>
                           <Link
@@ -753,6 +716,74 @@ const Header = ({ history }) => {
                             </div>
                           </div>
                         </li>
+                        <li className='nav-item'>
+                          <Link className='nav-link' to='#'>
+                            CLIENT PORTAL
+                          </Link>
+                        </li>
+                        <li className='nav-item'>
+                          <Link className='nav-link' to='/GeoGenetics'>
+                            GEO'GENETICS THERAPY
+                          </Link>
+                        </li>
+                        <li className='nav-item'>
+                          <Link className='nav-link' to='#'>
+                            YAHKITV
+                          </Link>
+                        </li>
+                        <li className='nav-item dropdown'>
+                          <Link
+                            className='nav-link dropdown-toggle'
+                            data-toggle='dropdown'
+                            to='#'
+                          >
+                            EDUCATION
+                          </Link>
+                          <ul className='dropdown-menu yahki-dropdown'>
+                            <li>
+                              <Link to='/EattotLive'>Eat to Live</Link>
+                            </li>
+                            <li>
+                              <Link to='/Instruction'>Instructions</Link>
+                            </li>
+                            <li>
+                              <Link to='/BodySystem'>12 Body Systems</Link>
+                            </li>
+                            <li>
+                              <Link to='/ApprovedHerb'>
+                                YAH'KI Approved Herbs
+                              </Link>
+                            </li>
+                            <li>
+                              <Link to='/ProductResource'>
+                                List of Resources
+                              </Link>
+                            </li>
+                            <li>
+                              <Link to='/Document'>Document Downloads</Link>
+                            </li>
+                          </ul>
+                        </li>
+                        <li className='nav-item'>
+                          <Link
+                            className='nav-link'
+                            to='/Events'
+                            // data-toggle="modal"
+                            // data-target="#detoxModal"
+                          >
+                            Events
+                          </Link>
+                        </li>
+                        <li className='nav-item'>
+                          <a
+                            className='nav-link'
+                            href='#'
+                            data-toggle='modal'
+                            data-target='#detoxModal'
+                          >
+                            Detox Home
+                          </a>
+                        </li>
                         <li className='nav-item dropdown'>
                           <Link
                             className='nav-link dropdown-toggle'
@@ -778,29 +809,10 @@ const Header = ({ history }) => {
                             </li>
                           </ul>
                         </li>
-                        <li className='nav-item'>
-                          <a
-                            className='nav-link'
-                            href='#'
-                            data-toggle='modal'
-                            data-target='#detoxModal'
-                          >
-                            Detox Home
-                          </a>
-                        </li>
-                        <li className='nav-item'>
-                          <Link
-                            className='nav-link'
-                            to='/Events'
-                            // data-toggle="modal"
-                            // data-target="#detoxModal"
-                          >
-                            Events
-                          </Link>
-                        </li>
+
                         <li className='nav-item'>
                           <Link to='/Donate' className='nav-link'>
-                            DONATE
+                            DONATIONS
                           </Link>
                         </li>
                         <li className='nav-item'>
@@ -907,14 +919,14 @@ const Header = ({ history }) => {
                     HERBAL PROGRAMS{' '}
                   </h1>
                   <br></br>
-                  <p className='Memberships'>
+                  <p className='bannerpara'>
                     Intracellular Detoxification, Cellular Regeneration, &
                     Holistic Revitalization, Yah'ki Awakened Keeps Everyone
                     Healthy
                   </p>{' '}
                 </div>
                 <Link
-                  to='/Capsules'
+                  to='/Memberships'
                   className='btn banner-btn aos-init aos-animate mt-3 abccc'
                   data-aos='zoom-in-left'
                   data-aos-duration={1500}

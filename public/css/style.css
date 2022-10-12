@@ -262,8 +262,8 @@ span.cart-count {
   font-size: 45px !important;
   font-weight: bold !important;
                       line-height: 150% !important;
-                      font-family: "Soleil_Medium",Helvetica,Arial,sans-serif !important;
-}
+                      font-family: 'Open Sans', sans-serif !important;
+                    }
 .bannerpara{
   font-size: 24px !important;
                       line-height: 36px !important;
@@ -286,6 +286,9 @@ span.cart-count {
 
 .menu li.nav-item {
   padding: 0px 28px;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+
 }
 
 .navbar-light .navbar-toggler-icon {
@@ -1229,9 +1232,7 @@ p.testi-para {
   .menuheight{
     height: 450px;
   }
-  .tabheight{
-    height: 0px;
-  }
+ 
   .bannerpara{
     font-size: 19px !important;
                         line-height: 36px !important;
@@ -1243,7 +1244,7 @@ p.testi-para {
 
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 920px) {
   .feedback-slider-item:after {
     left: 30px;
     right: 30px;
@@ -4538,6 +4539,7 @@ a.shop-now-btn:hover {
 }
 
 .yahki-features {
+  background-color: #000;
   background: url(../images/features-bg.jpg) center/ cover no-repeat, #000000;
   background-attachment: fixed;
   padding: 50px 0;
