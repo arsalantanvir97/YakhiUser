@@ -446,7 +446,8 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                src='images/digestive_system.jpg'
+                style={{ height: 430, width: 430 }}
+                src='images/digestive_system.png'
                 alt=''
                 className='img-fluid'
               />
@@ -471,7 +472,8 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                src='images/Closed-circulatory-system.jpg'
+                style={{ height: 430, width: 430 }}
+                src='images/Closed-circulatory-system.png'
                 alt=''
                 className='img-fluid'
               />
@@ -496,7 +498,8 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                src='images/detailed-view-kidneys-adrenal-gland-anatomical-medical-vector-illustration_313437-730.jpg'
+                src='images/maximizefood.png'
+                style={{ height: 430, width: 430 }}
                 alt=''
                 className='img-fluid'
               />
@@ -522,7 +525,8 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                src='images/lymphatic-system2.jpg'
+                style={{ height: 430, width: 430 }}
+                src='images/lymphatic-system2.png'
                 alt=''
                 className='img-fluid'
               />
@@ -546,7 +550,12 @@ const Index = ({ history }) => {
         >
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
-              <img src='images/brain.jpg' alt='' className='img-fluid' />
+              <img
+                style={{ height: 430, width: 430 }}
+                src='images/brain.png'
+                alt=''
+                className='img-fluid'
+              />
             </div>
             <div className='col-xl-6 col-12 mt-xl-0 '>
               <h3 className='main-heading' style={{ textAlign: 'center' }}>
@@ -563,48 +572,64 @@ const Index = ({ history }) => {
         </div>
       </div>
       <div style={{ height: 30 }}></div>
-      <div className='yahki-features ' style={{ backgroundImage: 'none' }}>
+      <div
+        className='yahki-features '
+        style={{
+          backgroundImage: 'none',
+          backgroundColor: '#fff',
+          color: '#000',
+        }}
+      >
         <div className='container mt-5 pt-3'>
           <div className='row text-center'>
             <div className='col-lg-4'>
-              <img
-                src='images/consultant.png'
-                alt=''
-                className='img-fluid mx-auto'
-              />
+              <i
+                className='fas fa-light fa-headset fa-5x '
+                style={{ fontSize: 85 }}
+              />{' '}
               <h3 className='my-4'>CONSULT AN EXPERT</h3>
               <p>Members can chat one on one with a counselor or therapist</p>
-              <Link to='#' className='linear-white-link my-5'>
+              <Link
+                style={{ color: '#000' }}
+                to='#'
+                className='linear-white-link my-5'
+              >
                 learn more
               </Link>
             </div>
             <div className='col-lg-4'>
-              <img
-                src='images/shop-online.png'
-                alt=''
-                className='img-fluid mx-auto'
-              />
+              <i
+                className='fas fa-solid fa-cart-plus fa-5x '
+                style={{ fontSize: 85 }}
+              />{' '}
               <h3 className='my-4'>SHOP ONLINE</h3>
               <p>
                 Members can shop online 24/7 from our exclusive Members Only Top
                 Quality Herbal Alkaline products.
               </p>
-              <Link to='/Capsules' className='linear-white-link my-5'>
+              <Link
+                style={{ color: '#000' }}
+                to='/Capsules'
+                className='linear-white-link my-5'
+              >
                 learn more
               </Link>
             </div>
             <div className='col-lg-4'>
-              <img
-                src='images/multimedia.png'
-                alt=''
-                className='img-fluid mx-auto'
-              />
+              <i
+                className='fas fa-solid fa-tv fa-5x '
+                style={{ fontSize: 85 }}
+              />{' '}
               <h3 className='my-4'>MULTIMEDIA COURSES</h3>
               <p>
                 Premiere Members can view our media gallery with exclusive
                 access to all of our videos and courses.
               </p>
-              <Link to='#' className='linear-white-link my-5'>
+              <Link
+                to='#'
+                style={{ color: '#000' }}
+                className='linear-white-link my-5'
+              >
                 learn more
               </Link>
             </div>

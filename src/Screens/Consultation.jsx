@@ -1,90 +1,90 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { savConsultaionAddress } from "../actions/cartAction";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import InputNumber from "../components/InputNumber";
-import InputPhone from "../components/InputPhone";
-import Toasty from "../utils/toast";
-import DatePicker from "react-datepicker";
-import moment from "moment";
-import StripeCheckout from "react-stripe-checkout";
-import axios from "axios";
-import { baseURL } from "../utils/api";
-import { PayPalButton } from "react-paypal-button-v2";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { savConsultaionAddress } from '../actions/cartAction'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import InputNumber from '../components/InputNumber'
+import InputPhone from '../components/InputPhone'
+import Toasty from '../utils/toast'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+import StripeCheckout from 'react-stripe-checkout'
+import axios from 'axios'
+import { baseURL } from '../utils/api'
+import { PayPalButton } from 'react-paypal-button-v2'
 
-import Swal from "sweetalert2";
-import PrivateRouteSlider from "../components/PrivateRouteSlider";
-import AllHerbs from "../components/AllHerbs";
-let showformm = 1;
+import Swal from 'sweetalert2'
+import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import AllHerbs from '../components/AllHerbs'
+let showformm = 1
 let timings = [
-  { time: "8:30 CST" },
+  { time: '8:30 CST' },
 
-  { time: "9 CST" },
-  { time: "9:30 CST" },
+  { time: '9 CST' },
+  { time: '9:30 CST' },
 
-  { time: "10 CST" },
-  { time: "10:30 CST" },
+  { time: '10 CST' },
+  { time: '10:30 CST' },
 
-  { time: "11 CST" },
-  { time: "11:30 CST" },
+  { time: '11 CST' },
+  { time: '11:30 CST' },
 
-  { time: "12 CST" },
-  { time: "12:30 CST" },
+  { time: '12 CST' },
+  { time: '12:30 CST' },
 
-  { time: "1 CST" },
-  { time: "1:30 CST" },
+  { time: '1 CST' },
+  { time: '1:30 CST' },
 
-  { time: "2 CST" },
-  { time: "2:30 CST" },
+  { time: '2 CST' },
+  { time: '2:30 CST' },
 
-  { time: "3 CST" },
-  { time: "3:30 CST" },
+  { time: '3 CST' },
+  { time: '3:30 CST' },
 
-  { time: "4 CST" },
-  { time: "4:30 CST" }
-];
+  { time: '4 CST' },
+  { time: '4:30 CST' },
+]
 const Consultation = ({ history }) => {
-  const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const dispatch = useDispatch()
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(false)
 
-  const [showform, setshowform] = useState(1);
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [phone, setphone] = useState("");
-  const [email, setemail] = useState("");
-  const [paymentconfirm, setpaymentconfirm] = useState(false);
+  const [showform, setshowform] = useState(1)
+  const [firstName, setfirstName] = useState('')
+  const [lastName, setlastName] = useState('')
+  const [phone, setphone] = useState('')
+  const [email, setemail] = useState('')
+  const [paymentconfirm, setpaymentconfirm] = useState(false)
 
-  const [age, setage] = useState("");
-  const [height, setheight] = useState("");
-  const [weight, setweight] = useState("");
-  const [ethnicity, setethnicity] = useState("");
-  const [consultaionfor, setconsultaionfor] = useState("");
-  const [currentmedication, setcurrentmedication] = useState("");
-  const [reason, setreason] = useState("");
-  const [diagnosis, setdiagnosis] = useState("");
-  const [doc_schedule, setdoc_schedule] = useState("");
-  const [appointment, setappointment] = useState("");
-  const [appointmentdate, setappointmentdate] = useState("");
+  const [age, setage] = useState('')
+  const [height, setheight] = useState('')
+  const [weight, setweight] = useState('')
+  const [ethnicity, setethnicity] = useState('')
+  const [consultaionfor, setconsultaionfor] = useState('')
+  const [currentmedication, setcurrentmedication] = useState('')
+  const [reason, setreason] = useState('')
+  const [diagnosis, setdiagnosis] = useState('')
+  const [doc_schedule, setdoc_schedule] = useState('')
+  const [appointment, setappointment] = useState('')
+  const [appointmentdate, setappointmentdate] = useState('')
 
-  const [paymentname, setpaymentname] = useState("");
-  const [cardnumber, setcardnumber] = useState("");
-  const [expirymonth, setexpirymonth] = useState("");
-  const [expiryyear, setexpiryyear] = useState("");
+  const [paymentname, setpaymentname] = useState('')
+  const [cardnumber, setcardnumber] = useState('')
+  const [expirymonth, setexpirymonth] = useState('')
+  const [expiryyear, setexpiryyear] = useState('')
 
   // const [cvv, setcvv] = useState("");
 
-  const [confirmationname, setconfirmationname] = useState("");
-  const [confirmationpassword, setconfirmationpassword] = useState("");
+  const [confirmationname, setconfirmationname] = useState('')
+  const [confirmationpassword, setconfirmationpassword] = useState('')
 
   const filedocsHandler = (e) => {
-    console.log("eeee", e?.target?.files[0]);
-    setdoc_schedule(e?.target?.files[0]);
-  };
+    console.log('eeee', e?.target?.files[0])
+    setdoc_schedule(e?.target?.files[0])
+  }
 
   const saveConsultationAddressHandler = async () => {
     if (
@@ -116,21 +116,21 @@ const Consultation = ({ history }) => {
           currentmedication,
           reason,
           diagnosis,
-          governmentid: doc_schedule?.name
+          governmentid: doc_schedule?.name,
         })
-      );
-      setshowform(showform == 4 ? 4 : showform + 1);
+      )
+      setshowform(showform == 4 ? 4 : showform + 1)
     } else {
-      Toasty("error", `Please fill out all the required fields`);
+      Toasty('error', `Please fill out all the required fields`)
     }
-  };
+  }
   const chooseAppointmentHandler = async () => {
     if (appointment?.length > 0 && appointmentdate) {
-      setshowform(showform == 4 ? 4 : showform + 1);
+      setshowform(showform == 4 ? 4 : showform + 1)
     } else {
-      Toasty("error", `Please fill out all the required fields`);
+      Toasty('error', `Please fill out all the required fields`)
     }
-  };
+  }
   // const consultationPaymentHandler = async () => {
   //   if (
   //     paymentname?.length > 0 &&
@@ -144,7 +144,7 @@ const Consultation = ({ history }) => {
   // };
   const confirmationHandler = async () => {
     if (confirmationname?.length > 0 && confirmationpassword?.length > 0) {
-      const formData = new FormData();
+      const formData = new FormData()
       const consultationaddress = {
         firstName,
         lastName,
@@ -157,49 +157,49 @@ const Consultation = ({ history }) => {
         consultaionfor,
         currentmedication,
         reason,
-        diagnosis
-      };
-      const paymentinfo = { paymentname, cardnumber, expirymonth, expiryyear };
+        diagnosis,
+      }
+      const paymentinfo = { paymentname, cardnumber, expirymonth, expiryyear }
 
-      const confirmationinfo = { confirmationname, confirmationpassword };
+      const confirmationinfo = { confirmationname, confirmationpassword }
 
-      formData.append("doc_schedule", doc_schedule);
-      formData.append("appointmenttime", appointment);
-      formData.append("appointmentdate", appointmentdate);
-      formData.append("paymentinfo", JSON.stringify(paymentinfo));
+      formData.append('doc_schedule', doc_schedule)
+      formData.append('appointmenttime', appointment)
+      formData.append('appointmentdate', appointmentdate)
+      formData.append('paymentinfo', JSON.stringify(paymentinfo))
       formData.append(
-        "consultationaddress",
+        'consultationaddress',
         JSON.stringify(consultationaddress)
-      );
+      )
 
       // formData.append("weight", product?.weight);
-      formData.append("confirmationinfo", JSON.stringify(confirmationinfo));
-      formData.append("user", userInfo?._id);
+      formData.append('confirmationinfo', JSON.stringify(confirmationinfo))
+      formData.append('user', userInfo?._id)
 
-      const body = formData;
+      const body = formData
       try {
-        console.log("createConsultation");
+        console.log('createConsultation')
         const config = {
           headers: {
-            Authorization: `Bearer ${userInfo.token}`
-          }
-        };
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
         const res = await axios.post(
           `${baseURL}/consultationRoutes/createConsultation`,
           body,
           config
-        );
+        )
 
-        console.log("res", res);
+        console.log('res', res)
         if (res?.status == 201) {
           Swal.fire({
-            icon: "success",
-            title: "",
-            text: "Your Appointment Has Been Created",
+            icon: 'success',
+            title: '',
+            text: 'Your Appointment Has Been Created',
             showConfirmButton: false,
-            timer: 1500
-          });
-          history.replace("/");
+            timer: 1500,
+          })
+          history.replace('/')
         }
         // else if(res?.status==201){
         //   Toasty('error',`Invalid Email or Password`);
@@ -212,103 +212,111 @@ const Consultation = ({ history }) => {
 
         // }
       } catch (error) {
-        console.log("error", error?.response?.data?.message);
+        console.log('error', error?.response?.data?.message)
         Swal.fire({
-          icon: "error",
-          title: "ERROR",
+          icon: 'error',
+          title: 'ERROR',
           text: error?.response?.data?.message,
           showConfirmButton: false,
-          timer: 1500
-        });
+          timer: 1500,
+        })
       }
-      setshowform(showform == 4 ? 4 : showform + 1);
+      setshowform(showform == 4 ? 4 : showform + 1)
     } else {
-      Toasty("error", `Please fill out all the required fields`);
+      Toasty('error', `Please fill out all the required fields`)
     }
-  };
+  }
   const disableWeekends = (current) => {
-    return current.day() !== 0 && current.day() !== 6;
-  };
+    return current.day() !== 0 && current.day() !== 6
+  }
   async function handleToken(token) {
-    setloading(true);
+    setloading(true)
 
     const config = {
       header: {
-        Authorization: "Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V"
-      }
-    };
+        Authorization: 'Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V',
+      },
+    }
     const response = await axios.post(
       `${baseURL}/checkout`,
       { token, product: 100 },
       config
-    );
-    console.log("response", response);
-    const { status } = response.data;
+    )
+    console.log('response', response)
+    const { status } = response.data
 
     console.log(
-      "res",
+      'res',
       response.data.id,
       response.data.status,
       response.headers.date,
       response.data.receipt_email
-    );
-    if (status === "succeeded") {
-      setloading(false);
-      setpaymentname(response?.data?.receipt_email);
-      setcardnumber(response?.data?.payment_method_details?.card?.last4);
+    )
+    if (status === 'succeeded') {
+      setloading(false)
+      setpaymentname(response?.data?.receipt_email)
+      setcardnumber(response?.data?.payment_method_details?.card?.last4)
       // setcvv(response?.data?.payment_method_details?.card?.last4)
-      setexpirymonth(response?.data?.payment_method_details?.card?.exp_month);
-      setexpiryyear(response?.data?.payment_method_details?.card?.exp_year);
-      setpaymentconfirm(true);
-      setshowform(showform == 4 ? 4 : showform + 1);
-      console.log(status, "succes");
+      setexpirymonth(response?.data?.payment_method_details?.card?.exp_month)
+      setexpiryyear(response?.data?.payment_method_details?.card?.exp_year)
+      setpaymentconfirm(true)
+      setshowform(showform == 4 ? 4 : showform + 1)
+      console.log(status, 'succes')
     } else {
-      console.log(status, "fail");
-      setloading(false);
+      console.log(status, 'fail')
+      setloading(false)
     }
   }
   const setappointmentdateHandler = (dayy) => {
-    console.log(dayy);
-    const datee = new Date(dayy);
-    console.log("datee", datee);
-    console.log(datee.getDay());
+    console.log(dayy)
+    const datee = new Date(dayy)
+    console.log('datee', datee)
+    console.log(datee.getDay())
     if (datee.getDay() == 0 || datee.getDay() == 6) {
       Toasty(
-        "error",
+        'error',
         `Saturday and Sundays are off. Please select another day for appointment`
-      );
+      )
     } else {
-      console.log("456");
-      setappointmentdate(dayy);
+      console.log('456')
+      setappointmentdate(dayy)
     }
-  };
+  }
   useEffect(() => {
-    console.log("phone", phone);
-  }, [phone]);
+    console.log('phone', phone)
+  }, [phone])
 
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
-
-      <section className="about-page">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-11 mx-auto">
-              <div className="row">
-                <div className="col-md-8 text-center mx-auto">
-                  <h4 className="sub-heading">Consultation Scheduling Form</h4>
-                  <h3 className="main-heading">YAH'KI AWAKENED CONSULTATION</h3>
-                  <p className="general-para">
+      <section
+        className='inner-banner'
+        style={{
+          backgroundImage: 'url(' + 'images/Consultationbanner.png' + ')',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          height: '440px',
+        }}
+      ></section>
+      <section className='about-page'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-md-11 mx-auto'>
+              <div className='row'>
+                <div className='col-md-8 text-center mx-auto'>
+                  <h4 className='sub-heading'>Consultation Scheduling Form</h4>
+                  <h3 className='main-heading'>YAH'KI AWAKENED CONSULTATION</h3>
+                  <p className='general-para'>
                     We are honored and do not take it lightly that you have
                     chosen to do a consultation with the Yahki Awakened Team.
-                    Below is some general information about your consultation.{" "}
+                    Below is some general information about your consultation.{' '}
                   </p>
                 </div>
-                <div className="col-md-8 mx-auto text-left">
-                  <ul className="consultation-rules">
+                <div className='col-md-8 mx-auto text-left'>
+                  <ul className='consultation-rules'>
                     <li>
-                      1. Consultations can have up to a 30 minute duration.{" "}
+                      1. Consultations can have up to a 30 minute duration.{' '}
                     </li>
                     <li>
                       2. Please be available for an hour as your consultation
@@ -319,8 +327,9 @@ const Consultation = ({ history }) => {
                     </li>
                     <li>
                       3. If the internet connection is bad you will receive a
-                      phone call instead of a zoom call so look out for 
-                      be sure to answer private and unknown phone numbers so you don’t miss your call just in case.{" "}
+                      phone call instead of a zoom call so look out for be sure
+                      to answer private and unknown phone numbers so you don’t
+                      miss your call just in case.{' '}
                     </li>
                     <li>
                       4. Consultations are designed for 1 person --if you would
@@ -331,265 +340,265 @@ const Consultation = ({ history }) => {
                 </div>
               </div>
               {/* Step form */}
-              <div className="row">
-                <div className="col-12">
-                  <form id="regForm" action>
+              <div className='row'>
+                <div className='col-12'>
+                  <form id='regForm' action>
                     {/* Circles which indicates the steps of the form: */}
-                    <div className="row mb-5">
-                      <div className="col-12 text-center">
-                        <div className="d-flex justify-content-around">
+                    <div className='row mb-5'>
+                      <div className='col-12 text-center'>
+                        <div className='d-flex justify-content-around'>
                           <span
                             className={
-                              showform == 1 ? "step active" : "step finish"
+                              showform == 1 ? 'step active' : 'step finish'
                             }
                           >
-                            <div className="step-icon">
-                              <i className="fas fa-address-card" />
+                            <div className='step-icon'>
+                              <i className='fas fa-address-card' />
                             </div>
-                            <p className="mt-4">Your Information</p>
+                            <p className='mt-4'>Your Information</p>
                           </span>
                           <span
                             className={
                               showform == 2
-                                ? "step active"
+                                ? 'step active'
                                 : showform > 2
-                                ? "step finish"
+                                ? 'step finish'
                                 : null
                             }
                           >
-                            <div className="step-icon">
-                              <i className="fas fa-calendar" />
+                            <div className='step-icon'>
+                              <i className='fas fa-calendar' />
                             </div>
-                            <p className="mt-4">Choose Appoinment</p>
+                            <p className='mt-4'>Choose Appoinment</p>
                           </span>
                           <span
                             className={
                               showform == 3
-                                ? "step active"
+                                ? 'step active'
                                 : showform > 3
-                                ? "step finish"
+                                ? 'step finish'
                                 : null
                             }
                           >
-                            <div className="step-icon">
-                              <i className="fas fa-credit-card" />
+                            <div className='step-icon'>
+                              <i className='fas fa-credit-card' />
                             </div>
-                            <p className="mt-4">Payment</p>
+                            <p className='mt-4'>Payment</p>
                           </span>
                           <span
-                            className={showform == 4 ? "step active" : null}
+                            className={showform == 4 ? 'step active' : null}
                           >
-                            <div className="step-icon">
-                              <i className="fas fa-check-square" />
+                            <div className='step-icon'>
+                              <i className='fas fa-check-square' />
                             </div>
-                            <p className="mt-4">Confirmation</p>
+                            <p className='mt-4'>Confirmation</p>
                           </span>
                         </div>
                       </div>
                     </div>
                     {/* One "tab" for each step in the form: */}
                     {showform == 1 ? (
-                      <div className="">
-                        <div className="consultation-form">
-                          <div className="form-group">
-                            <div className="form-row">
-                              <div className="col-md-6">
+                      <div className=''>
+                        <div className='consultation-form'>
+                          <div className='form-group'>
+                            <div className='form-row'>
+                              <div className='col-md-6'>
                                 <label>
-                                  First Name <span className="red">*</span>
+                                  First Name <span className='red'>*</span>
                                 </label>
                                 <input
-                                  className="form-control"
-                                  placeholder="Enter First Name"
-                                  type="text"
+                                  className='form-control'
+                                  placeholder='Enter First Name'
+                                  type='text'
                                   value={firstName}
                                   onChange={(e) => {
-                                    setfirstName(e.target.value);
+                                    setfirstName(e.target.value)
                                   }}
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Last Name <span className="red">*</span>
+                                  Last Name <span className='red'>*</span>
                                 </label>
                                 <input
-                                  className="form-control"
-                                  placeholder="Enter Last Name"
-                                  type="text"
+                                  className='form-control'
+                                  placeholder='Enter Last Name'
+                                  type='text'
                                   value={lastName}
                                   onChange={(e) => {
-                                    setlastName(e.target.value);
+                                    setlastName(e.target.value)
                                   }}
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Phone <span className="red">*</span>
+                                  Phone <span className='red'>*</span>
                                 </label>
                                 <InputPhone value={phone} onChange={setphone} />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Email <span className="red">*</span>
+                                  Email <span className='red'>*</span>
                                 </label>
                                 <input
-                                  className="form-control"
-                                  placeholder="Enter Email"
-                                  type="email"
+                                  className='form-control'
+                                  placeholder='Enter Email'
+                                  type='email'
                                   value={email}
                                   onChange={(e) => {
-                                    setemail(e.target.value);
+                                    setemail(e.target.value)
                                   }}
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Age <span className="red">*</span>
+                                  Age <span className='red'>*</span>
                                 </label>
                                 <InputNumber
                                   value={age}
                                   onChange={setage}
                                   max={99}
-                                  className="form-control"
+                                  className='form-control'
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Height in meters<span className="red">*</span>
+                                  Height in meters<span className='red'>*</span>
                                 </label>
                                 <InputNumber
                                   value={height}
                                   onChange={setheight}
                                   max={1000}
-                                  placeholder={"Heigth in meters"}
-                                  className="form-control"
+                                  placeholder={'Heigth in meters'}
+                                  className='form-control'
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Weight in lbs<span className="red">*</span>
+                                  Weight in lbs<span className='red'>*</span>
                                 </label>
                                 <InputNumber
                                   value={weight}
                                   onChange={setweight}
                                   max={1000}
-                                  className="form-control"
+                                  className='form-control'
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Ethnicity <span className="red">*</span>
+                                  Ethnicity <span className='red'>*</span>
                                 </label>
                                 <input
-                                  className="form-control"
-                                  placeholder="Enter Ethnicity"
-                                  type="text"
+                                  className='form-control'
+                                  placeholder='Enter Ethnicity'
+                                  type='text'
                                   value={ethnicity}
                                   onChange={(e) => {
-                                    setethnicity(e.target.value);
+                                    setethnicity(e.target.value)
                                   }}
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Consultation For<span className="red">*</span>
+                                  Consultation For<span className='red'>*</span>
                                 </label>
                                 <select
-                                  className="form-control text-left"
-                                  id="timeZone"
+                                  className='form-control text-left'
+                                  id='timeZone'
                                   value={consultaionfor}
                                   onChange={(e) => {
-                                    setconsultaionfor(e.target.value);
+                                    setconsultaionfor(e.target.value)
                                   }}
                                 >
-                                  <option value={"General cleanse"}>
+                                  <option value={'General cleanse'}>
                                     General cleanse
                                   </option>
-                                  <option value={"HSV & HPV"}>
+                                  <option value={'HSV & HPV'}>
                                     HSV &amp; HPV
                                   </option>
-                                  <option value={"Diabetes"}>Diabetes</option>
-                                  <option value={"Cancer/ Tumors"}>
+                                  <option value={'Diabetes'}>Diabetes</option>
+                                  <option value={'Cancer/ Tumors'}>
                                     Cancer/ Tumors
                                   </option>
-                                  <option value={"Chronic Condition"}>
+                                  <option value={'Chronic Condition'}>
                                     Chronic Condition
                                   </option>
-                                  <option value={"Multiple Conditions"}>
+                                  <option value={'Multiple Conditions'}>
                                     Multiple Conditions
                                   </option>
                                 </select>
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
                                   Current Medication
-                                  <span className="red">*</span>
+                                  <span className='red'>*</span>
                                 </label>
                                 <input
-                                  className="form-control"
-                                  placeholder="Enter Current Medication"
-                                  type="text"
+                                  className='form-control'
+                                  placeholder='Enter Current Medication'
+                                  type='text'
                                   value={currentmedication}
                                   onChange={(e) => {
-                                    setcurrentmedication(e.target.value);
+                                    setcurrentmedication(e.target.value)
                                   }}
                                 />
                               </div>
-                              <div className="col-md-12">
+                              <div className='col-md-12'>
                                 <label>
-                                  Reason for Consultation{" "}
-                                  <span className="red">*</span>
+                                  Reason for Consultation{' '}
+                                  <span className='red'>*</span>
                                 </label>
                                 <input
-                                  className="form-control"
-                                  placeholder="Enter Reason for Consultation"
+                                  className='form-control'
+                                  placeholder='Enter Reason for Consultation'
                                   value={reason}
                                   onChange={(e) => {
-                                    setreason(e.target.value);
+                                    setreason(e.target.value)
                                   }}
                                 />
                               </div>
-                              <div className="col-md-12">
+                              <div className='col-md-12'>
                                 <label>
                                   Current Diagnoses (provided by MD)
-                                  <span className="red">*</span>
+                                  <span className='red'>*</span>
                                 </label>
                                 <textarea
-                                  className="form-control"
-                                  id="exampleFormControlTextarea1"
-                                  placeholder="Message"
+                                  className='form-control'
+                                  id='exampleFormControlTextarea1'
+                                  placeholder='Message'
                                   rows={5}
                                   value={diagnosis}
                                   onChange={(e) => {
-                                    setdiagnosis(e.target.value);
+                                    setdiagnosis(e.target.value)
                                   }}
                                 />
                               </div>
-                              <div className="col-md-6">
+                              <div className='col-md-6'>
                                 <label>
-                                  Upload Valid Government Issued ID{" "}
-                                  <span className="red">*</span>
+                                  Upload Valid Government Issued ID{' '}
+                                  <span className='red'>*</span>
                                 </label>
                                 <input
-                                  type="file"
+                                  type='file'
                                   name
-                                  id="govt-id"
-                                  accept="application/pdf,application/vnd.ms-excel"
+                                  id='govt-id'
+                                  accept='application/pdf,application/vnd.ms-excel'
                                   onChange={filedocsHandler}
-                                  className="form-control"
+                                  className='form-control'
                                 />
                                 <label
-                                  htmlFor="govt-id"
-                                  className="d-block id-upload"
+                                  htmlFor='govt-id'
+                                  className='d-block id-upload'
                                 >
                                   {doc_schedule?.name ? (
-                                    <i className="fas fa-file-upload fa-2x" />
+                                    <i className='fas fa-file-upload fa-2x' />
                                   ) : (
-                                    <i className="fas fa-upload fa-2x" />
+                                    <i className='fas fa-upload fa-2x' />
                                   )}
                                 </label>
                               </div>
-                              <div className="col-12 text-right">
-                                <Link to="#" className="red-link">
+                              <div className='col-12 text-right'>
+                                <Link to='#' className='red-link'>
                                   Redeem Coupon
                                 </Link>
                               </div>
@@ -598,11 +607,11 @@ const Consultation = ({ history }) => {
                         </div>
                       </div>
                     ) : showform == 2 ? (
-                      <div className="">
-                        <div className="consultation-form">
-                          <div className="row mb-5">
-                            <div className="col-3 text-center mx-auto">
-                              <div className="timezone">
+                      <div className=''>
+                        <div className='consultation-form'>
+                          <div className='row mb-5'>
+                            <div className='col-3 text-center mx-auto'>
+                              <div className='timezone'>
                                 <h3>Your Time Zone</h3>
                                 {/* <select className="form-control" id="timeZone">
                                   <option>( GMT + 4:00 ) DUBAI</option>
@@ -611,20 +620,20 @@ const Consultation = ({ history }) => {
                               </div>
                             </div>
                           </div>
-                          <div className="col-md-12">
+                          <div className='col-md-12'>
                             <label>
-                              Select a date<span className="red">*</span>
+                              Select a date<span className='red'>*</span>
                             </label>
                             <DatePicker
                               minDate={moment().toDate()}
                               isValidDate={disableWeekends}
                               selected={appointmentdate}
                               onChange={(e) => setappointmentdateHandler(e)}
-                              className="sort-date customdate form-control"
-                            />{" "}
+                              className='sort-date customdate form-control'
+                            />{' '}
                           </div>
-                          <div className="table-responsive">
-                            <table className="table table-borderless">
+                          <div className='table-responsive'>
+                            <table className='table table-borderless'>
                               <thead></thead>
                               <tbody>
                                 {timings?.length > 0 &&
@@ -632,10 +641,10 @@ const Consultation = ({ history }) => {
                                     <tr>
                                       <td>
                                         <input
-                                          type="radio"
+                                          type='radio'
                                           value={appointment}
                                           onChange={() => {
-                                            setappointment(tim?.time);
+                                            setappointment(tim?.time)
                                           }}
                                           id={index}
                                           name={`jeff${index}`}
@@ -650,14 +659,14 @@ const Consultation = ({ history }) => {
                             </table>
                           </div>
                         </div>
-                        <p className="text-right consultation-meta mt-3">
+                        <p className='text-right consultation-meta mt-3'>
                           Consultation: <span>30 Minutes @ $100.00</span>
                         </p>
                       </div>
                     ) : showform == 3 ? (
-                      <div className="">
-                        <div className="consultation-form">
-                          <div className="form-group">
+                      <div className=''>
+                        <div className='consultation-form'>
+                          <div className='form-group'>
                             {/* <div className="form-row" style={{justifyContent:'center',display:'flex',textAlign:'center'}}> */}
                             {/* <div className="form-row">
                               <div className="col-6">
@@ -725,49 +734,50 @@ const Consultation = ({ history }) => {
                               
                             </div> */}
                             <div
-                              className="form-row"
+                              className='form-row'
                               style={{
-                                justifyContent: "center",
-                                display: "flex",
-                                textAlign: "center"
+                                justifyContent: 'center',
+                                display: 'flex',
+                                textAlign: 'center',
                               }}
                             >
                               {loading ? (
-                                <i className="fas fa-spinner fa-pulse"></i>
+                                <i className='fas fa-spinner fa-pulse'></i>
                               ) : (
                                 <PayPalButton
-                                amount={100}
+                                  amount={100}
                                   options={{
                                     clientId:
-                                      "AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey",
-                                    currency: "USD"
+                                      'AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey',
+                                    currency: 'USD',
                                   }}
                                   createOrder={(data, actions) => {
-                                    
                                     return actions.order.create({
                                       purchase_units: [
                                         {
-                                          description: "REZERWACJA",
+                                          description: 'REZERWACJA',
                                           amount: {
-                                            currency_code: "USD",
-                                            value: 100
-                                          }
-                                        }
-                                      ]
-                                    });
+                                            currency_code: 'USD',
+                                            value: 100,
+                                          },
+                                        },
+                                      ],
+                                    })
                                   }}
                                   // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                                   onSuccess={(details, data) => {
-                                    setpaymentconfirm(true);
-                                    setshowform(showform == 4 ? 4 : showform + 1);
-                                    console.log("details");
-                                    console.log(details);
-                                    console.log("data");
-                                    console.log(data);
+                                    setpaymentconfirm(true)
+                                    setshowform(
+                                      showform == 4 ? 4 : showform + 1
+                                    )
+                                    console.log('details')
+                                    console.log(details)
+                                    console.log('data')
+                                    console.log(data)
                                     alert(
-                                      "Transaction completed by " +
+                                      'Transaction completed by ' +
                                         details.payer.name.given_name
-                                    );
+                                    )
 
                                     // OPTIONAL: Call your server to save the transaction
                                     // return fetch("/paypal-transaction-complete", {
@@ -794,44 +804,44 @@ const Consultation = ({ history }) => {
                         </div>
                       </div>
                     ) : showform == 4 ? (
-                      <div className="">
-                        <div className="consultation-form">
+                      <div className=''>
+                        <div className='consultation-form'>
                           <p>
                             <input
-                              placeholder="Username..."
+                              placeholder='Username...'
                               value={confirmationname}
                               onChange={(e) => {
-                                setconfirmationname(e.target.value);
+                                setconfirmationname(e.target.value)
                               }}
                             />
                           </p>
                           <p>
                             <input
-                              placeholder="Password..."
+                              placeholder='Password...'
                               value={confirmationpassword}
                               onChange={(e) => {
-                                setconfirmationpassword(e.target.value);
+                                setconfirmationpassword(e.target.value)
                               }}
                             />
                           </p>
                         </div>
                       </div>
                     ) : null}
-                    <div className="text-center mt-5 pt-5 ">
+                    <div className='text-center mt-5 pt-5 '>
                       <button
-                        type="button"
-                        className="red-btn-outline mr-2"
-                        id="prevBtn"
+                        type='button'
+                        className='red-btn-outline mr-2'
+                        id='prevBtn'
                         onClick={() => {
-                          setshowform(showform == 1 ? 1 : showform - 1);
+                          setshowform(showform == 1 ? 1 : showform - 1)
                         }}
                       >
                         Back
                       </button>
                       <button
-                        type="button"
-                        className="red-btn-solid"
-                        id="nextBtn"
+                        type='button'
+                        className='red-btn-solid'
+                        id='nextBtn'
                         onClick={() => {
                           showform == 1
                             ? saveConsultationAddressHandler()
@@ -839,7 +849,7 @@ const Consultation = ({ history }) => {
                             ? chooseAppointmentHandler()
                             : showform == 3 && paymentconfirm == true
                             ? setshowform(showform + 1)
-                            : showform == 4 && confirmationHandler();
+                            : showform == 4 && confirmationHandler()
                         }}
                       >
                         Continue
@@ -856,7 +866,7 @@ const Consultation = ({ history }) => {
 
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Consultation;
+export default Consultation
