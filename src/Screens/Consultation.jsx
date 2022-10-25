@@ -292,11 +292,11 @@ const Consultation = ({ history }) => {
       <section
         className='inner-banner'
         style={{
-          backgroundImage: 'url(' + 'images/Consultationbanner.png' + ')',
+          backgroundImage: 'url(' + 'images/consultation.png' + ')',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          height: '440px',
+          minHeight: '500px',
         }}
       ></section>
       <section className='about-page'>

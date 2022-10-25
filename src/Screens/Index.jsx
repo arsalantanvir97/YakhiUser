@@ -470,14 +470,6 @@ const Index = ({ history }) => {
           // style={{ backgroundColor: 'pink' }}
         >
           <div className='row justify-content-center align-items-center'>
-            <div className='col-xl-6 col-10'>
-              <img
-                style={{ height: 430, width: 430 }}
-                src='images/Closed-circulatory-system.png'
-                alt=''
-                className='img-fluid'
-              />
-            </div>
             <div className='col-xl-6 col-12 mt-xl-0 '>
               <h3 className='main-heading' style={{ textAlign: 'center' }}>
                 ABSORB NUTRIENTS TO REBUILD!
@@ -488,6 +480,14 @@ const Index = ({ history }) => {
               >
                 Improve The Uptake Of The Minerals and Amino Acids Your Intaking
               </p>
+            </div>
+            <div className='col-xl-6 col-10'>
+              <img
+                style={{ height: 430, width: 430 }}
+                src='images/Closed-circulatory-system.png'
+                alt=''
+                className='img-fluid'
+              />
             </div>
           </div>
         </div>
@@ -523,14 +523,6 @@ const Index = ({ history }) => {
           // style={{ backgroundColor: 'pink' }}
         >
           <div className='row justify-content-center align-items-center'>
-            <div className='col-xl-6 col-10'>
-              <img
-                style={{ height: 430, width: 430 }}
-                src='images/lymphatic-system2.png'
-                alt=''
-                className='img-fluid'
-              />
-            </div>
             <div className='col-xl-6 col-12 mt-xl-0 '>
               <h3 className='main-heading' style={{ textAlign: 'center' }}>
                 CREATE A ELIMINATION PATHWAY
@@ -541,6 +533,14 @@ const Index = ({ history }) => {
               >
                 One’s Body Must Eliminate What It Accumulates. Experience NOW!
               </p>
+            </div>
+            <div className='col-xl-6 col-10'>
+              <img
+                style={{ height: 430, width: 430 }}
+                src='images/lymphatic-system2.png'
+                alt=''
+                className='img-fluid'
+              />
             </div>
           </div>
         </div>

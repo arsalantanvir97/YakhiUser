@@ -4470,8 +4470,8 @@ span.bottom-note {
 
 /* NEW HOMEPAGE STYLES STARTS HERE */
 .main-banner {
-  background: url(../images/main-banner-background.png) center/ cover no-repeat;
-  height: 960px;
+  background: url(../images/homebanner.png) center/ cover no-repeat;
+  min-height: 550px;
 }
 .abcccc:hover{
   cursor:pointer 
