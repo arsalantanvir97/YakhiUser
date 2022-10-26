@@ -9,11 +9,13 @@ import ProductSlider from '../components/ProductSlider'
 import ClientsSlider from '../components/ClientsSlider'
 import { useSelector } from 'react-redux'
 import { SliderSkeleton } from '../components/SliderSkeleton'
+import { setDefaultLocale } from 'react-datepicker'
+import FeaturedProductsSlider from '../components/FeaturedProductsSlider'
 const Index = ({ history }) => {
   const [product, setproduct] = useState([])
   const [allofcategory, setallofcategory] = useState([])
   const [catid, setcatid] = useState('')
-  const [prdouctbycategories, setprdouctbycategories] = useState([])
+  const [featuredproducts, setfeaturedproducts] = useState([])
   const [bitternadelement, setbitternadelement] = useState([])
 
   const [loading, setloading] = useState(false)
@@ -134,6 +136,7 @@ const Index = ({ history }) => {
   }
   useEffect(() => {
     gettingallCategoriesHandler()
+    gettingFeaturedProductHandler()
   }, [])
   const gettingallCategoriesHandler = async () => {
     const res = await axios.get(`${baseURL}/category/allOfCategories`, {})
@@ -155,12 +158,10 @@ const Index = ({ history }) => {
   // const productViewRedirectHandler = async (id) => {
   //   history?.push(`/ProductView/${id}`);
   // };
-  const gettingproductsbyCategoryidHandler = async (id) => {
-    const res = await axios.get(
-      `${baseURL}/product/getproductsbycategoryid/${id}`
-    )
-    console.log('res', res)
-    setprdouctbycategories(res?.data?.products)
+  const gettingFeaturedProductHandler = async (id) => {
+    const res = await axios.get(`${baseURL}/product/featuredProducts`)
+    console.log('re2s', res)
+    setfeaturedproducts(res?.data?.products)
   }
   const productViewRedirectHandler = async (id) => {
     history?.push(`/ProductView/${id}`)
@@ -424,11 +425,12 @@ const Index = ({ history }) => {
                       <h5 className="prod-price">$350.00</h5>
                     </div> */}
                       {loading ? (
-                        <SliderSkeleton listsToRender={4} />
+                        <SliderSkeleton listsToRender={2} />
                       ) : (
-                        <ProductSlider
+                        <FeaturedProductsSlider
+                          show={2}
                           history={history}
-                          images={product}
+                          images={featuredproducts}
                           userInfo={userInfo}
                         />
                       )}

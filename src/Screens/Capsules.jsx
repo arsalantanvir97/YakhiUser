@@ -110,7 +110,9 @@ const Capsules = ({ history, match }) => {
   const addToCartHandler = async (productId, qty) => {
     history.push(`/MyCart/${productId}?qty=${qty}`)
   }
-
+  useEffect(() => {
+    console.log('window.innerWidth', window.innerWidth)
+  }, [window.innerWidth])
   return (
     <>
       <Header />
@@ -130,17 +132,23 @@ const Capsules = ({ history, match }) => {
                   : 'images/inner-page-bg.png'
               } ` +
               ')',
-            height:
+            minHeight:
               match?.params?.id == '62415fde1b97a530529276b3' ||
               match?.params?.id == '62415fc11b97a530529276af' ||
-              (match?.params?.id == '62415f8d1b97a530529276ab' && 530),
+              match?.params?.id == '62415f8d1b97a530529276ab'
+                ? window.innerWidth > 1100
+                  ? '500px'
+                  : '300px'
+                : '440px',
             // backgroundPosition: 'center',
             // backgroundSize: 'cover',
             // backgroundRepeat: 'no-repeat',
             // height: '440px',
           }}
         >
-          {!match?.params?.id == '62415fde1b97a530529276b3' && (
+          {match?.params?.id == '62415fde1b97a530529276b3' ||
+          match?.params?.id == '62415fc11b97a530529276af' ||
+          match?.params?.id == '62415f8d1b97a530529276ab' ? null : (
             <div className='container-fluid'>
               <div className='row'>
                 <div className='col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1'>

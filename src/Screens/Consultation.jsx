@@ -283,8 +283,8 @@ const Consultation = ({ history }) => {
     }
   }
   useEffect(() => {
-    console.log('phone', phone)
-  }, [phone])
+    console.log('window.innerWidth', window.innerWidth)
+  }, [window.innerWidth])
 
   return (
     <>
@@ -296,7 +296,7 @@ const Consultation = ({ history }) => {
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          minHeight: '500px',
+          minHeight: window.innerWidth > 1100 ? '500px' : '300px',
         }}
       ></section>
       <section className='about-page'>

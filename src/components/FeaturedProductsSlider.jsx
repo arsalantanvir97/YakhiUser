@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import { imageURL } from '../utils/api'
 import UnauthorizedAlert from './UnauthorizedAlert'
 
-export default class ProductSlider extends Component {
+export default class FeaturedProductsSlider extends Component {
   render() {
     console.log('this.props', this.props)
 
@@ -40,7 +40,7 @@ export default class ProductSlider extends Component {
       dots: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: 2,
       slidesToScroll: 1,
       arrows: true,
       nextArrow: <SampleNextArrow />,
@@ -79,23 +79,40 @@ export default class ProductSlider extends Component {
         {this?.props?.images?.map((pro) => (
           <div className='featured-product animate__animated animate__slideInUp '>
             <img
-              onClick={() => {
-                this.props?.history?.push(`/ProductView/${pro._id}`)
-              }}
+              onClick={() =>
+                pro?.name
+                  ? this.props?.history?.push(`/ProductView/${pro._id}`)
+                  : pro?.categorytitle
+                  ? this.props?.history?.push(`/Capsules/${pro._id}`)
+                  : null
+              }
               style={{
                 height: 216,
                 width: 214,
               }}
               src={
-                pro?.productimage?.length > 0 &&
-                `${imageURL}${pro?.productimage[0]}`
+                pro?.name || pro?.categorytitle == '3 BITTERS'
+                  ? 'images/3BITTERS-min.png'
+                  : pro?.name || pro?.categorytitle == 'Kits & Bundles'
+                  ? 'images/KITS & BUNDLES png-min.png'
+                  : pro?.name || pro?.categorytitle == 'Teas'
+                  ? 'images/TEAS-min.png'
+                  : null
+                // pro?.productimage?.length > 0 &&
+                // `${imageURL}${pro?.productimage[0]}`
               }
               alt=''
               className='img-fluid mx-auto abcccc'
             />
 
-            <h4 className='prod-title text-center'>{pro?.name}</h4>
-            <h5 className='prod-price text-center'>${pro?.price}</h5>
+            <h4 className='prod-title text-center'>
+              {pro?.name
+                ? pro?.name
+                : pro?.categorytitle
+                ? pro?.categorytitle
+                : null}
+            </h4>
+            {/* <h5 className='prod-price text-center'>${pro?.price}</h5> */}
           </div>
         ))}
       </Slider>
