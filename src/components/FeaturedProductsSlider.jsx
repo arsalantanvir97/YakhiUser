@@ -40,7 +40,7 @@ export default class FeaturedProductsSlider extends Component {
       dots: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 2,
+      slidesToShow: 3,
       slidesToScroll: 1,
       arrows: true,
       nextArrow: <SampleNextArrow />,
@@ -87,8 +87,8 @@ export default class FeaturedProductsSlider extends Component {
                   : null
               }
               style={{
-                height: 216,
-                width: 214,
+                height: 296,
+                width: 294,
               }}
               src={
                 pro?.name || pro?.categorytitle == '3 BITTERS'

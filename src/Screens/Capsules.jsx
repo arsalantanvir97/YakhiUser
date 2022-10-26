@@ -203,7 +203,7 @@ const Capsules = ({ history, match }) => {
                         Sorted By
                       </h4>
                       <ul className='px-4 pt-3'>
-                        <li className='mb-4'>
+                        <li className='mb-on4'>
                           <Link to='#'>Popularity</Link>{' '}
                         </li>
                         <li className='mb-4'>
