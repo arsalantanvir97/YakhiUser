@@ -114,13 +114,16 @@ export default class FeaturedProductsSlider extends Component {
               className='img-fluid mx-auto abcccc'
             />
 
-            <h4 className='prod-title text-center'>
+            <h3
+              className='prod-title text-center'
+              style={{ fontWeight: 'bold', fontSize: 27 }}
+            >
               {pro?.name
                 ? pro?.name
                 : pro?.categorytitle
                 ? pro?.categorytitle
                 : null}
-            </h4>
+            </h3>
             {/* <h5 className='prod-price text-center'>${pro?.price}</h5> */}
           </div>
         ))}
