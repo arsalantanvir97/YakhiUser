@@ -957,21 +957,21 @@ h5.selection-title-sm-3 img.title-line {
 /* HOMEPAGE FEATURED PRODUCTS SECTION */
 .featured {
   padding: 98px 22px;
-  background: url(../images/Cinnamon.svg) left 0 top 25%/ 180px no-repeat,
-    url(../images/red-hollow.svg) right 2% top 50%/ 70px no-repeat;
+  background: url(../images/Cinnamon.svg) left 0 top 25%/ 210px no-repeat,
+  url(../images/red-hollow.svg) right 2% top 50%/ 80px no-repeat;  
 }
 
 .featured h3 {
   color: #2b2541;
-  font-size: 36px;
+  font-size: 45px;
   font-family: "Rubik", sans-serif;
   font-weight: 800;
 }
 
 .featured h4 {
   color: #666666;
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 22px !important;
+  line-height: 40px !important;
 }
 
 h4.prod-title {

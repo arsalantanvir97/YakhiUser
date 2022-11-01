@@ -329,12 +329,12 @@ const Index = ({ history }) => {
               <div className='col-11 mx-auto'>
                 <div className='row'>
                   <div className='col-md-12 text-center'>
-                    <h4>Tranding Products</h4>
+                    <h4>Trending Products</h4>
                     <h3>Featured Products</h3>
                   </div>
                 </div>
                 <div className='row mt-5'>
-                  <div className='col-md-10 mx-auto text-center'>
+                  <div className='col-md-10 col-xs-12 mx-auto text-center'>
                     <div id=''>
                       {/* <div className="featured-product animate__animated animate__slideInUp">
                       <img
