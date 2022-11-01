@@ -1,129 +1,131 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import Toasty from "../utils/toast";
-import { validateEmail } from "../utils/ValidateEmail";
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import Toasty from '../utils/toast'
+import { validateEmail } from '../utils/ValidateEmail'
 
 const Footer = () => {
-  const [newsletter, setnewsletter] = useState("");
+  const [newsletter, setnewsletter] = useState('')
   const newsLetterHandler = () => {
     if (newsletter?.length > 0) {
-      const emailvalidation = validateEmail(newsletter);
-      console.log("emmmm", emailvalidation);
-      console.log("addEmployeeHandler");
+      const emailvalidation = validateEmail(newsletter)
+      console.log('emmmm', emailvalidation)
+      console.log('addEmployeeHandler')
       if (emailvalidation == true) {
         Swal.fire({
-          icon: "success",
-          title: "",
-          text: "Added to Wislist",
+          icon: 'success',
+          title: '',
+          text: 'Added to Wislist',
           showConfirmButton: false,
-          timer: 1500
-        });
-        setnewsletter("");
+          timer: 1500,
+        })
+        setnewsletter('')
       } else {
-        Toasty("error", `Please enter a valid email`);
+        Toasty('error', `Please enter a valid email`)
       }
     } else {
-      Toasty("error", `Please fill out all the required fields`);
+      Toasty('error', `Please fill out all the required fields`)
     }
-  };
+  }
   return (
     <>
-      <footer className="site-footer">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-11 mx-auto">
-              <div className="row align-items-start justify-content-around">
+      <footer className='site-footer'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-11 mx-auto'>
+              <div className='row align-items-start justify-content-around'>
                 {/* Footer col 1 */}
-                <div className="col-xl-2 col-lg-3 col-md-6 order-2 order-lg-1 mt-5 mt-lg-0">
-                  <h4 className="footer-title">INFORMATION</h4>
-                  <ul className="foot-links">
+                <div className='col-xl-2 col-lg-3 col-md-6 order-2 order-lg-1 mt-5 mt-lg-0'>
+                  <h4 className='footer-title'>INFORMATION</h4>
+                  <ul className='foot-links'>
                     <li>
-                      <Link to="/AboutCompany" data-hover="About Us">
+                      <Link to='/AboutCompany' data-hover='About Us'>
                         About Us
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" data-hover="Counselors">
+                      <Link to='/MeettheTeam' data-hover='Staff'>
                         Staff
                       </Link>
                     </li>
                     <li>
-                      <Link to="/Document" data-hover="Documents">
+                      <Link to='/Document' data-hover='Documents'>
                         Documents
                       </Link>
                     </li>
                     <li>
-                      <Link to="/Instruction" data-hover="Instructions">
+                      <Link to='/Instruction' data-hover='Instructions'>
                         Instructions
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" data-hover="Member Agreement">
+                      <Link to='/MemberAgreement' data-hover='Member Agreement'>
                         Member Agreement
                       </Link>
                     </li>
                     <li>
-                      <Link to="/Memberships" data-hover="Membership Help">
+                      <Link to='/Memberships' data-hover='Membership Help'>
                         Membership Help
                       </Link>
                     </li>
                   </ul>
                 </div>
                 {/* Footer col 2 */}
-                <div className="col-xl-8 col-lg-6 col-md-12 text-center order-1 order-lg-2 ">
-                  <h4 className="footer-title">Newsletter Signup</h4>
-                  <div className="newsletter-part">
+                <div className='col-xl-8 col-lg-6 col-md-12 text-center order-1 order-lg-2 '>
+                  <h4 className='footer-title'>Newsletter Signup</h4>
+                  <div className='newsletter-part'>
                     <p>
                       Subscribe for information on new products, courses, media
                       and more
                     </p>
-                    <div className="newsletter-box">
-                      
+                    <div className='newsletter-box'>
                       <input
                         value={newsletter}
-                        type="email"
-                        className="form-control newsletter p-3 mt-3"
-                        placeholder="Email Address Here...."
+                        type='email'
+                        className='form-control newsletter p-3 mt-3'
+                        placeholder='Email Address Here....'
                         onChange={(e) => {
-                          setnewsletter(e.target.value);
+                          setnewsletter(e.target.value)
                         }}
                       />
-                      <i className="fas fa-paper-plane" onClick={newsLetterHandler}></i>
+                      <i
+                        className='fas fa-paper-plane'
+                        onClick={newsLetterHandler}
+                      ></i>
                     </div>
-                    <ul className="mt-4 list-inline">
-                      <li className="list-inline-item">
-                        <div className="social-icon">
-                          <Link to="#">
-                            <i className="fab fa-facebook-f" />
+                    <ul className='mt-4 list-inline'>
+                      <li className='list-inline-item'>
+                        <div className='social-icon'>
+                          <Link to='#'>
+                            <i className='fab fa-facebook-f' />
                           </Link>
                         </div>
                       </li>
-                      <li className="list-inline-item">
-                        <div className="social-icon maroon-icon">
-                          <Link to="#">
-                            <i className="fab fa-facebook-messenger" />
+                      <li className='list-inline-item'>
+                        <div className='social-icon maroon-icon'>
+                          <Link to='#'>
+                            <i className='fab fa-facebook-messenger' />
                           </Link>
                         </div>
                       </li>
-                      <li className="list-inline-item">
-                        <div className="social-icon">
-                          <Link to="#">
-                            <i className="fab fa-instagram" />
+                      <li className='list-inline-item'>
+                        <div className='social-icon'>
+                          <Link to='#'>
+                            <i className='fab fa-instagram' />
                           </Link>
                         </div>
                       </li>
-                      <li className="list-inline-item">
-                        <div className="social-icon">
-                          <Link to="#">
-                            <i className="fab fa-youtube" />
+                      <li className='list-inline-item'>
+                        <div className='social-icon'>
+                          <Link to='#'>
+                            <i className='fab fa-youtube' />
                           </Link>
                         </div>
                       </li>
-                      <li className="list-inline-item">
-                        <div className="social-icon">
-                          <Link to="#">
-                            <i className="fas fa-envelope" />
+                      <li className='list-inline-item'>
+                        <div className='social-icon'>
+                          <Link to='#'>
+                            <i className='fas fa-envelope' />
                           </Link>
                         </div>
                       </li>
@@ -131,45 +133,45 @@ const Footer = () => {
                   </div>
                 </div>
                 {/* Footer col 3 */}
-                <div className="col-xl-2 col-lg-3 col-md-6 order-3 order-lg-3 mt-5 mt-lg-0">
-                  <h4 className="footer-title">SUPPORT</h4>
-                  <ul className="foot-links">
+                <div className='col-xl-2 col-lg-3 col-md-6 order-3 order-lg-3 mt-5 mt-lg-0'>
+                  <h4 className='footer-title'>SUPPORT</h4>
+                  <ul className='foot-links'>
                     <li>
                       <Link
-                        to="/OrderandPayment"
-                        data-hover="Orders & Payments"
+                        to='/OrderandPayment'
+                        data-hover='Orders & Payments'
                       >
                         Orders &amp; Payments
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/ShippingandPickup"
-                        data-hover="Shipping & Pickups"
+                        to='/ShippingandPickup'
+                        data-hover='Shipping & Pickups'
                       >
                         Shipping &amp; Pickups
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/ReturnsandRefund"
-                        data-hover="Returns % Cancellations"
+                        to='/ReturnsandRefund'
+                        data-hover='Returns % Cancellations'
                       >
                         Returns &amp; Cancellations
                       </Link>
                     </li>
                     <li>
-                      <Link to="/Faqs" data-hover="Questions & Answers">
+                      <Link to='/Faqs' data-hover='Questions & Answers'>
                         Questions &amp; Answers
                       </Link>
                     </li>
                     <li>
-                      <Link to="/PrivacyPolicy" data-hover="Privacy Policy">
+                      <Link to='/PrivacyPolicy' data-hover='Privacy Policy'>
                         Privacy Policy
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" data-hover="Terms of Service">
+                      <Link to='/TermsofService' data-hover='Terms of Service'>
                         Terms of Service
                       </Link>
                     </li>
@@ -180,12 +182,12 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <section className="copy-rights">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-12 text-center">
+      <section className='copy-rights'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-12 text-center'>
               <p>
-                COPYRIGHT © 2021 <Link to="#">YAH'KI AWAKENED</Link>, LLC. ALL
+                COPYRIGHT © 2021 <Link to='#'>YAH'KI AWAKENED</Link>, LLC. ALL
                 RIGHTS RESERVED.
               </p>
             </div>
@@ -193,7 +195,7 @@ const Footer = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
