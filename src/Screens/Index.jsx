@@ -205,7 +205,7 @@ const Index = ({ history }) => {
       </section>
 
       <div className='container'>
-        <div className='row align-items-center justify-content-center my-md-5 pt-5 pb-3'>
+        <div className='row align-items-center justify-content-center my-md-5  pb-3'>
           <div
             className='col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate'
             data-aos='fade-up'
@@ -232,7 +232,7 @@ const Index = ({ history }) => {
             data-aos='fade-down'
             data-aos-duration={3000}
           >
-            <p className='yahki-p pl-4'>
+            <p className='yahki-p pl-4' style={{ textAlign: 'center' }}>
               THE BODY WAS CREATED TO HEAL ITSELF... IF PROVIDED WITH THE RIGHT
               ENVIRONMENTAL CONDITIONS! EXPERIENCE POWERFUL HERBAL THERAPY NOW
               WITH THE WORLD'S RENOWNED MASTER HEALER YAH'KI RAPHA EL AWAKEND!{' '}
@@ -535,6 +535,7 @@ const Index = ({ history }) => {
               >
                 One’s Body Must Eliminate What It Accumulates. Experience NOW!
               </p>
+              <div style={{ height: 40 }}></div>
             </div>
             <div className='col-xl-6 col-10'>
               <img
@@ -553,7 +554,7 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                style={{ height: 430, width: 430 }}
+                style={{ height: 530, width: 590 }}
                 src='images/brain.png'
                 alt=''
                 className='img-fluid'

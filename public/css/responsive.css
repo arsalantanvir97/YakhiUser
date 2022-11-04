@@ -807,7 +807,7 @@
         font-size: 24px;
     }
     .main-banner {
-        height: 470px;
+        /* height: 470px; */
     }
     #main-nav{
         padding: 22px 0;
@@ -939,6 +939,7 @@
         height: 560px;
     }
 }
+
 @media screen and (max-width:767px) {
     h5.selection-title-lg {
         font-size: 36px;
@@ -1338,6 +1339,7 @@
     }
 }
 @media screen and (max-width: 456px) {
+    
     /* .main-banner {
         background: url(../images/main-banner-background.png) left -350px bottom 0px/ cover no-repeat;
         height: 700px;
