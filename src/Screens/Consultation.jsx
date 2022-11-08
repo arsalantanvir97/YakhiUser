@@ -582,7 +582,7 @@ const Consultation = ({ history }) => {
                                   type='file'
                                   name
                                   id='govt-id'
-                                  accept='application/pdf,application/vnd.ms-excel'
+                                  // accept='application/pdf,application/vnd.ms-excel'
                                   onChange={filedocsHandler}
                                   className='form-control'
                                 />

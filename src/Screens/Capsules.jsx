@@ -125,6 +125,8 @@ const Capsules = ({ history, match }) => {
               `${
                 match?.params?.id == '62415fde1b97a530529276b3'
                   ? 'images/tinctures.png'
+                  : match?.params?.id == '624160071b97a530529276b7'
+                  ? 'images/teaa.png'
                   : match?.params?.id == '62415fc11b97a530529276af'
                   ? 'images/capsules.png'
                   : match?.params?.id == '62415f8d1b97a530529276ab'
@@ -134,19 +136,24 @@ const Capsules = ({ history, match }) => {
               ')',
             minHeight:
               match?.params?.id == '62415fde1b97a530529276b3' ||
+              match?.params?.id == '624160071b97a530529276b7' ||
               match?.params?.id == '62415fc11b97a530529276af' ||
               match?.params?.id == '62415f8d1b97a530529276ab'
-                ? window.innerWidth > 1100
-                  ? '500px'
-                  : '300px'
+                ? window.innerWidth < 970 && window.innerWidth > 1100
+                  ? '1500px'
+                  : window.innerWidth > 1100
+                  ? '1000px'
+                  : '350px'
                 : '440px',
+
             // backgroundPosition: 'center',
-            // backgroundSize: 'cover',
+            backgroundSize: 'contain',
             // backgroundRepeat: 'no-repeat',
             // height: '440px',
           }}
         >
           {match?.params?.id == '62415fde1b97a530529276b3' ||
+          match?.params?.id == '624160071b97a530529276b7' ||
           match?.params?.id == '62415fc11b97a530529276af' ||
           match?.params?.id == '62415f8d1b97a530529276ab' ? null : (
             <div className='container-fluid'>

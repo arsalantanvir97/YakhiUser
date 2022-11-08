@@ -775,9 +775,19 @@
     }
     .main-banner {
         min-height: 350px;
-        background-position: right;
+        background-size: contain;
+
+        /* background-position: right; */
     }
 }
+@media screen and (max-width: 1070px) {
+
+.main-banner {
+    min-height: 390px;
+    background-size: contain;
+
+    /* background-position: right; */
+}}
 @media screen and (max-width: 800px) {
     .pay-with {
         padding: 20px 30px;

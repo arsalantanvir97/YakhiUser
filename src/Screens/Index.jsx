@@ -205,7 +205,7 @@ const Index = ({ history }) => {
       </section>
 
       <div className='container'>
-        <div className='row align-items-center justify-content-center my-md-5  pb-3'>
+        <div className='row align-items-center justify-content-center my-md-4  pb-3'>
           <div
             className='col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate'
             data-aos='fade-up'
@@ -554,7 +554,7 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                style={{ height: 530, width: 590 }}
+                style={{ height: 540, width: 690 }}
                 src='images/brain.png'
                 alt=''
                 className='img-fluid'
@@ -765,6 +765,33 @@ const Index = ({ history }) => {
       </div>
 
       <Footer />
+
+      <div
+        className='modal fade logout-modal p-0 '
+        data-bs-backdrop='static'
+        data-keyboard='false'
+        tabIndex={-1}
+        id='detoxModal'
+        aria-labelledby='true'
+        style={{ display: 'none' }}
+        aria-hidden='true'
+      >
+        <div className='modal-dialog modal-md modal-dialog-centered'>
+          <div className='modal-content'>
+            <div className='modal-body text-center pt-5 pb-3'>
+              <div className='modal-img'>
+                <i className='fas fa-check' />
+              </div>
+              <h3 className='modal-title pt-3' />
+              <p className='modal-sub-content'>
+                New &amp; Improved Detox Experience Coming Soon Booking
+                Currently Not Available"
+              </p>
+            </div>
+            <div className='modal-footer justify-content-center' />
+          </div>
+        </div>
+      </div>
     </>
   )
 }
