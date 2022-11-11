@@ -5619,3 +5619,48 @@ span.sale-tag {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
+
+
+.termspopupcontainer .termscontentwrapper {
+  overflow: auto;
+  /* height: calc(100% - 60px); */
+  height: 70vh;
+}
+.termspopupcontainer h3.termstitle {
+  margin: 0 !important;
+  padding: 10px !important;
+  background: #F37600 !important;
+  color: #FFFFFF !important;
+  font-size: 20px !important;
+  text-align: center !important;
+}
+.termspopupcontainer {
+  overflow: auto;
+  height: 100%;
+}
+.wbp_wrapper{
+  padding: 10px;
+}
+.wbp_wrapper h4 {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.wbp_wrapper p{
+  font-weight: normal;
+  margin-bottom: 44px;
+  font-size: 1em!important;
+  line-height: 1.6em!important;
+}
+.button {
+  margin: 0 auto 30px;
+  text-align: center;
+}
+.button button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background: #f37728;
+  border: 0;
+  color: #fff;
+}

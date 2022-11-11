@@ -117,6 +117,9 @@ const Capsules = ({ history, match }) => {
     <>
       <Header />
       <section className='capsules'>
+        {/* <div className='ibanner'>
+          <img src='images/inner-page-bg.png' alt='' />
+        </div> */}
         <section
           className='inner-banner'
           style={{
@@ -135,19 +138,33 @@ const Capsules = ({ history, match }) => {
               } ` +
               ')',
             minHeight:
+              // match?.params?.id == '62415fde1b97a530529276b3' ||
+              // match?.params?.id == '624160071b97a530529276b7' ||
+              // match?.params?.id == '62415fc11b97a530529276af' ||
+              // match?.params?.id == '62415f8d1b97a530529276ab'
+              window.innerWidth > 1300
+                ? '670px'
+                : window.innerWidth > 1200
+                ? '490px'
+                : window.innerWidth > 1100
+                ? '440px'
+                : window.innerWidth > 925
+                ? '400px'
+                : window.innerWidth > 780
+                ? '335px'
+                : window.innerWidth > 445
+                ? '280px'
+                : '120px',
+            // : '440px',
+
+            // backgroundPosition: 'center',
+            backgroundSize:
               match?.params?.id == '62415fde1b97a530529276b3' ||
               match?.params?.id == '624160071b97a530529276b7' ||
               match?.params?.id == '62415fc11b97a530529276af' ||
               match?.params?.id == '62415f8d1b97a530529276ab'
-                ? window.innerWidth < 970 && window.innerWidth > 1100
-                  ? '1500px'
-                  : window.innerWidth > 1100
-                  ? '1000px'
-                  : '350px'
-                : '440px',
-
-            // backgroundPosition: 'center',
-            backgroundSize: 'contain',
+                ? 'contain'
+                : '',
             // backgroundRepeat: 'no-repeat',
             // height: '440px',
           }}
@@ -175,7 +192,7 @@ const Capsules = ({ history, match }) => {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-11 mx-auto'>
-              <div className='row justify-content-center my-5 py-5'>
+              <div className='row justify-content-center  py-5'>
                 <div className='col-lg-3 col-md-10'>
                   <button
                     className='btn btn-categories'

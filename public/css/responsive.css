@@ -1347,6 +1347,12 @@
     .card-body {
         padding: 1.25rem 2px;
     }
+    .menuheight{
+        height: auto;
+    }
+    .main-banner {
+        min-height: 220px;
+    }
 }
 @media screen and (max-width: 456px) {
     
