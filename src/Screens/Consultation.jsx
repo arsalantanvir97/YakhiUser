@@ -294,12 +294,25 @@ const Consultation = ({ history }) => {
         style={{
           backgroundImage: 'url(' + 'images/consultation.png' + ')',
           backgroundPosition: 'center',
-          backgroundSize: 'cover',
+          backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
-          minHeight: window.innerWidth > 1100 ? '500px' : '300px',
+          minHeight:
+            window.innerWidth > 1300
+              ? '670px'
+              : window.innerWidth > 1200
+              ? '490px'
+              : window.innerWidth > 1100
+              ? '440px'
+              : window.innerWidth > 925
+              ? '400px'
+              : window.innerWidth > 780
+              ? '335px'
+              : window.innerWidth > 445
+              ? '280px'
+              : '120px',
         }}
       ></section>
-      <section className='about-page'>
+      <section className='about-page' style={{ paddingTop: 0 }}>
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
