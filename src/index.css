@@ -61,3 +61,6 @@ input::-webkit-inner-spin-button {
     66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
     100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
 }
+.styles_sigContainer__X3BFg{
+  width: 100% !important;
+}

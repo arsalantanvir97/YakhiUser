@@ -1,32 +1,39 @@
-import React from "react";
-import AllHerbs from "../components/AllHerbs";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import React from 'react'
+import AllHerbs from '../components/AllHerbs'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import PrivateRouteSlider from '../components/PrivateRouteSlider'
 const AboutCompany = () => {
   return (
     <>
       <Header />
       <PrivateRouteSlider />
       <div>
-        <div className="container-fluid my-5 py-4">
-          <div className="row">
-            <div className="col-11 mx-auto">
-              <div className="about-company">
-                <div className="row justify-content-center align-items-center">
-                  <div className="col-xl-6 col-10">
+        <div className='container-fluid my-5 py-4'>
+          <div className='row'>
+            <h4
+              className='sub-heading'
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                fontSize: window.innerWidth < 590 && 14,
+              }}
+            >
+              Yah'ki Awakened Eye of Lotus Botanical Health Club
+            </h4>
+            <div className='col-11 mx-auto'>
+              <div className='about-company'>
+                <div className='row justify-content-center align-items-center'>
+                  <div className='col-xl-6 col-10'>
                     <img
-                      src="images/about-yahki-image.jpg"
-                      alt=""
-                      className="img-fluid"
+                      src='images/about-yahki-image.jpg'
+                      alt=''
+                      className='img-fluid'
                     />
                   </div>
-                  <div className="col-xl-6 col-12 mt-xl-0 mt-5">
-                    <h4 className="sub-heading">
-                      Yah'ki Awakened Eye of Lotus Botanical Health Club
-                    </h4>
-                    <h3 className="main-heading">Our Company</h3>
-                    <p className="general-para dark-text">
+                  <div className='col-xl-6 col-12 mt-xl-0 mt-5'>
+                    <h3 className='main-heading'>Our Company</h3>
+                    <p className='general-para dark-text'>
                       Welcome to Yah’ki Awakened LLC where Peace, Health, Energy
                       and Awareness is always first priority. Yahki Awakened
                       &amp; Eye of Lotus Botanicals is a committed family who
@@ -38,7 +45,7 @@ const AboutCompany = () => {
                       potential. Our primary methodology for healing is Amino
                       Acid Therapy.
                     </p>
-                    <p className="general-para dark-text mt-4">
+                    <p className='general-para dark-text mt-4'>
                       This journey began after our founder, Yah’ki, healed
                       himself from high blood pressure, diabetes, kidney
                       failure, rheumatoid arthritis, heart disease, obesity, and
@@ -50,8 +57,8 @@ const AboutCompany = () => {
                       could show others how to restore their health as well.
                     </p>
                   </div>
-                  <div className="col-12 my-5">
-                    <p className="general-para dark-text">
+                  <div className='col-12 my-5'>
+                    <p className='general-para dark-text'>
                       Yah’ki is a Master Herbalist and highly knowledgeable in
                       Theoretical Psychology, Metaphysics, and Biochemistry. He
                       has been studying and practicing herbalism (Natural
@@ -61,7 +68,7 @@ const AboutCompany = () => {
                       Herpes, Sickle Cell Anemia, various Cancers, Autoimmune
                       Diseases, and many more.
                     </p>
-                    <p className="general-para dark-text mt-4">
+                    <p className='general-para dark-text mt-4'>
                       Our ultimate goal is to provide the masses with the
                       necessary tools for healing. Through proper nutrition,
                       amino acid therapy, education, for your health can be
@@ -78,9 +85,9 @@ const AboutCompany = () => {
                 </div>
               </div>
               {/* Our Mission */}
-              <div className="mission mb-5 pb-5">
-                <div className="row justify-content-center align-items-center">
-                  <div className="col-xl-7 col-lg-12 my-xl-0 my-5">
+              <div className='mission mb-5 pb-5'>
+                <div className='row justify-content-center align-items-center'>
+                  <div className='col-xl-7 col-lg-12 my-xl-0 my-5'>
                     <h5>Yah'ki Awakened Eye of Lotus Botanical Health Club</h5>
                     <h3>Our Mission</h3>
                     <p>
@@ -88,7 +95,7 @@ const AboutCompany = () => {
                       this westernized system that has a strong hold on my
                       people. Furthermore, to ignite the spark in their
                       melanated, cosmic minds, while lifting the veils from
-                      their eyes.{" "}
+                      their eyes.{' '}
                     </p>
                     <p>
                       Once we realize that our subconscious mind have been
@@ -96,7 +103,7 @@ const AboutCompany = () => {
                       there is a diabolical plot to exterminate and eliminate
                       the so called “black man and woman” off planet earth. Then
                       and only then will we begin to question any and all things
-                      they have ever told and taught us.{" "}
+                      they have ever told and taught us.{' '}
                     </p>
                     <p>
                       For instance, who taught you religion, medicine,
@@ -107,29 +114,29 @@ const AboutCompany = () => {
                       and intelligent pathways of your thinking. Everything
                       mentioned, have been taught to you by the same westernized
                       society that enslaved, raped, hung, murdered and castrated
-                      our people for thousands of years.{" "}
+                      our people for thousands of years.{' '}
                     </p>
                   </div>
-                  <div className="col-xl-4 col-lg-9 mx-auto text-center">
+                  <div className='col-xl-4 col-lg-9 mx-auto text-center'>
                     <img
-                      src="images/mission-aside-image.png"
-                      alt=""
-                      className="img-fluid"
+                      src='images/mission-aside-image.png'
+                      alt=''
+                      className='img-fluid'
                     />
                   </div>
                 </div>
                 <img
-                  src="images/falling-leaf-1-image.png"
-                  alt=""
-                  className="img-fluid over-image-1"
+                  src='images/falling-leaf-1-image.png'
+                  alt=''
+                  className='img-fluid over-image-1'
                 />
                 <img
-                  src="images/Cinnamon.svg"
-                  alt=""
-                  className="img-fluid over-image-2"
+                  src='images/Cinnamon.svg'
+                  alt=''
+                  className='img-fluid over-image-2'
                 />
               </div>
-              <AllHerbs/>
+              <AllHerbs />
             </div>
           </div>
         </div>
@@ -137,7 +144,7 @@ const AboutCompany = () => {
 
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default AboutCompany;
+export default AboutCompany

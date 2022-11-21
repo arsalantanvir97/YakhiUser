@@ -1349,6 +1349,7 @@
     }
     .menuheight{
         height: auto;
+        margin-bottom: 15px;
     }
     .main-banner {
         min-height: 220px;

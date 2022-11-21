@@ -914,19 +914,28 @@ const Header = ({ history }) => {
                     </div>
                   </nav>
                   <div className='tabheight'></div>
-                  <h1 className='banner-h2 aos-init aos-animate bannerheading'>
-                    THE WORLDS #1 HIGHEST QUALITY, WILD CRAFTED, HEALING HERBS &
-                    HERBAL PROGRAMS{' '}
+                  <h1
+                    className='banner-h2 aos-init aos-animate bannerheading'
+                    style={{ fontSize: 44 }}
+                  >
+                    THE WORLDS #1 HIGHEST QUALITY, WILD CRAFTED, HERBS & HERBAL
+                    PROGRAMS
                   </h1>
                   <br></br>
-                  <p className='bannerpara'>
+                  <p
+                    className='bannerpara'
+                    style={{ lineHeight: '10px !important' }}
+                  >
                     Intracellular Detoxification, Cellular Regeneration, &
                     Holistic Revitalization, Yah'ki Awakened Keeps Everyone
                     Healthy
                   </p>{' '}
                 </div>
                 <Link
-                  to='/Memberships'
+                  to={userInfo ? '/Memberships' : '#'}
+                  onClick={() => {
+                    !userInfo && UnauthorizedAlert()
+                  }}
                   className='btn banner-btn aos-init aos-animate mt-3 abccc'
                   data-aos='zoom-in-left'
                   data-aos-duration={1500}

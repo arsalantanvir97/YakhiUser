@@ -1,86 +1,96 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { baseURL, imageURL } from "../utils/api";
-import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import { ListSkeleton } from "../components/MultipleSkeleton";
-import PrivateRouteSlider from "../components/PrivateRouteSlider";
-import AllHerbs from "../components/AllHerbs";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { baseURL, imageURL } from '../utils/api'
+import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import { ListSkeleton } from '../components/MultipleSkeleton'
+import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import AllHerbs from '../components/AllHerbs'
 const Document = () => {
-  const [docs, setdocs] = useState([]);
-  const [loading, setloading] = useState(false);
+  const [docs, setdocs] = useState([])
+  const [loading, setloading] = useState(false)
 
   const gettingAllDOucs = async () => {
-    setloading(true);
-    const res = await axios.get(`${baseURL}/document/getallDocuments/`);
-    setloading(false);
+    setloading(true)
+    const res = await axios.get(`${baseURL}/document/getallDocuments/`)
+    setloading(false)
 
-    console.log("res", res);
-    setdocs(res?.data?.getAlldocss);
-  };
+    console.log('res', res)
+    setdocs(res?.data?.getAlldocss)
+  }
   useEffect(() => {
-    gettingAllDOucs();
-  }, []);
+    gettingAllDOucs()
+  }, [])
 
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
+      <PrivateRouteSlider />
 
-
-      <section className="body-system py-5 my-5">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-11 mx-auto">
-              <div className="row">
-                <div className="col-9 mx-auto text-center">
-                  <h4 className="sub-heading">
-                    Yah'ki Awakened Eye of Lotus Botanical Health Club
-                  </h4>
-                  <h3 className="main-heading">Document Downloads</h3>
-                  <p className="general-para mb-4">
+      <section className='body-system py-5 my-5'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <h4
+              className='sub-heading'
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                fontSize: window.innerWidth < 590 && 14,
+              }}
+            >
+              Yah'ki Awakened Eye of Lotus Botanical Health Club
+            </h4>
+            <div className='col-11 mx-auto'>
+              <div className='row'>
+                <div className='col-9 mx-auto text-center'>
+                  <h3 className='main-heading'>Document Downloads</h3>
+                  <p className='general-para mb-4'>
                     The Best Way To Ensure You Order The Appropriate Herbal
                     Botanicals For Healing, Is By Cooking A Conusltation
                   </p>
                 </div>
               </div>
-              <div className="row mt-5">
-              {loading ? (
-                      <ListSkeleton listsToRender={16} />
-               
-                    ) : (
-                docs?.length > 0 &&
+              <div className='row mt-5'>
+                {loading ? (
+                  <ListSkeleton listsToRender={16} />
+                ) : (
+                  docs?.length > 0 &&
                   docs?.map((doc, index) => (
-                    <div className="col-lg-4 col-md-6">
-                      <div className="body-system-type">
+                    <div className='col-lg-4 col-md-6'>
+                      <div className='body-system-type'>
                         <img
                           src={
                             doc?.pdfimage?.length > 0 &&
                             ` ${imageURL}${doc?.pdfimage}`
                           }
-                          alt=""
-                          className="img-fluid"
+                          alt=''
+                          className='img-fluid'
                         />
-                        <div className="body-system-content">
+                        <div className='body-system-content'>
                           <h6>Document</h6>
-                          <h4>{doc?.pdfname}</h4>
+                          <h4
+                            style={{ fontSize: window.innerWidth < 520 && 14 }}
+                          >
+                            {doc?.pdfname}
+                          </h4>
                           <Link
-                            to="#"
+                            to='#'
                             onClick={() =>
                               window.open(
                                 `${baseURL}/download/${doc?.pdfdocs}`,
-                                "_blank"
+                                '_blank'
                               )
                             }
-                            className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
+                            className='btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0'
                           >
                             Download
                           </Link>
                         </div>
                       </div>
                     </div>
-                  )))}
+                  ))
+                )}
                 {/* Castor Packs */}
                 {/* <div className="col-lg-4 col-md-6">
                   <div className="body-system-type">
@@ -242,14 +252,14 @@ const Document = () => {
                   </div>
                 </div> */}
               </div>
-              <AllHerbs/>
+              <AllHerbs />
             </div>
           </div>
         </div>
       </section>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Document;
+export default Document

@@ -1284,7 +1284,10 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                style={{ height: 390, width: 690 }}
+                style={{
+                  height: window.innerWidth < 550 ? 200 : 390,
+                  width: 690,
+                }}
                 src='images/brain.png'
                 alt=''
                 className='img-fluid'
@@ -1515,8 +1518,8 @@ const Index = ({ history }) => {
                       <p style={{ textAlign: 'center' }}>
                         <span style={{ fontSize: '14pt', fontWeight: 'bold' }}>
                           <strong>
-                            Potential Client Disclaimer and Liability
-                            Information
+                            POTENTIAL CLIENT DISCLAIMER AND LIABILITY
+                            INFORMATION
                           </strong>
                         </span>
                       </p>
@@ -1543,19 +1546,13 @@ const Index = ({ history }) => {
                         <strong>
                           Yah’ki Awakened Eye of Lotus Botanical Club,&nbsp;
                         </strong>
-                        As a member of the&nbsp;
-                        <span style={{ fontWeight: 400 }}>
-                          <strong>
-                            Yah’ki Awakened Eye of Lotus Botanical Club
-                          </strong>
-                        </span>
-                        , I understand that I have the constitutional right to
+                        I understand that I have the constitutional right to
                         pursue various health practices and consult whom I wish
                         to achieve my goals for better health. I enter this
                         agreement on the behalf of any person I am legally
                         responsible for which includes myself, a minor
                         dependent, or any adult I am legally responsible for.
-                        This agreement is between me and the&nbsp;
+                        This agreement is between me and the &nbsp;
                         <span style={{ fontWeight: 400 }}>
                           <strong>
                             Yah’ki Awakened Eye of Lotus Botanical Club
@@ -1606,7 +1603,8 @@ const Index = ({ history }) => {
                             Yah’ki Awakened Eye of Lotus Botanical Club
                           </strong>
                           &nbsp; hold malpractice insurance and I agree to not
-                          file a malpractice lawsuit against any member of&nbsp;
+                          file a malpractice lawsuit against any member of
+                          &nbsp;
                           <strong>
                             Yah’ki Awakened Eye of Lotus Botanical Club
                           </strong>
@@ -1616,7 +1614,7 @@ const Index = ({ history }) => {
                       </p>
                       <p>
                         <span style={{ fontWeight: 400 }}>
-                          I attest that my actions with the&nbsp;
+                          I attest that my actions with the &nbsp;
                           <strong>
                             Yah’ki Awakened Eye of Lotus Botanical Club
                           </strong>
@@ -1630,7 +1628,7 @@ const Index = ({ history }) => {
                           advice or recommendations given to me by any member
                           of&nbsp;
                           <strong>
-                            Yah’ki Awakened Eye of Lotus Botanical Club
+                            Yah’ki Awakened Eye of Lotus Botanical Club.
                           </strong>
                         </span>
                       </p>

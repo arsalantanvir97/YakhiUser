@@ -1,12 +1,23 @@
-import React from "react";
+import React from 'react'
 
 const AllHerbs = () => {
   return (
     <>
-      {" "}
-      <div className="row mt-5">
-        <div className="col-12 text-center">
-          <div className="about-bottom-banner">
+      {' '}
+      <div className='row mt-5'>
+        <div className='col-12 text-center'>
+          <div
+            className='about-bottom-banner'
+            style={{
+              width: '100% !important',
+              height: '100% !important',
+              padding: '0px !important',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <h3>
               All Herbs Are Organic Alkaline and Are Naturally Wildcrafted from
               the Land of their Origin
@@ -21,7 +32,7 @@ const AllHerbs = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AllHerbs;
+export default AllHerbs

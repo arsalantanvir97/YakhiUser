@@ -162,7 +162,7 @@ const Donate = () => {
                             Please send a money order payable to YAHKI AWAKENED
                             LLC to:
                           </p>
-                          <h3>7217 Watson Rd PO 190563 St. Louis, Mo 6311</h3>
+                          <h3>7217 Watson Rd PO 190563 St. Louis, Mo 63119</h3>
                         </div>
                       </div>
                     </div>

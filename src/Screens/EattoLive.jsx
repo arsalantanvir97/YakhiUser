@@ -1,87 +1,89 @@
-import React from "react";
-import AllHerbs from "../components/AllHerbs";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import React from 'react'
+import AllHerbs from '../components/AllHerbs'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import PrivateRouteSlider from '../components/PrivateRouteSlider'
 
 const EattotLive = () => {
   return (
     <>
       <Header />
-    <PrivateRouteSlider/>
-      <section className="about-page">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-11 mx-auto">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <h4 className="sub-heading">
+      <PrivateRouteSlider />
+      <section className='about-page'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-md-11 mx-auto'>
+              <div className='row'>
+                <div className='col-md-12 text-center'>
+                  {/* <h4 className="sub-heading">
                     There's No Such Thing As A Disease That Can't Be Cured!
-                  </h4>
-                  <h3 className="main-heading">
+                  </h4> */}
+                  <h3 className='main-heading'>
                     Let Your Food Be Your Medicine
                   </h3>
-                  <p className="general-para px-sm-5">
-                    First I would like to give all Praises and Glory to THE MOST
-                    HIGH, for my deep passion in herbal medicine and my gifted
-                    healing hands. It also would be foolish of me not to
-                    acknowledge Alfredo Bowman known as Dr. Sebi (11/26/1933 –
-                    08/06/2016) who’s teachings are what motivated and inspired
-                    me to be a teacher in the plant based holistic health
-                    community.
+                  <p className='general-para px-sm-5'>
+                    First, I would like to give all Praises and Glory to THE
+                    MOST HIGHEST, for my deep passion in herbal medicine and my
+                    gifted healing hands. It also would be foolish of me not to
+                    acknowledge those who have inspired me. Much honor and
+                    praises to Alfredo Bowman known as Dr. Sebi (11/26/1933 –
+                    08/06/2016), Dr Llaila Afrika (Transitioned 03/22/2020), Dr
+                    Max Gerson (10/18/1881 - 03/08/1959) and finally Dr Robert
+                    Morse. Their teachings are what motivated and inspired me to
+                    be a teacher in the plant based holistic health community.
                   </p>
                 </div>
               </div>
               {/* fruit bucket */}
-              <div className="row my-5">
-                <div className="col-12 text-center">
+              <div className='row my-5'>
+                <div className='col-12 text-center'>
                   <img
-                    src="images/fruit-basket.png"
-                    alt=""
-                    className="img-fluid"
+                    src='images/fruit-basket.png'
+                    alt=''
+                    className='img-fluid'
                   />
                 </div>
               </div>
               {/* Fruits, Berries, and Melons */}
-              <div className="row my-5">
-                <div className="col-12 text-center">
-                  <h3 className="fruits-heading">
+              <div className='row my-5'>
+                <div className='col-12 text-center'>
+                  <h3 className='fruits-heading'>
                     Fruits, Berries, and Melons
                   </h3>
-                  <p className="fruits-para">
-                    Everyone keeps asking me how I am healing diseases so
-                    effectively and so fast. My reply is simple, I don’t heal
-                    anything. YHWH (GOD) created the fleshly vehicle (body) to
-                    heal itself if the MIND allows it. As long as you are eating
-                    and consuming what your body was designed to digest, you can
-                    over come any Illness. However, sometimes we need an extra
-                    healing boost from God’s Miracle Electric Plants we call
-                    Alkaline Herbs!
+                  <p className='fruits-para'>
+                    Everyone keeps asking me how my approach and natural
+                    methodology work so effectively and so fast. My reply is
+                    simple, I don’t heal anything. YHWH (GOD) created the
+                    fleshly vehicle (body) to heal itself if the MIND allows it.
+                    If you are eating and consuming what your body was designed
+                    to digest, you can overcome almost any Illness. However,
+                    sometimes we need an extra healing boost from God’s Miracle
+                    Electric Plants we call Alkaline Herbs!
                   </p>
-                  <p className="fruits-para">
+                  <p className='fruits-para'>
                     It’s Vitally important that we inner-stand cosmic
                     arrangement, genetic predisposition, and their connection to
                     diet, disease and healing. Your liver grounds your brain,
                     your heart pulsates an electric magnetic field, your pineal
-                    gland produce carbon, your pituitary gland produces copper,
+                    gland produces carbon, your pituitary gland produces copper,
                     and they all create an electrical spiral force in your
-                    nervous system. You Are An Electrical Living Being.
-                    Therefore you were designed to eat Electrical Living Foods.
+                    nervous system. You Are an Electrical Living Being.
+                    Therefore, you were designed to eat Electrical Living Foods.
                   </p>
-                  <p className="fruits-para">
-                    The very foods you are supposed to eat are from the land
-                    mass your ancestors (The First Blood) originated from. The
+                  <p className='fruits-para'>
+                    The very foods you are supposed to eat are from the landmass
+                    your ancestors (The First Blood) originated from. The
                     original people did not eat MEAT, DAIRY, YEAST, GRAINS,
-                    PROTEIN or COMPLEX SUGARS.The Very Torah That Most Of Us
-                    Claim To Believe and Follow Actually State these facts.
+                    PROTEIN or COMPLEX SUGARS. The Very Torah That Most of Us
+                    Claim to Believe and Follow Actually State these facts.
                   </p>
                 </div>
               </div>
               {/* Blockquote from Gnesis */}
-              <div className="row my-5">
-                <div className="col-12 text-center">
-                  <p className="blockquote">
-                    <span className="quote">"</span> And God said, Behold, I
+              <div className='row my-5'>
+                <div className='col-12 text-center'>
+                  <p className='blockquote'>
+                    <span className='quote'>"</span> And God said, Behold, I
                     have given you every herb bearing seed, which is upon the
                     face of all the earth, and every tree, in the which is the
                     fruit of a tree yielding seed; to you it shall be for meat.
@@ -90,60 +92,60 @@ const EattotLive = () => {
                     wherein there is life, I have given every green herb for
                     meat: and it was so. And God saw every thing that he had
                     made, and, behold, it was very good. And the evening and the
-                    morning were the sixth day.<span className="quote">"</span>
+                    morning were the sixth day.<span className='quote'>"</span>
                   </p>
-                  <p className="text-center quote-from">Genesis 1:29-31</p>
+                  <p className='text-center quote-from'>Genesis 1:29-31</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="diets">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-11 mx-auto">
-              <div className="row my-5 justify-content-center">
-                <div className="col-12 text-center mb-5">
+      <section className='diets'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-11 mx-auto'>
+              <div className='row my-5 justify-content-center'>
+                <div className='col-12 text-center mb-5'>
                   <h3>MUCUS-LESS DIET</h3>
                 </div>
-                <div className="col-lg-6 col-md-10">
-                  <div className="diet-chart">
+                <div className='col-lg-6 col-md-10'>
+                  <div className='diet-chart'>
                     <h4>MUCUS-LESS</h4>
                     <div
-                      className="panel-group mb-4"
-                      id="accordion"
-                      role="tablist"
-                      aria-multiselectable="true"
+                      className='panel-group mb-4'
+                      id='accordion'
+                      role='tablist'
+                      aria-multiselectable='true'
                     >
                       {/* GREEN LEAF VEGETABLES (MUCUS-LESS) */}
-                      <div className="panel panel-default mb-3">
+                      <div className='panel panel-default mb-3'>
                         <div
-                          className="panel-heading"
-                          role="tab"
-                          id="mucus-less-1"
+                          className='panel-heading'
+                          role='tab'
+                          id='mucus-less-1'
                         >
-                          <h4 className="panel-title">
+                          <h4 className='panel-title'>
                             <a
-                              className="collapsed"
-                              data-toggle="collapse"
-                              data-parent="#accordion"
-                              href="#greenLeaf"
-                              aria-expanded="false"
-                              aria-controls="greenleaf"
+                              className='collapsed'
+                              data-toggle='collapse'
+                              data-parent='#accordion'
+                              href='#greenLeaf'
+                              aria-expanded='false'
+                              aria-controls='greenleaf'
                             >
                               GREEN LEAF VEGETABLES (MUCUS-LESS)
                             </a>
                           </h4>
                         </div>
                         <div
-                          id="greenLeaf"
-                          className="panel-collapse collapse"
-                          role="tabpanel"
-                          aria-labelledby="mucus-less-1"
+                          id='greenLeaf'
+                          className='panel-collapse collapse'
+                          role='tabpanel'
+                          aria-labelledby='mucus-less-1'
                         >
-                          <div className="panel-body">
-                            <ul className="system-list ml-4 py-4">
+                          <div className='panel-body'>
+                            <ul className='system-list ml-4 py-4'>
                               <li>Arugula</li>
                               <li>Bok Choi</li>
                               <li>Cabbage</li>
@@ -168,33 +170,33 @@ const EattotLive = () => {
                         </div>
                       </div>
                       {/* DRIED OR BAKED FRUITS (MUCUS-LESS) */}
-                      <div className="panel panel-default mb-3">
+                      <div className='panel panel-default mb-3'>
                         <div
-                          className="panel-heading"
-                          role="tab"
-                          id="mucus-less-2"
+                          className='panel-heading'
+                          role='tab'
+                          id='mucus-less-2'
                         >
-                          <h4 className="panel-title">
+                          <h4 className='panel-title'>
                             <a
-                              className="collapsed"
-                              data-toggle="collapse"
-                              data-parent="#accordion"
-                              href="#dried-fruits"
-                              aria-expanded="false"
-                              aria-controls="driedFruits"
+                              className='collapsed'
+                              data-toggle='collapse'
+                              data-parent='#accordion'
+                              href='#dried-fruits'
+                              aria-expanded='false'
+                              aria-controls='driedFruits'
                             >
                               DRIED OR BAKED FRUITS (MUCUS-LESS)
                             </a>
                           </h4>
                         </div>
                         <div
-                          id="dried-fruits"
-                          className="panel-collapse collapse"
-                          role="tabpanel"
-                          aria-labelledby="mucus-less-2"
+                          id='dried-fruits'
+                          className='panel-collapse collapse'
+                          role='tabpanel'
+                          aria-labelledby='mucus-less-2'
                         >
-                          <div className="panel-body">
-                            <ul className="system-list ml-4 py-4">
+                          <div className='panel-body'>
+                            <ul className='system-list ml-4 py-4'>
                               <li>Apples</li>
                               <li>Apricots</li>
                               <li>Bananas</li>
@@ -220,33 +222,33 @@ const EattotLive = () => {
                         </div>
                       </div>
                       {/* RIPE FRUITS (MUCUS-LESS) */}
-                      <div className="panel panel-default mb-3">
+                      <div className='panel panel-default mb-3'>
                         <div
-                          className="panel-heading"
-                          role="tab"
-                          id="mucus-less-3"
+                          className='panel-heading'
+                          role='tab'
+                          id='mucus-less-3'
                         >
-                          <h4 className="panel-title">
+                          <h4 className='panel-title'>
                             <a
-                              className="collapsed"
-                              data-toggle="collapse"
-                              data-parent="#accordion"
-                              href="#ripeFruits"
-                              aria-expanded="false"
-                              aria-controls="ripeFruits"
+                              className='collapsed'
+                              data-toggle='collapse'
+                              data-parent='#accordion'
+                              href='#ripeFruits'
+                              aria-expanded='false'
+                              aria-controls='ripeFruits'
                             >
                               RIPE FRUITS (MUCUS-LESS)
                             </a>
                           </h4>
                         </div>
                         <div
-                          id="ripeFruits"
-                          className="panel-collapse collapse"
-                          role="tabpanel"
-                          aria-labelledby="mucus-less-3"
+                          id='ripeFruits'
+                          className='panel-collapse collapse'
+                          role='tabpanel'
+                          aria-labelledby='mucus-less-3'
                         >
-                          <div className="panel-body">
-                            <ul className="system-list ml-4 py-4">
+                          <div className='panel-body'>
+                            <ul className='system-list ml-4 py-4'>
                               <li>Apples</li>
                               <li>Apricots</li>
                               <li>Banana</li>
@@ -284,36 +286,36 @@ const EattotLive = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="diet-chart">
+                  <div className='diet-chart'>
                     <h4>ELECTRICAL FOODS</h4>
                     {/* ELECTRICAL FOODS */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-less-4"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-less-4'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#electricalFoods"
-                            aria-expanded="false"
-                            aria-controls="electricalFoods"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#electricalFoods'
+                            aria-expanded='false'
+                            aria-controls='electricalFoods'
                           >
                             ELECTRICAL FOODS
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="electricalFoods"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-less-4"
+                        id='electricalFoods'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-less-4'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               Vegetables (Avoid using a microwave. It will kill
                               your food.)
@@ -457,153 +459,153 @@ const EattotLive = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-10">
-                  <div className="diet-chart">
+                <div className='col-lg-6 col-md-10'>
+                  <div className='diet-chart'>
                     <h4>ALL OR RELATIVELY STARCHLESS/MUCUS-LESS</h4>
                     {/* RAW VEGETABLES, ROOTS, STEMS AND FRUIT */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-less-5"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-less-5'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#rawVegies"
-                            aria-expanded="false"
-                            aria-controls="rawVegies"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#rawVegies'
+                            aria-expanded='false'
+                            aria-controls='rawVegies'
                           >
                             RAW VEGETABLES, ROOTS, STEMS AND FRUIT
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="rawVegies"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-less-5"
+                        id='rawVegies'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-less-5'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
-                            <li className="font_8">Asparagus</li>
-                            <li className="font_8">Black Radish, with skin</li>
-                            <li className="font_8">Brussels Sprouts</li>
-                            <li className="font_8">Celery</li>
-                            <li className="font_8">Cucumbers</li>
-                            <li className="font_8">Dandelion</li>
-                            <li className="font_8">Dill</li>
-                            <li className="font_8">Endives</li>
-                            <li className="font_8">Green Onions</li>
-                            <li className="font_8">Horse Radish, with skin</li>
-                            <li className="font_8">Leeks</li>
-                            <li className="font_8">Onions</li>
-                            <li className="font_8">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
+                            <li className='font_8'>Asparagus</li>
+                            <li className='font_8'>Black Radish, with skin</li>
+                            <li className='font_8'>Brussels Sprouts</li>
+                            <li className='font_8'>Celery</li>
+                            <li className='font_8'>Cucumbers</li>
+                            <li className='font_8'>Dandelion</li>
+                            <li className='font_8'>Dill</li>
+                            <li className='font_8'>Endives</li>
+                            <li className='font_8'>Green Onions</li>
+                            <li className='font_8'>Horse Radish, with skin</li>
+                            <li className='font_8'>Leeks</li>
+                            <li className='font_8'>Onions</li>
+                            <li className='font_8'>
                               Peppers (Green, Red, Yellow, or Orange)
                             </li>
-                            <li className="font_8">Red Beets</li>
-                            <li className="font_8">Red Cabbage</li>
-                            <li className="font_8">Rhubarb</li>
-                            <li className="font_8">Sea Vegetables</li>
-                            <li className="font_8">
+                            <li className='font_8'>Red Beets</li>
+                            <li className='font_8'>Red Cabbage</li>
+                            <li className='font_8'>Rhubarb</li>
+                            <li className='font_8'>Sea Vegetables</li>
+                            <li className='font_8'>
                               Sprouts (Alfalfa, Brassica, Green-Leaf, Radish)
                             </li>
-                            <li className="font_8">Sugar Beets</li>
-                            <li className="font_8">Tomatoes</li>
-                            <li className="font_8">Young Radish</li>
-                            <li className="font_8">Zucchini</li>
+                            <li className='font_8'>Sugar Beets</li>
+                            <li className='font_8'>Tomatoes</li>
+                            <li className='font_8'>Young Radish</li>
+                            <li className='font_8'>Zucchini</li>
                           </ul>
                         </div>
                       </div>
                     </div>
                     {/* 100% FRUIT JELLIES, SYRUPS AND HONEY */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-less-6"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-less-6'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#fruitJellies"
-                            aria-expanded="false"
-                            aria-controls="fruitJellies"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#fruitJellies'
+                            aria-expanded='false'
+                            aria-controls='fruitJellies'
                           >
                             100% FRUIT JELLIES, SYRUPS AND HONEY
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="fruitJellies"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-less-6"
+                        id='fruitJellies'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-less-6'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
-                            <li className="font_8">Asparagus</li>
-                            <li className="font_8">Black Radish, with skin</li>
-                            <li className="font_8">Brussels Sprouts</li>
-                            <li className="font_8">Celery</li>
-                            <li className="font_8">Cucumbers</li>
-                            <li className="font_8">Dandelion</li>
-                            <li className="font_8">Dill</li>
-                            <li className="font_8">Endives</li>
-                            <li className="font_8">Green Onions</li>
-                            <li className="font_8">Horse Radish, with skin</li>
-                            <li className="font_8">Leeks</li>
-                            <li className="font_8">Onions</li>
-                            <li className="font_8">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
+                            <li className='font_8'>Asparagus</li>
+                            <li className='font_8'>Black Radish, with skin</li>
+                            <li className='font_8'>Brussels Sprouts</li>
+                            <li className='font_8'>Celery</li>
+                            <li className='font_8'>Cucumbers</li>
+                            <li className='font_8'>Dandelion</li>
+                            <li className='font_8'>Dill</li>
+                            <li className='font_8'>Endives</li>
+                            <li className='font_8'>Green Onions</li>
+                            <li className='font_8'>Horse Radish, with skin</li>
+                            <li className='font_8'>Leeks</li>
+                            <li className='font_8'>Onions</li>
+                            <li className='font_8'>
                               Peppers (Green, Red, Yellow, or Orange)
                             </li>
-                            <li className="font_8">Red Beets</li>
-                            <li className="font_8">Red Cabbage</li>
-                            <li className="font_8">Rhubarb</li>
-                            <li className="font_8">Sea Vegetables</li>
-                            <li className="font_8">
+                            <li className='font_8'>Red Beets</li>
+                            <li className='font_8'>Red Cabbage</li>
+                            <li className='font_8'>Rhubarb</li>
+                            <li className='font_8'>Sea Vegetables</li>
+                            <li className='font_8'>
                               Sprouts (Alfalfa, Brassica, Green-Leaf, Radish)
                             </li>
-                            <li className="font_8">Sugar Beets</li>
-                            <li className="font_8">Tomatoes</li>
-                            <li className="font_8">Young Radish</li>
-                            <li className="font_8">Zucchini</li>
+                            <li className='font_8'>Sugar Beets</li>
+                            <li className='font_8'>Tomatoes</li>
+                            <li className='font_8'>Young Radish</li>
+                            <li className='font_8'>Zucchini</li>
                           </ul>
                         </div>
                       </div>
                     </div>
                     {/* BAKED VEGETABLES, ROOTS, STEMS, & FRUIT */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-less-7"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-less-7'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#bakedVegies"
-                            aria-expanded="false"
-                            aria-controls="bakedVegies"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#bakedVegies'
+                            aria-expanded='false'
+                            aria-controls='bakedVegies'
                           >
                             BAKED VEGETABLES, ROOTS, STEMS, &amp; FRUIT
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="bakedVegies"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-less-7"
+                        id='bakedVegies'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-less-7'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>Acorn Squash (Baked)</li>
                             <li>Broccoli (Baked or Steamed)</li>
                             <li>Brussels Sprouts (Steamed)</li>
@@ -622,42 +624,42 @@ const EattotLive = () => {
                   </div>
                 </div>
               </div>
-              <div className="row my-5 justify-content-center">
-                <div className="col-12 text-center mb-5">
-                  <h3 className="mb-2">MUCUS FORMING FOODS</h3>
+              <div className='row my-5 justify-content-center'>
+                <div className='col-12 text-center mb-5'>
+                  <h3 className='mb-2'>MUCUS FORMING FOODS</h3>
                   <h5>LIST OF PUS, ACID, AND MUCUS FORMING FOODS</h5>
                 </div>
-                <div className="col-lg-6 col-md-10">
-                  <div className="diet-chart">
+                <div className='col-lg-6 col-md-10'>
+                  <div className='diet-chart'>
                     <h4>MUCUS FORMING FOODS</h4>
                     {/* FLESH (PUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-1"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-1'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#flesh"
-                            aria-expanded="false"
-                            aria-controls="flesh"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#flesh'
+                            aria-expanded='false'
+                            aria-controls='flesh'
                           >
                             FLESH (PUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="flesh"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-1"
+                        id='flesh'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-1'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>Blood of Animals</li>
                             <li>Eggs (All Kinds)</li>
                             <li>Lard</li>
@@ -676,33 +678,33 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* FISH (PUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-2"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-2'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#fish"
-                            aria-expanded="false"
-                            aria-controls="fish"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#fish'
+                            aria-expanded='false'
+                            aria-controls='fish'
                           >
                             FISH (PUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="fish"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-2"
+                        id='fish'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-2'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               Crustacean (Crab, Crawfish, Lobster, Shrimp)
                             </li>
@@ -718,33 +720,33 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* DAIRY PRODUCTS (PUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-3"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-3'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#dairyProducts"
-                            aria-expanded="false"
-                            aria-controls="dairyProducts"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#dairyProducts'
+                            aria-expanded='false'
+                            aria-controls='dairyProducts'
                           >
                             DAIRY PRODUCTS (PUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="dairyProducts"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-3"
+                        id='dairyProducts'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-3'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>Butter, Cow</li>
                             <li>Buttermilk</li>
                             <li>Cheese (All Kinds)</li>
@@ -761,36 +763,36 @@ const EattotLive = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="diet-chart">
+                  <div className='diet-chart'>
                     <h4>PUS AND/OR VERY MUCUS-FORMING</h4>
                     {/* PROCESSED FOODS (PUS/VERY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-4"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-4'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#processedFoods"
-                            aria-expanded="false"
-                            aria-controls="processedFoods"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#processedFoods'
+                            aria-expanded='false'
+                            aria-controls='processedFoods'
                           >
                             PROCESSED FOODS (PUS/VERY MUCUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="processedFoods"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-4"
+                        id='processedFoods'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-4'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>Dried Convenience Foods</li>
                             <li>Fast Foods</li>
                             <li>Frozen Convenience Foods</li>
@@ -801,20 +803,20 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* CONFECTIONARIES/CANDY/SWEETS (PUS OR VERY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-5"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-5'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#candies"
-                            aria-expanded="false"
-                            aria-controls="candies"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#candies'
+                            aria-expanded='false'
+                            aria-controls='candies'
                           >
                             CONFECTIONARIES/CANDY/SWEETS (PUS OR VERY
                             MUCUS-FORMING)
@@ -822,13 +824,13 @@ const EattotLive = () => {
                         </h4>
                       </div>
                       <div
-                        id="candies"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-5"
+                        id='candies'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-5'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               <strong>Baked Goods</strong> – All kinds including
                               pies, cakes, pastries, etc.
@@ -852,20 +854,20 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* VEGETARIAN/VEGAN PROCESSED FOODS (MODERATE TO VERY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-6"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-6'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#processedVegan"
-                            aria-expanded="false"
-                            aria-controls="processedVegan"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#processedVegan'
+                            aria-expanded='false'
+                            aria-controls='processedVegan'
                           >
                             VEGETARIAN/VEGAN PROCESSED FOODS (MODERATE TO VERY
                             MUCUS-FORMING)
@@ -873,13 +875,13 @@ const EattotLive = () => {
                         </h4>
                       </div>
                       <div
-                        id="processedVegan"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-6"
+                        id='processedVegan'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-6'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>Chips (corn, potato, plantain, etc.)</li>
                             <li>
                               Frozen Vegan Breakfast Foods (waffles, etc.)
@@ -894,33 +896,33 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* OILS (FATTY AND MILDLY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-7"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-7'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#oils"
-                            aria-expanded="false"
-                            aria-controls="oils"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#oils'
+                            aria-expanded='false'
+                            aria-controls='oils'
                           >
                             OILS (FATTY AND MILDLY MUCUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="oils"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-7"
+                        id='oils'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-7'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               <strong>Oil</strong> – All types: Avocado Oil,
                               Chia Seed, Coconut, Corn, Cotton Seed, Cotton
@@ -933,20 +935,20 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* STARCHY OR FATTY VEGETABLES AND FRUITS (MODERATELY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-8"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-8'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#starchy"
-                            aria-expanded="false"
-                            aria-controls="starchy"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#starchy'
+                            aria-expanded='false'
+                            aria-controls='starchy'
                           >
                             STARCHY OR FATTY VEGETABLES AND FRUITS (MODERATELY
                             MUCUS-FORMING)
@@ -954,13 +956,13 @@ const EattotLive = () => {
                         </h4>
                       </div>
                       <div
-                        id="starchy"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-8"
+                        id='starchy'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-8'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>Artichoke</li>
                             <li>Avocados</li>
                             <li>Cassava</li>
@@ -990,37 +992,37 @@ const EattotLive = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-10">
-                  <div className="diet-chart">
+                <div className='col-lg-6 col-md-10'>
+                  <div className='diet-chart'>
                     <h4>MODERATELY MUCUS FORMING FOODS</h4>
                     {/* CEREALS (MODERATELY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-9"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-9'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#cereals"
-                            aria-expanded="false"
-                            aria-controls="cereals"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#cereals'
+                            aria-expanded='false'
+                            aria-controls='cereals'
                           >
                             CEREALS (MODERATELY MUCUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="cereals"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-9"
+                        id='cereals'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-9'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               <strong>Breads</strong> – All Kinds; Barley,
                               Black, Rye, White, Graham, Pumpernickel, Zwieback,
@@ -1047,33 +1049,33 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* BEANS (MODERATELY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-9"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-9'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#cereals"
-                            aria-expanded="false"
-                            aria-controls="cereals"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#cereals'
+                            aria-expanded='false'
+                            aria-controls='cereals'
                           >
                             BEANS (MODERATELY MUCUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="cereals"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-9"
+                        id='cereals'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-9'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               <strong>Breads</strong> – All Kinds; Barley,
                               Black, Rye, White, Graham, Pumpernickel, Zwieback,
@@ -1100,33 +1102,33 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* NUTS AND SEEDS (MODERATELY MUCUS-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-10"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-10'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#nuts"
-                            aria-expanded="false"
-                            aria-controls="nuts"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#nuts'
+                            aria-expanded='false'
+                            aria-controls='nuts'
                           >
                             NUTS AND SEEDS (MODERATELY MUCUS-FORMING)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="nuts"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-10"
+                        id='nuts'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-10'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               All Kinds and Forms – Black Beans, Black-eyed
                               peas, Fava Beans, Butter Beans, Cannellini Beans,
@@ -1141,23 +1143,23 @@ const EattotLive = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="diet-chart">
+                  <div className='diet-chart'>
                     <h4>ACID FORMING STIMULANTS</h4>
                     {/* ACIDIC, FERMENTED, OR DISTILLED DRINKS/SYRUPS (ACID-FORMING STIMULANTS) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-11"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-11'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#acidic"
-                            aria-expanded="false"
-                            aria-controls="acidic"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#acidic'
+                            aria-expanded='false'
+                            aria-controls='acidic'
                           >
                             ACIDIC, FERMENTED, OR DISTILLED DRINKS/SYRUPS
                             (ACID-FORMING STIMULANTS)
@@ -1165,13 +1167,13 @@ const EattotLive = () => {
                         </h4>
                       </div>
                       <div
-                        id="acidic"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-11"
+                        id='acidic'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-11'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               Alcoholic Beverages – All Kinds: Ale, Beer,
                               Brandy, Champagne, Hard Cider, Liqueur, Mead,
@@ -1194,33 +1196,33 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* FERMENTED FOODS AND SAUCES (ACID-FORMING STIMULANTS) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-12"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-12'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#fermentedFoods"
-                            aria-expanded="false"
-                            aria-controls="fermentedFoods"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#fermentedFoods'
+                            aria-expanded='false'
+                            aria-controls='fermentedFoods'
                           >
                             FERMENTED FOODS AND SAUCES (ACID-FORMING STIMULANTS)
                           </a>
                         </h4>
                       </div>
                       <div
-                        id="fermentedFoods"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-12"
+                        id='fermentedFoods'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-12'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               <strong>Fish Sauce</strong>
                             </li>
@@ -1245,20 +1247,20 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* PASTEURIZED 100% FRUIT JUICE (POTENTIALLY ACID-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-13"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-13'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#fruitJuice"
-                            aria-expanded="false"
-                            aria-controls="fruitJuice"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#fruitJuice'
+                            aria-expanded='false'
+                            aria-controls='fruitJuice'
                           >
                             PASTEURIZED 100% FRUIT JUICE (POTENTIALLY
                             ACID-FORMING)
@@ -1266,13 +1268,13 @@ const EattotLive = () => {
                         </h4>
                       </div>
                       <div
-                        id="fruitJuice"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-13"
+                        id='fruitJuice'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-13'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>
                               Plant milks (grains, nuts, seeds, and legumes
                               including soy, rice, etc.)
@@ -1303,20 +1305,20 @@ const EattotLive = () => {
                       </div>
                     </div>
                     {/* SALTS AND SPICES (STIMULANTS/POTENTIALLY ACID-FORMING) */}
-                    <div className="panel panel-default mb-3">
+                    <div className='panel panel-default mb-3'>
                       <div
-                        className="panel-heading"
-                        role="tab"
-                        id="mucus-forming-14"
+                        className='panel-heading'
+                        role='tab'
+                        id='mucus-forming-14'
                       >
-                        <h4 className="panel-title">
+                        <h4 className='panel-title'>
                           <a
-                            className="collapsed"
-                            data-toggle="collapse"
-                            data-parent="#accordion"
-                            href="#salts"
-                            aria-expanded="false"
-                            aria-controls="salts"
+                            className='collapsed'
+                            data-toggle='collapse'
+                            data-parent='#accordion'
+                            href='#salts'
+                            aria-expanded='false'
+                            aria-controls='salts'
                           >
                             SALTS AND SPICES (STIMULANTS/POTENTIALLY
                             ACID-FORMING)
@@ -1324,13 +1326,13 @@ const EattotLive = () => {
                         </h4>
                       </div>
                       <div
-                        id="salts"
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby="mucus-forming-14"
+                        id='salts'
+                        className='panel-collapse collapse'
+                        role='tabpanel'
+                        aria-labelledby='mucus-forming-14'
                       >
-                        <div className="panel-body">
-                          <ul className="system-list ml-4 py-4">
+                        <div className='panel-body'>
+                          <ul className='system-list ml-4 py-4'>
                             <li>Black Peppercorns</li>
                             <li>Cayenne Pepper</li>
                             <li>Chili Powder</li>
@@ -1348,22 +1350,22 @@ const EattotLive = () => {
                   </div>
                 </div>
               </div>
-              <div className="row my-5 text-left glossary">
-                <div className="col-12">
+              <div className='row my-5 text-left glossary'>
+                <div className='col-12'>
                   <h4>What are Deceptive Mucus-Formers?</h4>
                   <p>
                     Here is a list of foods that many people do not realize
                     create mucus:
                   </p>
                   {/* Glossary */}
-                  <ul className="list-unstyled">
+                  <ul className='list-unstyled'>
                     <li>
-                      <span className="glossary-word">Rice</span> – great for
+                      <span className='glossary-word'>Rice</span> – great for
                       creating glue to bind books, bad for the transition to a
                       mucus-free diet
                     </li>
                     <li>
-                      <span className="glossary-word">Avocados</span> – fatty
+                      <span className='glossary-word'>Avocados</span> – fatty
                       item that may be used on the transition, but are highly
                       addictive. Although technically a fruit, if used it is
                       best to combine them with a mucus-free combination salad
@@ -1372,16 +1374,16 @@ const EattotLive = () => {
                       stuck to them.
                     </li>
                     <li>
-                      <span className="glossary-word">Nuts </span> –
+                      <span className='glossary-word'>Nuts </span> –
                       Mucus-forming, but may be used on the transition. It is
                       best to eat with dried fruits like raisins to aid with
                       elimination.
                     </li>
                     <li>
-                      <span className="glossary-word">Plantains</span> – Starchy
+                      <span className='glossary-word'>Plantains</span> – Starchy
                     </li>
                     <li>
-                      <span className="glossary-word">Tofu</span> – Slimy and
+                      <span className='glossary-word'>Tofu</span> – Slimy and
                       mucus-forming.
                     </li>
                     <li>
@@ -1389,23 +1391,23 @@ const EattotLive = () => {
                       you eat the better.
                     </li>
                     <li>
-                      <span className="glossary-word">Corn</span> – It does not
+                      <span className='glossary-word'>Corn</span> – It does not
                       eliminate well. When cooked, corn becomes mushy and slimy
                       in the intestines.
                     </li>
                     <li>
-                      <span className="glossary-word">Corn chips</span> – Some
+                      <span className='glossary-word'>Corn chips</span> – Some
                       people use them on the transition, but they are very
                       addictive and do not eliminate well
                     </li>
                     <li>
-                      <span className="glossary-word">Beans</span> – They are
+                      <span className='glossary-word'>Beans</span> – They are
                       starchy and mucus-forming. But, they may be used sparingly
                       on the transition within close proximity to green-leafy
                       salads
                     </li>
                     <li>
-                      <span className="glossary-word">Starchy Vegetables</span>{" "}
+                      <span className='glossary-word'>Starchy Vegetables</span>{' '}
                       – Some vegetables are starchy and mucus-forming in raw or
                       cooked forms, such as white potatoes. But, many other
                       vegetables, such as sweet potatoes, become almost
@@ -1414,9 +1416,9 @@ const EattotLive = () => {
                   </ul>
                 </div>
                 {/* Additional Notes */}
-                <div className="col-12 additional-notes mt-5">
+                <div className='col-12 additional-notes mt-5'>
                   <h4>Additional Notes:</h4>
-                  <ul className="list-unstyled">
+                  <ul className='list-unstyled'>
                     <li>
                       No Animal Products, No Fish, No Hybrid Foods, No Alcohol
                     </li>
@@ -1425,7 +1427,7 @@ const EattotLive = () => {
                   </ul>
                 </div>
               </div>
-              <AllHerbs/>
+              <AllHerbs />
             </div>
           </div>
         </div>
@@ -1433,7 +1435,7 @@ const EattotLive = () => {
 
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default EattotLive;
+export default EattotLive

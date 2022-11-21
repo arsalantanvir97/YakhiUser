@@ -94,7 +94,7 @@ function App() {
         />
         <Route path='/ResetPassword' component={ResetPassword} exact />
         <Route path='/Events' component={Events} exact />
-        <Route path='/Memberships' component={Memberships} exact />
+        <PrivateRoute path='/Memberships' component={Memberships} exact />
         <PrivateRoute path='/EditProfile' component={EditProfile} exact />
         <Route path='/ApprovedHerb' component={ApprovedHerb} exact />
         <Route exact path='/GeoGenetics' component={GeoGenetics} />{' '}

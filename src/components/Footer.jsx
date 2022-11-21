@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Toasty from '../utils/toast'
 import { validateEmail } from '../utils/ValidateEmail'
+import UnauthorizedAlert from './UnauthorizedAlert'
 
 const Footer = () => {
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   const [newsletter, setnewsletter] = useState('')
   const newsLetterHandler = () => {
     if (newsletter?.length > 0) {
@@ -64,7 +69,13 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to='/Memberships' data-hover='Membership Help'>
+                      <Link
+                        to={userInfo ? '/Memberships' : '#'}
+                        onClick={() => {
+                          !userInfo && UnauthorizedAlert()
+                        }}
+                        data-hover='Membership Help'
+                      >
                         Membership Help
                       </Link>
                     </li>
