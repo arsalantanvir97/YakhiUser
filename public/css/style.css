@@ -256,7 +256,7 @@ span.cart-count {
   filter: invert(1);
 }
 .menuheight{
-  height: 450px;
+  height: 420px;
 }
 .bannerheading{
   font-size: 38px !important;
@@ -1230,7 +1230,7 @@ p.testi-para {
 
 @media screen and (max-width: 1290px) {
   .menuheight{
-    height: 450px;
+    height: 380px;
   }
  
   .bannerpara{
@@ -1264,6 +1264,9 @@ p.testi-para {
 
 
 @media screen and (max-width: 920px) {
+  .menuheight{
+    height: 330px;
+  }
   .feedback-slider-item:after {
     left: 30px;
     right: 30px;
@@ -1296,6 +1299,9 @@ p.testi-para {
   }
 }
 @media screen and (max-width: 830px) {
+  .menuheight{
+    height: 350px;
+  }
   .bannerheading{
     font-size: 18px !important;
     line-height: 150% !important;

@@ -321,13 +321,22 @@
         width: 80%;
         margin: 0 auto;
         padding: 22px;
-        position: relative;
-        top: -25px;
+        position: absolute;
+        top: 90%;
+        left: 0;
+        right: 0;
+        z-index: 1;
     }
     .megamenu {
         position: relative !important;
         padding: 22px 25px;
         background-color: #222222 !important;
+        display: block;
+
+    }
+    body .uwy.userway_p1 .uai{
+        left: calc(100vw - 17px) !important;
+        top: 5px !important;
     }
     .dropdown-menu.yahki-dropdown.show, .dropdown-menu {
         background-color: #222222 !important;
@@ -335,6 +344,9 @@
         border-radius: 13px;
         text-align: center;
     }
+    /* .abcccccc, .dropdown-menu{
+        display: none;
+    } */
     ul.yahki-dropdown.show li a {
         color: #fff;
         font-size: 14px;
@@ -357,7 +369,7 @@
         width: 100%;
     }
     .dropdown-menu.show {
-        display: block;
+        display: block !important;
         width: 90%;
         margin: 0 auto;
     }
@@ -803,7 +815,7 @@
         padding: 29px 0;
     } */
     .main-banner {
-        min-height: 280px;
+        min-height: 285px;
         background-size: contain;
     }
 }

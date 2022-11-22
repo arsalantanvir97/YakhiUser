@@ -24,6 +24,8 @@ const Header = ({ history }) => {
   //   JSON.parse(localStorage.getItem("categories"));
 
   const [loading, setloading] = useState(false)
+  const [showherbaldropdown, setshowherbaldropdown] = useState(false)
+
   const cart = useSelector((state) => state?.cart)
   const { cartItems } = cart
 
@@ -66,6 +68,9 @@ const Header = ({ history }) => {
       timer: 1500,
     })
   }
+  useEffect(() => {
+    console.log('showherbaldropdown', showherbaldropdown)
+  }, [showherbaldropdown])
   return (
     <>
       <section className='menu menuheight'>
@@ -149,9 +154,14 @@ const Header = ({ history }) => {
                             className='nav-link dropdown-toggle'
                             to='#'
                             id='dropdown01'
+                            onClick={() => {
+                              // showHandler()
+                              setshowherbaldropdown(!showherbaldropdown)
+                            }}
                             data-toggle='dropdown'
                             aria-haspopup='true'
                             aria-expanded='false'
+                            // style={{ backgroundColor: 'red' }}
                           >
                             HERBAL STORE
                           </Link>
@@ -182,537 +192,564 @@ const Header = ({ history }) => {
                                     </ul>
                                   </div>
                                   {/* will be visible on screens 1199px and below */}
-                                  <div className='media-body d-block d-xl-none'>
-                                    <ul className='navbar-nav mr-auto'>
-                                      <li className='nav-item dropdown'>
-                                        <Link
-                                          className='nav-link dropdown-toggle'
-                                          to='#'
-                                          id='megadropdown'
-                                          role='button'
-                                          data-toggle='dropdown'
-                                          aria-expanded='false'
-                                        >
-                                          <h4 className='mb-2'>
-                                            Product Categories{' '}
-                                            <i className='fas fa-caret-down fa-1x ml-1' />
-                                          </h4>
-                                        </Link>
-                                        <div
-                                          className='dropdown-menu'
-                                          aria-labelledby='megadropdown'
-                                        >
-                                          <Link
-                                            to='/Consultation'
-                                            className='dropdown-item'
-                                          >
-                                            Consultations
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Capsules
-                                          </Link>
-                                          <Link
-                                            to='/GeoGenetics'
-                                            className='dropdown-item'
-                                          >
-                                            Geo’Genetics
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Tinctures
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Teas
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Powders
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Seaweed Herbs
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Kits and Bundles
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Tonics
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Oils
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Hygiene
-                                          </Link>
-                                          <Link
-                                            to='/Capsules'
-                                            className='dropdown-item'
-                                          >
-                                            Whole Herbs
-                                          </Link>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
+                                  {showherbaldropdown && (
+                                    <>
+                                      <div className='media-body d-block d-xl-none'>
+                                        <ul className='navbar-nav mr-auto'>
+                                          <li className='nav-item dropdown'>
+                                            <Link
+                                              className='nav-link dropdown-toggle'
+                                              to='#'
+                                              id='megadropdown'
+                                              role='button'
+                                              data-toggle='dropdown'
+                                              aria-expanded='false'
+                                            >
+                                              <h4 className='mb-2'>
+                                                Product Categories{' '}
+                                                <i className='fas fa-caret-down fa-1x ml-1' />
+                                              </h4>
+                                            </Link>
+                                            <div
+                                              className='dropdown-menu'
+                                              aria-labelledby='megadropdown'
+                                            >
+                                              <Link
+                                                to='/Consultation'
+                                                className='dropdown-item'
+                                              >
+                                                Consultations
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Capsules
+                                              </Link>
+                                              <Link
+                                                to='/GeoGenetics'
+                                                className='dropdown-item'
+                                              >
+                                                Geo’Genetics
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Tinctures
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Teas
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Powders
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Seaweed Herbs
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Kits and Bundles
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Tonics
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Oils
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Hygiene
+                                              </Link>
+                                              <Link
+                                                to='/Capsules'
+                                                className='dropdown-item'
+                                              >
+                                                Whole Herbs
+                                              </Link>
+                                            </div>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </>
+                                  )}
                                 </div>
                               </div>
-                              {/* I NEED HEALING IN.... */}
-                              <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
-                                <div className='media'>
-                                  <div className='media-body d-none d-xl-block'>
-                                    <h4 className='mb-2'>
-                                      I need healing in...
-                                    </h4>
-                                    <ul>
-                                      <li>
-                                        <Link to='/MuscularSystem'>
-                                          The Muscular System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/IntegumentarySystem'>
-                                          The Integumentary System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/SkeletalSystem'>
-                                          The Skeletal System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/NervousSystem'>
-                                          The Nervous System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/UrinarySystem'>
-                                          The Urinary System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/DigestiveSystem'>
-                                          The Digestive System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/OralSystem'>
-                                          The Oral Cavity System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/RespiratorySystem'>
-                                          The Respiratory System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/CardioSystem'>
-                                          The Cardiovascular System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/LymphaticSystem'>
-                                          The Lymphatic System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/ReproductiveSystem'>
-                                          The Reproductive System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/EndocrineSystem'>
-                                          The Endocrine System
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/BodySystem'>
-                                          All Body Systems
-                                        </Link>
-                                      </li>
-                                    </ul>
+                              {showherbaldropdown && (
+                                <>
+                                  <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
+                                    <div className='media'>
+                                      <div className='media-body d-none d-xl-block'>
+                                        <h4 className='mb-2'>
+                                          I need healing in...
+                                        </h4>
+                                        <ul>
+                                          <li>
+                                            <Link to='/MuscularSystem'>
+                                              The Muscular System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/IntegumentarySystem'>
+                                              The Integumentary System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/SkeletalSystem'>
+                                              The Skeletal System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/NervousSystem'>
+                                              The Nervous System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/UrinarySystem'>
+                                              The Urinary System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/DigestiveSystem'>
+                                              The Digestive System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/OralSystem'>
+                                              The Oral Cavity System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/RespiratorySystem'>
+                                              The Respiratory System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/CardioSystem'>
+                                              The Cardiovascular System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/LymphaticSystem'>
+                                              The Lymphatic System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/ReproductiveSystem'>
+                                              The Reproductive System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/EndocrineSystem'>
+                                              The Endocrine System
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/BodySystem'>
+                                              All Body Systems
+                                            </Link>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      {/* will be visible on screens 1199px and below */}
+                                      <div className='media-body d-block d-xl-none'>
+                                        <ul className='navbar-nav mr-auto'>
+                                          <li className='nav-item dropdown'>
+                                            <Link
+                                              className='nav-link dropdown-toggle'
+                                              to='#'
+                                              id='megadropdown'
+                                              role='button'
+                                              data-toggle='dropdown'
+                                              aria-expanded='false'
+                                            >
+                                              <h4 className='mb-2'>
+                                                I need healing in...{' '}
+                                                <i className='fas fa-caret-down fa-1x ml-1' />
+                                              </h4>
+                                            </Link>
+                                            <div
+                                              className='dropdown-menu'
+                                              aria-labelledby='megadropdown'
+                                            >
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Muscular System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Integumentary System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Skeletal System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Nervous System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Urinary System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Digestive System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Oral Cavity System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Respiratory System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Cardiovascular System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Lymphatic System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Reproductive System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                The Endocrine System
+                                              </Link>
+                                              <Link
+                                                to='/IntegumentarySystem'
+                                                className='dropdown-item'
+                                              >
+                                                All Body Systems
+                                              </Link>
+                                            </div>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                  {/* will be visible on screens 1199px and below */}
-                                  <div className='media-body d-block d-xl-none'>
-                                    <ul className='navbar-nav mr-auto'>
-                                      <li className='nav-item dropdown'>
-                                        <Link
-                                          className='nav-link dropdown-toggle'
-                                          to='#'
-                                          id='megadropdown'
-                                          role='button'
-                                          data-toggle='dropdown'
-                                          aria-expanded='false'
-                                        >
-                                          <h4 className='mb-2'>
-                                            I need healing in...{' '}
-                                            <i className='fas fa-caret-down fa-1x ml-1' />
-                                          </h4>
-                                        </Link>
-                                        <div
-                                          className='dropdown-menu'
-                                          aria-labelledby='megadropdown'
-                                        >
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Muscular System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Integumentary System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Skeletal System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Nervous System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Urinary System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Digestive System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Oral Cavity System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Respiratory System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Cardiovascular System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Lymphatic System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Reproductive System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            The Endocrine System
-                                          </Link>
-                                          <Link
-                                            to='/IntegumentarySystem'
-                                            className='dropdown-item'
-                                          >
-                                            All Body Systems
-                                          </Link>
-                                        </div>
-                                      </li>
-                                    </ul>
+                                  <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
+                                    <div className='media'>
+                                      <div className='media-body d-none d-xl-block'>
+                                        <h4 className='mb-2'>My Account</h4>
+                                        <ul>
+                                          <li>
+                                            <Link
+                                              to={
+                                                userInfo ? '/EditProfile' : '#'
+                                              }
+                                              onClick={() => {
+                                                !userInfo && UnauthorizedAlert()
+                                              }}
+                                            >
+                                              Account Details
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link
+                                              to={userInfo ? '/MyCart' : '#'}
+                                              onClick={() => {
+                                                !userInfo && UnauthorizedAlert()
+                                              }}
+                                            >
+                                              View My Cart
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link
+                                              to={userInfo ? '/Checkout' : '#'}
+                                              onClick={() => {
+                                                !userInfo && UnauthorizedAlert()
+                                              }}
+                                            >
+                                              Checkout
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link
+                                              to={userInfo ? '/WishList' : '#'}
+                                              onClick={() => {
+                                                !userInfo && UnauthorizedAlert()
+                                              }}
+                                            >
+                                              Wishlist
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link
+                                              to={userInfo ? '/OrderLog' : '#'}
+                                              onClick={() => {
+                                                !userInfo && UnauthorizedAlert()
+                                              }}
+                                            >
+                                              Order Tracking
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link
+                                              to={
+                                                userInfo ? '/DamageClaims' : '#'
+                                              }
+                                              onClick={() => {
+                                                !userInfo && UnauthorizedAlert()
+                                              }}
+                                            >
+                                              Damage Claims
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link
+                                              to={
+                                                userInfo
+                                                  ? '/AppointmentLogs'
+                                                  : '#'
+                                              }
+                                              onClick={() => {
+                                                !userInfo && UnauthorizedAlert()
+                                              }}
+                                              // className="dropdown-item"
+                                            >
+                                              My Appointments
+                                            </Link>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      {/* will be visible on screens 1199px and below */}
+                                      <div className='media-body d-block d-xl-none'>
+                                        <ul className='navbar-nav mr-auto'>
+                                          <li className='nav-item dropdown'>
+                                            <Link
+                                              className='nav-link dropdown-toggle'
+                                              to='#'
+                                              id='megadropdown'
+                                              role='button'
+                                              data-toggle='dropdown'
+                                              aria-expanded='false'
+                                            >
+                                              <h4 className='mb-2'>
+                                                My Account
+                                                <i className='fas fa-caret-down fa-1x ml-1' />
+                                              </h4>
+                                            </Link>
+                                            <div
+                                              className='dropdown-menu'
+                                              aria-labelledby='megadropdown'
+                                            >
+                                              <Link
+                                                to='#'
+                                                className='dropdown-item'
+                                              >
+                                                Account Details
+                                              </Link>
+                                              <Link
+                                                to={userInfo ? '/MyCart' : '#'}
+                                                onClick={() => {
+                                                  !userInfo &&
+                                                    UnauthorizedAlert()
+                                                }}
+                                                className='dropdown-item'
+                                              >
+                                                View My Cart
+                                              </Link>
+                                              <Link
+                                                to={
+                                                  userInfo ? '/Checkout' : '#'
+                                                }
+                                                onClick={() => {
+                                                  !userInfo &&
+                                                    UnauthorizedAlert()
+                                                }}
+                                                className='dropdown-item'
+                                              >
+                                                Checkout
+                                              </Link>
+                                              <Link
+                                                to={
+                                                  userInfo ? '/WishList' : '#'
+                                                }
+                                                onClick={() => {
+                                                  !userInfo &&
+                                                    UnauthorizedAlert()
+                                                }}
+                                                className='dropdown-item'
+                                              >
+                                                Wishlist
+                                              </Link>
+                                              <Link
+                                                to={
+                                                  userInfo ? '/OrderLog' : '#'
+                                                }
+                                                onClick={() => {
+                                                  !userInfo &&
+                                                    UnauthorizedAlert()
+                                                }}
+                                                className='dropdown-item'
+                                              >
+                                                Order Tracking
+                                              </Link>
+                                              <Link
+                                                to={
+                                                  userInfo
+                                                    ? '/DamageClaims'
+                                                    : '#'
+                                                }
+                                                onClick={() => {
+                                                  !userInfo &&
+                                                    UnauthorizedAlert()
+                                                }}
+                                                className='dropdown-item'
+                                              >
+                                                Damage Claims
+                                              </Link>
+                                              <Link
+                                                to={
+                                                  userInfo
+                                                    ? '/AppointmentLogs'
+                                                    : '#'
+                                                }
+                                                onClick={() => {
+                                                  !userInfo &&
+                                                    UnauthorizedAlert()
+                                                }}
+                                                className='dropdown-item'
+                                              >
+                                                My Appointments
+                                              </Link>
+                                            </div>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                              {/* MY ACCOUNT */}
-                              <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
-                                <div className='media'>
-                                  <div className='media-body d-none d-xl-block'>
-                                    <h4 className='mb-2'>My Account</h4>
-                                    <ul>
-                                      <li>
-                                        <Link
-                                          to={userInfo ? '/EditProfile' : '#'}
-                                          onClick={() => {
-                                            !userInfo && UnauthorizedAlert()
-                                          }}
-                                        >
-                                          Account Details
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link
-                                          to={userInfo ? '/MyCart' : '#'}
-                                          onClick={() => {
-                                            !userInfo && UnauthorizedAlert()
-                                          }}
-                                        >
-                                          View My Cart
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link
-                                          to={userInfo ? '/Checkout' : '#'}
-                                          onClick={() => {
-                                            !userInfo && UnauthorizedAlert()
-                                          }}
-                                        >
-                                          Checkout
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link
-                                          to={userInfo ? '/WishList' : '#'}
-                                          onClick={() => {
-                                            !userInfo && UnauthorizedAlert()
-                                          }}
-                                        >
-                                          Wishlist
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link
-                                          to={userInfo ? '/OrderLog' : '#'}
-                                          onClick={() => {
-                                            !userInfo && UnauthorizedAlert()
-                                          }}
-                                        >
-                                          Order Tracking
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link
-                                          to={userInfo ? '/DamageClaims' : '#'}
-                                          onClick={() => {
-                                            !userInfo && UnauthorizedAlert()
-                                          }}
-                                        >
-                                          Damage Claims
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link
-                                          to={
-                                            userInfo ? '/AppointmentLogs' : '#'
-                                          }
-                                          onClick={() => {
-                                            !userInfo && UnauthorizedAlert()
-                                          }}
-                                          // className="dropdown-item"
-                                        >
-                                          My Appointments
-                                        </Link>
-                                      </li>
-                                    </ul>
+                                  <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
+                                    <div className='media'>
+                                      <div className='media-body d-none d-xl-block'>
+                                        <h4 className='mb-2'>
+                                          Customer Support
+                                        </h4>
+                                        <ul>
+                                          <li>
+                                            <Link to='/Faqs'>
+                                              Questions &amp; Answers
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/OrderandPayment'>
+                                              Orders &amp; Payments
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/ShippingandPickup'>
+                                              Shipping &amp; Pickups
+                                            </Link>
+                                          </li>
+                                          <li>
+                                            <Link to='/ReturnsandRefund'>
+                                              Returns &amp; Refunds
+                                            </Link>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      {/* will be visible on screens 1199px and below */}
+                                      <div className='media-body d-block d-xl-none'>
+                                        <ul className='navbar-nav mr-auto'>
+                                          <li className='nav-item dropdown'>
+                                            <Link
+                                              className='nav-link dropdown-toggle'
+                                              to='#'
+                                              id='megadropdown'
+                                              role='button'
+                                              data-toggle='dropdown'
+                                              aria-expanded='false'
+                                            >
+                                              <h4 className='mb-2'>
+                                                Customer Support{' '}
+                                                <i className='fas fa-caret-down fa-1x ml-1' />
+                                              </h4>
+                                            </Link>
+                                            <div
+                                              className='dropdown-menu'
+                                              aria-labelledby='megadropdown'
+                                            >
+                                              <Link
+                                                to='/Faqs'
+                                                className='dropdown-item'
+                                              >
+                                                Questions &amp; Answers
+                                              </Link>
+                                              <Link
+                                                to='/OrderandPayment'
+                                                className='dropdown-item'
+                                              >
+                                                Orders &amp; Payments
+                                              </Link>
+                                              <Link
+                                                to='/ShippingandPickup'
+                                                className='dropdown-item'
+                                              >
+                                                Shipping &amp; Pickups
+                                              </Link>
+                                              <Link
+                                                to='/ReturnsandRefund'
+                                                className='dropdown-item'
+                                              >
+                                                Returns &amp; Refunds
+                                              </Link>
+                                            </div>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                  {/* will be visible on screens 1199px and below */}
-                                  <div className='media-body d-block d-xl-none'>
-                                    <ul className='navbar-nav mr-auto'>
-                                      <li className='nav-item dropdown'>
-                                        <Link
-                                          className='nav-link dropdown-toggle'
-                                          to='#'
-                                          id='megadropdown'
-                                          role='button'
-                                          data-toggle='dropdown'
-                                          aria-expanded='false'
-                                        >
-                                          <h4 className='mb-2'>
-                                            My Account
-                                            <i className='fas fa-caret-down fa-1x ml-1' />
-                                          </h4>
-                                        </Link>
-                                        <div
-                                          className='dropdown-menu'
-                                          aria-labelledby='megadropdown'
-                                        >
-                                          <Link
-                                            to='#'
-                                            className='dropdown-item'
-                                          >
-                                            Account Details
-                                          </Link>
-                                          <Link
-                                            to={userInfo ? '/MyCart' : '#'}
-                                            onClick={() => {
-                                              !userInfo && UnauthorizedAlert()
-                                            }}
-                                            className='dropdown-item'
-                                          >
-                                            View My Cart
-                                          </Link>
-                                          <Link
-                                            to={userInfo ? '/Checkout' : '#'}
-                                            onClick={() => {
-                                              !userInfo && UnauthorizedAlert()
-                                            }}
-                                            className='dropdown-item'
-                                          >
-                                            Checkout
-                                          </Link>
-                                          <Link
-                                            to={userInfo ? '/WishList' : '#'}
-                                            onClick={() => {
-                                              !userInfo && UnauthorizedAlert()
-                                            }}
-                                            className='dropdown-item'
-                                          >
-                                            Wishlist
-                                          </Link>
-                                          <Link
-                                            to={userInfo ? '/OrderLog' : '#'}
-                                            onClick={() => {
-                                              !userInfo && UnauthorizedAlert()
-                                            }}
-                                            className='dropdown-item'
-                                          >
-                                            Order Tracking
-                                          </Link>
-                                          <Link
-                                            to={
-                                              userInfo ? '/DamageClaims' : '#'
-                                            }
-                                            onClick={() => {
-                                              !userInfo && UnauthorizedAlert()
-                                            }}
-                                            className='dropdown-item'
-                                          >
-                                            Damage Claims
-                                          </Link>
-                                          <Link
-                                            to={
-                                              userInfo
-                                                ? '/AppointmentLogs'
-                                                : '#'
-                                            }
-                                            onClick={() => {
-                                              !userInfo && UnauthorizedAlert()
-                                            }}
-                                            className='dropdown-item'
-                                          >
-                                            My Appointments
-                                          </Link>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              {/* CUSTOMER SUPPORT */}
-                              <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
-                                <div className='media'>
-                                  <div className='media-body d-none d-xl-block'>
-                                    <h4 className='mb-2'>Customer Support</h4>
-                                    <ul>
-                                      <li>
-                                        <Link to='/Faqs'>
-                                          Questions &amp; Answers
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/OrderandPayment'>
-                                          Orders &amp; Payments
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/ShippingandPickup'>
-                                          Shipping &amp; Pickups
-                                        </Link>
-                                      </li>
-                                      <li>
-                                        <Link to='/ReturnsandRefund'>
-                                          Returns &amp; Refunds
-                                        </Link>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                  {/* will be visible on screens 1199px and below */}
-                                  <div className='media-body d-block d-xl-none'>
-                                    <ul className='navbar-nav mr-auto'>
-                                      <li className='nav-item dropdown'>
-                                        <Link
-                                          className='nav-link dropdown-toggle'
-                                          to='#'
-                                          id='megadropdown'
-                                          role='button'
-                                          data-toggle='dropdown'
-                                          aria-expanded='false'
-                                        >
-                                          <h4 className='mb-2'>
-                                            Customer Support{' '}
-                                            <i className='fas fa-caret-down fa-1x ml-1' />
-                                          </h4>
-                                        </Link>
-                                        <div
-                                          className='dropdown-menu'
-                                          aria-labelledby='megadropdown'
-                                        >
-                                          <Link
-                                            to='/Faqs'
-                                            className='dropdown-item'
-                                          >
-                                            Questions &amp; Answers
-                                          </Link>
-                                          <Link
-                                            to='/OrderandPayment'
-                                            className='dropdown-item'
-                                          >
-                                            Orders &amp; Payments
-                                          </Link>
-                                          <Link
-                                            to='/ShippingandPickup'
-                                            className='dropdown-item'
-                                          >
-                                            Shipping &amp; Pickups
-                                          </Link>
-                                          <Link
-                                            to='/ReturnsandRefund'
-                                            className='dropdown-item'
-                                          >
-                                            Returns &amp; Refunds
-                                          </Link>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
+                                </>
+                              )}
                             </div>
                           </div>
                         </li>
