@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -9,6 +10,8 @@ import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import { Signature } from '../components/Signature'
 import api from '../utils/api'
 import Toasty from '../utils/toast'
+import b64toBlob from 'b64-to-blob'
+
 let filee = ''
 const Memberships = ({ history }) => {
   const dispatch = useDispatch()
@@ -20,17 +23,37 @@ const Memberships = ({ history }) => {
     signature: '',
   })
   const subscriptionHandler = async () => {
-    fetch(allValues?.signature)
-      .then((res) => res.blob())
-      .then((blob) => {
-        filee = new File([blob], 'File name', { type: 'image/png' })
-        console.log('abc', filee)
-      })
-    console.log('filee', filee)
+    // fetch(allValues?.signature)
+    //   .then((res) => res.blob())
+    //   .then((blob) => {
+    //     filee = new File([blob], 'File name', { type: 'image/png' })
+    //     console.log('abc', filee)
+    //   })
+
+    // const dataUrlToFile = async (dataUrl, fileName, mimeType) => {
+    //   const res = await axios(dataUrl)
+    //   const blob = res.data
+    //   return new File([blob], fileName, { type: mimeType })
+    // }
+    // filee = await dataUrlToFile(
+    //   allValues?.signature,
+    //   `${Math.floor(10000 + Math.random() * 900000)}.png`,
+    //   'image/png'
+    // )
+    var block = allValues?.signature.split(';')
+    // Get the content type of the image
+    var contentType = block[0].split(':')[1] // In this case "image/gif"
+    // get the real base64 content of the file
+    var realData = block[1].split(',')[1] // In this case "R0lGODlhPQBEAPeoAJosM...."
+
+    // Convert it to a blob to upload
+    var blob = b64toBlob(realData, contentType)
+
+    console.log('blob', blob)
     try {
       const formData = new FormData()
 
-      formData.append('user_image', filee)
+      formData.append('user_image', blob)
       // formData.append('firstName', firstName)
       // formData.append('email', email)
       const body = formData

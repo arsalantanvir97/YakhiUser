@@ -96,7 +96,6 @@ const GeoGenetics = ({ history }) => {
                   </div>
                 </div>
                 <div className='col-md-6 text-right'>
-                  <h5>HEALING THE ILLUSION WE CALL DISEASE</h5>
                   <p className='mt-5'>
                     TO HAVE YOUR QUESTIONS ON TUESDAYS LIVE, SEND THEM TO
                     QUESTIONS@YAHKIAWAKENED.COM
@@ -135,7 +134,9 @@ const GeoGenetics = ({ history }) => {
       <div className='container'>
         <div class='row'>
           <div class='col-12'>
-            <h3 class='protocol-heading maroon'>GEO'GENETICS HERBAL THERAPY</h3>
+            <h3 style={{ textAlign: 'center' }} class='protocol-heading maroon'>
+              GEO'GENETICS HERBAL THERAPY
+            </h3>
           </div>
         </div>
 

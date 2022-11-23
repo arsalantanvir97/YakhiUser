@@ -68,9 +68,7 @@ const Header = ({ history }) => {
       timer: 1500,
     })
   }
-  useEffect(() => {
-    console.log('showherbaldropdown', showherbaldropdown)
-  }, [showherbaldropdown])
+
   return (
     <>
       <section className='menu menuheight'>
@@ -950,24 +948,39 @@ const Header = ({ history }) => {
                       </ul>
                     </div>
                   </nav>
-                  <div className='tabheight'></div>
-                  <h1
-                    className='banner-h2 aos-init aos-animate bannerheading'
-                    style={{ fontSize: 44 }}
-                  >
-                    THE WORLDS #1 HIGHEST QUALITY, WILD CRAFTED, HERBS & HERBAL
-                    PROGRAMS
-                  </h1>
-                  <br></br>
-                  <p
-                    className='bannerpara'
-                    style={{ lineHeight: '10px !important' }}
-                  >
-                    Intracellular Detoxification, Cellular Regeneration, &
-                    Holistic Revitalization, Yah'ki Awakened Keeps Everyone
-                    Healthy
-                  </p>{' '}
+                  {/* {window?.location?.pathname?.includes('Login') ||
+                  window?.location?.pathname?.includes('Signup') ||
+                  window?.location?.pathname?.includes('PasswordRecovery') ||
+                  window?.location?.pathname?.includes('VerificationCode') ||
+                  window?.location?.pathname?.includes(
+                    'ResetPassword'
+                  ) ? null : ( */}
+                  <>
+                    <div className='tabheight'></div>
+                    <h1
+                      className='banner-h2 aos-init aos-animate bannerheading'
+                      style={{ fontSize: 44 }}
+                    >
+                      THE WORLDS #1 HIGHEST QUALITY, WILD CRAFTED, HERBS &
+                      HERBAL PROGRAMS
+                    </h1>
+                    <br></br>
+                    <p
+                      className='bannerpara'
+                      style={{ lineHeight: '10px !important' }}
+                    >
+                      Intracellular Detoxification, Cellular Regeneration, &
+                      Holistic Revitalization, Yah'ki Awakened Keeps Everyone
+                      Healthy
+                    </p>
+                  </>
+                  {/* )} */}
                 </div>
+                {/* {window?.location?.pathname?.includes('Login') ||
+                window?.location?.pathname?.includes('Signup') ||
+                window?.location?.pathname?.includes('PasswordRecovery') ||
+                window?.location?.pathname?.includes('VerificationCode') ||
+                window?.location?.pathname?.includes('ResetPassword') ? null : ( */}
                 <Link
                   to={userInfo ? '/Memberships' : '#'}
                   onClick={() => {
@@ -986,6 +999,7 @@ const Header = ({ history }) => {
                 >
                   Become A Club Member For Free
                 </Link>
+                {/* )} */}
               </div>
             </div>
           </div>

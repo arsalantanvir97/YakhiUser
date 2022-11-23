@@ -120,7 +120,13 @@ blockquote,
 q {
   quotes: none;
 }
-
+body .uwy.userway_p1 .uai {
+  top: 0px !important;
+  right: auto;
+  bottom: auto;
+  left: calc(100vw - 16px) !important;
+  transform: translate(-100%);
+}
 blockquote:before,
 blockquote:after,
 q:before,
@@ -259,7 +265,7 @@ span.cart-count {
   height: 420px;
 }
 .bannerheading{
-  font-size: 38px !important;
+  font-size: 36px !important;
   font-weight: bold !important;
                       line-height: 150% !important;
                       font-family: 'Open Sans', sans-serif !important;

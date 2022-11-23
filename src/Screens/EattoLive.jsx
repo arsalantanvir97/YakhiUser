@@ -23,14 +23,15 @@ const EattotLive = () => {
                   </h3>
                   <p className='general-para px-sm-5'>
                     First, I would like to give all Praises and Glory to THE
-                    MOST HIGHEST, for my deep passion in herbal medicine and my
-                    gifted healing hands. It also would be foolish of me not to
-                    acknowledge those who have inspired me. Much honor and
-                    praises to Alfredo Bowman known as Dr. Sebi (11/26/1933 –
-                    08/06/2016), Dr Llaila Afrika (Transitioned 03/22/2020), Dr
-                    Max Gerson (10/18/1881 - 03/08/1959) and finally Dr Robert
-                    Morse. Their teachings are what motivated and inspired me to
-                    be a teacher in the plant based holistic health community.
+                    MOST HIGH, for my deep passion for herbal medicine and my
+                    gifted healing hands. Also — It would be foolish of me not
+                    to acknowledge those who have inspired me on this journey.
+                    Much honor and praises to Alfredo Bowman, known as Dr. Sebi
+                    (11/26/1933 – 08/06/2016), Dr. Llaila Afrika (Transitioned
+                    03/22/2020), Dr. Max Gerson (10/18/1881 - 03/08/1959) and
+                    finally, Dr. Robert Morse. Their teachings are what
+                    motivated and inspired me to be a teacher in the plant-based
+                    holistic health community.
                   </p>
                 </div>
               </div>
@@ -52,16 +53,16 @@ const EattotLive = () => {
                   </h3>
                   <p className='fruits-para'>
                     Everyone keeps asking me how my approach and natural
-                    methodology work so effectively and so fast. My reply is
-                    simple, I don’t heal anything. YHWH (GOD) created the
+                    methodology works so effectively and so fast. My reply is
+                    simple: “I” don’t heal anything. YHWH (GOD) created the
                     fleshly vehicle (body) to heal itself if the MIND allows it.
                     If you are eating and consuming what your body was designed
-                    to digest, you can overcome almost any Illness. However,
-                    sometimes we need an extra healing boost from God’s Miracle
-                    Electric Plants we call Alkaline Herbs!
+                    to digest, you can overcome almost any illness. However, in
+                    some cases, we need an extra healing boost from God’s
+                    Miracle Electric Plants we call Alkaline Herbs!
                   </p>
                   <p className='fruits-para'>
-                    It’s Vitally important that we inner-stand cosmic
+                    It is vitally important that we inner-stand cosmic
                     arrangement, genetic predisposition, and their connection to
                     diet, disease and healing. Your liver grounds your brain,
                     your heart pulsates an electric magnetic field, your pineal
@@ -74,8 +75,8 @@ const EattotLive = () => {
                     The very foods you are supposed to eat are from the landmass
                     your ancestors (The First Blood) originated from. The
                     original people did not eat MEAT, DAIRY, YEAST, GRAINS,
-                    PROTEIN or COMPLEX SUGARS. The Very Torah That Most of Us
-                    Claim to Believe and Follow Actually State these facts.
+                    PROTEIN or COMPLEX SUGARS. The very Torah that most of us
+                    claim to believe and follow actually states these facts.
                   </p>
                 </div>
               </div>
@@ -287,7 +288,7 @@ const EattotLive = () => {
                     </div>
                   </div>
                   <div className='diet-chart'>
-                    <h4>ELECTRICAL FOODS</h4>
+                    <h4>ELECTRIC FOODS</h4>
                     {/* ELECTRICAL FOODS */}
                     <div className='panel panel-default mb-3'>
                       <div
@@ -304,7 +305,7 @@ const EattotLive = () => {
                             aria-expanded='false'
                             aria-controls='electricalFoods'
                           >
-                            ELECTRICAL FOODS
+                            ELECTRIC FOODS
                           </a>
                         </h4>
                       </div>
@@ -536,7 +537,7 @@ const EattotLive = () => {
                             aria-expanded='false'
                             aria-controls='fruitJellies'
                           >
-                            100% FRUIT JELLIES, SYRUPS AND HONEY
+                            100% FRUIT JELLIES, SYRUPS, AND HONEY
                           </a>
                         </h4>
                       </div>
@@ -574,6 +575,18 @@ const EattotLive = () => {
                             <li className='font_8'>Tomatoes</li>
                             <li className='font_8'>Young Radish</li>
                             <li className='font_8'>Zucchini</li>
+                            <li className='font_8'>Agave Nectar</li>
+                            <li className='font_8'>Coconut Water</li>
+                            <li className='font_8'>
+                              Fruit Jellies (with no sugar added)
+                            </li>
+                            <li className='font_8'>
+                              Maple Syrup (100%, no preservatives)
+                            </li>
+                            <li className='font_8'>
+                              Molasses (no preservatives)
+                            </li>
+                            <li className='font_8'>Manuka Honey</li>
                           </ul>
                         </div>
                       </div>
@@ -911,7 +924,7 @@ const EattotLive = () => {
                             aria-expanded='false'
                             aria-controls='oils'
                           >
-                            OILS (FATTY AND MILDLY MUCUS-FORMING)
+                            COOKED OILS (FATTY AND MILDLY MUCUS-FORMING){' '}
                           </a>
                         </h4>
                       </div>
@@ -924,8 +937,8 @@ const EattotLive = () => {
                         <div className='panel-body'>
                           <ul className='system-list ml-4 py-4'>
                             <li>
-                              <strong>Oil</strong> – All types: Avocado Oil,
-                              Chia Seed, Coconut, Corn, Cotton Seed, Cotton
+                              <strong>COOKED OIL</strong> – All types: Avocado
+                              Oil, Chia Seed, Coconut, Corn, Cotton Seed, Cotton
                               Seed, Flax Seed, Grape Seed, Hemp Seed, Nut Oils,
                               Olive, Palm, Peanut, Quinoa, Rapeseed (Including
                               Canola), Safflower, Soybean etc.)
@@ -963,29 +976,30 @@ const EattotLive = () => {
                       >
                         <div className='panel-body'>
                           <ul className='system-list ml-4 py-4'>
-                            <li>Artichoke</li>
+                            <li>COOKED ARTICHOKE</li>
                             <li>Avocados</li>
-                            <li>Cassava</li>
+                            <li>COOKED CASSAVA</li>
                             <li>Cauliflower (Raw)</li>
-                            <li>Coconut Meat</li>
-                            <li>Corn</li>
-                            <li>Durian</li>
-                            <li>Fungus (Mushrooms)</li>
-                            <li>Green Peas</li>
+                            <li>COOKED COCONUT MEAT</li>
+                            <li>
+                              COOKED OR RAW CORN SHOULD NOT BE CONSUMED AT ALL
+                            </li>
+                            <li>COOKED DURIAN</li>
+                            <li>FUNGUS (COOKED MUSHROOMS)</li>
+                            <li>COOKED GREEN PEAS</li>
                             <li>Olives</li>
-                            <li>Parsnips</li>
-                            <li>Peas (Raw)</li>
-                            <li>Plantain</li>
+                            <li>COOKED PARSNIPS</li>
                             <li>Plantains</li>
                             <li>Pumpkins</li>
                             <li>Raw or Baked White Potatoes</li>
                             <li>
-                              Raw Squashes (Winter, Acorn, Butternut, etc.)
+                              RAW AND COOKED SQUASHED (WINTER, ACORD, BUTTERNUT,
+                              ETC.)
                             </li>
-                            <li>Raw Sweet Potatoes</li>
-                            <li>Rutabaga</li>
-                            <li>Turnip</li>
-                            <li>Unripe Banana</li>
+                            <li>RAW AND COOKED SWEET POTATOES</li>
+                            <li>COOKED RUTABAGE</li>
+                            <li>COOKED TURNIP</li>
+                            <li>COOKED UNRIPE BANANA</li>
                           </ul>
                         </div>
                       </div>
@@ -1077,25 +1091,22 @@ const EattotLive = () => {
                         <div className='panel-body'>
                           <ul className='system-list ml-4 py-4'>
                             <li>
-                              <strong>Breads</strong> – All Kinds; Barley,
-                              Black, Rye, White, Graham, Pumpernickel, Zwieback,
-                              etc.
+                              <strong>ALL KINDS AND FORMS</strong> – BLACK
+                              BEANS, BLACK-EYED PEAS, FAVA BEANS, BUTTER BEANS,
+                              CANNELLINI BEANS, CHICKPEAS/GARBANZO BEANS,
+                              EDAMAME, GREAT NORTHERN BEANS, ITALIAN BEANS,
+                              KIDNEY BEANS, LENTILS, LIMA BEANS, MUNG BEANS,
+                              NAVY BEANS, PINTO BEANS, SOY BEANS, SPLIT PEAS,
+                              STRING BEANS (GREEN BEANS), WHITE BEANS, ETC.
                             </li>
                             <li>
-                              <strong>Cereal Grains</strong> – All Kinds; Maize,
-                              Farina, Kamut, Millet,Oats, Quinoa, Spelt, White
-                              Rice, Brown Rice, Whole or Refined Wheat, etc.
-                            </li>
-                            <li>
-                              <strong>Cornmeal</strong>
-                            </li>
-                            <li>
-                              <strong>Pseudo-cereals</strong> – All Kinds;
-                              Amaranth, Buckwheat, Chia, Cockscomb, Kañiwa,
-                              Quinoa, etc.
-                            </li>
-                            <li>
-                              <strong>Pastas</strong>
+                              The only beans we would recommend for consumption
+                              would be Garbanzo Beans, Lentils, and Split Peas
+                              ONLY IF they are sprouted. Sprouting is
+                              essentially an indoor farming process that brings
+                              LIFE to these plants. To learn more about
+                              sprouting and how to perform this process, please
+                              visit YAH’KI TV.
                             </li>
                           </ul>
                         </div>
@@ -1130,13 +1141,19 @@ const EattotLive = () => {
                         <div className='panel-body'>
                           <ul className='system-list ml-4 py-4'>
                             <li>
-                              All Kinds and Forms – Black Beans, Black-eyed
-                              peas, Fava Beans, Butter Beans, Cannellini Beans,
-                              Chickpeas/Garbanzo Beans, Edamame, Great Northern
-                              Beans, Italian Beans, Kidney Beans, Lentils, Lima
-                              Beans, Mung Beans, Navy Beans, Pinto Beans, Soy
-                              Beans, Split Peas, String Beans (Green Beans),
-                              White Beans, etc.
+                              <strong>Nuts</strong> – All Kinds: Acorns,
+                              Almonds, Brazil Nuts, Cashews, Chestnuts,
+                              Hazelnuts, Pecans, Pistachios, Walnuts, etc.
+                            </li>
+                            <li>
+                              <strong>Seeds</strong> – All Kinds: Sunflower,
+                              Pumpkin, Hemp, Sesame, etc.
+                            </li>
+                            <li>
+                              The only nuts/seeds we would recommend consuming
+                              would be pecans, brazil nuts, walnuts, pumpkin,
+                              hemp, and sesame, if soaked in water (to assist
+                              with digestion).
                             </li>
                           </ul>
                         </div>
@@ -1262,7 +1279,7 @@ const EattotLive = () => {
                             aria-expanded='false'
                             aria-controls='fruitJuice'
                           >
-                            PASTEURIZED 100% FRUIT JUICE (POTENTIALLY
+                            PROCESSED FOODS AND SUBSTANCES (POTENTIALLY
                             ACID-FORMING)
                           </a>
                         </h4>
@@ -1300,6 +1317,7 @@ const EattotLive = () => {
                             <li>Vegan Mayonnaise</li>
                             <li>Vegan Whipped Cream</li>
                             <li>Yogurts (Plant-based)</li>
+                            <li>Pasteurized 100% Fruit Juice </li>
                           </ul>
                         </div>
                       </div>
@@ -1337,12 +1355,8 @@ const EattotLive = () => {
                             <li>Cayenne Pepper</li>
                             <li>Chili Powder</li>
                             <li>Cream of Tarter</li>
-                            <li>Curry Powder</li>
-                            <li>Nutmeg</li>
-                            <li>Paprika</li>
-                            <li>Pepper</li>
-                            <li>Salt (Celery, Crystal, Iodized, Sea)</li>
-                            <li>Vanilla Extract</li>
+                            <li>Iodized Salt</li>
+                            <li>Imitation Vanilla</li>
                           </ul>
                         </div>
                       </div>
@@ -1360,18 +1374,18 @@ const EattotLive = () => {
                   {/* Glossary */}
                   <ul className='list-unstyled'>
                     <li>
-                      <span className='glossary-word'>Rice</span> – great for
+                      <span className='glossary-word'>Rice</span> – Great for
                       creating glue to bind books, bad for the transition to a
-                      mucus-free diet
+                      mucus-free diet.
                     </li>
                     <li>
-                      <span className='glossary-word'>Avocados</span> – fatty
+                      <span className='glossary-word'>Avocados</span> – Fatty
                       item that may be used on the transition, but are highly
                       addictive. Although technically a fruit, if used it is
                       best to combine them with a mucus-free combination salad
-                      or vegetables to aid elimination. However, it is
-                      recommended to stay away from them if you are not already
-                      stuck to them.
+                      or vegetables to aid digestion. However, it is recommended
+                      to stay away from them if you are not already stuck to
+                      them.
                     </li>
                     <li>
                       <span className='glossary-word'>Nuts </span> –
@@ -1381,30 +1395,33 @@ const EattotLive = () => {
                     </li>
                     <li>
                       <span className='glossary-word'>Plantains</span> – Starchy
+                      and mucus forming.
                     </li>
                     <li>
                       <span className='glossary-word'>Tofu</span> – Slimy and
                       mucus-forming.
                     </li>
                     <li>
-                      Un-ripened fruits like green bananas. The riper the fruit
-                      you eat the better.
+                      <span className='glossary-word'>
+                        Un-ripened fruits like green bananas
+                      </span>{' '}
+                      – The riper the fruit you eat the better.
                     </li>
                     <li>
                       <span className='glossary-word'>Corn</span> – It does not
                       eliminate well. When cooked, corn becomes mushy and slimy
-                      in the intestines.
+                      in the intestines, therefore, hard to digest.
                     </li>
                     <li>
                       <span className='glossary-word'>Corn chips</span> – Some
                       people use them on the transition, but they are very
-                      addictive and do not eliminate well
+                      addictive and do not eliminate well.
                     </li>
                     <li>
                       <span className='glossary-word'>Beans</span> – They are
                       starchy and mucus-forming. But, they may be used sparingly
-                      on the transition within close proximity to green-leafy
-                      salads
+                      on the transition, preferably served with green-leafy
+                      salads. Beans are also best consumed if sprouted.
                     </li>
                     <li>
                       <span className='glossary-word'>Starchy Vegetables</span>{' '}

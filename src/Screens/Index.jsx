@@ -1178,7 +1178,7 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-10'>
               <img
-                style={{ height: 370, width: 430 }}
+                style={{ height: 385, width: 430 }}
                 src='images/digestive_system.png'
                 alt=''
                 className='img-fluid'
@@ -1215,7 +1215,7 @@ const Index = ({ history }) => {
             </div>
             <div className='col-xl-6 col-10'>
               <img
-                style={{ height: 370, width: 430 }}
+                style={{ height: 350, width: 330 }}
                 src='images/Closed-circulatory-system.png'
                 alt=''
                 className='img-fluid'
@@ -1231,7 +1231,7 @@ const Index = ({ history }) => {
             <div className='col-xl-6 col-10'>
               <img
                 src='images/maximizefood.png'
-                style={{ height: 430, width: 430 }}
+                style={{ height: 250, width: 280 }}
                 alt=''
                 className='img-fluid'
               />
@@ -1269,7 +1269,7 @@ const Index = ({ history }) => {
             </div>
             <div className='col-xl-6 col-10'>
               <img
-                style={{ height: 370, width: 430 }}
+                style={{ height: 240, width: 300 }}
                 src='images/lymphatic-system2.png'
                 alt=''
                 className='img-fluid'

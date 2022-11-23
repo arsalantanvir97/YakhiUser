@@ -8,6 +8,8 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
+    "b64-to-blob": "^1.2.19",
+    "blueimp-canvas-to-blob": "^3.29.0",
     "html-to-react": "^1.4.8",
     "jquery": "^3.6.1",
     "moment": "^2.29.1",
