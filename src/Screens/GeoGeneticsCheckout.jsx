@@ -1,63 +1,72 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
-import { saveShippingAddress, savePaymentMethod } from "../actions/cartAction";
-import { createGeoGeneticsOrder } from "../actions/orderAction";
-import DatePicker from "react-datepicker";
-import { baseURL, imageURL } from "../utils/api";
-import Toasty from "../utils/toast";
-import InputNumber from "../components/InputNumber";
-import InputPhone from "../components/InputPhone";
-import { validateEmail } from "../utils/ValidateEmail";
-import axios from "axios";
-import moment from "moment";
-import USStates from "../components/USStates";
-import { Signature } from "../components/Signature";
-import AllHerbs from "../components/AllHerbs";
+import { saveShippingAddress, savePaymentMethod } from '../actions/cartAction'
+import { createGeoGeneticsOrder } from '../actions/orderAction'
+import DatePicker from 'react-datepicker'
+import { baseURL, imageURL } from '../utils/api'
+import Toasty from '../utils/toast'
+import InputNumber from '../components/InputNumber'
+import InputPhone from '../components/InputPhone'
+import { validateEmail } from '../utils/ValidateEmail'
+import axios from 'axios'
+import moment from 'moment'
+import USStates from '../components/USStates'
+import { Signature } from '../components/Signature'
+import AllHerbs from '../components/AllHerbs'
 
 const GeoGeneticsCheckout = ({ history, location, match }) => {
-  const [totalPrice, settotalPrice] = useState(0);
+  const [totalPrice, settotalPrice] = useState(0)
   const [quantity, setquantity] = useState(
-    location?.search ? Number(location?.search?.split("=")[1]) : 1
-  );
+    location?.search ? Number(location?.search?.split('=')[1]) : 1
+  )
 
-  const cart = useSelector((state) => state.cart);
-  const { shippingAddress, paymentInfo } = cart;
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart)
+  const { shippingAddress, paymentInfo } = cart
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getSingleProduct();
-  }, []);
+    getSingleProduct()
+  }, [])
 
   const getSingleProduct = async () => {
     try {
       const res = await axios({
         url: `${baseURL}/product/getProductDetails/${match?.params?.id}`,
-        method: "GET"
-      });
+        method: 'GET',
+      })
       // const ress = await axios({
       //   url: `${baseURL}/product/getProductDetailsByName/${match?.params?.id}`,
       //   method: "GET"
       // });
 
-      console.log("res", res?.data?.product);
-      setproduct(res?.data?.product);
-      settotalPrice(Number(res?.data?.product?.price * quantity));
+      console.log('res', res?.data?.product)
+      setproduct(res?.data?.product)
+      settotalPrice(Number(res?.data?.product?.price * quantity))
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
-  const [taxofstate, settaxofstate] = useState(0);
-  const [product, setproduct] = useState();
+  const [taxofstate, settaxofstate] = useState(0)
+  const [product, setproduct] = useState()
 
   const [allValues, setAllValues] = useState({
     email: shippingAddress?.email,
-    phone: shippingAddress?.phone,
+    firstName: shippingAddress?.firstName,
+    reasonformedic: shippingAddress?.reasonformedic,
+    currentmedic: shippingAddress?.currentmedic,
+    allergics: shippingAddress?.allergics,
+
+    age: shippingAddress?.age,
+    weight: shippingAddress?.weight,
+    height: shippingAddress?.height,
+    govtid: shippingAddress?.govtid,
+
     doc_schedule: shippingAddress?.doc_schedule,
     disclaimer: shippingAddress?.disclaimer,
     signature: shippingAddress?.signature,
@@ -78,48 +87,48 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     cardholdername: paymentInfo?.cardholdername,
     cardnumber: paymentInfo?.cardnumber,
     cvvnumber: paymentInfo?.cvvnumber,
-    expirydate: paymentInfo?.expirydate
-  });
+    expirydate: paymentInfo?.expirydate,
+  })
 
-  const [togglecheckout, settogglecheckout] = useState(0);
-  const [taxPrice, settaxPrice] = useState(0);
-  const [shippingPrice, setshippingPrice] = useState(0);
+  const [togglecheckout, settogglecheckout] = useState(0)
+  const [taxPrice, settaxPrice] = useState(0)
+  const [shippingPrice, setshippingPrice] = useState(0)
 
   const togglecheckoutHandler = async () => {
-    console.log("togglecheckoutHandler");
-    settogglecheckout(togglecheckout + 1);
-  };
+    console.log('togglecheckoutHandler')
+    settogglecheckout(togglecheckout + 1)
+  }
   const saveShippingHandler = async (e) => {
-    const emailvalidation = validateEmail(allValues?.email);
-    console.log("emmmm", emailvalidation);
-    console.log("addEmployeeHandler");
+    const emailvalidation = validateEmail(allValues?.email)
+    console.log('emmmm', emailvalidation)
+    console.log('addEmployeeHandler')
     if (emailvalidation == true) {
-      console.log("saveShippingHandler");
-      settogglecheckout(togglecheckout + 1);
+      console.log('saveShippingHandler')
+      settogglecheckout(togglecheckout + 1)
       const config = {
         headers: {
-          Authorization: `Bearer ${userInfo.token}`
-        }
-      };
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
       const res = await axios.post(
         `${baseURL}/tax/gettaxdetails`,
         { state: allValues?.shippingstate },
         config
-      );
+      )
 
-      console.log("ress", res);
+      console.log('ress', res)
       if (res?.data?.tax == null) {
-        settaxofstate(0);
+        settaxofstate(0)
       } else {
-        settaxofstate(res?.data?.tax?.percent);
+        settaxofstate(res?.data?.tax?.percent)
       }
 
-      setshippingPrice(0);
+      setshippingPrice(0)
       settaxPrice(
         Number(res?.data?.tax == null ? 0 : res?.data?.tax?.percent / 100) *
           Number(product?.price * quantity)
-      );
-      settotalPrice(Number(product?.price * quantity) + Number(taxPrice));
+      )
+      settotalPrice(Number(product?.price * quantity) + Number(taxPrice))
       dispatch(
         saveShippingAddress({
           email: allValues?.email,
@@ -138,282 +147,444 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
           shippingcity: allValues?.shippingcity,
           shippingzipcode: allValues?.shippingzipcode,
           shippingcountry: allValues?.shippingcountry,
-          shippingstate: allValues?.shippingstate
+          shippingstate: allValues?.shippingstate,
         })
-      );
+      )
       Swal.fire({
-        icon: "info",
-        title: "",
-        text: "Please recheck your address, the address will not be changed",
+        icon: 'info',
+        title: '',
+        text: 'Please recheck your address, the address will not be changed',
         showConfirmButton: false,
-        timer: 1500
-      });
+        timer: 1500,
+      })
     } else {
-      Toasty("error", `Please enter a valid email`);
+      Toasty('error', `Please enter a valid email`)
     }
-  };
+  }
   const savePaymentMethodHandler = (e) => {
-    console.log("savePaymentMethodHandler");
-    settogglecheckout(togglecheckout + 1);
+    console.log('savePaymentMethodHandler')
+    settogglecheckout(togglecheckout + 1)
     dispatch(
       savePaymentMethod({
         paymentmethod: allValues?.paymentmethod,
         cardholdername: allValues?.cardholdername,
         cardnumber: allValues?.cardnumber,
         cvvnumber: allValues?.cvvnumber,
-        expirydate: allValues?.expirydate
+        expirydate: allValues?.expirydate,
       })
-    );
-  };
+    )
+  }
 
-  const orderCreate = useSelector((state) => state.orderCreate);
-  const { order, success, error } = orderCreate;
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
 
   useEffect(() => {
     if (success) {
       Swal.fire({
-        icon: "success",
-        title: "",
-        text: "Order Completed Successfully",
+        icon: 'success',
+        title: '',
+        text: 'Order Completed Successfully',
         showConfirmButton: false,
-        timer: 1500
-      });
-      history.push(`/OrderLogDetail/${order._id}`);
+        timer: 1500,
+      })
+      history.push(`/OrderLogDetail/${order._id}`)
     }
     // eslint-disable-next-line
-  }, [history, success]);
+  }, [history, success])
 
   const placeOrderHandler = async () => {
     if (quantity == 0) {
-      Toasty("error", `Quantity must be greater than 0`);
+      Toasty('error', `Quantity must be greater than 0`)
     } else {
       const orderItems = [
         {
           ...product,
           product: product?._id,
           qty: quantity,
-          image: product?.productimage
-        }
-      ];
-      const totalpricee = Number(product?.price * quantity) + Number(taxPrice);
-      const formData = new FormData();
+          image: product?.productimage,
+        },
+      ]
+      const totalpricee = Number(product?.price * quantity) + Number(taxPrice)
+      const formData = new FormData()
 
-      formData.append("doc_schedule", allValues?.doc_schedule);
-      formData.append("orderItems", JSON.stringify(orderItems));
+      formData.append('doc_schedule', allValues?.doc_schedule)
+      formData.append('orderItems', JSON.stringify(orderItems))
 
-      formData.append("userid", userInfo?._id);
-      formData.append("shippingAddress", JSON.stringify(cart?.shippingAddress));
-      formData.append("paymentMethod", JSON.stringify(paymentInfo));
-      formData.append("itemsPrice", product?.price);
-      formData.append("shippingPrice", shippingPrice);
-      formData.append("taxPrice", taxPrice);
-      formData.append("totalPrice", totalpricee);
-      formData.append("taxperproduct", taxofstate);
+      formData.append('userid', userInfo?._id)
+      formData.append('shippingAddress', JSON.stringify(cart?.shippingAddress))
+      formData.append('paymentMethod', JSON.stringify(paymentInfo))
+      formData.append('itemsPrice', product?.price)
+      formData.append('shippingPrice', shippingPrice)
+      formData.append('taxPrice', taxPrice)
+      formData.append('totalPrice', totalpricee)
+      formData.append('taxperproduct', taxofstate)
 
-      const body = formData;
-      dispatch(createGeoGeneticsOrder(body));
+      const body = formData
+      dispatch(createGeoGeneticsOrder(body))
     }
-  };
+  }
   const subQuantity = async () => {
-    console.log("cart?.product", quantity);
+    console.log('cart?.product', quantity)
     quantity == 0 || quantity <= 0
       ? setquantity(Number(quantity + 0))
-      : setquantity(Number(quantity - 1));
-  };
+      : setquantity(Number(quantity - 1))
+  }
 
   const filedocsHandler = (e) => {
     setAllValues({
       ...allValues,
-      ["doc_schedule"]: e?.target?.files[0]
-    });
-  };
+
+      ['doc_schedule']: e?.target?.files[0],
+    })
+  }
+  const filedocsHandler2 = (e) => {
+    setAllValues({
+      ...allValues,
+
+      ['govtid']: e?.target?.files[0],
+    })
+  }
+
   useEffect(() => {
-    settaxPrice(Number(taxofstate / 100) * Number(product?.price * quantity));
-    settotalPrice(Number(product?.price * quantity) + Number(taxPrice));
-  }, [quantity]);
+    settaxPrice(Number(taxofstate / 100) * Number(product?.price * quantity))
+    settotalPrice(Number(product?.price * quantity) + Number(taxPrice))
+  }, [quantity])
   const changeHandler = (e, namee) => {
     setAllValues({
       ...allValues,
-      [namee ? namee : e.target.name]: namee ? e : e.target.value
-    });
-  };
+      [namee ? namee : e.target.name]: namee ? e : e.target.value,
+    })
+  }
   useEffect(() => {
-    console.log("allValues", allValues);
-  }, [allValues]);
+    console.log('allValues', allValues)
+  }, [allValues])
   return (
-    <section className="about-page">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-11 mx-auto">
+    <section className='about-page'>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-md-11 mx-auto'>
             {/* Step form */}
-            <div className="row">
-              <div className="col-12 mb-xl-0 mb-5">
-                .{" "}
+            <div className='row'>
+              <div className='col-12 mb-xl-0 mb-5'>
+                .{' '}
                 <form>
                   {/* Circles which indicates the steps of the form: */}
-                  <div className="row mb-5">
+                  <div className='row mb-5'>
                     {togglecheckout == 0 && (
-                      <div className="col-12">
-                        <div className="d-flex justify-content-between text-center w-70 mb-5">
-                          <span className="step">
-                            <div className="step-icon">
-                              <i className="fas fa-address-card" />
+                      <div className='col-12'>
+                        <div className='d-flex justify-content-between text-center w-70 mb-5'>
+                          <span className='step'>
+                            <div className='step-icon'>
+                              <i className='fas fa-address-card' />
                             </div>
-                            <p className="mt-4">Address</p>
+                            <p className='mt-4'>Address</p>
                           </span>
-                          <span className="step">
-                            <div className="step-icon">
-                              <i className="fas fa-credit-card" />
+                          <span className='step'>
+                            <div className='step-icon'>
+                              <i className='fas fa-credit-card' />
                             </div>
-                            <p className="mt-4">Payment</p>
+                            <p className='mt-4'>Payment</p>
                           </span>
-                          <span className="step">
-                            <div className="step-icon">
-                              <i className="fas fa-check-square" />
+                          <span className='step'>
+                            <div className='step-icon'>
+                              <i className='fas fa-check-square' />
                             </div>
-                            <p className="mt-4">Confirm</p>
+                            <p className='mt-4'>Confirm</p>
                           </span>
                         </div>
                         {/* One "tab" for each step in the form: */}
                         {/* ADDRESS TAB  */}
-                        <div className="">
-                          <div className="row">
-                            <div className="col-xl-7 col-lg-7 col-md-10">
-                              <div className="checkout-form">
+                        <div className=''>
+                          <div className='row'>
+                            <div className='col-xl-7 col-lg-7 col-md-10'>
+                              <div className='checkout-form'>
+                                <h3 className='mb-2'>
+                                  {' '}
+                                  Geo’Genetic Packages Form
+                                </h3>
+                                <p className='summary-value mb-4'>
+                                  It is highly recommended that you book a
+                                  consultation before purchasing. A government
+                                  ID and client form is required before
+                                  purchasing a Geo’Genetic Package.
+                                </p>
+                                <div className=''>
+                                  <div className='consultation-form'>
+                                    <div className='form-group'>
+                                      <div className='form-row'>
+                                        <div className='col-md-6'>
+                                          <label>
+                                            Name <span className='red'>*</span>
+                                          </label>
+                                          <input
+                                            className='form-control'
+                                            placeholder='Enter First Name'
+                                            type='text'
+                                            value={allValues?.firstName}
+                                            onChange={changeHandler}
+                                            name='firstName'
+                                          />
+                                        </div>
+                                        <div className='col-md-6'>
+                                          <label>
+                                            Age <span className='red'>*</span>
+                                          </label>
+                                          <InputNumber
+                                            unique={true}
+                                            uniquevalue={allValues}
+                                            name={'age'}
+                                            onChange={setAllValues}
+                                            value={allValues?.age}
+                                            max={5}
+                                            className='form-control'
+                                          />
+                                        </div>
+                                        <div className='col-md-6'>
+                                          <label>
+                                            Weight{' '}
+                                            <span className='red'>*</span>
+                                          </label>
+                                          <InputNumber
+                                            unique={true}
+                                            uniquevalue={allValues}
+                                            name={'weight'}
+                                            onChange={setAllValues}
+                                            value={allValues?.weight}
+                                            max={5}
+                                            className='form-control'
+                                          />
+                                        </div>
+                                        <div className='col-md-6'>
+                                          <label>
+                                            Height{' '}
+                                            <span className='red'>*</span>
+                                          </label>
+                                          <InputNumber
+                                            unique={true}
+                                            uniquevalue={allValues}
+                                            name={'height'}
+                                            onChange={setAllValues}
+                                            value={allValues?.height}
+                                            max={5}
+                                            className='form-control'
+                                          />
+                                        </div>
+                                        <div className='col-md-6'>
+                                          <label>
+                                            Reason for Geo’Genetic Therapy{' '}
+                                            <span className='red'>*</span>
+                                          </label>
+                                          <input
+                                            className='form-control'
+                                            placeholder='Enter Reason for Geo’Genetic Therapy'
+                                            type='text'
+                                            value={allValues?.reasonformedic}
+                                            onChange={changeHandler}
+                                            name='reasonformedic'
+                                          />
+                                        </div>
+                                        <div className='col-md-6'>
+                                          <label>
+                                            Current Medication{' '}
+                                            <span className='red'>*</span>
+                                          </label>
+                                          <input
+                                            className='form-control'
+                                            placeholder='Enter Current Medication'
+                                            type='text'
+                                            value={allValues?.currentmedic}
+                                            onChange={changeHandler}
+                                            name='currentmedic'
+                                          />
+                                        </div>
+                                        <div className='col-md-6'>
+                                          <label>
+                                            Allergies{' '}
+                                            <span className='red'>*</span>
+                                          </label>
+                                          <input
+                                            className='form-control'
+                                            placeholder='Enter Allergies'
+                                            type='text'
+                                            value={allValues?.allergics}
+                                            onChange={changeHandler}
+                                            name='allergics'
+                                          />
+                                        </div>
+                                        <div className='row mb-0'>
+                                          <div className='col-6 mb-4'>
+                                            <label>
+                                              Upload Valid Government Issued ID*
+                                            </label>
+                                            <input
+                                              type='file'
+                                              name
+                                              id='govt-id'
+                                              accept='application/pdf,application/vnd.ms-excel'
+                                              onChange={filedocsHandler2}
+                                              className='form-control'
+                                            />
+                                            <label
+                                              htmlFor='govt-id'
+                                              className='d-block id-upload'
+                                            >
+                                              {allValues?.govtid?.name ? (
+                                                <i className='fas fa-file-upload fa-2x' />
+                                              ) : (
+                                                <i className='fas fa-upload fa-2x' />
+                                              )}
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div style={{ height: 20 }}></div>
                                 <h3> ADDRESS</h3>
                                 {/* Personal info */}
-                                <div className="row mb-4">
-                                  <div className="col-12">
+                                <div className='row mb-4'>
+                                  <div className='col-12'>
                                     <h4>PERSONAL INFORMATION</h4>
                                   </div>
-                                  <div className="col mb-4">
+                                  <div className='col mb-4'>
                                     <label>Email Address*</label>
                                     <input
-                                      type="email"
-                                      className="form-control"
-                                      placeholder="abs@email.com"
-                                      name="email"
+                                      type='email'
+                                      className='form-control'
+                                      placeholder='abs@email.com'
+                                      name='email'
                                       value={allValues?.email}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col mb-4">
+                                  <div className='col mb-4'>
                                     <label>Phone Number</label>
                                     <InputPhone
                                       unique={true}
                                       uniquevalue={allValues}
-                                      name={"phone"}
+                                      name={'phone'}
                                       value={allValues?.phone}
                                       onChange={setAllValues}
                                     />
                                   </div>
                                 </div>
 
-                                <div className="row mb-4">
-                                  <div className="col-6 mb-4">
+                                <div className='row mb-4'>
+                                  <div className='col-6 mb-4'>
                                     <label>
                                       Upload Valid Government Issued ID*
                                     </label>
                                     <input
-                                      type="file"
+                                      type='file'
                                       name
-                                      id="govt-id"
-                                      accept="application/pdf,application/vnd.ms-excel"
+                                      id='govt-id'
+                                      accept='application/pdf,application/vnd.ms-excel'
                                       onChange={filedocsHandler}
-                                      className="form-control"
+                                      className='form-control'
                                     />
                                     <label
-                                      htmlFor="govt-id"
-                                      className="d-block id-upload"
+                                      htmlFor='govt-id'
+                                      className='d-block id-upload'
                                     >
                                       {allValues?.doc_schedule?.name ? (
-                                        <i className="fas fa-file-upload fa-2x" />
+                                        <i className='fas fa-file-upload fa-2x' />
                                       ) : (
-                                        <i className="fas fa-upload fa-2x" />
+                                        <i className='fas fa-upload fa-2x' />
                                       )}
                                     </label>
                                   </div>
-                                  <div className="col-6 ship-to-different text-center">
-                                    <div className="checkbox-group">
+                                  <div className='col-6 ship-to-different text-center'>
+                                    <div className='checkbox-group'>
                                       <input
-                                        type="checkbox"
-                                        id="html"
+                                        type='checkbox'
+                                        id='html'
                                         value={allValues?.disclaimer}
                                         onChange={changeHandler}
                                       />
-                                      <label htmlFor="html">Disclaimer </label>
+                                      <label htmlFor='html'>Disclaimer </label>
                                     </div>
                                   </div>
                                 </div>
+                                <p className='summary-value'>
+                                  DISCLAIMER: The following GeoGenetic protocol
+                                  list is a general list of items that may be
+                                  included in your protocol. GeoGenetic
+                                  Protocols are customized so items in your
+                                  specific protocol will not be identical to the
+                                  list but included based on your healing needs
+                                  and specifications.
+                                </p>
                                 {/* Billing Address */}
-                                <div className="row mb-4">
-                                  <div className="col-12 mb-4">
+                                <div className='row mb-4'>
+                                  <div className='col-12 mb-4'>
                                     <h4>Billing Address</h4>
                                   </div>
-                                  <div className="col-12 mb-4">
+                                  <div className='col-12 mb-4'>
                                     <label>Name*</label>
                                     <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter Name"
-                                      name="billingname"
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter Name'
+                                      name='billingname'
                                       value={allValues?.billingname}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-12 mb-4">
+                                  <div className='col-12 mb-4'>
                                     <label>Address*</label>
                                     <textarea
-                                      className="form-control"
-                                      id="exampleFormControlTextarea1"
-                                      placeholder="Enter Address"
+                                      className='form-control'
+                                      id='exampleFormControlTextarea1'
+                                      placeholder='Enter Address'
                                       rows={5}
                                       value={allValues?.billingaddress}
-                                      name="billingaddress"
+                                      name='billingaddress'
                                       onChange={changeHandler}
                                     />
                                   </div>
                                 </div>
-                                <div className="row mb-4">
-                                  <div className="col-6 mb-4">
+                                <div className='row mb-4'>
+                                  <div className='col-6 mb-4'>
                                     <label>City*</label>
                                     <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter City"
-                                      name="billingcity"
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter City'
+                                      name='billingcity'
                                       value={allValues?.billingcity}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>Zip Code*</label>
                                     <InputNumber
                                       unique={true}
                                       uniquevalue={allValues}
-                                      name={"billingzipcode"}
+                                      name={'billingzipcode'}
                                       onChange={setAllValues}
                                       value={allValues?.billingzipcode}
                                       max={5}
-                                      className="form-control"
+                                      className='form-control'
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>Country*</label>
                                     <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter Country"
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter Country'
                                       value={allValues?.billingcountry}
-                                      name="billingcountry"
+                                      name='billingcountry'
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>State*</label>
                                     <select
-                                      className="form-control"
-                                      name="billingstate"
+                                      className='form-control'
+                                      name='billingstate'
                                       onChange={changeHandler}
                                       value={allValues?.billingstate}
                                     >
@@ -449,72 +620,72 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                 <div style={{ height: 40 }}> </div>
 
                                 {/* Shipping Address */}
-                                <div className="row mb-4">
-                                  <div className="col-12 mb-4">
+                                <div className='row mb-4'>
+                                  <div className='col-12 mb-4'>
                                     <h4>Shipping Address</h4>
                                   </div>
-                                  <div className="col-12 mb-4">
+                                  <div className='col-12 mb-4'>
                                     <label>Name*</label>
                                     <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter Name"
-                                      name="shippingname"
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter Name'
+                                      name='shippingname'
                                       value={allValues?.shippingname}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-12 mb-4">
+                                  <div className='col-12 mb-4'>
                                     <label>Address*</label>
                                     <textarea
-                                      className="form-control"
-                                      id="exampleFormControlTextarea1"
-                                      placeholder="Enter Address"
+                                      className='form-control'
+                                      id='exampleFormControlTextarea1'
+                                      placeholder='Enter Address'
                                       rows={5}
-                                      name="shippingaddress"
+                                      name='shippingaddress'
                                       value={allValues?.shippingaddress}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>City*</label>
                                     <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter City"
-                                      name="shippingcity"
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter City'
+                                      name='shippingcity'
                                       value={allValues?.shippingcity}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>Zip Code*</label>
                                     <InputNumber
                                       unique={true}
                                       uniquevalue={allValues}
-                                      name={"shippingzipcode"}
+                                      name={'shippingzipcode'}
                                       onChange={setAllValues}
                                       value={allValues?.shippingzipcode}
                                       max={5}
-                                      className="form-control"
+                                      className='form-control'
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>Country*</label>
                                     <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter Country"
-                                      name="shippingcountry"
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter Country'
+                                      name='shippingcountry'
                                       onChange={changeHandler}
                                       value={allValues?.shippingcountry}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>State*</label>
                                     <select
-                                      className="form-control"
-                                      name="shippingstate"
+                                      className='form-control'
+                                      name='shippingstate'
                                       onChange={changeHandler}
                                       value={allValues?.shippingstate}
                                     >
@@ -525,14 +696,14 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-lg-3 col-lg-4 col-md-7 offset-lg-1">
-                              <div className="order-summary has-margin">
-                                <div className="order-summary-head">
+                            <div className='col-lg-3 col-lg-4 col-md-7 offset-lg-1'>
+                              <div className='order-summary has-margin'>
+                                <div className='order-summary-head'>
                                   <p>Order Summary</p>
                                 </div>
-                                <div className="summary-details">
-                                  <div className="product-cart-summary">
-                                    <div className="row align-items-center justify-content-center">
+                                <div className='summary-details'>
+                                  <div className='product-cart-summary'>
+                                    <div className='row align-items-center justify-content-center'>
                                       {/* <div className="col-4 mb-3">
                                       <img
                                         src="images/summary-product-image.png"
@@ -546,14 +717,14 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     </div> */}
 
                                       <>
-                                        <div className="col-4 mb-3">
+                                        <div className='col-4 mb-3'>
                                           <img
                                             src={`${imageURL}${product?.productimage[0]}`}
-                                            alt=""
-                                            className="img-fluid"
+                                            alt=''
+                                            className='img-fluid'
                                           />
                                         </div>
-                                        <div className="col-8 mb-3">
+                                        <div className='col-8 mb-3'>
                                           <td>{product?.name}</td>
                                           <p>${product?.price}</p>
                                         </div>
@@ -561,15 +732,15 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     </div>
                                   </div>
 
-                                  <div className="row justify-content-between align-items-start">
-                                    <div className="col-12 border-top border-grey mt-4 pb-4" />
+                                  <div className='row justify-content-between align-items-start'>
+                                    <div className='col-12 border-top border-grey mt-4 pb-4' />
                                     {/* sub total */}
-                                    <div className="col-7 mb-3">
-                                      <p className="summary-title">Subtotal</p>
+                                    <div className='col-7 mb-3'>
+                                      <p className='summary-title'>Subtotal</p>
                                     </div>
-                                    <div className="col-5 mb-3 text-right">
-                                      <p className="summary-value">
-                                        {" "}
+                                    <div className='col-5 mb-3 text-right'>
+                                      <p className='summary-value'>
+                                        {' '}
                                         ${product?.price * quantity}
                                         {/* {cartItems
                                           .reduce(
@@ -581,35 +752,35 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       </p>
                                     </div>
                                     {/* tax */}
-                                    <div className="col-7 mb-3">
-                                      <p className="summary-title">
+                                    <div className='col-7 mb-3'>
+                                      <p className='summary-title'>
                                         Tax {taxofstate}%
                                       </p>
                                     </div>
-                                    <div className="col-5 mb-3 text-right">
-                                      <p className="summary-value">
+                                    <div className='col-5 mb-3 text-right'>
+                                      <p className='summary-value'>
                                         To be Counted
                                       </p>
                                     </div>
                                     {/* Shipping rates */}
-                                    <div className="col-7 mb-3">
-                                      <p className="summary-title">
+                                    <div className='col-7 mb-3'>
+                                      <p className='summary-title'>
                                         Shipping rates
                                       </p>
                                     </div>
-                                    <div className="col-5 mb-3 text-right">
-                                      <p className="summary-value">
+                                    <div className='col-5 mb-3 text-right'>
+                                      <p className='summary-value'>
                                         ${shippingPrice}
                                       </p>
                                     </div>
-                                    <div className="col-12 border-top border-grey mb-2" />
+                                    <div className='col-12 border-top border-grey mb-2' />
                                     {/* grand total */}
-                                    <div className="col-7 mb-3">
-                                      <p className="grand-total">Grand Total</p>
+                                    <div className='col-7 mb-3'>
+                                      <p className='grand-total'>Grand Total</p>
                                     </div>
-                                    <div className="col-5 mb-3 text-right">
-                                      <p className="grand-total-value">
-                                        {" "}
+                                    <div className='col-5 mb-3 text-right'>
+                                      <p className='grand-total-value'>
+                                        {' '}
                                         ${totalPrice.toFixed(0)}
                                       </p>
                                     </div>
@@ -644,125 +815,122 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                     {/* PAYMENT TAB */}
                     {togglecheckout == 1 && (
                       <div>
-                        <div className="row">
-                          <div className="col-xl-7 col-lg-7 col-md-10">
-                            <div className="checkout-form">
+                        <div className='row'>
+                          <div className='col-xl-7 col-lg-7 col-md-10'>
+                            <div className='checkout-form'>
                               <h3>SELECT PAYMENT METHOD</h3>
                               <form>
-                                <div className="row my-4">
-                                  <div className="col-lg-2 col-md-3 col-4">
-                                    <div className="payment-method">
+                                <div className='row my-4'>
+                                  <div className='col-lg-2 col-md-3 col-4'>
+                                    <div className='payment-method'>
                                       <input
-                                        type="radio"
-                                        id="paypal"
-                                        className="input-hidden"
+                                        type='radio'
+                                        id='paypal'
+                                        className='input-hidden'
                                         value={allValues?.paymentmethod}
-                                        name="paypal"
+                                        name='paypal'
                                         onChange={(e) => {
                                           changeHandler(
-                                            "paypal",
-                                            "paymentmethod"
-                                          );
+                                            'paypal',
+                                            'paymentmethod'
+                                          )
                                         }}
                                       />
-                                      <label htmlFor="paypal">
+                                      <label htmlFor='paypal'>
                                         <img
-                                          src="images/paypal.png"
-                                          alt=""
-                                          className="img-fluid"
+                                          src='images/paypal.png'
+                                          alt=''
+                                          className='img-fluid'
                                         />
                                       </label>
                                     </div>
                                   </div>
-                                  <div className="col-lg-2 col-md-3 col-4">
-                                    <div className="payment-method">
+                                  <div className='col-lg-2 col-md-3 col-4'>
+                                    <div className='payment-method'>
                                       <input
-                                        type="radio"
-                                        id="Apple Pay"
-                                        className="input-hidden"
-                                        name="Apple Pay"
+                                        type='radio'
+                                        id='Apple Pay'
+                                        className='input-hidden'
+                                        name='Apple Pay'
                                         value={allValues?.paymentmethod}
                                         onChange={(e) => {
                                           changeHandler(
-                                            "Apple Pay",
-                                            "paymentmethod"
-                                          );
+                                            'Apple Pay',
+                                            'paymentmethod'
+                                          )
                                         }}
                                       />
-                                      <label htmlFor="Apple Pay">
+                                      <label htmlFor='Apple Pay'>
                                         <img
-                                          src="images/applepay.png"
-                                          alt=""
-                                          className="img-fluid"
+                                          src='images/applepay.png'
+                                          alt=''
+                                          className='img-fluid'
                                         />
                                       </label>
                                     </div>
                                   </div>
-                                  <div className="col-lg-2 col-md-3 col-4">
-                                    <div className="payment-method">
+                                  <div className='col-lg-2 col-md-3 col-4'>
+                                    <div className='payment-method'>
                                       <input
-                                        type="radio"
-                                        id="visa"
-                                        className="input-hidden"
-                                        name="visa"
+                                        type='radio'
+                                        id='visa'
+                                        className='input-hidden'
+                                        name='visa'
                                         onChange={(e) => {
-                                          changeHandler(
-                                            "visa",
-                                            "paymentmethod"
-                                          );
+                                          changeHandler('visa', 'paymentmethod')
                                         }}
                                       />
-                                      <label htmlFor="visa">
+                                      <label htmlFor='visa'>
                                         <img
-                                          src="images/visa.png"
-                                          alt=""
-                                          className="img-fluid"
+                                          src='images/visa.png'
+                                          alt=''
+                                          className='img-fluid'
                                         />
                                       </label>
                                     </div>
                                   </div>
-                                  <div className="col-12 mt-5">
+                                  <div className='col-12 mt-5'>
                                     <h4>Payment</h4>
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>Card Holder Name*</label>
                                     <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter Card Holder Name"
-                                      name="cardholdername"
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter Card Holder Name'
+                                      name='cardholdername'
                                       value={allValues?.cardholdername}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>Card Number*</label>
                                     <input
-                                      type="tel"
-                                      className="form-control"
-                                      inputmode="numeric"
-                                      pattern="[0-9\s]{13,19}"
-                                      autocomplete="cc-number"
-                                      maxlength="19"
-                                      placeholder="xxxx xxxx xxxx xxxx"
-                                      name="cardnumber"
+                                      type='tel'
+                                      className='form-control'
+                                      inputmode='numeric'
+                                      pattern='[0-9\s]{13,19}'
+                                      autocomplete='cc-number'
+                                      maxlength='19'
+                                      placeholder='xxxx xxxx xxxx xxxx'
+                                      name='cardnumber'
                                       value={allValues?.cardnumber}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>CVV Number*</label>
                                     <input
-                                      type="tel"
-                                      className="form-control"
-                                      maxlength="11"
-                                      placeholder="Enter CVV"
-                                      name="cvvnumber"
+                                      type='tel'
+                                      className='form-control'
+                                      maxlength='11'
+                                      placeholder='Enter CVV'
+                                      name='cvvnumber'
                                       value={allValues?.cvvnumber}
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className="col-6 mb-4">
+                                  <div className='col-6 mb-4'>
                                     <label>Expiry date*</label>
                                     <DatePicker
                                       minDate={moment().toDate()}
@@ -773,7 +941,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                             : moment().toDate()
                                         )
                                       }
-                                      name="expirydate"
+                                      name='expirydate'
                                       value={
                                         new Date(
                                           allValues?.expirydate
@@ -782,23 +950,23 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         )
                                       }
                                       onChange={(e) => {
-                                        changeHandler(e, "expirydate");
+                                        changeHandler(e, 'expirydate')
                                       }}
-                                      className="sort-date customdate form-control"
-                                    />{" "}
+                                      className='sort-date customdate form-control'
+                                    />{' '}
                                   </div>
                                 </div>
                               </form>
                             </div>
                           </div>
-                          <div className="col-lg-3 col-lg-4 col-md-7 offset-lg-1">
-                            <div className="order-summary has-margin">
-                              <div className="order-summary-head">
+                          <div className='col-lg-3 col-lg-4 col-md-7 offset-lg-1'>
+                            <div className='order-summary has-margin'>
+                              <div className='order-summary-head'>
                                 <p>Order Summary</p>
                               </div>
-                              <div className="summary-details">
-                                <div className="product-cart-summary">
-                                  <div className="row align-items-center justify-content-center">
+                              <div className='summary-details'>
+                                <div className='product-cart-summary'>
+                                  <div className='row align-items-center justify-content-center'>
                                     {/* <div className="col-4 mb-3">
                                       <img
                                         src="images/summary-product-image.png"
@@ -812,14 +980,14 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     </div> */}
 
                                     <>
-                                      <div className="col-4 mb-3">
+                                      <div className='col-4 mb-3'>
                                         <img
                                           src={`${imageURL}${product?.productimage[0]}`}
-                                          alt=""
-                                          className="img-fluid"
+                                          alt=''
+                                          className='img-fluid'
                                         />
                                       </div>
-                                      <div className="col-8 mb-3">
+                                      <div className='col-8 mb-3'>
                                         <td>{product?.name}</td>
                                         <p>${product?.price}</p>
                                       </div>
@@ -827,46 +995,46 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   </div>
                                 </div>
 
-                                <div className="row justify-content-between align-items-start">
-                                  <div className="col-12 border-top border-grey mt-4 pb-4" />
+                                <div className='row justify-content-between align-items-start'>
+                                  <div className='col-12 border-top border-grey mt-4 pb-4' />
                                   {/* sub total */}
-                                  <div className="col-7 mb-3">
-                                    <p className="summary-title">Subtotal</p>
+                                  <div className='col-7 mb-3'>
+                                    <p className='summary-title'>Subtotal</p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">
-                                      {" "}
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='summary-value'>
+                                      {' '}
                                       ${product?.price * quantity}
                                     </p>
                                   </div>
                                   {/* tax */}
-                                  <div className="col-7 mb-3">
-                                    <p className="summary-title">
+                                  <div className='col-7 mb-3'>
+                                    <p className='summary-title'>
                                       Tax {taxofstate}%
                                     </p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">${taxPrice}</p>
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='summary-value'>${taxPrice}</p>
                                   </div>
                                   {/* Shipping rates */}
-                                  <div className="col-7 mb-3">
-                                    <p className="summary-title">
+                                  <div className='col-7 mb-3'>
+                                    <p className='summary-title'>
                                       Shipping rates
                                     </p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='summary-value'>
                                       ${shippingPrice}
                                     </p>
                                   </div>
-                                  <div className="col-12 border-top border-grey mb-2" />
+                                  <div className='col-12 border-top border-grey mb-2' />
                                   {/* grand total */}
-                                  <div className="col-7 mb-3">
-                                    <p className="grand-total">Grand Total</p>
+                                  <div className='col-7 mb-3'>
+                                    <p className='grand-total'>Grand Total</p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="grand-total-value">
-                                      {" "}
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='grand-total-value'>
+                                      {' '}
                                       ${product?.price * quantity + taxPrice}
                                     </p>
                                   </div>
@@ -900,13 +1068,13 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                     {/* CONFIRMATION TAB */}
                     {togglecheckout == 2 && (
                       <div>
-                        <div className="row">
-                          <div className="col-xl-7 col-lg-7 col-md-10">
-                            <div className="checkout-form">
-                              <div className="table-responsive mb-5">
+                        <div className='row'>
+                          <div className='col-xl-7 col-lg-7 col-md-10'>
+                            <div className='checkout-form'>
+                              <div className='table-responsive mb-5'>
                                 <table
-                                  className="table table-borderless text-center"
-                                  id="cart-table"
+                                  className='table table-borderless text-center'
+                                  id='cart-table'
                                 >
                                   <thead>
                                     <tr>
@@ -922,22 +1090,22 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   <tbody>
                                     <tr>
                                       <td>
-                                        <div className="cart-product">
+                                        <div className='cart-product'>
                                           <img
                                             src={`${imageURL}${product?.productimage[0]}`}
-                                            alt=""
-                                            className="img-fluid mx-auto"
+                                            alt=''
+                                            className='img-fluid mx-auto'
                                           />
                                         </div>
                                       </td>
                                       <td>{product?.name}</td>
                                       <td>
-                                        <div id="field1">
-                                          <div className="quantifier ml-0">
+                                        <div id='field1'>
+                                          <div className='quantifier ml-0'>
                                             <button
-                                              type="button"
-                                              id="sub"
-                                              className="minus"
+                                              type='button'
+                                              id='sub'
+                                              className='minus'
                                               value={quantity}
                                               onClick={() =>
                                                 // dispatch(
@@ -949,21 +1117,21 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                                 subQuantity()
                                               }
                                             >
-                                              <i className="fas fa-minus" />
+                                              <i className='fas fa-minus' />
                                             </button>
                                             <input
-                                              type="number"
+                                              type='number'
                                               id={1}
                                               defaultValue={1}
                                               min={1}
                                               value={quantity}
-                                              className="quantity p-md-2 p-0"
+                                              className='quantity p-md-2 p-0'
                                               max={product?.countInStock}
                                             />
                                             <button
-                                              type="button"
-                                              id="add"
-                                              className="plus"
+                                              type='button'
+                                              id='add'
+                                              className='plus'
                                               value={quantity}
                                               onClick={() =>
                                                 setquantity(
@@ -971,7 +1139,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                                 )
                                               }
                                             >
-                                              <i className="fas fa-plus" />
+                                              <i className='fas fa-plus' />
                                             </button>
                                           </div>
                                         </div>
@@ -985,14 +1153,14 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                               </div>
                             </div>
                           </div>
-                          <div className="col-lg-3 col-lg-4 col-md-7 offset-lg-1">
-                            <div className="order-summary has-margin">
-                              <div className="order-summary-head">
+                          <div className='col-lg-3 col-lg-4 col-md-7 offset-lg-1'>
+                            <div className='order-summary has-margin'>
+                              <div className='order-summary-head'>
                                 <p>Order Summary</p>
                               </div>
-                              <div className="summary-details">
-                                <div className="product-cart-summary">
-                                  <div className="row align-items-center justify-content-center">
+                              <div className='summary-details'>
+                                <div className='product-cart-summary'>
+                                  <div className='row align-items-center justify-content-center'>
                                     {/* <div className="col-4 mb-3">
                                       <img
                                         src="images/summary-product-image.png"
@@ -1006,14 +1174,14 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     </div> */}
 
                                     <>
-                                      <div className="col-4 mb-3">
+                                      <div className='col-4 mb-3'>
                                         <img
                                           src={`${imageURL}${product?.productimage[0]}`}
-                                          alt=""
-                                          className="img-fluid"
+                                          alt=''
+                                          className='img-fluid'
                                         />
                                       </div>
-                                      <div className="col-8 mb-3">
+                                      <div className='col-8 mb-3'>
                                         <td>{product?.name}</td>
                                         <p>${product?.price}</p>
                                       </div>
@@ -1021,59 +1189,59 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   </div>
                                 </div>
 
-                                <div className="row justify-content-between align-items-start">
-                                  <div className="col-12 border-top border-grey mt-4 pb-4" />
+                                <div className='row justify-content-between align-items-start'>
+                                  <div className='col-12 border-top border-grey mt-4 pb-4' />
                                   {/* sub total */}
-                                  <div className="col-7 mb-3">
-                                    <p className="summary-title">Subtotal</p>
+                                  <div className='col-7 mb-3'>
+                                    <p className='summary-title'>Subtotal</p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">
-                                      {" "}
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='summary-value'>
+                                      {' '}
                                       ${product?.price * quantity}
                                     </p>
                                   </div>
                                   {/* tax */}
-                                  <div className="col-7 mb-3">
-                                    <p className="summary-title">
+                                  <div className='col-7 mb-3'>
+                                    <p className='summary-title'>
                                       Tax {taxofstate}%
                                     </p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">${taxPrice}</p>
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='summary-value'>${taxPrice}</p>
                                   </div>
                                   {/* Shipping rates */}
-                                  <div className="col-7 mb-3">
-                                    <p className="summary-title">
+                                  <div className='col-7 mb-3'>
+                                    <p className='summary-title'>
                                       Shipping rates
                                     </p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="summary-value">
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='summary-value'>
                                       ${shippingPrice}
                                     </p>
                                   </div>
-                                  <div className="col-12 border-top border-grey mb-2" />
+                                  <div className='col-12 border-top border-grey mb-2' />
                                   {/* grand total */}
-                                  <div className="col-7 mb-3">
-                                    <p className="grand-total">Grand Total</p>
+                                  <div className='col-7 mb-3'>
+                                    <p className='grand-total'>Grand Total</p>
                                   </div>
-                                  <div className="col-5 mb-3 text-right">
-                                    <p className="grand-total-value">
-                                      {" "}
+                                  <div className='col-5 mb-3 text-right'>
+                                    <p className='grand-total-value'>
+                                      {' '}
                                       $
                                       {Number(product?.price * quantity) +
                                         taxPrice}
                                     </p>
                                   </div>
                                 </div>
-                                <div className="row mt-4">
-                                  <div className="col-12 text-center">
+                                <div className='row mt-4'>
+                                  <div className='col-12 text-center'>
                                     <Link
-                                      to="#"
-                                      className="btn red-btn-solid mt-lg-4 mt-3 mx-auto py-2 px-4 text-capitalize"
-                                      data-toggle="modal"
-                                      data-target="#confirmOrder"
+                                      to='#'
+                                      className='btn red-btn-solid mt-lg-4 mt-3 mx-auto py-2 px-4 text-capitalize'
+                                      data-toggle='modal'
+                                      data-target='#confirmOrder'
                                       onClick={placeOrderHandler}
                                     >
                                       Place Order
@@ -1122,8 +1290,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                   {togglecheckout == 2 ? null : (
                     <div>
                       <button
-                        type="button"
-                        className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0"
+                        type='button'
+                        className='btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0'
                         onClick={() => {
                           togglecheckout == 0 &&
                           allValues?.email &&
@@ -1151,9 +1319,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                             : togglecheckout == 2
                             ? togglecheckoutHandler()
                             : Toasty(
-                                "error",
+                                'error',
                                 `Please fill out all the required fields`
-                              );
+                              )
                         }}
                       >
                         Continue
@@ -1164,11 +1332,11 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
               </div>
             </div>
           </div>
-          <AllHerbs/>
+          <AllHerbs />
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default GeoGeneticsCheckout;
+export default GeoGeneticsCheckout

@@ -159,7 +159,14 @@ const GeoGenetics = ({ history }) => {
               {geoGeneticspackages?.length > 0 &&
                 geoGeneticspackages?.map((geo, index) => (
                   <div className='col-xl-4 col-md-6 col-8 mx-md-0 mx-auto my-3'>
-                    <Link to='#'>
+                    <Link
+                      to='#'
+                      onClick={() => {
+                        console.log('abcccccc')
+
+                        history?.push(`/${links[index]}/${geo?._id}`)
+                      }}
+                    >
                       <div className='product-box'>
                         <img
                           src={
@@ -172,6 +179,7 @@ const GeoGenetics = ({ history }) => {
                         <div className='product-actions'>
                           <button
                             type='button'
+                            style={{ zIndex: 11111111111111 }}
                             onClick={() => {
                               console.log('abcccccc')
 
@@ -189,6 +197,7 @@ const GeoGenetics = ({ history }) => {
                                 : CreateWishList(geo?._id, history)
                             }}
                             className='wishlist_button'
+                            style={{ zIndex: 11111111111111 }}
                           >
                             <i
                               className={
@@ -246,7 +255,14 @@ const GeoGenetics = ({ history }) => {
                         geoGeneticsprotocols?.map((geo, index) => (
                           <div className='col-lg-3 col-md-4 col-sm-6 mb-5'>
                             {/* de vaxxed therapy */}
-                            <Link to='#'>
+                            <Link
+                              to='#'
+                              onClick={() => {
+                                console.log('abcccccc')
+
+                                history?.push(`/${links[index]}/${geo?._id}`)
+                              }}
+                            >
                               <div className='product-box'>
                                 <img
                                   src={
@@ -272,6 +288,7 @@ const GeoGenetics = ({ history }) => {
                                   </button>
                                   <button
                                     type='button'
+                                    style={{ zIndex: 11111111111111 }}
                                     onClick={() => {
                                       !userInfo
                                         ? UnauthorizedAlert()
@@ -289,6 +306,7 @@ const GeoGenetics = ({ history }) => {
                                   </button>
                                   <button
                                     type='button'
+                                    style={{ zIndex: 11111111111111 }}
                                     onClick={() => {
                                       !userInfo
                                         ? UnauthorizedAlert()

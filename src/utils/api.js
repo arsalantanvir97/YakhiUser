@@ -8,8 +8,8 @@ export let imageURL
 //   baseURL = "https://localhost:5089/api";
 //   imageURL = "https://localhost:5089/";
 // } else {
-baseURL = 'https://dev74.onlinetestingserver.com:5089/api'
-imageURL = 'https://dev74.onlinetestingserver.com:5089/'
+baseURL = 'https://yahkiawakened.store:5089/api'
+imageURL = 'https://yahkiawakened.store:5089/'
 // }
 let api = axios.create({
   baseURL,

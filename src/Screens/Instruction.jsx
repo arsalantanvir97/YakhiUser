@@ -62,7 +62,7 @@ const Instruction = () => {
                   </p>
                 </div>
               </div>
-              {loading ? (
+              {/* {loading ? (
                 <ListSkeleton listsToRender={16} />
               ) : (
                 <div className='row mt-4'>
@@ -97,7 +97,7 @@ const Instruction = () => {
                       </div>
                     ))}
                 </div>
-              )}
+              )} */}
               <section className='diets'>
                 <div className='container-fluid'>
                   <div className='row'>

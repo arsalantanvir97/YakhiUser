@@ -8,6 +8,28 @@ import UnauthorizedAlert from './UnauthorizedAlert'
 import { validateEmail } from '../utils/ValidateEmail'
 import Toasty from '../utils/toast'
 import Swal from 'sweetalert2'
+let categories = [
+  { name: `Geo'Genetic Therapy`, id: '6242c50b11f7d01b4e81f96c' },
+  { name: `Teas & 3 Bitters`, id: '624160071b97a530529276b7' },
+  { name: `Tinctures`, id: '62415fde1b97a530529276b3' },
+  { name: `Capsules`, id: '62415fc11b97a530529276af' },
+  { name: `Tonics`, id: '6241603e1b97a530529276bb' },
+  { name: `Kits & Bundles`, id: '624160d81b97a530529276cb' },
+  { name: `Hygiene`, id: '62d725092909481abc330f7d' },
+  { name: `Soap`, id: '62d728d92909481abc331061' },
+  { name: `Seaweed Herbs`, id: '62415f8d1b97a530529276ab' },
+  { name: `Oral Care`, id: '6215e1fef9727e382394df53' },
+  {
+    name: `Oils`,
+
+    id: '6241605f1b97a530529276bf',
+  },
+  {
+    name: `Salves`,
+
+    id: '6241607a1b97a530529276c3',
+  },
+]
 const Header = ({ history }) => {
   const dispatch = useDispatch()
   const [category, setcategory] = useState(() => {
@@ -179,11 +201,11 @@ const Header = ({ history }) => {
                                           Consultations
                                         </Link>
                                       </li>
-                                      {category?.length > 0 &&
-                                        category?.map((cat) => (
+                                      {categories?.length > 0 &&
+                                        categories?.map((cat) => (
                                           <li>
-                                            <Link to={`/Capsules/${cat?._id}`}>
-                                              {cat?.categorytitle}
+                                            <Link to={`/Capsules/${cat?.id}`}>
+                                              {cat?.name}
                                             </Link>
                                           </li>
                                         ))}
@@ -218,72 +240,16 @@ const Header = ({ history }) => {
                                               >
                                                 Consultations
                                               </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Capsules
-                                              </Link>
-                                              <Link
-                                                to='/GeoGenetics'
-                                                className='dropdown-item'
-                                              >
-                                                Geo’Genetics
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Tinctures
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Teas
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Powders
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Seaweed Herbs
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Kits and Bundles
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Tonics
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Oils
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Hygiene
-                                              </Link>
-                                              <Link
-                                                to='/Capsules'
-                                                className='dropdown-item'
-                                              >
-                                                Whole Herbs
-                                              </Link>
+                                              {categories?.length > 0 &&
+                                                categories?.map((cat) => (
+                                                  <li>
+                                                    <Link
+                                                      to={`/Capsules/${cat?.id}`}
+                                                    >
+                                                      {cat?.name}
+                                                    </Link>
+                                                  </li>
+                                                ))}
                                             </div>
                                           </li>
                                         </ul>

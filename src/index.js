@@ -9,12 +9,15 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-calendar/dist/Calendar.css'
+import HttpsRedirect from 'react-https-redirect'
 
 import { ToastContainer } from 'react-toastify'
 ReactDOM.render(
   <Provider store={store}>
-    <ToastContainer />
-    <App />
+    <HttpsRedirect>
+      <ToastContainer />
+      <App />
+    </HttpsRedirect>
   </Provider>,
   document.getElementById('root')
 )

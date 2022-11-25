@@ -81,7 +81,7 @@ function App() {
   }, [])
   return (
     <Suspense fallback={<Loaderr />}>
-      <Router basename='/yakhi/user'>
+      <Router basename='/'>
         <ScrollToTop />
         <Route exact path='/' component={Index} />{' '}
         <Route path='/Login' component={Login} exact />

@@ -815,7 +815,7 @@
         padding: 29px 0;
     } */
     .main-banner {
-        min-height: 285px;
+        min-height: 300px;
         background-size: contain;
     }
 }
@@ -1361,10 +1361,10 @@
     }
     .menuheight{
         height: auto;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
     .main-banner {
-        min-height: 220px;
+        min-height: 205px;
     }
 }
 @media screen and (max-width: 456px) {

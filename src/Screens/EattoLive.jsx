@@ -549,7 +549,7 @@ const EattotLive = () => {
                       >
                         <div className='panel-body'>
                           <ul className='system-list ml-4 py-4'>
-                            <li className='font_8'>Asparagus</li>
+                            {/* <li className='font_8'>Asparagus</li>
                             <li className='font_8'>Black Radish, with skin</li>
                             <li className='font_8'>Brussels Sprouts</li>
                             <li className='font_8'>Celery</li>
@@ -574,7 +574,7 @@ const EattotLive = () => {
                             <li className='font_8'>Sugar Beets</li>
                             <li className='font_8'>Tomatoes</li>
                             <li className='font_8'>Young Radish</li>
-                            <li className='font_8'>Zucchini</li>
+                            <li className='font_8'>Zucchini</li> */}
                             <li className='font_8'>Agave Nectar</li>
                             <li className='font_8'>Coconut Water</li>
                             <li className='font_8'>
@@ -993,7 +993,7 @@ const EattotLive = () => {
                             <li>Pumpkins</li>
                             <li>Raw or Baked White Potatoes</li>
                             <li>
-                              RAW AND COOKED SQUASHED (WINTER, ACORD, BUTTERNUT,
+                              RAW AND COOKED SQUASHES (WINTER, ACORD, BUTTERNUT,
                               ETC.)
                             </li>
                             <li>RAW AND COOKED SWEET POTATOES</li>

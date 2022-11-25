@@ -929,7 +929,7 @@ const Index = ({ history }) => {
               height='100%'
               frameborder='0'
               allowfullscreen
-              src='https://www.youtube.com/embed/tgbNymZ7vqY'
+              src='https://www.youtube.com/embed/QHH_gkbLP4Y'
             ></iframe>
 
             {/* <img
@@ -945,9 +945,10 @@ const Index = ({ history }) => {
             data-aos-duration={3000}
           >
             <p className='yahki-p pl-4' style={{ textAlign: 'center' }}>
-              THE BODY WAS CREATED TO HEAL ITSELF... IF PROVIDED WITH THE RIGHT
-              ENVIRONMENTAL CONDITIONS! EXPERIENCE POWERFUL HERBAL THERAPY NOW
-              WITH THE WORLD'S RENOWNED MASTER HEALER YAH'KI RAPHA EL AWAKEND!{' '}
+              THE BODY WAS CREATED TO HEAL & REGENERATE ITSELF! IF PROVIDED WITH
+              THE RIGHT ENVIRONMENTAL CONDITIONS! EXPERIENCE POWERFUL HERBAL
+              THERAPY NOW WITH THE WORLD'S RENOWNED MASTER HEALER YAH'KI RAPHA
+              EL AWAKEND!{' '}
             </p>
             <div
               style={{
@@ -1186,13 +1187,14 @@ const Index = ({ history }) => {
             </div>
             <div className='col-xl-6 col-12 mt-xl-0 '>
               <h3 className='main-heading' style={{ textAlign: 'center' }}>
-                RESTORE YOUR DIGESTIVE SYSTEM!
+                RESTORE YOUR DIGESTIVE SYSTEM
               </h3>
               <p
                 className='general-para dark-text mt-5'
                 style={{ textAlign: 'center' }}
               >
-                Improve Your Mood & Mobility By Efficiently Cleansing Your Gut
+                Improve your mood and mobility by efficiently cleansing your
+                gut.
               </p>
             </div>
           </div>
@@ -1204,13 +1206,13 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-12 mt-xl-0 '>
               <h3 className='main-heading' style={{ textAlign: 'center' }}>
-                ABSORB NUTRIENTS TO REBUILD!
+                ABSORB NUTRIENTS TO REBUILD
               </h3>
               <p
                 className='general-para dark-text mt-5'
                 style={{ textAlign: 'center' }}
               >
-                Improve The Uptake Of The Minerals and Amino Acids Your Intaking
+                Improve your uptake of minerals and intake of amino acids.
               </p>
             </div>
             <div className='col-xl-6 col-10'>
@@ -1238,14 +1240,13 @@ const Index = ({ history }) => {
             </div>
             <div className='col-xl-6 col-12 mt-xl-0 '>
               <h3 className='main-heading' style={{ textAlign: 'center' }}>
-                MAXIMIZE ON THE FOODS YOUR DIGESTING!
+                MAXIMIZE ON THE FOODS YOU ARE DIGESTING
               </h3>
               <p
                 className='general-para dark-text mt-5'
                 style={{ textAlign: 'center' }}
               >
-                Improve Your Utilization Factory’s, Benefit from all that you
-                Consume
+                Improve your utilization factory’s benefit from all you consume.
               </p>
             </div>
           </div>
@@ -1257,13 +1258,13 @@ const Index = ({ history }) => {
           <div className='row justify-content-center align-items-center'>
             <div className='col-xl-6 col-12 mt-xl-0 '>
               <h3 className='main-heading' style={{ textAlign: 'center' }}>
-                CREATE A ELIMINATION PATHWAY
+                CREATE AN ELIMINATION PATHWAY
               </h3>
               <p
                 className='general-para dark-text mt-5'
                 style={{ textAlign: 'center' }}
               >
-                One’s Body Must Eliminate What It Accumulates. Experience NOW!
+                Your body must eliminate what it accumulates. Experience now!
               </p>
               <div style={{ height: 40 }}></div>
             </div>
@@ -1301,7 +1302,7 @@ const Index = ({ history }) => {
                 className='general-para dark-text mt-5'
                 style={{ textAlign: 'center' }}
               >
-                Reach a state of peace and happiness never experienced before
+                Reach a state of peace and happiness never before experienced.
               </p>
             </div>
           </div>
