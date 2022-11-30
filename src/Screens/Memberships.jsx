@@ -16,6 +16,8 @@ const Memberships = ({ history }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+  const [firstname, setfirstname] = useState('')
+  const [lastname, setlastname] = useState('')
 
   const [allValues, setAllValues] = useState({
     signature: '',
@@ -98,7 +100,32 @@ const Memberships = ({ history }) => {
                           <h3>Already a member</h3>
                         ) : (
                           <>
-                            {' '}
+                            <div className='row my-4'>
+                              <div className='col-12 mb-4'>
+                                <label>First Name*</label>
+                                <input
+                                  type='text'
+                                  className='form-control mt-2'
+                                  placeholder='Enter First Name'
+                                  value={firstname}
+                                  onChange={(e) => {
+                                    setfirstname(e.target.value)
+                                  }}
+                                />
+                              </div>
+                              <div className='col-12 mb-4'>
+                                <label>Last Name*</label>
+                                <input
+                                  type='text'
+                                  className='form-control mt-2'
+                                  placeholder='Enter Last Name'
+                                  value={lastname}
+                                  onChange={(e) => {
+                                    setlastname(e.target.value)
+                                  }}
+                                />
+                              </div>
+                            </div>{' '}
                             <Signature
                               allValues={allValues}
                               setAllValues={setAllValues}
@@ -130,7 +157,7 @@ const Memberships = ({ history }) => {
           </div>
         </section>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

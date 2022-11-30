@@ -390,12 +390,32 @@ const Instruction = () => {
                                         detail instruction video:
                                         <br></br>
                                         <div style={{ height: 10 }}></div>
-                                        <a
-                                          href='https://www.youtube.com/watch?v=QHH_gkbLP4Y'
-                                          target='_blank'
+                                        {/* <div
+                                          className='col-lg-6 col-md-8 mx-auto my-3 aos-init aos-animate'
+                                          data-aos='fade-up'
+                                          data-aos-duration={3000}
+                                          style={{ width: 540, height: 405 }}
+                                        > */}
+                                        <div
+                                          className='col-lg-12 col-md-12 mx-auto my-3 aos-init aos-animate'
+                                          data-aos='fade-up'
+                                          data-aos-duration={3000}
+                                          style={{ width: '100%', height: 275 }}
                                         >
-                                          https://www.youtube.com/watch?v=QHH_gkbLP4Y
-                                        </a>
+                                          <iframe
+                                            width='100%'
+                                            height='100%'
+                                            frameborder='0'
+                                            allowfullscreen
+                                            src='https://www.youtube.com/embed/QHH_gkbLP4Y'
+                                          ></iframe>
+                                        </div>
+                                        {/* <img
+              src="images/Yahki-awakened-welcome-image.jpg"
+              alt=""
+              className="img-fluid"
+            /> */}
+                                        {/* </div>z */}
                                       </li>
                                     </ul>
                                   </div>

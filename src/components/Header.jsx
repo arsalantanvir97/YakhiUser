@@ -927,8 +927,8 @@ const Header = ({ history }) => {
                       className='banner-h2 aos-init aos-animate bannerheading'
                       style={{ fontSize: 44 }}
                     >
-                      THE WORLDS #1 HIGHEST QUALITY, WILD CRAFTED, HERBS &
-                      HERBAL PROGRAMS
+                      THE WORLDS #1 HIGHEST QUALITY WILD CRAFTED HERBS & HERBAL
+                      PROGRAMS
                     </h1>
                     <br></br>
                     <p
@@ -964,6 +964,24 @@ const Header = ({ history }) => {
                   data-aos-delay={400}
                 >
                   Become A Club Member For Free
+                </Link>
+                <Link
+                  to={userInfo ? '/EditProfile' : '/Login'}
+                  // onClick={() => {
+                  //   !userInfo && UnauthorizedAlert()
+                  // }}
+                  className='btn banner-btn aos-init aos-animate mt-3 abccc ml-5'
+                  data-aos='zoom-in-left'
+                  data-aos-duration={1500}
+                  style={{
+                    backgroundColor: '#00a82d',
+                    border: 'none',
+                    fontFamily: 'Soleil_Bold,Helvetica,Arial,sans-serif',
+                    fontWeight: 'bold',
+                  }}
+                  data-aos-delay={400}
+                >
+                  {userInfo ? 'My Profile' : 'Login'}
                 </Link>
                 {/* )} */}
               </div>

@@ -1,74 +1,73 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { addToCart, removeFromCart } from "../actions/cartAction";
-import { useDispatch, useSelector } from "react-redux";
-import { imageURL } from "../utils/api";
-import Toasty from "../utils/toast";
-import AllHerbs from "../components/AllHerbs";
-let qtybool=false
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { addToCart, removeFromCart } from '../actions/cartAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { imageURL } from '../utils/api'
+import Toasty from '../utils/toast'
+import AllHerbs from '../components/AllHerbs'
+let qtybool = false
 const MyCart = ({ match, location, history }) => {
-  const productId = match?.params?.id;
+  const productId = match?.params?.id
 
-  const qty = location?.search ? Number(location?.search?.split("=")[1]) : 1;
+  const qty = location?.search ? Number(location?.search?.split('=')[1]) : 1
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const cart = useSelector((state) => state?.cart);
-  const { cartItems } = cart;
+  const cart = useSelector((state) => state?.cart)
+  const { cartItems } = cart
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty));
+      dispatch(addToCart(productId, qty))
     }
-  }, [dispatch, productId, qty]);
+  }, [dispatch, productId, qty])
 
   const removeFromCartHandler = (id) => {
-    console.log("removeFromCartHandler", removeFromCartHandler);
-    dispatch(removeFromCart(id));
-  };
+    console.log('removeFromCartHandler', removeFromCartHandler)
+    dispatch(removeFromCart(id))
+  }
 
   const subQuantity = async (prod, qty) => {
-    console.log("cart?.product", prod, qty);
+    console.log('cart?.product', prod, qty)
     qty == 0 || qty <= 0
       ? dispatch(addToCart(prod, Number(qty + 0)))
-      : dispatch(addToCart(prod, Number(qty - 1)));
-  };
-  const checkCartQty=()=>{
-    let arr=[]
+      : dispatch(addToCart(prod, Number(qty - 1)))
+  }
+  const checkCartQty = () => {
+    let arr = []
     cartItems?.length > 0 &&
       cartItems?.map((cart) => {
-        cart?.qty > 0 ? arr.push(0):arr.push(1)
+        cart?.qty > 0 ? arr.push(0) : arr.push(1)
       })
-      console.log('arr',arr);
-      if(arr?.includes(1)){
-        Toasty("error", `Quantity of all items must be greater than 0`);
-      }
-      else{
-        history?.push('/Checkout')
-      }
-     }
+    console.log('arr', arr)
+    if (arr?.includes(1)) {
+      Toasty('error', `Quantity of all items must be greater than 0`)
+    } else {
+      history?.push('/Checkout')
+    }
+  }
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-11 mx-auto">
-          <section className="my-cart mt-5">
-            <div className="row align-items-start">
-              <div className="col-12 my-4">
+    <div className='container-fluid'>
+      <div className='row'>
+        <div className='col-md-11 mx-auto'>
+          <section className='my-cart mt-5'>
+            <div className='row align-items-start'>
+              <div className='col-12 my-4'>
                 {cartItems?.length > 0 ? (
                   <h2>My Cart</h2>
                 ) : (
                   <h2>
-                    Your Cart is Empty <Link to="/">Go Back</Link>
+                    Your Cart is Empty <Link to='/'>Go Back</Link>
                   </h2>
                 )}
               </div>
 
               {cartItems?.length > 0 && (
-                <div className="col-xl-9 col-md-12">
+                <div className='col-xl-9 col-md-12'>
                   {/* cart table */}
-                  <div className="table-responsive">
+                  <div className='table-responsive'>
                     <table
-                      className="table table-borderless text-center"
-                      id="cart-table"
+                      className='table table-borderless text-center'
+                      id='cart-table'
                     >
                       <thead>
                         <tr>
@@ -77,7 +76,7 @@ const MyCart = ({ match, location, history }) => {
                           <th>QUANTITY</th>
                           <th>UNIT PRICE</th>
                           <th>Sub Total</th>
-                         
+
                           <th> </th>
                         </tr>
                       </thead>
@@ -132,23 +131,23 @@ const MyCart = ({ match, location, history }) => {
                           cartItems?.map((cart) => (
                             <tr>
                               <td>
-                                <div className="cart-product">
+                                <div className='cart-product'>
                                   <img
                                     src={`${imageURL}${cart?.image[0]}`}
-                                    alt=""
-                                    className="img-fluid mx-auto"
+                                    alt=''
+                                    className='img-fluid mx-auto'
                                     style={{ width: 96, height: 83 }}
                                   />
                                 </div>
                               </td>
                               <td>{cart?.name}</td>
                               <td>
-                                <div id="field1">
-                                  <div className="quantifier ml-0">
+                                <div id='field1'>
+                                  <div className='quantifier ml-0'>
                                     <button
-                                      type="button"
-                                      id="sub"
-                                      className="minus"
+                                      type='button'
+                                      id='sub'
+                                      className='minus'
                                       value={cart?.qty}
                                       onClick={() =>
                                         // dispatch(
@@ -160,10 +159,10 @@ const MyCart = ({ match, location, history }) => {
                                         subQuantity(cart?.product, cart?.qty)
                                       }
                                     >
-                                      <i className="fas fa-minus" />
+                                      <i className='fas fa-minus' />
                                     </button>
                                     <input
-                                      type="number"
+                                      type='number'
                                       id={1}
                                       value={cart?.qty}
                                       onChange={(e) =>
@@ -175,13 +174,13 @@ const MyCart = ({ match, location, history }) => {
                                         )
                                       }
                                       min={1}
-                                      className="quantity p-md-2 p-0"
+                                      className='quantity p-md-2 p-0'
                                       max={cart?.countInStock}
                                     />
                                     <button
-                                      type="button"
-                                      id="add"
-                                      className="plus"
+                                      type='button'
+                                      id='add'
+                                      className='plus'
                                       value={cart?.qty}
                                       onClick={() =>
                                         dispatch(
@@ -192,23 +191,23 @@ const MyCart = ({ match, location, history }) => {
                                         )
                                       }
                                     >
-                                      <i className="fas fa-plus" />
+                                      <i className='fas fa-plus' />
                                     </button>
                                   </div>
                                 </div>
                               </td>
                               <td>${cart?.price}</td>
                               <td>${cart?.qty * cart?.price}</td>
-                              
+
                               <td>
                                 <button
-                                  type="button"
-                                  className="btn trash-btn"
+                                  type='button'
+                                  className='btn trash-btn'
                                   onClick={() =>
                                     removeFromCartHandler(cart?.product)
                                   }
                                 >
-                                  <i className="far fa-trash-alt" />
+                                  <i className='far fa-trash-alt' />
                                 </button>
                               </td>
                             </tr>
@@ -219,19 +218,19 @@ const MyCart = ({ match, location, history }) => {
                 </div>
               )}
               {cartItems?.length > 0 && (
-                <div className="col-xl-3 col-md-6 mt-lg-0 mt-5">
-                  <div className="order-summary">
-                    <div className="order-summary-head">
+                <div className='col-xl-3 col-md-6 mt-lg-0 mt-5'>
+                  <div className='order-summary'>
+                    <div className='order-summary-head'>
                       <p>Order Summary</p>
                     </div>
-                    <div className="summary-details">
-                      <div className="row justify-content-between align-items-start">
-                        <div className="col-7 mb-3">
-                          <p className="summary-title">Subtotal</p>
+                    <div className='summary-details'>
+                      <div className='row justify-content-between align-items-start'>
+                        <div className='col-7 mb-3'>
+                          <p className='summary-title'>Subtotal</p>
                         </div>
-                        <div className="col-5 mb-3 text-right">
-                          <p className="summary-value">
-                            ${" "}
+                        <div className='col-5 mb-3 text-right'>
+                          <p className='summary-value'>
+                            ${' '}
                             {cartItems
                               .reduce(
                                 (acc, item) => acc + item.qty * item.price,
@@ -240,19 +239,19 @@ const MyCart = ({ match, location, history }) => {
                               .toFixed(2)}
                           </p>
                         </div>
-                        <div className="col-7 mb-3">
-                          <p className="summary-title">Tax </p>
+                        <div className='col-7 mb-3'>
+                          <p className='summary-title'>Tax </p>
                         </div>
-                        <div className="col-5 mb-3 text-right">
-                          <p className="summary-value">to be counted</p>
+                        <div className='col-5 mb-3 text-right'>
+                          <p className='summary-value'>to be counted</p>
                         </div>
-                        <div className="col-12 border-top border-grey mb-2" />
+                        <div className='col-12 border-top border-grey mb-2' />
                         {/* grand total */}
-                        <div className="col-7 mb-3">
-                          <p className="grand-total">Grand Total</p>
+                        <div className='col-7 mb-3'>
+                          <p className='grand-total'>Grand Total</p>
                         </div>
-                        <div className="col-5 mb-3 text-right">
-                          <p className="grand-total-value">
+                        <div className='col-5 mb-3 text-right'>
+                          <p className='grand-total-value'>
                             $
                             {cartItems
                               .reduce(
@@ -262,12 +261,12 @@ const MyCart = ({ match, location, history }) => {
                               .toFixed(2)}
                           </p>
                         </div>
-                        <div className="col-12 border-top border-grey mt-4" />
+                        <div className='col-12 border-top border-grey mt-4' />
                       </div>
-                      <div className="row mt-4">
-                        <div className="col-12">
+                      <div className='row mt-4'>
+                        <div className='col-12'>
                           {/* <h4 className="coupon-heading">Apply Coupon</h4> */}
-                          <div className="input-group mb-3">
+                          <div className='input-group mb-3'>
                             {/* <input
                               type="text"
                               className="form-control coupon-field"
@@ -283,11 +282,11 @@ const MyCart = ({ match, location, history }) => {
                             </div> */}
                           </div>
                           <Link
-                            to="#"
-                            onClick={()=>{
+                            to='#'
+                            onClick={() => {
                               checkCartQty()
                             }}
-                            className="btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0 py-2 px-4 text-capitalize"
+                            className='btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0 py-2 px-4 text-capitalize'
                           >
                             Proceed to Checkout
                           </Link>
@@ -299,12 +298,11 @@ const MyCart = ({ match, location, history }) => {
               )}
             </div>
           </section>
-
-          <AllHerbs/>
+          <AllHerbs />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MyCart;
+export default MyCart

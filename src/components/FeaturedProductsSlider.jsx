@@ -103,9 +103,9 @@ export default class FeaturedProductsSlider extends Component {
                 pro?.name || pro?.categorytitle == '3 BITTERS'
                   ? 'images/3BITTERS-min.png'
                   : pro?.name || pro?.categorytitle == 'Kits & Bundles'
-                  ? 'images/KITS & BUNDLES png-min.png'
-                  : pro?.name || pro?.categorytitle == 'Teas'
                   ? 'images/TEAS-min.png'
+                  : pro?.name || pro?.categorytitle == 'Teas'
+                  ? 'images/KITS & BUNDLES png-min.png'
                   : null
                 // pro?.productimage?.length > 0 &&
                 // `${imageURL}${pro?.productimage[0]}`

@@ -336,7 +336,7 @@
     }
     body .uwy.userway_p1 .uai{
         left: calc(100vw - 17px) !important;
-        top: 5px !important;
+        bottom: 5px !important;
     }
     .dropdown-menu.yahki-dropdown.show, .dropdown-menu {
         background-color: #222222 !important;
