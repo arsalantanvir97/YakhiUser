@@ -127,14 +127,18 @@ const Capsules = ({ history, match }) => {
               'url(' +
               `${
                 match?.params?.id == '62415fde1b97a530529276b3'
-                  ? 'images/tinctures.png'
+                  ? '../images/tinctures.png'
+                  : match?.params?.id == '6242c50b11f7d01b4e81f96c'
+                  ? '../images/geogentics.jpg'
+                  : match?.params?.id == '6241603e1b97a530529276bb'
+                  ? '../images/tonics.jpg'
                   : match?.params?.id == '624160071b97a530529276b7'
-                  ? 'images/teaa.png'
+                  ? '../images/teaa.png'
                   : match?.params?.id == '62415fc11b97a530529276af'
-                  ? 'images/capsules.png'
+                  ? '../images/capsules.png'
                   : match?.params?.id == '62415f8d1b97a530529276ab'
-                  ? 'images/Seaweedherbs.png'
-                  : 'images/inner-page-bg.png'
+                  ? '../images/Seaweedherbs.png'
+                  : '../images/inner-page-bg.png'
               } ` +
               ')',
             minHeight:
@@ -160,7 +164,9 @@ const Capsules = ({ history, match }) => {
             // backgroundPosition: 'center',
             backgroundSize:
               match?.params?.id == '62415fde1b97a530529276b3' ||
+              match?.params?.id == '6241603e1b97a530529276bb' ||
               match?.params?.id == '624160071b97a530529276b7' ||
+              match?.params?.id == '6242c50b11f7d01b4e81f96c' ||
               match?.params?.id == '62415fc11b97a530529276af' ||
               match?.params?.id == '62415f8d1b97a530529276ab'
                 ? 'contain'
@@ -171,6 +177,8 @@ const Capsules = ({ history, match }) => {
         >
           {match?.params?.id == '62415fde1b97a530529276b3' ||
           match?.params?.id == '624160071b97a530529276b7' ||
+          match?.params?.id == '6241603e1b97a530529276bb' ||
+          match?.params?.id == '6242c50b11f7d01b4e81f96c' ||
           match?.params?.id == '62415fc11b97a530529276af' ||
           match?.params?.id == '62415f8d1b97a530529276ab' ? null : (
             <div className='container-fluid'>
@@ -451,6 +459,7 @@ const Capsules = ({ history, match }) => {
                                   }
                                 />
                               </button>
+
                               <Link to={`/ProductView/${prod?._id}`}>
                                 {' '}
                                 <img
@@ -466,99 +475,101 @@ const Capsules = ({ history, match }) => {
                                   }}
                                 />{' '}
                               </Link>
-                              <h5
-                                style={{
-                                  fontSize: 20,
-                                }}
-                                className='product-name'
-                              >
-                                <Link to='#'> {prod?.name}</Link>
-                              </h5>
-                              <ul className='list-inline py-2'>
-                                <li className='list-inline-item'>
-                                  <i
-                                    style={{ color: '#F3DE43' }}
-                                    className={
-                                      prod?.rating >= 1
-                                        ? 'fas fa-star'
-                                        : prod?.rating >= 0.5
-                                        ? 'fas fa-star-half-alt'
-                                        : 'far fa-star'
-                                    }
-                                  />
-                                </li>
-                                <li className='list-inline-item'>
-                                  <i
-                                    style={{ color: '#F3DE43' }}
-                                    className={
-                                      prod?.rating >= 2
-                                        ? 'fas fa-star'
-                                        : prod?.rating >= 1.5
-                                        ? 'fas fa-star-half-alt'
-                                        : 'far fa-star'
-                                    }
-                                  />
-                                </li>
-                                <li className='list-inline-item'>
-                                  <i
-                                    style={{ color: '#F3DE43' }}
-                                    className={
-                                      prod?.rating >= 3
-                                        ? 'fas fa-star'
-                                        : prod?.rating >= 2.5
-                                        ? 'fas fa-star-half-alt'
-                                        : 'far fa-star'
-                                    }
-                                  />
-                                </li>
-                                <li className='list-inline-item'>
-                                  <i
-                                    style={{ color: '#F3DE43' }}
-                                    className={
-                                      prod?.rating >= 4
-                                        ? 'fas fa-star'
-                                        : prod?.rating >= 3.5
-                                        ? 'fas fa-star-half-alt'
-                                        : 'far fa-star'
-                                    }
-                                  />
-                                </li>
-                                <li className='list-inline-item'>
-                                  <i
-                                    style={{ color: '#F3DE43' }}
-                                    className={
-                                      prod?.rating >= 5
-                                        ? 'fas fa-star'
-                                        : prod?.rating >= 4.5
-                                        ? 'fas fa-star-half-alt'
-                                        : 'far fa-star'
-                                    }
-                                  />
-                                </li>
-                              </ul>
-                              <div className='row justify-content-between align-items-center mt-3'>
-                                <div className='col-4'>
-                                  <p className='p-price'>Price</p>
-                                  <span>${prod?.price}</span>
-                                </div>
-                                <div className='col-8 text-right'>
-                                  <Link
-                                    to='#'
-                                    className='btn maroon-btn-solid '
-                                    onClick={() => {
-                                      userInfo
-                                        ? addToCartHandler(prod?._id, 1)
-                                        : UnauthorizedAlert()
-                                    }}
-                                  >
-                                    <img
-                                      src='images/add-to-cart.png'
-                                      alt=''
-                                      className='img-fluid mr-2 pt-1'
+                              <div className='product-text'>
+                                <h5
+                                  style={{
+                                    fontSize: 20,
+                                  }}
+                                  className='product-name'
+                                >
+                                  <Link to='#'> {prod?.name}</Link>
+                                </h5>
+                                <ul className='list-inline py-2'>
+                                  <li className='list-inline-item'>
+                                    <i
+                                      style={{ color: '#F3DE43' }}
+                                      className={
+                                        prod?.rating >= 1
+                                          ? 'fas fa-star'
+                                          : prod?.rating >= 0.5
+                                          ? 'fas fa-star-half-alt'
+                                          : 'far fa-star'
+                                      }
                                     />
-                                    Add to cart
-                                  </Link>
-                                </div>
+                                  </li>
+                                  <li className='list-inline-item'>
+                                    <i
+                                      style={{ color: '#F3DE43' }}
+                                      className={
+                                        prod?.rating >= 2
+                                          ? 'fas fa-star'
+                                          : prod?.rating >= 1.5
+                                          ? 'fas fa-star-half-alt'
+                                          : 'far fa-star'
+                                      }
+                                    />
+                                  </li>
+                                  <li className='list-inline-item'>
+                                    <i
+                                      style={{ color: '#F3DE43' }}
+                                      className={
+                                        prod?.rating >= 3
+                                          ? 'fas fa-star'
+                                          : prod?.rating >= 2.5
+                                          ? 'fas fa-star-half-alt'
+                                          : 'far fa-star'
+                                      }
+                                    />
+                                  </li>
+                                  <li className='list-inline-item'>
+                                    <i
+                                      style={{ color: '#F3DE43' }}
+                                      className={
+                                        prod?.rating >= 4
+                                          ? 'fas fa-star'
+                                          : prod?.rating >= 3.5
+                                          ? 'fas fa-star-half-alt'
+                                          : 'far fa-star'
+                                      }
+                                    />
+                                  </li>
+                                  <li className='list-inline-item'>
+                                    <i
+                                      style={{ color: '#F3DE43' }}
+                                      className={
+                                        prod?.rating >= 5
+                                          ? 'fas fa-star'
+                                          : prod?.rating >= 4.5
+                                          ? 'fas fa-star-half-alt'
+                                          : 'far fa-star'
+                                      }
+                                    />
+                                  </li>
+                                </ul>
+                                <div className='d-flex justify-content-between align-items-center mt-3'>
+                                  <div className='col-4'>
+                                    <p className='p-price'>Price</p>
+                                    <span>${prod?.price}</span>
+                                  </div>
+                                  <div className='col-8 text-right'>
+                                    <Link
+                                      to='#'
+                                      className='btn maroon-btn-solid '
+                                      onClick={() => {
+                                        userInfo
+                                          ? addToCartHandler(prod?._id, 1)
+                                          : UnauthorizedAlert()
+                                      }}
+                                    >
+                                      <img
+                                        src='images/add-to-cart.png'
+                                        alt=''
+                                        className='img-fluid mr-2 pt-1'
+                                      />
+                                      Add to cart
+                                    </Link>
+                                  </div>
+                                </div>{' '}
                               </div>
                             </div>
                           </div>

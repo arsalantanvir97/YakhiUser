@@ -121,10 +121,10 @@ q {
   quotes: none;
 }
 body .uwy.userway_p1 .uai {
-  top: 0px !important;
-  right: auto;
-  bottom: auto;
-  left: calc(100vw - 16px) !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: 10px !important;
+  left: 55px !important;
   transform: translate(-100%);
 }
 blockquote:before,
@@ -275,7 +275,11 @@ span.cart-count {
                       line-height: 36px !important;
                       font-family: "Soleil",Helvetica,Arial,sans-seri !important;
 }
+.product-text {
+  padding: 10px 10px;
+}
 
+.product-text h5.product-name a {min-height: 92px;}
 .tabheight{
   height: 60px;
 }

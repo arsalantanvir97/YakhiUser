@@ -156,6 +156,9 @@ const Index = ({ history }) => {
       JSON.stringify(res?.data?.getAllCategories)
     )
   }
+  useEffect(() => {
+    console.log('filteredproducts', filteredproducts)
+  }, [filteredproducts])
 
   // const gettingproductsbyCategoryidHandler = async (id) => {
   //   const res = await axios.get(
@@ -193,27 +196,70 @@ const Index = ({ history }) => {
     console.log('herbalproducts1', herbalproducts)
     if (value.includes('The Muscular System')) {
       console.log('helllo')
-      abc.push('Capsules', 'Teas', 'Tinctures', 'Sea Herbs')
+      abc.push(
+        'Capsules',
+        'Teas',
+        'Tinctures',
+        'Sea Herbs',
+        'Tonics',
+        'Oils',
+        'Salves',
+        'Kits & Bundle'
+      )
       setherbalproducts([...abc])
     } else if (value.includes(`The Integumentary System`)) {
       console.log('helllo2')
 
-      abc.push('Capsules', 'Teas', 'Tinctures', 'Oils', 'Salves')
+      abc.push(
+        'Capsules',
+        'Teas',
+        'Tinctures',
+        'Oils',
+        'Salves',
+        'Hygiene',
+        'Soaps',
+        'Sea Herbs',
+        'Kits & Bundle'
+      )
       setherbalproducts([...abc])
     } else if (value.includes(`The Skeletal System`)) {
       console.log('helllo2')
 
-      abc.push('Capsules', 'Teas', 'Tinctures', 'Kits & Bundle')
+      abc.push(
+        'Capsules',
+        'Teas',
+        'Tinctures',
+        'Kits & Bundle',
+        'Oils',
+        'Sea Herbs',
+        'Tonics'
+      )
       setherbalproducts([...abc])
     } else if (value.includes(`The Nervous System`)) {
       console.log('helllo2')
 
-      abc.push('Capsules', 'Teas', 'Tinctures', 'Kits & Bundle', 'Powders')
+      abc.push(
+        'Capsules',
+        'Teas',
+        'Tinctures',
+        'Kits & Bundle',
+        'Tonics',
+        'Oils',
+        'Sea Herbs'
+      )
       setherbalproducts([...abc])
     } else if (value.includes(`The Urinary System`)) {
       console.log('helllo2')
 
-      abc.push('Capsules', 'Teas', 'Tinctures', 'Tonics', 'Powders')
+      abc.push(
+        'Capsules',
+        'Teas',
+        'Tinctures',
+        'Kits & Bundle',
+        'Tonics',
+        'Oils',
+        'Sea Herbs'
+      )
       setherbalproducts([...abc])
     } else if (value.includes(`The Digestive System`)) {
       console.log('helllo2')
@@ -222,15 +268,24 @@ const Index = ({ history }) => {
         'Capsules',
         'Teas',
         'Tinctures',
+        'Kits & Bundle',
         'Tonics',
-        'Powders',
-        'Kits & Bundle'
+        'Oils',
+        'Sea Herbs'
       )
       setherbalproducts([...abc])
     } else if (value.includes(`The Endocrine System`)) {
       console.log('helllo2')
 
-      abc.push('Capsules', 'Teas', 'Tinctures', 'Powders', 'Kits & Bundle')
+      abc.push(
+        'Capsules',
+        'Teas',
+        'Tinctures',
+        'Kits & Bundle',
+        'Tonics',
+        'Oils',
+        'Sea Herbs'
+      )
       setherbalproducts([...abc])
     } else if (value.includes(`The Respiratory System`)) {
       console.log('helllo2')
@@ -239,9 +294,10 @@ const Index = ({ history }) => {
         'Capsules',
         'Teas',
         'Tinctures',
+        'Kits & Bundle',
+        'Tonics',
         'Oils',
-        'Powders',
-        'Kits & Bundle'
+        'Sea Herbs'
       )
       setherbalproducts([...abc])
     } else if (value.includes(`The Lymphatic System`)) {
@@ -251,9 +307,10 @@ const Index = ({ history }) => {
         'Capsules',
         'Teas',
         'Tinctures',
+        'Kits & Bundle',
+        'Tonics',
         'Oils',
-        'Powders',
-        'Kits & Bundle'
+        'Sea Herbs'
       )
       setherbalproducts([...abc])
     } else if (value.includes(`The Cardiovascular System`)) {
@@ -263,20 +320,30 @@ const Index = ({ history }) => {
         'Capsules',
         'Teas',
         'Tinctures',
-        'Oils',
-        'Powders',
-        'Kits & Bundle'
+        'Kits & Bundle',
+        'Tonics',
+        'Sea Herbs'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`Reproductive Systems Health`)) {
+    }
+    // else if (value.includes(`Reproductive Systems Health`)) {
+    //   console.log('helllo2')
+
+    //   abc.push('Capsules', 'Teas', 'Tinctures')
+    //   setherbalproducts([...abc])
+    // }
+    else if (value.includes(`Oral Health`)) {
       console.log('helllo2')
 
-      abc.push('Capsules', 'Teas', 'Tinctures')
-      setherbalproducts([...abc])
-    } else if (value.includes(`Oral Health`)) {
-      console.log('helllo2')
-
-      abc.push('Capsules', 'Teas', 'Powders')
+      abc.push(
+        'Capsules',
+        'Teas',
+        'Tinctures',
+        'Kits & Bundle',
+        'Oils',
+        'Sea Herbs',
+        'Hygiene'
+      )
       setherbalproducts([...abc])
     }
     console.log('herbalproducts2', herbalproducts)
@@ -286,594 +353,733 @@ const Index = ({ history }) => {
     if (selectedheral.includes('The Muscular System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Intracellular Cleanse Capsules',
-          'Parasite Elimination Capsules',
-          'Brain-Nerve Adrenal Support Capsules',
-          'Calcium Tri-Phosphate Capsules',
-          'Atomic Strengthener Capsules',
-
-          'Superfood+ Capsules',
           'All Purpose Adult Vitamin Capsules',
-          'Turmeric Infusion Capsules',
+          'ATOMIC STRENGTHENER CAPSULES',
           'Black Seed Oil Capsules',
+          'BLOOD PURIFIER CAPSULES',
+          'Brain, Nerve & Adrenal Capsules',
+          'CALCIUM TRI PHOSPHATE CAPSULES',
+          'ENDOCRINO BALANCE CAPSULES',
+          'GI SUPER MOVER CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Liver & Gall Bladder Capsules',
+          'Lymphatic Sweep Tonic Capsules',
+          'TURMERIC AND GINGER INFUSION CAPSULES',
+          'Superfood+ Capsules',
         ])
       } else if (val == 'Teas') {
-        setfeaturedproducts([
+        setfilteredproducts([
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
+          'Red Clover Tea',
           '3BITTERS',
-          'IV Elements',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Intracellular Cleanse Tincture',
-          'Parasite Elimination Tincture',
-          'Brain-Nerve Adrenal Support Tincture',
-          'Atomic Strengthener Tincture',
-          'Superfood+ Tincture',
-          'All Purpose Adult Vitamin Tincture',
-          'Turmeric Infusion Tincture',
-          'Black Seed Oil Tincture',
-          'Circulatory High Tincture',
-          'Circulatory Low Tincture',
-          'Thyroid Support Tincture',
-          'Parathyroid Support Tincture',
+          'Astringent X Tincture',
+          'ATOMIC STRENGTHENER TINCTURE',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BLOOD PURIFIER TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'Calcium Tri-Phosphate Tincture	',
+          'CIRCULATORY HIGH TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
+          'Inner-Cellular Cleanse Tincture',
+          'Lymphatic Sweep Tonic Tincture',
+          'THYROID & PARATHYROID SUPPORT',
         ])
       } else if (val == 'Sea Herbs') {
-        setfeaturedproducts([
-          'Superfood+ Powder',
+        setfilteredproducts([
           'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
           'Raw Organic Sea Moss',
-          'Kelp Granules from Ireland',
+        ])
+      } else if (val == 'Tonics') {
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
+        ])
+      } else if (val == 'Oils') {
+        setfilteredproducts([
+          '100% WILD EGYPTIAN TURMERIC OIL',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
+      } else if (val == 'Salves') {
+        setfilteredproducts(['100% WILD EGYPTIAN TURMERIC OIL'])
+      } else if (val == 'Kits & Bundle') {
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+          'BLOOD PURIFIER BUNDLE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
+          'REVITALIZE & REBUILD KIT',
         ])
       }
     } else if (selectedheral.includes('The Integumentary System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Intracellular Cleanse Capsules',
-          'Parasite Elimination Capsules',
-          'Brain-Nerve Vital Max Capsules',
-          'Brain-Nerve &amp; Adrenal Support Capsules',
-          'Endocrino Balance Capsules',
-          'Blood Purifier Capsules',
-          'Liver and Gall Bladder Capsules',
-          'Atomic Strengthener Capsules',
-          'Cayenne Pepper Capsules',
-          'Turmeric Infusion Capsules',
-          'Adult All Purpose Vitamin Capsules',
+          'All Purpose Adult Vitamin Capsules',
+          'ATOMIC STRENGTHENER CAPSULES',
+          'Black Seed Oil Capsules',
+          'BLOOD PURIFIER CAPSULES',
+          'Brain, Nerve & Adrenal Capsules',
+          'CALCIUM TRI PHOSPHATE CAPSULES',
+          'ENDOCRINO BALANCE CAPSULES',
+          'GI SUPER MOVER CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Liver & Gall Bladder Capsules',
+          'Lymphatic Sweep Tonic Capsules',
+          'TURMERIC AND GINGER INFUSION CAPSULES',
+          'Superfood+ Capsules',
+        ])
+      } else if (val == 'Hygiene') {
+        setfilteredproducts(['Shea Butter '])
+      } else if (val == 'Soaps') {
+        setfilteredproducts([
+          'PURPLE SEA MOSS & ALKANET ROOT SOAP BARS',
+          'GOLDEN SEA MOSS & TURMERIC ROOT SOAP BARS	',
+          'LAVENDER SOAP BAR',
+          'HERBAL LEMONGRAS SOAP BAR',
+          'TEA TREE & PARSLEY SOAP BAR',
+          'OREGANO SOAP BAR',
+          'Charcoal Soaps Bar',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tea',
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
+          'Red Clover Tea',
           '3BITTERS',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Intracellular Cleanse Tincture',
-          'Parasite Elimination Tincture',
-          'Brain-Nerve Vital Max Tincture',
-          'Brain-Nerve &amp; Adrenal Support Tincture',
-          'Endocrino Balance Tincture',
-          'Blood Purifier Tincture',
-          'Liver and Gall Bladder Tincture',
-          'Atomic Strengthener Tincture',
-          'Cayenne Pepper Tincture',
-          'Turmeric Infusion Tincture',
+          'Astringent X Tincture',
+          'ATOMIC STRENGTHENER TINCTURE',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BLOOD PURIFIER TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'Calcium Tri-Phosphate Tincture	',
+          'CIRCULATORY HIGH TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
+          'Inner-Cellular Cleanse Tincture',
           'Lymphatic Sweep Tonic Tincture',
-          'Heavy Metal Tincture',
-          'Iron Phosphate Tincture',
-          'Thyroid Support Tincture',
-          'Parathyroid Support Tincture',
+          'THYROID & PARATHYROID SUPPORT',
+          'Liver and Gall Bladder Tincture',
         ])
       } else if (val == 'Oils') {
-        setfilteredproducts(['Wild Neem Oil', 'Mediterranean Oregano Oil'])
+        setfilteredproducts([
+          '100% WILD EGYPTIAN TURMERIC OIL',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
       } else if (val == 'Salves') {
-        setfilteredproducts([])
+        setfilteredproducts(['100% WILD EGYPTIAN TURMERIC OIL'])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
+        ])
+      } else if (val == 'Kits & Bundle') {
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+          'BLOOD PURIFIER BUNDLE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
+          'REVITALIZE & REBUILD KIT',
+        ])
       }
     } else if (selectedheral.includes('The Skeletal System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Intracellular Cleanse Capsules',
-          'Parasite Elimination Capsules',
-          'Brain-Nerve Adrenal Support Capsules',
-          'Calcium Tri-Phosphate Capsules',
-          'Atomic Strengthener Capsules',
-          'Superfood+ Capsules',
           'All Purpose Adult Vitamin Capsules',
-          'Turmeric Infusion Capsules',
-          'Black Seed Oil Capsules',
+          'ATOMIC STRENGTHENER CAPSULES',
+          'BLOOD PURIFIER CAPSULES',
+          'Brain, Nerve & Adrenal Capsules',
+          'CALCIUM TRI PHOSPHATE CAPSULES',
+          'Superfood+ Capsules',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'TURMERIC AND GINGER INFUSION CAPSULES',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
+          'Red Clover Tea',
           '3BITTERS',
-          'IV Elements',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Intracellular Cleanse Tincture',
-          'Calcium Tri-Phosphate Tincture',
-          'Blood Purifier Tincture',
-          'Atomic Strengthener Tincture',
-          'Heavy Metal Detox Tincture',
-          'Thyroid and Parathyroid Support Tincture',
-          'Foundation Fours Tincture',
+          'Astringent X Tincture',
+          'ATOMIC STRENGTHENER TINCTURE',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BLOOD PURIFIER TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'Calcium Tri-Phosphate Tincture	',
+          'CIRCULATORY HIGH TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
+          'Inner-Cellular Cleanse Tincture',
+          'Lymphatic Sweep Tonic Tincture',
+          'THYROID & PARATHYROID SUPPORT',
         ])
+      } else if (val == 'Salves') {
+        setfilteredproducts(['100% WILD EGYPTIAN TURMERIC OIL'])
       } else if (val == 'Kits & Bundle') {
-        setfilteredproducts(['Revitalizer and Rebuilder Kit'])
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+          'BLOOD PURIFIER BUNDLE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
+          'REVITALIZE & REBUILD KIT',
+        ])
+      } else if (val == 'Tonics') {
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
+        ])
+      } else if (val == 'Oils') {
+        setfilteredproducts([
+          '100% WILD EGYPTIAN TURMERIC OIL',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
+        ])
       }
     } else if (selectedheral.includes('The Nervous System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Brain, Nerve & Vital Max Capsules	',
-          'CardioTonic Capsules',
-          'Inner-Cellular Cleanse Capsules',
-          'Circulatory System HIGH Capsules',
-          'Circulatory System LOW Capsules',
-          'Iron Phosphate Capsules',
-          'Atomic Strengthener Capsules',
-          'Liver and Gall Bladder Capsules	',
+          'All Purpose Adult Vitamin Capsules',
           'Brain, Nerve & Adrenal Capsules',
-          'Astringent X Capsules',
-          'Foundation Fours Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules',
+          'BRAIN NERVE VITALMAX CAPSULES',
+          'Superfood+ Capsules',
+          'Parasite Elimination Capsules',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tea',
-          'CardioTonic Tea',
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
           '3BITTERS',
-          'IV Elements',
-          'Neem Leaf Tea',
-          'Hibiscus Tea',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tincture',
-          'CardioTonic Tincture',
-          'Inner-Cellular Cleanse Tincture',
-          'Circulatory System HIGH Tincture',
-          'Circulatory System LOW Tincture',
-          'Iron Phosphate Tincture',
-          'Atomic Strengthener Tincture',
-          'Liver and Gall Bladder Tincture',
-          'Brain, Nerve &amp; Adrenal Tincture',
           'Astringent X Tincture',
-          'Foundation Fours Tincture',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
+          'Inner-Cellular Cleanse Tincture',
+          'Lymphatic Sweep Tonic Tincture',
+          'Parasite Elimination Tinctures',
+          'BRAIN NERVE VITALMAX',
+        ])
+      } else if (val == 'Tonics') {
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
+        ])
+      } else if (val == 'Oils') {
+        setfilteredproducts(['Mediterranean Oregano Oil'])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
         ])
       } else if (val == 'Kits & Bundle') {
         setfilteredproducts([
-          'Brain & Nervous System Kit',
-          'Brain, Nerve & Adrenal Support Bundle',
-        ])
-      } else if (val == 'Powders') {
-        setfilteredproducts([
-          'Sea Moss Raw, Organic Wildcrafted',
-          'IV Elements Infusion',
-          'Bladderwrack from the Aeolian Islands',
-          'Superfood+ Powder',
-          'Kelp Granules from Ireland',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
     } else if (selectedheral.includes('The Urinary System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Inner-Cellular Cleanse Capsules',
-          'Blood Purifier Capsules',
-          'Parasite Elimination Capsules',
-          'Heavy Metal Detox Capsules',
-          'Lymphatic Sweep Tonic Capsules',
-          'Circulatory System LOW Capsules',
-          'Liver & Gall Bladder Capsules',
-          'Brain, Nerve &amp; Adrenal Capsules',
-          'Astringent X Capsules',
-          'Foundation Fours Capsules',
+          'Brain, Nerve & Adrenal Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'GI SUPER MOVER CAPSULES',
+          'Liver & Gall Bladder Capsules	',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
           '3BITTERS',
-          'IV Elements',
-          'Neem Leaf Tea',
+          'NEEM LEAF TEA',
           'Red Clover Tea',
-          'Raspberry Leaf Tea',
-          'Burdock Root Tea',
-          'Soursop Leaf Very High Potency Tea',
-          'Hibiscus Leaf Tea',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Inner-Cellular Cleanse Tincture',
-          'Blood Purifier Tincture',
-          'Parasite Elimination Tincture',
-          'Heavy Metal Detox Tincture',
-          'Lymphatic Sweep Tonic Tincture',
-          'Circulatory System LOW Tincture',
-          'Liver and Gall Bladder Tincture',
-          'Brain, Nerve, & Adrenal Tincture',
           'Astringent X Tincture',
-          'Foundation Fours Tincture',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
+          'Inner-Cellular Cleanse Tincture',
+          'LIVER & GALLBLADDER SUPPORT',
+          'Lymphatic Sweep Tonic Tincture',
         ])
       } else if (val == 'Tonics') {
         setfilteredproducts([
-          'Lymphatic Sweep Tonic',
-          'Bitter Liquid Mineral Balance Tonic',
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
         ])
-      } else if (val == 'Powders') {
+      } else if (val == 'Oils') {
         setfilteredproducts([
-          'Sea Moss Raw, Organic Wildcrafted',
-          'IV Elements Infusion',
-          'Bladderwrack from the Aeolian Islands',
-          'Superfood+ Powder',
-          'Kelp Granules from Ireland',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
+        ])
+      } else if (val == 'Kits & Bundle') {
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
     } else if (selectedheral.includes('The Digestive System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Inner-Cellular Cleanse Capsules',
-          'Parasite Elimination Capsules',
-          'Brain Nerve & Adrenal Support Capsules',
-          'Endocrino Balance Capsules',
-          'Iron Phosphate Biomineral Balance Capsules',
-          'Lymphatic System Detox Capsules',
-          'Liver Detox Capsules',
-          'GI Super Mover Capsules',
-          'Superfood Powder Plus Capsules',
-          'Adult All Purpose Vitamins',
-          'Turmeric Infusion Capsules',
-          'Black Seed Oil and Capsules',
+          'Brain, Nerve & Adrenal Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'GI SUPER MOVER CAPSULES',
+          'CALCIUM TRI PHOSPHATE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules',
+          'TURMERIC AND GINGER INFUSION CAPSULES',
+          'Superfood+ Capsules',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
           '3BITTERS',
-          'IV Elements',
-          'Neem Leaf Tea',
-          'Burdock Root Tea',
-          'Soursop Leaf Very High Potency Tea',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
+          'Astringent X Tincture',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
           'Inner-Cellular Cleanse Tincture',
-          'Parasite Elimination Tincture',
-          'Brain-Nerve Adrenal Support Tincture',
-          'Endocrino Balance Tincture',
-          'Iron Phosphate Biomineral Balance Tincture',
-          'Lymphatic System Detox Tincture',
-          'Liver Detox Tincture',
+          'Lymphatic Sweep Tonic Tincture',
         ])
       } else if (val == 'Tonics') {
         setfilteredproducts([
-          'Lymphatic Sweep Tonic',
-          'Bitter Liquid Mineral Balance Tonic',
-          'Digestive Restoration Tonic',
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
+          'DIGESTIVE RESTORATION TONIC',
         ])
-      } else if (val == 'Powders') {
+      } else if (val == 'Oils') {
         setfilteredproducts([
-          'Sea Moss Raw, Organic Wildcrafted',
-          'IV Elements Infusion',
-          'Bladderwrack from the Aeolian Islands',
-          'Superfood+ Powder',
-          'Kelp Granules from Ireland',
+          '100% WILD EGYPTIAN TURMERIC OIL',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
         ])
       } else if (val == 'Kits & Bundle') {
-        setfilteredproducts(['Revitalizer and Rebuilder Kit'])
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
+        ])
       }
     } else if (selectedheral.includes('The Endocrine System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Capsules',
-          'CardioTonic Capsules',
-          'Inner-Cellular Cleanse Capsules',
-          'Parasitic Elimination Capsules',
-          'Brain, Nerve and Adrenal Support Capsules',
-          'Endocrino Balance Capsules',
-          'Iron Phosphate Biomineral Balance Capsules',
-          'Lymphatic System Detox Capsules',
-          'Atomic Strengthener Capsules',
-          'GI Super Mover Capsules',
-          'Superfood Powder Plus Capsules',
-          'Cayenne Pepper Capsules',
-          'Adult All Purpose Vitamins',
-          'Turmeric Infusion Capsules',
-          'Liver Detox Capsules',
-          'Foundation Fours Capsules',
+          'All Purpose Adult Vitamin Capsules',
+          'ATOMIC STRENGTHENER CAPSULES',
+          'BLOOD PURIFIER CAPSULES',
+          'Brain, Nerve & Adrenal Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules	',
+          'TURMERIC AND GINGER INFUSION CAPSULES',
+          'Superfood+ Capsules',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tea',
-          'CardioTonic Tea',
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
+          'Red Clover Tea',
           '3BITTERS',
-          'IV Elements',
-          'Neem Leaf Tea',
-          'Red Clover Leaf Tea',
-          'Raspberry Leaf Tea',
-          'Hibiscus Leaf Tea',
-          'Burdock Root Tea',
-          'Soursop Leaf Very High Potency Tea',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tincture',
-          'CardioTonic Tinctures',
+          'Astringent X Tincture',
+          'ATOMIC STRENGTHENER TINCTURE',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BLOOD PURIFIER TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'CIRCULATORY HIGH TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
           'Inner-Cellular Cleanse Tincture',
-          'Parasite Elimination Tinctures',
-          'Brain-Nerve Adrenal Support Tincture',
-          'Endocrino Balance Tincture',
-          'Iron Phosphate Tincture',
-          'Lymphatic System Detox Tincture',
-          'Atomic Strengthener Tincture',
-          'GI Super Mover Tincture',
-          'Superfood Plus Powder Tincture',
-          'Foundation Fours Tincture',
+          'Lymphatic Sweep Tonic Tincture',
+          'THYROID & PARATHYROID SUPPORT',
         ])
-      } else if (val == 'Powders') {
+      } else if (val == 'Tonics') {
         setfilteredproducts([
-          'Sea Moss Raw, Organic Wildcrafted',
-          'IV Elements Infusion',
-          'Bladderwrack from the Aeolian Islands',
-          'Superfood+ Powder',
-          'Kelp Granules from Ireland',
-          'Lung Cleanser (Tar Remover) Powder',
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
+        ])
+      } else if (val == 'Oils') {
+        setfilteredproducts([
+          '100% WILD EGYPTIAN TURMERIC OIL',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
         ])
       } else if (val == 'Kits & Bundle') {
         setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+          'BLOOD PURIFIER BUNDLE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
           'Essential Glandular Endocrine Kit',
-          'Foundation Fours Bundle',
-          'Diabetes Reversal Kit (Pancreas Healing)',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
     } else if (selectedheral.includes('The Respiratory System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Capsules',
-          'CardioTonic Capsules',
-          'Inner-Cellular Cleanse Capsules',
-          'Circulatory System HIGH Capsules',
-          'Blood Purifier Capsules',
-          'Parasite Elimination Capsules',
-          'Heavy Metal Detox Capsules',
-          'Astringent X Capsules',
+          'All Purpose Adult Vitamin Capsules',
+          'ATOMIC STRENGTHENER CAPSULES',
+          'BLOOD PURIFIER CAPSULES',
           'Brain, Nerve & Adrenal Capsules',
-          'Lymphatic Sweep Tonic Capsules',
-          'Black Seed Oil (Nigella Sativa) Capsules',
-          'Foundation Fours Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules	',
+          'TURMERIC AND GINGER INFUSION CAPSULES',
+          'Superfood+ Capsules',
+          'CAYENNE PEPPER CAPSULES',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tea',
-          'CardioTonic Tea',
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
+          'Red Clover Tea',
           '3BITTERS',
-          'Neem Leaf Tea',
-          'Burdock Root Tea',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tincture',
-          'CardioTonic Tincture',
-          'Inner-Cellular Cleanse Tincture',
-          'Circulatory System HIGH Tincture',
-          'Blood Purifier Tincture',
-          'Parasite Elimination Tincture',
-          'Heavy Metal Detox Tincture',
           'Astringent X Tincture',
-          'Brain, Nerve & Adrenal Tincture',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'CIRCULATORY HIGH TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
+          'Inner-Cellular Cleanse Tincture',
           'Lymphatic Sweep Tonic Tincture',
-          'Foundation Fours Tincture',
+          'THYROID & PARATHYROID SUPPORT',
         ])
-      } else if (val == 'Powders') {
-        setfilteredproducts(['Lung Cleanser (Tar Remover) Powder', ,])
-      } else if (val == 'Kits & Bundle') {
+      } else if (val == 'Tonics') {
         setfilteredproducts([
-          'Foundation Fours Bundle',
-          'Respiratory Support Kit',
-          'Blood Purifier Bundle',
-          'Inner-Cellular Cleanse Bundle',
-          'Brain, Nerve & Adrenal Support Bundle',
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
         ])
       } else if (val == 'Oils') {
-        setfilteredproducts(['Black seed Oil'])
+        setfilteredproducts([
+          '100% WILD EGYPTIAN TURMERIC OIL',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
+        ])
+      } else if (val == 'Kits & Bundle') {
+        setfilteredproducts([
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
+        ])
       }
     } else if (selectedheral.includes('The Lymphatic System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Capsules',
+          'ATOMIC STRENGTHENER CAPSULES',
+          'BLOOD PURIFIER CAPSULES',
           'Brain, Nerve & Adrenal Capsules',
-          'Lymphatic System Capsules',
-          'Black Seed Oil (Nigella Sativa) Capsules',
-          'Inner-Cellular Cleanse Capsules',
-          'Iron Phosphate Capsules',
-          'Cayenne Pepper Capsules',
-          'GI Supermover Capsules',
-          'Blood Purifier Capsules',
-          'Parasite Elimination Capsules',
-          'Liver Detox Capsules',
-          'Foundation Fours Capsules',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules	',
+          'TURMERIC AND GINGER INFUSION CAPSULES',
+          'Superfood+ Capsules',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tea',
           'Cellular Regeneration Tea',
-          'Revitalizer Tea',
+          'Red Clover Tea',
           '3BITTERS',
+          'NEEM LEAF TEA',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tincture',
-          'Brain, Nerve, & Adrenal Tincture',
-          'Lymphatic System Tincture',
-          'Black Seed Oil (Nigella Sativa) Tincture',
+          'Astringent X Tincture',
+          'ATOMIC STRENGTHENER TINCTURE',
+          'BLACK OLIVE LEAF EXTRACT TINCTURE',
+          'BLOOD PURIFIER TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'CIRCULATORY HIGH TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
           'Inner-Cellular Cleanse Tincture',
-          'Iron Phosphate Tincture',
-          'Blood Purifier Tincture',
-          'Parasite Elimination Tincture',
-          'Liver Detox Tincture',
-          'Foundation Fours Tincture',
+          'Lymphatic Sweep Tonic Tincture',
         ])
-      } else if (val == 'Powders') {
-        setfilteredproducts(['Lung Cleanser (Tar Remover) Powder'])
-      } else if (val == 'Kits & Bundle') {
+      } else if (val == 'Tonics') {
         setfilteredproducts([
-          'Lymphatic System Sweep Kit',
-          'Foundation Fours Bundle',
-          'Parasite Elimination Bundle',
-          'Brain, Nerve & Adrenal Support Bundle',
-          'Blood Purifier Bundle',
-          'Inner-Cellular Cleanse Bundle',
-          'Tonic Kit',
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
+          'DIGESTIVE RESTORATION TONIC',
         ])
       } else if (val == 'Oils') {
-        setfilteredproducts(['Black seed Oil'])
+        setfilteredproducts([
+          '100% WILD EGYPTIAN TURMERIC OIL',
+          '100% WILD INDIA GINGER OIL',
+          'INDIA NEEM EXTRACT OIL',
+        ])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
+        ])
+      } else if (val == 'Kits & Bundle') {
+        setfilteredproducts([
+          'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+          'BLOOD PURIFIER BUNDLE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS CAPSULES',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'FOUNDATION FOURS TINCTURES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
+        ])
       }
     } else if (selectedheral.includes('The Cardiovascular System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Capsules',
-          'CardioTonic Capsules',
-          'Inner-Cellular Cleanse Capsules',
-          'Parasite Elimination Capsules',
-          'Brain, Nerve & Adrenal Capsules	',
-          'Endocrino Capsules',
-          'GI Supermover Capsules',
-          'Lymphatic System Capsules',
-          'Black Seed Oil (Nigella Sativa) Capsules',
-          'Iron Phosphate BioMineral Capsules',
-          'Cayenne Pepper Capsules',
-          'Adult All Purpose Vitamin Capsules',
-          'Turmeric Capsules',
-          'Blood Purifier Capsules',
-          'Liver Detox Capsules',
+          'All Purpose Adult Vitamin Capsules',
+          'Brain, Nerve & Adrenal Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules	',
+          'Superfood+ Capsules',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tea',
           'Cellular Regeneration Tea',
-          'CardioTonic Tea',
-          'Revitalizer Tea',
+          'Red Clover Tea',
           '3BITTERS',
-          'Neem Leaf Tea',
-          'Burdock Root Tea',
         ])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tincture',
-          'CardioTonic Tincture',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'Calcium Tri-Phosphate Tincture	',
+          'CIRCULATORY HIGH TINCTURE',
+          'CIRCULATORY LOW TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
           'Inner-Cellular Cleanse Tincture',
-          'Parasite Elimination Tincture',
-          'Brain, Nerve & Adrenal Tincture',
-          'Endocrino Tincture',
-          'Lymphatic System Tincture',
-          'Black Seed Oil (Nigella Sativa) Tincture',
-          'Iron Phosphate BioMineral Tincture',
-          'Blood Purifier Tincture',
-          'Liver Detox Tincture',
+          'Lymphatic Sweep Tonic Tincture',
+          'THYROID & PARATHYROID SUPPORT',
         ])
-      } else if (val == 'Powders') {
+      } else if (val == 'Tonics') {
         setfilteredproducts([
-          'Sea Moss Raw, Organic Wildcrafted',
-          'IV Elements Infusion',
-          'Bladderwrack from the Aeolian Islands',
-          'Kelp Granules from Ireland',
-          'Superfood Powder Plus',
-          'Teeth & Gum Restoration Powder',
-          'Lung Cleanser (Tar Remover) Powder',
+          'BITTER LIQUID MINERAL BALANCE TONIC',
+          'LYMPHATIC SYSTEM SWEEP TONIC',
+        ])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
         ])
       } else if (val == 'Kits & Bundle') {
         setfilteredproducts([
-          'Cardiovascular Cardio Tonic Kit',
-          'Foundation Fours Bundle',
-          'Parasite Elimination Bundle',
-          'Brain, Nerve & Adrenal Support Bundle',
-          'Blood Purifier Bundle',
-          'Inner-Cellular Cleanse Bundle',
-          'Tonic Kit',
-          'Circulatory System High & Low Tincture Bundles',
-          'Revitalizer and Rebuilder Kit',
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'Essential Glandular Endocrine Kit',
+          'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
         ])
-      } else if (val == 'Oils') {
-        setfilteredproducts(['Black seed Oil'])
       }
-    } else if (selectedheral.includes('Reproductive Systems Health')) {
+    }
+    // else if (selectedheral.includes('Reproductive Systems Health')) {
+    //   if (val == 'Capsules') {
+    //     setfilteredproducts([
+    //       'Brain Nerve Vitalmax Capsules',
+    //       'Inner-Cellular Cleanse Capsules',
+    //       'Parasite Elimination Capsules',
+    //       'Brain, Nerve & Adrenal Capsules',
+    //       'Endocrino Capsules',
+    //       'GI Super Mover Capsules',
+    //       'Blood Purifier Capsules',
+    //       'Calcium Tri-Phosphate Capsules',
+    //       'Atomic Strengthener Capsules',
+    //       'Lymphatic System Detox Capsules',
+    //       'Cayenne Pepper Capsules',
+    //       'Adult All Purpose Vitamin Capsules',
+    //       'Turmeric Infusion Capsules',
+    //       'Superfood Powder Plus Capsules',
+    //     ])
+    //   } else if (val == 'Teas') {
+    //     setfilteredproducts([
+    //       'Brain Nerve Vitalmax Tea',
+    //       'Cellular Regeneration Tea',
+    //       'Revitalizer Tea',
+    //       '3BITTERS',
+    //       'IV Elements',
+    //       'Burdock Root Tea',
+    //     ])
+    //   } else if (val == 'Tinctures') {
+    //     setfilteredproducts([
+    //       'Brain Nerve Vitalmax Tincture',
+    //       'Inner-Cellular Cleanse Tincture',
+    //       'Parasite Elimination Tincture',
+    //       'Brain, Nerve, & Adrenal Tincture',
+    //       'Endocrino Tincture',
+    //       'GI Super Mover Tincture',
+    //       'Blood Purifier Tincture',
+    //       'Calcium Tri-Phosphate Tincture',
+    //       'Atomic Strengthener Tincture',
+    //       'Lymphatic System Sweep Tonic Tincture',
+    //     ])
+    //   }
+    // }
+    else if (selectedheral.includes('Oral Health')) {
       if (val == 'Capsules') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Capsules',
-          'Inner-Cellular Cleanse Capsules',
-          'Parasite Elimination Capsules',
+          'All Purpose Adult Vitamin Capsules',
+          'ATOMIC STRENGTHENER CAPSULES',
+          'CALCIUM TRI PHOSPHATE CAPSULES',
           'Brain, Nerve & Adrenal Capsules',
-          'Endocrino Capsules',
-          'GI Super Mover Capsules',
-          'Blood Purifier Capsules',
-          'Calcium Tri-Phosphate Capsules',
-          'Atomic Strengthener Capsules',
-          'Lymphatic System Detox Capsules',
-          'Cayenne Pepper Capsules',
-          'Adult All Purpose Vitamin Capsules',
-          'Turmeric Infusion Capsules',
-          'Superfood Powder Plus Capsules',
+          'ENDOCRINO BALANCE CAPSULES',
+          'INNER-CELLULAR CLEANSE CAPSULES',
+          'Lymphatic Sweep Tonic Capsules	',
+          'Superfood+ Capsules',
         ])
       } else if (val == 'Teas') {
-        setfilteredproducts([
-          'Brain Nerve Vitalmax Tea',
-          'Cellular Regeneration Tea',
-          'Revitalizer Tea',
-          '3BITTERS',
-          'IV Elements',
-          'Burdock Root Tea',
-        ])
+        setfilteredproducts(['Cellular Regeneration Tea', 'NEEM LEAF TEA'])
       } else if (val == 'Tinctures') {
         setfilteredproducts([
-          'Brain Nerve Vitalmax Tincture',
+          'ATOMIC STRENGTHENER TINCTURE',
+          'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+          'Calcium Tri-Phosphate Tincture	',
+          'CIRCULATORY HIGH TINCTURE',
+          'ENDOCRINO BALANCE TINCTURE',
           'Inner-Cellular Cleanse Tincture',
-          'Parasite Elimination Tincture',
-          'Brain, Nerve, & Adrenal Tincture',
-          'Endocrino Tincture',
-          'GI Super Mover Tincture',
-          'Blood Purifier Tincture',
-          'Calcium Tri-Phosphate Tincture',
-          'Atomic Strengthener Tincture',
-          'Lymphatic System Sweep Tonic Tincture',
-        ])
-      }
-    } else if (selectedheral.includes('Oral Health')) {
-      if (val == 'Capsules') {
-        setfilteredproducts([
-          'Brain Nerve Vitalmax Capsules',
-          'Inner-Cellular Cleanse Capsules',
-          'Parasite Elimination Capsules',
-          'Brain, Nerve & Adrenal Capsules',
-          'Endocrino Balance Capsules',
-          'GI Super Mover Capsules',
-          'Calcium Tri-Phosphate Capsules',
-          'Atomic Strengthener Capsules',
-          'Lymphatic Sweep Tonic Capsules',
-        ])
-      } else if (val == 'Powders') {
-        setfilteredproducts([
-          'Teeth & Gum Restoration',
-          'Superfood Powder Plus Powder',
-          'Lung Cleanser (Tar Remover) Powder',
-        ])
-      } else if (val == 'Tinctures') {
-        setfilteredproducts([
-          'Brain Nerve Vitalmax Tincture',
-          'Inner-Cellular Cleanse Tincture',
-          'Parasite Elimination Tincture',
-          'Brain-Nerve Adrenal Support Tincture',
-          'Endocrino Balance Tincture',
-          'Calcium Tri-Phosphate Tincture',
-          'Atomic Strengthener Tincture',
           'Lymphatic Sweep Tonic Tincture',
+          'THYROID & PARATHYROID SUPPORT',
+        ])
+      } else if (val == 'Oils') {
+        setfilteredproducts(['INDIA NEEM EXTRACT OIL'])
+      } else if (val == 'Hygiene') {
+        setfilteredproducts(['Tooth & Gum Powder '])
+      } else if (val == 'Sea Herbs') {
+        setfilteredproducts([
+          'Aeolian Islands Bladderwrack',
+          'DULSE (PALMARIA PALMATA)',
+          'Kelp Sea',
+          'Raw Organic Sea Moss',
+        ])
+      } else if (val == 'Kits & Bundle') {
+        setfilteredproducts([
+          'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+          'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+          'INNER-CELLULAR CLEANSE BUNDLE',
+          'KIDNEY & ADRENAL KIT',
+          'LYMPHATIC SYSTEM SWEEP KIT',
+          'REVITALIZE & REBUILD KIT',
         ])
       }
     }
