@@ -1,13 +1,14 @@
 import React from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
+import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 const AboutCompany = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <FooterHeader />
       <div>
         <div className='container-fluid my-5 py-4'>
           <div className='row'>

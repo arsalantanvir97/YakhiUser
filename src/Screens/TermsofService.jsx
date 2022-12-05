@@ -1,5 +1,6 @@
 import React from 'react'
 import Footer from '../components/Footer'
+import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 
@@ -7,7 +8,7 @@ const TermsofService = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <FooterHeader />
 
       <div className='container-fluid my-5 py-3'>
         <div className='row'>

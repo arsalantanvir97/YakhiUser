@@ -460,7 +460,10 @@ const Capsules = ({ history, match }) => {
                                 />
                               </button>
 
-                              <Link to={`/ProductView/${prod?._id}`}>
+                              <Link
+                                className='prod-imgg'
+                                to={`/ProductView/${prod?._id}`}
+                              >
                                 {' '}
                                 <img
                                   src={
@@ -468,7 +471,7 @@ const Capsules = ({ history, match }) => {
                                     `${imageURL}${prod?.productimage[0]}`
                                   }
                                   alt=''
-                                  className='img-fluid'
+                                  className='img-fluid '
                                   style={{
                                     objectFit: 'cover',
                                     width: '388px%',

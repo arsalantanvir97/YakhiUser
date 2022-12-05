@@ -21,11 +21,11 @@ const MasterHerbalist = () => {
         >
           Yah'ki Awakened Eye of Lotus Botanical Health Club
         </h4>
-        <div className='col-11 mx-auto' style={{ paddingRight: 185 }}>
+        <div className='col-11 mx-auto'>
           <div className='row mb-5'>
             <div className='about-company'>
-              <div className='row justify-content-center align-items-center'>
-                <div className='col-xl-6 col-lg-8 col-10'>
+              <div className='row align-items-center'>
+                <div className='col-xl-6 col-sm-12 col-lg-8 col-10'>
                   <img
                     src='images/herbalist-yakhi.jpg'
                     alt=''

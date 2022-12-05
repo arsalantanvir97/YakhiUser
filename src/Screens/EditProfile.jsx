@@ -10,6 +10,7 @@ const EditProfile = ({ history }) => {
   const [loading, setloading] = useState(false)
 
   const [firstName, setfirstName] = useState()
+
   const [email, setemail] = useState()
 
   const [image, setimage] = useState()
@@ -96,7 +97,7 @@ const EditProfile = ({ history }) => {
                           )} */}
                             <div className='row detail-row d-flex align-items-center justify-content-around px-3'>
                               <div className='col-md-6 col-12 text-left mb-3 lablename'>
-                                <label htmlFor>First Name:</label>
+                                <label htmlFor>Full Name:</label>
                               </div>
                               <div className='col-md-6 col-12 text-left mb-3'>
                                 {is_edit ? (
@@ -105,7 +106,7 @@ const EditProfile = ({ history }) => {
                                     className='form-control cutum-input'
                                     id='exampleInputEmail1'
                                     aria-describedby='emailHelp'
-                                    placeholder='First Name'
+                                    placeholder='Full Name'
                                     value={firstName}
                                     onChange={(e) => {
                                       setfirstName(e.target.value)

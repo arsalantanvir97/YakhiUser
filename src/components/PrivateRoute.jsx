@@ -1,24 +1,27 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import Footer from "./Footer";
-import PrivateRouteSlider from "./PrivateRouteSlider";
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import Header from './Header'
+import Sidebar from './Sidebar'
+import Footer from './Footer'
+import PrivateRouteSlider from './PrivateRouteSlider'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  console.log('window', window)
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
   return (
     <Route
       {...rest}
       render={(props) =>
         !userInfo ? (
-          <Redirect to="/" />
+          <Redirect to='/' />
         ) : (
           <>
             <Header />
-            <PrivateRouteSlider/>
+            {window?.location?.pathname.includes('Memberships') ? null : (
+              <PrivateRouteSlider />
+            )}
             {/* <Sidebar /> */}
             <Component {...props} />
 
@@ -27,7 +30,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         )
       }
     />
-  );
-};
+  )
+}
 
-export default PrivateRoute;
+export default PrivateRoute

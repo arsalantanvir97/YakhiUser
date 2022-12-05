@@ -284,6 +284,7 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('cartNumber')
   localStorage.removeItem('consultationAddress')
   localStorage.removeItem('wishlist')
+  // localStorage.removeItem('pop_status')
 
   dispatch({ type: USER_LOGOUT })
 

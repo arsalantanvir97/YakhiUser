@@ -1,78 +1,76 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { baseURL, imageURL } from "../utils/api";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { useSelector } from "react-redux";
-import Loader from "../components/Loader";
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { baseURL, imageURL } from '../utils/api'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { useSelector } from 'react-redux'
+import Loader from '../components/Loader'
 
-const WishList = () => {
-  const [wishtlistuser, setwishtlistuser] = useState([]);
-  const [quantity, setquantity] = useState([]);
-  const [rerenderWishList, setrerenderWishList] = useState();
-  const [loading, setloading] = useState(false);
+const WishList = ({ history }) => {
+  const [wishtlistuser, setwishtlistuser] = useState([])
+  const [quantity, setquantity] = useState([])
+  const [rerenderWishList, setrerenderWishList] = useState()
+  const [loading, setloading] = useState(false)
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
   useEffect(() => {
-    getUsersWishList();
-  }, [rerenderWishList]);
+    getUsersWishList()
+  }, [rerenderWishList])
 
   const getUsersWishList = async () => {
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`
-      }
-    };
-    setloading(true);
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    setloading(true)
 
-    const res = await axios.get(`${baseURL}/wishList/userWishList`, config);
-    setloading(false);
+    const res = await axios.get(`${baseURL}/wishList/userWishList`, config)
+    setloading(false)
 
-    console.log("res", res);
-    setwishtlistuser(res?.data?.wishListofUser);
-  };
+    console.log('res', res)
+    setwishtlistuser(res?.data?.wishListofUser)
+  }
 
-  const deleteWishHandler = async (id,del) => {
+  const deleteWishHandler = async (id, del) => {
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`
-      }
-    };
-    const res = await axios.get(
-      `${baseURL}/wishList/deleteAWish/${id}`,
-      config
-    );
-    if (res?.status == 200) {
-      let existing = localStorage.getItem("wishlist")
-        ? JSON.parse(localStorage.getItem("wishlist"))
-        : [];
-      console.log("existing", existing,del);
-      existing = existing.filter((exe) => {
-        console.log('exos',exe,del);
-        return(
-
-        exe !== del)});
-      console.log("existing2", existing);
-      localStorage.setItem("wishlist", JSON.stringify(existing));
-      setrerenderWishList(!rerenderWishList);
-      Swal.fire({
-        icon: "success",
-        title: "",
-        text: "Removed Successfully",
-        showConfirmButton: false,
-        timer: 1500
-      });
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     }
-  };
-
+    const res = await axios.get(`${baseURL}/wishList/deleteAWish/${id}`, config)
+    if (res?.status == 200) {
+      let existing = localStorage.getItem('wishlist')
+        ? JSON.parse(localStorage.getItem('wishlist'))
+        : []
+      console.log('existing', existing, del)
+      existing = existing.filter((exe) => {
+        console.log('exos', exe, del)
+        return exe !== del
+      })
+      console.log('existing2', existing)
+      localStorage.setItem('wishlist', JSON.stringify(existing))
+      setrerenderWishList(!rerenderWishList)
+      Swal.fire({
+        icon: 'success',
+        title: '',
+        text: 'Removed Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    }
+  }
+  const addToCartHandler = async (productId, qty) => {
+    history.push(`/MyCart/${productId}?qty=${qty}`)
+  }
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-11 mx-auto">
-          <section className="my-cart mt-5">
-            <div className="row align-items-start">
-              <div className="col-12 my-4">
+    <div className='container-fluid'>
+      <div className='row'>
+        <div className='col-md-11 mx-auto'>
+          <section className='my-cart mt-5'>
+            <div className='row align-items-start'>
+              <div className='col-12 my-4'>
                 {wishtlistuser?.length > 0 && <h2>Wishlist</h2>}
                 {/* {wishtlistuser?.length > 0 ? (
                 ) : (
@@ -84,12 +82,12 @@ const WishList = () => {
               {loading ? (
                 <Loader />
               ) : wishtlistuser?.length > 0 ? (
-                <div className="col-xl-11 col-md-12">
+                <div className='col-xl-11 col-md-12'>
                   {/* cart table */}
-                  <div className="table-responsive">
+                  <div className='table-responsive'>
                     <table
-                      className="table table-borderless text-center"
-                      id="cart-table"
+                      className='table table-borderless text-center'
+                      id='cart-table'
                     >
                       <thead>
                         <tr>
@@ -98,6 +96,7 @@ const WishList = () => {
                           {/* <th>QUANTITY</th> */}
                           <th>UNIT PRICE</th>
                           <th>Availability</th>
+                          <th>Add to Cart</th>
                           <th>ACTION</th>
                         </tr>
                       </thead>
@@ -106,14 +105,14 @@ const WishList = () => {
                           wishtlistuser?.map((wish, index) => (
                             <tr>
                               <td>
-                                <div className="cart-product">
+                                <div className='cart-product'>
                                   <img
                                     src={
                                       wish?.product?.productimage?.length > 0 &&
                                       `${imageURL}${wish?.product?.productimage[0]}`
                                     }
-                                    alt=""
-                                    className="img-fluid mx-auto"
+                                    alt=''
+                                    className='img-fluid mx-auto'
                                   />
                                 </div>
                               </td>
@@ -158,21 +157,43 @@ const WishList = () => {
                             </td> */}
                               <td>${wish?.product?.price}</td>
                               <td>
-                                <span className="instock-label">
+                                <span className='instock-label'>
                                   {wish?.product?.countInStock > 0
-                                    ? "In Stock"
-                                    : "Out of Stock"}
+                                    ? 'In Stock'
+                                    : 'Out of Stock'}
                                 </span>
                               </td>
                               <td>
                                 <button
-                                  type="button"
-                                  className="btn trash-btn"
+                                  type='button'
+                                  className='btn cart-button'
                                   onClick={() => {
-                                    deleteWishHandler(wish?._id,wish?.product?._id);
+                                    addToCartHandler(wish?.product?._id, 1)
+                                  }}
+                                  // onClick={() => {
+                                  //   !userInfo
+                                  //     ? UnauthorizedAlert()
+                                  //     : history?.push(
+                                  //         `/GeoGeneticsCheckout/${geo?._id}?qty=${1}`
+                                  //       )
+                                  // }}
+                                  title='Add to cart'
+                                >
+                                  <i className='fal fa-shopping-cart' />
+                                </button>
+                              </td>
+                              <td>
+                                <button
+                                  type='button'
+                                  className='btn trash-btn'
+                                  onClick={() => {
+                                    deleteWishHandler(
+                                      wish?._id,
+                                      wish?.product?._id
+                                    )
                                   }}
                                 >
-                                  <i className="far fa-trash-alt" />
+                                  <i className='far fa-trash-alt' />
                                 </button>
                               </td>
                             </tr>
@@ -183,14 +204,14 @@ const WishList = () => {
                 </div>
               ) : (
                 <h2>
-                  Your Wishlist is Empty <Link to="/">Go Back</Link>
+                  Your Wishlist is Empty <Link to='/'>Go Back</Link>
                 </h2>
               )}
             </div>
           </section>
-          <div className="row mt-5">
-            <div className="col-12 text-center">
-              <div className="about-bottom-banner">
+          <div className='row mt-5'>
+            <div className='col-12 text-center'>
+              <div className='about-bottom-banner'>
                 <h3>
                   All Herbs Are Organic Alkaline and Are Naturally Wildcrafted
                   from the Land of their Origin
@@ -207,7 +228,7 @@ const WishList = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WishList;
+export default WishList

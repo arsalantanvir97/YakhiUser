@@ -1,36 +1,37 @@
-import React from "react";
-import AllHerbs from "../components/AllHerbs";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import PrivateRouteSlider from "../components/PrivateRouteSlider";
+import React from 'react'
+import AllHerbs from '../components/AllHerbs'
+import Footer from '../components/Footer'
+import FooterHeader from '../components/FooterHeader'
+import Header from '../components/Header'
+import PrivateRouteSlider from '../components/PrivateRouteSlider'
 
 const OrderandPayment = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
+      <FooterHeader />
 
-      <div className="container-fluid my-5 py-3">
-        <div className="row">
-          <div className="col-11 mx-auto">
-            <section className="orders">
-              <div className="row">
-                <div className="col-12 text-center">
+      <div className='container-fluid my-5 py-3'>
+        <div className='row'>
+          <div className='col-11 mx-auto'>
+            <section className='orders'>
+              <div className='row'>
+                <div className='col-12 text-center'>
                   <h2>Orders &amp; Payments</h2>
                 </div>
               </div>
               {/* ORDERS */}
-              <div className="row my-5">
-                <div className="col-12 text-left">
+              <div className='row my-5'>
+                <div className='col-12 text-left'>
                   <h3>Orders:</h3>
                 </div>
                 {/* Placing An Order */}
-                <div className="col-12 mt-3">
+                <div className='col-12 mt-3'>
                   <h4>Placing An Order</h4>
                   <p>
-                    <span className="bottom-note">
+                    <span className='bottom-note'>
                       Orders can be placed on our website 24 hours a day, 7 days
-                      a week.{" "}
+                      a week.{' '}
                     </span>
                     Processing may take up to 5 or 10 business days. After your
                     order is processed it takes additional time for packaging,
@@ -40,8 +41,8 @@ const OrderandPayment = () => {
                     your orders out to you a soon as possible.
                   </p>
                 </div>
-                <div className="col-12 mt-3">
-                  <h4 className="order-note">Please Note:</h4>
+                <div className='col-12 mt-3'>
+                  <h4 className='order-note'>Please Note:</h4>
                   <p>
                     Once an order has been placed it cannot be changed, added
                     to, or combined. Any additions will be billed and shipped as
@@ -49,7 +50,7 @@ const OrderandPayment = () => {
                   </p>
                 </div>
                 {/* Phone Orders */}
-                <div className="col-12 mt-5">
+                <div className='col-12 mt-5'>
                   <h4>Phone Orders</h4>
                   <p>
                     Soon you will be able to place your orders over the phone.
@@ -70,13 +71,13 @@ const OrderandPayment = () => {
                   </p>
               </div> */}
                 {/* Local Pickup */}
-                <div className="col-12 mt-5">
+                <div className='col-12 mt-5'>
                   <h4>Local Pickup</h4>
                   <p>
                     We don’t currently offer any onsite pickups. All orders must
                     be shipped.
                   </p>
-                  <h4 className="mt-5">Mail In Orders</h4>
+                  <h4 className='mt-5'>Mail In Orders</h4>
                   <p>
                     To order by mail, we ask that you first phone our office to
                     receive a grand total with Shipping and Handling costs
@@ -84,10 +85,10 @@ const OrderandPayment = () => {
                     order payable to YAH’KI AWAKENED LLC along with a list of
                     the items you wish to purchase to:
                   </p>
-                  <p className="bottom-note mt-2">
-                  7217 Watson Rd PO 190563St. Louis, Mo 63119
+                  <p className='bottom-note mt-2'>
+                    7217 Watson Rd PO 190563St. Louis, Mo 63119
                   </p>
-                  <h4 className="mt-5">Out of Stock Items</h4>
+                  <h4 className='mt-5'>Out of Stock Items</h4>
                   <p>
                     If there is not a suitable substitution to be made, the
                     remainder of the order will be sent without the out of stock
@@ -98,12 +99,12 @@ const OrderandPayment = () => {
                 </div>
               </div>
               {/* PAYMENTS */}
-              <div className="row my-5">
-                <div className="col-12 text-left">
+              <div className='row my-5'>
+                <div className='col-12 text-left'>
                   <h3>Payments:</h3>
                 </div>
                 {/* Credit Card */}
-                <div className="col-12 mt-3">
+                <div className='col-12 mt-3'>
                   <h4>Credit Card</h4>
                   <p>
                     Credit card payments are processed through Stripe and
@@ -114,7 +115,7 @@ const OrderandPayment = () => {
                   </p>
                 </div>
                 {/* Paypal */}
-                <div className="col-12 mt-5">
+                <div className='col-12 mt-5'>
                   <h4>Paypal</h4>
                   <p>
                     Once you have received an invoice from a member of our
@@ -122,19 +123,19 @@ const OrderandPayment = () => {
                     complete payment to ensure your order is received.
                   </p>
                 </div>
-                <div className="col-12 mt-3">
-                  <h4 className="order-note">International Orders</h4>
+                <div className='col-12 mt-3'>
+                  <h4 className='order-note'>International Orders</h4>
                   <p>
                     International orders must be placed on our website or via
                     email. Thank you in advance for your understanding and
                     willful cooperation. <br />
-                    <a href="paypal.me/YahkiAwakenedLLC" className="red">
+                    <a href='paypal.me/YahkiAwakenedLLC' className='red'>
                       paypal.me/YahkiAwakenedLLC
                     </a>
                   </p>
                 </div>
-                <div className="col-12 mt-3">
-                  <h4 className="order-note">Please Note:</h4>
+                <div className='col-12 mt-3'>
+                  <h4 className='order-note'>Please Note:</h4>
                   <p>
                     All standard orders shipped within the USA will ship via UPS
                     Ground, UPS Flat Rate (if requirements are met, available
@@ -143,8 +144,8 @@ const OrderandPayment = () => {
                     are processed in the order in which they are received.
                   </p>
                 </div>
-                <div className="col-12 mt-3">
-                  <p className="mt-3">
+                <div className='col-12 mt-3'>
+                  <p className='mt-3'>
                     *All information and tools on this website are strictly for
                     members only. Use of any of the information given on this
                     website by a non-member is strictly prohibited.
@@ -158,14 +159,14 @@ const OrderandPayment = () => {
                   </p>
                 </div>
               </div>
-              <AllHerbs/>
+              <AllHerbs />
             </section>
           </div>
         </div>
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default OrderandPayment;
+export default OrderandPayment

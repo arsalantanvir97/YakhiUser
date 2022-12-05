@@ -65,19 +65,21 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     age: shippingAddress?.age,
     weight: shippingAddress?.weight,
     height: shippingAddress?.height,
-    govtid: shippingAddress?.govtid,
+    // govtid: shippingAddress?.govtid,
 
     doc_schedule: shippingAddress?.doc_schedule,
     disclaimer: shippingAddress?.disclaimer,
     signature: shippingAddress?.signature,
 
-    billingname: shippingAddress?.billingname,
+    billingfirstname: shippingAddress?.billingfirstname,
+    billinglastname: shippingAddress?.billinglastname,
     billingaddress: shippingAddress?.billingaddress,
     billingcity: shippingAddress?.billingcity,
     billingzipcode: shippingAddress?.billingzipcode,
     billingcountry: shippingAddress?.billingcountry,
     billingstate: shippingAddress?.billingstate,
-    shippingname: shippingAddress?.shippingname,
+    shippingfirstname: shippingAddress?.shippingfirstname,
+    shippinglastname: shippingAddress?.shippinglastname,
     shippingaddress: shippingAddress?.shippingaddress,
     shippingcity: shippingAddress?.shippingcity,
     shippingzipcode: shippingAddress?.shippingzipcode,
@@ -136,13 +138,15 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
           signature: shippingAddress?.signature,
           disclaimer: allValues?.disclaimer,
           phone: allValues?.phone,
-          billingname: allValues?.billingname,
+          billingfirstname: allValues?.billingfirstname,
+          billinglastname: allValues?.billinglastname,
           billingaddress: allValues?.billingaddress,
           billingcity: allValues?.billingcity,
           billingzipcode: allValues?.billingzipcode,
           billingcountry: allValues?.billingcountry,
           billingstate: allValues?.billingstate,
-          shippingname: allValues?.shippingname,
+          shippingfirstname: allValues?.shippingfirstname,
+          shippinglastname: allValues?.shippinglastname,
           shippingaddress: allValues?.shippingaddress,
           shippingcity: allValues?.shippingcity,
           shippingzipcode: allValues?.shippingzipcode,
@@ -166,7 +170,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     settogglecheckout(togglecheckout + 1)
     dispatch(
       savePaymentMethod({
-        paymentmethod: allValues?.paymentmethod,
+        paymentmethod: 'Card',
         cardholdername: allValues?.cardholdername,
         cardnumber: allValues?.cardnumber,
         cvvnumber: allValues?.cvvnumber,
@@ -237,13 +241,13 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       ['doc_schedule']: e?.target?.files[0],
     })
   }
-  const filedocsHandler2 = (e) => {
-    setAllValues({
-      ...allValues,
+  // const filedocsHandler2 = (e) => {
+  //   setAllValues({
+  //     ...allValues,
 
-      ['govtid']: e?.target?.files[0],
-    })
-  }
+  //     ['govtid']: e?.target?.files[0],
+  //   })
+  // }
 
   useEffect(() => {
     settaxPrice(Number(taxofstate / 100) * Number(product?.price * quantity))
@@ -411,7 +415,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                             name='allergics'
                                           />
                                         </div>
-                                        <div className='row mb-0'>
+                                        {/* <div className='row mb-0'>
                                           <div className='col-6 mb-4'>
                                             <label>
                                               Upload Valid Government Issued ID*
@@ -435,7 +439,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                               )}
                                             </label>
                                           </div>
-                                        </div>
+                                        </div> */}
                                       </div>
                                     </div>
                                   </div>
@@ -472,7 +476,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                 </div>
 
                                 <div className='row mb-4'>
-                                  <div className='col-6 mb-4'>
+                                  <div className='col mb-4'>
                                     <label>
                                       Upload Valid Government Issued ID*
                                     </label>
@@ -495,7 +499,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       )}
                                     </label>
                                   </div>
-                                  <div className='col-6 ship-to-different text-center'>
+                                  <div className='col mb-4 ship-to-different text-center'>
                                     <div className='checkbox-group'>
                                       <input
                                         type='checkbox'
@@ -519,16 +523,27 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                 {/* Billing Address */}
                                 <div className='row mb-4'>
                                   <div className='col-12 mb-4'>
-                                    <h4>Billing Address</h4>
+                                    <h4>Billing Information</h4>
                                   </div>
                                   <div className='col-12 mb-4'>
-                                    <label>Name*</label>
+                                    <label>First Name*</label>
                                     <input
                                       type='text'
                                       className='form-control'
-                                      placeholder='Enter Name'
-                                      name='billingname'
-                                      value={allValues?.billingname}
+                                      placeholder='Enter First Name'
+                                      name='billingfirstname'
+                                      value={allValues?.billingfirstname}
+                                      onChange={changeHandler}
+                                    />
+                                  </div>
+                                  <div className='col-12 mb-4'>
+                                    <label>Last Name*</label>
+                                    <input
+                                      type='text'
+                                      className='form-control'
+                                      placeholder='Enter Last Name'
+                                      name='billinglastname'
+                                      value={allValues?.billinglastname}
                                       onChange={changeHandler}
                                     />
                                   </div>
@@ -622,28 +637,27 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                 {/* Shipping Address */}
                                 <div className='row mb-4'>
                                   <div className='col-12 mb-4'>
-                                    <h4>Shipping Address</h4>
+                                    <h4>Shipping Information</h4>
                                   </div>
                                   <div className='col-12 mb-4'>
-                                    <label>Name*</label>
+                                    <label>First Name*</label>
                                     <input
                                       type='text'
                                       className='form-control'
-                                      placeholder='Enter Name'
-                                      name='shippingname'
-                                      value={allValues?.shippingname}
+                                      placeholder='Enter First Name'
+                                      name='shippingfirstname'
+                                      value={allValues?.shippingfirstname}
                                       onChange={changeHandler}
                                     />
                                   </div>
                                   <div className='col-12 mb-4'>
-                                    <label>Address*</label>
-                                    <textarea
+                                    <label>Last Name*</label>
+                                    <input
+                                      type='text'
                                       className='form-control'
-                                      id='exampleFormControlTextarea1'
-                                      placeholder='Enter Address'
-                                      rows={5}
-                                      name='shippingaddress'
-                                      value={allValues?.shippingaddress}
+                                      placeholder='Enter Last Name'
+                                      name='shippinglastname'
+                                      value={allValues?.shippinglastname}
                                       onChange={changeHandler}
                                     />
                                   </div>
@@ -818,10 +832,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                         <div className='row'>
                           <div className='col-xl-7 col-lg-7 col-md-10'>
                             <div className='checkout-form'>
-                              <h3>SELECT PAYMENT METHOD</h3>
+                              {/* <h3>SELECT PAYMENT METHOD</h3> */}
                               <form>
                                 <div className='row my-4'>
-                                  <div className='col-lg-2 col-md-3 col-4'>
+                                  {/* <div className='col-lg-2 col-md-3 col-4'>
                                     <div className='payment-method'>
                                       <input
                                         type='radio'
@@ -888,7 +902,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         />
                                       </label>
                                     </div>
-                                  </div>
+                                  </div> */}
                                   <div className='col-12 mt-5'>
                                     <h4>Payment</h4>
                                   </div>
@@ -1297,13 +1311,15 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                           allValues?.email &&
                           allValues?.doc_schedule?.name?.length > 0 &&
                           allValues?.phone &&
-                          allValues?.billingname &&
+                          allValues?.billingfirstname &&
+                          allValues?.billinglastname &&
                           allValues?.billingaddress &&
                           allValues?.billingcity &&
                           allValues?.billingzipcode &&
                           allValues?.billingcountry &&
                           allValues?.billingstate &&
-                          allValues?.shippingname &&
+                          allValues?.shippingfirstname &&
+                          allValues?.shippinglastname &&
                           allValues?.shippingaddress &&
                           allValues?.shippingcity &&
                           allValues?.shippingzipcode &&
@@ -1311,7 +1327,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                           allValues?.shippingstate
                             ? saveShippingHandler()
                             : togglecheckout == 1 &&
-                              allValues?.paymentmethod &&
+                              // allValues?.paymentmethod &&
                               allValues?.cardholdername &&
                               allValues?.cardnumber &&
                               allValues?.cvvnumber

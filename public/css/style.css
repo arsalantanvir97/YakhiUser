@@ -2391,11 +2391,13 @@ input[type="radio"] {
   display: none;
 }
 
-input[type="radio"]:checked+label {
-  /* border: solid 1px #c31f20; */
-  /* border-radius: 5px; */
+.consultation-form .table input[type="radio"]:checked+label {
+  border: solid 1px #c31f20;
+  border-radius: 5px;
 }
-
+.consultation-form .table td, .consultation-form .table th {
+  border-top: 1px solid #dee2e6;
+}
 .consultation-meta {
   color: #81191a;
   font-family: "Rubik", sans-serif;
@@ -5770,6 +5772,11 @@ span.sale-tag {
   font-size: 20px;
   margin-bottom: 20px;
 }
+.product-card a.prod-imgg{
+    min-height: 200px;
+    overflow: hidden;
+    min-width: 100%;
+}
 .wbp_wrapper p{
   font-weight: normal;
   margin-bottom: 44px;
@@ -5786,4 +5793,7 @@ span.sale-tag {
   background: #f37728;
   border: 0;
   color: #fff;
+}
+.utb {
+  margin: 0 0 0 20px;
 }

@@ -9,6 +9,7 @@ import { baseURL, imageURL } from '../utils/api'
 import { Parser } from 'html-to-react'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
+import FooterHeader from '../components/FooterHeader'
 
 const htmlToReactParser = new Parser()
 
@@ -45,7 +46,7 @@ const Instruction = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <FooterHeader />
 
       <section className='about-page'>
         <div className='container-fluid'>
@@ -204,13 +205,19 @@ const Instruction = () => {
                                         appropriate dosage for your weight.
                                         Tinctures should be taken all at once,
                                         in the 2.5 oz glass (shot glass).
+                                        <br></br>
+                                        <img
+                                          src='images/Tinctureschart.png'
+                                          alt=''
+                                          className='img-fluid mt-5'
+                                        />
                                       </li>
                                     </ul>
                                   </div>
                                 </div>
                               </div>
-                              {/* DRIED OR BAKED FRUITS (MUCUS-LESS) */}
                             </div>
+                            {/* DRIED OR BAKED FRUITS (MUCUS-LESS) */}
                           </div>
                         </div>
                         <div className='col-lg-6 col-md-10'>

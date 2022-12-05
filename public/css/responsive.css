@@ -251,6 +251,7 @@
     .member-info-card {
         min-height: 255px;
     }
+    
     .genetics-para {
         width: 100%;
     }
@@ -334,6 +335,7 @@
         display: block;
 
     }
+
     /* body .uwy.userway_p1 .uai{
         left: calc(100vw - 17px) !important;
         bottom: 5px !important;
@@ -399,10 +401,23 @@
     }
     .menu a.nav-link, .menu-icons a, select#switcher {
         color: #fff !important;
+        font-size: 18px;
     }
     .about-company img {
         margin: 0 auto;
         display: table;
+    }
+
+
+
+
+    .dmenu .megamenu.show, .dmenu .megamenu.show .dropdown-menu.show {
+        display: block;
+    }
+    
+
+    .dmenu .megamenu, .dmenu .megamenu .dropdown-menu {
+        display: none;
     }
 }
 @media screen and (max-width: 1100px) {
@@ -1002,6 +1017,21 @@
     .banner-outline {
         padding: 17px 15px 17px 0;
     }
+    .product-card a.prod-imgg {
+        min-height: auto;
+        overflow: auto;
+        min-width: 100%;
+    }
+    .product-text h5.product-name a {
+        min-height: auto;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .product-text .maroon-btn-solid{
+        margin-right: 0;
+        margin-left: auto;
+    }
+    #herbalist{background: none;}
 }
 @media screen and (max-width: 575px) {
     .g-package-heading {
@@ -1365,6 +1395,12 @@
     }
     .main-banner {
         min-height: 205px;
+    }
+    .utb{
+        margin: 0;
+    }
+    .btn-main a{
+display: block !important;
     }
 }
 @media screen and (max-width: 456px) {

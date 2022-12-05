@@ -209,7 +209,10 @@ const Contactus = () => {
                     <div className='col-md-4 my-4'>
                       <div className='contact-card text-center'>
                         <h4>Address</h4>
-                        <p>4406 St VINCENT AVE, SAINT LOUIS MO, 63119</p>
+                        <p>
+                          {' '}
+                          <h3>7217 Watson Rd PO 190563 St. Louis, Mo 63119</h3>
+                        </p>
                       </div>
                     </div>
                     <div className='col-md-4 my-4'>

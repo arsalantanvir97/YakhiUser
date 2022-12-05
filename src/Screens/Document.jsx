@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import { ListSkeleton } from '../components/MultipleSkeleton'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
+import FooterHeader from '../components/FooterHeader'
 const Document = () => {
   const [docs, setdocs] = useState([])
   const [loading, setloading] = useState(false)
@@ -26,7 +27,7 @@ const Document = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <FooterHeader />
 
       <section className='body-system py-5 my-5'>
         <div className='container-fluid'>

@@ -141,7 +141,7 @@ const Donate = () => {
                               </div>
                             </div>
                           </form>
-                          <label htmlFor className='my-label'>
+                          {/* <label htmlFor className='my-label'>
                             Square Payment
                           </label>
                           <SquarePaymentsForm
@@ -152,7 +152,7 @@ const Donate = () => {
                             locationId='L17RXM5KHXR8D'
                           >
                             <CreditCardInput text={'Pay now'} />
-                          </SquarePaymentsForm>
+                          </SquarePaymentsForm> */}
                         </div>
                       </div>
                       <div className='col-xl-5 col-lg-6 my-auto'>

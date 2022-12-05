@@ -523,6 +523,9 @@ const Consultation = ({ history }) => {
                                     setconsultaionfor(e.target.value)
                                   }}
                                 >
+                                  <option disabled={true} value={''}>
+                                    Select
+                                  </option>
                                   <option value={'General cleanse'}>
                                     General cleanse
                                   </option>

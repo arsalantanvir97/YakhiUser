@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { userMemberAction } from '../actions/userAction'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
+import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import { Signature } from '../components/Signature'
@@ -60,6 +61,7 @@ const Memberships = ({ history }) => {
 
   return (
     <>
+      <FooterHeader />
       <div>
         <section className='about-page'>
           <div className='container-fluid'>
