@@ -18,11 +18,14 @@ const isWindowContext = typeof window !== 'undefined'
 const Index = ({ history }) => {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
-    let pop_status = localStorage.getItem('pop_status')
-    if (!pop_status) {
+    let pop_status = sessionStorage.getItem('pop_status')
+    if (!pop_status || pop_status == 1) {
       console.log('!pop_status!pop_status')
       setVisible(true)
-      localStorage.setItem('pop_status', 1)
+      sessionStorage.setItem('pop_status', 1)
+    }
+    if (isWindowContext) {
+      isWindowContext && visible == true && window?.$('#overlay').modal('show')
     }
   }, [])
   // if (!visible) return null
@@ -162,7 +165,7 @@ const Index = ({ history }) => {
     const res = await axios.get(`${baseURL}/category/allOfCategories`, {})
     console.log('res', res)
     setallofcategory(res?.data?.getAllCategories)
-    localStorage.setItem(
+    sessionStorage.setItem(
       'categories',
       JSON.stringify(res?.data?.getAllCategories)
     )
@@ -192,16 +195,17 @@ const Index = ({ history }) => {
   const showPopupHanlder = () => {
     console.log('isWindowContext', isWindowContext)
   }
-  useLayoutEffect(() => {
-    if (isWindowContext) isWindowContext && window?.$('#overlay').modal('show')
-  }, [])
+
   const closeModalHandler = () => {
-    isWindowContext && window?.$('#overlay').modal('hide')
-    localStorage.removeItem('pop_status')
+    var element = document.getElementById('overlay')
+    element.classList.remove('show')
+
+    // isWindowContext && window?.$('#overlay').remove('show')
+    sessionStorage.setItem('pop_status', 3)
   }
 
   const closeModalHandler2 = () => {
-    isWindowContext && window?.$('#overlay').modal('hide')
+    isWindowContext && window?.$('#overlay').remove('show')
     console.log('closeModalHandler2')
     window.location.replace('https://www.google.com')
   }
@@ -1722,247 +1726,249 @@ const Index = ({ history }) => {
       </div>
 
       <Footer />
-      {visible == true && (
-        <div className='modal fade' id='overlay'>
-          <div className='modal-dialog modal-xl'>
-            <div className='modal-content'>
-              <div className='termspopupcontainer'>
-                <h3 className='termstitle'>
-                  Yahki Awakened Eye of Lotus Health Club Terms of Use
-                </h3>
-                <div className='termscontentwrapper'>
-                  <div id='wp-terms-popup-content'>
-                    <div>
-                      <div className='wbp_wrapper'>
-                        <h4 style={{ textAlign: 'center', marginTop: 4 }}>
-                          Before Continuing to this Website, You must agree to
-                          Our Terms of Use, Privacy Policy and Health Club
-                          Disclaimer
-                        </h4>
-                        <p style={{ textAlign: 'center' }}>
-                          <span
-                            style={{ fontSize: '14pt', fontWeight: 'bold' }}
-                          >
-                            <strong>
-                              POTENTIAL CLIENT DISCLAIMER AND LIABILITY
-                              INFORMATION
-                            </strong>
-                          </span>
-                        </p>
-                        <p>
+      {/* {visible == true && ( */}
+      <div
+        className={visible == true ? 'modal fade show' : 'modal fade'}
+        id='overlay'
+      >
+        <div className='modal-dialog modal-xl'>
+          <div className='modal-content'>
+            <div className='termspopupcontainer'>
+              <h3 className='termstitle'>
+                Yahki Awakened Eye of Lotus Health Club Terms of Use
+              </h3>
+              <div className='termscontentwrapper'>
+                <div id='wp-terms-popup-content'>
+                  <div>
+                    <div className='wbp_wrapper'>
+                      <h4 style={{ textAlign: 'center', marginTop: 4 }}>
+                        Before Continuing to this Website, You must agree to Our
+                        Terms of Use, Privacy Policy and Health Club Disclaimer
+                      </h4>
+                      <p style={{ textAlign: 'center' }}>
+                        <span style={{ fontSize: '14pt', fontWeight: 'bold' }}>
+                          <strong>
+                            POTENTIAL CLIENT DISCLAIMER AND LIABILITY
+                            INFORMATION
+                          </strong>
+                        </span>
+                      </p>
+                      <p>
+                        <strong>
+                          Yah’ki Awakened Eye of Lotus Botanical Club
+                        </strong>
+                        &nbsp; is a private health club. We promote an alkaline
+                        diet and botanical protocols to assist with illness and
+                        mineral deficiencies. Being a member of our Private
+                        Health Club gives you access to vital information on
+                        proper diet, botanical regimens, daily routine, and
+                        knowledge on common Dis-Eases that plague the community
+                        today. Botanical recommendations are based on health
+                        history, blood work, and iridology readings. We offer
+                        both free and paid membership to this club. All paid
+                        memberships are non-refundable, but may be downgraded,
+                        paused or canceled at any time. Your signature indicates
+                        acceptance and agreement to the following terms of
+                        membership.
+                      </p>
+                      <p>
+                        As a member of the&nbsp;
+                        <strong>
+                          Yah’ki Awakened Eye of Lotus Botanical Club,&nbsp;
+                        </strong>
+                        I understand that I have the constitutional right to
+                        pursue various health practices and consult whom I wish
+                        to achieve my goals for better health. I enter this
+                        agreement on the behalf of any person I am legally
+                        responsible for which includes myself, a minor
+                        dependent, or any adult I am legally responsible for.
+                        This agreement is between me and the &nbsp;
+                        <span style={{ fontWeight: 400 }}>
                           <strong>
                             Yah’ki Awakened Eye of Lotus Botanical Club
                           </strong>
-                          &nbsp; is a private health club. We promote an
-                          alkaline diet and botanical protocols to assist with
-                          illness and mineral deficiencies. Being a member of
-                          our Private Health Club gives you access to vital
-                          information on proper diet, botanical regimens, daily
-                          routine, and knowledge on common Dis-Eases that plague
-                          the community today. Botanical recommendations are
-                          based on health history, blood work, and iridology
-                          readings. We offer both free and paid membership to
-                          this club. All paid memberships are non-refundable,
-                          but may be downgraded, paused or canceled at any time.
-                          Your signature indicates acceptance and agreement to
-                          the following terms of membership.
-                        </p>
-                        <p>
-                          As a member of the&nbsp;
-                          <strong>
-                            Yah’ki Awakened Eye of Lotus Botanical Club,&nbsp;
-                          </strong>
-                          I understand that I have the constitutional right to
-                          pursue various health practices and consult whom I
-                          wish to achieve my goals for better health. I enter
-                          this agreement on the behalf of any person I am
-                          legally responsible for which includes myself, a minor
-                          dependent, or any adult I am legally responsible for.
-                          This agreement is between me and the &nbsp;
-                          <span style={{ fontWeight: 400 }}>
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                          </span>
-                        </p>
-                        <p>
-                          I also understand that I am working with a consultant
-                          who makes no claims of being a health practitioner; I
-                          do this on my own free will. I understand that no
-                          diagnosis or prescription will be given. I understand
-                          that Yah’ki is a Master Herbalist and Master Reiki
-                          Healer and that he is not a medical doctor. I also
-                          understand that only a medical doctor can diagnose and
-                          prescribe treatment.
-                        </p>
-                        <p>
-                          I will willingly provide the representatives of&nbsp;
+                        </span>
+                      </p>
+                      <p>
+                        I also understand that I am working with a consultant
+                        who makes no claims of being a health practitioner; I do
+                        this on my own free will. I understand that no diagnosis
+                        or prescription will be given. I understand that Yah’ki
+                        is a Master Herbalist and Master Reiki Healer and that
+                        he is not a medical doctor. I also understand that only
+                        a medical doctor can diagnose and prescribe treatment.
+                      </p>
+                      <p>
+                        I will willingly provide the representatives of&nbsp;
+                        <strong>
+                          Yah’ki Awakened Eye of Lotus Botanical Club
+                        </strong>
+                        &nbsp; permission (all rights) to openly discuss my
+                        personal health concerns as well as solutions to those
+                        issues. &nbsp;
+                        <strong>
+                          Yah’ki Awakened Eye of Lotus Botanical Club
+                        </strong>
+                        &nbsp; representatives may provide educational
+                        information including, but not limited to, fasting,
+                        herbal botanicals, diet, nutrition, and other health
+                        information which does not include diagnosing, or
+                        prescribing treatment, and is not considered to be a
+                        substitute for medically necessary diagnostics.
+                      </p>
+                      <p>
+                        <span style={{ fontWeight: 400 }}>
+                          I fully agree to hold harmless any member or
+                          representative of&nbsp;
                           <strong>
                             Yah’ki Awakened Eye of Lotus Botanical Club
                           </strong>
-                          &nbsp; permission (all rights) to openly discuss my
-                          personal health concerns as well as solutions to those
-                          issues. &nbsp;
+                          &nbsp; with whom I communicate in any manner. I also
+                          understand that I am working with a consultant who
+                          makes no claims of being a health practitioner; I do
+                          this on my own free will. I assume total liability for
+                          my actions. I understand and acknowledge that no
+                          members of the&nbsp;
                           <strong>
                             Yah’ki Awakened Eye of Lotus Botanical Club
                           </strong>
-                          &nbsp; representatives may provide educational
-                          information including, but not limited to, fasting,
-                          herbal botanicals, diet, nutrition, and other health
-                          information which does not include diagnosing, or
-                          prescribing treatment, and is not considered to be a
-                          substitute for medically necessary diagnostics.
-                        </p>
-                        <p>
-                          <span style={{ fontWeight: 400 }}>
-                            I fully agree to hold harmless any member or
-                            representative of&nbsp;
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            &nbsp; with whom I communicate in any manner. I also
-                            understand that I am working with a consultant who
-                            makes no claims of being a health practitioner; I do
-                            this on my own free will. I assume total liability
-                            for my actions. I understand and acknowledge that no
-                            members of the&nbsp;
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            &nbsp; hold malpractice insurance and I agree to not
-                            file a malpractice lawsuit against any member of
-                            &nbsp;
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            . Any violation of these terms will result in a
-                            no-contest legal proceeding against me.
-                          </span>
-                        </p>
-                        <p>
-                          <span style={{ fontWeight: 400 }}>
-                            I attest that my actions with the &nbsp;
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            &nbsp; are private and I refuse to share with any
-                            state, or Federal Regulatory Board, FDA, FTC,
-                            Medicaid or any other insurance company without said
-                            permission. I agree to waive all HIPPA privacy
-                            rights and complaint processes. I understand that no
-                            doctor-patient relationship exists. I understand
-                            that it is my responsibility to educate myself on
-                            any advice or recommendations given to me by any
-                            member of&nbsp;
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club.
-                            </strong>
-                          </span>
-                        </p>
-                        <p>
-                          <span style={{ fontWeight: 400 }}>
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            &nbsp; declares one of our primary objectives is to
-                            maintain and improve the civil rights,
-                            constitutional guarantees, and political freedom of
-                            every member throughout the world who chooses to
-                            participate in our Private Sector Private Health
-                            Club. We believe the First Amendment of the
-                            Constitution of the United States of America
-                            guarantees our members the right to free speech,
-                            petition, assembly and the right to gather together
-                            for the lawful purpose of advising and helping one
-                            another to attain vibrant health by asserting our
-                            rights under the Federal and State Constitutions and
-                            Statutes. It is hereby declared that we, as a
-                            Private Sector Private Health Club are exercising
-                            our right of “Freedom of Assembly” as guaranteed by
-                            both the 1st and 14th Amendments of the U.S.
-                            Constitution and the equivalent provisions of the
-                            various State Declarations. This means any
-                            activities through or within&nbsp;
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            &nbsp; are restricted to that of the Private Domain
-                            only.
-                          </span>
-                        </p>
-                        <p>
-                          <span style={{ fontWeight: 400 }}>
-                            Further, the application of any learned techniques
-                            intended to remedy my personal health considerations
-                            without a medical doctor’s approval, is also of my
-                            own free will and is considered an act of exercising
-                            my Constitutional Rights. Purchasing&nbsp;
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            &nbsp; products as recommendation for reversing
-                            illness and mineral deficiency in the body and cells
-                            is only a general recommendation. The
-                            recommendations given are only suggestions and I
-                            (the client) must take responsibility for further
-                            educating and making myself in regard to my body’s
-                            health issues and receiving proper medical care.
-                          </span>
-                        </p>
-                        <p>
-                          <span style={{ fontWeight: 400 }}>
-                            <strong>
-                              Yah’ki Awakened Eye of Lotus Botanical Club
-                            </strong>
-                            &nbsp; products are considered to be supplements and
-                            not cures to conditions such as herpes, cancers,
-                            diabetes, autoimmune diseases and others. With a
-                            proper diet these supplements have the ability to
-                            revitalize the immune system, nervous system, and
-                            lymphatic system. The Food and Drug Administration
-                            has not evaluated statements made about specific
-                            supplements nor does the Food and Drug
-                            Administration recognize that any nutritional
-                            supplement is to be used as a cure for any
-                            condition.
-                          </span>
-                        </p>
-                        <p>
-                          <span style={{ fontWeight: 400 }}>
-                            I agree to and digitally sign this affidavit,
-                            without coercion or remuneration, in exchange for
-                            access to benefits this Private Health Club offers.
-                            By clicking “I agree” at the time of creating my
-                            membership, I acknowledge that I have read,
-                            understand and agree to the above stated terms.
-                          </span>
-                        </p>
-                      </div>
+                          &nbsp; hold malpractice insurance and I agree to not
+                          file a malpractice lawsuit against any member of
+                          &nbsp;
+                          <strong>
+                            Yah’ki Awakened Eye of Lotus Botanical Club
+                          </strong>
+                          . Any violation of these terms will result in a
+                          no-contest legal proceeding against me.
+                        </span>
+                      </p>
+                      <p>
+                        <span style={{ fontWeight: 400 }}>
+                          I attest that my actions with the &nbsp;
+                          <strong>
+                            Yah’ki Awakened Eye of Lotus Botanical Club
+                          </strong>
+                          &nbsp; are private and I refuse to share with any
+                          state, or Federal Regulatory Board, FDA, FTC, Medicaid
+                          or any other insurance company without said
+                          permission. I agree to waive all HIPPA privacy rights
+                          and complaint processes. I understand that no
+                          doctor-patient relationship exists. I understand that
+                          it is my responsibility to educate myself on any
+                          advice or recommendations given to me by any member
+                          of&nbsp;
+                          <strong>
+                            Yah’ki Awakened Eye of Lotus Botanical Club.
+                          </strong>
+                        </span>
+                      </p>
+                      <p>
+                        <span style={{ fontWeight: 400 }}>
+                          <strong>
+                            Yah’ki Awakened Eye of Lotus Botanical Club
+                          </strong>
+                          &nbsp; declares one of our primary objectives is to
+                          maintain and improve the civil rights, constitutional
+                          guarantees, and political freedom of every member
+                          throughout the world who chooses to participate in our
+                          Private Sector Private Health Club. We believe the
+                          First Amendment of the Constitution of the United
+                          States of America guarantees our members the right to
+                          free speech, petition, assembly and the right to
+                          gather together for the lawful purpose of advising and
+                          helping one another to attain vibrant health by
+                          asserting our rights under the Federal and State
+                          Constitutions and Statutes. It is hereby declared that
+                          we, as a Private Sector Private Health Club are
+                          exercising our right of “Freedom of Assembly” as
+                          guaranteed by both the 1st and 14th Amendments of the
+                          U.S. Constitution and the equivalent provisions of the
+                          various State Declarations. This means any activities
+                          through or within&nbsp;
+                          <strong>
+                            Yah’ki Awakened Eye of Lotus Botanical Club
+                          </strong>
+                          &nbsp; are restricted to that of the Private Domain
+                          only.
+                        </span>
+                      </p>
+                      <p>
+                        <span style={{ fontWeight: 400 }}>
+                          Further, the application of any learned techniques
+                          intended to remedy my personal health considerations
+                          without a medical doctor’s approval, is also of my own
+                          free will and is considered an act of exercising my
+                          Constitutional Rights. Purchasing&nbsp;
+                          <strong>
+                            Yah’ki Awakened Eye of Lotus Botanical Club
+                          </strong>
+                          &nbsp; products as recommendation for reversing
+                          illness and mineral deficiency in the body and cells
+                          is only a general recommendation. The recommendations
+                          given are only suggestions and I (the client) must
+                          take responsibility for further educating and making
+                          myself in regard to my body’s health issues and
+                          receiving proper medical care.
+                        </span>
+                      </p>
+                      <p>
+                        <span style={{ fontWeight: 400 }}>
+                          <strong>
+                            Yah’ki Awakened Eye of Lotus Botanical Club
+                          </strong>
+                          &nbsp; products are considered to be supplements and
+                          not cures to conditions such as herpes, cancers,
+                          diabetes, autoimmune diseases and others. With a
+                          proper diet these supplements have the ability to
+                          revitalize the immune system, nervous system, and
+                          lymphatic system. The Food and Drug Administration has
+                          not evaluated statements made about specific
+                          supplements nor does the Food and Drug Administration
+                          recognize that any nutritional supplement is to be
+                          used as a cure for any condition.
+                        </span>
+                      </p>
+                      <p>
+                        <span style={{ fontWeight: 400 }}>
+                          I agree to and digitally sign this affidavit, without
+                          coercion or remuneration, in exchange for access to
+                          benefits this Private Health Club offers. By clicking
+                          “I agree” at the time of creating my membership, I
+                          acknowledge that I have read, understand and agree to
+                          the above stated terms.
+                        </span>
+                      </p>
                     </div>
                   </div>
-                  <div className='button'>
-                    <button
-                      onClick={() => {
-                        closeModalHandler()
-                      }}
-                    >
-                      I agree
-                    </button>
-                    <button
-                      style={{ backgroundColor: 'black' }}
-                      onClick={() => {
-                        closeModalHandler2()
-                      }}
-                    >
-                      I disagree
-                    </button>
-                  </div>
+                </div>
+                <div className='button'>
+                  <button
+                    type='button'
+                    data-bs-dismiss='modal'
+                    aria-label='Close'
+                    onClick={() => {
+                      closeModalHandler()
+                    }}
+                  >
+                    I agree
+                  </button>
+                  <button
+                    data-bs-dismiss='modal'
+                    aria-label='Close'
+                    style={{ backgroundColor: 'black' }}
+                    onClick={() => {
+                      closeModalHandler2()
+                    }}
+                  >
+                    I disagree
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </>
   )
 }

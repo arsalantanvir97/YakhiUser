@@ -4610,7 +4610,16 @@ span.bottom-note {
   font-weight: 400;
   letter-spacing: 0px;
 }
-
+.fade.show#overlay {
+  background: hsl(0deg 0% 0% / 50%);
+}
+.fade.show {
+  display: block;
+  opacity: 1;
+}
+.check-btn{
+padding: 12px 10px !important;
+}
 .banner-h1 {
   line-height: 68px;
   font-size: 65px;

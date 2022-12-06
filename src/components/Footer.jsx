@@ -166,7 +166,7 @@ const Footer = () => {
                     <li>
                       <Link
                         to='/ReturnsandRefund'
-                        data-hover='Returns % Cancellations'
+                        data-hover='Returns &amp; Cancellations'
                       >
                         Returns &amp; Cancellations
                       </Link>

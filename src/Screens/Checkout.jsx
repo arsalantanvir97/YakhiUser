@@ -920,7 +920,7 @@ const Checkout = ({ history }) => {
                     )}
                     {/* CONFIRMATION TAB */}
                     {togglecheckout == 2 && (
-                      <div>
+                      <div className='col-12'>
                         <div className='row'>
                           <div className='col-xl-7 col-lg-7 col-md-10'>
                             <div className='checkout-form'>
@@ -1131,7 +1131,7 @@ const Checkout = ({ history }) => {
                                   </div>
                                   {!hidebton && (
                                     <>
-                                      <div className='col-7 mb-3'>
+                                      <div className='col-md-7 col-sm-12 mb-3'>
                                         <input
                                           type='text'
                                           className='form-control'
@@ -1143,7 +1143,7 @@ const Checkout = ({ history }) => {
                                         />
                                       </div>
 
-                                      <div className='col-5 mb-3 text-right'>
+                                      <div className='col-md-5 col-sm-12 mb-3'>
                                         <Link
                                           onClick={() => {
                                             promocode?.length > 0
@@ -1154,7 +1154,7 @@ const Checkout = ({ history }) => {
                                                 )
                                           }}
                                           to='#'
-                                          className='btn red-btn-solid  mx-auto py-2 px-4 text-capitalize'
+                                          className='btn red-btn-solid  mx-auto text-capitalize check-btn'
                                         >
                                           Apply PromoCode
                                         </Link>
@@ -1162,6 +1162,8 @@ const Checkout = ({ history }) => {
                                     </>
                                   )}
                                 </div>
+                                <div className='col-12 border-top border-grey mb-2' />
+
                                 <div className='row mt-4'>
                                   <div className='col-12 text-center'>
                                     <Link

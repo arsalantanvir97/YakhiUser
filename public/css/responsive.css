@@ -673,7 +673,7 @@
         width: 70%;
     }
     .order-summary.has-margin {
-        margin-top: 0;
+        margin-top: 25%;
     }
     #cart-table thead tr th {
         font-size: 15px;
