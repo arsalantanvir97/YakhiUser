@@ -159,11 +159,11 @@ const OrderandPayment = () => {
                   </p>
                 </div>
               </div>
-              <AllHerbs />
             </section>
           </div>
         </div>
       </div>
+      <AllHerbs />
       <Footer />
     </>
   )

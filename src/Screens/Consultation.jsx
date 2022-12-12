@@ -874,11 +874,11 @@ const Consultation = ({ history }) => {
                   </form>
                 </div>
               </div>
-              <AllHerbs />
             </div>
           </div>
         </div>
       </section>
+      <AllHerbs />
 
       <Footer />
     </>

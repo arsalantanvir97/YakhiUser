@@ -681,11 +681,11 @@ const Instruction = () => {
                   </Link>
                 </div>
               </div>
-              <AllHerbs />
             </div>
           </div>
         </div>
       </section>
+      <AllHerbs />
       <Footer />
     </>
   )

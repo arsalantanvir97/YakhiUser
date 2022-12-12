@@ -1444,11 +1444,11 @@ const EattotLive = () => {
                   </ul>
                 </div>
               </div>
-              <AllHerbs />
             </div>
           </div>
         </div>
       </section>
+      <AllHerbs />
 
       <Footer />
     </>

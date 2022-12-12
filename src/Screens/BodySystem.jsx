@@ -282,12 +282,12 @@ const BodySystem = () => {
                     </div>
                   </div>
                 </div>
-                <AllHerbs />
               </div>
             </div>
           </div>
         </section>
       </div>
+      <AllHerbs />
       <Footer />
     </>
   )

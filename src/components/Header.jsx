@@ -111,6 +111,17 @@ const Header = ({ history }) => {
                   <ul className='list-inline topbar-links'>
                     <li className='list-inline-item'>
                       <Link
+                        to={userInfo ? '/EditProfile' : '/Login'}
+                        // onClick={() => {
+                        //   !userInfo && UnauthorizedAlert()
+                        // }}
+                      >
+                        <i className='fas fa-user-alt mr-2' />{' '}
+                        {userInfo ? 'My Profile' : 'Login'}
+                      </Link>
+                    </li>
+                    <li className='list-inline-item'>
+                      <Link
                         to={userInfo ? '/AppointmentLogs' : '#'}
                         onClick={() => {
                           !userInfo && UnauthorizedAlert()
@@ -362,6 +373,9 @@ const Header = ({ history }) => {
                                       <ul className='navbar-nav mr-auto'>
                                         <li className='nav-item dropdown'>
                                           <Link
+                                            onClick={() => {
+                                              setshowdrop(true)
+                                            }}
                                             className='nav-link dropdown-toggle'
                                             to='#'
                                             id='megadropdown'
@@ -369,7 +383,12 @@ const Header = ({ history }) => {
                                             data-toggle='dropdown'
                                             aria-expanded='false'
                                           >
-                                            <h4 className='mb-2'>
+                                            <h4
+                                              className='mb-2'
+                                              onClick={() => {
+                                                setshowdrop(true)
+                                              }}
+                                            >
                                               I need healing in...{' '}
                                               <i className='fas fa-caret-down fa-1x ml-1' />
                                             </h4>
@@ -378,82 +397,54 @@ const Header = ({ history }) => {
                                             className='dropdown-menu'
                                             aria-labelledby='megadropdown'
                                           >
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+                                            <Link to='/MuscularSystem'>
                                               The Muscular System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+                                            <Link to='/IntegumentarySystem'>
                                               The Integumentary System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/SkeletalSystem'>
                                               The Skeletal System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/NervousSystem'>
                                               The Nervous System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/UrinarySystem'>
                                               The Urinary System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/DigestiveSystem'>
                                               The Digestive System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/OralSystem'>
                                               The Oral Cavity System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/RespiratorySystem'>
                                               The Respiratory System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/CardioSystem'>
                                               The Cardiovascular System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/LymphaticSystem'>
                                               The Lymphatic System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/ReproductiveSystem'>
                                               The Reproductive System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/EndocrineSystem'>
                                               The Endocrine System
                                             </Link>
-                                            <Link
-                                              to='/IntegumentarySystem'
-                                              className='dropdown-item'
-                                            >
+
+                                            <Link to='/BodySystem'>
                                               All Body Systems
                                             </Link>
                                           </div>
@@ -552,13 +543,21 @@ const Header = ({ history }) => {
                                         <li className='nav-item dropdown'>
                                           <Link
                                             className='nav-link dropdown-toggle'
+                                            onClick={() => {
+                                              setshowdrop(true)
+                                            }}
                                             to='#'
                                             id='megadropdown'
                                             role='button'
                                             data-toggle='dropdown'
                                             aria-expanded='false'
                                           >
-                                            <h4 className='mb-2'>
+                                            <h4
+                                              className='mb-2'
+                                              onClick={() => {
+                                                setshowdrop(true)
+                                              }}
+                                            >
                                               My Account
                                               <i className='fas fa-caret-down fa-1x ml-1' />
                                             </h4>
@@ -671,6 +670,9 @@ const Header = ({ history }) => {
                                       <ul className='navbar-nav mr-auto'>
                                         <li className='nav-item dropdown'>
                                           <Link
+                                            onClick={() => {
+                                              setshowdrop(true)
+                                            }}
                                             className='nav-link dropdown-toggle'
                                             to='#'
                                             id='megadropdown'
@@ -678,7 +680,12 @@ const Header = ({ history }) => {
                                             data-toggle='dropdown'
                                             aria-expanded='false'
                                           >
-                                            <h4 className='mb-2'>
+                                            <h4
+                                              className='mb-2'
+                                              onClick={() => {
+                                                setshowdrop(true)
+                                              }}
+                                            >
                                               Customer Support{' '}
                                               <i className='fas fa-caret-down fa-1x ml-1' />
                                             </h4>
@@ -723,9 +730,14 @@ const Header = ({ history }) => {
                           </div>
                         </li>
                         <li className='nav-item'>
-                          <Link className='nav-link' to='#'>
+                          <a
+                            className='nav-link'
+                            href='#'
+                            data-toggle='modal'
+                            data-target='#clientModal'
+                          >
                             CLIENT PORTAL
-                          </Link>
+                          </a>
                         </li>
                         <li className='nav-item'>
                           <Link className='nav-link' to='/GeoGenetics'>
@@ -733,9 +745,14 @@ const Header = ({ history }) => {
                           </Link>
                         </li>
                         <li className='nav-item'>
-                          <Link className='nav-link' to='#'>
+                          <a
+                            className='nav-link'
+                            href='#'
+                            data-toggle='modal'
+                            data-target='#yahkitvModal'
+                          >
                             YAHKITV
-                          </Link>
+                          </a>
                         </li>
                         <li className='nav-item dropdown'>
                           <Link
@@ -804,7 +821,7 @@ const Header = ({ history }) => {
                             </li>
                             <li>
                               <Link to='/MasterHerbalist'>
-                                Master Herbalsit
+                                Master Herbalist
                               </Link>
                             </li>
                             <li>
@@ -927,51 +944,43 @@ const Header = ({ history }) => {
                     'ResetPassword'
                   ) ? null : ( */}
                   <>
-                    <div className='tabheight'></div>
-                    <h1
-                      className='banner-h2 aos-init aos-animate bannerheading'
-                      style={{ fontSize: 44 }}
-                    >
-                      THE WORLDS #1 HIGHEST QUALITY WILD CRAFTED HERBS & HERBAL
-                      PROGRAMS
-                    </h1>
-                    <br></br>
-                    <p
-                      className='bannerpara'
-                      style={{ lineHeight: '10px !important' }}
-                    >
-                      Intracellular Detoxification, Cellular Regeneration, &
-                      Holistic Revitalization, Yah'ki Awakened Keeps Everyone
-                      Healthy
-                    </p>
-                  </>
-                  {/* )} */}
-                </div>
-                {/* {window?.location?.pathname?.includes('Login') ||
-                window?.location?.pathname?.includes('Signup') ||
-                window?.location?.pathname?.includes('PasswordRecovery') ||
-                window?.location?.pathname?.includes('VerificationCode') ||
-                window?.location?.pathname?.includes('ResetPassword') ? null : ( */}
-                <div className='btn-main'>
-                  <Link
-                    to={userInfo ? '/Memberships' : '#'}
-                    onClick={() => {
-                      !userInfo && UnauthorizedAlert()
-                    }}
-                    className='btn banner-btn aos-init aos-animate mt-3 abccc'
-                    data-aos='zoom-in-left'
-                    data-aos-duration={1500}
-                    style={{
-                      backgroundColor: '#00a82d',
-                      border: 'none',
-                      fontFamily: 'Soleil_Bold,Helvetica,Arial,sans-serif',
-                      fontWeight: 'bold',
-                    }}
-                    data-aos-delay={400}
-                  >
-                    Become A Club Member For Free
-                  </Link>
-                  <Link
+                    <div className='tabheight'>
+                      <h1
+                        className='banner-h2 aos-init aos-animate bannerheading'
+                        style={{ fontSize: 44 }}
+                      >
+                        THE WORLDS #1 HIGHEST QUALITY WILD CRAFTED HERBS &
+                        HERBAL PROGRAMS
+                      </h1>
+                      <p
+                        className='bannerpara'
+                        style={{ lineHeight: '10px !important' }}
+                      >
+                        Intracellular Detoxification, Cellular Regeneration, &
+                        Holistic Revitalization, Yah'ki Awakened Keeps Everyone
+                        Healthy
+                      </p>
+                      <div className='btn-main'>
+                        <Link
+                          to={userInfo ? '/Memberships' : '#'}
+                          onClick={() => {
+                            !userInfo && UnauthorizedAlert()
+                          }}
+                          className='btn banner-btn aos-init aos-animate mt-3 abccc'
+                          data-aos='zoom-in-left'
+                          data-aos-duration={1500}
+                          style={{
+                            backgroundColor: '#00a82d',
+                            border: 'none',
+                            fontFamily:
+                              'Soleil_Bold,Helvetica,Arial,sans-serif',
+                            fontWeight: 'bold',
+                          }}
+                          data-aos-delay={400}
+                        >
+                          Become A Club Member For Free
+                        </Link>
+                        {/* <Link
                     to={userInfo ? '/EditProfile' : '/Login'}
                     // onClick={() => {
                     //   !userInfo && UnauthorizedAlert()
@@ -988,8 +997,18 @@ const Header = ({ history }) => {
                     data-aos-delay={400}
                   >
                     {userInfo ? 'My Profile' : 'Login'}
-                  </Link>
+                  </Link> */}
+                      </div>
+                    </div>
+                  </>
+                  {/* )} */}
                 </div>
+                {/* {window?.location?.pathname?.includes('Login') ||
+                window?.location?.pathname?.includes('Signup') ||
+                window?.location?.pathname?.includes('PasswordRecovery') ||
+                window?.location?.pathname?.includes('VerificationCode') ||
+                window?.location?.pathname?.includes('ResetPassword') ? null : ( */}
+
                 {/* )} */}
               </div>
             </div>
@@ -1090,6 +1109,58 @@ const Header = ({ history }) => {
               <p className='modal-sub-content'>
                 New &amp; Improved Detox Experience Coming Soon Booking
                 Currently Not Available"
+              </p>
+            </div>
+            <div className='modal-footer justify-content-center'></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className='modal fade logout-modal p-0'
+        data-bs-backdrop='static'
+        data-keyboard='false'
+        tabIndex={-1}
+        id='clientModal'
+        aria-labelledby
+        aria-hidden='true'
+      >
+        <div className='modal-dialog modal-md modal-dialog-centered'>
+          <div className='modal-content'>
+            <div className='modal-body text-center pt-5 pb-3'>
+              <div className='modal-img'>
+                <i className='fas fa-check' />
+              </div>
+              <h3 className='modal-title pt-3' />
+              <p className='modal-sub-content'>
+                New &amp; Improved Client Portal Coming Soon Booking Currently
+                Not Available"
+              </p>
+            </div>
+            <div className='modal-footer justify-content-center'></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className='modal fade logout-modal p-0'
+        data-bs-backdrop='static'
+        data-keyboard='false'
+        tabIndex={-1}
+        id='yahkitvModal'
+        aria-labelledby
+        aria-hidden='true'
+      >
+        <div className='modal-dialog modal-md modal-dialog-centered'>
+          <div className='modal-content'>
+            <div className='modal-body text-center pt-5 pb-3'>
+              <div className='modal-img'>
+                <i className='fas fa-check' />
+              </div>
+              <h3 className='modal-title pt-3' />
+              <p className='modal-sub-content'>
+                New &amp; Improved Yahki TV Coming Soon Booking Currently Not
+                Available"
               </p>
             </div>
             <div className='modal-footer justify-content-center'></div>

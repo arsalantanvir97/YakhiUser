@@ -1,57 +1,56 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { baseURL, imageURL } from "../utils/api";
-import { addToCart, removeFromCart } from "../actions/cartAction";
-import { useDispatch, useSelector } from "react-redux";
-import InnerPageBanner from "./InnerPageBanner";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
-import PrivateRouteSlider from "../components/PrivateRouteSlider";
-import AllHerbs from "../components/AllHerbs";
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { baseURL, imageURL } from '../utils/api'
+import { addToCart, removeFromCart } from '../actions/cartAction'
+import { useDispatch, useSelector } from 'react-redux'
+import InnerPageBanner from './InnerPageBanner'
+import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import UnauthorizedAlert from '../components/UnauthorizedAlert'
+import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import AllHerbs from '../components/AllHerbs'
 
 const DetoxHome = ({ history }) => {
-  const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const [detoxproductlist, setdetoxproductlist] = useState([]);
+  const dispatch = useDispatch()
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+  const [detoxproductlist, setdetoxproductlist] = useState([])
   useEffect(() => {
-    getDetoxProducts();
-  }, []);
-  
+    getDetoxProducts()
+  }, [])
+
   const getDetoxProducts = async () => {
     try {
-      const { data } = await axios.get(`${baseURL}/product/detoxProducts`);
-      console.log("data", data);
-      setdetoxproductlist(data);
+      const { data } = await axios.get(`${baseURL}/product/detoxProducts`)
+      console.log('data', data)
+      setdetoxproductlist(data)
     } catch (error) {
-      console.log("error", error);
+      console.log('error', error)
     }
-  };
+  }
   const addToCartHandler = async (productId, qty) => {
-    history.push(`/MyCart/${productId}?qty=${qty}`);
-  };
-  
+    history.push(`/MyCart/${productId}?qty=${qty}`)
+  }
+
   return (
     <>
       <Header />
-      <PrivateRouteSlider/>
+      <PrivateRouteSlider />
 
-
-      <div className="container-fluid my-5 py-4" id="detox">
-        <div className="row">
-          <div className="col-11 mx-auto">
+      <div className='container-fluid my-5 py-4' id='detox'>
+        <div className='row'>
+          <div className='col-11 mx-auto'>
             {/* who is this program for */}
-            <div className="row align-items-center mb-5 pb-5">
-              <div className="col-md-5">
-                <img src="images/detox-left.png" alt="" className="img-fluid" />
+            <div className='row align-items-center mb-5 pb-5'>
+              <div className='col-md-5'>
+                <img src='images/detox-left.png' alt='' className='img-fluid' />
               </div>
-              <div className="col-md-6">
-                <h4 className="sub-heading">Yahki Detoxification Home</h4>
-                <h3 className="main-heading">Who Is This Program for?</h3>
-                <p className="general-para dark-text mt-3">
+              <div className='col-md-6'>
+                <h4 className='sub-heading'>Yahki Detoxification Home</h4>
+                <h3 className='main-heading'>Who Is This Program for?</h3>
+                <p className='general-para dark-text mt-3'>
                   The Yahki Detoxification Home was designed for those who want
                   to naturally reverse aliments and learn how to safely cleanse
                   and detoxify their bodies on a cellular level. One does not
@@ -62,12 +61,12 @@ const DetoxHome = ({ history }) => {
                   required video screening.
                 </p>
               </div>
-              <div className="col-md-1" />
+              <div className='col-md-1' />
             </div>
             {/* detoxification purpose */}
-            <div className="mission mb-5 pb-5">
-              <div className="row justify-content-center align-items-center">
-                <div className="col-xl-7 col-lg-12 my-xl-0 my-5">
+            <div className='mission mb-5 pb-5'>
+              <div className='row justify-content-center align-items-center'>
+                <div className='col-xl-7 col-lg-12 my-xl-0 my-5'>
                   <h5>Yahki Detoxification Home</h5>
                   <h3>PURPOSE</h3>
                   <p>
@@ -86,11 +85,11 @@ const DetoxHome = ({ history }) => {
                     Gardening, Sound healing and much more.
                   </p>
                 </div>
-                <div className="col-xl-5 col-lg-9 mx-auto text-center">
+                <div className='col-xl-5 col-lg-9 mx-auto text-center'>
                   <img
-                    src="images/detox-right.png"
-                    alt=""
-                    className="img-fluid"
+                    src='images/detox-right.png'
+                    alt=''
+                    className='img-fluid'
                   />
                 </div>
               </div>
@@ -118,64 +117,63 @@ const DetoxHome = ({ history }) => {
             {detoxproductlist?.detoxproduct?.length > 0 &&
               detoxproductlist?.detoxproduct?.map((det) => (
                 <div
-                  className="row align-items-center justify-content-between"
-                  id="detox-plans"
+                  className='row align-items-center justify-content-between'
+                  id='detox-plans'
                 >
-                  <div className="col-md-6 my-4">
+                  <div className='col-md-6 my-4'>
                     <h3>{det?.name}</h3>
-                    <h4 className="plan-price">${det?.price}</h4>
-                    <p className="general-para dark-text my-3">
+                    <h4 className='plan-price'>${det?.price}</h4>
+                    <p className='general-para dark-text my-3'>
                       {det?.description}
                     </p>
 
                     <Link
-                      to="#"
-                      className="btn maroon-btn-solid"
-                      data-toggle="modal"
-                      data-target="#appointment"
+                      to='#'
+                      className='btn maroon-btn-solid'
+                      data-toggle='modal'
+                      data-target='#appointment'
                       onClick={() => {
                         userInfo
                           ? addToCartHandler(det?._id, 1)
-                          : UnauthorizedAlert();
+                          : UnauthorizedAlert()
                       }}
                     >
                       <img
-                        src="images/add-to-cart.png"
-                        alt=""
-                        className="img-fluid mr-2 pt-1"
+                        src='images/add-to-cart.png'
+                        alt=''
+                        className='img-fluid mr-2 pt-1'
                       />
                       Add to cart
                     </Link>
                   </div>
-                  <div className="col-md-5 my-4 offset-xl-1 ">
+                  <div className='col-md-5 my-4 offset-xl-1 '>
                     <Link
                       to={`/ProductView/${det?._id}`}
                       onClick={() => {
-                        !userInfo && UnauthorizedAlert();
+                        !userInfo && UnauthorizedAlert()
                       }}
                     >
                       <img
                         style={{
                           height: 440,
-                          width: 488
+                          width: 488,
                         }}
                         src={`${imageURL}${det?.productimage[0]}`}
-                        alt=""
-                        className="img-fluid"
+                        alt=''
+                        className='img-fluid'
                       />
                     </Link>
                   </div>
                 </div>
               ))}
             {/* FAQS */}
-
-            <AllHerbs/>
           </div>
         </div>
       </div>
+      <AllHerbs />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default DetoxHome;
+export default DetoxHome

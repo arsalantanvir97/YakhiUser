@@ -153,12 +153,12 @@ const Memberships = ({ history }) => {
                     </div>
                   </div>
                 </form>
-                <AllHerbs />
               </div>
             </div>
           </div>
         </section>
       </div>
+      <AllHerbs />
       {/* <Footer /> */}
     </>
   )

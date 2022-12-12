@@ -229,13 +229,16 @@ ul.topbar-links a:hover {
   color: #cfcfcf !important;
 }
 
-ul.topbar-links li:first-child::after {
+ul.topbar-links li:after {
   content: "|";
   padding-left: 10px;
   font-size: 24px;
   font-weight: lighter;
 }
-
+ul.topbar-links li:last-child:after{display: none;}
+ul.topbar-links li {
+  margin: 0 0 10px 0;
+}
 /*  =========== LOGO BAR ===========   */
 span.cart-count {
   position: absolute;
@@ -262,7 +265,8 @@ span.cart-count {
   filter: invert(1);
 }
 .menuheight{
-  height: 400px;
+  /* height: 400px; */
+  height: auto !important;
 }
 .bannerheading{
   font-size: 36px !important;
@@ -281,7 +285,11 @@ span.cart-count {
 
 .product-text h5.product-name a {min-height: 92px;}
 .tabheight{
-  height: 60px;
+  padding: 30px 0px;
+  height: auto !important;
+}
+.tabheight h1 {
+  padding: 0 0 15px 0;
 }
 .menu a.nav-link {
   text-transform: uppercase;
@@ -4597,6 +4605,7 @@ span.bottom-note {
 .main-banner {
   background: url(../images/homebanner.png) center/ cover no-repeat;
   min-height: 570px;
+  background-position: top !important;
 }
 
 .abcccc:hover{
@@ -4616,6 +4625,9 @@ span.bottom-note {
 .fade.show {
   display: block;
   opacity: 1;
+}
+.modal-backdrop {
+  background-color: rgb(0 0 0 / 50%);
 }
 .check-btn{
 padding: 12px 10px !important;
@@ -5781,8 +5793,8 @@ span.sale-tag {
   font-size: 20px;
   margin-bottom: 20px;
 }
-.product-card a.prod-imgg{
-    min-height: 200px;
+.product-card a.prod-imgg img{
+    height: 200px;
     overflow: hidden;
     min-width: 100%;
 }

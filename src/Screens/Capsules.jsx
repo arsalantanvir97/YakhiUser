@@ -601,11 +601,12 @@ const Capsules = ({ history, match }) => {
                   )}
                 </div>
               </div>
-              <AllHerbs />
             </div>
           </div>
         </div>
       </section>
+      <AllHerbs />
+
       <Footer />
     </>
   )

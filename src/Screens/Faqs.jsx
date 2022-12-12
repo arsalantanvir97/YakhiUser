@@ -97,10 +97,10 @@ const Faqs = () => {
                 </div>
               </div>
             </section>
-            <AllHerbs />
           </div>
         </div>
       </div>
+      <AllHerbs />
       <Footer />
     </>
   )

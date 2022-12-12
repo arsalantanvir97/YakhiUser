@@ -137,11 +137,11 @@ const AboutCompany = () => {
                   className='img-fluid over-image-2'
                 />
               </div>
-              <AllHerbs />
             </div>
           </div>
         </div>
       </div>
+      <AllHerbs />
 
       <Footer />
     </>

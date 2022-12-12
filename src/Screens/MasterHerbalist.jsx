@@ -84,9 +84,9 @@ const MasterHerbalist = () => {
               </div>
             </div>
           </div>
-          <AllHerbs />
         </div>
       </div>
+      <AllHerbs />
       <Footer />
     </>
   )

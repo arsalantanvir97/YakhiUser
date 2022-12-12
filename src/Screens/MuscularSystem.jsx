@@ -5,44 +5,70 @@ import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import ShopnowButton from '../components/ShopnowButton'
 let capsules = [
-  'Intracellular Cleanse Capsules',
-  'Parasite Elimination Capsules',
-  'Brain-Nerve Adrenal Support Capsules',
-  'Calcium Tri-Phosphate Capsules',
-  'Atomic Strengthener Capsules',
-
-  'Superfood+ Capsules',
   'All Purpose Adult Vitamin Capsules',
-  'Turmeric Infusion Capsules',
+  'ATOMIC STRENGTHENER CAPSULES',
   'Black Seed Oil Capsules',
+  'BLOOD PURIFIER CAPSULES',
+  'Brain, Nerve & Adrenal Capsules',
+  'CALCIUM TRI PHOSPHATE CAPSULES',
+  'ENDOCRINO BALANCE CAPSULES',
+  'GI SUPER MOVER CAPSULES',
+  'INNER-CELLULAR CLEANSE CAPSULES',
+  'Liver & Gall Bladder Capsules',
+  'Lymphatic Sweep Tonic Capsules',
+  'TURMERIC AND GINGER INFUSION CAPSULES',
+  'Superfood+ Capsules',
 ]
 let Tinctures = [
-  'Intracellular Cleanse Tincture',
-  'Parasite Elimination Tincture',
-  'Brain-Nerve Adrenal Support Tincture',
-  'Atomic Strengthener Tincture',
-  'Superfood+ Tincture',
-  'All Purpose Adult Vitamin Tincture',
-  'Turmeric Infusion Tincture',
-  'Black Seed Oil Tincture',
-  'Circulatory High Tincture',
-  'Circulatory Low Tincture',
-  'Thyroid Support Tincture',
-  'Parathyroid Support Tincture',
+  'Astringent X Tincture',
+  'ATOMIC STRENGTHENER TINCTURE',
+  'BLACK OLIVE LEAF EXTRACT TINCTURE',
+  'BLOOD PURIFIER TINCTURE',
+  'BRAIN, NERVE, & ADRENAL SUPPORT TINCTURE',
+  'Calcium Tri-Phosphate Tincture	',
+  'CIRCULATORY HIGH TINCTURE',
+  'CIRCULATORY LOW TINCTURE',
+  'ENDOCRINO BALANCE TINCTURE',
+  'Inner-Cellular Cleanse Tincture',
+  'Lymphatic Sweep Tonic Tincture',
+  'THYROID & PARATHYROID SUPPORT',
 ]
 let Teas = [
   'Cellular Regeneration Tea',
-  'Revitalizer Tea',
+  'Red Clover Tea',
   '3BITTERS',
-  'IV Elements',
+  'NEEM LEAF TEA',
 ]
 let seaherbs = [
-  'Superfood+ Powder',
   'Aeolian Islands Bladderwrack',
+  'DULSE (PALMARIA PALMATA)',
+  'Kelp Sea',
   'Raw Organic Sea Moss',
-  'Kelp Granules from Ireland',
 ]
-
+let Tonics = [
+  'BITTER LIQUID MINERAL BALANCE TONIC',
+  'LYMPHATIC SYSTEM SWEEP TONIC',
+]
+let Oils = [
+  '100% WILD EGYPTIAN TURMERIC OIL',
+  '100% WILD INDIA GINGER OIL',
+  'INDIA NEEM EXTRACT OIL',
+]
+let Salves = ['100% WILD EGYPTIAN TURMERIC OIL']
+let KitsBundle = [
+  'BITTER LIQUID MINERAL BALANCE TONIC KIT',
+  'BLOOD PURIFIER BUNDLE',
+  'BRAIN, NERVE, & ADRENAL SUPPORT BUNDLE',
+  'CIRCULATORY SYSTEM HIGH & LOW TINCTURE BUNDLES',
+  'Essential Glandular Endocrine Kit',
+  'FOUNDATION FOURS CAPSULES',
+  'FOUNDATION FOURS TINCTURE/CAPSULES BUNDLE',
+  'FOUNDATION FOURS TINCTURES',
+  'INNER-CELLULAR CLEANSE BUNDLE',
+  'KIDNEY & ADRENAL KIT',
+  'LYMPHATIC SYSTEM SWEEP KIT',
+  'REVITALIZE & REBUILD KIT',
+]
 const MuscularSystem = ({ history }) => {
   return (
     <>
@@ -260,10 +286,10 @@ const MuscularSystem = ({ history }) => {
                 </div>
               </div>
             </div>
-            <AllHerbs />
           </div>
         </div>
       </div>
+      <AllHerbs />
       <Footer />
     </>
   )

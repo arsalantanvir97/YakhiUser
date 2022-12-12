@@ -13,6 +13,7 @@ import { SliderSkeleton } from '../components/SliderSkeleton'
 import { setDefaultLocale } from 'react-datepicker'
 import FeaturedProductsSlider from '../components/FeaturedProductsSlider'
 import { useLayoutEffect } from 'react'
+import AllHerbs from '../components/AllHerbs'
 const isWindowContext = typeof window !== 'undefined'
 
 const Index = ({ history }) => {
@@ -40,22 +41,17 @@ const Index = ({ history }) => {
   const [featuredproducts, setfeaturedproducts] = useState([])
   const [bitternadelement, setbitternadelement] = useState([])
   const [herbalproducts, setherbalproducts] = useState([
-    'Consultation',
-    'Capsules',
-    'Children Products',
-    'Capsule-Less Powders',
     'Geo’Genetics',
-    'Tinctures',
     'Teas',
-    'Powders',
-    'Sea Herbs',
-    'Kits & Bundle',
+    'Tinctures',
+    'Capsules',
     'Tonics',
-    'Oils',
+    'Kits & Bundle',
     'Hygiene',
-    'Bulk Herbs',
-    'Crystal, Stones',
-    'Soups',
+    'Soaps',
+    'Sea Herbs',
+    'Oral Care',
+    'Oils',
     'Salves',
   ])
 
@@ -661,7 +657,7 @@ const Index = ({ history }) => {
           'ENDOCRINO BALANCE CAPSULES',
           'INNER-CELLULAR CLEANSE CAPSULES',
           'GI SUPER MOVER CAPSULES',
-          'Liver & Gall Bladder Capsules	',
+          'Liver & Gall Bladder Capsules',
         ])
       } else if (val == 'Teas') {
         setfilteredproducts([
@@ -1156,7 +1152,7 @@ const Index = ({ history }) => {
               height='100%'
               frameborder='0'
               allowfullscreen
-              src='https://www.youtube.com/embed/QHH_gkbLP4Y'
+              src='https://drive.google.com/file/d/1RbLabw2qJkQUjo0Yykuyheyo4EiZ7K65/preview'
             ></iframe>
 
             {/* <img
@@ -1235,7 +1231,7 @@ const Index = ({ history }) => {
                       }}
                     >
                       <option value='' disabled selected>
-                        I Herbal Products
+                        Herbal Products
                       </option>
                       {herbalproducts?.length > 0 &&
                         herbalproducts?.map((herb) => (
@@ -1704,26 +1700,7 @@ const Index = ({ history }) => {
         </div>
       </section> */}
 
-      <div className='yahki-features'>
-        <div className='container py-3'>
-          <div className='row text-center'>
-            <div className='col-12 text-center'>
-              <div className='fixed-banner'>
-                <h4>
-                  ALL HERBS ARE ORGANIC ALKALINE BOTANICALS AND ARE NATURALLY
-                  WILDCRAFTED FROM THE LAND OF THEIR ORIGIN
-                </h4>
-                <p className='mt-5'>
-                  All herbs used in our products are 100% naturally organic and
-                  are selectively picked and tested by a laboratory before use.
-                  Each herbal compound is personally prepared with gratification
-                  for the purpose of restoring health to our clients.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <AllHerbs />
 
       <Footer />
       {/* {visible == true && ( */}

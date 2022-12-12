@@ -237,11 +237,11 @@ const Donate = () => {
                   </div>
                 </div>
               </div>
-              <AllHerbs />
             </div>
           </div>
         </div>
       </div>
+      <AllHerbs />
       <Footer />
     </>
   )

@@ -150,11 +150,11 @@ const MeettheTeam = () => {
                   </>
                 ))}
               </div>
-              <AllHerbs />
             </div>
           </div>
         </div>
       </div>
+      <AllHerbs />
       <Footer />
     </>
   )
