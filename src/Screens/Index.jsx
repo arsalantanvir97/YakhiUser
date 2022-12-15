@@ -41,6 +41,7 @@ const Index = ({ history }) => {
   const [featuredproducts, setfeaturedproducts] = useState([])
   const [bitternadelement, setbitternadelement] = useState([])
   const [herbalproducts, setherbalproducts] = useState([
+    'Consultation',
     'Geo’Genetics',
     'Teas',
     'Tinctures',
@@ -366,8 +367,9 @@ const Index = ({ history }) => {
     console.log('herbalproducts2', herbalproducts)
   }
   const setCategoryHandler = (val) => {
-    console.log('val', val, selectedheral)
-    if (selectedheral.includes('The Muscular System')) {
+    if (val.includes('Consultation')) {
+      history.push('/Consultation')
+    } else if (selectedheral.includes('The Muscular System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',

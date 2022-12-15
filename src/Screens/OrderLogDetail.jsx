@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import axios from 'axios'
 import { baseURL, imageURL } from '../utils/api'
 import { Link } from 'react-router-dom'
@@ -39,50 +39,50 @@ const OrderLogDetail = ({ match, history }) => {
       console.log(err)
     }
   }
-  async function handleToken(token) {
-    setloading(true)
+  // async function handleToken(token) {
+  //   setloading(true)
 
-    console.log('handleToken')
-    let product = Number(orderdetaills?.totalPrice)
-    console.log('product', product)
-    const config = {
-      header: {
-        Authorization: 'Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V',
-      },
-    }
-    const response = await axios.post(
-      `${baseURL}/checkout`,
-      { token, product },
-      config
-    )
-    console.log('response', response)
-    const { status } = response.data
-    console.log(
-      'res',
-      response.data.id,
-      response.data.status,
-      response.headers.date,
-      response.data.receipt_email
-    )
-    const abc = {
-      id: response.data.id,
-      status: response.data.status,
-      update_time: response.headers.date,
-      email_address: response.data.receipt_email,
-    }
-    console.log('Response:', response, response.data, 'abc', abc)
-    if (status === 'succeeded') {
-      setloading(false)
+  //   console.log('handleToken')
+  //   let product = Number(orderdetaills?.totalPrice)
+  //   console.log('product', product)
+  //   const config = {
+  //     header: {
+  //       Authorization: 'Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V',
+  //     },
+  //   }
+  //   const response = await axios.post(
+  //     `${baseURL}/checkout`,
+  //     { token, product },
+  //     config
+  //   )
+  //   console.log('response', response)
+  //   const { status } = response.data
+  //   console.log(
+  //     'res',
+  //     response.data.id,
+  //     response.data.status,
+  //     response.headers.date,
+  //     response.data.receipt_email
+  //   )
+  //   const abc = {
+  //     id: response.data.id,
+  //     status: response.data.status,
+  //     update_time: response.headers.date,
+  //     email_address: response.data.receipt_email,
+  //   }
+  //   console.log('Response:', response, response.data, 'abc', abc)
+  //   if (status === 'succeeded') {
+  //     setloading(false)
 
-      console.log('kir', abc)
-      await dispatch(payOrder(match?.params?.id, abc))
-      history.push('/')
-      console.log(status, 'succes')
-    } else {
-      console.log(status, 'fail')
-      setloading(false)
-    }
-  }
+  //     console.log('kir', abc)
+  //     await dispatch(payOrder(match?.params?.id, abc))
+  //     history.push('/')
+  //     console.log(status, 'succes')
+  //   } else {
+  //     console.log(status, 'fail')
+  //     setloading(false)
+  //   }
+  // }
   return (
     <>
       {loading && (
@@ -408,7 +408,7 @@ const OrderLogDetail = ({ match, history }) => {
                                     // });
                                   }}
                                 />
-                                <hr className='border-bottom' />
+                                {/* <hr className='border-bottom' />
                                 <h5 className='pt-4 pb-2 text-left font-weight-bold'>
                                   Square Payment
                                 </h5>
@@ -427,7 +427,7 @@ const OrderLogDetail = ({ match, history }) => {
                                   locationId='L17RXM5KHXR8D'
                                 >
                                   <CreditCardInput text={'Pay now'} />
-                                </SquarePaymentsForm>
+                                </SquarePaymentsForm> */}
                               </>
                               // <StripeCheckout
                               //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"

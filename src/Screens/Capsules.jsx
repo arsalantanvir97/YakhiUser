@@ -107,8 +107,15 @@ const Capsules = ({ history, match }) => {
     }
     setloading(false)
   }
-  const addToCartHandler = async (productId, qty) => {
-    history.push(`/MyCart/${productId}?qty=${qty}`)
+  const addToCartHandler = async (product, productId, qty) => {
+    if (product?.geotype) {
+      console.log('abc')
+      history?.push(`/GeoGeneticsCheckout/${productId}?qty=${qty}`)
+    } else {
+      console.log('addToCartHandler')
+      history.push(`/MyCart/${productId}?qty=${qty}`)
+    }
+    // history.push(`/MyCart/${productId}?qty=${qty}`)
   }
   useEffect(() => {
     console.log('window.innerWidth', window.innerWidth)
@@ -560,7 +567,7 @@ const Capsules = ({ history, match }) => {
                                       className='btn maroon-btn-solid '
                                       onClick={() => {
                                         userInfo
-                                          ? addToCartHandler(prod?._id, 1)
+                                          ? addToCartHandler(prod, prod?._id, 1)
                                           : UnauthorizedAlert()
                                       }}
                                     >

@@ -57,7 +57,23 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [product, setproduct] = useState()
 
   const [allValues, setAllValues] = useState({
+    yourinfofirstName: shippingAddress?.yourinfofirstName,
+    yourinfolastName: shippingAddress?.yourinfolastName,
+    yourinfoemail: shippingAddress?.yourinfoemail,
+    yourinfophone: shippingAddress?.yourinfophone,
+    yourinfoage: shippingAddress?.yourinfoage,
+    yourinfoheight: shippingAddress?.yourinfoheight,
+    yourinfoweight: shippingAddress?.yourinfoweight,
+    yourinfoethnicity: shippingAddress?.yourinfoethnicity,
+    yourinfoconsultaionfor: shippingAddress?.yourinfoconsultaionfor,
+    yourinfosetcurrentmedication: shippingAddress?.yourinfosetcurrentmedication,
+    yourinforeason: shippingAddress?.yourinforeason,
+    yourinfodiagnosis: shippingAddress?.yourinfodiagnosis,
+    yourinfodoc_schedule: shippingAddress?.yourinfodoc_schedule,
+
     email: shippingAddress?.email,
+    phone: shippingAddress?.phone,
+
     firstName: shippingAddress?.firstName,
     reasonformedic: shippingAddress?.reasonformedic,
     currentmedic: shippingAddress?.currentmedic,
@@ -101,6 +117,11 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     console.log('togglecheckoutHandler')
     settogglecheckout(togglecheckout + 1)
   }
+
+  const inctogglehandler = () => {
+    settogglecheckout(togglecheckout + 1)
+  }
+
   const saveShippingHandler = async (e) => {
     const emailvalidation = validateEmail(allValues?.email)
     console.log('emmmm', emailvalidation)
@@ -118,7 +139,6 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
         { state: allValues?.shippingstate },
         config
       )
-
       console.log('ress', res)
       if (res?.data?.tax == null) {
         settaxofstate(0)
@@ -134,6 +154,20 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       settotalPrice(Number(product?.price * quantity) + Number(taxPrice))
       dispatch(
         saveShippingAddress({
+          yourinfofirstName: allValues?.yourinfofirstName,
+          yourinfolastName: allValues?.yourinfolastName,
+          yourinfoemail: allValues?.yourinfoemail,
+          yourinfophone: allValues?.yourinfophone,
+          yourinfoage: allValues?.yourinfoage,
+          yourinfoheight: allValues?.yourinfoheight,
+          yourinfoweight: allValues?.yourinfoweight,
+          yourinfoethnicity: allValues?.yourinfoethnicity,
+          yourinfoconsultaionfor: allValues?.yourinfoconsultaionfor,
+          yourinfosetcurrentmedication: allValues?.yourinfosetcurrentmedication,
+          yourinforeason: allValues?.yourinforeason,
+          yourinfodiagnosis: allValues?.yourinfodiagnosis,
+          yourinfodoc_schedule: allValues?.yourinfodoc_schedule?.name,
+
           email: allValues?.email,
           doc_schedule: allValues?.doc_schedule?.name,
           signature: shippingAddress?.signature,
@@ -242,13 +276,13 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       ['doc_schedule']: e?.target?.files[0],
     })
   }
-  // const filedocsHandler2 = (e) => {
-  //   setAllValues({
-  //     ...allValues,
+  const filedocsHandler2 = (e) => {
+    setAllValues({
+      ...allValues,
 
-  //     ['govtid']: e?.target?.files[0],
-  //   })
-  // }
+      ['yourinfodoc_schedule']: e?.target?.files[0],
+    })
+  }
 
   useEffect(() => {
     settaxPrice(Number(taxofstate / 100) * Number(product?.price * quantity))
@@ -276,44 +310,426 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                   <form>
                     {/* Circles which indicates the steps of the form: */}
                     <div className='row mb-5'>
-                      {togglecheckout == 0 && (
-                        <div className='col-12'>
-                          <div className='d-flex justify-content-between text-center w-70 mb-5'>
-                            <span className='step'>
-                              <div className='step-icon'>
-                                <i className='fas fa-address-card' />
+                      <div className='col-12'>
+                        <div className='d-flex justify-content-between text-center w-70 mb-5'>
+                          <span
+                            className={
+                              togglecheckout == 0
+                                ? 'step active'
+                                : 'step finish'
+                            }
+                          >
+                            <div className='step-icon'>
+                              <i className='fas fa-address-card' />
+                            </div>
+                            <p className='mt-4'>Your Information</p>
+                          </span>
+                          <span
+                            className={
+                              togglecheckout == 1
+                                ? 'step active'
+                                : togglecheckout > 1
+                                ? 'step finish'
+                                : null
+                            }
+                          >
+                            <div className='step-icon'>
+                              <i className='fas fa-address-card' />
+                            </div>
+                            <p className='mt-4'>Address</p>
+                          </span>
+                          <span
+                            className={
+                              togglecheckout == 2
+                                ? 'step active'
+                                : togglecheckout > 2
+                                ? 'step finish'
+                                : null
+                            }
+                          >
+                            <div className='step-icon'>
+                              <i className='fas fa-credit-card' />
+                            </div>
+                            <p className='mt-4'>Payment</p>
+                          </span>
+                          <span
+                            className={
+                              togglecheckout == 3 ? 'step active' : null
+                            }
+                          >
+                            <div className='step-icon'>
+                              <i className='fas fa-check-square' />
+                            </div>
+                            <p className='mt-4'>Confirm</p>
+                          </span>
+                        </div>
+                        <h3 className='mb-2'> Geo’Genetic Packages Form</h3>
+                        <div style={{ height: 5 }}></div>
+                        <p className='summary-value mb-4'>
+                          It is highly recommended that you book a consultation
+                          before purchasing. A government ID and client form is
+                          required before purchasing a Geo’Genetic Package.
+                        </p>
+                        {togglecheckout == 0 && (
+                          <div className=''>
+                            <div className='row'>
+                              <div className='col-xl-7 col-lg-7 col-md-10'>
+                                <div className='consultation-form'>
+                                  <div className='form-group'>
+                                    <div className='form-row'>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          First Name{' '}
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <input
+                                          className='form-control'
+                                          placeholder='Enter First Name'
+                                          type='text'
+                                          value={allValues?.yourinfofirstName}
+                                          onChange={changeHandler}
+                                          name='yourinfofirstName'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Last Name{' '}
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <input
+                                          className='form-control'
+                                          placeholder='Enter Last Name'
+                                          type='text'
+                                          value={allValues?.yourinfolastName}
+                                          onChange={changeHandler}
+                                          name='yourinfolastName'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Phone <span className='red'>*</span>
+                                        </label>
+                                        <InputPhone
+                                          unique={true}
+                                          uniquevalue={allValues}
+                                          name={'yourinfophone'}
+                                          value={allValues?.yourinfophone}
+                                          onChange={setAllValues}
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Email <span className='red'>*</span>
+                                        </label>
+                                        <input
+                                          className='form-control'
+                                          placeholder='Enter Email'
+                                          type='email'
+                                          value={allValues?.yourinfoemail}
+                                          onChange={changeHandler}
+                                          name='yourinfoemail'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Age <span className='red'>*</span>
+                                        </label>
+                                        <InputNumber
+                                          unique={true}
+                                          uniquevalue={allValues}
+                                          name={'yourinfoage'}
+                                          onChange={setAllValues}
+                                          value={allValues?.yourinfoage}
+                                          max={105}
+                                          className='form-control'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Height in meters
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <InputNumber
+                                          unique={true}
+                                          uniquevalue={allValues}
+                                          name={'yourinfoheight'}
+                                          onChange={setAllValues}
+                                          value={allValues?.yourinfoheight}
+                                          max={1005}
+                                          className='form-control'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Weight in lbs
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <InputNumber
+                                          unique={true}
+                                          uniquevalue={allValues}
+                                          name={'yourinfoweight'}
+                                          onChange={setAllValues}
+                                          value={allValues?.yourinfoweight}
+                                          max={1005}
+                                          className='form-control'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Ethnicity{' '}
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <input
+                                          className='form-control'
+                                          placeholder='Enter Ethnicity'
+                                          type='text'
+                                          value={allValues?.yourinfoethnicity}
+                                          onChange={changeHandler}
+                                          name='yourinfoethnicity'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Consultation For
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <select
+                                          className='form-control text-left'
+                                          id='timeZone'
+                                          value={
+                                            allValues?.yourinfoconsultaionfor
+                                          }
+                                          onChange={changeHandler}
+                                          name='yourinfoconsultaionfor'
+                                        >
+                                          <option disabled={true} value={''}>
+                                            Select
+                                          </option>
+                                          <option value={'General cleanse'}>
+                                            General cleanse
+                                          </option>
+                                          <option value={'HSV & HPV'}>
+                                            HSV &amp; HPV
+                                          </option>
+                                          <option value={'Diabetes'}>
+                                            Diabetes
+                                          </option>
+                                          <option value={'Cancer/ Tumors'}>
+                                            Cancer/ Tumors
+                                          </option>
+                                          <option value={'Chronic Condition'}>
+                                            Chronic Condition
+                                          </option>
+                                          <option value={'Multiple Conditions'}>
+                                            Multiple Conditions
+                                          </option>
+                                        </select>
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Current Medication
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <input
+                                          className='form-control'
+                                          placeholder='Enter Current Medication'
+                                          type='text'
+                                          value={
+                                            allValues?.yourinfosetcurrentmedication
+                                          }
+                                          onChange={changeHandler}
+                                          name='yourinfosetcurrentmedication'
+                                        />
+                                      </div>
+                                      <div className='col-md-12'>
+                                        <label>
+                                          Reason for Consultation{' '}
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <input
+                                          className='form-control'
+                                          placeholder='Enter Reason for Consultation'
+                                          value={allValues?.yourinforeason}
+                                          onChange={changeHandler}
+                                          name='yourinforeason'
+                                        />
+                                      </div>
+                                      <div className='col-md-12'>
+                                        <label>
+                                          Current Diagnoses (provided by MD)
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <textarea
+                                          className='form-control'
+                                          id='exampleFormControlTextarea1'
+                                          placeholder='Message'
+                                          rows={5}
+                                          value={allValues?.yourinfodiagnosis}
+                                          onChange={changeHandler}
+                                          name='yourinfodiagnosis'
+                                        />
+                                      </div>
+                                      <div className='col-md-6'>
+                                        <label>
+                                          Upload Valid Government Issued ID{' '}
+                                          <span className='red'>*</span>
+                                        </label>
+                                        <input
+                                          type='file'
+                                          name
+                                          id='govt-id'
+                                          // accept='application/pdf,application/vnd.ms-excel'
+                                          onChange={filedocsHandler2}
+                                          className='form-control'
+                                        />
+                                        <label
+                                          htmlFor='govt-id'
+                                          className='d-block id-upload'
+                                        >
+                                          {allValues?.yourinfodoc_schedule
+                                            ?.name ? (
+                                            <i className='fas fa-file-upload fa-2x' />
+                                          ) : (
+                                            <i className='fas fa-upload fa-2x' />
+                                          )}
+                                        </label>
+                                      </div>
+                                      <div className='col-12 text-right'>
+                                        <Link to='#' className='red-link'>
+                                          Redeem Coupon
+                                        </Link>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                              <p className='mt-4'>Address</p>
-                            </span>
-                            <span className='step'>
-                              <div className='step-icon'>
-                                <i className='fas fa-credit-card' />
+
+                              <div className='col-lg-3 col-lg-4 col-md-7 offset-lg-1'>
+                                <div className='order-summary has-margin'>
+                                  <div className='order-summary-head'>
+                                    <p>Order Summary</p>
+                                  </div>
+                                  <div className='summary-details'>
+                                    <div className='product-cart-summary'>
+                                      <div className='row align-items-center justify-content-center'>
+                                        {/* <div className="col-4 mb-3">
+                                      <img
+                                        src="images/summary-product-image.png"
+                                        alt=""
+                                        className="img-fluid"
+                                      />
+                                    </div>
+                                    <div className="col-8 mb-3">
+                                      <h4>Abc Product</h4>
+                                      <p>$100.00</p>
+                                    </div> */}
+
+                                        <>
+                                          <div className='col-4 mb-3'>
+                                            <img
+                                              src={`${imageURL}${product?.productimage[0]}`}
+                                              alt=''
+                                              className='img-fluid'
+                                            />
+                                          </div>
+                                          <div className='col-8 mb-3'>
+                                            <td>{product?.name}</td>
+                                            <p>${product?.price}</p>
+                                          </div>
+                                        </>
+                                      </div>
+                                    </div>
+
+                                    <div className='row justify-content-between align-items-start'>
+                                      <div className='col-12 border-top border-grey mt-4 pb-4' />
+                                      {/* sub total */}
+                                      <div className='col-7 mb-3'>
+                                        <p className='summary-title'>
+                                          Subtotal
+                                        </p>
+                                      </div>
+                                      <div className='col-5 mb-3 text-right'>
+                                        <p className='summary-value'>
+                                          {' '}
+                                          ${product?.price * quantity}
+                                          {/* {cartItems
+                                          .reduce(
+                                            (acc, item) =>
+                                              acc + item.qty * item.price,
+                                            0
+                                          )
+                                          .toFixed(2)} */}
+                                        </p>
+                                      </div>
+                                      {/* tax */}
+                                      <div className='col-7 mb-3'>
+                                        <p className='summary-title'>
+                                          Tax {taxofstate}%
+                                        </p>
+                                      </div>
+                                      <div className='col-5 mb-3 text-right'>
+                                        <p className='summary-value'>
+                                          To be Counted
+                                        </p>
+                                      </div>
+                                      {/* Shipping rates */}
+                                      <div className='col-7 mb-3'>
+                                        <p className='summary-title'>
+                                          Shipping rates
+                                        </p>
+                                      </div>
+                                      <div className='col-5 mb-3 text-right'>
+                                        <p className='summary-value'>
+                                          ${shippingPrice}
+                                        </p>
+                                      </div>
+                                      <div className='col-12 border-top border-grey mb-2' />
+                                      {/* grand total */}
+                                      <div className='col-7 mb-3'>
+                                        <p className='grand-total'>
+                                          Grand Total
+                                        </p>
+                                      </div>
+                                      <div className='col-5 mb-3 text-right'>
+                                        <p className='grand-total-value'>
+                                          {' '}
+                                          ${totalPrice.toFixed(0)}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    {/* <div className="row mt-4">
+                                  <div className="col-12 text-center">
+                                    <a
+                                      href="#"
+                                      className="btn red-btn-solid mt-lg-4 mt-3 mx-auto py-2 px-4 text-capitalize"
+                                      data-toggle="modal"
+                                      data-target="#confirmOrder"
+                                    >
+                                      Place Order
+                                    </a>
+                                  </div>
+                                </div> */}
+                                  </div>
+                                  {/* <div className="ship-to-different mt-4 text-center">
+                                <div className="checkbox-group">
+                                  <input type="checkbox" id="html" />
+                                  <label htmlFor="html">
+                                    I Agree To The Terms And Conditions{" "}
+                                  </label>
+                                </div>
+                              </div> */}
+                                </div>
                               </div>
-                              <p className='mt-4'>Payment</p>
-                            </span>
-                            <span className='step'>
-                              <div className='step-icon'>
-                                <i className='fas fa-check-square' />
-                              </div>
-                              <p className='mt-4'>Confirm</p>
-                            </span>
+                            </div>
                           </div>
-                          {/* One "tab" for each step in the form: */}
-                          {/* ADDRESS TAB  */}
+                        )}
+                        {/* One "tab" for each step in the form: */}
+                        {/* ADDRESS TAB  */}
+                        {togglecheckout == 1 && (
                           <div className=''>
                             <div className='row'>
                               <div className='col-xl-7 col-lg-7 col-md-10'>
                                 <div className='checkout-form'>
-                                  <h3 className='mb-2'>
-                                    {' '}
-                                    Geo’Genetic Packages Form
-                                  </h3>
-                                  <p className='summary-value mb-4'>
-                                    It is highly recommended that you book a
-                                    consultation before purchasing. A government
-                                    ID and client form is required before
-                                    purchasing a Geo’Genetic Package.
-                                  </p>
                                   <div className=''>
                                     <div className='consultation-form'>
                                       <div className='form-group'>
@@ -673,6 +1089,18 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         onChange={changeHandler}
                                       />
                                     </div>
+                                    <div className='col-12 mb-4'>
+                                      <label>Address*</label>
+                                      <textarea
+                                        className='form-control'
+                                        id='exampleFormControlTextarea1'
+                                        placeholder='Enter Address'
+                                        rows={5}
+                                        value={allValues?.shippingaddress}
+                                        name='shippingaddress'
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
                                     <div className='col-6 mb-4'>
                                       <label>City*</label>
                                       <input
@@ -847,10 +1275,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                               </div>
                             </div>
                           </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
                       {/* PAYMENT TAB */}
-                      {togglecheckout == 1 && (
+                      {togglecheckout == 2 && (
                         <div>
                           <div className='row'>
                             <div className='col-xl-7 col-lg-7 col-md-10'>
@@ -1105,7 +1533,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                         </div>
                       )}
                       {/* CONFIRMATION TAB */}
-                      {togglecheckout == 2 && (
+                      {togglecheckout == 3 && (
                         <div>
                           <div className='row'>
                             <div className='col-xl-7 col-lg-7 col-md-10'>
@@ -1328,30 +1756,45 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                       </button>
                     </div> */}
                     </div>
-                    {togglecheckout == 2 ? null : (
+                    {togglecheckout == 3 ? null : (
                       <div>
                         <button
                           type='button'
-                          className='btn red-btn-solid mt-lg-4 mt-3 ml-3 ml-md-0'
+                          className='btn red-btn-solid mt-lg-4 mt-1 ml-3 ml-md-0'
                           onClick={() => {
                             togglecheckout == 0 &&
-                            allValues?.email &&
-                            allValues?.doc_schedule?.name?.length > 0 &&
-                            allValues?.phone &&
-                            allValues?.billingfirstname &&
-                            allValues?.billinglastname &&
-                            allValues?.billingaddress &&
-                            allValues?.billingcity &&
-                            allValues?.billingzipcode &&
-                            allValues?.billingcountry &&
-                            allValues?.billingstate &&
-                            allValues?.shippingfirstname &&
-                            allValues?.shippinglastname &&
-                            allValues?.shippingaddress &&
-                            allValues?.shippingcity &&
-                            allValues?.shippingzipcode &&
-                            allValues?.shippingcountry &&
-                            allValues?.shippingstate
+                            allValues?.yourinfofirstName &&
+                            allValues?.yourinfodoc_schedule?.name?.length > 0 &&
+                            allValues?.yourinfolastName &&
+                            allValues?.yourinfoemail &&
+                            allValues?.yourinfophone &&
+                            allValues?.yourinfoage &&
+                            allValues?.yourinfoheight &&
+                            allValues?.yourinfoweight &&
+                            allValues?.yourinfoethnicity &&
+                            allValues?.yourinfoconsultaionfor &&
+                            allValues?.yourinfosetcurrentmedication &&
+                            allValues?.yourinforeason &&
+                            allValues?.yourinfodiagnosis
+                              ? inctogglehandler()
+                              : togglecheckout == 1 &&
+                                allValues?.email &&
+                                allValues?.doc_schedule?.name?.length > 0 &&
+                                allValues?.phone &&
+                                allValues?.billingfirstname &&
+                                allValues?.billinglastname &&
+                                allValues?.billingaddress &&
+                                allValues?.billingcity &&
+                                allValues?.billingzipcode &&
+                                allValues?.billingcountry &&
+                                allValues?.billingstate &&
+                                allValues?.shippingfirstname &&
+                                allValues?.shippinglastname &&
+                                allValues?.shippingaddress &&
+                                allValues?.shippingcity &&
+                                allValues?.shippingzipcode &&
+                                allValues?.shippingcountry &&
+                                allValues?.shippingstate
                               ? saveShippingHandler()
                               : togglecheckout == 1 &&
                                 // allValues?.paymentmethod &&
@@ -1378,6 +1821,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
           </div>
         </div>
       </section>
+      <div style={{ height: 10 }}></div>
       <AllHerbs />
     </>
   )
