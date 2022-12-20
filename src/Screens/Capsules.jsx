@@ -17,7 +17,28 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { ListSkeleton } from '../components/MultipleSkeleton'
 import { CreateWishList } from '../hooks/WishList'
 import AllHerbs from '../components/AllHerbs'
+let categories = [
+  { name: `Geo'Genetic Therapy`, id: '6242c50b11f7d01b4e81f96c' },
+  { name: `Teas & 3 Bitters`, id: '624160071b97a530529276b7' },
+  { name: `Tinctures`, id: '62415fde1b97a530529276b3' },
+  { name: `Capsules`, id: '62415fc11b97a530529276af' },
+  { name: `Tonics`, id: '6241603e1b97a530529276bb' },
+  { name: `Kits & Bundles`, id: '624160d81b97a530529276cb' },
+  { name: `Hygiene`, id: '62d725092909481abc330f7d' },
+  { name: `Soap`, id: '62d728d92909481abc331061' },
+  { name: `Seaweed Herbs`, id: '62415f8d1b97a530529276ab' },
+  { name: `Oral Care`, id: '6215e1fef9727e382394df53' },
+  {
+    name: `Oils`,
 
+    id: '6241605f1b97a530529276bf',
+  },
+  {
+    name: `Salves`,
+
+    id: '6241607a1b97a530529276c3',
+  },
+]
 let allcategoryofProducts = []
 const Capsules = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
@@ -135,6 +156,10 @@ const Capsules = ({ history, match }) => {
               `${
                 match?.params?.id == '62415fde1b97a530529276b3'
                   ? '../images/tinctures.png'
+                  : match?.params?.id == '6241605f1b97a530529276bf'
+                  ? '../images/oils.JPG'
+                  : match?.params?.id == '624160d81b97a530529276cb'
+                  ? '../images/kits&bundle.jpg'
                   : match?.params?.id == '6242c50b11f7d01b4e81f96c'
                   ? '../images/geogentics.jpg'
                   : match?.params?.id == '6241603e1b97a530529276bb'
@@ -171,7 +196,9 @@ const Capsules = ({ history, match }) => {
             // backgroundPosition: 'center',
             backgroundSize:
               match?.params?.id == '62415fde1b97a530529276b3' ||
+              match?.params?.id == '6241605f1b97a530529276bf' ||
               match?.params?.id == '6241603e1b97a530529276bb' ||
+              match?.params?.id == '624160d81b97a530529276cb' ||
               match?.params?.id == '624160071b97a530529276b7' ||
               match?.params?.id == '6242c50b11f7d01b4e81f96c' ||
               match?.params?.id == '62415fc11b97a530529276af' ||
@@ -184,6 +211,8 @@ const Capsules = ({ history, match }) => {
         >
           {match?.params?.id == '62415fde1b97a530529276b3' ||
           match?.params?.id == '624160071b97a530529276b7' ||
+          match?.params?.id == '624160d81b97a530529276cb' ||
+          match?.params?.id == '6241605f1b97a530529276bf' ||
           match?.params?.id == '6241603e1b97a530529276bb' ||
           match?.params?.id == '6242c50b11f7d01b4e81f96c' ||
           match?.params?.id == '62415fc11b97a530529276af' ||
@@ -223,16 +252,16 @@ const Capsules = ({ history, match }) => {
                     <div className='card card-body categories-body px-0'>
                       {/* categories */}
                       <ul className='px-4'>
-                        {allofcategory?.length > 0 &&
-                          allofcategory?.map((allcat) => (
+                        {categories?.length > 0 &&
+                          categories?.map((cat) => (
                             <li className='mb-4'>
                               <Link
                                 to='#'
                                 onClick={() => {
-                                  setcategory(allcat?._id)
+                                  setcategory(cat?.id)
                                 }}
                               >
-                                {allcat?.categorytitle}
+                                {cat?.name}
                               </Link>
                             </li>
                           ))}

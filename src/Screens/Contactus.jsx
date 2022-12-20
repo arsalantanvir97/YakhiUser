@@ -62,7 +62,7 @@ const Contactus = () => {
       <Header />
       <PrivateRouteSlider />
 
-      <div className='container-fluid my-5 py-4'>
+      <div className='container-fluid my-3 py-3'>
         <div className='row'>
           <div className='col-11 mx-auto'>
             <div className='contact-us'>
@@ -209,10 +209,8 @@ const Contactus = () => {
                     <div className='col-md-4 my-4'>
                       <div className='contact-card text-center'>
                         <h4>Address</h4>
-                        <p>
-                          {' '}
-                          <h3>7217 Watson Rd PO 190563 St. Louis, Mo 63119</h3>
-                        </p>
+
+                        <p>7217 Watson Rd PO 190563 St. Louis, Mo 63119</p>
                       </div>
                     </div>
                     <div className='col-md-4 my-4'>

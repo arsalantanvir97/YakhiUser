@@ -10,13 +10,14 @@ const AboutCompany = () => {
       <Header />
       <FooterHeader />
       <div>
-        <div className='container-fluid my-5 py-4'>
+        <div className='container-fluid my-1 py-1'>
           <div className='row'>
             <h4
               className='sub-heading'
               style={{
                 width: '100%',
                 textAlign: 'center',
+                marginBottom: 4,
                 fontSize: window.innerWidth < 590 && 14,
               }}
             >

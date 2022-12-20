@@ -619,6 +619,17 @@
         min-width: 300px;
     }
 }
+
+@media screen and (max-width: 1070px) {
+ 
+    
+
+.main-banner {
+    min-height: 390px;
+    background-size: contain;
+
+    /* background-position: right; */
+}}
 @media screen and (max-width: 992px) {
     .elements h4 {
         font-size: 45px;
@@ -807,14 +818,13 @@
         /* background-position: right; */
     }
 }
-@media screen and (max-width: 1070px) {
 
-.main-banner {
-    min-height: 390px;
-    background-size: contain;
-
-    /* background-position: right; */
+@media screen and (max-width: 810px) {
+    .main-banner {
+  min-height: 340px;
+  background-size: contain;
 }}
+
 @media screen and (max-width: 800px) {
     .pay-with {
         padding: 20px 30px;
@@ -1032,6 +1042,12 @@
         margin-left: auto;
     }
     #herbalist{background: none;}
+}
+@media screen and (max-width: 695px) {
+    .main-banner {
+        min-height: 247px;
+        background-size: contain;
+      }
 }
 @media screen and (max-width: 575px) {
     .g-package-heading {
@@ -1403,8 +1419,16 @@
 display: block !important;
     }
 }
+@media screen and (max-width: 520px) {
+    .main-banner {
+        min-height: 185px;
+    }
+}
 @media screen and (max-width: 456px) {
     
+    .main-banner {
+        min-height: 180px;
+    }
     /* .main-banner {
         background: url(../images/main-banner-background.png) left -350px bottom 0px/ cover no-repeat;
         height: 700px;

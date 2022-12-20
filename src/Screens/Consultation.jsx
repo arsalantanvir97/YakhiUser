@@ -352,10 +352,11 @@ const Consultation = ({ history }) => {
                   </ul>
                 </div>
               </div>
+              <div style={{ height: 5 }}></div>
               {/* Step form */}
               <div className='row'>
                 <div className='col-12'>
-                  <form id='regForm' action>
+                  <form id='regForm' style={{ margin: 0 }} action>
                     {/* Circles which indicates the steps of the form: */}
                     <div className='row mb-5'>
                       <div className='col-12 text-center'>
@@ -526,19 +527,21 @@ const Consultation = ({ history }) => {
                                   <option disabled={true} value={''}>
                                     Select
                                   </option>
-                                  <option value={'General cleanse'}>
-                                    General cleanse
-                                  </option>
-                                  <option value={'HSV & HPV'}>
-                                    HSV &amp; HPV
-                                  </option>
-                                  <option value={'Diabetes'}>Diabetes</option>
                                   <option value={'Cancer/ Tumors'}>
                                     Cancer/ Tumors
                                   </option>
                                   <option value={'Chronic Condition'}>
                                     Chronic Condition
                                   </option>
+                                  <option value={'Diabetes'}>Diabetes</option>
+
+                                  <option value={'General cleanse'}>
+                                    General cleanse
+                                  </option>
+                                  <option value={'HSV & HPV'}>
+                                    HSV &amp; HPV
+                                  </option>
+
                                   <option value={'Multiple Conditions'}>
                                     Multiple Conditions
                                   </option>

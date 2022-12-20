@@ -41,7 +41,7 @@ const Index = ({ history }) => {
   const [featuredproducts, setfeaturedproducts] = useState([])
   const [bitternadelement, setbitternadelement] = useState([])
   const [herbalproducts, setherbalproducts] = useState([
-    'Consultation',
+    'Consultations',
     'Geo’Genetics',
     'Teas',
     'Tinctures',
@@ -367,7 +367,7 @@ const Index = ({ history }) => {
     console.log('herbalproducts2', herbalproducts)
   }
   const setCategoryHandler = (val) => {
-    if (val.includes('Consultation')) {
+    if (val.includes('Consultations')) {
       history.push('/Consultation')
     } else if (selectedheral.includes('The Muscular System')) {
       if (val == 'Capsules') {
@@ -1173,7 +1173,7 @@ const Index = ({ history }) => {
               THE BODY WAS CREATED TO HEAL & REGENERATE ITSELF! IF PROVIDED WITH
               THE RIGHT ENVIRONMENTAL CONDITIONS! EXPERIENCE POWERFUL HERBAL
               THERAPY NOW WITH THE WORLD'S RENOWNED MASTER HEALER YAH'KI RAPHA
-              EL AWAKEND!{' '}
+              EL AWAKENED!{' '}
             </p>
             <div
               style={{

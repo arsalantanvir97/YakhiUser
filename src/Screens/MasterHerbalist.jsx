@@ -10,11 +10,12 @@ const MasterHerbalist = () => {
       <Header />
       <PrivateRouteSlider />
 
-      <div className='container-fluid my-5 py-5' id='herbalist'>
+      <div className='container-fluid my-2 py-2' id='herbalist'>
         <h4
           className='sub-heading'
           style={{
             width: '100%',
+            marginBottom: 5,
             textAlign: 'center',
             fontSize: window.innerWidth < 590 && 13.6,
           }}
@@ -25,7 +26,14 @@ const MasterHerbalist = () => {
           <div className='row mb-5'>
             <div className='about-company'>
               <div className='row align-items-center'>
-                <div className='col-xl-6 col-sm-12 col-lg-8 col-10'>
+                <div
+                  className='col-xl-6 col-sm-12 col-lg-8 col-10'
+                  // style={{
+                  //   display: 'flex',
+                  //   alighItems: 'center',
+                  //   justifyContent: 'center',
+                  // }}
+                >
                   <img
                     src='images/herbalist-yakhi.jpg'
                     alt=''
