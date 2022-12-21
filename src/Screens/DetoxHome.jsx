@@ -39,7 +39,7 @@ const DetoxHome = ({ history }) => {
       <Header />
       <PrivateRouteSlider />
 
-      <div className='container-fluid my-5 py-4' id='detox'>
+      <div className='container-fluid my-1 py-1' id='detox'>
         <div className='row'>
           <div className='col-11 mx-auto'>
             {/* who is this program for */}

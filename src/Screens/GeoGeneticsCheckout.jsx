@@ -17,6 +17,7 @@ import moment from 'moment'
 import USStates from '../components/USStates'
 import { Signature } from '../components/Signature'
 import AllHerbs from '../components/AllHerbs'
+import Diseases from '../components/Diseases'
 
 const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [totalPrice, settotalPrice] = useState(0)
@@ -505,26 +506,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                           <option disabled={true} value={''}>
                                             Select
                                           </option>
-                                          <option value={'Cancer/ Tumors'}>
-                                            Cancer/ Tumors
-                                          </option>
-                                          <option value={'Chronic Condition'}>
-                                            Chronic Condition
-                                          </option>
-                                          <option value={'Diabetes'}>
-                                            Diabetes
-                                          </option>
-
-                                          <option value={'General cleanse'}>
-                                            General cleanse
-                                          </option>
-                                          <option value={'HSV & HPV'}>
-                                            HSV &amp; HPV
-                                          </option>
-
-                                          <option value={'Multiple Conditions'}>
-                                            Multiple Conditions
-                                          </option>
+                                          <Diseases />
                                         </select>
                                       </div>
                                       <div className='col-md-6'>

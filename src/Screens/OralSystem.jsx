@@ -39,7 +39,7 @@ const OralSystem = ({ history }) => {
       <Header />
       <PrivateRouteSlider />
 
-      <div className='container-fluid my-5 py-4'>
+      <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
             <div className='row'>

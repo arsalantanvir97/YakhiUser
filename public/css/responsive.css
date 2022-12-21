@@ -1513,10 +1513,18 @@ display: block !important;
         line-height: 22px;
     }
     .inner-banner {
-        padding: 98px 0 !important;
+        padding: 92px 0 !important;
     }
 }
+@media screen and (max-width: 415px) {
+
+.main-banner {
+    min-height: 150px;
+}}
 @media screen and (max-width: 375px) {
+    .main-banner {
+        min-height: 140px;
+    }
     .donation-box  .account-form {
         padding: 45px 15px;
     }
@@ -1555,14 +1563,16 @@ display: block !important;
         padding-top: 12px;
     }
     .inner-banner {
-        padding: 106px 0 !important;
+        padding: 80px 0 !important;
     }
      #geo {
         padding: 70px 0 !important;
     }
 }
 @media screen and (max-width: 360px) {
-
+    .main-banner {
+        min-height: 130px;
+    }
     .offer-box {
         width: 260px;
         height: 260px;
@@ -1672,3 +1682,8 @@ display: block !important;
         padding: 6px 18px;
     }
 }
+@media screen and (max-width: 325px) {
+
+    .main-banner {
+        min-height: 115px;
+    }}

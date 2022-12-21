@@ -10,7 +10,7 @@ const MasterHerbalist = () => {
       <Header />
       <PrivateRouteSlider />
 
-      <div className='container-fluid my-2 py-2' id='herbalist'>
+      <div className='container-fluid my-1 py-1' id='herbalist'>
         <h4
           className='sub-heading'
           style={{

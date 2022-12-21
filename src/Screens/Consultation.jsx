@@ -17,6 +17,7 @@ import { PayPalButton } from 'react-paypal-button-v2'
 import Swal from 'sweetalert2'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
+import Diseases from '../components/Diseases'
 let showformm = 1
 let timings = [
   { time: '8:30 CST' },
@@ -85,6 +86,9 @@ const Consultation = ({ history }) => {
     console.log('eeee', e?.target?.files[0])
     setdoc_schedule(e?.target?.files[0])
   }
+  useEffect(() => {
+    console.log('consultaionfor', consultaionfor)
+  }, [consultaionfor])
 
   const saveConsultationAddressHandler = async () => {
     if (
@@ -308,7 +312,7 @@ const Consultation = ({ history }) => {
               : window.innerWidth > 780
               ? '335px'
               : window.innerWidth > 445
-              ? '280px'
+              ? '275px'
               : '120px',
         }}
       ></section>
@@ -527,24 +531,7 @@ const Consultation = ({ history }) => {
                                   <option disabled={true} value={''}>
                                     Select
                                   </option>
-                                  <option value={'Cancer/ Tumors'}>
-                                    Cancer/ Tumors
-                                  </option>
-                                  <option value={'Chronic Condition'}>
-                                    Chronic Condition
-                                  </option>
-                                  <option value={'Diabetes'}>Diabetes</option>
-
-                                  <option value={'General cleanse'}>
-                                    General cleanse
-                                  </option>
-                                  <option value={'HSV & HPV'}>
-                                    HSV &amp; HPV
-                                  </option>
-
-                                  <option value={'Multiple Conditions'}>
-                                    Multiple Conditions
-                                  </option>
+                                  <Diseases />
                                 </select>
                               </div>
                               <div className='col-md-6'>

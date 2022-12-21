@@ -189,7 +189,9 @@ const Capsules = ({ history, match }) => {
                 : window.innerWidth > 780
                 ? '335px'
                 : window.innerWidth > 445
-                ? '280px'
+                ? '275px'
+                : window.innerWidth > 445
+                ? '275px'
                 : '120px',
             // : '440px',
 

@@ -11,7 +11,7 @@ const MemberAgreement = () => {
       <Header />
       <FooterHeader />
 
-      <div className='container-fluid my-5 py-3'>
+      <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
             <section className='orders'>

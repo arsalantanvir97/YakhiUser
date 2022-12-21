@@ -62,7 +62,7 @@ const Contactus = () => {
       <Header />
       <PrivateRouteSlider />
 
-      <div className='container-fluid my-3 py-3'>
+      <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
             <div className='contact-us'>
