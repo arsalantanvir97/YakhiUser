@@ -472,6 +472,7 @@ const Diseases = () => {
       <option value={'Wilms’ tumour'}>Wilms’ tumour</option>
       <option value={'Womb (uterus) cancer'}>Womb (uterus) cancer</option>
       <option value={'Yellow fever'}>Yellow fever</option>
+      <option value={'Other'}>Other</option>
     </>
   )
 }

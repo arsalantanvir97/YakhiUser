@@ -20,31 +20,54 @@ import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
 let showformm = 1
 let timings = [
-  { time: '8:30 CST' },
-
-  { time: '9 CST' },
-  { time: '9:30 CST' },
-
-  { time: '10 CST' },
-  { time: '10:30 CST' },
-
-  { time: '11 CST' },
-  { time: '11:30 CST' },
-
-  { time: '12 CST' },
-  { time: '12:30 CST' },
-
+  { time: '0:00 CST' },
+  { time: '0:30 CST' },
   { time: '1 CST' },
   { time: '1:30 CST' },
-
   { time: '2 CST' },
   { time: '2:30 CST' },
-
   { time: '3 CST' },
   { time: '3:30 CST' },
-
   { time: '4 CST' },
   { time: '4:30 CST' },
+  { time: '5 CST' },
+  { time: '5:30 CST' },
+  { time: '6 CST' },
+  { time: '6:30 CST' },
+  { time: '7 CST' },
+  { time: '7:30 CST' },
+  { time: '8 CST' },
+  { time: '8:30 CST' },
+  { time: '9 CST' },
+  { time: '9:30 CST' },
+  { time: '10 CST' },
+  { time: '10:30 CST' },
+  { time: '11 CST' },
+  { time: '11:30 CST' },
+  { time: '12 CST' },
+  { time: '12:30 CST' },
+  { time: '13 CST' },
+  { time: '13:30 CST' },
+  { time: '14 CST' },
+  { time: '14:30 CST' },
+  { time: '15 CST' },
+  { time: '15:30 CST' },
+  { time: '16 CST' },
+  { time: '16:30 CST' },
+  { time: '17 CST' },
+  { time: '17:30 CST' },
+  { time: '18 CST' },
+  { time: '18:30 CST' },
+  { time: '19 CST' },
+  { time: '19:30 CST' },
+  { time: '20 CST' },
+  { time: '20:30 CST' },
+  { time: '21 CST' },
+  { time: '21:30 CST' },
+  { time: '22 CST' },
+  { time: '22:30 CST' },
+  { time: '23 CST' },
+  { time: '23:30 CST' },
 ]
 const Consultation = ({ history }) => {
   const dispatch = useDispatch()
@@ -616,9 +639,12 @@ const Consultation = ({ history }) => {
                       <div className=''>
                         <div className='consultation-form'>
                           <div className='row mb-5'>
-                            <div className='col-3 text-center mx-auto'>
+                            <div className='col-12 text-center mx-auto'>
                               <div className='timezone'>
-                                <h3>Your Time Zone</h3>
+                                <h3>
+                                  All Consultation Will Be Central Standard Time
+                                  Zone
+                                </h3>
                                 {/* <select className="form-control" id="timeZone">
                                   <option>( GMT + 4:00 ) DUBAI</option>
                                   <option>( GMT + 4:00 ) DUBAI</option>
@@ -649,6 +675,7 @@ const Consultation = ({ history }) => {
                                         <input
                                           type='radio'
                                           value={appointment}
+                                          checked={appointment == tim?.time}
                                           onChange={() => {
                                             setappointment(tim?.time)
                                           }}
@@ -666,7 +693,7 @@ const Consultation = ({ history }) => {
                           </div>
                         </div>
                         <p className='text-right consultation-meta mt-3'>
-                          Consultation: <span>30 Minutes @ $100.00</span>
+                          {/* Consultation: <span>30 Minutes @ $100.00</span> */}
                         </p>
                       </div>
                     ) : showform == 3 ? (
@@ -868,8 +895,8 @@ const Consultation = ({ history }) => {
           </div>
         </div>
       </section>
+      <div style={{ height: 15 }}></div>
       <AllHerbs />
-
       <Footer />
     </>
   )

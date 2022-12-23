@@ -19,7 +19,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         ) : (
           <>
             <Header />
-            {window?.location?.pathname.includes('Memberships') ? null : (
+            {window?.location?.pathname.includes('Memberships') ||
+            window?.location?.pathname.includes(
+              'GeoGeneticsCheckout'
+            ) ? null : (
               <PrivateRouteSlider />
             )}
             {/* <Sidebar /> */}

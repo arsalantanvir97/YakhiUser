@@ -27,17 +27,49 @@ const PackageLevelOne = ({ match, history }) => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <section
+        className='inner-banner'
+        style={{
+          backgroundImage: 'url(' + `${'../images/geogentics.jpg'} ` + ')',
+          minHeight:
+            // match?.params?.id == '62415fde1b97a530529276b3' ||
+            // match?.params?.id == '624160071b97a530529276b7' ||
+            // match?.params?.id == '62415fc11b97a530529276af' ||
+            // match?.params?.id == '62415f8d1b97a530529276ab'
+            window.innerWidth > 1300
+              ? '670px'
+              : window.innerWidth > 1200
+              ? '490px'
+              : window.innerWidth > 1100
+              ? '440px'
+              : window.innerWidth > 925
+              ? '400px'
+              : window.innerWidth > 780
+              ? '335px'
+              : window.innerWidth > 510
+              ? '275px'
+              : window.innerWidth > 465
+              ? '210px'
+              : '120px',
+          // : '440px',
+
+          // backgroundPosition: 'center',
+          backgroundSize: 'contain',
+
+          // backgroundRepeat: 'no-repeat',
+          // height: '440px',
+        }}
+      ></section>{' '}
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-11 mx-auto'>
             {/* product grid and add to cart option */}
             <section className='product-grid'>
-              <div className='row align-items-start justify-content-center my-5 py-5'>
+              <div className='row align-items-start justify-content-center mb-5 pb-5'>
                 <div className='col-lg-6 col-md-8'>
                   <div className='p-view-main'>
                     <img
-                      src='images/product-main.png'
+                      src='/images/product-main.png'
                       alt=''
                       className='img-fluid h-100'
                     />
@@ -46,7 +78,7 @@ const PackageLevelOne = ({ match, history }) => {
                     <div className='col-4'>
                       <div className='p-view-thumb'>
                         <img
-                          src='images/product-thumb.png'
+                          src='/images/product-thumb.png'
                           alt=''
                           className='img-fluid'
                         />
@@ -55,7 +87,7 @@ const PackageLevelOne = ({ match, history }) => {
                     <div className='col-4'>
                       <div className='p-view-thumb'>
                         <img
-                          src='images/product-thumb.png'
+                          src='/images/product-thumb.png'
                           alt=''
                           className='img-fluid'
                         />
@@ -64,7 +96,7 @@ const PackageLevelOne = ({ match, history }) => {
                     <div className='col-4'>
                       <div className='p-view-thumb'>
                         <img
-                          src='images/product-thumb.png'
+                          src='/images/product-thumb.png'
                           alt=''
                           className='img-fluid'
                         />
@@ -158,7 +190,7 @@ const PackageLevelOne = ({ match, history }) => {
                     className='btn maroon-btn-solid px-5 py-2'
                   >
                     <img
-                      src='images/add-to-cart.png'
+                      src='/images/add-to-cart.png'
                       alt=''
                       className='img-fluid mr-2 pt-1'
                     />
@@ -653,7 +685,7 @@ const PackageLevelOne = ({ match, history }) => {
                                 <div className='row'>
                                   <div className='col-lg-1 col-5'>
                                     <img
-                                      src='images/commentor-avatar.png'
+                                      src='/images/commentor-avatar.png'
                                       alt=''
                                       className='img-fluid'
                                     />
@@ -699,7 +731,7 @@ const PackageLevelOne = ({ match, history }) => {
                                 <div className='row'>
                                   <div className='col-lg-1 col-5'>
                                     <img
-                                      src='images/commentor-avatar.png'
+                                      src='/images/commentor-avatar.png'
                                       alt=''
                                       className='img-fluid'
                                     />
@@ -832,7 +864,7 @@ const PackageLevelOne = ({ match, history }) => {
                     <a href='product-view.php'>
                       {' '}
                       <img
-                        src='images/recommended-p1.png'
+                        src='/images/recommended-p1.png'
                         alt=''
                         className='img-fluid'
                       />{' '}
@@ -868,7 +900,7 @@ const PackageLevelOne = ({ match, history }) => {
                       <div className='col-8 text-right'>
                         <a href='#' className='btn maroon-btn-solid '>
                           <img
-                            src='images/add-to-cart.png'
+                            src='/images/add-to-cart.png'
                             alt=''
                             className='img-fluid mr-2 pt-1'
                           />
@@ -887,7 +919,7 @@ const PackageLevelOne = ({ match, history }) => {
                     <a href='product-view.php'>
                       {' '}
                       <img
-                        src='images/recommended-p2.png'
+                        src='/images/recommended-p2.png'
                         alt=''
                         className='img-fluid'
                       />{' '}
@@ -923,7 +955,7 @@ const PackageLevelOne = ({ match, history }) => {
                       <div className='col-8 text-right'>
                         <a href='#' className='btn maroon-btn-solid '>
                           <img
-                            src='images/add-to-cart.png'
+                            src='/images/add-to-cart.png'
                             alt=''
                             className='img-fluid mr-2 pt-1'
                           />
@@ -942,7 +974,7 @@ const PackageLevelOne = ({ match, history }) => {
                     <a href='product-view.php'>
                       {' '}
                       <img
-                        src='images/recommended-p3.png'
+                        src='/images/recommended-p3.png'
                         alt=''
                         className='img-fluid'
                       />{' '}
@@ -978,7 +1010,7 @@ const PackageLevelOne = ({ match, history }) => {
                       <div className='col-8 text-right'>
                         <a href='#' className='btn maroon-btn-solid '>
                           <img
-                            src='images/add-to-cart.png'
+                            src='/images/add-to-cart.png'
                             alt=''
                             className='img-fluid mr-2 pt-1'
                           />
@@ -997,7 +1029,7 @@ const PackageLevelOne = ({ match, history }) => {
                     <a href='product-view.php'>
                       {' '}
                       <img
-                        src='images/recommended-p4.png'
+                        src='/images/recommended-p4.png'
                         alt=''
                         className='img-fluid'
                       />{' '}
@@ -1033,7 +1065,7 @@ const PackageLevelOne = ({ match, history }) => {
                       <div className='col-8 text-right'>
                         <a href='#' className='btn maroon-btn-solid '>
                           <img
-                            src='images/add-to-cart.png'
+                            src='/images/add-to-cart.png'
                             alt=''
                             className='img-fluid mr-2 pt-1'
                           />

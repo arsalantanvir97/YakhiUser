@@ -978,7 +978,7 @@ const Header = ({ history }) => {
                           }}
                           data-aos-delay={400}
                         >
-                          Become A Club Member For Free
+                          Membership Signup
                         </Link>
                         {/* <Link
                     to={userInfo ? '/EditProfile' : '/Login'}

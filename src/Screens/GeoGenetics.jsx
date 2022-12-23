@@ -71,12 +71,46 @@ const GeoGenetics = ({ history }) => {
     }
     setloading(false)
   }
+  useEffect(() => {
+    console.log('geoGeneticsprotocols', geoGeneticsprotocols)
+  }, [geoGeneticsprotocols])
 
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <section
+        className='inner-banner'
+        style={{
+          backgroundImage: 'url(' + `${'../images/geogentics.jpg'} ` + ')',
+          minHeight:
+            // match?.params?.id == '62415fde1b97a530529276b3' ||
+            // match?.params?.id == '624160071b97a530529276b7' ||
+            // match?.params?.id == '62415fc11b97a530529276af' ||
+            // match?.params?.id == '62415f8d1b97a530529276ab'
+            window.innerWidth > 1300
+              ? '670px'
+              : window.innerWidth > 1200
+              ? '490px'
+              : window.innerWidth > 1100
+              ? '440px'
+              : window.innerWidth > 925
+              ? '400px'
+              : window.innerWidth > 780
+              ? '335px'
+              : window.innerWidth > 510
+              ? '275px'
+              : window.innerWidth > 465
+              ? '210px'
+              : '120px',
+          // : '440px',
 
+          // backgroundPosition: 'center',
+          backgroundSize: 'contain',
+
+          // backgroundRepeat: 'no-repeat',
+          // height: '440px',
+        }}
+      ></section>{' '}
       <div className='bread-crumbs'>
         <div className='container-fluid'>
           <div className='row mt-3 mb-5 pb-5'>
@@ -130,7 +164,6 @@ const GeoGenetics = ({ history }) => {
           </div>
         </div>
       </div>
-
       <div className='container'>
         <div class='row'>
           <div class='col-12'>
@@ -144,7 +177,6 @@ const GeoGenetics = ({ history }) => {
           {htmlToReactParser.parse(geogeneticstext)}
         </div>
       </div>
-
       <section className='yahki-protocols py-5'>
         <div className='container'>
           <div class='row mt-3'>
@@ -260,7 +292,7 @@ const GeoGenetics = ({ history }) => {
                               onClick={() => {
                                 console.log('abcccccc')
 
-                                history?.push(`/${links[index]}/${geo?._id}`)
+                                history?.push(`/${links2[index]}/${geo?._id}`)
                               }}
                             >
                               <div className='product-box'>
@@ -340,7 +372,6 @@ const GeoGenetics = ({ history }) => {
           </section>
         </div>
       </section>
-
       <AllHerbs />
       <Footer />
     </>
