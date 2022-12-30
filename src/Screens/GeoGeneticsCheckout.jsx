@@ -18,6 +18,7 @@ import USStates from '../components/USStates'
 import { Signature } from '../components/Signature'
 import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
+import ToggleBack from '../components/ToggleBack'
 
 const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [totalPrice, settotalPrice] = useState(0)
@@ -76,7 +77,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     phone: shippingAddress?.phone,
 
     firstName: shippingAddress?.firstName,
-    reasonformedic: shippingAddress?.reasonformedic,
+    // reasonformedic: shippingAddress?.reasonformedic,
     currentmedic: shippingAddress?.currentmedic,
     allergics: shippingAddress?.allergics,
 
@@ -336,6 +337,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-md-11 mx-auto'>
+            <ToggleBack name={`GEO'GENETICS Checkout`} />
             {/* Step form */}
             <div className='row'>
               <div className='col-12 mb-xl-0 mb-5'>
@@ -344,7 +346,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                   {/* Circles which indicates the steps of the form: */}
                   <div className='row mb-5'>
                     <div className='col-12'>
-                      <div className='d-flex justify-content-between text-center w-70 mb-5'>
+                      <div className='d-flex justify-content-between text-center geocheck-form mb-5'>
                         <span
                           className={
                             togglecheckout == 0 ? 'step active' : 'step finish'
@@ -797,7 +799,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                             className='form-control'
                                           />
                                         </div>
-                                        <div className='col-md-6'>
+                                        {/* <div className='col-md-6'>
                                           <label>
                                             Reason for Geo’Genetic Therapy{' '}
                                             <span className='red'>*</span>
@@ -810,7 +812,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                             onChange={changeHandler}
                                             name='reasonformedic'
                                           />
-                                        </div>
+                                        </div> */}
                                         <div className='col-md-6'>
                                           <label>
                                             Current Medication{' '}

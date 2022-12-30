@@ -16,6 +16,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 
 const Donate = () => {
   const userLogin = useSelector((state) => state.userLogin)
@@ -63,6 +64,7 @@ const Donate = () => {
       <div className='container-fluid my-1 py-1' id='donation-shapes'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={'Donate'} />
             <div className='donation'>
               <div className='row'>
                 <div className='col-md-9 col-12 mx-auto text-center'>

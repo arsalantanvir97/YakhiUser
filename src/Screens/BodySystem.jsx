@@ -4,6 +4,7 @@ import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 
 const BodySystem = () => {
   return (
@@ -12,10 +13,11 @@ const BodySystem = () => {
       <div>
         <PrivateRouteSlider />
 
-        <section className='body-system py-5 my-5'>
+        <section className='body-system '>
           <div className='container-fluid'>
             <div className='row'>
               <div className='col-11 mx-auto'>
+                <ToggleBack name={'Body System'} />
                 <div className='row'>
                   <div className='col-11 mx-auto text-center'>
                     <h4 className='sub-heading'>

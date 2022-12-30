@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 import { baseURL, imageURL } from '../utils/api'
 
 const Faqs = () => {
@@ -45,6 +46,7 @@ const Faqs = () => {
       <div className='container-fluid py-3 my-5'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={'Faqs'} />
             <section className='faqs-video'>
               <div className='row'>
                 <div className='col-12 text-center'>

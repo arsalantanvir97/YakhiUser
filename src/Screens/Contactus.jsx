@@ -8,6 +8,7 @@ import Footer from '../components/Footer'
 import Toasty from '../utils/toast'
 import { validateEmail } from '../utils/ValidateEmail'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 
 const Contactus = () => {
   const [firstName, setfirstName] = useState('')
@@ -65,6 +66,7 @@ const Contactus = () => {
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={'Contact Us'} />
             <div className='contact-us'>
               <div className='row'>
                 <div className='col-md-9 col-12 mx-auto text-center'>

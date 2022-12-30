@@ -9,6 +9,7 @@ import { baseURL, imageURL } from '../utils/api'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import moment from 'moment'
+import ToggleBack from '../components/ToggleBack'
 
 const EditProfile = ({ history }) => {
   const [loading, setloading] = useState(false)
@@ -165,6 +166,7 @@ const EditProfile = ({ history }) => {
             <section id='configuration' className='edit-profile'>
               <div className='row'>
                 <div className='col-12'>
+                  <ToggleBack name={'My Account'} />
                   <div className='card rounded pad-20'>
                     <div className='card-body p-md-2 p-lg-3 p-xl-4'>
                       <div className='page-title'>

@@ -9,6 +9,7 @@ import moment from 'moment'
 import Pagination from '../components/Padgination'
 import Loader from '../components/Loader'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 
 const OrderLog = () => {
   const [page, setPage] = useState(1)
@@ -57,6 +58,7 @@ const OrderLog = () => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-md-11 mx-auto'>
+            <ToggleBack name={`My Orders`} />
             <section className='my-cart mt-5'>
               <div className='row align-items-start'>
                 <div className='col-12 my-4'>

@@ -10,6 +10,7 @@ import { Parser } from 'html-to-react'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
 import FooterHeader from '../components/FooterHeader'
+import ToggleBack from '../components/ToggleBack'
 
 const htmlToReactParser = new Parser()
 
@@ -52,6 +53,7 @@ const Instruction = () => {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
+              <ToggleBack name={`Instruction`} />
               <div className='row'>
                 <div className='col-md-12 text-center'>
                   <h4 className='sub-heading'>

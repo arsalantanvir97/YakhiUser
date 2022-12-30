@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { imageURL } from '../utils/api'
 import Toasty from '../utils/toast'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 let qtybool = false
 const MyCart = ({ match, location, history }) => {
   const productId = match?.params?.id
@@ -50,6 +51,7 @@ const MyCart = ({ match, location, history }) => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-md-11 mx-auto'>
+            <ToggleBack name={`My Cart`} />
             <section className='my-cart mt-5'>
               <div className='row align-items-start'>
                 <div className='col-12 my-4'>

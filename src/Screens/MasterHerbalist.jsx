@@ -3,6 +3,7 @@ import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 
 const MasterHerbalist = () => {
   return (
@@ -11,6 +12,8 @@ const MasterHerbalist = () => {
       <PrivateRouteSlider />
 
       <div className='container-fluid my-1 py-1' id='herbalist'>
+        <ToggleBack name={`Master Herbalist`} />
+
         <h4
           className='sub-heading'
           style={{

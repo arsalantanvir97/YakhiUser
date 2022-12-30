@@ -15,6 +15,7 @@ import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import UnauthorizedAlert from '../components/UnauthorizedAlert'
 import { CreateWishList } from '../hooks/WishList'
 import AllHerbs from '../components/AllHerbs'
+import MediaIcons from '../components/MediaIcons'
 
 const htmlToReactParser = new Parser()
 let links = [
@@ -88,7 +89,7 @@ const GeoGenetics = ({ history }) => {
             // match?.params?.id == '62415fc11b97a530529276af' ||
             // match?.params?.id == '62415f8d1b97a530529276ab'
             window.innerWidth > 1300
-              ? '670px'
+              ? '640px'
               : window.innerWidth > 1200
               ? '490px'
               : window.innerWidth > 1100
@@ -137,28 +138,7 @@ const GeoGenetics = ({ history }) => {
                 </div>
               </div>
               <div className='row mt-4'>
-                <ul className='media-icon'>
-                  <li>
-                    <Link to='#'>
-                      <i className='fab fa-facebook-f' />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <i className='fab fa-twitter' />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <i className='fab fa-instagram' />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <i className='fab fa-youtube' />
-                    </Link>
-                  </li>
-                </ul>
+                <MediaIcons />
               </div>
             </div>
           </div>
@@ -280,92 +260,86 @@ const GeoGenetics = ({ history }) => {
               {loading ? (
                 <SliderSkeleton listsToRender={4} />
               ) : (
-                <div className='row'>
-                  <div className='col-12 my-5'>
-                    <div className='row' id='protocols'>
-                      {geoGeneticsprotocols?.length > 0 &&
-                        geoGeneticsprotocols?.map((geo, index) => (
-                          <div className='col-lg-3 col-md-4 col-sm-6 mb-5'>
-                            {/* de vaxxed therapy */}
-                            <Link
-                              to='#'
-                              onClick={() => {
-                                console.log('abcccccc')
+                <div className='row' id='protocols'>
+                  {geoGeneticsprotocols?.length > 0 &&
+                    geoGeneticsprotocols?.map((geo, index) => (
+                      <div className='col-xl-4 col-md-6 col-8 mx-md-0 mx-auto my-3'>
+                        {/* de vaxxed therapy */}
+                        <Link
+                          to='#'
+                          onClick={() => {
+                            console.log('abcccccc')
 
-                                history?.push(`/${links2[index]}/${geo?._id}`)
-                              }}
-                            >
-                              <div className='product-box'>
-                                <img
-                                  src={
-                                    geo?.productimage?.length > 0 &&
-                                    `${imageURL}${geo?.productimage[0]}`
+                            history?.push(`/${links2[index]}/${geo?._id}`)
+                          }}
+                        >
+                          <div className='product-box'>
+                            <img
+                              src={
+                                geo?.productimage?.length > 0 &&
+                                `${imageURL}${geo?.productimage[0]}`
+                              }
+                              alt=''
+                              className='img-fluid package'
+                            />
+                            {/* <span className="sale-tag">sale!</span> */}
+                            <div className='product-actions'>
+                              <button
+                                type='button'
+                                onClick={() => {
+                                  console.log('abcccccc')
+                                  history?.push(`/${links2[index]}/${geo?._id}`)
+                                }}
+                                className='quickview-button'
+                              >
+                                <i className='fas fa-eye' />
+                              </button>
+                              <button
+                                type='button'
+                                style={{ zIndex: 11111111111111 }}
+                                onClick={() => {
+                                  !userInfo
+                                    ? UnauthorizedAlert()
+                                    : CreateWishList(geo?._id, history)
+                                }}
+                                className='wishlist_button'
+                              >
+                                <i
+                                  className={
+                                    userwishlist?.includes(geo?._id)
+                                      ? `wishlist-icon fas fa-heart maroon`
+                                      : `wishlist-icon far fa-heart`
                                   }
-                                  alt=''
-                                  className='img-fluid protocol'
                                 />
-                                {/* <span className="sale-tag">sale!</span> */}
-                                <div className='product-actions'>
-                                  <button
-                                    type='button'
-                                    onClick={() => {
-                                      console.log('abcccccc')
-                                      history?.push(
-                                        `/${links2[index]}/${geo?._id}`
+                              </button>
+                              <button
+                                type='button'
+                                style={{ zIndex: 11111111111111 }}
+                                onClick={() => {
+                                  !userInfo
+                                    ? UnauthorizedAlert()
+                                    : history?.push(
+                                        `/GeoGeneticsCheckout/${
+                                          geo?._id
+                                        }?qty=${1}`
                                       )
-                                    }}
-                                    className='quickview-button'
-                                  >
-                                    <i className='fas fa-eye' />
-                                  </button>
-                                  <button
-                                    type='button'
-                                    style={{ zIndex: 11111111111111 }}
-                                    onClick={() => {
-                                      !userInfo
-                                        ? UnauthorizedAlert()
-                                        : CreateWishList(geo?._id, history)
-                                    }}
-                                    className='wishlist_button'
-                                  >
-                                    <i
-                                      className={
-                                        userwishlist?.includes(geo?._id)
-                                          ? `wishlist-icon fas fa-heart maroon`
-                                          : `wishlist-icon far fa-heart`
-                                      }
-                                    />
-                                  </button>
-                                  <button
-                                    type='button'
-                                    style={{ zIndex: 11111111111111 }}
-                                    onClick={() => {
-                                      !userInfo
-                                        ? UnauthorizedAlert()
-                                        : history?.push(
-                                            `/GeoGeneticsCheckout/${
-                                              geo?._id
-                                            }?qty=${1}`
-                                          )
-                                    }}
-                                    className='cart-_button'
-                                    title='Add to cart'
-                                  >
-                                    <i className='fal fa-shopping-cart' />
-                                  </button>
-                                </div>
-                              </div>
-                              <div className='product-meta mt-3'>
-                                <p className='product-title'>{geo?.name}</p>
-                                <div className='d-flex flex-column'>
-                                  <p className='product-price'>{geo?.price}</p>
-                                </div>
-                              </div>
-                            </Link>
+                                }}
+                                className='cart-_button'
+                                title='Add to cart'
+                              >
+                                <i className='fal fa-shopping-cart' />
+                              </button>
+                            </div>
                           </div>
-                        ))}
-                    </div>
-                  </div>
+                          <div className='product-meta mt-3'>
+                            <p className='product-title'>{geo?.name}</p>
+                            <div className='d-flex flex-column'>
+                              <p className='product-price'>{geo?.price}</p>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
                 </div>
               )}
             </div>

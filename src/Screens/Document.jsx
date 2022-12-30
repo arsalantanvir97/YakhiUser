@@ -8,6 +8,7 @@ import { ListSkeleton } from '../components/MultipleSkeleton'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
 import FooterHeader from '../components/FooterHeader'
+import ToggleBack from '../components/ToggleBack'
 const Document = () => {
   const [docs, setdocs] = useState([])
   const [loading, setloading] = useState(false)
@@ -29,20 +30,21 @@ const Document = () => {
       <Header />
       <FooterHeader />
 
-      <section className='body-system py-5 my-5'>
+      <section className='body-system '>
         <div className='container-fluid'>
           <div className='row'>
-            <h4
-              className='sub-heading'
-              style={{
-                width: '100%',
-                textAlign: 'center',
-                fontSize: window.innerWidth < 590 && 14,
-              }}
-            >
-              Yah'ki Awakened Eye of Lotus Botanical Health Club
-            </h4>
             <div className='col-11 mx-auto'>
+              <ToggleBack name={'Documents'} />
+              <h4
+                className='sub-heading'
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  fontSize: window.innerWidth < 590 && 14,
+                }}
+              >
+                Yah'ki Awakened Eye of Lotus Botanical Health Club
+              </h4>
               <div className='row'>
                 <div className='col-9 mx-auto text-center'>
                   <h3 className='main-heading'>Document Downloads</h3>

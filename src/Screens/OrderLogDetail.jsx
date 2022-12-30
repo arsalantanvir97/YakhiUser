@@ -14,6 +14,7 @@ import {
   CreditCardInput,
 } from 'react-square-web-payments-sdk'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 
 const OrderLogDetail = ({ match, history }) => {
   const dispatch = useDispatch()
@@ -106,6 +107,7 @@ const OrderLogDetail = ({ match, history }) => {
       <div className='container-fluid mt-5'>
         <div className='row'>
           <div className='col-md-11 mx-auto'>
+            <ToggleBack name={`Order Details`} />
             <section className='my-cart'>
               <div className='row mb-5'>
                 <div className='col-12 my-4'>

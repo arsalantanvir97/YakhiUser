@@ -7,6 +7,7 @@ import AllHerbs from './AllHerbs'
 import Footer from './Footer'
 import Header from './Header'
 import PrivateRouteSlider from './PrivateRouteSlider'
+import ToggleBack from './ToggleBack'
 
 const DetailsofProduct = ({
   product,
@@ -29,6 +30,7 @@ const DetailsofProduct = ({
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={product?.name} />
             {/* product grid and add to cart option */}
             <section className='product-grid'>
               <div className='row align-items-start justify-content-center my-5 py-5'>

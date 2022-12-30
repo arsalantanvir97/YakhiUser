@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import Calendar from 'react-calendar'
+import ToggleBack from '../components/ToggleBack'
 
 const Events = () => {
   const [value, onChange] = useState(new Date())
@@ -17,6 +18,7 @@ const Events = () => {
           <div className='container'>
             <div className='row'>
               <div className='col-12'>
+                <ToggleBack name={'Events'} />
                 <nav>
                   <div
                     className='nav nav-tabs justify-content-center mb-4'
@@ -127,7 +129,7 @@ const Events = () => {
                           <hr />
                           <div className='m-3'>
                             <a href='#' className='eventLinks'>
-                              kawah@yahkiawakened.com
+                              nfo@yahkiawakened.com
                             </a>
                           </div>
                         </div>
@@ -205,7 +207,7 @@ const Events = () => {
                           <hr />
                           <div className='m-3'>
                             <a href='#' className='eventLinks'>
-                              kawah@yahkiawakened.com
+                              nfo@yahkiawakened.com
                             </a>
                           </div>
                         </div>
@@ -283,7 +285,7 @@ const Events = () => {
                           <hr />
                           <div className='m-3'>
                             <a href='#' className='eventLinks'>
-                              kawah@yahkiawakened.com
+                              nfo@yahkiawakened.com
                             </a>
                           </div>
                         </div>

@@ -17,6 +17,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { ListSkeleton } from '../components/MultipleSkeleton'
 import { CreateWishList } from '../hooks/WishList'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 let categories = [
   { name: `Geo'Genetic Therapy`, id: '6242c50b11f7d01b4e81f96c' },
   { name: `Teas & 3 Bitters`, id: '624160071b97a530529276b7' },
@@ -39,7 +40,7 @@ let categories = [
     id: '6241607a1b97a530529276c3',
   },
 ]
-let allcategoryofProducts = []
+let index
 const Capsules = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -65,6 +66,7 @@ const Capsules = ({ history, match }) => {
   const [loading, setloading] = useState(false)
   useEffect(() => {
     setcategory(match?.params?.id)
+    index = categories.findIndex((item) => item.id === match?.params?.id)
   }, [match])
 
   useEffect(() => {
@@ -156,8 +158,10 @@ const Capsules = ({ history, match }) => {
               `${
                 match?.params?.id == '62415fde1b97a530529276b3'
                   ? '../images/tinctures.png'
+                  : match?.params?.id == '62d728d92909481abc331061'
+                  ? '../images/soaps.png'
                   : match?.params?.id == '6241605f1b97a530529276bf'
-                  ? '../images/oils.JPG'
+                  ? '../images/oils.png'
                   : match?.params?.id == '624160d81b97a530529276cb'
                   ? '../images/kits&bundle.jpg'
                   : match?.params?.id == '6242c50b11f7d01b4e81f96c'
@@ -198,6 +202,7 @@ const Capsules = ({ history, match }) => {
             // backgroundPosition: 'center',
             backgroundSize:
               match?.params?.id == '62415fde1b97a530529276b3' ||
+              match?.params?.id == '62d728d92909481abc331061' ||
               match?.params?.id == '6241605f1b97a530529276bf' ||
               match?.params?.id == '6241603e1b97a530529276bb' ||
               match?.params?.id == '624160d81b97a530529276cb' ||
@@ -212,6 +217,7 @@ const Capsules = ({ history, match }) => {
           }}
         >
           {match?.params?.id == '62415fde1b97a530529276b3' ||
+          match?.params?.id == '62d728d92909481abc331061' ||
           match?.params?.id == '624160071b97a530529276b7' ||
           match?.params?.id == '624160d81b97a530529276cb' ||
           match?.params?.id == '6241605f1b97a530529276bf' ||
@@ -238,6 +244,7 @@ const Capsules = ({ history, match }) => {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-11 mx-auto'>
+              <ToggleBack name={categories[index]?.name} />
               <div className='row justify-content-center  py-5'>
                 <div className='col-lg-3 col-md-10'>
                   <button

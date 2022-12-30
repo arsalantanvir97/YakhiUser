@@ -18,6 +18,7 @@ import Swal from 'sweetalert2'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
+import ToggleBack from '../components/ToggleBack'
 let showformm = 1
 let timings = [
   { time: '0:00 CST' },
@@ -89,7 +90,7 @@ const Consultation = ({ history }) => {
   const [ethnicity, setethnicity] = useState('')
   const [consultaionfor, setconsultaionfor] = useState('')
   const [currentmedication, setcurrentmedication] = useState('')
-  const [reason, setreason] = useState('')
+  // const [reason, setreason] = useState('')
   const [diagnosis, setdiagnosis] = useState('')
   const [doc_schedule, setdoc_schedule] = useState('')
   const [appointment, setappointment] = useState('')
@@ -125,7 +126,7 @@ const Consultation = ({ history }) => {
       ethnicity?.length > 0 &&
       consultaionfor?.length > 0 &&
       currentmedication?.length > 0 &&
-      reason?.length > 0 &&
+      // reason?.length > 0 &&
       diagnosis?.length > 0 &&
       doc_schedule?.name?.length > 0
     ) {
@@ -141,7 +142,7 @@ const Consultation = ({ history }) => {
           ethnicity,
           consultaionfor,
           currentmedication,
-          reason,
+          // reason,
           diagnosis,
           governmentid: doc_schedule?.name,
         })
@@ -183,7 +184,7 @@ const Consultation = ({ history }) => {
         ethnicity,
         consultaionfor,
         currentmedication,
-        reason,
+        // reason,
         diagnosis,
       }
       const paymentinfo = { paymentname, cardnumber, expirymonth, expiryyear }
@@ -343,6 +344,7 @@ const Consultation = ({ history }) => {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
+              <ToggleBack name={'Consultation'} />
               <div className='row'>
                 <div className='col-md-8 text-center mx-auto'>
                   <h4 className='sub-heading'>Consultation Scheduling Form</h4>
@@ -572,7 +574,7 @@ const Consultation = ({ history }) => {
                                   }}
                                 />
                               </div>
-                              <div className='col-md-12'>
+                              {/* <div className='col-md-12'>
                                 <label>
                                   Reason for Consultation{' '}
                                   <span className='red'>*</span>
@@ -585,7 +587,7 @@ const Consultation = ({ history }) => {
                                     setreason(e.target.value)
                                   }}
                                 />
-                              </div>
+                              </div> */}
                               <div className='col-md-12'>
                                 <label>
                                   Current Diagnoses (provided by MD)

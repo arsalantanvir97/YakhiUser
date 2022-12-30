@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 const data = [
   {
     name: 'Godis Kawah',
@@ -88,6 +89,7 @@ const MeettheTeam = () => {
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={`Meet the Team`} />
             <div className='team'>
               <div className='row'>
                 <div className='col-md-8 mx-auto text-center'>

@@ -22,6 +22,7 @@ import USStates from '../components/USStates'
 import { SunspotLoader } from 'react-awesome-loaders'
 import { Signature } from '../components/Signature'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 
 const Checkout = ({ history }) => {
   const cart = useSelector((state) => state.cart)
@@ -271,6 +272,7 @@ const Checkout = ({ history }) => {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
+              <ToggleBack name={'Checkout'} />
               {/* Step form */}
               <div className='row'>
                 <div className='col-12 mb-xl-0 mb-5'>

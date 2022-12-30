@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import ShopnowButton from '../components/ShopnowButton'
+import ToggleBack from '../components/ToggleBack'
 let capsules = [
   'ATOMIC STRENGTHENER CAPSULES',
   'BLOOD PURIFIER CAPSULES',
@@ -65,6 +66,7 @@ const LymphaticSystem = ({ history }) => {
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={`Lymphatic System`} />
             <div className='row'>
               <div className='col-12 text-center my-3'>
                 <h4 className='sub-heading'>Lymph Nodes, Vessels, Spleen</h4>

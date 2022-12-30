@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import FooterHeader from '../components/FooterHeader'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 const ReturnsandRefund = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const ReturnsandRefund = () => {
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={'Returns and Refund'} />
             <section className='orders'>
               <div className='row'>
                 <div className='col-12 text-center'>

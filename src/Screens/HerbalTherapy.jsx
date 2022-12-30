@@ -1,5 +1,6 @@
 import React from 'react'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 
 const HerbalTherapy = () => {
   return (
@@ -7,6 +8,7 @@ const HerbalTherapy = () => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={`Herbal Therapy`} />
             {/* product grid and add to cart option */}
             <section className='product-grid'>
               <div className='row align-items-start justify-content-center my-5 py-5'>

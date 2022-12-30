@@ -3,7 +3,7 @@ import React from 'react'
 const PrivateRouteSlider = () => {
   return (
     <>
-      <section className='inner-banner'>
+      <section className='inner-banner mb-3'>
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1'>

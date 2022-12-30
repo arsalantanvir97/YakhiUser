@@ -1674,12 +1674,15 @@ footer.site-footer {
   height: 45px !important;
   width: 45px !important;
   text-align: center;
-  line-height: 45px;
+  line-height: normal !important;
   background-color: #2b2541;
   color: white !important;
   transition: ease-in-out 0.2s;
-  border-radius: 5px 5px 5px 22px;
+  border-radius: 99px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .social-icon:hover {
@@ -1697,7 +1700,20 @@ footer.site-footer {
       #403370,
       #433476);
 }
-
+#regForm .d-flex.justify-content-around, .geocheck-form
+{
+  gap: 1rem;
+}
+.geocheck-form span {
+  -ms-flex-positive: 1!important;
+  flex-grow: 1!important;
+  -ms-flex-wrap: wrap!important;
+  flex-wrap: wrap!important;
+}
+.mem-head {
+  border-bottom: 3px solid;
+  margin: 0 0 20px 0;
+}
 .social-icon i {
   color: #ffffff;
   font-size: 20px;
@@ -4607,6 +4623,25 @@ span.bottom-note {
   min-height: 570px;
   background-position: top !important;
 }
+.face-icon {
+ background: #4267B2;
+}
+.msg-icon {
+ background: rgb(29,161,242);
+}
+.insta-icon{
+ background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+.youtube-icon{
+ background: #f00;
+}
+.envelope-icon{
+ background: black;
+}
+.envelope-icon img{
+  width: 18px;
+}
+
 
 .abcccc:hover{
   cursor:pointer 

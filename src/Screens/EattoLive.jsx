@@ -3,16 +3,50 @@ import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 
 const EattotLive = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <section
+        className='inner-banner'
+        style={{
+          backgroundImage: 'url(' + `${'../images/eattolive.png'} ` + ')',
+          minHeight:
+            // match?.params?.id == '62415fde1b97a530529276b3' ||
+            // match?.params?.id == '624160071b97a530529276b7' ||
+            // match?.params?.id == '62415fc11b97a530529276af' ||
+            // match?.params?.id == '62415f8d1b97a530529276ab'
+            window.innerWidth > 1300
+              ? '670px'
+              : window.innerWidth > 1200
+              ? '490px'
+              : window.innerWidth > 1100
+              ? '440px'
+              : window.innerWidth > 925
+              ? '400px'
+              : window.innerWidth > 780
+              ? '335px'
+              : window.innerWidth > 510
+              ? '275px'
+              : window.innerWidth > 465
+              ? '210px'
+              : '120px',
+          // : '440px',
+
+          // backgroundPosition: 'center',
+          backgroundSize: 'contain',
+
+          // backgroundRepeat: 'no-repeat',
+          // height: '440px',
+        }}
+      ></section>{' '}
       <section className='about-page'>
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
+              <ToggleBack name={'Eat to Live'} />
               <div className='row'>
                 <div className='col-md-12 text-center'>
                   {/* <h4 className="sub-heading">
@@ -1449,7 +1483,6 @@ const EattotLive = () => {
         </div>
       </section>
       <AllHerbs />
-
       <Footer />
     </>
   )

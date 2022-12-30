@@ -4,6 +4,7 @@ import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 import UnauthorizedAlert from '../components/UnauthorizedAlert'
 import Toasty from '../utils/toast'
 
@@ -63,6 +64,10 @@ const PackageLevelOne = ({ match, history }) => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack
+              name={`GEO’GENETICS THERAPEUTIC PACKAGE LEVEL 1
+`}
+            />
             {/* product grid and add to cart option */}
             <section className='product-grid'>
               <div className='row align-items-start justify-content-center mb-5 pb-5'>

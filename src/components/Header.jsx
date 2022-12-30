@@ -117,7 +117,7 @@ const Header = ({ history }) => {
                         // }}
                       >
                         <i className='fas fa-user-alt mr-2' />{' '}
-                        {userInfo ? 'My Profile' : 'Login'}
+                        {userInfo ? 'My Account' : 'Login'}
                       </Link>
                     </li>
                     <li className='list-inline-item'>
@@ -862,7 +862,7 @@ const Header = ({ history }) => {
                                       className='dropdown-item'
                                       to='/EditProfile'
                                     >
-                                      My Profile
+                                      My Account
                                     </Link>
                                     <button
                                       className='dropdown-item'
@@ -970,7 +970,7 @@ const Header = ({ history }) => {
                           data-aos='zoom-in-left'
                           data-aos-duration={1500}
                           style={{
-                            backgroundColor: '#00a82d',
+                            backgroundColor: '#528900',
                             border: 'none',
                             fontFamily:
                               'Soleil_Bold,Helvetica,Arial,sans-serif',

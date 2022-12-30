@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 
 const OrderandPayment = () => {
   return (
@@ -14,6 +15,7 @@ const OrderandPayment = () => {
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={`Order & Payment`} />
             <section className='orders'>
               <div className='row'>
                 <div className='col-12 text-center'>

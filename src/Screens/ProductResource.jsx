@@ -3,6 +3,7 @@ import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 
 const ProductResource = () => {
   return (
@@ -14,6 +15,7 @@ const ProductResource = () => {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
+              <ToggleBack name={`Product Resource`} />
               <div className='row'>
                 <div className='col-md-8 text-center mx-auto'>
                   <h4 className='sub-heading'>

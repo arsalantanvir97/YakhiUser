@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 
 const MemberAgreement = () => {
   return (
@@ -14,6 +15,7 @@ const MemberAgreement = () => {
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={`Member Agreement`} />
             <section className='orders'>
               <div className='row'>
                 <div className='col-10 mx-auto'>

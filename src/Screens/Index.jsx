@@ -17,18 +17,18 @@ import AllHerbs from '../components/AllHerbs'
 const isWindowContext = typeof window !== 'undefined'
 
 const Index = ({ history }) => {
-  const [visible, setVisible] = useState(false)
-  useEffect(() => {
-    let pop_status = sessionStorage.getItem('pop_status')
-    if (!pop_status || pop_status == 1) {
-      console.log('!pop_status!pop_status')
-      setVisible(true)
-      sessionStorage.setItem('pop_status', 1)
-    }
-    if (isWindowContext) {
-      isWindowContext && visible == true && window?.$('#overlay').modal('show')
-    }
-  }, [])
+  // const [visible, setVisible] = useState(false)
+  // useEffect(() => {
+  //   let pop_status = sessionStorage.getItem('pop_status')
+  //   if (!pop_status || pop_status == 1) {
+  //     console.log('!pop_status!pop_status')
+  //     setVisible(true)
+  //     sessionStorage.setItem('pop_status', 1)
+  //   }
+  //   if (isWindowContext) {
+  //     isWindowContext && visible == true && window?.$('#overlay').modal('show')
+  //   }
+  // }, [])
   // if (!visible) return null
 
   const [product, setproduct] = useState([])
@@ -167,9 +167,6 @@ const Index = ({ history }) => {
       JSON.stringify(res?.data?.getAllCategories)
     )
   }
-  useEffect(() => {
-    console.log('visible', visible)
-  }, [visible])
 
   // const gettingproductsbyCategoryidHandler = async (id) => {
   //   const res = await axios.get(
@@ -186,26 +183,26 @@ const Index = ({ history }) => {
     console.log('re2s', res)
     setfeaturedproducts(res?.data?.products)
   }
-  const productViewRedirectHandler = async (id) => {
-    history?.push(`/ProductView/${id}`)
-  }
-  const showPopupHanlder = () => {
-    console.log('isWindowContext', isWindowContext)
-  }
+  // const productViewRedirectHandler = async (id) => {
+  //   history?.push(`/ProductView/${id}`)
+  // }
+  // const showPopupHanlder = () => {
+  //   console.log('isWindowContext', isWindowContext)
+  // }
 
-  const closeModalHandler = () => {
-    var element = document.getElementById('overlay')
-    element.classList.remove('show')
+  // const closeModalHandler = () => {
+  //   var element = document.getElementById('overlay')
+  //   element.classList.remove('show')
 
-    // isWindowContext && window?.$('#overlay').remove('show')
-    sessionStorage.setItem('pop_status', 3)
-  }
+  //   // isWindowContext && window?.$('#overlay').remove('show')
+  //   sessionStorage.setItem('pop_status', 3)
+  // }
 
-  const closeModalHandler2 = () => {
-    isWindowContext && window?.$('#overlay').remove('show')
-    console.log('closeModalHandler2')
-    window.location.replace('https://www.google.com')
-  }
+  // const closeModalHandler2 = () => {
+  //   isWindowContext && window?.$('#overlay').remove('show')
+  //   console.log('closeModalHandler2')
+  //   window.location.replace('https://www.google.com')
+  // }
   const categoryFilterHandler = (value) => {
     console.log('value', value, typeof value)
     setselectedheral(value)
@@ -1706,7 +1703,7 @@ const Index = ({ history }) => {
 
       <Footer />
       {/* {visible == true && ( */}
-      <div
+      {/* <div
         className={visible == true ? 'modal fade show' : 'modal fade'}
         id='overlay'
       >
@@ -1946,7 +1943,7 @@ const Index = ({ history }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* )} */}
     </>
   )

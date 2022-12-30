@@ -4,11 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { userMemberAction } from '../actions/userAction'
 import AllHerbs from '../components/AllHerbs'
+import Diseases from '../components/Diseases'
 import Footer from '../components/Footer'
 import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
+import InputNumber from '../components/InputNumber'
+import InputPhone from '../components/InputPhone'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import { Signature } from '../components/Signature'
+import ToggleBack from '../components/ToggleBack'
 import api from '../utils/api'
 import Toasty from '../utils/toast'
 let filee = ''
@@ -67,92 +71,230 @@ const Memberships = ({ history }) => {
           <div className='container-fluid'>
             <div className='row'>
               <div className='col-md-11 mx-auto'>
+                <ToggleBack name={`Memberships`} />
                 <div className='row mb-5 pb-5'>
                   <div className='col-md-12 text-center'>
-                    <h3 className='main-heading'>Memberships</h3>
+                    <h3 className='main-heading mem-head'>
+                      Free Club Membership Registration
+                    </h3>
                     <p className='general-para px-sm-5'>
-                      Join now for full access to Yahki Awakened Eye of Lotus
-                      Botanical Health Club including exclusive access to the
-                      Yahki Approved Herbal List, All charts and data, Our Detox
-                      center, Cooking Classes, Online Shop and more.
+                      Complete the form and you're in.
                     </p>
                   </div>
                 </div>
                 {/* MEMBERSHIP PACKAGES */}
-                <form>
-                  <div className='row align-items-start justify-content-center text-center my-5 pb-5'>
-                    <div className='col-lg-4 col-md-8 mb-5 mx-auto'>
-                      <div className='package-box mx-xl-5'>
-                        <img
-                          src='images/free.png'
-                          alt=''
-                          className='img-fluid mb-3'
-                        />
-                        <div className='package-selection'>
-                          <label className='labl'>
-                            {/* <input type="radio" name="radioname" value="one_value" checked="checked"/> */}
-                            <div>
-                              <h3>Melanin Free</h3>
-                              <p>Basic Access</p>
-                              <h4 className='mt-4 membership-price'>free</h4>
-                            </div>
-                          </label>
-                        </div>
-                        {userInfo && userInfo?.ismember ? (
-                          <h3>Already a member</h3>
-                        ) : (
-                          <>
-                            <div className='row my-4'>
-                              <div className='col-12 mb-4'>
-                                <label>First Name*</label>
-                                <input
-                                  type='text'
-                                  className='form-control mt-2'
-                                  placeholder='Enter First Name'
-                                  value={firstname}
-                                  onChange={(e) => {
-                                    setfirstname(e.target.value)
-                                  }}
-                                />
-                              </div>
-                              <div className='col-12 mb-4'>
-                                <label>Last Name*</label>
-                                <input
-                                  type='text'
-                                  className='form-control mt-2'
-                                  placeholder='Enter Last Name'
-                                  value={lastname}
-                                  onChange={(e) => {
-                                    setlastname(e.target.value)
-                                  }}
-                                />
-                              </div>
-                            </div>{' '}
-                            <Signature
-                              allValues={allValues}
-                              setAllValues={setAllValues}
+                <div className='row'>
+                  <div className='col-xl-12 col-lg-12 col-md-12'>
+                    <div className='consultation-form'>
+                      <div className='form-group'>
+                        <div className='form-row'>
+                          <div className='col-md-6'>
+                            <label>
+                              First Name <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter First Name'
+                              type='text'
+                              // value={allValues?.yourinfofirstName}
+                              // onChange={changeHandler}
+                              name='yourinfofirstName'
                             />
-                            <div style={{ height: 45 }}></div>
-                            <Link
-                              to='#'
-                              onClick={() => {
-                                allValues?.signature?.length > 0
-                                  ? subscriptionHandler()
-                                  : Toasty(
-                                      'error',
-                                      `Please fill out all the required fields`
-                                    )
-                              }}
-                              className='btn maroon-btn-solid d-inline-block mt-5 mx-auto'
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Last Name <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Last Name'
+                              type='text'
+                              // value={allValues?.yourinfolastName}
+                              // onChange={changeHandler}
+                              name='yourinfolastName'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Phone <span className='red'>*</span>
+                            </label>
+                            <InputPhone
+                            // unique={true}
+                            // uniquevalue={allValues}
+                            // name={'yourinfophone'}
+                            // value={allValues?.yourinfophone}
+                            // onChange={setAllValues}
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Email <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Email'
+                              type='email'
+                              // value={allValues?.yourinfoemail}
+                              // onChange={changeHandler}
+                              name='yourinfoemail'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Age <span className='red'>*</span>
+                            </label>
+                            <InputNumber
+                              // unique={true}
+                              // uniquevalue={allValues}
+                              // name={'yourinfoage'}
+                              // onChange={setAllValues}
+                              // value={allValues?.yourinfoage}
+                              // max={105}
+                              className='form-control'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Height in meters
+                              <span className='red'>*</span>
+                            </label>
+                            <InputNumber
+                              // unique={true}
+                              // uniquevalue={allValues}
+                              // name={'yourinfoheight'}
+                              // onChange={setAllValues}
+                              // value={allValues?.yourinfoheight}
+                              // max={1005}
+                              className='form-control'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Weight in lbs
+                              <span className='red'>*</span>
+                            </label>
+                            <InputNumber
+                              // unique={true}
+                              // uniquevalue={allValues}
+                              // name={'yourinfoweight'}
+                              // onChange={setAllValues}
+                              // value={allValues?.yourinfoweight}
+                              // max={1005}
+                              className='form-control'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Ethnicity <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Ethnicity'
+                              type='text'
+                              // value={allValues?.yourinfoethnicity}
+                              // onChange={changeHandler}
+                              name='yourinfoethnicity'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Geo'Genetic For
+                              <span className='red'>*</span>
+                            </label>
+                            <select
+                              className='form-control text-left'
+                              id='timeZone'
+                              // value={
+                              //   allValues?.yourinfoconsultaionfor
+                              // }
+                              // onChange={changeHandler}
+                              name='yourinfoconsultaionfor'
                             >
-                              Subscribe
+                              <option disabled={true} value={''}>
+                                Select
+                              </option>
+                              <Diseases />
+                            </select>
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Current Medication
+                              <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Current Medication'
+                              type='text'
+                              // value={
+                              //   allValues?.yourinfosetcurrentmedication
+                              // }
+                              // onChange={changeHandler}
+                              name='yourinfosetcurrentmedication'
+                            />
+                          </div>
+                          <div className='col-md-12'>
+                            <label>
+                              Reason for Geo'Genetic{' '}
+                              <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Reason for Consultation'
+                              // value={allValues?.yourinforeason}
+                              // onChange={changeHandler}
+                              name='yourinforeason'
+                            />
+                          </div>
+                          <div className='col-md-12'>
+                            <label>
+                              Current Diagnoses (provided by MD)
+                              <span className='red'>*</span>
+                            </label>
+                            <textarea
+                              className='form-control'
+                              id='exampleFormControlTextarea1'
+                              placeholder='Message'
+                              rows={5}
+                              // value={allValues?.yourinfodiagnosis}
+                              // onChange={changeHandler}
+                              name='yourinfodiagnosis'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Upload Valid Government Issued ID{' '}
+                              <span className='red'>*</span>
+                            </label>
+                            <input
+                              type='file'
+                              name
+                              id='govt-id'
+                              // accept='application/pdf,application/vnd.ms-excel'
+                              // onChange={filedocsHandler2}
+                              className='form-control'
+                            />
+                            <label
+                              htmlFor='govt-id'
+                              className='d-block id-upload'
+                            >
+                              {/* {allValues?.yourinfodoc_schedule
+                                          ?.name ? (
+                                          <i className='fas fa-file-upload fa-2x' />
+                                        ) : (
+                                          <i className='fas fa-upload fa-2x' />
+                                        )} */}
+                            </label>
+                          </div>
+                          <div className='col-12 text-right'>
+                            <Link to='#' className='red-link'>
+                              Redeem Coupon
                             </Link>
-                          </>
-                        )}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

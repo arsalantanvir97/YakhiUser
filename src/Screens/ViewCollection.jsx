@@ -12,6 +12,7 @@ import UnauthorizedAlert from '../components/UnauthorizedAlert'
 import InputNumber from '../components/InputNumber'
 import { CreateWishList } from '../hooks/WishList'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 let allcategoryofProducts = []
 const ViewCollection = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
@@ -106,6 +107,8 @@ const ViewCollection = ({ history, match }) => {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-11 mx-auto'>
+              <ToggleBack name={'Products'} />
+
               <div className='row justify-content-center my-5 py-5'>
                 <div className='col-lg-3 col-md-10'>
                   <button

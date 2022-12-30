@@ -1045,7 +1045,7 @@
 }
 @media screen and (max-width: 695px) {
     .main-banner {
-        min-height: 247px;
+        min-height: 249px;
         background-size: contain;
       }
 }
@@ -1415,9 +1415,9 @@
     .utb{
         margin: 0;
     }
-    .btn-main a{
+    /* .btn-main a{
 display: block !important;
-    }
+    } */
 }
 @media screen and (max-width: 520px) {
     .main-banner {

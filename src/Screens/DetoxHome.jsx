@@ -11,6 +11,7 @@ import Header from '../components/Header'
 import UnauthorizedAlert from '../components/UnauthorizedAlert'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import AllHerbs from '../components/AllHerbs'
+import ToggleBack from '../components/ToggleBack'
 
 const DetoxHome = ({ history }) => {
   const dispatch = useDispatch()
@@ -42,6 +43,7 @@ const DetoxHome = ({ history }) => {
       <div className='container-fluid my-1 py-1' id='detox'>
         <div className='row'>
           <div className='col-11 mx-auto'>
+            <ToggleBack name={'Detox Home'} />
             {/* who is this program for */}
             <div className='row align-items-center mb-5 pb-5'>
               <div className='col-md-5'>

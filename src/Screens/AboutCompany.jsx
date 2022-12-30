@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ToggleBack from '../components/ToggleBack'
 const AboutCompany = () => {
   return (
     <>
@@ -12,18 +14,19 @@ const AboutCompany = () => {
       <div>
         <div className='container-fluid my-1 py-1'>
           <div className='row'>
-            <h4
-              className='sub-heading'
-              style={{
-                width: '100%',
-                textAlign: 'center',
-                marginBottom: 4,
-                fontSize: window.innerWidth < 590 && 14,
-              }}
-            >
-              Yah'ki Awakened Eye of Lotus Botanical Health Club
-            </h4>
             <div className='col-11 mx-auto'>
+              <ToggleBack name={'About Company'} />
+              <h4
+                className='sub-heading'
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  marginBottom: 4,
+                  fontSize: window.innerWidth < 590 && 14,
+                }}
+              >
+                Yah'ki Awakened Eye of Lotus Botanical Health Club
+              </h4>
               <div className='about-company'>
                 <div className='row justify-content-center align-items-center'>
                   <div className='col-xl-6 col-10'>
