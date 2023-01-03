@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 import { userMemberAction } from '../actions/userAction'
 import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
-import Footer from '../components/Footer'
+import Select from 'react-select'
+
+import csc from 'country-state-city'
 import FooterHeader from '../components/FooterHeader'
-import Header from '../components/Header'
+import Autocomplete from '../components/Autocomplete'
 import InputNumber from '../components/InputNumber'
 import InputPhone from '../components/InputPhone'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
@@ -16,12 +18,69 @@ import ToggleBack from '../components/ToggleBack'
 import api from '../utils/api'
 import Toasty from '../utils/toast'
 let filee = ''
-const Memberships = ({ history }) => {
+const Memberships = ({
+  pathname,
+  onSubmit,
+  handleStep,
+  handleChange,
+  setFormState,
+  formState,
+  history,
+}) => {
+  const [formData, setformData] = useState({
+    country: '',
+    state: null,
+    city: null,
+    country2: '',
+    state2: null,
+    city2: null,
+  })
   const dispatch = useDispatch()
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const countries = csc.getAllCountries()
+
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.id,
+    ...country,
+  }))
+  const [address, setaddress] = useState('')
+  const [geolocation, setgeolocation] = useState([])
+
+  const updatedStates = (countryId) =>
+    csc
+      .getStatesOfCountry(countryId)
+      .map((state) => ({ label: state.name, value: state.id, ...state }))
+  const updatedCities = (stateId) =>
+    csc
+      .getCitiesOfState(stateId)
+      .map((city) => ({ label: city.name, value: city.id, ...city }))
+  const handleLocation = (
+    latitude,
+    longitude,
+    address,
+    city,
+    state,
+    country,
+    zip_code
+  ) => {
+    console.log(
+      'handleLocation',
+      latitude,
+      longitude,
+      address,
+      city,
+      state,
+      country,
+      zip_code
+    )
+
+    setaddress(address)
+    setgeolocation([latitude, longitude])
+  }
   const [allValues, setAllValues] = useState({
     firstName: '',
     lastname: '',
@@ -102,18 +161,6 @@ const Memberships = ({ history }) => {
                           </div>
                           <div className='col-md-6'>
                             <label>
-                              Phone <span className='red'>*</span>
-                            </label>
-                            <InputPhone
-                              unique={true}
-                              uniquevalue={allValues}
-                              name={'phone'}
-                              value={allValues?.phone}
-                              onChange={setAllValues}
-                            />
-                          </div>
-                          <div className='col-md-6'>
-                            <label>
                               Email <span className='red'>*</span>
                             </label>
                             <input
@@ -125,6 +172,19 @@ const Memberships = ({ history }) => {
                               name='email'
                             />
                           </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Phone <span className='red'>*</span>
+                            </label>
+                            <InputPhone
+                              unique={true}
+                              uniquevalue={allValues}
+                              name={'phone'}
+                              value={allValues?.phone}
+                              onChange={setAllValues}
+                            />
+                          </div>
+
                           <div className='col-md-6'>
                             <label>
                               Zip Code <span className='red'>*</span>
@@ -140,19 +200,93 @@ const Memberships = ({ history }) => {
                             />
                           </div>
                           <div className='col-md-6'>
+                            <label htmlFor className='pading-lable'>
+                              Country *
+                            </label>
+                            <Select
+                              id='country'
+                              name='country'
+                              label='country'
+                              options={updatedCountries}
+                              value={formData?.country}
+                              onChange={(value) => {
+                                setformData({
+                                  ...formData,
+                                  country: value,
+                                  state: null,
+                                  city: null,
+                                })
+                                setFormState({
+                                  ...formState,
+                                  sender: {
+                                    ...formState.sender,
+                                    country: value.name,
+                                    state: '',
+                                    city: '',
+                                  },
+                                })
+                              }}
+                            />{' '}
+                          </div>
+
+                          <div className='col-md-6'>
+                            <label htmlFor className='pading-lable'>
+                              State *
+                            </label>
+                            <Select
+                              id='state'
+                              name='state'
+                              options={updatedStates(
+                                formData.country ? formData.country.value : null
+                              )}
+                              value={formData.state}
+                              onChange={(value) => {
+                                setformData({
+                                  ...formData,
+                                  state: value,
+                                  city: null,
+                                })
+                                setFormState({
+                                  ...formState,
+                                  sender: {
+                                    ...formState.sender,
+                                    state: value.name,
+                                    city: '',
+                                  },
+                                })
+                              }}
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label htmlFor className='pading-lable'>
+                              City *
+                            </label>
+                            <Select
+                              id='city'
+                              name='city'
+                              options={updatedCities(
+                                formData.state ? formData.state.value : null
+                              )}
+                              value={formData.city}
+                              onChange={(value) => {
+                                setformData({ ...formData, city: value })
+                                setFormState({
+                                  ...formState,
+                                  sender: {
+                                    ...formState.sender,
+                                    city: value.name,
+                                  },
+                                })
+                              }}
+                            />
+                          </div>
+
+                          <div className='col-md-6'>
                             <label>
-                              Height in meters
+                              Address
                               <span className='red'>*</span>
                             </label>
-                            <InputNumber
-                              // unique={true}
-                              // uniquevalue={allValues}
-                              // name={'yourinfoheight'}
-                              // onChange={setAllValues}
-                              // value={allValues?.yourinfoheight}
-                              // max={1005}
-                              className='form-control'
-                            />
+                            <Autocomplete handleLocation={handleLocation} />
                           </div>
                           <div className='col-md-6'>
                             <label>
