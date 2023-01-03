@@ -95,7 +95,19 @@ const Header = ({ history }) => {
       timer: 1500,
     })
   }
-
+  const redirectHandler = () => {
+    if (userInfo?.ismember == true) {
+      Swal.fire({
+        icon: 'info',
+        title: '',
+        text: 'You are already a member',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } else {
+      history?.push('/Memberships')
+    }
+  }
   return (
     <>
       <section className='menu menuheight'>
@@ -962,9 +974,9 @@ const Header = ({ history }) => {
                       </p>
                       <div className='btn-main'>
                         <Link
-                          to={userInfo ? '/Memberships' : '#'}
+                          to={'#'}
                           onClick={() => {
-                            !userInfo && UnauthorizedAlert()
+                            !userInfo ? UnauthorizedAlert() : redirectHandler()
                           }}
                           className='btn banner-btn aos-init aos-animate mt-3 abccc'
                           data-aos='zoom-in-left'

@@ -298,7 +298,7 @@ const EditProfile = ({ history }) => {
                   <section className='my-cart mt-5'>
                     <div className='row align-items-start'>
                       <div className='col-12 my-4'>
-                        {cartItems?.length > 0 ? <h2>Cart</h2> : null}
+                        <h2>Cart</h2>
                       </div>
 
                       {cartItems?.length > 0 && (
@@ -484,7 +484,7 @@ const EditProfile = ({ history }) => {
                   <section className='my-cart mt-5'>
                     <div className='row align-items-start'>
                       <div className='col-12 my-4'>
-                        {wishtlistuser?.length > 0 && <h2>Wishlist</h2>}
+                        <h2>Wishlist</h2>
                         {/* {wishtlistuser?.length > 0 ? (
                 ) : (
                   <h2>
@@ -512,7 +512,7 @@ const EditProfile = ({ history }) => {
                               </tr>
                             </thead>
                             <tbody>
-                              {wishtlistuser?.length > 0 &&
+                              {wishtlistuser?.length > 0 ? (
                                 wishtlistuser?.map((wish, index) => (
                                   <tr>
                                     <td>
@@ -615,7 +615,16 @@ const EditProfile = ({ history }) => {
                                       </button>
                                     </td>
                                   </tr>
-                                ))}
+                                ))
+                              ) : (
+                                <p
+                                  style={{ textAlign: 'center' }}
+                                  className='mt-4'
+                                >
+                                  {' '}
+                                  WishList Empty
+                                </p>
+                              )}
                             </tbody>
                           </table>
                         </div>
@@ -626,76 +635,85 @@ const EditProfile = ({ history }) => {
               </div>
             </div>
             <div className='container-fluid'>
-              <div className='row px-2'>
-                <div className='col-12'>
-                  <div className='log-table'>
-                    <h2>Orders</h2>
-                    <div className='table-responsive'>
-                      <table className='table table-borderless'>
-                        <thead>
-                          <tr>
-                            <th scope='col'>S.No.</th>
-                            <th scope='col'>Order ID.</th>
-                            <th scope='col'>Order Date</th>
+              <div className='row'>
+                <div className='col-md-11 mx-auto'>
+                  <div className='row align-items-start'>
+                    <div className='col-12 my-4'>
+                      <h2 className='mb-2'>Orders</h2>
+                      <div className='table-responsive'>
+                        <table className='table table-borderless'>
+                          <thead>
+                            <tr>
+                              <th scope='col'>S.No.</th>
+                              <th scope='col'>Order ID.</th>
+                              <th scope='col'>Order Date</th>
 
-                            <th scope='col'>Quantity</th>
-                            <th scope='col'>Amount Paid</th>
-                            <th scope='col'>Order Status</th>
-                            <th scope='col'>Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {orderslogs?.docs?.length > 0 ? (
-                            orderslogs?.docs?.map((ord, index) => (
-                              <tr>
-                                <td>{index + 1}</td>
-                                <td>{ord?._id}</td>
-                                <td>
-                                  {' '}
-                                  {moment.utc(ord?.createdAt).format('LL')}
-                                </td>
+                              <th scope='col'>Quantity</th>
+                              <th scope='col'>Amount Paid</th>
+                              <th scope='col'>Order Status</th>
+                              <th scope='col'>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {orderslogs?.docs?.length > 0 ? (
+                              orderslogs?.docs?.map((ord, index) => (
+                                <tr>
+                                  <td>{index + 1}</td>
+                                  <td>{ord?._id}</td>
+                                  <td>
+                                    {' '}
+                                    {moment.utc(ord?.createdAt).format('LL')}
+                                  </td>
 
-                                <td>{ord?.orderItems?.length}</td>
-                                <td>
-                                  ${ord?.isPaid == false ? 0 : ord?.totalPrice}
-                                </td>
-                                <td>
-                                  <span className='stat-pending'>
-                                    {ord?.status}
-                                  </span>
-                                </td>
-                                <td>
-                                  <div className='dropdown'>
-                                    <button
-                                      className='btn dropdown-toggle action-btn'
-                                      type='button'
-                                      id='dropdownMenuButton'
-                                      data-toggle='dropdown'
-                                      aria-expanded='false'
-                                    >
-                                      <i className='fas fa-ellipsis-v' />
-                                    </button>
-                                    <div
-                                      className='dropdown-menu action-menu'
-                                      aria-labelledby='dropdownMenuButton'
-                                    >
-                                      <Link
-                                        className='dropdown-item'
-                                        to={`/OrderLogDetail/${ord._id}`}
+                                  <td>{ord?.orderItems?.length}</td>
+                                  <td>
+                                    $
+                                    {ord?.isPaid == false ? 0 : ord?.totalPrice}
+                                  </td>
+                                  <td>
+                                    <span className='stat-pending'>
+                                      {ord?.status}
+                                    </span>
+                                  </td>
+                                  <td>
+                                    <div className='dropdown'>
+                                      <button
+                                        className='btn dropdown-toggle action-btn'
+                                        type='button'
+                                        id='dropdownMenuButton'
+                                        data-toggle='dropdown'
+                                        aria-expanded='false'
                                       >
-                                        <i className='fas fa-eye mr-2 grey' />
-                                        View
-                                      </Link>
+                                        <i className='fas fa-ellipsis-v' />
+                                      </button>
+                                      <div
+                                        className='dropdown-menu action-menu'
+                                        aria-labelledby='dropdownMenuButton'
+                                      >
+                                        <Link
+                                          className='dropdown-item'
+                                          to={`/OrderLogDetail/${ord._id}`}
+                                        >
+                                          <i className='fas fa-eye mr-2 grey' />
+                                          View
+                                        </Link>
+                                      </div>
                                     </div>
-                                  </div>
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <p>No Orders</p>
-                          )}
-                        </tbody>
-                      </table>
+                                  </td>
+                                </tr>
+                              ))
+                            ) : (
+                              <p
+                                style={{ textAlign: 'center' }}
+                                className='mt-4'
+                              >
+                                {' '}
+                                No Orders
+                              </p>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -62,7 +62,47 @@ export const userSignUpAction =
       })
     }
   }
+export const becomemember = (body, history) => async (dispatch) => {
+  try {
+    // dispatch({
+    //   type: ADMIN_LOGIN_REQUEST,
+    // })
 
+    const res = await api.post('/user/becomemeber', body)
+
+    console.log('adminLoginActionres', res)
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: res?.data,
+    })
+
+    localStorage.setItem('userInfo', JSON.stringify(res?.data))
+    await Swal.fire({
+      icon: 'success',
+      title: '',
+      text: 'Form Submitted Successfully',
+      showConfirmButton: false,
+      timer: 1500,
+    })
+    history?.replace('/')
+
+    //   else if (res?.status == 400) {
+    //     Toasty("error", res?.data?.message);
+    //     dispatch({
+    //       type: USER_SIGNUP_FAIL,
+    //       payload: res?.data?.message,
+    //     });
+    //   }
+  } catch (error) {
+    console.log('error', error)
+    Toasty('error', 'error?.response?.data?.message')
+
+    dispatch({
+      type: USER_LOGIN_FAIL,
+      payload: error,
+    })
+  }
+}
 export const userLoginAction =
   (email, password, history) => async (dispatch) => {
     try {
