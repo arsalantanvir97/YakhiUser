@@ -83,6 +83,7 @@ const Consultation = ({ history }) => {
   const [phone, setphone] = useState('')
   const [email, setemail] = useState('')
   const [paymentconfirm, setpaymentconfirm] = useState(false)
+  const [amount, setamount] = useState(0)
 
   const [age, setage] = useState('')
   const [height, setheight] = useState('')
@@ -95,6 +96,10 @@ const Consultation = ({ history }) => {
   const [doc_schedule, setdoc_schedule] = useState('')
   const [appointment, setappointment] = useState('')
   const [appointmentdate, setappointmentdate] = useState('')
+  const [paymentinfo, setpaymentinfo] = useState('')
+
+  const [paymentResultData, setpaymentResultData] = useState('')
+  const [paymentResultDetails, setpaymentResultDetails] = useState('')
 
   const [paymentname, setpaymentname] = useState('')
   const [cardnumber, setcardnumber] = useState('')
@@ -187,7 +192,7 @@ const Consultation = ({ history }) => {
         // reason,
         diagnosis,
       }
-      const paymentinfo = { paymentname, cardnumber, expirymonth, expiryyear }
+      // const paymentinfo = { paymentname, cardnumber, expirymonth, expiryyear }
 
       const confirmationinfo = { confirmationname, confirmationpassword }
 
@@ -198,6 +203,11 @@ const Consultation = ({ history }) => {
       formData.append(
         'consultationaddress',
         JSON.stringify(consultationaddress)
+      )
+      formData.append('paymentResultData', JSON.stringify(paymentResultData))
+      formData.append(
+        'paymentResultDetails',
+        JSON.stringify(paymentResultDetails)
       )
 
       // formData.append("weight", product?.weight);
@@ -768,73 +778,113 @@ const Consultation = ({ history }) => {
                               </div>
                               
                             </div> */}
-                            <div
-                              className='form-row'
-                              style={{
-                                justifyContent: 'center',
-                                display: 'flex',
-                                textAlign: 'center',
-                              }}
-                            >
-                              {loading ? (
-                                <i className='fas fa-spinner fa-pulse'></i>
-                              ) : (
-                                <PayPalButton
-                                  amount={100}
-                                  options={{
-                                    clientId:
-                                      'AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey',
-                                    currency: 'USD',
-                                  }}
-                                  createOrder={(data, actions) => {
-                                    return actions.order.create({
-                                      purchase_units: [
-                                        {
-                                          description: 'REZERWACJA',
-                                          amount: {
-                                            currency_code: 'USD',
-                                            value: 100,
-                                          },
-                                        },
-                                      ],
-                                    })
-                                  }}
-                                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                  onSuccess={(details, data) => {
-                                    setpaymentconfirm(true)
-                                    setshowform(
-                                      showform == 4 ? 4 : showform + 1
-                                    )
-                                    console.log('details')
-                                    console.log(details)
-                                    console.log('data')
-                                    console.log(data)
-                                    alert(
-                                      'Transaction completed by ' +
-                                        details.payer.name.given_name
-                                    )
 
-                                    // OPTIONAL: Call your server to save the transaction
-                                    // return fetch("/paypal-transaction-complete", {
-                                    //   method: "post",
-                                    //   body: JSON.stringify({
-                                    //     orderID: data.orderID
-                                    //   })
-                                    // });
-                                  }}
-                                />
-
-                                // <StripeCheckout
-                                //   //  cardnumber={cardnumber}
-                                //   //  cvv={cvv}
-                                //   email={userInfo?.email}
-                                //   //  expirydate={expirydate}
-                                //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                                //   token={handleToken}
-                                //   amount={100 * 100}
-                                // ></StripeCheckout>
-                              )}
-                            </div>
+                            {loading ? (
+                              <i className='fas fa-spinner fa-pulse'></i>
+                            ) : (
+                              <>
+                                {' '}
+                                <div className='row mb-4'>
+                                  <div className='col-md-6'>
+                                    <div className='pricing'>
+                                      <div>
+                                        <input
+                                          type='radio'
+                                          id='html'
+                                          name='fav_language'
+                                          value={100}
+                                          onChanges={() => {
+                                            setamount(100)
+                                          }}
+                                        />
+                                        <label for={100}>
+                                          {' '}
+                                          Normal consultation fee $100
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className='col-md-6'>
+                                    <div className='pricing'>
+                                      <div>
+                                        <input
+                                          type='radio'
+                                          id='html2'
+                                          name='fav_language'
+                                          value={750}
+                                          onChanges={() => {
+                                            setamount(750)
+                                          }}
+                                        />
+                                        <label for={750}>
+                                          {' '}
+                                          Direct consultation with Yah’ki fee
+                                          $750
+                                        </label>{' '}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className='row justify-content-center'>
+                                  <div className='col-md-6'>
+                                    <PayPalButton
+                                      amount={amount}
+                                      options={{
+                                        clientId:
+                                          'AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey',
+                                        currency: 'USD',
+                                      }}
+                                      createOrder={(data, actions) => {
+                                        return actions.order.create({
+                                          purchase_units: [
+                                            {
+                                              description: 'REZERWACJA',
+                                              amount: {
+                                                currency_code: 'USD',
+                                                value: amount,
+                                              },
+                                            },
+                                          ],
+                                        })
+                                      }}
+                                      // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                      onSuccess={(details, data) => {
+                                        setpaymentconfirm(true)
+                                        setshowform(
+                                          showform == 4 ? 4 : showform + 1
+                                        )
+                                        console.log('details')
+                                        console.log(details)
+                                        console.log('data')
+                                        console.log(data)
+                                        alert(
+                                          'Transaction completed by ' +
+                                            details.payer.name.given_name
+                                        )
+                                        setpaymentResultData(data)
+                                        setpaymentResultDetails(details)
+                                        // OPTIONAL: Call your server to save the transaction
+                                        // return fetch("/paypal-transaction-complete", {
+                                        //   method: "post",
+                                        //   body: JSON.stringify({
+                                        //     orderID: data.orderID
+                                        //   })
+                                        // });
+                                      }}
+                                    />
+                                  </div>
+                                </div>
+                              </>
+                              // <StripeCheckout
+                              //   //  cardnumber={cardnumber}
+                              //   //  cvv={cvv}
+                              //   email={userInfo?.email}
+                              //   //  expirydate={expirydate}
+                              //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
+                              //   token={handleToken}
+                              //   amount={100 * 100}
+                              // ></StripeCheckout>
+                            )}
                           </div>
                         </div>
                       </div>

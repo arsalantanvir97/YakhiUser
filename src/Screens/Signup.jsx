@@ -31,7 +31,14 @@ const Signup = ({ history }) => {
     if (emailvalidation == true) {
       setloading(true)
       await dispatch(
-        userSignUpAction(name, email, password, confirmpassword, history)
+        userSignUpAction(
+          name,
+          lastname,
+          email,
+          password,
+          confirmpassword,
+          history
+        )
       )
       setloading(false)
       setemail('')

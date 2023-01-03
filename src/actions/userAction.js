@@ -17,14 +17,21 @@ import {
 } from '../constants/userConstants'
 
 export const userSignUpAction =
-  (name, email, password, confirmpassword, history) => async (dispatch) => {
+  (name, lastName, email, password, confirmpassword, history) =>
+  async (dispatch) => {
     try {
       // dispatch({
       //   type: ADMIN_LOGIN_REQUEST,
       // })
       console.log('adminLoginAction')
 
-      const body = { firstName: name, email, password, confirmpassword }
+      const body = {
+        firstName: name,
+        lastName,
+        email,
+        password,
+        confirmpassword,
+      }
 
       const res = await api.post('/auth/registerUser', body)
 
@@ -255,7 +262,6 @@ export const updateUserInfoAction =
           showConfirmButton: false,
           timer: 1500,
         })
-        history('/')
       }
 
       // else if(res?.status==201){

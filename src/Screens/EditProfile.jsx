@@ -16,6 +16,7 @@ const EditProfile = ({ history }) => {
   const [orderslogs, setorderslogs] = useState('')
 
   const [firstName, setfirstName] = useState()
+  const [lastName, setlastName] = useState()
 
   const [email, setemail] = useState()
   const [wishtlistuser, setwishtlistuser] = useState([])
@@ -50,6 +51,7 @@ const EditProfile = ({ history }) => {
   useEffect(() => {
     if (userInfo) {
       setfirstName(userInfo?.firstName)
+      setlastName(userInfo?.lastName)
       setimage(userInfo?.userImage)
       setemail(userInfo?.email)
     }
@@ -66,6 +68,7 @@ const EditProfile = ({ history }) => {
         const formData = new FormData()
         formData.append('user_image', image)
         formData.append('firstName', firstName)
+        formData.append('lastName', lastName)
         formData.append('email', email)
 
         const body = formData
@@ -219,7 +222,26 @@ const EditProfile = ({ history }) => {
                                   <p>{firstName}</p>
                                 )}
                               </div>
-
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Last Name:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                {is_edit ? (
+                                  <input
+                                    type='text'
+                                    className='form-control cutum-input'
+                                    id='exampleInputEmail1'
+                                    aria-describedby='emailHelp'
+                                    placeholder='Last Name'
+                                    value={lastName}
+                                    onChange={(e) => {
+                                      setlastName(e.target.value)
+                                    }}
+                                  />
+                                ) : (
+                                  <p>{lastName}</p>
+                                )}
+                              </div>
                               <div className='col-md-6 col-12 text-left mb-3 lablename'>
                                 <label htmlFor>Email Address:</label>
                               </div>

@@ -9,17 +9,59 @@ import ToggleBack from '../components/ToggleBack'
 const data = [
   {
     name: 'Godis Kawah',
-    title:
-      'Herbalist - Counselor - Aromatherapist - Detoxification Specialist - Processing and Shipping',
+    title: 'Master Herbalist',
     // email: 'kawah@yahkiawakened.com',
     image: 'images/Kawah-Ashyet.png',
   },
   {
     name: 'RUBY FOSTER',
+    title: 'Warehouse Manager',
+    // email: "candice@yahkiawakened.com",
+    image: 'images/MOMS RUBY (2).jpg',
+  },
+  {
+    name: 'Cierra',
+    title: '-Lead Herbalist and Supervisor',
+    // email: "candice@yahkiawakened.com",
+    image: 'images/Cierra.png',
+  },
+  {
+    name: 'Nandi',
+    title: 'Lead Shipping and Processer',
+    // email: "candice@yahkiawakened.com",
+    image: 'images/NANDI.jpg',
+  },
+  {
+    name: 'Jazz',
+    title: 'Herbal Associate & Processer',
+    // email: "candice@yahkiawakened.com",
+    image: 'images/JAZZ (1).jpg',
+  },
+  {
+    name: 'Twanna',
+    title: 'Herbal Associate & Processer',
+    // email: "candice@yahkiawakened.com",
+    image: 'images/TUWANNA (1).jpg',
+  },
+  {
+    name: 'CANDICE',
+    title: '-Hernal Associate & Processer',
+    // email: 'candice@yahkiawakened.com',
+    image: 'images/Candice-Nelson.png',
+  },
+  {
+    name: 'Jason (Yadin)',
     title:
-      'Counselor - Processing and Shipping - Detoxification SpeciaAdministrative Assistantlist',
+      'Production Manager - Videographer-Photographer - GraphicDesigner - Content Creator',
+    // email: "candice@yahkiawakened.com",
+    image: 'images/JASON (1).jpg',
+  },
+
+  {
+    name: 'Nabi',
+    title: 'Yahki Tour & Event Manager',
     // email: 'claims@yahkiawakened.com',
-    image: 'images/Ruby-Foster.png',
+    image: 'images/nabi.png',
   },
   // {
   //   name: "ANIYAH AWAKENED",
@@ -28,56 +70,12 @@ const data = [
   //   email: "AniYah@yahkiawakened.com",
   //   image: "images/Aniyah-bw.jpg"
   // },
-  {
-    name: 'CANDICE NELSON',
-    title:
-      'Counselor - Prayer - Motivational Speaker - Processing and Shipping - Computer Tech',
-    // email: 'candice@yahkiawakened.com',
-    image: 'images/Candice-Nelson.png',
-  },
-  {
-    name: 'Jason (Yadin)',
-    title:
-      'Production Manager - Videographer - Photographer - Graphic Designer - Content Creator',
-    // email: "candice@yahkiawakened.com",
-    image: 'images/JASON (1).jpg',
-  },
-  {
-    name: 'Jazz',
-    title: 'Processor',
-    // email: "candice@yahkiawakened.com",
-    image: 'images/JAZZ (1).jpg',
-  },
-  {
-    name: 'Antonio',
-    title: 'Counselor - Consultant - Detoxification Specialist',
-    // email: "candice@yahkiawakened.com",
-    image: 'images/ANTONIO (1).jpg',
-  },
-  {
-    name: 'Twanna',
-    title: 'Processor',
-    // email: "candice@yahkiawakened.com",
-    image: 'images/TUWANNA (1).jpg',
-  },
-  {
-    name: 'Nandi',
-    title: 'Herbalist - Processing Manager',
-    // email: "candice@yahkiawakened.com",
-    image: 'images/NANDI.jpg',
-  },
-  {
-    name: 'Cierra',
-    title: 'Shipping & Processing',
-    // email: "candice@yahkiawakened.com",
-    image: 'images/Cierra.png',
-  },
-  {
-    name: 'Godis Ruby',
-    title: 'Warehouse Production Manager',
-    // email: "candice@yahkiawakened.com",
-    image: 'images/MOMS RUBY (2).jpg',
-  },
+  // {
+  //   name: 'Antonio',
+  //   title: 'Counselor - Consultant - Detoxification Specialist',
+  //   // email: "candice@yahkiawakened.com",
+  //   image: 'images/ANTONIO (1).jpg',
+  // },
 ]
 
 const MeettheTeam = () => {

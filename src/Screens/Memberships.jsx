@@ -21,43 +21,29 @@ const Memberships = ({ history }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
-  const [firstname, setfirstname] = useState('')
-  const [lastname, setlastname] = useState('')
 
   const [allValues, setAllValues] = useState({
-    signature: '',
+    firstName: '',
+    lastname: '',
+    email: '',
+    phone: '',
+    address: '',
+    zipcode: '',
+    country: '',
+
+    city: '',
+    state: '',
+    dob: '',
+    hearaboutus: '',
+    termsservices: '',
+    privacypolicy: '',
+    membershipstatus: '',
   })
-  const subscriptionHandler = async () => {
-    // fetch(allValues?.signature)
-    //   .then((res) => res.blob())
-    //   .then((blob) => {
-    //     filee = new File([blob], 'File name', { type: 'image/png' })
-    //     console.log('abc', filee)
-    //   })
-
-    const dataUrlToFile = async (dataUrl, fileName, mimeType) => {
-      const res = await axios(dataUrl)
-      const blob = res.data
-      return new File([blob], fileName, { type: mimeType })
-    }
-    filee = await dataUrlToFile(
-      allValues?.signature,
-      `${Math.floor(10000 + Math.random() * 900000)}.png`,
-      'image/png'
-    )
-
-    console.log('filee', filee)
-    try {
-      const formData = new FormData()
-
-      formData.append('user_image', filee)
-      // formData.append('firstName', firstName)
-      // formData.append('email', email)
-      const body = formData
-      await dispatch(userMemberAction(body, history))
-
-      // const res = await api.post('/user/becomemeber', body)
-    } catch (error) {}
+  const changeHandler = (e, namee) => {
+    setAllValues({
+      ...allValues,
+      [namee ? namee : e.target.name]: namee ? e : e.target.value,
+    })
   }
   useEffect(() => {
     console.log('allValues', allValues)
@@ -96,9 +82,9 @@ const Memberships = ({ history }) => {
                               className='form-control'
                               placeholder='Enter First Name'
                               type='text'
-                              // value={allValues?.yourinfofirstName}
-                              // onChange={changeHandler}
-                              name='yourinfofirstName'
+                              value={allValues?.firstName}
+                              onChange={changeHandler}
+                              name='firstName'
                             />
                           </div>
                           <div className='col-md-6'>
@@ -109,9 +95,9 @@ const Memberships = ({ history }) => {
                               className='form-control'
                               placeholder='Enter Last Name'
                               type='text'
-                              // value={allValues?.yourinfolastName}
-                              // onChange={changeHandler}
-                              name='yourinfolastName'
+                              value={allValues?.lastname}
+                              onChange={changeHandler}
+                              name='lastname'
                             />
                           </div>
                           <div className='col-md-6'>
@@ -119,11 +105,11 @@ const Memberships = ({ history }) => {
                               Phone <span className='red'>*</span>
                             </label>
                             <InputPhone
-                            // unique={true}
-                            // uniquevalue={allValues}
-                            // name={'yourinfophone'}
-                            // value={allValues?.yourinfophone}
-                            // onChange={setAllValues}
+                              unique={true}
+                              uniquevalue={allValues}
+                              name={'phone'}
+                              value={allValues?.phone}
+                              onChange={setAllValues}
                             />
                           </div>
                           <div className='col-md-6'>
@@ -134,22 +120,22 @@ const Memberships = ({ history }) => {
                               className='form-control'
                               placeholder='Enter Email'
                               type='email'
-                              // value={allValues?.yourinfoemail}
-                              // onChange={changeHandler}
-                              name='yourinfoemail'
+                              value={allValues?.email}
+                              onChange={changeHandler}
+                              name='email'
                             />
                           </div>
                           <div className='col-md-6'>
                             <label>
-                              Age <span className='red'>*</span>
+                              Zip Code <span className='red'>*</span>
                             </label>
                             <InputNumber
-                              // unique={true}
-                              // uniquevalue={allValues}
-                              // name={'yourinfoage'}
-                              // onChange={setAllValues}
-                              // value={allValues?.yourinfoage}
-                              // max={105}
+                              unique={true}
+                              uniquevalue={allValues}
+                              name={'zipcode'}
+                              onChange={setAllValues}
+                              value={allValues?.zipcode}
+                              max={105}
                               className='form-control'
                             />
                           </div>
