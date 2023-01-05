@@ -69,7 +69,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     yourinfoethnicity: shippingAddress?.yourinfoethnicity,
     yourinfoconsultaionfor: shippingAddress?.yourinfoconsultaionfor,
     yourinfosetcurrentmedication: shippingAddress?.yourinfosetcurrentmedication,
-    yourinforeason: shippingAddress?.yourinforeason,
+    // yourinforeason: shippingAddress?.yourinforeason,
     yourinfodiagnosis: shippingAddress?.yourinfodiagnosis,
     yourinfodoc_schedule: shippingAddress?.yourinfodoc_schedule,
 
@@ -166,7 +166,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
           yourinfoethnicity: allValues?.yourinfoethnicity,
           yourinfoconsultaionfor: allValues?.yourinfoconsultaionfor,
           yourinfosetcurrentmedication: allValues?.yourinfosetcurrentmedication,
-          yourinforeason: allValues?.yourinforeason,
+          // yourinforeason: allValues?.yourinforeason,
           yourinfodiagnosis: allValues?.yourinfodiagnosis,
           yourinfodoc_schedule: allValues?.yourinfodoc_schedule?.name,
 
@@ -553,7 +553,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         name='yourinfosetcurrentmedication'
                                       />
                                     </div>
-                                    <div className='col-md-12'>
+                                    {/* <div className='col-md-12'>
                                       <label>
                                         Reason for Geo'Genetic{' '}
                                         <span className='red'>*</span>
@@ -565,7 +565,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         onChange={changeHandler}
                                         name='yourinforeason'
                                       />
-                                    </div>
+                                    </div> */}
                                     <div className='col-md-12'>
                                       <label>
                                         Current Diagnoses (provided by MD)
@@ -1771,7 +1771,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                           allValues?.yourinfoethnicity &&
                           allValues?.yourinfoconsultaionfor &&
                           allValues?.yourinfosetcurrentmedication &&
-                          allValues?.yourinforeason &&
+                          // allValues?.yourinforeason &&
                           allValues?.yourinfodiagnosis
                             ? inctogglehandler()
                             : togglecheckout == 1 &&

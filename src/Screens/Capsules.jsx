@@ -18,6 +18,10 @@ import { ListSkeleton } from '../components/MultipleSkeleton'
 import { CreateWishList } from '../hooks/WishList'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
+import { Parser } from 'html-to-react'
+
+const htmlToReactParser = new Parser()
+
 let categories = [
   { name: `Geo'Genetic Therapy`, id: '6242c50b11f7d01b4e81f96c' },
   { name: `Teas & 3 Bitters`, id: '624160071b97a530529276b7' },
@@ -60,6 +64,7 @@ const Capsules = ({ history, match }) => {
   const [pricefrom, setpricefrom] = useState()
   const [priceto, setpriceto] = useState()
   const [allofcategory, setallofcategory] = useState([])
+  const [geogeneticstext, setgeogeneticstext] = useState('')
 
   const [productlogs, setproductlogs] = useState('')
   const [renderproductcategories, setrenderproductcategories] = useState([])
@@ -100,6 +105,9 @@ const Capsules = ({ history, match }) => {
       localStorage.getItem('wishlist') &&
         JSON.parse(localStorage.getItem('wishlist'))
     )
+    const rses = await api.get(`/product/geoGeneticsText`)
+    setgeogeneticstext(rses?.data?.geogeneticstext?.text)
+    console.log('rses', rses)
   }
 
   const getProducts = async () => {
@@ -246,6 +254,26 @@ const Capsules = ({ history, match }) => {
             <div className='col-11 mx-auto'>
               <ToggleBack name={categories[index]?.name} />
               <div className='row justify-content-center  py-5'>
+                {match?.params?.id == '6242c50b11f7d01b4e81f96c' && (
+                  <>
+                    <div className='container'>
+                      <div class='row'>
+                        <div class='col-12'>
+                          <h3
+                            style={{ textAlign: 'center' }}
+                            class='protocol-heading maroon mb-2'
+                          >
+                            GEO'GENETICS HERBAL THERAPY
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div className='row  mb-5 intro-geo'>
+                        {htmlToReactParser.parse(geogeneticstext)}
+                      </div>
+                    </div>
+                  </>
+                )}
                 <div className='col-lg-3 col-md-10'>
                   <button
                     className='btn btn-categories'

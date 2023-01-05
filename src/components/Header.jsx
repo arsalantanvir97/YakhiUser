@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../actions/userAction'
 import { userEmailLoginAction } from '../actions/userAction'
@@ -30,7 +30,9 @@ let categories = [
     id: '6241607a1b97a530529276c3',
   },
 ]
-const Header = ({ history }) => {
+const Header = () => {
+  let history = useHistory()
+
   const dispatch = useDispatch()
   const [category, setcategory] = useState(() => {
     return (
@@ -105,6 +107,7 @@ const Header = ({ history }) => {
         timer: 1500,
       })
     } else {
+      console.log('abcccc213')
       history?.push('/Memberships')
     }
   }

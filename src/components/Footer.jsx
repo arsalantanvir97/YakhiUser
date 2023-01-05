@@ -110,7 +110,12 @@ const Footer = () => {
                     </div>
                     <ul className='mt-4 list-inline'>
                       <li className='list-inline-item'>
-                        <div className='social-icon face-icon'>
+                        <div
+                          className='social-icon face-icon'
+                          onClick={() =>
+                            openInNewTab('https://www.facebook.com/YahkiEl')
+                          }
+                        >
                           <Link
                             to='#'
                             onClick={() =>
@@ -122,7 +127,14 @@ const Footer = () => {
                         </div>
                       </li>
                       <li className='list-inline-item'>
-                        <div className='social-icon  msg-icon'>
+                        <div
+                          className='social-icon  msg-icon'
+                          onClick={() =>
+                            openInNewTab(
+                              'https://mobile.twitter.com/YahkiAwakened'
+                            )
+                          }
+                        >
                           <Link
                             to='#'
                             onClick={() =>
@@ -136,7 +148,14 @@ const Footer = () => {
                         </div>
                       </li>
                       <li className='list-inline-item'>
-                        <div className='social-icon insta-icon'>
+                        <div
+                          className='social-icon insta-icon'
+                          onClick={() =>
+                            openInNewTab(
+                              'https://www.instagram.com/yahkiawakened/?hl=en'
+                            )
+                          }
+                        >
                           <Link
                             to='#'
                             onClick={() =>
@@ -150,7 +169,14 @@ const Footer = () => {
                         </div>
                       </li>
                       <li className='list-inline-item'>
-                        <div className='social-icon youtube-icon'>
+                        <div
+                          className='social-icon youtube-icon'
+                          onClick={() =>
+                            openInNewTab(
+                              'https://www.youtube.com/@yahkiawakened'
+                            )
+                          }
+                        >
                           <Link
                             to='#'
                             onClick={() =>
@@ -164,7 +190,14 @@ const Footer = () => {
                         </div>
                       </li>
                       <li className='list-inline-item'>
-                        <div className='social-icon envelope-icon'>
+                        <div
+                          className='social-icon envelope-icon'
+                          onClick={() =>
+                            openInNewTab(
+                              'https://www.tiktok.com/@yahkiawakened?lang=en'
+                            )
+                          }
+                        >
                           <Link
                             to='#'
                             onClick={() =>

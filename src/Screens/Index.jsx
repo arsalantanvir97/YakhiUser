@@ -38,6 +38,9 @@ const Index = ({ history }) => {
   const [allofcategory, setallofcategory] = useState([])
 
   const [selectedproduct, setselectedproduct] = useState('')
+  const [videouri, setvideouri] = useState('')
+  const [thumbnail, setthumbnail] = useState('')
+
   const [featuredproducts, setfeaturedproducts] = useState([])
   const [bitternadelement, setbitternadelement] = useState([])
   const [herbalproducts, setherbalproducts] = useState([
@@ -148,6 +151,13 @@ const Index = ({ history }) => {
       await setbitternadelement(ress?.data?.product)
       console.log('ressss', ress)
       setproduct(res?.data?.products)
+      const res2 = await axios({
+        url: `${baseURL}/auth/getVideo`,
+        method: 'GET',
+      })
+      console.log('res2', res2)
+      setvideouri(res2?.data?.video?.video)
+      setthumbnail(res2?.data?.video?.thumbnail)
     } catch (err) {
       console.log(err)
       setloading(false)
@@ -1146,13 +1156,34 @@ const Index = ({ history }) => {
             data-aos-duration={3000}
             style={{ width: 540, height: 405 }}
           >
-            <iframe
+            {/* <iframe
               width='100%'
               height='100%'
               frameborder='0'
               allowfullscreen
               src='https://drive.google.com/file/d/1RbLabw2qJkQUjo0Yykuyheyo4EiZ7K65/preview'
-            ></iframe>
+            ></iframe> */}
+            {videouri?.length > 0 && (
+              <video
+                width='100%'
+                height='100%'
+                poster={`${imageURL}${thumbnail}`}
+                controls
+              >
+                <source src={`${imageURL}${videouri}`} type='video/mp4' />
+                Your browser does not support HTML video.
+              </video>
+            )}
+            {/* <iframe
+              src=' https://www.veed.io/view/d348e815-0300-47dd-95c4-89187db63a63?sharingWidget=true&panel=share'
+              width='744'
+              height='504'
+              frameborder='0'
+              title='YAHKI WEBSITE COMMERCIAL.mp4'
+              webkitallowfullscreen
+              mozallowfullscreen
+              allowfullscreen
+            ></iframe> */}
 
             {/* <img
               src="images/Yahki-awakened-welcome-image.jpg"

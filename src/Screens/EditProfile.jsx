@@ -203,7 +203,7 @@ const EditProfile = ({ history }) => {
                           )} */}
                             <div className='row detail-row d-flex align-items-center justify-content-around px-3'>
                               <div className='col-md-6 col-12 text-left mb-3 lablename'>
-                                <label htmlFor>Full Name:</label>
+                                <label htmlFor>First Name:</label>
                               </div>
                               <div className='col-md-6 col-12 text-left mb-3'>
                                 {is_edit ? (
@@ -262,7 +262,17 @@ const EditProfile = ({ history }) => {
                                   <p>{email}</p>
                                 )}
                               </div>
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Account Created At:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <p>
+                                  {' '}
+                                  {moment.utc(userInfo?.createdAt).format('LL')}
+                                </p>
+                              </div>
                             </div>
+
                             <div className='row detail-row d-flex align-items-center mb-1'>
                               <div className='col-12'>
                                 {!loading ? (
