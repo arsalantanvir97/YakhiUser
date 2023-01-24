@@ -45,10 +45,11 @@ const Faqs = () => {
       <div className='container-fluid py-3 my-5'>
         <div className='row'>
           <div className='col-11 mx-auto'>
-            <ToggleBack name={'Faqs'} />
             <section className='faqs-video'>
               <div className='row'>
-                <div className='col-12 text-center'>
+                <ToggleBack name={'Faqs'} />
+
+                <div className='col-12 text-center mt-3'>
                   <h2>For Membership Assistance, Watch the Video Below</h2>
                   <div style={{ height: 18 }}></div>
                   <div className=''>

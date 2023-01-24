@@ -3949,6 +3949,10 @@ select#timeZone {
     word-break: break-all;
 }
 
+.checkout-form .styles_container__fuGqJ {
+  height: 100%;
+}
+
 p.adrs {
   font-size: 18px;
   font-family: "Jost", sans-serif;

@@ -19,6 +19,7 @@ import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
 import ToggleBack from '../components/ToggleBack'
+import addPayPalScript from '../utils/addPayPalScript'
 let showformm = 1
 let timings = [
   { time: '12:00 am' },
@@ -70,12 +71,14 @@ let timings = [
   { time: '11:00 pm' },
   { time: '11:30 pm' },
 ]
+
 const Consultation = ({ history }) => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   const [loading, setloading] = useState(false)
+  const [clientid, setclientid] = useState('')
 
   const [showform, setshowform] = useState(1)
   const [firstName, setfirstName] = useState('')
@@ -100,6 +103,7 @@ const Consultation = ({ history }) => {
 
   const [paymentResultData, setpaymentResultData] = useState('')
   const [paymentResultDetails, setpaymentResultDetails] = useState('')
+  const [sdkReady, setSdkReady] = useState(false)
 
   const [paymentname, setpaymentname] = useState('')
   const [cardnumber, setcardnumber] = useState('')
@@ -116,8 +120,11 @@ const Consultation = ({ history }) => {
     setdoc_schedule(e?.target?.files[0])
   }
   useEffect(() => {
-    console.log('consultaionfor', consultaionfor)
-  }, [consultaionfor])
+    console.log('clientid', clientid)
+  }, [clientid])
+  useEffect(() => {
+    addPayPalScript({ setclientid, setSdkReady })
+  }, [])
 
   const saveConsultationAddressHandler = async () => {
     if (
@@ -821,51 +828,52 @@ const Consultation = ({ history }) => {
                             </div>
                             <div className='row justify-content-center'>
                               <div className='col-md-6'>
-                                <PayPalButton
-                                  amount={amount}
-                                  options={{
-                                    clientId:
-                                      'AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey',
-                                    currency: 'USD',
-                                  }}
-                                  createOrder={(data, actions) => {
-                                    return actions.order.create({
-                                      purchase_units: [
-                                        {
-                                          description: 'REZERWACJA',
-                                          amount: {
-                                            currency_code: 'USD',
-                                            value: amount,
+                                {sdkReady && (
+                                  <PayPalButton
+                                    amount={amount}
+                                    options={{
+                                      clientId: clientid,
+                                      currency: 'USD',
+                                    }}
+                                    createOrder={(data, actions) => {
+                                      return actions.order.create({
+                                        purchase_units: [
+                                          {
+                                            description: 'REZERWACJA',
+                                            amount: {
+                                              currency_code: 'USD',
+                                              value: amount,
+                                            },
                                           },
-                                        },
-                                      ],
-                                    })
-                                  }}
-                                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                  onSuccess={(details, data) => {
-                                    setpaymentconfirm(true)
-                                    setshowform(
-                                      showform == 4 ? 4 : showform + 1
-                                    )
-                                    console.log('details')
-                                    console.log(details)
-                                    console.log('data')
-                                    console.log(data)
-                                    alert(
-                                      'Transaction completed by ' +
-                                        details.payer.name.given_name
-                                    )
-                                    setpaymentResultData(data)
-                                    setpaymentResultDetails(details)
-                                    // OPTIONAL: Call your server to save the transaction
-                                    // return fetch("/paypal-transaction-complete", {
-                                    //   method: "post",
-                                    //   body: JSON.stringify({
-                                    //     orderID: data.orderID
-                                    //   })
-                                    // });
-                                  }}
-                                />
+                                        ],
+                                      })
+                                    }}
+                                    // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                    onSuccess={(details, data) => {
+                                      setpaymentconfirm(true)
+                                      setshowform(
+                                        showform == 4 ? 4 : showform + 1
+                                      )
+                                      console.log('details')
+                                      console.log(details)
+                                      console.log('data')
+                                      console.log(data)
+                                      alert(
+                                        'Transaction completed by ' +
+                                          details.payer.name.given_name
+                                      )
+                                      setpaymentResultData(data)
+                                      setpaymentResultDetails(details)
+                                      // OPTIONAL: Call your server to save the transaction
+                                      // return fetch("/paypal-transaction-complete", {
+                                      //   method: "post",
+                                      //   body: JSON.stringify({
+                                      //     orderID: data.orderID
+                                      //   })
+                                      // });
+                                    }}
+                                  />
+                                )}
                               </div>
                             </div>
                           </>

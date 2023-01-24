@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const EmptyWishList = () => {
+const EmptyAppointment = () => {
   return (
     <>
-      <div className='wishlist-box'>
+      <div className='wishlist-box mb-3'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           data-name='Layer 1'
@@ -191,7 +191,7 @@ const EmptyWishList = () => {
             fill='#3f3d56'
           />
         </svg>
-        <p>Your Wishlist is Empty</p>
+        <p>No Appointment found</p>
         <Link to='/' className='btn banner-btn mt-3 abccc'>
           go back
         </Link>
@@ -200,4 +200,4 @@ const EmptyWishList = () => {
   )
 }
 
-export default EmptyWishList
+export default EmptyAppointment

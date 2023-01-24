@@ -20,6 +20,7 @@ import SezzleWidget from 'sezzle-react-widget'
 import { AcceptHosted, FormComponent, FormContainer } from 'react-authorize-net'
 import Loader from '../components/Loader'
 import Toasty from '../utils/toast'
+import addPayPalScript from '../utils/addPayPalScript'
 
 const OrderLogDetail = ({ match, history }) => {
   const dispatch = useDispatch()
@@ -38,21 +39,6 @@ const OrderLogDetail = ({ match, history }) => {
     getSingleOrder()
     dispatch(resetOrder())
   }, [])
-
-  const addPayPalScript = async () => {
-    console.log('addPayPalScript', addPayPalScript)
-    const { data: clientId } = await axios.get(`${baseURL}/config/paypal`)
-    console.log()
-    setclientid(clientId)
-    const script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
-    script.async = true
-    script.onload = () => {
-      setSdkReady(true)
-    }
-    document.body.appendChild(script)
-  }
 
   const getSingleOrder = async () => {
     try {
@@ -76,7 +62,7 @@ const OrderLogDetail = ({ match, history }) => {
           res?.data?.paymentMethod?.paymentmethod == 'paypal'
         ) {
           console.log('ressss2')
-          addPayPalScript()
+          addPayPalScript({ setclientid, setSdkReady })
         } else {
           setSdkReady(true)
         }

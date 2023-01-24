@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InnerPageBanner from './InnerPageBanner'
 import StripeCheckout from 'react-stripe-checkout'
 import { PayPalButton } from 'react-paypal-button-v2'
@@ -17,45 +17,20 @@ import Footer from '../components/Footer'
 import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
+import addPayPalScript from '../utils/addPayPalScript'
 
 const Donate = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
   const [amount, setamount] = useState(0)
   const [notes, setnotes] = useState('')
+  const [clientid, setclientid] = useState('')
 
-  async function handleToken(token) {
-    let product = Number(amount)
-    console.log('product', product)
-    const config = {
-      header: {
-        Authorization: 'Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V',
-      },
-    }
-    const response = await axios.post(
-      `${baseURL}/checkout`,
-      { token, product },
-      config
-    )
-    console.log('response', response)
-    const { status } = response.data
-    Swal.fire({
-      icon: 'success',
-      title: '',
-      text: 'Donation done Successfully',
-      showConfirmButton: false,
-      timer: 1500,
-    })
-    console.log(
-      'res',
-      response.data.id,
-      response.data.status,
-      response.headers.date,
-      response.data.receipt_email
-    )
-    setamount('')
-    setnotes('')
-  }
+  const [sdkReady, setSdkReady] = useState(false)
+
+  useEffect(() => {
+    addPayPalScript({ setclientid, setSdkReady })
+  }, [])
   return (
     <>
       <Header />
@@ -180,45 +155,46 @@ const Donate = () => {
                             className='img-fluid'
                           />
                         </div>
-                        <PayPalButton
-                          options={{
-                            clientId:
-                              'AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey',
-                            currency: 'USD',
-                          }}
-                          createOrder={(data, actions) => {
-                            return actions.order.create({
-                              purchase_units: [
-                                {
-                                  description: 'REZERWACJA',
-                                  amount: {
-                                    currency_code: 'USD',
-                                    value: 100,
+                        {sdkReady && (
+                          <PayPalButton
+                            options={{
+                              clientId: clientid,
+                              currency: 'USD',
+                            }}
+                            createOrder={(data, actions) => {
+                              return actions.order.create({
+                                purchase_units: [
+                                  {
+                                    description: 'REZERWACJA',
+                                    amount: {
+                                      currency_code: 'USD',
+                                      value: 100,
+                                    },
                                   },
-                                },
-                              ],
-                            })
-                          }}
-                          // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                          onSuccess={(details, data) => {
-                            console.log('details')
-                            console.log(details)
-                            console.log('data')
-                            console.log(data)
-                            alert(
-                              'Transaction completed by ' +
-                                details.payer.name.given_name
-                            )
+                                ],
+                              })
+                            }}
+                            // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                            onSuccess={(details, data) => {
+                              console.log('details')
+                              console.log(details)
+                              console.log('data')
+                              console.log(data)
+                              alert(
+                                'Transaction completed by ' +
+                                  details.payer.name.given_name
+                              )
 
-                            // OPTIONAL: Call your server to save the transaction
-                            // return fetch("/paypal-transaction-complete", {
-                            //   method: "post",
-                            //   body: JSON.stringify({
-                            //     orderID: data.orderID
-                            //   })
-                            // });
-                          }}
-                        />
+                              // OPTIONAL: Call your server to save the transaction
+                              // return fetch("/paypal-transaction-complete", {
+                              //   method: "post",
+                              //   body: JSON.stringify({
+                              //     orderID: data.orderID
+                              //   })
+                              // });
+                            }}
+                          />
+                        )}
                       </div>
                       <div className='col-lg-5 col-md-6 col-12'>
                         <div className='pay-with'>

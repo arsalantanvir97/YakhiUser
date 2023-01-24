@@ -42,7 +42,7 @@ const DetailsofProduct = ({
                         product?.productimage?.length > 0 &&
                         `${imageURL}${product?.productimage[0]}`
                       }
-                      classname={'img-fluid h-100'}
+                      classname={'img-fluid'}
                     />
                   </div>
                   <div className='row'>
@@ -634,7 +634,7 @@ const DetailsofProduct = ({
                           {' '}
                           <ImageLazyLoad
                             src={`${imageURL}${rec?.productimage[0]}`}
-                            className={'img-fluid'}
+                            classname={'img-fluid'}
                           />{' '}
                         </Link>
                         <h5 className='product-name'>
