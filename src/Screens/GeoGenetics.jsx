@@ -11,11 +11,12 @@ import Footer from '../components/Footer'
 import { ListSkeleton } from '../components/MultipleSkeleton'
 import { SliderSkeleton } from '../components/SliderSkeleton'
 import { Parser } from 'html-to-react'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import UnauthorizedAlert from '../components/UnauthorizedAlert'
 import { CreateWishList } from '../hooks/WishList'
 import AllHerbs from '../components/AllHerbs'
 import MediaIcons from '../components/MediaIcons'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 
 const htmlToReactParser = new Parser()
 let links = [
@@ -274,13 +275,13 @@ const GeoGenetics = ({ history }) => {
                           }}
                         >
                           <div className='product-box'>
-                            <img
+                            <ImageLazyLoad
                               src={
                                 geo?.productimage?.length > 0 &&
                                 `${imageURL}${geo?.productimage[0]}`
                               }
                               alt=''
-                              className='img-fluid package'
+                              classname='img-fluid package'
                             />
                             {/* <span className="sale-tag">sale!</span> */}
                             <div className='product-actions'>

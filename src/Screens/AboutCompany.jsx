@@ -2,15 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
-import FooterHeader from '../components/FooterHeader'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import ToggleBack from '../components/ToggleBack'
 const AboutCompany = () => {
   return (
     <>
       <Header />
-      <FooterHeader />
+      <MainHeader />
       <div>
         <div className='container-fluid my-1 py-1'>
           <div className='row'>
@@ -90,7 +89,7 @@ const AboutCompany = () => {
                 </div>
               </div>
               {/* Our Mission */}
-              <div className='mission mb-5 pb-5'>
+              <div className='mission leaf-img mb-5 pb-5'>
                 <div className='row justify-content-center align-items-center'>
                   <div className='col-xl-7 col-lg-12 my-xl-0 my-5'>
                     <h5>Yah'ki Awakened Eye of Lotus Botanical Health Club</h5>

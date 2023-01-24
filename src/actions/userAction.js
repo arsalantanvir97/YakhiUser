@@ -103,6 +103,38 @@ export const becomemember = (body, history) => async (dispatch) => {
     })
   }
 }
+export const userPaymentInfos = (body) => async (dispatch) => {
+  try {
+    // dispatch({
+    //   type: ADMIN_LOGIN_REQUEST,
+    // })
+
+    const res = await api.post('/order/savepaymentinfo', body)
+
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: res?.data,
+    })
+
+    localStorage.setItem('userInfo', JSON.stringify(res?.data))
+
+    //   else if (res?.status == 400) {
+    //     Toasty("error", res?.data?.message);
+    //     dispatch({
+    //       type: USER_SIGNUP_FAIL,
+    //       payload: res?.data?.message,
+    //     });
+    //   }
+  } catch (error) {
+    console.log('error', error)
+    Toasty('error', 'error?.response?.data?.message')
+
+    dispatch({
+      type: USER_LOGIN_FAIL,
+      payload: error,
+    })
+  }
+}
 export const userLoginAction =
   (email, password, history) => async (dispatch) => {
     try {

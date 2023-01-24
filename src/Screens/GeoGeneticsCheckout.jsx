@@ -19,12 +19,17 @@ import { Signature } from '../components/Signature'
 import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
 import ToggleBack from '../components/ToggleBack'
+import ImageLazyLoad from '../components/ImageLazyLoad'
+import { userPaymentInfos } from '../actions/userAction'
+import CreditCardInput from 'react-credit-card-input'
 
 const GeoGeneticsCheckout = ({ history, location, match }) => {
   const [totalPrice, settotalPrice] = useState(0)
   const [quantity, setquantity] = useState(
     location?.search ? Number(location?.search?.split('=')[1]) : 1
   )
+  const [showhipp, setshowhipp] = useState(false)
+  const [showmodal, setshowmodal] = useState(0)
 
   const cart = useSelector((state) => state.cart)
   const { shippingAddress, paymentInfo } = cart
@@ -54,10 +59,32 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       console.log(err)
     }
   }
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
 
+  useEffect(() => {
+    if (success) {
+      Swal.fire({
+        icon: 'success',
+        title: '',
+        text: 'Order Completed Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      history.push(`/OrderLogDetail/${order._id}`)
+    }
+    // eslint-disable-next-line
+  }, [history, success])
   const [taxofstate, settaxofstate] = useState(0)
   const [product, setproduct] = useState()
+  const [togglecheckout, settogglecheckout] = useState(0)
+  const [taxPrice, settaxPrice] = useState(0)
+  const [shippingPrice, setshippingPrice] = useState(0)
 
+  useEffect(() => {
+    settaxPrice(Number(taxofstate / 100) * Number(product?.price * quantity))
+    settotalPrice(Number(product?.price * quantity) + Number(taxPrice))
+  }, [quantity])
   const [allValues, setAllValues] = useState({
     yourinfofirstName: shippingAddress?.yourinfofirstName,
     yourinfolastName: shippingAddress?.yourinfolastName,
@@ -104,16 +131,12 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     shippingzipcode: shippingAddress?.shippingzipcode,
     shippingcountry: shippingAddress?.shippingcountry,
     shippingstate: shippingAddress?.shippingstate,
-    paymentmethod: paymentInfo?.paymentmethod,
-    cardholdername: paymentInfo?.cardholdername,
-    cardnumber: paymentInfo?.cardnumber,
-    cvvnumber: paymentInfo?.cvvnumber,
-    expirydate: paymentInfo?.expirydate,
+    paymentmethod: userInfo?.paymentinfo?.paymentmethod,
+    cardholdername: userInfo?.paymentinfo?.cardholdername,
+    cardnumber: userInfo?.paymentinfo?.cardnumber,
+    cvvnumber: userInfo?.paymentinfo?.cvvnumber,
+    expirydate: userInfo?.paymentinfo?.expirydate,
   })
-
-  const [togglecheckout, settogglecheckout] = useState(0)
-  const [taxPrice, settaxPrice] = useState(0)
-  const [shippingPrice, setshippingPrice] = useState(0)
 
   const togglecheckoutHandler = async () => {
     console.log('togglecheckoutHandler')
@@ -125,6 +148,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
   }
 
   const saveShippingHandler = async (e) => {
+    setshowmodal(2)
+
     const emailvalidation = validateEmail(allValues?.email)
     console.log('emmmm', emailvalidation)
     console.log('addEmployeeHandler')
@@ -138,7 +163,11 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       }
       const res = await axios.post(
         `${baseURL}/tax/gettaxdetails`,
-        { state: allValues?.shippingstate },
+        {
+          state: allValues?.shippingstate
+            ? allValues?.shippingstate
+            : allValues?.billingstate,
+        },
         config
       )
       console.log('ress', res)
@@ -147,7 +176,12 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       } else {
         settaxofstate(res?.data?.tax?.percent)
       }
-
+      console.log(
+        'res?.data?.tax?.percent',
+        res?.data?.tax?.percent,
+        res?.data?.tax,
+        product?.price * quantity
+      )
       setshippingPrice(0)
       settaxPrice(
         Number(res?.data?.tax == null ? 0 : res?.data?.tax?.percent / 100) *
@@ -191,47 +225,29 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
           shippingstate: allValues?.shippingstate,
         })
       )
-      Swal.fire({
-        icon: 'info',
-        title: '',
-        text: 'Please recheck your address, the address will not be changed',
-        showConfirmButton: false,
-        timer: 1500,
-      })
+      // Swal.fire({
+      //   icon: 'info',
+      //   title: '',
+      //   text: 'Please recheck your address, the address will not be changed',
+      //   showConfirmButton: false,
+      //   timer: 1500,
+      // })
     } else {
       Toasty('error', `Please enter a valid email`)
     }
   }
-  const savePaymentMethodHandler = (e) => {
+  const savePaymentMethodHandler = async (e) => {
     console.log('savePaymentMethodHandler')
     settogglecheckout(togglecheckout + 1)
-    dispatch(
-      savePaymentMethod({
-        paymentmethod: 'Card',
-        cardholdername: allValues?.cardholdername,
-        cardnumber: allValues?.cardnumber,
-        cvvnumber: allValues?.cvvnumber,
-        expirydate: allValues?.expirydate,
-      })
-    )
-  }
-
-  const orderCreate = useSelector((state) => state.orderCreate)
-  const { order, success, error } = orderCreate
-
-  useEffect(() => {
-    if (success) {
-      Swal.fire({
-        icon: 'success',
-        title: '',
-        text: 'Order Completed Successfully',
-        showConfirmButton: false,
-        timer: 1500,
-      })
-      history.push(`/OrderLogDetail/${order._id}`)
+    const body = {
+      paymentmethod: allValues?.paymentmethod,
+      cardholdername: allValues?.cardholdername,
+      cardnumber: allValues?.cardnumber,
+      cvvnumber: allValues?.cvvnumber,
+      expirydate: allValues?.expirydate,
     }
-    // eslint-disable-next-line
-  }, [history, success])
+    await dispatch(userPaymentInfos(body))
+  }
 
   const placeOrderHandler = async () => {
     if (quantity == 0) {
@@ -247,13 +263,19 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       ]
       const totalpricee = Number(product?.price * quantity) + Number(taxPrice)
       const formData = new FormData()
-
+      const paymentMethod = {
+        paymentmethod: allValues?.paymentmethod,
+        cardholdername: allValues?.cardholdername,
+        cardnumber: allValues?.cardnumber,
+        cvvnumber: allValues?.cvvnumber,
+        expirydate: allValues?.expirydate,
+      }
       formData.append('doc_schedule', allValues?.doc_schedule)
       formData.append('orderItems', JSON.stringify(orderItems))
 
       formData.append('userid', userInfo?._id)
       formData.append('shippingAddress', JSON.stringify(cart?.shippingAddress))
-      formData.append('paymentMethod', JSON.stringify(paymentInfo))
+      formData.append('paymentMethod', JSON.stringify(paymentMethod))
       formData.append('itemsPrice', product?.price)
       formData.append('shippingPrice', shippingPrice)
       formData.append('taxPrice', taxPrice)
@@ -286,19 +308,13 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     })
   }
 
-  useEffect(() => {
-    settaxPrice(Number(taxofstate / 100) * Number(product?.price * quantity))
-    settotalPrice(Number(product?.price * quantity) + Number(taxPrice))
-  }, [quantity])
   const changeHandler = (e, namee) => {
     setAllValues({
       ...allValues,
       [namee ? namee : e.target.name]: namee ? e : e.target.value,
     })
   }
-  useEffect(() => {
-    console.log('allValues', allValues)
-  }, [allValues])
+
   return (
     <>
       <section
@@ -638,10 +654,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
 
                                       <>
                                         <div className='col-4 mb-3'>
-                                          <img
+                                          <ImageLazyLoad
                                             src={`${imageURL}${product?.productimage[0]}`}
                                             alt=''
-                                            className='img-fluid'
+                                            classname='img-fluid'
                                           />
                                         </div>
                                         <div className='col-8 mb-3'>
@@ -1049,117 +1065,126 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       }}
                                     /> */}
                                   </div>
-                                  <label>E Signature*</label>
-                                  <Signature
-                                    allValues={allValues}
-                                    setAllValues={setAllValues}
-                                  />
-                                  {/* <div className="col-12">
-                                    <div className="ship-to-different">
-                                      <div className="checkbox-group">
-                                        <input type="checkbox" id="html" />
-                                        <label htmlFor="html">
-                                          Ship To A Different Location{" "}
+
+                                  <div className='col-12'>
+                                    <div className='ship-to-different'>
+                                      <div className='checkbox-group'>
+                                        <input
+                                          type='checkbox'
+                                          id='html2'
+                                          value={showhipp}
+                                          checked={showhipp == true}
+                                          onClick={() => setshowhipp(!showhipp)}
+                                        />
+                                        <label htmlFor='html2'>
+                                          Ship To A Different Location{' '}
                                         </label>
                                       </div>
                                     </div>
-                                  </div> */}
+                                  </div>
                                 </div>
                                 <div style={{ height: 40 }}> </div>
 
                                 {/* Shipping Address */}
-                                <div className='row mb-4'>
-                                  <div className='col-12 mb-4'>
-                                    <h4>Shipping Information</h4>
+                                {showhipp && (
+                                  <div className='row mb-4'>
+                                    <div className='col-12 mb-4'>
+                                      <h4>Shipping Information</h4>
+                                    </div>
+                                    <div className='col-12 mb-4'>
+                                      <label>First Name*</label>
+                                      <input
+                                        type='text'
+                                        className='form-control'
+                                        placeholder='Enter First Name'
+                                        name='shippingfirstname'
+                                        value={allValues?.shippingfirstname}
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
+                                    <div className='col-12 mb-4'>
+                                      <label>Last Name*</label>
+                                      <input
+                                        type='text'
+                                        className='form-control'
+                                        placeholder='Enter Last Name'
+                                        name='shippinglastname'
+                                        value={allValues?.shippinglastname}
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
+                                    <div className='col-12 mb-4'>
+                                      <label>Address*</label>
+                                      <textarea
+                                        className='form-control'
+                                        id='exampleFormControlTextarea1'
+                                        placeholder='Enter Address'
+                                        rows={5}
+                                        value={allValues?.shippingaddress}
+                                        name='shippingaddress'
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>City*</label>
+                                      <input
+                                        type='text'
+                                        className='form-control'
+                                        placeholder='Enter City'
+                                        name='shippingcity'
+                                        value={allValues?.shippingcity}
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>Zip Code*</label>
+                                      <InputNumber
+                                        unique={true}
+                                        uniquevalue={allValues}
+                                        name={'shippingzipcode'}
+                                        onChange={setAllValues}
+                                        value={allValues?.shippingzipcode}
+                                        max={5}
+                                        className='form-control'
+                                      />
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>Country*</label>
+                                      <select
+                                        className='form-control'
+                                        name='shippingcountry'
+                                        onChange={changeHandler}
+                                        value={allValues?.shippingcountry}
+                                      >
+                                        <option value disabled={true}>
+                                          Select
+                                        </option>
+                                        {countries?.map((count) => (
+                                          <option value={count}>{count}</option>
+                                        ))}
+                                      </select>
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>State*</label>
+                                      <select
+                                        className='form-control'
+                                        name='shippingstate'
+                                        onChange={changeHandler}
+                                        value={allValues?.shippingstate}
+                                      >
+                                        <option value disabled={true}>
+                                          Select
+                                        </option>{' '}
+                                        <USStates />
+                                      </select>
+                                    </div>
                                   </div>
-                                  <div className='col-12 mb-4'>
-                                    <label>First Name*</label>
-                                    <input
-                                      type='text'
-                                      className='form-control'
-                                      placeholder='Enter First Name'
-                                      name='shippingfirstname'
-                                      value={allValues?.shippingfirstname}
-                                      onChange={changeHandler}
-                                    />
-                                  </div>
-                                  <div className='col-12 mb-4'>
-                                    <label>Last Name*</label>
-                                    <input
-                                      type='text'
-                                      className='form-control'
-                                      placeholder='Enter Last Name'
-                                      name='shippinglastname'
-                                      value={allValues?.shippinglastname}
-                                      onChange={changeHandler}
-                                    />
-                                  </div>
-                                  <div className='col-12 mb-4'>
-                                    <label>Address*</label>
-                                    <textarea
-                                      className='form-control'
-                                      id='exampleFormControlTextarea1'
-                                      placeholder='Enter Address'
-                                      rows={5}
-                                      value={allValues?.shippingaddress}
-                                      name='shippingaddress'
-                                      onChange={changeHandler}
-                                    />
-                                  </div>
-                                  <div className='col-6 mb-4'>
-                                    <label>City*</label>
-                                    <input
-                                      type='text'
-                                      className='form-control'
-                                      placeholder='Enter City'
-                                      name='shippingcity'
-                                      value={allValues?.shippingcity}
-                                      onChange={changeHandler}
-                                    />
-                                  </div>
-                                  <div className='col-6 mb-4'>
-                                    <label>Zip Code*</label>
-                                    <InputNumber
-                                      unique={true}
-                                      uniquevalue={allValues}
-                                      name={'shippingzipcode'}
-                                      onChange={setAllValues}
-                                      value={allValues?.shippingzipcode}
-                                      max={5}
-                                      className='form-control'
-                                    />
-                                  </div>
-                                  <div className='col-6 mb-4'>
-                                    <label>Country*</label>
-                                    <select
-                                      className='form-control'
-                                      name='shippingcountry'
-                                      onChange={changeHandler}
-                                      value={allValues?.shippingcountry}
-                                    >
-                                      <option value disabled={true}>
-                                        Select
-                                      </option>
-                                      {countries?.map((count) => (
-                                        <option value={count}>{count}</option>
-                                      ))}
-                                    </select>
-                                  </div>
-                                  <div className='col-6 mb-4'>
-                                    <label>State*</label>
-                                    <select
-                                      className='form-control'
-                                      name='shippingstate'
-                                      onChange={changeHandler}
-                                      value={allValues?.shippingstate}
-                                    >
-                                      <option value disabled={true}>
-                                        Select
-                                      </option>{' '}
-                                      <USStates />
-                                    </select>
-                                  </div>
-                                </div>
+                                )}
+                                <label>E Signature*</label>
+                                <Signature
+                                  allValues={allValues}
+                                  setAllValues={setAllValues}
+                                />
                               </div>
                             </div>
                             <div className='col-lg-3 col-lg-4 col-md-7 offset-lg-1'>
@@ -1184,10 +1209,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
 
                                       <>
                                         <div className='col-4 mb-3'>
-                                          <img
+                                          <ImageLazyLoad
                                             src={`${imageURL}${product?.productimage[0]}`}
                                             alt=''
-                                            className='img-fluid'
+                                            classname='img-fluid'
                                           />
                                         </div>
                                         <div className='col-8 mb-3'>
@@ -1284,81 +1309,98 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                         <div className='row'>
                           <div className='col-xl-7 col-lg-7 col-md-10'>
                             <div className='checkout-form'>
-                              {/* <h3>SELECT PAYMENT METHOD</h3> */}
+                              <h3>SELECT PAYMENT METHOD</h3>
                               <form>
                                 <div className='row my-4'>
-                                  {/* <div className='col-lg-2 col-md-3 col-4'>
-                                    <div className='payment-method'>
-                                      <input
-                                        type='radio'
-                                        id='paypal'
-                                        className='input-hidden'
-                                        value={allValues?.paymentmethod}
-                                        name='paypal'
-                                        onChange={(e) => {
-                                          changeHandler(
-                                            'paypal',
-                                            'paymentmethod'
-                                          )
-                                        }}
-                                      />
-                                      <label htmlFor='paypal'>
-                                        <img
-                                          src='images/paypal.png'
-                                          alt=''
-                                          className='img-fluid'
-                                        />
-                                      </label>
+                                  <div className='col-md-12'>
+                                    <div className='d-flex justify-content-between'>
+                                      <div className=''>
+                                        <div className='payment-method'>
+                                          <input
+                                            type='radio'
+                                            id='paypal'
+                                            className='input-hidden'
+                                            value={allValues?.paymentmethod}
+                                            name='paypal'
+                                            onChange={(e) => {
+                                              changeHandler(
+                                                'paypal',
+                                                'paymentmethod'
+                                              )
+                                            }}
+                                          />
+                                          <label htmlFor='paypal'>
+                                            <img
+                                              src='images/paypal.png'
+                                              alt=''
+                                              className='img-fluid'
+                                            />
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div className=''>
+                                        <div className='payment-method'>
+                                          <input
+                                            type='radio'
+                                            id='Authorize.net'
+                                            className='input-hidden'
+                                            name='Authorize.net'
+                                            value={allValues?.paymentmethod}
+                                            onChange={(e) => {
+                                              changeHandler(
+                                                'Authorize.net',
+                                                'paymentmethod'
+                                              )
+                                            }}
+                                          />
+                                          <label htmlFor='Authorize.net'>
+                                            <img
+                                              src='images/Authorize.net.png'
+                                              alt=''
+                                              style={{
+                                                maxWidth: 110,
+                                                maxHeight: 110,
+                                              }}
+                                              className='img-fluid'
+                                            />
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div className=''>
+                                        <div className='payment-method'>
+                                          <input
+                                            type='radio'
+                                            id='sezzle'
+                                            className='input-hidden'
+                                            value={allValues?.paymentmethod}
+                                            name='sezzle'
+                                            onChange={(e) => {
+                                              changeHandler(
+                                                'sezzle',
+                                                'paymentmethod'
+                                              )
+                                            }}
+                                          />
+                                          <label htmlFor='sezzle'>
+                                            <img
+                                              src='images/logo-sezzle.png'
+                                              alt=''
+                                              style={{
+                                                maxWidth: 93,
+                                                maxHeight: 93,
+                                              }}
+                                              className='img-fluid'
+                                            />
+                                          </label>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
-                                  <div className='col-lg-2 col-md-3 col-4'>
-                                    <div className='payment-method'>
-                                      <input
-                                        type='radio'
-                                        id='Apple Pay'
-                                        className='input-hidden'
-                                        name='Apple Pay'
-                                        value={allValues?.paymentmethod}
-                                        onChange={(e) => {
-                                          changeHandler(
-                                            'Apple Pay',
-                                            'paymentmethod'
-                                          )
-                                        }}
-                                      />
-                                      <label htmlFor='Apple Pay'>
-                                        <img
-                                          src='images/applepay.png'
-                                          alt=''
-                                          className='img-fluid'
-                                        />
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className='col-lg-2 col-md-3 col-4'>
-                                    <div className='payment-method'>
-                                      <input
-                                        type='radio'
-                                        id='visa'
-                                        className='input-hidden'
-                                        name='visa'
-                                        onChange={(e) => {
-                                          changeHandler('visa', 'paymentmethod')
-                                        }}
-                                      />
-                                      <label htmlFor='visa'>
-                                        <img
-                                          src='images/visa.png'
-                                          alt=''
-                                          className='img-fluid'
-                                        />
-                                      </label>
-                                    </div>
-                                  </div> */}
-                                  <div className='col-12 mt-5'>
+
+                                  <div className='col-12 mt-1'>
                                     <h4>Payment</h4>
                                   </div>
-                                  <div className='col-6 mb-4'>
+                                  <div className='col-12 mb-4'>
                                     <label>Card Holder Name*</label>
                                     <input
                                       type='text'
@@ -1369,58 +1411,92 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       onChange={changeHandler}
                                     />
                                   </div>
-                                  <div className='col-6 mb-4'>
-                                    <label>Card Number*</label>
-                                    <input
-                                      type='tel'
-                                      className='form-control'
-                                      inputmode='numeric'
-                                      pattern='[0-9\s]{13,19}'
-                                      autocomplete='cc-number'
-                                      maxlength='19'
-                                      placeholder='xxxx xxxx xxxx xxxx'
-                                      name='cardnumber'
-                                      value={allValues?.cardnumber}
-                                      onChange={changeHandler}
-                                    />
-                                  </div>
-                                  <div className='col-6 mb-4'>
-                                    <label>CVV Number*</label>
-                                    <input
-                                      type='tel'
-                                      className='form-control'
-                                      maxlength='11'
-                                      placeholder='Enter CVV'
-                                      name='cvvnumber'
-                                      value={allValues?.cvvnumber}
-                                      onChange={changeHandler}
-                                    />
-                                  </div>
-                                  <div className='col-6 mb-4'>
-                                    <label>Expiry date*</label>
-                                    <DatePicker
-                                      minDate={moment().toDate()}
-                                      selected={
-                                        new Date(
-                                          allValues?.expirydate
-                                            ? allValues?.expirydate
-                                            : moment().toDate()
-                                        )
-                                      }
-                                      name='expirydate'
-                                      value={
-                                        new Date(
-                                          allValues?.expirydate
-                                            ? allValues?.expirydate
-                                            : moment().toDate()
-                                        )
-                                      }
-                                      onChange={(e) => {
-                                        changeHandler(e, 'expirydate')
+                                  <div className='col-12 mb-4'>
+                                    <label>Payment Information*</label>
+                                    <CreditCardInput
+                                      cardNumberInputProps={{
+                                        value: allValues?.cardnumber,
+                                        onChange: (e) => {
+                                          setAllValues({
+                                            ...allValues,
+                                            ['cardnumber']: e.target.value,
+                                          })
+                                        },
                                       }}
-                                      className='sort-date customdate form-control'
+                                      cardExpiryInputProps={{
+                                        value: allValues?.expirydate,
+                                        onChange: (e) => {
+                                          setAllValues({
+                                            ...allValues,
+                                            ['expirydate']: e.target.value,
+                                          })
+                                        },
+                                      }}
+                                      cardCVCInputProps={{
+                                        value: allValues?.cvvnumber,
+                                        onChange: (e) => {
+                                          setAllValues({
+                                            ...allValues,
+                                            ['cvvnumber']: e.target.value,
+                                          })
+                                        },
+                                      }}
+                                      fieldClassName='input'
                                     />{' '}
                                   </div>
+
+                                  {/* <div className='col-6 mb-4'>
+                                      <label>Card Number*</label>
+                                      <input
+                                        type='tel'
+                                        className='form-control'
+                                        inputmode='numeric'
+                                        pattern='[0-9\s]{13,19}'
+                                        autocomplete='cc-number'
+                                        maxlength='19'
+                                        placeholder='xxxx xxxx xxxx xxxx'
+                                        name='cardnumber'
+                                        value={allValues?.cardnumber}
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>CVV Number*</label>
+                                      <input
+                                        type='tel'
+                                        className='form-control'
+                                        maxlength='11'
+                                        placeholder='Enter CVV'
+                                        name='cvvnumber'
+                                        value={allValues?.cvvnumber}
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>Expiry date*</label>
+                                      <DatePicker
+                                        minDate={moment().toDate()}
+                                        selected={
+                                          new Date(
+                                            allValues?.expirydate
+                                              ? allValues?.expirydate
+                                              : moment().toDate()
+                                          )
+                                        }
+                                        name='expirydate'
+                                        value={
+                                          new Date(
+                                            allValues?.expirydate
+                                              ? allValues?.expirydate
+                                              : moment().toDate()
+                                          )
+                                        }
+                                        onChange={(e) => {
+                                          changeHandler(e, 'expirydate')
+                                        }}
+                                        className='sort-date customdate form-control'
+                                      />{' '}
+                                    </div> */}
                                 </div>
                               </form>
                             </div>
@@ -1447,10 +1523,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
 
                                     <>
                                       <div className='col-4 mb-3'>
-                                        <img
+                                        <ImageLazyLoad
                                           src={`${imageURL}${product?.productimage[0]}`}
                                           alt=''
-                                          className='img-fluid'
+                                          classname='img-fluid'
                                         />
                                       </div>
                                       <div className='col-8 mb-3'>
@@ -1557,10 +1633,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                     <tr>
                                       <td>
                                         <div className='cart-product'>
-                                          <img
+                                          <ImageLazyLoad
                                             src={`${imageURL}${product?.productimage[0]}`}
                                             alt=''
-                                            className='img-fluid mx-auto'
+                                            classname='img-fluid mx-auto'
                                           />
                                         </div>
                                       </td>
@@ -1641,10 +1717,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
 
                                     <>
                                       <div className='col-4 mb-3'>
-                                        <img
+                                        <ImageLazyLoad
                                           src={`${imageURL}${product?.productimage[0]}`}
                                           alt=''
-                                          className='img-fluid'
+                                          classname='img-fluid'
                                         />
                                       </div>
                                       <div className='col-8 mb-3'>
@@ -1756,8 +1832,10 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                   {togglecheckout == 3 ? null : (
                     <div>
                       <button
+                        data-target='#checkoutModal'
+                        data-toggle='modal'
                         type='button'
-                        className='btn red-btn-solid mt-lg-4 mt-1 ml-3 ml-md-0'
+                        className='btn red-btn-solid mt-lg-4 mt-1 ml-3 ml-md-0 mb-2'
                         onClick={() => {
                           togglecheckout == 0 &&
                           allValues?.yourinfofirstName &&
@@ -1784,22 +1862,22 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                               allValues?.billingcity &&
                               allValues?.billingzipcode &&
                               allValues?.billingcountry &&
-                              allValues?.billingstate &&
-                              allValues?.shippingfirstname &&
-                              allValues?.shippinglastname &&
-                              allValues?.shippingaddress &&
-                              allValues?.shippingcity &&
-                              allValues?.shippingzipcode &&
-                              allValues?.shippingcountry &&
-                              allValues?.shippingstate
+                              // allValues?.shippingfirstname &&
+                              // allValues?.shippinglastname &&
+                              // allValues?.shippingaddress &&
+                              // allValues?.shippingcity &&
+                              // allValues?.shippingzipcode &&
+                              // allValues?.shippingcountry &&
+                              // allValues?.shippingstate
+                              allValues?.billingstate
                             ? saveShippingHandler()
-                            : togglecheckout == 1 &&
-                              // allValues?.paymentmethod &&
+                            : togglecheckout == 2 &&
+                              allValues?.paymentmethod &&
                               allValues?.cardholdername &&
                               allValues?.cardnumber &&
                               allValues?.cvvnumber
                             ? savePaymentMethodHandler()
-                            : togglecheckout == 2
+                            : togglecheckout == 3
                             ? togglecheckoutHandler()
                             : Toasty(
                                 'error',
@@ -1819,6 +1897,34 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
       </div>
       <div style={{ height: 10 }}></div>
       <AllHerbs />
+      {showmodal == 1 && (
+        <div
+          className='modal fade'
+          id='checkoutModal'
+          tabIndex={-1}
+          aria-labelledby='exampleModalCenterTitle'
+          style={{ display: 'none' }}
+          aria-hidden='true'
+        >
+          <div
+            className='modal-dialog modal-md modal-dialog-centered '
+            role='document'
+          >
+            <div className='modal-content py-5'>
+              {/* <button type="button" class="close text-right mr-1 mt-1" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&#10006;</span>
+      </button> */}
+              <div className='px-sm-5 px-1'>
+                <div className='text-center'>
+                  <h2 className=' mt-2'>
+                    Please recheck your address, the address will not be changed
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

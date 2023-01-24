@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Footer from './Footer'
-import PrivateRouteSlider from './PrivateRouteSlider'
+import MainHeader from './MainHeader'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   console.log('window', window)
@@ -19,11 +19,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         ) : (
           <>
             <Header />
-            {window?.location?.pathname.includes('Memberships') ||
-            window?.location?.pathname.includes(
+            {window?.location?.pathname.includes(
               'GeoGeneticsCheckout'
             ) ? null : (
-              <PrivateRouteSlider />
+              <MainHeader />
             )}
             {/* <Sidebar /> */}
             <Component {...props} />

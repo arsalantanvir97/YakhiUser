@@ -1,7 +1,7 @@
 import React from 'react'
 
-const FooterHeader = () => {
+const MainHeader = () => {
   return <section className='main-banner'></section>
 }
 
-export default FooterHeader
+export default MainHeader

@@ -2,7 +2,8 @@ import React from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ImageLazyLoad from '../components/ImageLazyLoad'
+import MainHeader from '../components/MainHeader'
 import ShopnowButton from '../components/ShopnowButton'
 import ToggleBack from '../components/ToggleBack'
 let capsules = [
@@ -51,7 +52,7 @@ const DigestiveSystem = ({ history }) => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
@@ -66,10 +67,10 @@ const DigestiveSystem = ({ history }) => {
             <div className='about-company'>
               <div className='row justify-content-center align-items-center'>
                 <div className='col-xl-6 col-10 text-center'>
-                  <img
+                  <ImageLazyLoad
                     src='images/digestive-system.jpg'
                     alt=''
-                    className='img-fluid'
+                    classname='img-fluid'
                   />
                 </div>
                 <div className='col-xl-6 col-12 mt-xl-0 mt-5'>

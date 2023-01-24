@@ -42,9 +42,9 @@ const Login = ({ history }) => {
   return (
     <>
       <Header />
-      <div style={{ height: 55 }}></div>
-      <div className='container-fluid mt-5'>
-        <div className='row py-5'>
+      {/* <div style={{ height: 55 }}></div> */}
+      <div className='container-fluid '>
+        <div className='row '>
           <div className='col-xl-6 col-lg-8 col-md-10 col-10 mx-auto'>
             <div className='account-form'>
               <h3 className='text-center'>LOGIN</h3>

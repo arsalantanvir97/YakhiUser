@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import ToggleBack from '../components/ToggleBack'
 
 const ApprovedHerb = () => {
@@ -10,7 +10,7 @@ const ApprovedHerb = () => {
       <Header />
 
       <div>
-        <PrivateRouteSlider />
+        <MainHeader />
 
         <section className='approved-herbs'>
           <div className='container-fluid'>

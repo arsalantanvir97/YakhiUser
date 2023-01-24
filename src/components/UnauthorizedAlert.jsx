@@ -11,8 +11,8 @@ const UnauthorizedAlert = () => {
     title: '',
     html:
       'Please ' +
-      '<a href="/Login">Login</a> or ' +
-      ' <a href="/Signup">Signup</a> ' +
+      '<a href="/Login" target="_blank">Login</a> or ' +
+      ' <a href="/Signup" target="_blank">Signup</a> ' +
       ' to proceed further',
     showConfirmButton: false,
     timer: 3000,

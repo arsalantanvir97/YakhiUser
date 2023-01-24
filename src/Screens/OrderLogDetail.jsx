@@ -15,18 +15,44 @@ import {
 } from 'react-square-web-payments-sdk'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
+import ImageLazyLoad from '../components/ImageLazyLoad'
+import SezzleWidget from 'sezzle-react-widget'
+import { AcceptHosted, FormComponent, FormContainer } from 'react-authorize-net'
+import Loader from '../components/Loader'
+import Toasty from '../utils/toast'
 
 const OrderLogDetail = ({ match, history }) => {
   const dispatch = useDispatch()
   const [loading, setloading] = useState(false)
+  const [sdkReady, setSdkReady] = useState(false)
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
   const [orderdetaills, setorderdetaills] = useState()
+  const [clientid, setclientid] = useState('')
+  const [clientKey, setclientKey] = useState('')
+  const [apiLoginId, setapiLoginId] = useState('')
+  const [merchantId, setmerchantId] = useState('')
+
   useEffect(() => {
     getSingleOrder()
     dispatch(resetOrder())
   }, [])
+
+  const addPayPalScript = async () => {
+    console.log('addPayPalScript', addPayPalScript)
+    const { data: clientId } = await axios.get(`${baseURL}/config/paypal`)
+    console.log()
+    setclientid(clientId)
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+    script.async = true
+    script.onload = () => {
+      setSdkReady(true)
+    }
+    document.body.appendChild(script)
+  }
 
   const getSingleOrder = async () => {
     try {
@@ -34,11 +60,39 @@ const OrderLogDetail = ({ match, history }) => {
         url: `${baseURL}/order/getOrderById/${match?.params?.id}`,
         method: 'GET',
       })
-      console.log('res', res)
+      console.log('r2es', res)
       setorderdetaills(res?.data)
+
+      if (!res?.data?.isPaid) {
+        if (res?.data?.paymentMethod?.paymentmethod == 'Authorize.net') {
+          const resss = await axios.get(`${baseURL}/config/authorize`)
+          setclientKey(resss?.data?.loginid)
+          setapiLoginId(resss?.data?.transactionkey)
+        } else if (res?.data?.paymentMethod?.paymentmethod == 'sezzle') {
+          const res2ss = await axios.get(`${baseURL}/config/sezzle`)
+          setmerchantId(res2ss?.data?.keyid)
+        } else if (
+          !window.paypal &&
+          res?.data?.paymentMethod?.paymentmethod == 'paypal'
+        ) {
+          console.log('ressss2')
+          addPayPalScript()
+        } else {
+          setSdkReady(true)
+        }
+      }
     } catch (err) {
       console.log(err)
     }
+  }
+  const onSuccessHandler = (response) => {
+    dispatch(payOrder(match?.params?.id, response, response))
+    history.push('/')
+  }
+
+  const onErrorHandler = (error) => {
+    console.log('error', error)
+    Toasty('error', error)
   }
   // async function handleToken(token) {
   //   setloading(true)
@@ -132,13 +186,17 @@ const OrderLogDetail = ({ match, history }) => {
                             <p>Name</p>
                           </div>
                           <div className='col-6 mb-3'>
-                            <p>{orderdetaills?.user?.firstName}</p>
+                            <p>
+                              {orderdetaills?.user?.firstname +
+                                ' ' +
+                                orderdetaills?.user?.lastname}
+                            </p>
                           </div>
                           <div className='col-6 mb-3'>
                             <p>Email Address</p>
                           </div>
                           <div className='col-6 mb-3'>
-                            {orderdetaills?.shippingAddress?.email}
+                            <p>{orderdetaills?.shippingAddress?.email}</p>
                           </div>
                           <div className='col-6 mb-3'>
                             <p>Date</p>
@@ -187,29 +245,32 @@ const OrderLogDetail = ({ match, history }) => {
                       </div>
                     </div>
                     <div className='row align-items-start justify-content-between mt-5'>
+                      {orderdetaills?.shippingAddress?.shippingaddress && (
+                        <div className='col-lg-6 col-12 mt-3'>
+                          <h3 className='mb-3'>Shipping Address</h3>
+                          <p className='adrs'>
+                            Street:{' '}
+                            {orderdetaills?.shippingAddress?.shippingaddress}
+                          </p>
+                          <p className='adrs'>
+                            City: {orderdetaills?.shippingAddress?.shippingcity}
+                          </p>
+                          <p className='adrs'>
+                            Country:{' '}
+                            {orderdetaills?.shippingAddress?.shippingcountry}
+                          </p>
+                          <p className='adrs'>
+                            State:{' '}
+                            {orderdetaills?.shippingAddress?.shippingstate}
+                          </p>
+                          <p className='adrs'>
+                            Zipcode:{' '}
+                            {orderdetaills?.shippingAddress?.shippingzipcode}
+                          </p>
+                        </div>
+                      )}
                       <div className='col-lg-6 col-12 mt-3'>
                         <h3 className='mb-3'>Billing Address</h3>
-                        <p className='adrs'>
-                          Street:{' '}
-                          {orderdetaills?.shippingAddress?.shippingaddress}
-                        </p>
-                        <p className='adrs'>
-                          City: {orderdetaills?.shippingAddress?.shippingcity}
-                        </p>
-                        <p className='adrs'>
-                          Country:{' '}
-                          {orderdetaills?.shippingAddress?.shippingcountry}
-                        </p>
-                        <p className='adrs'>
-                          State: {orderdetaills?.shippingAddress?.shippingstate}
-                        </p>
-                        <p className='adrs'>
-                          Zipcode:{' '}
-                          {orderdetaills?.shippingAddress?.shippingzipcode}
-                        </p>
-                      </div>
-                      <div className='col-lg-6 col-12 mt-3'>
-                        <h3 className='mb-3'>SHIPPING Address</h3>
                         <p className='adrs'>
                           Street:{' '}
                           {orderdetaills?.shippingAddress?.billingaddress}
@@ -301,10 +362,10 @@ const OrderLogDetail = ({ match, history }) => {
                             orderdetaills?.orderItems?.map((ord) => (
                               <>
                                 <div className='col-4 mb-3'>
-                                  <img
+                                  <ImageLazyLoad
                                     src={`${imageURL}${ord?.image[0]}`}
                                     alt=''
-                                    className='img-fluid'
+                                    classname='img-fluid'
                                   />
                                 </div>
                                 <div className='col-8 mb-3'>
@@ -359,87 +420,87 @@ const OrderLogDetail = ({ match, history }) => {
                             ${orderdetaills?.totalPrice}
                           </p>
                         </div>
-                        {orderdetaills?.status == 'Paid' ||
-                        orderdetaills?.status == 'Refunded' ||
-                        orderdetaills?.status == 'Delivered' ? null : (
-                          <div className='col-12 text-center mt-4'>
-                            {loading ? (
-                              <i className='fas fa-spinner fa-pulse'></i>
+                        <div className='col-12 text-center mt-4'>
+                          {orderdetaills?.status == 'Paid' ||
+                          orderdetaills?.status == 'Refunded' ||
+                          orderdetaills?.status ==
+                            'Delivered' ? null : loading ? (
+                            <i className='fas fa-spinner fa-pulse'></i>
+                          ) : orderdetaills?.paymentMethod?.paymentmethod ==
+                            'sezzle' ? (
+                            <>
+                              <SezzleWidget
+                                price={String(orderdetaills?.totalPrice)}
+                                merchantId={merchantId}
+                              />
+                            </>
+                          ) : orderdetaills &&
+                            orderdetaills?.paymentMethod?.paymentmethod ==
+                              'paypal' ? (
+                            !sdkReady ? (
+                              <Loader />
                             ) : (
-                              <>
-                                <PayPalButton
-                                  options={{
-                                    clientId:
-                                      'ASiSqkLrGz972fYCyfH36FFNug0V8UDsDAW9GUWzEx5SOxAmRF0hp1KgfhDTHCRRlvWlDWw3RJXuw6Lp',
-                                    currency: 'USD',
-                                  }}
-                                  createOrder={(data, actions) => {
-                                    return actions.order.create({
-                                      purchase_units: [
-                                        {
-                                          description: orderdetaills?._id,
-                                          amount: {
-                                            currency_code: 'USD',
-                                            value: orderdetaills?.totalPrice,
-                                          },
+                              <PayPalButton
+                                options={{
+                                  clientId: clientid,
+                                  currency: 'USD',
+                                }}
+                                createOrder={(data, actions) => {
+                                  return actions.order.create({
+                                    purchase_units: [
+                                      {
+                                        description: orderdetaills?._id,
+                                        amount: {
+                                          currency_code: 'USD',
+                                          value: orderdetaills?.totalPrice,
                                         },
-                                      ],
-                                    })
-                                  }}
-                                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                  onSuccess={(details, data) => {
-                                    console.log('details')
-                                    console.log(details)
-                                    console.log('data')
-                                    console.log(data)
-                                    alert(
-                                      'Transaction completed by ' +
-                                        details.payer.name.given_name
-                                    )
-                                    dispatch(
-                                      payOrder(match?.params?.id, data, details)
-                                    )
-                                    history.push('/')
+                                      },
+                                    ],
+                                  })
+                                }}
+                                // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                onSuccess={(details, data) => {
+                                  console.log('details')
+                                  console.log(details)
+                                  console.log('data')
+                                  console.log(data)
+                                  alert(
+                                    'Transaction completed by ' +
+                                      details.payer.name.given_name
+                                  )
+                                  dispatch(
+                                    payOrder(match?.params?.id, data, details)
+                                  )
+                                  history.push('/')
 
-                                    // OPTIONAL: Call your server to save the transaction
-                                    // return fetch("/paypal-transaction-complete", {
-                                    //   method: "post",
-                                    //   body: JSON.stringify({
-                                    //     orderID: data.orderID
-                                    //   })
-                                    // });
-                                  }}
-                                />
-                                {/* <hr className='border-bottom' />
-                                <h5 className='pt-4 pb-2 text-left font-weight-bold'>
-                                  Square Payment
-                                </h5>
-                                <SquarePaymentsForm
-                                  applicationId='sandbox-sq0idb-v3tKjw-IGf76LuqkI7U3rQ'
-                                  cardTokenizeResponseReceived={(
-                                    token,
-                                    buyer
-                                  ) => {
-                                    dispatch(
-                                      payOrder(match?.params?.id, token, buyer)
-                                    )
-                                    history.push('/')
-                                    console.log('token, buyer', token, buyer)
-                                  }}
-                                  locationId='L17RXM5KHXR8D'
-                                >
-                                  <CreditCardInput text={'Pay now'} />
-                                </SquarePaymentsForm> */}
-                              </>
-                              // <StripeCheckout
-                              //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                              //   token={handleToken}
-                              //   amount={orderdetaills?.totalPrice * 100}
-                              //   email={userInfo?.email}
-                              // ></StripeCheckout>
-                            )}
-                          </div>
-                        )}
+                                  // OPTIONAL: Call your server to save the transaction
+                                  // return fetch("/paypal-transaction-complete", {
+                                  //   method: "post",
+                                  //   body: JSON.stringify({
+                                  //     orderID: data.orderID
+                                  //   })
+                                  // });
+                                }}
+                              />
+                            )
+                          ) : orderdetaills?.paymentMethod?.paymentmethod ==
+                            'Authorize.net' ? (
+                            <div className='authorizesty'>
+                              <h5 class='mb-3'>Authorize.Net</h5>
+
+                              <FormContainer
+                                environment='production'
+                                onError={onErrorHandler}
+                                onSuccess={onSuccessHandler}
+                                amount={Number(orderdetaills?.totalPrice)}
+                                component={FormComponent}
+                                clientKey={clientKey}
+                                apiLoginId={apiLoginId}
+                              />
+                            </div>
+                          ) : null}
+                        </div>
+
                         {orderdetaills?.status == 'Paid' && (
                           <>
                             {' '}

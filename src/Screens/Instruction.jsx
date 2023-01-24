@@ -7,10 +7,10 @@ import Header from '../components/Header'
 import { ListSkeleton } from '../components/MultipleSkeleton'
 import { baseURL, imageURL } from '../utils/api'
 import { Parser } from 'html-to-react'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
-import FooterHeader from '../components/FooterHeader'
 import ToggleBack from '../components/ToggleBack'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 
 const htmlToReactParser = new Parser()
 
@@ -47,9 +47,9 @@ const Instruction = () => {
   return (
     <>
       <Header />
-      <FooterHeader />
+      <MainHeader />
 
-      <section className='about-page'>
+      <section className='about-page pt-2'>
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
@@ -59,8 +59,8 @@ const Instruction = () => {
                   <h4 className='sub-heading'>
                     Yah'ki Awakened Eye of Lotus Botanical Health Club
                   </h4>
-                  <h3 className='main-heading'>INSTRUCTIONS</h3>
-                  <p className='general-para px-sm-5'>
+                  <h3 className='main-heading mt-3'>INSTRUCTIONS</h3>
+                  <p className='general-para px-sm-5 mt-4'>
                     {htmlToReactParser.parse(instructiontext)}
                   </p>
                 </div>
@@ -106,7 +106,7 @@ const Instruction = () => {
                   <div className='row'>
                     <div className='col-11 mx-auto'>
                       <div className='row my-5 justify-content-center'>
-                        <div className='col-12 text-center mb-5'></div>
+                        <div className='col-12 text-center '></div>
                         <div className='col-lg-6 col-md-10'>
                           <div className='diet-chart'>
                             <h4>CAPSULES</h4>
@@ -208,10 +208,10 @@ const Instruction = () => {
                                         Tinctures should be taken all at once,
                                         in the 2.5 oz glass (shot glass).
                                         <br></br>
-                                        <img
+                                        <ImageLazyLoad
                                           src='images/Tinctureschart.png'
                                           alt=''
-                                          className='img-fluid mt-5'
+                                          classname='img-fluid mt-5'
                                         />
                                       </li>
                                     </ul>

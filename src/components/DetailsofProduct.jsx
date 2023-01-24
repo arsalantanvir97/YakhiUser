@@ -6,7 +6,8 @@ import Toasty from '../utils/toast'
 import AllHerbs from './AllHerbs'
 import Footer from './Footer'
 import Header from './Header'
-import PrivateRouteSlider from './PrivateRouteSlider'
+import ImageLazyLoad from './ImageLazyLoad'
+import MainHeader from './MainHeader'
 import ToggleBack from './ToggleBack'
 
 const DetailsofProduct = ({
@@ -26,7 +27,7 @@ const DetailsofProduct = ({
     <>
       {' '}
       <Header />
-      <PrivateRouteSlider />
+      <MainHeader />
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-11 mx-auto'>
@@ -36,13 +37,12 @@ const DetailsofProduct = ({
               <div className='row align-items-start justify-content-center my-5 py-5'>
                 <div className='col-lg-6 col-md-8'>
                   <div className='p-view-main'>
-                    <img
+                    <ImageLazyLoad
                       src={
                         product?.productimage?.length > 0 &&
                         `${imageURL}${product?.productimage[0]}`
                       }
-                      alt=''
-                      className='img-fluid h-100'
+                      classname={'img-fluid h-100'}
                     />
                   </div>
                   <div className='row'>
@@ -50,10 +50,9 @@ const DetailsofProduct = ({
                       product?.productimage?.slice(1)?.map((img) => (
                         <div className='col-4'>
                           <div className='p-view-thumb'>
-                            <img
+                            <ImageLazyLoad
                               src={`${imageURL}${img}`}
-                              alt=''
-                              className='img-fluid'
+                              classname={'img-fluid'}
                             />
                           </div>
                         </div>
@@ -633,11 +632,9 @@ const DetailsofProduct = ({
                         </button>
                         <Link to={`/ProductView/${rec?._id}`}>
                           {' '}
-                          <img
+                          <ImageLazyLoad
                             src={`${imageURL}${rec?.productimage[0]}`}
-                            style={{ width: 238, height: 239 }}
-                            alt=''
-                            className='img-fluid'
+                            className={'img-fluid'}
                           />{' '}
                         </Link>
                         <h5 className='product-name'>

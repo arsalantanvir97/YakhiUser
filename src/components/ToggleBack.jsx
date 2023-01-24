@@ -5,18 +5,18 @@ const ToggleBack = ({ name }) => {
   return (
     <>
       {' '}
-      <div className='col-md-6 mt-1'>
-        <ul className='crumbs'>
+      <div className='col-md-12 mt-1'>
+        <ul class='crumbs'>
+          <div class='userbackbtn'>
+            <Link to='/'>
+              <i class='fas fa-long-arrow-alt-left'></i>
+            </Link>
+          </div>{' '}
           <li>
             <Link to='/'>Homepage</Link>
           </li>
           <li>{name}</li>
         </ul>
-        <div className='userbackbtn'>
-          <Link to='/'>
-            <i class='fas fa-long-arrow-alt-left'></i>
-          </Link>
-        </div>
       </div>
     </>
   )

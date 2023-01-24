@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import UnauthorizedAlert from '../components/UnauthorizedAlert'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
 
@@ -38,7 +38,7 @@ const DetoxHome = ({ history }) => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1' id='detox'>
         <div className='row'>

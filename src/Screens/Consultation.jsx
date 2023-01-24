@@ -15,60 +15,60 @@ import { baseURL } from '../utils/api'
 import { PayPalButton } from 'react-paypal-button-v2'
 
 import Swal from 'sweetalert2'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
 import ToggleBack from '../components/ToggleBack'
 let showformm = 1
 let timings = [
-  { time: '0:00 CST' },
-  { time: '0:30 CST' },
-  { time: '1 CST' },
-  { time: '1:30 CST' },
-  { time: '2 CST' },
-  { time: '2:30 CST' },
-  { time: '3 CST' },
-  { time: '3:30 CST' },
-  { time: '4 CST' },
-  { time: '4:30 CST' },
-  { time: '5 CST' },
-  { time: '5:30 CST' },
-  { time: '6 CST' },
-  { time: '6:30 CST' },
-  { time: '7 CST' },
-  { time: '7:30 CST' },
-  { time: '8 CST' },
-  { time: '8:30 CST' },
-  { time: '9 CST' },
-  { time: '9:30 CST' },
-  { time: '10 CST' },
-  { time: '10:30 CST' },
-  { time: '11 CST' },
-  { time: '11:30 CST' },
-  { time: '12 CST' },
-  { time: '12:30 CST' },
-  { time: '13 CST' },
-  { time: '13:30 CST' },
-  { time: '14 CST' },
-  { time: '14:30 CST' },
-  { time: '15 CST' },
-  { time: '15:30 CST' },
-  { time: '16 CST' },
-  { time: '16:30 CST' },
-  { time: '17 CST' },
-  { time: '17:30 CST' },
-  { time: '18 CST' },
-  { time: '18:30 CST' },
-  { time: '19 CST' },
-  { time: '19:30 CST' },
-  { time: '20 CST' },
-  { time: '20:30 CST' },
-  { time: '21 CST' },
-  { time: '21:30 CST' },
-  { time: '22 CST' },
-  { time: '22:30 CST' },
-  { time: '23 CST' },
-  { time: '23:30 CST' },
+  { time: '12:00 am' },
+  { time: '12:30 am' },
+  { time: '1:00 am' },
+  { time: '1:30 am' },
+  { time: '2:00 am' },
+  { time: '2:30 am' },
+  { time: '3:00 am' },
+  { time: '3:30 am' },
+  { time: '4:00 am' },
+  { time: '4:30 am' },
+  { time: '5:00 am' },
+  { time: '5:30 am' },
+  { time: '6:00 am' },
+  { time: '6:30 am' },
+  { time: '7:00 am' },
+  { time: '7:30 am' },
+  { time: '8:00 am' },
+  { time: '8:30 am' },
+  { time: '9:00 am' },
+  { time: '9:30 am' },
+  { time: '10:00 am' },
+  { time: '10:30 am' },
+  { time: '11:00 am' },
+  { time: '11:30 am' },
+  { time: '12:00 pm' },
+  { time: '12:30 pm' },
+  { time: '1:00 pm' },
+  { time: '1:30 pm' },
+  { time: '2:00 pm' },
+  { time: '2:30 pm' },
+  { time: '3:00 pm' },
+  { time: '3:30 pm' },
+  { time: '4:00 pm' },
+  { time: '4:30 pm' },
+  { time: '5:00 pm' },
+  { time: '5:30 pm' },
+  { time: '6:00 pm' },
+  { time: '6:30 pm' },
+  { time: '7:00 pm' },
+  { time: '7:30 pm' },
+  { time: '8:00 pm' },
+  { time: '8:30 pm' },
+  { time: '9:00 pm' },
+  { time: '9:30 pm' },
+  { time: '10:00 pm' },
+  { time: '10:30 pm' },
+  { time: '11:00 pm' },
+  { time: '11:30 pm' },
 ]
 const Consultation = ({ history }) => {
   const dispatch = useDispatch()
@@ -393,198 +393,195 @@ const Consultation = ({ history }) => {
               </div>
               <div style={{ height: 5 }}></div>
               {/* Step form */}
-              <div className='row'>
-                <div className='col-12'>
-                  <form id='regForm' style={{ margin: 0 }} action>
-                    {/* Circles which indicates the steps of the form: */}
-                    <div className='row mb-5'>
-                      <div className='col-12 text-center'>
-                        <div className='d-flex justify-content-around'>
-                          <span
-                            className={
-                              showform == 1 ? 'step active' : 'step finish'
-                            }
-                          >
-                            <div className='step-icon'>
-                              <i className='fas fa-address-card' />
-                            </div>
-                            <p className='mt-4'>Your Information</p>
-                          </span>
-                          <span
-                            className={
-                              showform == 2
-                                ? 'step active'
-                                : showform > 2
-                                ? 'step finish'
-                                : null
-                            }
-                          >
-                            <div className='step-icon'>
-                              <i className='fas fa-calendar' />
-                            </div>
-                            <p className='mt-4'>Choose Appoinment</p>
-                          </span>
-                          <span
-                            className={
-                              showform == 3
-                                ? 'step active'
-                                : showform > 3
-                                ? 'step finish'
-                                : null
-                            }
-                          >
-                            <div className='step-icon'>
-                              <i className='fas fa-credit-card' />
-                            </div>
-                            <p className='mt-4'>Payment</p>
-                          </span>
-                          <span
-                            className={showform == 4 ? 'step active' : null}
-                          >
-                            <div className='step-icon'>
-                              <i className='fas fa-check-square' />
-                            </div>
-                            <p className='mt-4'>Confirmation</p>
-                          </span>
+
+              <form id='regForm' style={{ margin: 0 }} action>
+                {/* Circles which indicates the steps of the form: */}
+                <div className='row mb-5'>
+                  <div className='col-12 text-center'>
+                    <div className='d-flex justify-content-around'>
+                      <span
+                        className={
+                          showform == 1 ? 'step active' : 'step finish'
+                        }
+                      >
+                        <div className='step-icon'>
+                          <i className='fas fa-address-card' />
                         </div>
-                      </div>
+                        <p className='mt-4'>Your Information</p>
+                      </span>
+                      <span
+                        className={
+                          showform == 2
+                            ? 'step active'
+                            : showform > 2
+                            ? 'step finish'
+                            : null
+                        }
+                      >
+                        <div className='step-icon'>
+                          <i className='fas fa-calendar' />
+                        </div>
+                        <p className='mt-4'>Choose Appoinment</p>
+                      </span>
+                      <span
+                        className={
+                          showform == 3
+                            ? 'step active'
+                            : showform > 3
+                            ? 'step finish'
+                            : null
+                        }
+                      >
+                        <div className='step-icon'>
+                          <i className='fas fa-credit-card' />
+                        </div>
+                        <p className='mt-4'>Payment</p>
+                      </span>
+                      <span className={showform == 4 ? 'step active' : null}>
+                        <div className='step-icon'>
+                          <i className='fas fa-check-square' />
+                        </div>
+                        <p className='mt-4'>Confirmation</p>
+                      </span>
                     </div>
-                    {/* One "tab" for each step in the form: */}
-                    {showform == 1 ? (
-                      <div className=''>
-                        <div className='consultation-form'>
-                          <div className='form-group'>
-                            <div className='form-row'>
-                              <div className='col-md-6'>
-                                <label>
-                                  First Name <span className='red'>*</span>
-                                </label>
-                                <input
-                                  className='form-control'
-                                  placeholder='Enter First Name'
-                                  type='text'
-                                  value={firstName}
-                                  onChange={(e) => {
-                                    setfirstName(e.target.value)
-                                  }}
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Last Name <span className='red'>*</span>
-                                </label>
-                                <input
-                                  className='form-control'
-                                  placeholder='Enter Last Name'
-                                  type='text'
-                                  value={lastName}
-                                  onChange={(e) => {
-                                    setlastName(e.target.value)
-                                  }}
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Phone <span className='red'>*</span>
-                                </label>
-                                <InputPhone value={phone} onChange={setphone} />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Email <span className='red'>*</span>
-                                </label>
-                                <input
-                                  className='form-control'
-                                  placeholder='Enter Email'
-                                  type='email'
-                                  value={email}
-                                  onChange={(e) => {
-                                    setemail(e.target.value)
-                                  }}
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Age <span className='red'>*</span>
-                                </label>
-                                <InputNumber
-                                  value={age}
-                                  onChange={setage}
-                                  max={99}
-                                  className='form-control'
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Height in meters<span className='red'>*</span>
-                                </label>
-                                <InputNumber
-                                  value={height}
-                                  onChange={setheight}
-                                  max={1000}
-                                  placeholder={'Heigth in meters'}
-                                  className='form-control'
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Weight in lbs<span className='red'>*</span>
-                                </label>
-                                <InputNumber
-                                  value={weight}
-                                  onChange={setweight}
-                                  max={1000}
-                                  className='form-control'
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Ethnicity <span className='red'>*</span>
-                                </label>
-                                <input
-                                  className='form-control'
-                                  placeholder='Enter Ethnicity'
-                                  type='text'
-                                  value={ethnicity}
-                                  onChange={(e) => {
-                                    setethnicity(e.target.value)
-                                  }}
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Consultation For<span className='red'>*</span>
-                                </label>
-                                <select
-                                  className='form-control text-left'
-                                  id='timeZone'
-                                  value={consultaionfor}
-                                  onChange={(e) => {
-                                    setconsultaionfor(e.target.value)
-                                  }}
-                                >
-                                  <option disabled={true} value={''}>
-                                    Select
-                                  </option>
-                                  <Diseases />
-                                </select>
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Current Medication
-                                  <span className='red'>*</span>
-                                </label>
-                                <input
-                                  className='form-control'
-                                  placeholder='Enter Current Medication'
-                                  type='text'
-                                  value={currentmedication}
-                                  onChange={(e) => {
-                                    setcurrentmedication(e.target.value)
-                                  }}
-                                />
-                              </div>
-                              {/* <div className='col-md-12'>
+                  </div>
+                </div>
+                {/* One "tab" for each step in the form: */}
+                {showform == 1 ? (
+                  <div className=''>
+                    <div className='consultation-form'>
+                      <div className='form-group'>
+                        <div className='form-row'>
+                          <div className='col-md-6'>
+                            <label>
+                              First Name <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter First Name'
+                              type='text'
+                              value={firstName}
+                              onChange={(e) => {
+                                setfirstName(e.target.value)
+                              }}
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Last Name <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Last Name'
+                              type='text'
+                              value={lastName}
+                              onChange={(e) => {
+                                setlastName(e.target.value)
+                              }}
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Phone <span className='red'>*</span>
+                            </label>
+                            <InputPhone value={phone} onChange={setphone} />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Email <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Email'
+                              type='email'
+                              value={email}
+                              onChange={(e) => {
+                                setemail(e.target.value)
+                              }}
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Age <span className='red'>*</span>
+                            </label>
+                            <InputNumber
+                              value={age}
+                              onChange={setage}
+                              max={99}
+                              className='form-control'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Height in meters<span className='red'>*</span>
+                            </label>
+                            <InputNumber
+                              value={height}
+                              onChange={setheight}
+                              max={1000}
+                              placeholder={'Heigth in meters'}
+                              className='form-control'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Weight in lbs<span className='red'>*</span>
+                            </label>
+                            <InputNumber
+                              value={weight}
+                              onChange={setweight}
+                              max={1000}
+                              className='form-control'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Ethnicity <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Ethnicity'
+                              type='text'
+                              value={ethnicity}
+                              onChange={(e) => {
+                                setethnicity(e.target.value)
+                              }}
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Consultation For<span className='red'>*</span>
+                            </label>
+                            <select
+                              className='form-control text-left'
+                              id='timeZone'
+                              value={consultaionfor}
+                              onChange={(e) => {
+                                setconsultaionfor(e.target.value)
+                              }}
+                            >
+                              <option disabled={true} value={''}>
+                                Select
+                              </option>
+                              <Diseases />
+                            </select>
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Current Medication
+                              <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Current Medication'
+                              type='text'
+                              value={currentmedication}
+                              onChange={(e) => {
+                                setcurrentmedication(e.target.value)
+                              }}
+                            />
+                          </div>
+                          {/* <div className='col-md-12'>
                                 <label>
                                   Reason for Consultation{' '}
                                   <span className='red'>*</span>
@@ -598,122 +595,120 @@ const Consultation = ({ history }) => {
                                   }}
                                 />
                               </div> */}
-                              <div className='col-md-12'>
-                                <label>
-                                  Current Diagnoses (provided by MD)
-                                  <span className='red'>*</span>
-                                </label>
-                                <textarea
-                                  className='form-control'
-                                  id='exampleFormControlTextarea1'
-                                  placeholder='Message'
-                                  rows={5}
-                                  value={diagnosis}
-                                  onChange={(e) => {
-                                    setdiagnosis(e.target.value)
-                                  }}
-                                />
-                              </div>
-                              <div className='col-md-6'>
-                                <label>
-                                  Upload Valid Government Issued ID{' '}
-                                  <span className='red'>*</span>
-                                </label>
-                                <input
-                                  type='file'
-                                  name
-                                  id='govt-id'
-                                  // accept='application/pdf,application/vnd.ms-excel'
-                                  onChange={filedocsHandler}
-                                  className='form-control'
-                                />
-                                <label
-                                  htmlFor='govt-id'
-                                  className='d-block id-upload'
-                                >
-                                  {doc_schedule?.name ? (
-                                    <i className='fas fa-file-upload fa-2x' />
-                                  ) : (
-                                    <i className='fas fa-upload fa-2x' />
-                                  )}
-                                </label>
-                              </div>
-                              <div className='col-12 text-right'>
-                                <Link to='#' className='red-link'>
-                                  Redeem Coupon
-                                </Link>
-                              </div>
-                            </div>
+                          <div className='col-md-12'>
+                            <label>
+                              Current Diagnoses (provided by MD)
+                              <span className='red'>*</span>
+                            </label>
+                            <textarea
+                              className='form-control'
+                              id='exampleFormControlTextarea1'
+                              placeholder='Message'
+                              rows={5}
+                              value={diagnosis}
+                              onChange={(e) => {
+                                setdiagnosis(e.target.value)
+                              }}
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Upload Valid Government Issued ID{' '}
+                              <span className='red'>*</span>
+                            </label>
+                            <input
+                              type='file'
+                              name
+                              id='govt-id'
+                              // accept='application/pdf,application/vnd.ms-excel'
+                              onChange={filedocsHandler}
+                              className='form-control'
+                            />
+                            <label
+                              htmlFor='govt-id'
+                              className='d-block id-upload'
+                            >
+                              {doc_schedule?.name ? (
+                                <i className='fas fa-file-upload fa-2x' />
+                              ) : (
+                                <i className='fas fa-upload fa-2x' />
+                              )}
+                            </label>
+                          </div>
+                          <div className='col-12 text-right'>
+                            <Link to='#' className='red-link'>
+                              Redeem Coupon
+                            </Link>
                           </div>
                         </div>
                       </div>
-                    ) : showform == 2 ? (
-                      <div className=''>
-                        <div className='consultation-form'>
-                          <div className='row mb-5'>
-                            <div className='col-12 text-center mx-auto'>
-                              <div className='timezone'>
-                                <h3>
-                                  All Consultation Will Be Central Standard Time
-                                  Zone
-                                </h3>
-                                {/* <select className="form-control" id="timeZone">
+                    </div>
+                  </div>
+                ) : showform == 2 ? (
+                  <div className=''>
+                    <div className='consultation-form'>
+                      <div className='row mb-5'>
+                        <div className='col-12 text-center mx-auto'>
+                          <div className='timezone'>
+                            <h3>
+                              All Consultation Will Be Central Standard Time
+                              Zone
+                            </h3>
+                            {/* <select className="form-control" id="timeZone">
                                   <option>( GMT + 4:00 ) DUBAI</option>
                                   <option>( GMT + 4:00 ) DUBAI</option>
                                 </select> */}
-                              </div>
-                            </div>
-                          </div>
-                          <div className='col-md-12'>
-                            <label>
-                              Select a date<span className='red'>*</span>
-                            </label>
-                            <DatePicker
-                              minDate={moment().toDate()}
-                              isValidDate={disableWeekends}
-                              selected={appointmentdate}
-                              onChange={(e) => setappointmentdateHandler(e)}
-                              className='sort-date customdate form-control'
-                            />{' '}
-                          </div>
-                          <div className='table-responsive'>
-                            <table className='table table-borderless'>
-                              <thead></thead>
-                              <tbody>
-                                {timings?.length > 0 &&
-                                  timings?.map((tim, index) => (
-                                    <tr>
-                                      <td>
-                                        <input
-                                          type='radio'
-                                          value={appointment}
-                                          checked={appointment == tim?.time}
-                                          onChange={() => {
-                                            setappointment(tim?.time)
-                                          }}
-                                          id={index}
-                                          name={`jeff${index}`}
-                                        />
-                                        <label htmlFor={index}>
-                                          {tim?.time}
-                                        </label>
-                                      </td>
-                                    </tr>
-                                  ))}
-                              </tbody>
-                            </table>
                           </div>
                         </div>
-                        <p className='text-right consultation-meta mt-3'>
-                          {/* Consultation: <span>30 Minutes @ $100.00</span> */}
-                        </p>
                       </div>
-                    ) : showform == 3 ? (
-                      <div className=''>
-                        <div className='consultation-form'>
-                          <div className='form-group'>
-                            {/* <div className="form-row" style={{justifyContent:'center',display:'flex',textAlign:'center'}}> */}
-                            {/* <div className="form-row">
+                      <div className='col-md-12'>
+                        <label>
+                          Select a date<span className='red'>*</span>
+                        </label>
+                        <DatePicker
+                          minDate={moment().toDate()}
+                          isValidDate={disableWeekends}
+                          selected={appointmentdate}
+                          onChange={(e) => setappointmentdateHandler(e)}
+                          className='sort-date customdate form-control'
+                        />{' '}
+                      </div>
+                      <div className='table-responsive'>
+                        <table className='table table-borderless'>
+                          <thead></thead>
+                          <tbody>
+                            {timings?.length > 0 &&
+                              timings?.map((tim, index) => (
+                                <tr>
+                                  <td>
+                                    <input
+                                      type='radio'
+                                      value={appointment}
+                                      checked={appointment == tim?.time}
+                                      onChange={() => {
+                                        setappointment(tim?.time)
+                                      }}
+                                      id={index}
+                                      name={`jeff${index}`}
+                                    />
+                                    <label htmlFor={index}>{tim?.time}</label>
+                                  </td>
+                                </tr>
+                              ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <p className='text-right consultation-meta mt-3'>
+                      {/* Consultation: <span>30 Minutes @ $100.00</span> */}
+                    </p>
+                  </div>
+                ) : showform == 3 ? (
+                  <div className=''>
+                    <div className='consultation-form'>
+                      <div className='form-group'>
+                        {/* <div className="form-row" style={{justifyContent:'center',display:'flex',textAlign:'center'}}> */}
+                        {/* <div className="form-row">
                               <div className="col-6">
                              
                               </div>
@@ -779,170 +774,167 @@ const Consultation = ({ history }) => {
                               
                             </div> */}
 
-                            {loading ? (
-                              <i className='fas fa-spinner fa-pulse'></i>
-                            ) : (
-                              <>
-                                {' '}
-                                <div className='row mb-4'>
-                                  <div className='col-md-6'>
-                                    <div className='pricing'>
-                                      <div>
-                                        <input
-                                          type='radio'
-                                          id='html'
-                                          name='fav_language'
-                                          value={100}
-                                          onChanges={() => {
-                                            setamount(100)
-                                          }}
-                                        />
-                                        <label for={100}>
-                                          {' '}
-                                          Normal consultation fee $100
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='col-md-6'>
-                                    <div className='pricing'>
-                                      <div>
-                                        <input
-                                          type='radio'
-                                          id='html2'
-                                          name='fav_language'
-                                          value={750}
-                                          onChanges={() => {
-                                            setamount(750)
-                                          }}
-                                        />
-                                        <label for={750}>
-                                          {' '}
-                                          Direct consultation with Yah’ki fee
-                                          $750
-                                        </label>{' '}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className='row justify-content-center'>
-                                  <div className='col-md-6'>
-                                    <PayPalButton
-                                      amount={amount}
-                                      options={{
-                                        clientId:
-                                          'AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey',
-                                        currency: 'USD',
-                                      }}
-                                      createOrder={(data, actions) => {
-                                        return actions.order.create({
-                                          purchase_units: [
-                                            {
-                                              description: 'REZERWACJA',
-                                              amount: {
-                                                currency_code: 'USD',
-                                                value: amount,
-                                              },
-                                            },
-                                          ],
-                                        })
-                                      }}
-                                      // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                      onSuccess={(details, data) => {
-                                        setpaymentconfirm(true)
-                                        setshowform(
-                                          showform == 4 ? 4 : showform + 1
-                                        )
-                                        console.log('details')
-                                        console.log(details)
-                                        console.log('data')
-                                        console.log(data)
-                                        alert(
-                                          'Transaction completed by ' +
-                                            details.payer.name.given_name
-                                        )
-                                        setpaymentResultData(data)
-                                        setpaymentResultDetails(details)
-                                        // OPTIONAL: Call your server to save the transaction
-                                        // return fetch("/paypal-transaction-complete", {
-                                        //   method: "post",
-                                        //   body: JSON.stringify({
-                                        //     orderID: data.orderID
-                                        //   })
-                                        // });
+                        {loading ? (
+                          <i className='fas fa-spinner fa-pulse'></i>
+                        ) : (
+                          <>
+                            {' '}
+                            <div className='row mb-4'>
+                              <div className='col-md-6'>
+                                <div className='pricing'>
+                                  <div>
+                                    <input
+                                      type='radio'
+                                      id='html'
+                                      name='fav_language'
+                                      value={100}
+                                      onChanges={() => {
+                                        setamount(100)
                                       }}
                                     />
+                                    <label for={100}>
+                                      {' '}
+                                      Normal consultation fee $100
+                                    </label>
                                   </div>
                                 </div>
-                              </>
-                              // <StripeCheckout
-                              //   //  cardnumber={cardnumber}
-                              //   //  cvv={cvv}
-                              //   email={userInfo?.email}
-                              //   //  expirydate={expirydate}
-                              //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
-                              //   token={handleToken}
-                              //   amount={100 * 100}
-                              // ></StripeCheckout>
-                            )}
-                          </div>
-                        </div>
+                              </div>
+                              <div className='col-md-6'>
+                                <div className='pricing'>
+                                  <div>
+                                    <input
+                                      type='radio'
+                                      id='html2'
+                                      name='fav_language'
+                                      value={750}
+                                      onChanges={() => {
+                                        setamount(750)
+                                      }}
+                                    />
+                                    <label for={750}>
+                                      {' '}
+                                      Direct consultation with Yah’ki fee $750
+                                    </label>{' '}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className='row justify-content-center'>
+                              <div className='col-md-6'>
+                                <PayPalButton
+                                  amount={amount}
+                                  options={{
+                                    clientId:
+                                      'AYRPum5MCP6OVrHetOKvYD0CxpyGbGnu6U-n-mokG1mcDa4E_jW9VmOIWp7756ttzZ-LvB3lhe3r1Cey',
+                                    currency: 'USD',
+                                  }}
+                                  createOrder={(data, actions) => {
+                                    return actions.order.create({
+                                      purchase_units: [
+                                        {
+                                          description: 'REZERWACJA',
+                                          amount: {
+                                            currency_code: 'USD',
+                                            value: amount,
+                                          },
+                                        },
+                                      ],
+                                    })
+                                  }}
+                                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                  onSuccess={(details, data) => {
+                                    setpaymentconfirm(true)
+                                    setshowform(
+                                      showform == 4 ? 4 : showform + 1
+                                    )
+                                    console.log('details')
+                                    console.log(details)
+                                    console.log('data')
+                                    console.log(data)
+                                    alert(
+                                      'Transaction completed by ' +
+                                        details.payer.name.given_name
+                                    )
+                                    setpaymentResultData(data)
+                                    setpaymentResultDetails(details)
+                                    // OPTIONAL: Call your server to save the transaction
+                                    // return fetch("/paypal-transaction-complete", {
+                                    //   method: "post",
+                                    //   body: JSON.stringify({
+                                    //     orderID: data.orderID
+                                    //   })
+                                    // });
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          </>
+                          // <StripeCheckout
+                          //   //  cardnumber={cardnumber}
+                          //   //  cvv={cvv}
+                          //   email={userInfo?.email}
+                          //   //  expirydate={expirydate}
+                          //   stripeKey="pk_test_IdCqGO7sona7aWZqqiXTs3MN00vl1vkEQa"
+                          //   token={handleToken}
+                          //   amount={100 * 100}
+                          // ></StripeCheckout>
+                        )}
                       </div>
-                    ) : showform == 4 ? (
-                      <div className=''>
-                        <div className='consultation-form'>
-                          <p>
-                            <input
-                              placeholder='Username...'
-                              value={confirmationname}
-                              onChange={(e) => {
-                                setconfirmationname(e.target.value)
-                              }}
-                            />
-                          </p>
-                          <p>
-                            <input
-                              placeholder='Password...'
-                              value={confirmationpassword}
-                              onChange={(e) => {
-                                setconfirmationpassword(e.target.value)
-                              }}
-                            />
-                          </p>
-                        </div>
-                      </div>
-                    ) : null}
-                    <div className='text-center mt-5 pt-5 '>
-                      <button
-                        type='button'
-                        className='red-btn-outline mr-2'
-                        id='prevBtn'
-                        onClick={() => {
-                          setshowform(showform == 1 ? 1 : showform - 1)
-                        }}
-                      >
-                        Back
-                      </button>
-                      <button
-                        type='button'
-                        className='red-btn-solid'
-                        id='nextBtn'
-                        onClick={() => {
-                          showform == 1
-                            ? saveConsultationAddressHandler()
-                            : showform == 2
-                            ? chooseAppointmentHandler()
-                            : showform == 3 && paymentconfirm == true
-                            ? setshowform(showform + 1)
-                            : showform == 4 && confirmationHandler()
-                        }}
-                      >
-                        Continue
-                      </button>
                     </div>
-                  </form>
+                  </div>
+                ) : showform == 4 ? (
+                  <div className=''>
+                    <div className='consultation-form'>
+                      <p>
+                        <input
+                          placeholder='Username...'
+                          value={confirmationname}
+                          onChange={(e) => {
+                            setconfirmationname(e.target.value)
+                          }}
+                        />
+                      </p>
+                      <p>
+                        <input
+                          placeholder='Password...'
+                          value={confirmationpassword}
+                          onChange={(e) => {
+                            setconfirmationpassword(e.target.value)
+                          }}
+                        />
+                      </p>
+                    </div>
+                  </div>
+                ) : null}
+                <div className='text-center mt-5 pt-5 '>
+                  <button
+                    type='button'
+                    className='red-btn-outline mr-2'
+                    id='prevBtn'
+                    onClick={() => {
+                      setshowform(showform == 1 ? 1 : showform - 1)
+                    }}
+                  >
+                    Back
+                  </button>
+                  <button
+                    type='button'
+                    className='red-btn-solid'
+                    id='nextBtn'
+                    onClick={() => {
+                      showform == 1
+                        ? saveConsultationAddressHandler()
+                        : showform == 2
+                        ? chooseAppointmentHandler()
+                        : showform == 3 && paymentconfirm == true
+                        ? setshowform(showform + 1)
+                        : showform == 4 && confirmationHandler()
+                    }}
+                  >
+                    Continue
+                  </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

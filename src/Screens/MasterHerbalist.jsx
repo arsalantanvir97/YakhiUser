@@ -2,14 +2,15 @@ import React from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ImageLazyLoad from '../components/ImageLazyLoad'
+import MainHeader from '../components/MainHeader'
 import ToggleBack from '../components/ToggleBack'
 
 const MasterHerbalist = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1' id='herbalist'>
         <ToggleBack name={`Master Herbalist`} />
@@ -37,10 +38,10 @@ const MasterHerbalist = () => {
                   //   justifyContent: 'center',
                   // }}
                 >
-                  <img
+                  <ImageLazyLoad
                     src='images/herbalist-yakhi.jpg'
                     alt=''
-                    className='img-fluid'
+                    classname='img-fluid'
                   />
                 </div>
                 <div className='col-xl-5 col-lg-10 col-md-10 col-12 mt-xl-0 mt-5'>

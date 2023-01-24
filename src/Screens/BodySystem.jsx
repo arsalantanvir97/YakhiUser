@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ImageLazyLoad from '../components/ImageLazyLoad'
+import MainHeader from '../components/MainHeader'
 import ToggleBack from '../components/ToggleBack'
 
 const BodySystem = () => {
@@ -11,7 +12,7 @@ const BodySystem = () => {
     <>
       <Header />
       <div>
-        <PrivateRouteSlider />
+        <MainHeader />
 
         <section className='body-system '>
           <div className='container-fluid'>
@@ -46,10 +47,10 @@ const BodySystem = () => {
                   {/* mascular sytem */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/mascular-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Tissues</h6>
@@ -66,10 +67,10 @@ const BodySystem = () => {
                   {/* skeletal systen */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/skeletal-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Bones</h6>
@@ -86,10 +87,10 @@ const BodySystem = () => {
                   {/* Nervous System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/nervous-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Brain, Nerves and Adrenals</h6>
@@ -106,10 +107,10 @@ const BodySystem = () => {
                   {/* Endocrine System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/endocrine-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Hormones</h6>
@@ -126,10 +127,10 @@ const BodySystem = () => {
                   {/* Respiratory System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/respiratory-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Lungs</h6>
@@ -146,10 +147,10 @@ const BodySystem = () => {
                   {/* Lymphatic System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/lymphatic-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Lymph Nodes, Vessels, Spleen</h6>
@@ -166,10 +167,10 @@ const BodySystem = () => {
                   {/* The Integumentary System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/integumentary-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Skin, Hair, &amp; Nails</h6>
@@ -186,10 +187,10 @@ const BodySystem = () => {
                   {/* The Urinary System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/urinary-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Kidneys, Bladder</h6>
@@ -206,10 +207,10 @@ const BodySystem = () => {
                   {/* The Digestive System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/digestive-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Gastrointestinal Tract</h6>
@@ -226,10 +227,10 @@ const BodySystem = () => {
                   {/* Cardiovascular System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/cardio-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Heart, Blood</h6>
@@ -246,10 +247,10 @@ const BodySystem = () => {
                   {/* The Reproductive System */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/reproductive-system.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Male &amp; Female Productive System</h6>
@@ -266,10 +267,10 @@ const BodySystem = () => {
                   {/* ORAL HEALTH */}
                   <div className='col-lg-4 col-md-6'>
                     <div className='body-system-type'>
-                      <img
+                      <ImageLazyLoad
                         src='images/oral-health.jpg'
                         alt=''
-                        className='img-fluid'
+                        classname='img-fluid'
                       />
                       <div className='body-system-content'>
                         <h6>Teeth, Gums</h6>

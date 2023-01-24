@@ -74,7 +74,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <Link
-                        to={userInfo ? '/Memberships' : '#'}
+                        to={userInfo ? '/Signup' : '#'}
                         onClick={() => {
                           !userInfo && UnauthorizedAlert()
                         }}

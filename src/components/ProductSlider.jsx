@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { imageURL } from '../utils/api'
 import UnauthorizedAlert from './UnauthorizedAlert'
+import ImageLazyLoad from './ImageLazyLoad'
 
 export default class ProductSlider extends Component {
   render() {
@@ -78,7 +79,7 @@ export default class ProductSlider extends Component {
       <Slider {...settings}>
         {this?.props?.images?.map((pro) => (
           <div className='featured-product animate__animated animate__slideInUp '>
-            <img
+            <ImageLazyLoad
               onClick={() => {
                 this.props?.history?.push(`/ProductView/${pro._id}`)
               }}
@@ -91,7 +92,7 @@ export default class ProductSlider extends Component {
                 `${imageURL}${pro?.productimage[0]}`
               }
               alt=''
-              className='img-fluid mx-auto abcccc'
+              classname={'img-fluid mx-auto abcccc'}
             />
 
             <h4 className='prod-title text-center'>{pro?.name}</h4>

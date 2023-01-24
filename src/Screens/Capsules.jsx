@@ -19,6 +19,7 @@ import { CreateWishList } from '../hooks/WishList'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
 import { Parser } from 'html-to-react'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 
 const htmlToReactParser = new Parser()
 
@@ -32,7 +33,7 @@ let categories = [
   { name: `Hygiene`, id: '62d725092909481abc330f7d' },
   { name: `Soap`, id: '62d728d92909481abc331061' },
   { name: `Seaweed Herbs`, id: '62415f8d1b97a530529276ab' },
-  { name: `Oral Care`, id: '6215e1fef9727e382394df53' },
+  // { name: `Oral Care`, id: '6215e1fef9727e382394df53' },
   {
     name: `Oils`,
 
@@ -148,9 +149,6 @@ const Capsules = ({ history, match }) => {
     }
     // history.push(`/MyCart/${productId}?qty=${qty}`)
   }
-  useEffect(() => {
-    console.log('window.innerWidth', window.innerWidth)
-  }, [window.innerWidth])
   return (
     <>
       <Header />
@@ -170,6 +168,8 @@ const Capsules = ({ history, match }) => {
                   ? '../images/soaps.png'
                   : match?.params?.id == '6241605f1b97a530529276bf'
                   ? '../images/oils.png'
+                  : match?.params?.id == '62d725092909481abc330f7d'
+                  ? '../images/hygeine.png'
                   : match?.params?.id == '624160d81b97a530529276cb'
                   ? '../images/kits&bundle.jpg'
                   : match?.params?.id == '6242c50b11f7d01b4e81f96c'
@@ -182,7 +182,7 @@ const Capsules = ({ history, match }) => {
                   ? '../images/capsules.png'
                   : match?.params?.id == '62415f8d1b97a530529276ab'
                   ? '../images/Seaweedherbs.png'
-                  : '../images/inner-page-bg.png'
+                  : '../images/homebanner.png'
               } ` +
               ')',
             minHeight:
@@ -213,6 +213,7 @@ const Capsules = ({ history, match }) => {
               match?.params?.id == '62d728d92909481abc331061' ||
               match?.params?.id == '6241605f1b97a530529276bf' ||
               match?.params?.id == '6241603e1b97a530529276bb' ||
+              match?.params?.id == '62d725092909481abc330f7d' ||
               match?.params?.id == '624160d81b97a530529276cb' ||
               match?.params?.id == '624160071b97a530529276b7' ||
               match?.params?.id == '6242c50b11f7d01b4e81f96c' ||
@@ -223,32 +224,7 @@ const Capsules = ({ history, match }) => {
             // backgroundRepeat: 'no-repeat',
             // height: '440px',
           }}
-        >
-          {match?.params?.id == '62415fde1b97a530529276b3' ||
-          match?.params?.id == '62d728d92909481abc331061' ||
-          match?.params?.id == '624160071b97a530529276b7' ||
-          match?.params?.id == '624160d81b97a530529276cb' ||
-          match?.params?.id == '6241605f1b97a530529276bf' ||
-          match?.params?.id == '6241603e1b97a530529276bb' ||
-          match?.params?.id == '6242c50b11f7d01b4e81f96c' ||
-          match?.params?.id == '62415fc11b97a530529276af' ||
-          match?.params?.id == '62415f8d1b97a530529276ab' ? null : (
-            <div className='container-fluid'>
-              <div className='row'>
-                <div className='col-xl-5 col-lg-6 col-md-6 col-sm-7 col-10 offset-sm-2 offset-1'>
-                  <div className='banner-content'>
-                    <div className='banner-outline'>
-                      <h1 className='slider-heading'>
-                        Healing The Illusion We Call disease
-                      </h1>
-                      <p className='slider-para'>You deserve healing! </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>{' '}
+        ></section>{' '}
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-11 mx-auto'>
@@ -538,17 +514,16 @@ const Capsules = ({ history, match }) => {
                                 to={`/ProductView/${prod?._id}`}
                               >
                                 {' '}
-                                <img
+                                <ImageLazyLoad
+                                  // style={{
+                                  //   objectFit: 'cover',
+                                  //   width: '388px%',
+                                  // }}
                                   src={
                                     prod?.productimage?.length > 0 &&
                                     `${imageURL}${prod?.productimage[0]}`
                                   }
-                                  alt=''
-                                  className='img-fluid '
-                                  style={{
-                                    objectFit: 'cover',
-                                    width: '388px%',
-                                  }}
+                                  classname='img-fluid prod-imggg'
                                 />{' '}
                               </Link>
                               <div className='product-text'>

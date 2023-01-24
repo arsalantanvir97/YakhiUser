@@ -2,9 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
-import FooterHeader from '../components/FooterHeader'
+import MainHeader from '../components/MainHeader'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import ToggleBack from '../components/ToggleBack'
 import { baseURL, imageURL } from '../utils/api'
 
@@ -41,7 +40,7 @@ const Faqs = () => {
   return (
     <>
       <Header />
-      <FooterHeader />
+      <MainHeader />
 
       <div className='container-fluid py-3 my-5'>
         <div className='row'>

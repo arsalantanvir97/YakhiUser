@@ -6,6 +6,8 @@ import { imageURL } from '../utils/api'
 import Toasty from '../utils/toast'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
+import EmptyCart from '../components/EmptyCart'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 let qtybool = false
 const MyCart = ({ match, location, history }) => {
   const productId = match?.params?.id
@@ -55,13 +57,7 @@ const MyCart = ({ match, location, history }) => {
             <section className='my-cart mt-5'>
               <div className='row align-items-start'>
                 <div className='col-12 my-4'>
-                  {cartItems?.length > 0 ? (
-                    <h2>My Cart</h2>
-                  ) : (
-                    <h2>
-                      Your Cart is Empty <Link to='/'>Go Back</Link>
-                    </h2>
-                  )}
+                  {cartItems?.length > 0 ? <h2>My Cart</h2> : <EmptyCart />}
                 </div>
 
                 {cartItems?.length > 0 && (
@@ -135,11 +131,11 @@ const MyCart = ({ match, location, history }) => {
                               <tr>
                                 <td>
                                   <div className='cart-product'>
-                                    <img
+                                    <ImageLazyLoad
                                       src={`${imageURL}${cart?.image[0]}`}
                                       alt=''
-                                      className='img-fluid mx-auto'
-                                      style={{ width: 96, height: 83 }}
+                                      classname='img-fluid mx-auto'
+                                      // style={{ width: 96, height: 83 }}
                                     />
                                   </div>
                                 </td>

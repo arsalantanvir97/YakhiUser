@@ -2,7 +2,8 @@ import React from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import ImageLazyLoad from '../components/ImageLazyLoad'
+import MainHeader from '../components/MainHeader'
 import ToggleBack from '../components/ToggleBack'
 
 const EattotLive = () => {
@@ -42,7 +43,7 @@ const EattotLive = () => {
           // height: '440px',
         }}
       ></section>{' '}
-      <section className='about-page'>
+      <section className='about-page' style={{ paddingTop: 0 }}>
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-md-11 mx-auto'>
@@ -72,10 +73,10 @@ const EattotLive = () => {
               {/* fruit bucket */}
               <div className='row my-5'>
                 <div className='col-12 text-center'>
-                  <img
+                  <ImageLazyLoad
                     src='images/fruit-basket.png'
                     alt=''
-                    className='img-fluid'
+                    classname='img-fluid'
                   />
                 </div>
               </div>

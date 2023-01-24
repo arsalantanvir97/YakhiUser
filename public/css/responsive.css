@@ -344,8 +344,7 @@
         background-color: #222222 !important;
         border-color: #222222;
         border-radius: 13px;
-        text-align: center;
-    }
+        text-align: center;    }
     /* .abcccccc, .dropdown-menu{
         display: none;
     } */
@@ -616,8 +615,9 @@
         margin: 100px auto;
         padding: 40px;
         width: 100%;
-        min-width: 300px;
+        /* min-width: 300px; */
     }
+
 }
 
 @media screen and (max-width: 1070px) {
@@ -1042,6 +1042,12 @@
         margin-left: auto;
     }
     #herbalist{background: none;}
+    .team-member-box img {
+        height: auto;
+    }
+    ul.member-features li {
+        min-height: auto;
+    }
 }
 @media screen and (max-width: 695px) {
     .main-banner {
@@ -1423,6 +1429,12 @@ display: block !important;
     .main-banner {
         min-height: 185px;
     }
+    #regForm span {
+        width: 41%;
+      }
+.leaf-img img.over-image-1, .leaf-img img.over-image-2{
+    display: none;
+}
 }
 @media screen and (max-width: 456px) {
     

@@ -14,7 +14,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
 
@@ -59,7 +59,7 @@ const Donate = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1' id='donation-shapes'>
         <div className='row'>
@@ -97,7 +97,7 @@ const Donate = () => {
                   <div className='donation-box my-5'>
                     <div className='row my-4 align-items-center'>
                       <div className='col-xl-7 col-lg-6'>
-                        <div className='account-form'>
+                        <div className=''>
                           <form>
                             <div className='row align-items-center justify-content-center'>
                               <div className='col-12'>

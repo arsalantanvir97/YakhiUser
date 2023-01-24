@@ -2,35 +2,15 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import $ from 'jquery'
 import { baseURL, imageURL } from '../utils/api'
 import { Link } from 'react-router-dom'
-import HomeSlider from '../components/HomeSlider'
-import ProductSlider from '../components/ProductSlider'
-import ClientsSlider from '../components/ClientsSlider'
 import { useSelector } from 'react-redux'
-import { SliderSkeleton } from '../components/SliderSkeleton'
-import { setDefaultLocale } from 'react-datepicker'
 import FeaturedProductsSlider from '../components/FeaturedProductsSlider'
-import { useLayoutEffect } from 'react'
 import AllHerbs from '../components/AllHerbs'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 const isWindowContext = typeof window !== 'undefined'
 
 const Index = ({ history }) => {
-  // const [visible, setVisible] = useState(false)
-  // useEffect(() => {
-  //   let pop_status = sessionStorage.getItem('pop_status')
-  //   if (!pop_status || pop_status == 1) {
-  //     console.log('!pop_status!pop_status')
-  //     setVisible(true)
-  //     sessionStorage.setItem('pop_status', 1)
-  //   }
-  //   if (isWindowContext) {
-  //     isWindowContext && visible == true && window?.$('#overlay').modal('show')
-  //   }
-  // }, [])
-  // if (!visible) return null
-
   const [product, setproduct] = useState([])
   const [selectedheral, setselectedheral] = useState()
   const [filteredproducts, setfilteredproducts] = useState([])
@@ -44,7 +24,7 @@ const Index = ({ history }) => {
   const [featuredproducts, setfeaturedproducts] = useState([])
   const [bitternadelement, setbitternadelement] = useState([])
   const [herbalproducts, setherbalproducts] = useState([
-    'Consultations',
+    // 'Consultations',
     'Geo’Genetics',
     'Teas',
     'Tinctures',
@@ -54,7 +34,7 @@ const Index = ({ history }) => {
     'Hygiene',
     'Soaps',
     'Sea Herbs',
-    'Oral Care',
+    // 'Oral Care',
     'Oils',
     'Salves',
   ])
@@ -219,7 +199,7 @@ const Index = ({ history }) => {
     const abc = []
     setherbalproducts([])
     console.log('herbalproducts1', herbalproducts)
-    if (value.includes('The Muscular System')) {
+    if (value?.includes('The Muscular System')) {
       console.log('helllo')
       abc.push(
         'Capsules',
@@ -232,7 +212,7 @@ const Index = ({ history }) => {
         'Kits & Bundle'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Integumentary System`)) {
+    } else if (value?.includes(`The Integumentary System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -247,7 +227,7 @@ const Index = ({ history }) => {
         'Kits & Bundle'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Skeletal System`)) {
+    } else if (value?.includes(`The Skeletal System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -260,7 +240,7 @@ const Index = ({ history }) => {
         'Tonics'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Nervous System`)) {
+    } else if (value?.includes(`The Nervous System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -273,7 +253,7 @@ const Index = ({ history }) => {
         'Sea Herbs'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Urinary System`)) {
+    } else if (value?.includes(`The Urinary System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -286,7 +266,7 @@ const Index = ({ history }) => {
         'Sea Herbs'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Digestive System`)) {
+    } else if (value?.includes(`The Digestive System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -299,7 +279,7 @@ const Index = ({ history }) => {
         'Sea Herbs'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Endocrine System`)) {
+    } else if (value?.includes(`The Endocrine System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -312,7 +292,7 @@ const Index = ({ history }) => {
         'Sea Herbs'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Respiratory System`)) {
+    } else if (value?.includes(`The Respiratory System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -325,7 +305,7 @@ const Index = ({ history }) => {
         'Sea Herbs'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Lymphatic System`)) {
+    } else if (value?.includes(`The Lymphatic System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -338,7 +318,7 @@ const Index = ({ history }) => {
         'Sea Herbs'
       )
       setherbalproducts([...abc])
-    } else if (value.includes(`The Cardiovascular System`)) {
+    } else if (value?.includes(`The Cardiovascular System`)) {
       console.log('helllo2')
 
       abc.push(
@@ -351,13 +331,13 @@ const Index = ({ history }) => {
       )
       setherbalproducts([...abc])
     }
-    // else if (value.includes(`Reproductive Systems Health`)) {
+    // else if (value?.includes(`Reproductive Systems Health`)) {
     //   console.log('helllo2')
 
     //   abc.push('Capsules', 'Teas', 'Tinctures')
     //   setherbalproducts([...abc])
     // }
-    else if (value.includes(`Oral Health`)) {
+    else if (value?.includes(`Oral Health`)) {
       console.log('helllo2')
 
       abc.push(
@@ -374,9 +354,9 @@ const Index = ({ history }) => {
     console.log('herbalproducts2', herbalproducts)
   }
   const setCategoryHandler = (val) => {
-    if (val.includes('Consultations')) {
+    if (val?.includes('Consultations')) {
       history.push('/Consultation')
-    } else if (selectedheral.includes('The Muscular System')) {
+    } else if (selectedheral?.includes('The Muscular System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -451,7 +431,7 @@ const Index = ({ history }) => {
           'REVITALIZE & REBUILD KIT',
         ])
       }
-    } else if (selectedheral.includes('The Integumentary System')) {
+    } else if (selectedheral?.includes('The Integumentary System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -534,7 +514,7 @@ const Index = ({ history }) => {
           'REVITALIZE & REBUILD KIT',
         ])
       }
-    } else if (selectedheral.includes('The Skeletal System')) {
+    } else if (selectedheral?.includes('The Skeletal System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -606,7 +586,7 @@ const Index = ({ history }) => {
           'Raw Organic Sea Moss',
         ])
       }
-    } else if (selectedheral.includes('The Nervous System')) {
+    } else if (selectedheral?.includes('The Nervous System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -659,7 +639,7 @@ const Index = ({ history }) => {
           'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
-    } else if (selectedheral.includes('The Urinary System')) {
+    } else if (selectedheral?.includes('The Urinary System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'Brain, Nerve & Adrenal Capsules',
@@ -717,7 +697,7 @@ const Index = ({ history }) => {
           'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
-    } else if (selectedheral.includes('The Digestive System')) {
+    } else if (selectedheral?.includes('The Digestive System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'Brain, Nerve & Adrenal Capsules',
@@ -775,7 +755,7 @@ const Index = ({ history }) => {
           'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
-    } else if (selectedheral.includes('The Endocrine System')) {
+    } else if (selectedheral?.includes('The Endocrine System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -842,7 +822,7 @@ const Index = ({ history }) => {
           'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
-    } else if (selectedheral.includes('The Respiratory System')) {
+    } else if (selectedheral?.includes('The Respiratory System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -905,7 +885,7 @@ const Index = ({ history }) => {
           'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
-    } else if (selectedheral.includes('The Lymphatic System')) {
+    } else if (selectedheral?.includes('The Lymphatic System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'ATOMIC STRENGTHENER CAPSULES',
@@ -969,7 +949,7 @@ const Index = ({ history }) => {
           'LYMPHATIC SYSTEM SWEEP KIT',
         ])
       }
-    } else if (selectedheral.includes('The Cardiovascular System')) {
+    } else if (selectedheral?.includes('The Cardiovascular System')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -1020,7 +1000,7 @@ const Index = ({ history }) => {
         ])
       }
     }
-    // else if (selectedheral.includes('Reproductive Systems Health')) {
+    // else if (selectedheral?.includes('Reproductive Systems Health')) {
     //   if (val == 'Capsules') {
     //     setfilteredproducts([
     //       'Brain Nerve Vitalmax Capsules',
@@ -1062,7 +1042,7 @@ const Index = ({ history }) => {
     //     ])
     //   }
     // }
-    else if (selectedheral.includes('Oral Health')) {
+    else if (selectedheral?.includes('Oral Health')) {
       if (val == 'Capsules') {
         setfilteredproducts([
           'All Purpose Adult Vitamin Capsules',
@@ -1210,10 +1190,10 @@ const Index = ({ history }) => {
                 justifyContent: 'center',
               }}
             >
-              <img
+              <ImageLazyLoad
                 src='images/yahki-awakened.png'
                 alt=''
-                className='img-fluid w-55 mt-4'
+                classname='img-fluid w-55 mt-4'
               />
             </div>
           </div>
@@ -1296,7 +1276,8 @@ const Index = ({ history }) => {
                   <Link
                     to='#'
                     onClick={() => {
-                      history?.push(`/ProductViewByName/${selectedproduct}`)
+                      selectedproduct?.length > 0 &&
+                        history?.push(`/ProductViewByName/${selectedproduct}`)
                     }}
                     className='btn maroon-btn-solid d-inline-block py-2 px-5'
                   >
@@ -1408,16 +1389,13 @@ const Index = ({ history }) => {
                       </h4>
                       <h5 className="prod-price">$350.00</h5>
                     </div> */}
-                      {loading ? (
-                        <SliderSkeleton listsToRender={2} />
-                      ) : (
-                        <FeaturedProductsSlider
-                          show={2}
-                          history={history}
-                          images={featuredproducts}
-                          userInfo={userInfo}
-                        />
-                      )}
+
+                      <FeaturedProductsSlider
+                        show={2}
+                        history={history}
+                        images={featuredproducts}
+                        userInfo={userInfo}
+                      />
                     </div>
                   </div>
                 </div>

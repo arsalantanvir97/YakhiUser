@@ -2,14 +2,14 @@ import React from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import ToggleBack from '../components/ToggleBack'
 
 const ProductResource = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <MainHeader />
 
       <section className='about-page'>
         <div className='container-fluid'>

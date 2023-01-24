@@ -7,7 +7,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Toasty from '../utils/toast'
 import { validateEmail } from '../utils/ValidateEmail'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import ToggleBack from '../components/ToggleBack'
 
 const Contactus = () => {
@@ -61,7 +61,7 @@ const Contactus = () => {
   return (
     <>
       <Header />
-      <PrivateRouteSlider />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1'>
         <div className='row'>

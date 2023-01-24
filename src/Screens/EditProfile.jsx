@@ -10,6 +10,10 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import moment from 'moment'
 import ToggleBack from '../components/ToggleBack'
+import EmptyCart from '../components/EmptyCart'
+import EmptyWishList from '../components/EmptyWishList'
+import ImageLazyLoad from '../components/ImageLazyLoad'
+import NoOrder from '../components/NoOrder'
 
 const EditProfile = ({ history }) => {
   const [loading, setloading] = useState(false)
@@ -50,8 +54,8 @@ const EditProfile = ({ history }) => {
   }
   useEffect(() => {
     if (userInfo) {
-      setfirstName(userInfo?.firstName)
-      setlastName(userInfo?.lastName)
+      setfirstName(userInfo?.firstname)
+      setlastName(userInfo?.lastname)
       setimage(userInfo?.userImage)
       setemail(userInfo?.email)
     }
@@ -131,10 +135,10 @@ const EditProfile = ({ history }) => {
     }
   }
   useEffect(() => {
-    getSchedules()
+    getOrders()
   }, [])
 
-  const getSchedules = async () => {
+  const getOrders = async () => {
     setloading(true)
     try {
       const res = await axios({
@@ -151,7 +155,7 @@ const EditProfile = ({ history }) => {
       })
       setloading(false)
 
-      console.log('res', res)
+      console.log('re32s', res)
       setorderslogs(res.data?.order)
     } catch (err) {
       setloading(false)
@@ -192,7 +196,7 @@ const EditProfile = ({ history }) => {
                                 <ImageSelector
                                   setImage={setimage}
                                   image={image}
-                                  is_edit={is_edit}
+                                  is_edit={true}
                                 />
                               </div>
                             </div>
@@ -243,7 +247,7 @@ const EditProfile = ({ history }) => {
                                 )}
                               </div>
                               <div className='col-md-6 col-12 text-left mb-3 lablename'>
-                                <label htmlFor>Email Address:</label>
+                                <label htmlFor>Email:</label>
                               </div>
                               <div className='col-md-6 col-12 text-left mb-3'>
                                 {is_edit ? (
@@ -263,6 +267,13 @@ const EditProfile = ({ history }) => {
                                 )}
                               </div>
                               <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Address:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <p> {userInfo?.address}</p>
+                              </div>
+
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
                                 <label htmlFor>Account Created At:</label>
                               </div>
                               <div className='col-md-6 col-12 text-left mb-3'>
@@ -270,6 +281,58 @@ const EditProfile = ({ history }) => {
                                   {' '}
                                   {moment.utc(userInfo?.createdAt).format('LL')}
                                 </p>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Terms of Services:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <p>
+                                  <input
+                                    className='inputt'
+                                    type='checkbox'
+                                    checked={true}
+                                  />
+                                </p>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Membership Disclaimer:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <input
+                                  className='inputt'
+                                  type='checkbox'
+                                  checked={true}
+                                />
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Shipping Policy:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <p>
+                                  <input
+                                    className='inputt'
+                                    type='checkbox'
+                                    checked={true}
+                                  />
+                                </p>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Card Number:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <p>{userInfo?.paymentinfo?.cardnumber}</p>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>CVV:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <p>{userInfo?.paymentinfo?.cvvnumber}</p>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                <label htmlFor>Expiry Date:</label>
+                              </div>
+                              <div className='col-md-6 col-12 text-left mb-3'>
+                                <p>{userInfo?.paymentinfo?.expirydate}</p>
                               </div>
                             </div>
 
@@ -308,7 +371,11 @@ const EditProfile = ({ history }) => {
                   <section className='my-cart mt-5'>
                     <div className='row align-items-start'>
                       <div className='col-12 my-4'>
-                        <h2>Cart</h2>
+                        {cartItems?.length > 0 ? (
+                          <h2>My Cart</h2>
+                        ) : (
+                          <EmptyCart />
+                        )}
                       </div>
 
                       {cartItems?.length > 0 && (
@@ -382,10 +449,10 @@ const EditProfile = ({ history }) => {
                                     <tr>
                                       <td>
                                         <div className='cart-product'>
-                                          <img
+                                          <ImageLazyLoad
                                             src={`${imageURL}${cart?.image[0]}`}
                                             alt=''
-                                            className='img-fluid mx-auto'
+                                            classname='img-fluid mx-auto'
                                             style={{ width: 96, height: 83 }}
                                           />
                                         </div>
@@ -491,50 +558,44 @@ const EditProfile = ({ history }) => {
             <div className='container-fluid'>
               <div className='row'>
                 <div className='col-md-11 mx-auto'>
-                  <section className='my-cart mt-5'>
-                    <div className='row align-items-start'>
-                      <div className='col-12 my-4'>
-                        <h2>Wishlist</h2>
-                        {/* {wishtlistuser?.length > 0 ? (
-                ) : (
-                  <h2>
-                    Your Wishlist is Empty <Link to="/">Go Back</Link>
-                  </h2>
-                )} */}
-                      </div>
+                  {wishtlistuser?.length > 0 ? (
+                    wishtlistuser?.map((wish, index) => (
+                      <section className='my-cart mt-5'>
+                        <div className='row align-items-start'>
+                          <div className='col-12 my-4'>
+                            <h2>Wishlist</h2>
+                          </div>
 
-                      <div className='col-xl-11 col-md-12'>
-                        {/* cart table */}
-                        <div className='table-responsive'>
-                          <table
-                            className='table table-borderless text-center'
-                            id='cart-table'
-                          >
-                            <thead>
-                              <tr>
-                                <th>IMAGE</th>
-                                <th>PRODUCT</th>
-                                {/* <th>QUANTITY</th> */}
-                                <th>UNIT PRICE</th>
-                                <th>Availability</th>
-                                <th>Add to Cart</th>
-                                <th>ACTION</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {wishtlistuser?.length > 0 ? (
-                                wishtlistuser?.map((wish, index) => (
+                          <div className='col-xl-11 col-md-12'>
+                            {/* cart table */}
+                            <div className='table-responsive'>
+                              <table
+                                className='table table-borderless text-center'
+                                id='cart-table'
+                              >
+                                <thead>
+                                  <tr>
+                                    <th>IMAGE</th>
+                                    <th>PRODUCT</th>
+                                    {/* <th>QUANTITY</th> */}
+                                    <th>UNIT PRICE</th>
+                                    <th>Availability</th>
+                                    <th>Add to Cart</th>
+                                    <th>ACTION</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
                                   <tr>
                                     <td>
                                       <div className='cart-product'>
-                                        <img
+                                        <ImageLazyLoad
                                           src={
                                             wish?.product?.productimage
                                               ?.length > 0 &&
                                             `${imageURL}${wish?.product?.productimage[0]}`
                                           }
                                           alt=''
-                                          className='img-fluid mx-auto'
+                                          classname='img-fluid mx-auto'
                                         />
                                       </div>
                                     </td>
@@ -625,48 +686,44 @@ const EditProfile = ({ history }) => {
                                       </button>
                                     </td>
                                   </tr>
-                                ))
-                              ) : (
-                                <p
-                                  style={{ textAlign: 'center' }}
-                                  className='mt-4'
-                                >
-                                  {' '}
-                                  WishList Empty
-                                </p>
-                              )}
-                            </tbody>
-                          </table>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      </section>
+                    ))
+                  ) : (
+                    <div className='mt-4'>
+                      <EmptyWishList />
                     </div>
-                  </section>
+                  )}
                 </div>
               </div>
             </div>
             <div className='container-fluid'>
               <div className='row'>
-                <div className='col-md-11 mx-auto'>
+                <div className='col-md-11 mx-auto mt-3'>
                   <div className='row align-items-start'>
-                    <div className='col-12 my-4'>
-                      <h2 className='mb-2'>Orders</h2>
-                      <div className='table-responsive'>
-                        <table className='table table-borderless'>
-                          <thead>
-                            <tr>
-                              <th scope='col'>S.No.</th>
-                              <th scope='col'>Order ID.</th>
-                              <th scope='col'>Order Date</th>
+                    {orderslogs?.docs?.length > 0 ? (
+                      orderslogs?.docs?.map((ord, index) => (
+                        <div className='col-12 my-4'>
+                          <h2 className='mb-2'>Orders</h2>
+                          <div className='table-responsive'>
+                            <table className='table table-borderless'>
+                              <thead>
+                                <tr>
+                                  <th scope='col'>S.No.</th>
+                                  <th scope='col'>Order ID.</th>
+                                  <th scope='col'>Order Date</th>
 
-                              <th scope='col'>Quantity</th>
-                              <th scope='col'>Amount Paid</th>
-                              <th scope='col'>Order Status</th>
-                              <th scope='col'>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {orderslogs?.docs?.length > 0 ? (
-                              orderslogs?.docs?.map((ord, index) => (
+                                  <th scope='col'>Quantity</th>
+                                  <th scope='col'>Amount Paid</th>
+                                  <th scope='col'>Order Status</th>
+                                  <th scope='col'>Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
                                 <tr>
                                   <td>{index + 1}</td>
                                   <td>{ord?._id}</td>
@@ -711,20 +768,17 @@ const EditProfile = ({ history }) => {
                                     </div>
                                   </td>
                                 </tr>
-                              ))
-                            ) : (
-                              <p
-                                style={{ textAlign: 'center' }}
-                                className='mt-4'
-                              >
-                                {' '}
-                                No Orders
-                              </p>
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <div className='mt-4'></div>
+                        <NoOrder />
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

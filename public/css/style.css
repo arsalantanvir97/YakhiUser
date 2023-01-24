@@ -1703,6 +1703,14 @@ footer.site-footer {
 #regForm .d-flex.justify-content-around, .geocheck-form
 {
   gap: 1rem;
+  -ms-flex-wrap: wrap!important;
+  flex-wrap: wrap!important;
+}
+
+#regForm p {
+  white-space: normal;
+  word-break: break-word;
+  font-size: 14px;
 }
 .geocheck-form span {
   -ms-flex-positive: 1!important;
@@ -1838,7 +1846,8 @@ img.banner-leaf {
 }
 
 section.about-page {
-  padding: 100px 20px 0;
+  padding: 100px 5px 0;
+  padding-top: 10px !important;
 }
 
 h4.sub-heading {
@@ -2162,6 +2171,8 @@ h4.panel-title a {
   text-transform: uppercase;
   font-size: 18px;
   line-height: 1.2;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .panel-title>a.collapsed:before {
@@ -2284,7 +2295,12 @@ h3 {
   margin: 50px auto;
   padding: 0;
 }
-
+.checkout-form div#field-wrapper label {
+    width: 33%;
+}
+.sc-bdvvtL.krtcdR {
+  width: 100%;
+}
 /* Style the input fields */
 input {
   padding: 10px;
@@ -2293,7 +2309,11 @@ input {
   font-family: Raleway;
   border: 1px solid #aaaaaa;
 }
+.inputt{
+  font-size: 0px;
+  width: 10%;
 
+}
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
   background-color: #ffdddd;
@@ -2364,6 +2384,10 @@ span.step.finish p {
   font-family: "Rubik", sans-serif;
   font-weight: 800;
   line-height: 1.8;
+  white-space: normal;
+}
+.featured .slick-slider .slick-arrow i {
+  font-size: 25px;
 }
 
 .consultation-form input {
@@ -2516,6 +2540,7 @@ button.btn.btn-categories:hover {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 9;
 }
 
 .product-name a {
@@ -2597,6 +2622,8 @@ select#sortBy {
   font-size: 18px;
   color: #666666;
 }
+
+
 
 @keyframes cdp-in {
   from {
@@ -3616,19 +3643,21 @@ input[type="radio"]:checked+label>img {
 
 .payment-method label {
   background: #f1f1f1;
-  width: 110px;
-  height: 65px;
+  /* width: 110px;
+  height: 65px; */
   text-align: center;
   border-radius: 10px;
   border: 1px solid #e9e7e7;
   vertical-align: middle;
-  padding-top: 8px;
+  padding: 5px;
 }
-
+.payment-method label:hover {
+  border: 1px solid #528918;
+}
 /* Stuff after this is only to make things more pretty */
 input[type="radio"]+label>img {
   transition: 500ms all;
-  width: 72px;
+  /* width: 72px; */
   vertical-align: middle;
 }
 
@@ -3916,6 +3945,8 @@ select#timeZone {
   font-size: 16px;
   font-family: "ALoveofThunder";
   color: #160000;
+  white-space: break-spaces;
+    word-break: break-all;
 }
 
 p.adrs {
@@ -3927,7 +3958,7 @@ p.adrs {
 
 .account-form {
   padding: 50px;
-  background: #fff;
+  background: #cccccc6e;
   border-radius: 0;
   border: 1px solid #f1f1f1;
 }
@@ -4274,6 +4305,16 @@ img.img-fluid.over-image-1 {
   bottom: -35px;
 }
 
+
+
+.myaccount .dropdown-menu {
+  background-color: #fff !important;
+  border: 1px solid rgba(0,0,0,.15);
+
+}
+.myaccount .dropdown-menu a{
+  color: #000;
+}
 img.img-fluid.over-image-2 {
   position: absolute;
   left: 5px;
@@ -4286,16 +4327,19 @@ img.img-fluid.over-image-2 {
   top: 0px;
   width: 150px;
 }
-
+.prod-imggg{
+  object-fit: 'cover';
+  width: 358px;
+}
 #herbalist {
   position: relative;
   background: url(../images/herbalist-tea.png) right -100px top -50px / auto no-repeat;
 }
 
 .team-member-box {
-  height: 650px;
+  height: auto !important;
   background: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   border: 1px solid #f1f1f1;
 }
 
@@ -4314,6 +4358,7 @@ img.img-fluid.over-image-2 {
 ul.member-features li {
   color: #160000;
   font-size: 15px;
+  min-height: 41px;
 }
 
 ul.member-features li:before {
@@ -4324,6 +4369,7 @@ ul.member-features li:before {
 
 .member-info-card {
   padding: 35px 30px;
+  min-height: auto !important;
 }
 
 .member-email a {
@@ -4632,6 +4678,10 @@ span.bottom-note {
 .insta-icon{
  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
 }
+.google-icon{
+  background: #DB4437
+
+}
 .youtube-icon{
  background: #f00;
 }
@@ -4683,14 +4733,45 @@ padding: 12px 10px !important;
   font-size: 19px;
   color: #676767;
 }
+.wishlist-box {
+  display: block;
+  margin: auto;
+  text-align: center;
+  width: 30%;
+}
 
+.wishlist-box svg {
+  width: 60%;
+  height: auto;
+  padding:  0 0 30px 0;
+}
+
+.wishlist-box p {
+  font-size: 18px;
+  padding: 0 0 10px 0;
+}
+
+.wishlist-box a {background: #528918;color: #fff;border-radius: 0;text-transform: uppercase;padding: 10px 25px;display: inline-block;border: 1px solid #528918;}
 .w-55 {
   width: 55%;
 }
 .userbackbtn {
-  padding-top: 20px;
-  font-size: 25px;
+  /* padding-top: 20px; */
+  font-size: 20px;
 }
+.my-cart h2{
+  color: #000 ;
+  font-size: 36px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 800;
+  padding: 0 0 0 20px;
+}
+.my-cart h2 a{
+  color: rgb(82, 137, 0);
+
+}
+
+
 .userbackbtn a {
   color: #000;
 }
@@ -5234,7 +5315,10 @@ section.yahki-protocols {
   font-family: "Rubik", sans-serif;
   line-height: 1.88;
 }
-
+.crumbs{
+  display: flex;
+  align-items: center;
+}
 .crumbs li a {
   color: #676767;
   position: relative;
@@ -5774,7 +5858,13 @@ ul.default-list {
   text-align: center !important;
   margin: 0 auto !important;
   display: block;
+  height: 460px;
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center;
 }
+
 h4.bitter-heading {
   font-size: 30px;
   font-weight: 700;
@@ -5854,7 +5944,13 @@ span.sale-tag {
   margin: 0 0 0 20px;
 }
 
-
+.hovv .checkbox-group label span:hover {
+    color: #528918;
+}
+.hovv .checkbox-group label span {
+    /* text-decoration: underline; */
+    color: #528918bf;
+}
 
 
 .pricing {
@@ -5878,3 +5974,45 @@ span.sale-tag {
   width: auto;
   margin: 0 10px 0 0;
 }
+
+
+.react-tel-input .form-control {
+  width: 100% !important;
+}
+
+/* authorizesty start*/
+.authorizesty h5 {
+  color: #000000;
+  font-size: 25px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 800;
+}
+.authorizesty>div>div {
+    background: transparent;
+    border: 1px solid #dee2e6;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.authorizesty>div>div>div {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+}
+.authorizesty>div>div>div>div {
+    background: transparent;
+    border: 1px solid #dee2e6;
+    color: #000;
+}
+
+.authorizesty>div>div>div button {
+    background: #528918;
+    border: 0;
+    box-shadow: none;
+}
+.authorizesty>div>div>div.sc-bdVaJa.jPkAPB div {
+    border: 0;
+}
+
+/* authorizesty close*/

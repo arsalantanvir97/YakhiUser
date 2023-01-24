@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
+import EmptyWishList from '../components/EmptyWishList'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 
 const WishList = ({ history }) => {
   const [wishtlistuser, setwishtlistuser] = useState([])
@@ -68,12 +70,12 @@ const WishList = ({ history }) => {
   }
   return (
     <>
-      <div className='container-fluid'>
+      <div className='container-fluid pb-5'>
         <div className='row'>
           <div className='col-md-11 mx-auto'>
             <ToggleBack name={'WishList'} />
 
-            <section className='my-cart mt-5'>
+            <div className='my-cart '>
               <div className='row align-items-start'>
                 <div className='col-12 my-4'>
                   {wishtlistuser?.length > 0 && <h2>Wishlist</h2>}
@@ -111,14 +113,13 @@ const WishList = ({ history }) => {
                               <tr>
                                 <td>
                                   <div className='cart-product'>
-                                    <img
+                                    <ImageLazyLoad
                                       src={
                                         wish?.product?.productimage?.length >
                                           0 &&
                                         `${imageURL}${wish?.product?.productimage[0]}`
                                       }
-                                      alt=''
-                                      className='img-fluid mx-auto'
+                                      classname='img-fluid mx-auto'
                                     />
                                   </div>
                                 </td>
@@ -209,12 +210,10 @@ const WishList = ({ history }) => {
                     </div>
                   </div>
                 ) : (
-                  <h2>
-                    Your Wishlist is Empty <Link to='/'>Go Back</Link>
-                  </h2>
+                  <EmptyWishList />
                 )}
               </div>
-            </section>
+            </div>
           </div>
         </div>
       </div>

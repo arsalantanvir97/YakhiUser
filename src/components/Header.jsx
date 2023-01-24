@@ -18,7 +18,7 @@ let categories = [
   { name: `Hygiene`, id: '62d725092909481abc330f7d' },
   { name: `Soap`, id: '62d728d92909481abc331061' },
   { name: `Seaweed Herbs`, id: '62415f8d1b97a530529276ab' },
-  { name: `Oral Care`, id: '6215e1fef9727e382394df53' },
+  // { name: `Oral Care`, id: '6215e1fef9727e382394df53' },
   {
     name: `Oils`,
 
@@ -97,20 +97,6 @@ const Header = () => {
       timer: 1500,
     })
   }
-  const redirectHandler = () => {
-    if (userInfo?.ismember == true) {
-      Swal.fire({
-        icon: 'info',
-        title: '',
-        text: 'You are already a member',
-        showConfirmButton: false,
-        timer: 1500,
-      })
-    } else {
-      console.log('abcccc213')
-      history?.push('/Memberships')
-    }
-  }
   return (
     <>
       <section className='menu menuheight'>
@@ -124,17 +110,105 @@ const Header = () => {
                 </div>
                 <div className='col-md-6 text-center text-md-right'>
                   <ul className='list-inline topbar-links'>
-                    <li className='list-inline-item'>
+                    <li className='list-inline-item dropdown myaccount'>
                       <Link
-                        to={userInfo ? '/EditProfile' : '/Login'}
+                        className='dropdown-toggle '
+                        data-toggle='dropdown'
+                        aria-expanded='false'
+                        to={'#'}
                         // onClick={() => {
                         //   !userInfo && UnauthorizedAlert()
                         // }}
                       >
-                        <i className='fas fa-user-alt mr-2' />{' '}
-                        {userInfo ? 'My Account' : 'Login'}
+                        <i className='fas fa-user-alt mr-2 ' /> My Account
                       </Link>
+
+                      <div class='dropdown-menu'>
+                        <div>
+                          <Link
+                            className='dropdown-item'
+                            style={{
+                              backgroundColor: '#fff !important',
+                              color: '#000 !important',
+                            }}
+                            to={userInfo ? '/EditProfile' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
+                          >
+                            Account Details
+                          </Link>
+                        </div>
+                        <div>
+                          <Link
+                            className='dropdown-item'
+                            to={userInfo ? '/MyCart' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
+                          >
+                            View My Cart
+                          </Link>
+                        </div>
+                        <div>
+                          <Link
+                            className='dropdown-item'
+                            to={userInfo ? '/Checkout' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
+                          >
+                            Checkout
+                          </Link>
+                        </div>
+                        <div>
+                          <Link
+                            className='dropdown-item'
+                            to={userInfo ? '/WishList' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
+                          >
+                            Wishlist
+                          </Link>
+                        </div>
+                        <div>
+                          <Link
+                            className='dropdown-item'
+                            to={userInfo ? '/OrderLog' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
+                          >
+                            Order Tracking
+                          </Link>
+                        </div>
+                        <div>
+                          <Link
+                            className='dropdown-item'
+                            to={userInfo ? '/DamageClaims' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
+                          >
+                            Damage Claims
+                          </Link>
+                        </div>
+                        <div>
+                          <Link
+                            className='dropdown-item'
+                            to={userInfo ? '/AppointmentLogs' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
+                            // className="dropdown-item"
+                          >
+                            My Appointments
+                          </Link>
+                        </div>
+                      </div>
                     </li>
+
                     <li className='list-inline-item'>
                       <Link
                         to={userInfo ? '/AppointmentLogs' : '#'}
@@ -194,9 +268,9 @@ const Header = () => {
                         id='main-nav'
                       >
                         <li className='nav-item'>
-                          <Link className='nav-link' to='/'>
+                          <a target={'_self'} className='nav-link' href='/'>
                             Home
-                          </Link>
+                          </a>
                         </li>
 
                         {/* herbal store mega menu */}
@@ -237,11 +311,6 @@ const Header = () => {
                                   <div className='media-body d-none d-xl-block'>
                                     <h4 className='mb-2'>Product Categories</h4>
                                     <ul>
-                                      <li>
-                                        <Link to='/Consultation'>
-                                          Consultations
-                                        </Link>
-                                      </li>
                                       {categories?.length > 0 &&
                                         categories?.map((cat) => (
                                           <li>
@@ -283,20 +352,21 @@ const Header = () => {
                                             className='dropdown-menu'
                                             aria-labelledby='megadropdown'
                                           >
-                                            <Link
+                                            {/* <Link
                                               to='/Consultation'
                                               className='dropdown-item'
                                             >
                                               Consultations
-                                            </Link>
+                                            </Link> */}
                                             {categories?.length > 0 &&
                                               categories?.map((cat) => (
                                                 <li>
-                                                  <Link
-                                                    to={`/Capsules/${cat?.id}`}
+                                                  <a
+                                                    href={`/Capsules/${cat?.id}`}
+                                                    target='_self'
                                                   >
                                                     {cat?.name}
-                                                  </Link>
+                                                  </a>
                                                 </li>
                                               ))}
                                           </div>
@@ -412,65 +482,102 @@ const Header = () => {
                                             className='dropdown-menu'
                                             aria-labelledby='megadropdown'
                                           >
-                                            <Link to='/MuscularSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/MuscularSystem'
+                                            >
                                               The Muscular System
-                                            </Link>
-                                            <Link to='/IntegumentarySystem'>
+                                            </a>
+                                            <a
+                                              target='_self'
+                                              href='/IntegumentarySystem'
+                                            >
                                               The Integumentary System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/SkeletalSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/SkeletalSystem'
+                                            >
                                               The Skeletal System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/NervousSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/NervousSystem'
+                                            >
                                               The Nervous System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/UrinarySystem'>
+                                            <a
+                                              target='_self'
+                                              href='/UrinarySystem'
+                                            >
                                               The Urinary System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/DigestiveSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/DigestiveSystem'
+                                            >
                                               The Digestive System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/OralSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/OralSystem'
+                                            >
                                               The Oral Cavity System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/RespiratorySystem'>
+                                            <a
+                                              target='_self'
+                                              href='/RespiratorySystem'
+                                            >
                                               The Respiratory System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/CardioSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/CardioSystem'
+                                            >
                                               The Cardiovascular System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/LymphaticSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/LymphaticSystem'
+                                            >
                                               The Lymphatic System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/ReproductiveSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/ReproductiveSystem'
+                                            >
                                               The Reproductive System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/EndocrineSystem'>
+                                            <a
+                                              target='_self'
+                                              href='/EndocrineSystem'
+                                            >
                                               The Endocrine System
-                                            </Link>
+                                            </a>
 
-                                            <Link to='/BodySystem'>
+                                            <a
+                                              target='_self'
+                                              href='/BodySystem'
+                                            >
                                               All Body Systems
-                                            </Link>
+                                            </a>
                                           </div>
                                         </li>
                                       </ul>
                                     </div>
                                   </div>
                                 </div>
-                                <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
-                                  <div className='media'>
-                                    <div className='media-body d-none d-xl-block'>
+                                {/* <div className='media-body d-none d-xl-block'>
                                       <h4 className='mb-2'>My Account</h4>
                                       <ul>
                                         <li>
@@ -551,108 +658,9 @@ const Header = () => {
                                           </Link>
                                         </li>
                                       </ul>
-                                    </div>
-                                    {/* will be visible on screens 1199px and below */}
-                                    <div className='media-body d-block d-xl-none'>
-                                      <ul className='navbar-nav mr-auto'>
-                                        <li className='nav-item dropdown'>
-                                          <Link
-                                            className='nav-link dropdown-toggle'
-                                            onClick={() => {
-                                              setshowdrop(true)
-                                            }}
-                                            to='#'
-                                            id='megadropdown'
-                                            role='button'
-                                            data-toggle='dropdown'
-                                            aria-expanded='false'
-                                          >
-                                            <h4
-                                              className='mb-2'
-                                              onClick={() => {
-                                                setshowdrop(true)
-                                              }}
-                                            >
-                                              My Account
-                                              <i className='fas fa-caret-down fa-1x ml-1' />
-                                            </h4>
-                                          </Link>
-                                          <div
-                                            className='dropdown-menu'
-                                            aria-labelledby='megadropdown'
-                                          >
-                                            <Link
-                                              to='#'
-                                              className='dropdown-item'
-                                            >
-                                              Account Details
-                                            </Link>
-                                            <Link
-                                              to={userInfo ? '/MyCart' : '#'}
-                                              onClick={() => {
-                                                !userInfo && UnauthorizedAlert()
-                                              }}
-                                              className='dropdown-item'
-                                            >
-                                              View My Cart
-                                            </Link>
-                                            <Link
-                                              to={userInfo ? '/Checkout' : '#'}
-                                              onClick={() => {
-                                                !userInfo && UnauthorizedAlert()
-                                              }}
-                                              className='dropdown-item'
-                                            >
-                                              Checkout
-                                            </Link>
-                                            <Link
-                                              to={userInfo ? '/WishList' : '#'}
-                                              onClick={() => {
-                                                !userInfo && UnauthorizedAlert()
-                                              }}
-                                              className='dropdown-item'
-                                            >
-                                              Wishlist
-                                            </Link>
-                                            <Link
-                                              to={userInfo ? '/OrderLog' : '#'}
-                                              onClick={() => {
-                                                !userInfo && UnauthorizedAlert()
-                                              }}
-                                              className='dropdown-item'
-                                            >
-                                              Order Tracking
-                                            </Link>
-                                            <Link
-                                              to={
-                                                userInfo ? '/DamageClaims' : '#'
-                                              }
-                                              onClick={() => {
-                                                !userInfo && UnauthorizedAlert()
-                                              }}
-                                              className='dropdown-item'
-                                            >
-                                              Damage Claims
-                                            </Link>
-                                            <Link
-                                              to={
-                                                userInfo
-                                                  ? '/AppointmentLogs'
-                                                  : '#'
-                                              }
-                                              onClick={() => {
-                                                !userInfo && UnauthorizedAlert()
-                                              }}
-                                              className='dropdown-item'
-                                            >
-                                              My Appointments
-                                            </Link>
-                                          </div>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
+                                    </div> */}
+                                {/* will be visible on screens 1199px and below */}
+
                                 <div className='col-md-7 col-xl-3 mb-0 mb-xl-4 mx-auto'>
                                   <div className='media'>
                                     <div className='media-body d-none d-xl-block'>
@@ -709,30 +717,34 @@ const Header = () => {
                                             className='dropdown-menu'
                                             aria-labelledby='megadropdown'
                                           >
-                                            <Link
-                                              to='/Faqs'
+                                            <a
+                                              target={'_self'}
+                                              href='/Faqs'
                                               className='dropdown-item'
                                             >
                                               Questions &amp; Answers
-                                            </Link>
-                                            <Link
-                                              to='/OrderandPayment'
+                                            </a>
+                                            <a
+                                              target={'_self'}
+                                              href='/OrderandPayment'
                                               className='dropdown-item'
                                             >
                                               Orders &amp; Payments
-                                            </Link>
-                                            <Link
-                                              to='/ShippingandPickup'
+                                            </a>
+                                            <a
+                                              target={'_self'}
+                                              href='/ShippingandPickup'
                                               className='dropdown-item'
                                             >
                                               Shipping &amp; Pickups
-                                            </Link>
-                                            <Link
-                                              to='/ReturnsandRefund'
+                                            </a>
+                                            <a
+                                              target={'_self'}
+                                              href='/ReturnsandRefund'
                                               className='dropdown-item'
                                             >
                                               Returns &amp; Refunds
-                                            </Link>
+                                            </a>
                                           </div>
                                         </li>
                                       </ul>
@@ -746,6 +758,15 @@ const Header = () => {
                         </li>
                         <li className='nav-item'>
                           <a
+                            target={'_self'}
+                            className='nav-link'
+                            href='/Consultation'
+                          >
+                            Consultations
+                          </a>
+                        </li>
+                        <li className='nav-item'>
+                          <a
                             className='nav-link'
                             href='#'
                             data-toggle='modal'
@@ -755,9 +776,13 @@ const Header = () => {
                           </a>
                         </li>
                         <li className='nav-item'>
-                          <Link className='nav-link' to='/GeoGenetics'>
+                          <a
+                            className='nav-link'
+                            target={'_self'}
+                            href='/GeoGenetics'
+                          >
                             GEO'GENETICS THERAPY
-                          </Link>
+                          </a>
                         </li>
                         <li className='nav-item'>
                           <a
@@ -769,6 +794,7 @@ const Header = () => {
                             YAHKITV
                           </a>
                         </li>
+
                         <li className='nav-item dropdown'>
                           <Link
                             className='nav-link dropdown-toggle'
@@ -779,38 +805,47 @@ const Header = () => {
                           </Link>
                           <ul className='dropdown-menu yahki-dropdown'>
                             <li>
-                              <Link to='/EattotLive'>Eat to Live</Link>
+                              <a target={'_self'} href='/EattotLive'>
+                                Eat to Live
+                              </a>
                             </li>
                             <li>
-                              <Link to='/Instruction'>Instructions</Link>
+                              <a target={'_self'} href='/Instruction'>
+                                Instructions
+                              </a>
                             </li>
                             <li>
-                              <Link to='/BodySystem'>12 Body Systems</Link>
+                              <a target={'_self'} href='/BodySystem'>
+                                12 Body Systems
+                              </a>
                             </li>
                             <li>
-                              <Link to='/ApprovedHerb'>
+                              <a target={'_self'} href='/ApprovedHerb'>
                                 YAH'KI Approved Herbs
-                              </Link>
+                              </a>
                             </li>
                             <li>
-                              <Link to='/ProductResource'>
+                              <a target={'_self'} href='/ProductResource'>
                                 List of Resources
-                              </Link>
+                              </a>
                             </li>
                             <li>
-                              <Link to='/Document'>Document Downloads</Link>
+                              <a target={'_self'} href='/Document'>
+                                Document Downloads
+                              </a>
                             </li>
                           </ul>
                         </li>
                         <li className='nav-item'>
-                          <Link
+                          <a
                             className='nav-link'
-                            to='/Events'
+                            href='/Events'
+                            target={'_self'}
                             // data-toggle="modal"
                             // data-target="#detoxModal"
                           >
                             Events
-                          </Link>
+                          </a>
                         </li>
                         <li className='nav-item'>
                           <a
@@ -823,35 +858,41 @@ const Header = () => {
                           </a>
                         </li>
                         <li className='nav-item dropdown'>
-                          <Link
+                          <a
                             className='nav-link dropdown-toggle'
                             data-toggle='dropdown'
-                            to='#'
+                            href='#'
                           >
                             OUR COMPANY
-                          </Link>
+                          </a>
                           <ul className='dropdown-menu yahki-dropdown'>
                             <li>
-                              <Link to='/AboutCompany'>About our Company</Link>
+                              <a target='_self' href='/AboutCompany'>
+                                About our Company
+                              </a>
                             </li>
                             <li>
-                              <Link to='/MasterHerbalist'>
+                              <a target='_self' href='/MasterHerbalist'>
                                 Master Herbalist
-                              </Link>
+                              </a>
                             </li>
                             <li>
-                              <Link to='/MeettheTeam'>Meet The Team</Link>
+                              <a target='_self' href='/MeettheTeam'>
+                                Meet The Team
+                              </a>
                             </li>
                             <li>
-                              <Link to='/Contactus'>Get in Touch</Link>
+                              <a target='_self' href='/Contactus'>
+                                Get in Touch
+                              </a>
                             </li>
                           </ul>
                         </li>
 
                         <li className='nav-item'>
-                          <Link to='/Donate' className='nav-link'>
+                          <a target='_self' href='/Donate' className='nav-link'>
                             DONATIONS
-                          </Link>
+                          </a>
                         </li>
                         <li className='nav-item'>
                           <ul className='list-inline menu-icons'>
@@ -977,10 +1018,7 @@ const Header = () => {
                       </p>
                       <div className='btn-main'>
                         <Link
-                          to={'#'}
-                          onClick={() => {
-                            !userInfo ? UnauthorizedAlert() : redirectHandler()
-                          }}
+                          to='/Signup'
                           className='btn banner-btn aos-init aos-animate mt-3 abccc'
                           data-aos='zoom-in-left'
                           data-aos-duration={1500}
@@ -1174,8 +1212,7 @@ const Header = () => {
               </div>
               <h3 className='modal-title pt-3' />
               <p className='modal-sub-content'>
-                New &amp; Improved Yahki TV Coming Soon Booking Currently Not
-                Available"
+                New &amp; Improved Yahki TV Coming Soon Currently Not Available"
               </p>
             </div>
             <div className='modal-footer justify-content-center'></div>

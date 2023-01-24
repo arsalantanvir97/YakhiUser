@@ -1,16 +1,15 @@
 import React from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
-import FooterHeader from '../components/FooterHeader'
+import MainHeader from '../components/MainHeader'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import ToggleBack from '../components/ToggleBack'
 
 const ShippingandPickup = () => {
   return (
     <>
       <Header />
-      <FooterHeader />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1'>
         <div className='row'>

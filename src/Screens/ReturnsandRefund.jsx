@@ -3,14 +3,14 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { Link } from 'react-router-dom'
 import PrivateRouteSlider from '../components/PrivateRouteSlider'
-import FooterHeader from '../components/FooterHeader'
+import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
 const ReturnsandRefund = () => {
   return (
     <>
       <Header />
-      <FooterHeader />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
@@ -57,10 +57,7 @@ const ReturnsandRefund = () => {
                     membership issues ticket and our memberships department will
                     assist you.
                   </p>
-                  <Link
-                    to='/Memberships'
-                    className='btn red-btn-solid mt-lg-4 mt-3'
-                  >
+                  <Link to='/Signup' className='btn red-btn-solid mt-lg-4 mt-3'>
                     Submit A Membership Help Ticket
                   </Link>
                 </div>

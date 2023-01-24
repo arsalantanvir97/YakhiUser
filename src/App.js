@@ -85,7 +85,7 @@ function App() {
         <ScrollToTop />
         <Route exact path='/' component={Index} />{' '}
         <Route path='/Login' component={Login} exact />
-        <Route path='/Signup' component={Signup} exact />
+        <Route path='/Signup' component={Memberships} exact />
         <Route path='/PasswordRecovery' component={PasswordRecovery} exact />
         <Route
           path='/VerificationCode:email'
@@ -94,7 +94,7 @@ function App() {
         />
         <Route path='/ResetPassword' component={ResetPassword} exact />
         <Route path='/Events' component={Events} exact />
-        <PrivateRoute path='/Memberships' component={Memberships} exact />
+        {/* <PrivateRoute path='/Memberships' component={Memberships} exact /> */}
         <PrivateRoute path='/EditProfile' component={EditProfile} exact />
         <Route path='/ApprovedHerb' component={ApprovedHerb} exact />
         <Route exact path='/GeoGenetics' component={GeoGenetics} />{' '}

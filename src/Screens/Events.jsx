@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import Calendar from 'react-calendar'
 import ToggleBack from '../components/ToggleBack'
 
@@ -13,7 +13,7 @@ const Events = () => {
     <>
       <Header />
       <div>
-        <PrivateRouteSlider />
+        <MainHeader />
         <section className='mainEvents py-5'>
           <div className='container'>
             <div className='row'>
@@ -129,7 +129,7 @@ const Events = () => {
                           <hr />
                           <div className='m-3'>
                             <a href='#' className='eventLinks'>
-                              nfo@yahkiawakened.com
+                              info@yahkiawakened.com
                             </a>
                           </div>
                         </div>
@@ -207,7 +207,7 @@ const Events = () => {
                           <hr />
                           <div className='m-3'>
                             <a href='#' className='eventLinks'>
-                              nfo@yahkiawakened.com
+                              info@yahkiawakened.com
                             </a>
                           </div>
                         </div>
@@ -285,7 +285,7 @@ const Events = () => {
                           <hr />
                           <div className='m-3'>
                             <a href='#' className='eventLinks'>
-                              nfo@yahkiawakened.com
+                              info@yahkiawakened.com
                             </a>
                           </div>
                         </div>

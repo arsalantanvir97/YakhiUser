@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { ListSkeleton } from '../components/MultipleSkeleton'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
-import FooterHeader from '../components/FooterHeader'
 import ToggleBack from '../components/ToggleBack'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 const Document = () => {
   const [docs, setdocs] = useState([])
   const [loading, setloading] = useState(false)
@@ -28,7 +28,7 @@ const Document = () => {
   return (
     <>
       <Header />
-      <FooterHeader />
+      <MainHeader />
 
       <section className='body-system '>
         <div className='container-fluid'>
@@ -54,21 +54,19 @@ const Document = () => {
                   </p>
                 </div>
               </div>
+
               <div className='row mt-5'>
-                {loading ? (
-                  <ListSkeleton listsToRender={16} />
-                ) : (
-                  docs?.length > 0 &&
+                {docs?.length > 0 &&
                   docs?.map((doc, index) => (
                     <div className='col-lg-4 col-md-6'>
                       <div className='body-system-type'>
-                        <img
+                        <ImageLazyLoad
                           src={
                             doc?.pdfimage?.length > 0 &&
                             ` ${imageURL}${doc?.pdfimage}`
                           }
                           alt=''
-                          className='img-fluid'
+                          classname='img-fluid'
                         />
                         <div className='body-system-content'>
                           <h6>Document</h6>
@@ -92,8 +90,7 @@ const Document = () => {
                         </div>
                       </div>
                     </div>
-                  ))
-                )}
+                  ))}
                 {/* Castor Packs */}
                 {/* <div className="col-lg-4 col-md-6">
                   <div className="body-system-type">

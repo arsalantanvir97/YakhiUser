@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
-import FooterHeader from '../components/FooterHeader'
+import MainHeader from '../components/MainHeader'
 import Header from '../components/Header'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import ToggleBack from '../components/ToggleBack'
+import ImageLazyLoad from '../components/ImageLazyLoad'
 const data = [
   {
     name: 'Godis Kawah',
@@ -82,7 +82,7 @@ const MeettheTeam = () => {
   return (
     <>
       <Header />
-      <FooterHeader />
+      <MainHeader />
 
       <div className='container-fluid my-1 py-1'>
         <div className='row'>
@@ -111,13 +111,13 @@ const MeettheTeam = () => {
               <div className='row my-5  align-items-start justify-content-center pb-5'>
                 {data?.map((dat) => (
                   <>
-                    <div className='col-lg-4 col-md-6 my-4 my-lg-0'>
-                      <div className='team-member-box mt-5'>
-                        <img
+                    <div className='col-lg-4 col-md-6 my-4'>
+                      <div className='team-member-box '>
+                        <ImageLazyLoad
                           src={dat?.image}
                           alt=''
-                          style={{ maxWidth: 528, maxHeight: 428 }}
-                          className='img-fluid'
+                          // style={{ maxWidth: 528, maxHeight: 428 }}
+                          classname='img-fluid'
                         />
                         <div className='member-info-card'>
                           <h3>{dat?.name}</h3>

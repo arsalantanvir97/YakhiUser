@@ -9,17 +9,19 @@ import Select from 'react-select'
 import DatePicker from 'react-datepicker'
 
 import csc from 'country-state-city'
-import FooterHeader from '../components/FooterHeader'
+import MainHeader from '../components/MainHeader'
 import Autocomplete from '../components/Autocomplete'
 import InputNumber from '../components/InputNumber'
 import InputPhone from '../components/InputPhone'
-import PrivateRouteSlider from '../components/PrivateRouteSlider'
+// import MainHeader from '../components/MainHeader'
 import { Signature } from '../components/Signature'
 import ToggleBack from '../components/ToggleBack'
 import api from '../utils/api'
 import Toasty from '../utils/toast'
 import UnauthorizedAlert from '../components/UnauthorizedAlert'
 import Swal from 'sweetalert2'
+import DatePick from '../components/DatePick'
+import Header from '../components/Header'
 const isWindowContext = typeof window !== 'undefined'
 
 let filee = ''
@@ -45,6 +47,11 @@ const Memberships = ({
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  useEffect(() => {
+    if (userInfo) {
+      history.replace('/')
+    }
+  }, [userInfo])
   const countries = csc.getAllCountries()
 
   const updatedCountries = countries.map((country) => ({
@@ -96,8 +103,8 @@ const Memberships = ({
     setgeolocation([latitude, longitude])
   }
   useEffect(() => {
-    console.log('address', address, formData, allValues, hearaboutus)
-  }, [address])
+    console.log('dob', dob)
+  }, [dob])
 
   const [allValues, setAllValues] = useState({
     firstName: '',
@@ -107,6 +114,7 @@ const Memberships = ({
     address: '',
     zipcode: '',
     country: '',
+    password: '',
 
     city: '',
     state: '',
@@ -144,22 +152,23 @@ const Memberships = ({
     window?.location?.reload()
   }
   const SubmitHandler = async () => {
-    console.log(
-      'allValues?.firstName?.length',
-      allValues?.firstName?.length,
-      allValues?.lastname?.length,
-      allValues?.email?.length,
-      allValues?.phone?.length,
-      address?.length,
-      hearaboutus?.length,
-      allValues?.zipcode?.length,
-      formData?.country?.name?.length,
-      formData?.state?.name?.length,
-      formData?.city?.name?.length
-    )
+    // console.log(
+    //   'allValues?.firstName?.length',
+    //   allValues?.firstName?.length,
+    //   allValues?.lastname?.length,
+    //   allValues?.email?.length,
+    //   allValues?.phone?.length,
+    //   address?.length,
+    //   hearaboutus?.length,
+    //   allValues?.zipcode?.length,
+    //   formData?.country?.name?.length,
+    //   formData?.state?.name?.length,
+    //   formData?.city?.name?.length
+    // )
     try {
       if (
         allValues?.firstName?.length > 0 &&
+        allValues?.password?.length > 0 &&
         allValues?.lastname?.length > 0 &&
         allValues?.email?.length > 0 &&
         allValues?.phone?.length > 0 &&
@@ -170,10 +179,12 @@ const Memberships = ({
         formData?.city?.name?.length > 0
       ) {
         const body = {
-          firstName: allValues?.firstName,
+          firstname: allValues?.firstName,
           lastname: allValues?.lastname,
           email: allValues?.email,
           phone: allValues?.phone,
+          password: allValues?.password,
+
           address: address,
           hearaboutus: hearaboutus,
           zipcode: allValues?.zipcode,
@@ -190,7 +201,9 @@ const Memberships = ({
   }
   return (
     <>
-      <FooterHeader />
+      {' '}
+      <Header />
+      <MainHeader />
       <div>
         <section className='about-page'>
           <div className='container-fluid'>
@@ -250,6 +263,19 @@ const Memberships = ({
                               value={allValues?.email}
                               onChange={changeHandler}
                               name='email'
+                            />
+                          </div>
+                          <div className='col-md-6'>
+                            <label>
+                              Password <span className='red'>*</span>
+                            </label>
+                            <input
+                              className='form-control'
+                              placeholder='Enter Email'
+                              type='password'
+                              value={allValues?.password}
+                              onChange={changeHandler}
+                              name='password'
                             />
                           </div>
                           <div className='col-md-6'>
@@ -372,12 +398,12 @@ const Memberships = ({
                             <label>
                               Birth Date <span className='red'>*</span>
                             </label>
-                            <DatePicker
+                            <DatePick
                               name={'dob'}
                               // minDate={moment().toDate()}
                               // isValidDate={disableWeekends}
-                              selected={dob}
-                              onChange={(e) => setdob(e)}
+                              dob={dob}
+                              setdob={setdob}
                               className='sort-date customdate form-control'
                             />{' '}
                           </div>
@@ -399,7 +425,16 @@ const Memberships = ({
                                         sethearaboutus('Blog Post')
                                       }}
                                     />
-                                    <label for={100}> Blog Post</label>
+                                    <div
+                                      className='social-icon envelope-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='Blog Post'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-blog' />
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -415,7 +450,16 @@ const Memberships = ({
                                         sethearaboutus('Article')
                                       }}
                                     />
-                                    <label for={750}> Article</label>{' '}
+                                    <div
+                                      className='social-icon envelope-icon '
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='Article'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-newspaper' />
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -433,7 +477,16 @@ const Memberships = ({
                                         sethearaboutus('Google')
                                       }}
                                     />
-                                    <label for={100}> Google</label>
+                                    <div
+                                      className='social-icon google-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='Google'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-google' />
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -449,7 +502,17 @@ const Memberships = ({
                                         sethearaboutus('Facebook')
                                       }}
                                     />
-                                    <label for={750}> Facebook</label>{' '}
+                                    <div
+                                      className='social-icon face-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='Facebook'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-facebook-f ' />
+                                      </Link>
+                                    </div>
+                                    {/* <label for={750}> Facebook</label>{' '} */}
                                   </div>
                                 </div>
                               </div>
@@ -467,7 +530,16 @@ const Memberships = ({
                                         sethearaboutus('Instagram')
                                       }}
                                     />
-                                    <label for={100}> Instagram</label>
+                                    <div
+                                      className='social-icon insta-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='Instagram'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-instagram' />
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -483,7 +555,21 @@ const Memberships = ({
                                         sethearaboutus('TikTok')
                                       }}
                                     />
-                                    <label for={750}> TikTok</label>{' '}
+                                    <div
+                                      className='social-icon envelope-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='TikTok'
+                                    >
+                                      <Link to='#'>
+                                        <img
+                                          src='/images/tiktok.png'
+                                          alt=''
+                                          className='img-fluid'
+                                        />{' '}
+                                        {/* <i class='fab fa-tiktok'></i> */}
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -501,7 +587,16 @@ const Memberships = ({
                                         sethearaboutus('Twitter')
                                       }}
                                     />
-                                    <label for={100}> Twitter</label>
+                                    <div
+                                      className='social-icon  msg-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='Twitter'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-twitter' />
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -517,7 +612,16 @@ const Memberships = ({
                                         sethearaboutus('YouTube')
                                       }}
                                     />
-                                    <label for={750}> YouTube</label>{' '}
+                                    <div
+                                      className='social-icon youtube-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='YouTube'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-youtube' />
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -535,13 +639,22 @@ const Memberships = ({
                                         sethearaboutus('Word of Mouth')
                                       }}
                                     />
-                                    <label for={100}> Word of Mouth</label>
+                                    <div
+                                      className='social-icon envelope-icon'
+                                      data-toggle='tooltip'
+                                      data-placement='right'
+                                      title='Word of Mouth'
+                                    >
+                                      <Link to='#'>
+                                        <i className='fab fa-users' />
+                                      </Link>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div className='col-md-6'>
+                          <div className='hovv col-md-6'>
                             <label>
                               Membership Rules and Privacy Policy{' '}
                               <span className='red'>*</span>
@@ -562,7 +675,7 @@ const Memberships = ({
                                 }}
                               />
                               <label htmlFor='html11'>
-                                I Agree to Terms of Services{' '}
+                                <span>I Agree to Terms of Services</span>{' '}
                               </label>
                             </div>
                             <div className='checkbox-group mt-4'>
@@ -582,7 +695,7 @@ const Memberships = ({
                                 }}
                               />
                               <label htmlFor='html12'>
-                                I Agree to Membership Disclaimer{' '}
+                                <span> I Agree to Membership Disclaimer</span>{' '}
                               </label>
                             </div>
                             <div className='checkbox-group mt-4'>
@@ -602,7 +715,7 @@ const Memberships = ({
                                 }}
                               />
                               <label htmlFor='html13'>
-                                I Agree to Shipping Policy{' '}
+                                <span>I Agree to Shipping Policy</span>{' '}
                               </label>
                             </div>
                           </div>
@@ -864,8 +977,10 @@ const Memberships = ({
                     type='button'
                     data-bs-dismiss='modal'
                     aria-label='Close'
-                    onClick={() => {
-                      closeModalHandler(setvisible)
+                    onClick={async () => {
+                      await closeModalHandler(setvisible)
+                      handleChangeHandler(visible, setvisible, modal, setmodal)
+                      // setvisible(true)
                     }}
                   >
                     I agree
@@ -1105,8 +1220,16 @@ const Memberships = ({
                     type='button'
                     data-bs-dismiss='modal'
                     aria-label='Close'
-                    onClick={() => {
-                      closeModalHandler(setvisible2)
+                    onClick={async () => {
+                      await closeModalHandler(setvisible2)
+                      handleChangeHandler(
+                        visible2,
+                        setvisible2,
+                        modal2,
+                        setmodal2
+                      )
+
+                      // setvisible3(true)
                     }}
                   >
                     I agree
@@ -1347,8 +1470,14 @@ const Memberships = ({
                     type='button'
                     data-bs-dismiss='modal'
                     aria-label='Close'
-                    onClick={() => {
-                      closeModalHandler(setvisible3)
+                    onClick={async () => {
+                      await closeModalHandler(setvisible3)
+                      handleChangeHandler(
+                        visible3,
+                        setvisible3,
+                        modal3,
+                        setmodal3
+                      )
                     }}
                   >
                     I agree
