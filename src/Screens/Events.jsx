@@ -62,15 +62,46 @@ const Events = () => {
   }
   return (
     <>
-      <Header />
+      <section
+        className='inner-banner'
+        style={{
+          backgroundImage: 'url(' + `${'../images/events.png'} ` + ')',
+          minHeight:
+            // match?.params?.id == '62415fde1b97a530529276b3' ||
+            // match?.params?.id == '624160071b97a530529276b7' ||
+            // match?.params?.id == '62415fc11b97a530529276af' ||
+            // match?.params?.id == '62415f8d1b97a530529276ab'
+            window.innerWidth > 1300
+              ? '670px'
+              : window.innerWidth > 1200
+              ? '490px'
+              : window.innerWidth > 1100
+              ? '440px'
+              : window.innerWidth > 925
+              ? '400px'
+              : window.innerWidth > 780
+              ? '335px'
+              : window.innerWidth > 510
+              ? '275px'
+              : window.innerWidth > 465
+              ? '210px'
+              : '120px',
+          // : '440px',
+
+          // backgroundPosition: 'center',
+          backgroundSize: 'contain',
+
+          // backgroundRepeat: 'no-repeat',
+          // height: '440px',
+        }}
+      ></section>{' '}
       <div>
-        <MainHeader />
-        <section className='mainEvents py-5'>
+        <section className='mainEvents pb-5 '>
           <div className='container'>
             <div className='row'>
               <div className='col-12'>
                 <ToggleBack name={'Events'} />
-                <nav>
+                <nav className='mt-4'>
                   <div
                     className='nav nav-tabs justify-content-center mb-4'
                     id='nav-tab'

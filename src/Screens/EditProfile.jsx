@@ -316,24 +316,36 @@ const EditProfile = ({ history }) => {
                                   />
                                 </p>
                               </div>
-                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
-                                <label htmlFor>Card Number:</label>
-                              </div>
-                              <div className='col-md-6 col-12 text-left mb-3'>
-                                <p>{userInfo?.paymentinfo?.cardnumber}</p>
-                              </div>
-                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
-                                <label htmlFor>CVV:</label>
-                              </div>
-                              <div className='col-md-6 col-12 text-left mb-3'>
-                                <p>{userInfo?.paymentinfo?.cvvnumber}</p>
-                              </div>
-                              <div className='col-md-6 col-12 text-left mb-3 lablename'>
-                                <label htmlFor>Expiry Date:</label>
-                              </div>
-                              <div className='col-md-6 col-12 text-left mb-3'>
-                                <p>{userInfo?.paymentinfo?.expirydate}</p>
-                              </div>
+                              {userInfo?.paymentinfo?.cardnumber && (
+                                <>
+                                  <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                    <label htmlFor>Card Number:</label>
+                                  </div>
+                                  <div className='col-md-6 col-12 text-left mb-3'>
+                                    <p>{userInfo?.paymentinfo?.cardnumber}</p>
+                                  </div>
+                                </>
+                              )}
+                              {userInfo?.paymentinfo?.cvvnumber && (
+                                <>
+                                  <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                    <label htmlFor>CVV:</label>
+                                  </div>
+                                  <div className='col-md-6 col-12 text-left mb-3'>
+                                    <p>{userInfo?.paymentinfo?.cvvnumber}</p>
+                                  </div>
+                                </>
+                              )}
+                              {userInfo?.paymentinfo?.expirydate && (
+                                <>
+                                  <div className='col-md-6 col-12 text-left mb-3 lablename'>
+                                    <label htmlFor>Expiry Date:</label>
+                                  </div>
+                                  <div className='col-md-6 col-12 text-left mb-3'>
+                                    <p>{userInfo?.paymentinfo?.expirydate}</p>
+                                  </div>
+                                </>
+                              )}
                             </div>
 
                             <div className='row detail-row d-flex align-items-center mb-1'>

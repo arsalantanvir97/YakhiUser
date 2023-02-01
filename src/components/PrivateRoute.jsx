@@ -19,9 +19,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         ) : (
           <>
             <Header />
-            {window?.location?.pathname.includes(
-              'GeoGeneticsCheckout'
-            ) ? null : (
+            {window?.location?.pathname.includes('GeoGeneticsCheckout') ||
+            window?.location?.pathname.includes('Events') ||
+            window?.location?.pathname.includes('Consultation') ? null : (
               <MainHeader />
             )}
             {/* <Sidebar /> */}

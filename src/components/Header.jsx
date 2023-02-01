@@ -120,7 +120,8 @@ const Header = () => {
                         //   !userInfo && UnauthorizedAlert()
                         // }}
                       >
-                        <i className='fas fa-user-alt mr-2 ' /> My Account
+                        <i className='fas fa-user-alt mr-2 ' />{' '}
+                        {userInfo ? 'My Account' : 'Login'}
                       </Link>
 
                       <div class='dropdown-menu'>
@@ -243,6 +244,7 @@ const Header = () => {
                   <nav className='navbar navbar-expand-xl navbar-transparent justify-content-between py-0'>
                     <Link to='/' className='navbar-brand ml-xl-5'>
                       <img
+                        // style={{ maxWidth: 75, maxHeight: 100 }}
                         src='images/yahki-logo.png'
                         alt=''
                         className='img-fluid'

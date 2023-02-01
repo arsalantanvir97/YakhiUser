@@ -2296,8 +2296,39 @@ h3 {
   padding: 0;
 }
 .checkout-form div#field-wrapper label {
-    width: 33%;
+    width: 100%;
 }
+.checkout-form div#field-wrapper label.sc-hKwDye.leRpMz {
+  width: 73%;
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 0 0;
+  line-height: normal;
+}
+.checkout-form div#field-wrapper label.sc-hKwDye.leRpMz input#card-number {
+    padding: 0;
+}
+.leRpMz .credit-card-input {
+  padding: 0;
+}
+
+.table-responsive::-webkit-scrollbar-track
+  {
+    background-color: #f1f1f1;
+  }
+  
+.table-responsive::-webkit-scrollbar
+  {
+    width: 1px;
+    background-color: #f1f1f1;
+  }
+  
+.table-responsive::-webkit-scrollbar-thumb
+  {
+    background-color: #c1c1c1;
+  }
+
+
 .sc-bdvvtL.krtcdR {
   width: 100%;
 }
@@ -3375,9 +3406,11 @@ button.disabled:hover {
 .cart-product {
   width: 96px;
   height: 96px;
-  background: #f1f1f1;
+  /* background: #f1f1f1; */
   border-radius: 0;
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 button.btn.trash-btn {
@@ -3424,7 +3457,7 @@ button.btn.trash-btn {
 #cart-table td {
   text-align: center;
   vertical-align: middle;
-  padding: 40px 0;
+  padding: 40px 9px;
 }
 
 #cart-table tbody tr {
@@ -3940,7 +3973,10 @@ select#timeZone {
   font-family: "Rubik", sans-serif;
   font-weight: 800;
 }
-
+.abccccc:hover{
+  color: #0fbc29 !important;
+  cursor: pointer;
+}
 .order-details p {
   font-size: 16px;
   font-family: "ALoveofThunder";
@@ -3951,6 +3987,9 @@ select#timeZone {
 
 .checkout-form .styles_container__fuGqJ {
   height: 100%;
+}
+.sc-bdvvtL.krtcdR #field-wrapper {
+  display: block;
 }
 
 p.adrs {
@@ -4453,12 +4492,21 @@ ul.member-features li:before {
 }
 
 .pay-with {
-  height: 176px;
+  height: auto !important;
   background: #f1f1f1;
   border-radius: 3px;
   width: 100%;
 }
+.pay-with h4 {
+  font-size: 20px;
+}
 
+.pay-with h5 {
+  margin: 15px 0 0 0;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 #donation-shapes {
   background: url(../images/Cinnamon.svg) left -15px top 0px/ 181px no-repeat,
     url(../images/green-ellipse.png) right 45px top 45px/ 100px no-repeat,

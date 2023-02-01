@@ -93,7 +93,7 @@ function App() {
           exact
         />
         <Route path='/ResetPassword' component={ResetPassword} exact />
-        <Route path='/Events' component={Events} exact />
+        <PrivateRoute path='/Events' component={Events} exact />
         {/* <PrivateRoute path='/Memberships' component={Memberships} exact /> */}
         <PrivateRoute path='/EditProfile' component={EditProfile} exact />
         <Route path='/ApprovedHerb' component={ApprovedHerb} exact />
@@ -128,7 +128,7 @@ function App() {
         <Route exact path='/MemberAgreement' component={MemberAgreement} />{' '}
         <Route exact path='/MasterHerbalist' component={MasterHerbalist} />{' '}
         <Route exact path='/MeettheTeam' component={MeettheTeam} />{' '}
-        <Route exact path='/Consultation' component={Consultation} />{' '}
+        <PrivateRoute exact path='/Consultation' component={Consultation} />{' '}
         <Route exact path='/Contactus' component={Contactus} />{' '}
         <Route exact path='/Capsules/:id?' component={Capsules} />{' '}
         <Route exact path='/ProductResource' component={ProductResource} />{' '}

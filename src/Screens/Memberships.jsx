@@ -166,37 +166,37 @@ const Memberships = ({
     //   formData?.city?.name?.length
     // )
     try {
-      if (
-        allValues?.firstName?.length > 0 &&
-        allValues?.password?.length > 0 &&
-        allValues?.lastname?.length > 0 &&
-        allValues?.email?.length > 0 &&
-        allValues?.phone?.length > 0 &&
-        address?.length > 0 &&
-        hearaboutus?.length > 0 &&
-        formData?.country?.name?.length > 0 &&
-        formData?.state?.name?.length > 0 &&
-        formData?.city?.name?.length > 0
-      ) {
-        const body = {
-          firstname: allValues?.firstName,
-          lastname: allValues?.lastname,
-          email: allValues?.email,
-          phone: allValues?.phone,
-          password: allValues?.password,
+      // if (
+      //   allValues?.firstName?.length > 0 &&
+      //   allValues?.password?.length > 0 &&
+      //   allValues?.lastname?.length > 0 &&
+      //   allValues?.email?.length > 0 &&
+      //   allValues?.phone?.length > 0 &&
+      //   address?.length > 0 &&
+      //   hearaboutus?.length > 0 &&
+      //   formData?.country?.name?.length > 0 &&
+      //   formData?.state?.name?.length > 0 &&
+      //   formData?.city?.name?.length > 0
+      // ) {
+      const body = {
+        firstname: allValues?.firstName,
+        lastname: allValues?.lastname,
+        email: allValues?.email,
+        phone: allValues?.phone,
+        password: allValues?.password,
 
-          address: address,
-          hearaboutus: hearaboutus,
-          zipcode: allValues?.zipcode,
-          country: formData?.country?.name,
-          city: formData?.city?.name,
-          state: formData?.state?.name,
-          dob: dob,
-        }
-        dispatch(becomemember(body, history))
-      } else {
-        Toasty('error', `Please fill out all the required fields`)
+        address: address,
+        hearaboutus: hearaboutus,
+        zipcode: allValues?.zipcode,
+        country: formData?.country?.name,
+        city: formData?.city?.name,
+        state: formData?.state?.name,
+        dob: dob,
       }
+      dispatch(becomemember(body, history))
+      // } else {
+      //   Toasty('error', `Please fill out all the required fields`)
+      // }
     } catch (error) {}
   }
   return (
@@ -210,7 +210,7 @@ const Memberships = ({
             <div className='row'>
               <div className='col-md-11 mx-auto'>
                 <ToggleBack name={`Memberships`} />
-                <div className='row mb-5 pb-5'>
+                <div className='row '>
                   <div className='col-md-12 text-center'>
                     <h3 className='main-heading mem-head'>
                       Free Club Membership Registration

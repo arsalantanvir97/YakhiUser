@@ -45,7 +45,7 @@ const data = [
   },
   {
     name: 'CANDICE',
-    title: '-Hernal Associate & Processer',
+    title: '-Herbal Associate & Processer',
     // email: 'candice@yahkiawakened.com',
     image: 'images/Candice-Nelson.png',
   },

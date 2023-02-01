@@ -20,26 +20,28 @@ import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
 import ToggleBack from '../components/ToggleBack'
 import addPayPalScript from '../utils/addPayPalScript'
+import SezzleWidget from 'sezzle-react-widget'
+import { AcceptHosted, FormComponent, FormContainer } from 'react-authorize-net'
 let showformm = 1
 let timings = [
-  { time: '12:00 am' },
-  { time: '12:30 am' },
-  { time: '1:00 am' },
-  { time: '1:30 am' },
-  { time: '2:00 am' },
-  { time: '2:30 am' },
-  { time: '3:00 am' },
-  { time: '3:30 am' },
-  { time: '4:00 am' },
-  { time: '4:30 am' },
-  { time: '5:00 am' },
-  { time: '5:30 am' },
-  { time: '6:00 am' },
-  { time: '6:30 am' },
-  { time: '7:00 am' },
-  { time: '7:30 am' },
-  { time: '8:00 am' },
-  { time: '8:30 am' },
+  // { time: '12:00 am' },
+  // { time: '12:30 am' },
+  // { time: '1:00 am' },
+  // { time: '1:30 am' },
+  // { time: '2:00 am' },
+  // { time: '2:30 am' },
+  // { time: '3:00 am' },
+  // { time: '3:30 am' },
+  // { time: '4:00 am' },
+  // { time: '4:30 am' },
+  // { time: '5:00 am' },
+  // { time: '5:30 am' },
+  // { time: '6:00 am' },
+  // { time: '6:30 am' },
+  // { time: '7:00 am' },
+  // { time: '7:30 am' },
+  // { time: '8:00 am' },
+  // { time: '8:30 am' },
   { time: '9:00 am' },
   { time: '9:30 am' },
   { time: '10:00 am' },
@@ -51,27 +53,26 @@ let timings = [
   { time: '1:00 pm' },
   { time: '1:30 pm' },
   { time: '2:00 pm' },
-  { time: '2:30 pm' },
-  { time: '3:00 pm' },
-  { time: '3:30 pm' },
-  { time: '4:00 pm' },
-  { time: '4:30 pm' },
-  { time: '5:00 pm' },
-  { time: '5:30 pm' },
-  { time: '6:00 pm' },
-  { time: '6:30 pm' },
-  { time: '7:00 pm' },
-  { time: '7:30 pm' },
-  { time: '8:00 pm' },
-  { time: '8:30 pm' },
-  { time: '9:00 pm' },
-  { time: '9:30 pm' },
-  { time: '10:00 pm' },
-  { time: '10:30 pm' },
-  { time: '11:00 pm' },
-  { time: '11:30 pm' },
+  // { time: '2:30 pm' },
+  // { time: '3:00 pm' },
+  // { time: '3:30 pm' },
+  // { time: '4:00 pm' },
+  // { time: '4:30 pm' },
+  // { time: '5:00 pm' },
+  // { time: '5:30 pm' },
+  // { time: '6:00 pm' },
+  // { time: '6:30 pm' },
+  // { time: '7:00 pm' },
+  // { time: '7:30 pm' },
+  // { time: '8:00 pm' },
+  // { time: '8:30 pm' },
+  // { time: '9:00 pm' },
+  // { time: '9:30 pm' },
+  // { time: '10:00 pm' },
+  // { time: '10:30 pm' },
+  // { time: '11:00 pm' },
+  // { time: '11:30 pm' },
 ]
-
 const Consultation = ({ history }) => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
@@ -86,7 +87,7 @@ const Consultation = ({ history }) => {
   const [phone, setphone] = useState('')
   const [email, setemail] = useState('')
   const [paymentconfirm, setpaymentconfirm] = useState(false)
-  const [amount, setamount] = useState(0)
+  const [amount, setamount] = useState(1)
 
   const [age, setage] = useState('')
   const [height, setheight] = useState('')
@@ -119,50 +120,72 @@ const Consultation = ({ history }) => {
     console.log('eeee', e?.target?.files[0])
     setdoc_schedule(e?.target?.files[0])
   }
-  useEffect(() => {
-    console.log('clientid', clientid)
-  }, [clientid])
-  useEffect(() => {
+  const [clientKey, setclientKey] = useState('')
+  const [apiLoginId, setapiLoginId] = useState('')
+  const [merchantId, setmerchantId] = useState('')
+
+  useEffect(async () => {
+    const resss = await axios.get(`${baseURL}/config/authorize`)
+    setclientKey(resss?.data?.loginid)
+    setapiLoginId(resss?.data?.transactionkey)
+    const res2ss = await axios.get(`${baseURL}/config/sezzle`)
+    setmerchantId(res2ss?.data?.keyid)
+
     addPayPalScript({ setclientid, setSdkReady })
   }, [])
 
+  const onSuccessHandler = (response) => {
+    setshowform(showform == 4 ? 4 : showform + 1)
+  }
+
+  const onErrorHandler = (error) => {
+    console.log('error', error)
+    Toasty('error', error)
+  }
+  useEffect(() => {
+    addPayPalScript({ setclientid, setSdkReady })
+  }, [])
+  useEffect(() => {
+    console.log('amount', amount)
+  }, [amount])
+
   const saveConsultationAddressHandler = async () => {
-    if (
-      firstName?.length > 0 &&
-      lastName?.length > 0 &&
-      phone?.length > 0 &&
-      email?.length > 0 &&
-      age > 0 &&
-      height > 0 &&
-      weight > 0 &&
-      ethnicity?.length > 0 &&
-      consultaionfor?.length > 0 &&
-      currentmedication?.length > 0 &&
-      // reason?.length > 0 &&
-      diagnosis?.length > 0 &&
-      doc_schedule?.name?.length > 0
-    ) {
-      await dispatch(
-        savConsultaionAddress({
-          firstName,
-          lastName,
-          phone,
-          email,
-          age,
-          height,
-          weight,
-          ethnicity,
-          consultaionfor,
-          currentmedication,
-          // reason,
-          diagnosis,
-          governmentid: doc_schedule?.name,
-        })
-      )
-      setshowform(showform == 4 ? 4 : showform + 1)
-    } else {
-      Toasty('error', `Please fill out all the required fields`)
-    }
+    // if (
+    //   firstName?.length > 0 &&
+    //   lastName?.length > 0 &&
+    //   phone?.length > 0 &&
+    //   email?.length > 0 &&
+    //   age > 0 &&
+    //   height > 0 &&
+    //   weight > 0 &&
+    //   ethnicity?.length > 0 &&
+    //   consultaionfor?.length > 0 &&
+    //   currentmedication?.length > 0 &&
+    //   // reason?.length > 0 &&
+    //   diagnosis?.length > 0 &&
+    //   doc_schedule?.name?.length > 0
+    // ) {
+    await dispatch(
+      savConsultaionAddress({
+        firstName,
+        lastName,
+        phone,
+        email,
+        age,
+        height,
+        weight,
+        ethnicity,
+        consultaionfor,
+        currentmedication,
+        // reason,
+        diagnosis,
+        governmentid: doc_schedule?.name,
+      })
+    )
+    setshowform(showform == 4 ? 4 : showform + 1)
+    // } else {
+    //   Toasty('error', `Please fill out all the required fields`)
+    // }
   }
   const chooseAppointmentHandler = async () => {
     if (appointment?.length > 0 && appointmentdate) {
@@ -206,16 +229,16 @@ const Consultation = ({ history }) => {
       formData.append('doc_schedule', doc_schedule)
       formData.append('appointmenttime', appointment)
       formData.append('appointmentdate', appointmentdate)
-      formData.append('paymentinfo', JSON.stringify(paymentinfo))
+      // formData.append('paymentinfo', JSON.stringify(paymentinfo))
       formData.append(
         'consultationaddress',
         JSON.stringify(consultationaddress)
       )
-      formData.append('paymentResultData', JSON.stringify(paymentResultData))
-      formData.append(
-        'paymentResultDetails',
-        JSON.stringify(paymentResultDetails)
-      )
+      // formData.append('paymentResultData', JSON.stringify(paymentResultData))
+      // formData.append(
+      //   'paymentResultDetails',
+      //   JSON.stringify(paymentResultDetails)
+      // )
 
       // formData.append("weight", product?.weight);
       formData.append('confirmationinfo', JSON.stringify(confirmationinfo))
@@ -240,7 +263,7 @@ const Consultation = ({ history }) => {
           Swal.fire({
             icon: 'success',
             title: '',
-            text: 'Your Appointment Has Been Created',
+            text: 'Your Appointment Has Been Booked',
             showConfirmButton: false,
             timer: 1500,
           })
@@ -274,44 +297,7 @@ const Consultation = ({ history }) => {
   const disableWeekends = (current) => {
     return current.day() !== 0 && current.day() !== 6
   }
-  async function handleToken(token) {
-    setloading(true)
 
-    const config = {
-      header: {
-        Authorization: 'Bearer sk_test_OVw01bpmRN2wBK2ggwaPwC5500SKtEYy9V',
-      },
-    }
-    const response = await axios.post(
-      `${baseURL}/checkout`,
-      { token, product: 100 },
-      config
-    )
-    console.log('response', response)
-    const { status } = response.data
-
-    console.log(
-      'res',
-      response.data.id,
-      response.data.status,
-      response.headers.date,
-      response.data.receipt_email
-    )
-    if (status === 'succeeded') {
-      setloading(false)
-      setpaymentname(response?.data?.receipt_email)
-      setcardnumber(response?.data?.payment_method_details?.card?.last4)
-      // setcvv(response?.data?.payment_method_details?.card?.last4)
-      setexpirymonth(response?.data?.payment_method_details?.card?.exp_month)
-      setexpiryyear(response?.data?.payment_method_details?.card?.exp_year)
-      setpaymentconfirm(true)
-      setshowform(showform == 4 ? 4 : showform + 1)
-      console.log(status, 'succes')
-    } else {
-      console.log(status, 'fail')
-      setloading(false)
-    }
-  }
   const setappointmentdateHandler = (dayy) => {
     console.log(dayy)
     const datee = new Date(dayy)
@@ -333,7 +319,7 @@ const Consultation = ({ history }) => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <section
         className='inner-banner'
         style={{
@@ -520,13 +506,13 @@ const Consultation = ({ history }) => {
                           </div>
                           <div className='col-md-6'>
                             <label>
-                              Height in meters<span className='red'>*</span>
+                              Height in Feet<span className='red'>*</span>
                             </label>
                             <InputNumber
                               value={height}
                               onChange={setheight}
                               max={1000}
-                              placeholder={'Heigth in meters'}
+                              placeholder={'Heigth in Feet'}
                               className='form-control'
                             />
                           </div>
@@ -795,7 +781,7 @@ const Consultation = ({ history }) => {
                                       id='html'
                                       name='fav_language'
                                       value={100}
-                                      onChanges={() => {
+                                      onChange={() => {
                                         setamount(100)
                                       }}
                                     />
@@ -814,7 +800,7 @@ const Consultation = ({ history }) => {
                                       id='html2'
                                       name='fav_language'
                                       value={750}
-                                      onChanges={() => {
+                                      onChange={() => {
                                         setamount(750)
                                       }}
                                     />
@@ -828,9 +814,12 @@ const Consultation = ({ history }) => {
                             </div>
                             <div className='row justify-content-center'>
                               <div className='col-md-6'>
-                                {sdkReady && (
+                                <SezzleWidget
+                                  price={String(amount)}
+                                  merchantId={merchantId}
+                                />
+                                {!sdkReady ? null : (
                                   <PayPalButton
-                                    amount={amount}
                                     options={{
                                       clientId: clientid,
                                       currency: 'USD',
@@ -850,10 +839,6 @@ const Consultation = ({ history }) => {
                                     }}
                                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                                     onSuccess={(details, data) => {
-                                      setpaymentconfirm(true)
-                                      setshowform(
-                                        showform == 4 ? 4 : showform + 1
-                                      )
                                       console.log('details')
                                       console.log(details)
                                       console.log('data')
@@ -862,8 +847,11 @@ const Consultation = ({ history }) => {
                                         'Transaction completed by ' +
                                           details.payer.name.given_name
                                       )
-                                      setpaymentResultData(data)
-                                      setpaymentResultDetails(details)
+
+                                      setshowform(
+                                        showform == 4 ? 4 : showform + 1
+                                      )
+
                                       // OPTIONAL: Call your server to save the transaction
                                       // return fetch("/paypal-transaction-complete", {
                                       //   method: "post",
@@ -874,6 +862,20 @@ const Consultation = ({ history }) => {
                                     }}
                                   />
                                 )}
+
+                                <div className='authorizesty'>
+                                  <h5 class='mb-3'>Authorize.Net</h5>
+
+                                  <FormContainer
+                                    environment='production'
+                                    onError={onErrorHandler}
+                                    onSuccess={onSuccessHandler}
+                                    amount={Number(amount)}
+                                    component={FormComponent}
+                                    clientKey={clientKey}
+                                    apiLoginId={apiLoginId}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </>

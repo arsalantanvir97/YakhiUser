@@ -150,71 +150,85 @@ const OrderLog = () => {
                             <div className='col-12'>
                               <div className='log-table'>
                                 <div className='table-responsive'>
-                                  <table className='table table-borderless'>
+                                  <table
+                                    className='table table-borderless text-center'
+                                    id='cart-table'
+                                  >
                                     <thead>
                                       <tr>
-                                        <th scope='col'>S.No.</th>
+                                        {/* <th scope='col'>S.No.</th> */}
                                         <th scope='col'>Order ID.</th>
                                         <th scope='col'>Order Date</th>
 
-                                        <th scope='col'>Quantity</th>
-                                        <th scope='col'>Amount Paid</th>
-                                        <th scope='col'>Order Status</th>
+                                        <th>IMAGE</th>
+                                        <th>PRODUCT</th>
+                                        <th>QUANTITY</th>
+                                        <th>UNIT PRICE</th>
+                                        <th>Sub Total</th>
                                         <th scope='col'>Actions</th>
                                       </tr>
                                     </thead>
                                     <tbody>
                                       {orderslogs?.docs?.length > 0 ? (
-                                        orderslogs?.docs?.map((ord, index) => (
-                                          <tr>
-                                            <td>{index + 1}</td>
-                                            <td>{ord?._id}</td>
-                                            <td>
-                                              {' '}
-                                              {moment
-                                                .utc(ord?.createdAt)
-                                                .format('LL')}
-                                            </td>
+                                        orderslogs?.docs?.map(
+                                          (ord, index) =>
+                                            ord?.orderItems?.length > 0 &&
+                                            ord?.orderItems?.map((ordd) => (
+                                              <tr>
+                                                {/* <td>{index + 1}</td> */}
+                                                <td>{ord?._id}</td>
+                                                <td>
+                                                  {' '}
+                                                  {moment
+                                                    .utc(ord?.createdAt)
+                                                    .format('LL')}
+                                                </td>
 
-                                            <td>{ord?.orderItems?.length}</td>
-                                            <td>
-                                              $
-                                              {ord?.isPaid == false
-                                                ? 0
-                                                : ord?.totalPrice}
-                                            </td>
-                                            <td>
-                                              <span className='stat-pending'>
-                                                {ord?.status}
-                                              </span>
-                                            </td>
-                                            <td>
-                                              <div className='dropdown'>
-                                                <button
-                                                  className='btn dropdown-toggle action-btn'
-                                                  type='button'
-                                                  id='dropdownMenuButton'
-                                                  data-toggle='dropdown'
-                                                  aria-expanded='false'
-                                                >
-                                                  <i className='fas fa-ellipsis-v' />
-                                                </button>
-                                                <div
-                                                  className='dropdown-menu action-menu'
-                                                  aria-labelledby='dropdownMenuButton'
-                                                >
-                                                  <Link
-                                                    className='dropdown-item'
-                                                    to={`/OrderLogDetail/${ord._id}`}
-                                                  >
-                                                    <i className='fas fa-eye mr-2 grey' />
-                                                    View
-                                                  </Link>
-                                                </div>
-                                              </div>
-                                            </td>
-                                          </tr>
-                                        ))
+                                                <td>
+                                                  <div className='cart-product'>
+                                                    <img
+                                                      src={`${imageURL}${ordd?.image[0]}`}
+                                                      alt=''
+                                                      className='img-fluid mx-auto'
+                                                    />
+                                                  </div>
+                                                </td>
+                                                <td>{ordd?.name}</td>
+                                                <td>{ordd?.qty}</td>
+
+                                                <td>${ordd?.price}</td>
+                                                <td>
+                                                  ${ordd?.qty * ordd?.price}
+                                                </td>
+
+                                                <td>
+                                                  <div className='dropdown'>
+                                                    <button
+                                                      className='btn dropdown-toggle action-btn'
+                                                      type='button'
+                                                      id='dropdownMenuButton'
+                                                      data-toggle='dropdown'
+                                                      aria-expanded='false'
+                                                    >
+                                                      <i className='fas fa-ellipsis-v' />
+                                                    </button>
+                                                    <div
+                                                      className='dropdown-menu action-menu'
+                                                      aria-labelledby='dropdownMenuButton'
+                                                    >
+                                                      <Link
+                                                        className='dropdown-item'
+                                                        to={`/OrderLogDetail/${ord._id}`}
+                                                      >
+                                                        <i className='fas fa-eye mr-2 grey' />
+                                                        View
+                                                      </Link>
+                                                    </div>
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                            ))
+                                        )
                                       ) : (
                                         <p>No Orders</p>
                                       )}

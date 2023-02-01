@@ -50,22 +50,17 @@ const OrderLogDetail = ({ match, history }) => {
       setorderdetaills(res?.data)
 
       if (!res?.data?.isPaid) {
-        if (res?.data?.paymentMethod?.paymentmethod == 'Authorize.net') {
-          const resss = await axios.get(`${baseURL}/config/authorize`)
-          setclientKey(resss?.data?.loginid)
-          setapiLoginId(resss?.data?.transactionkey)
-        } else if (res?.data?.paymentMethod?.paymentmethod == 'sezzle') {
-          const res2ss = await axios.get(`${baseURL}/config/sezzle`)
-          setmerchantId(res2ss?.data?.keyid)
-        } else if (
-          !window.paypal &&
-          res?.data?.paymentMethod?.paymentmethod == 'paypal'
-        ) {
-          console.log('ressss2')
-          addPayPalScript({ setclientid, setSdkReady })
-        } else {
-          setSdkReady(true)
-        }
+        const resss = await axios.get(`${baseURL}/config/authorize`)
+        setclientKey(resss?.data?.loginid)
+        setapiLoginId(resss?.data?.transactionkey)
+        const res2ss = await axios.get(`${baseURL}/config/sezzle`)
+        setmerchantId(res2ss?.data?.keyid)
+      }
+      if (!window.paypal) {
+        console.log('ressss2')
+        addPayPalScript({ setclientid, setSdkReady })
+      } else {
+        setSdkReady(true)
       }
     } catch (err) {
       console.log(err)
@@ -155,9 +150,9 @@ const OrderLogDetail = ({ match, history }) => {
                 </div>
                 <div className='col-12 text-right'>
                   <p>
-                    Status{' '}
+                    Payment Status{' '}
                     <span className='stat-pending ml-2'>
-                      {orderdetaills?.status}
+                      {orderdetaills?.status == 'Pending' ? 'Not Paid' : 'Paid'}
                     </span>
                   </p>
                 </div>
@@ -217,7 +212,7 @@ const OrderLogDetail = ({ match, history }) => {
                           <div className='col-6 mb-3'>
                             <p>{orderdetaills?.isDelivered}</p>
                           </div>
-                          <div className='col-6 mb-3'>
+                          {/* <div className='col-6 mb-3'>
                             <p>Payment Method</p>
                           </div>
                           <div className='col-6 mb-3'>
@@ -226,7 +221,7 @@ const OrderLogDetail = ({ match, history }) => {
                                 ? orderdetaills?.paymentMethod?.paymentmethod
                                 : 'Not paid'}
                             </p>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -412,79 +407,72 @@ const OrderLogDetail = ({ match, history }) => {
                           orderdetaills?.status ==
                             'Delivered' ? null : loading ? (
                             <i className='fas fa-spinner fa-pulse'></i>
-                          ) : orderdetaills?.paymentMethod?.paymentmethod ==
-                            'sezzle' ? (
+                          ) : (
                             <>
                               <SezzleWidget
                                 price={String(orderdetaills?.totalPrice)}
                                 merchantId={merchantId}
                               />
-                            </>
-                          ) : orderdetaills &&
-                            orderdetaills?.paymentMethod?.paymentmethod ==
-                              'paypal' ? (
-                            !sdkReady ? (
-                              <Loader />
-                            ) : (
-                              <PayPalButton
-                                options={{
-                                  clientId: clientid,
-                                  currency: 'USD',
-                                }}
-                                createOrder={(data, actions) => {
-                                  return actions.order.create({
-                                    purchase_units: [
-                                      {
-                                        description: orderdetaills?._id,
-                                        amount: {
-                                          currency_code: 'USD',
-                                          value: orderdetaills?.totalPrice,
+                              {!sdkReady ? null : (
+                                <PayPalButton
+                                  options={{
+                                    clientId: clientid,
+                                    currency: 'USD',
+                                  }}
+                                  createOrder={(data, actions) => {
+                                    return actions.order.create({
+                                      purchase_units: [
+                                        {
+                                          description: orderdetaills?._id,
+                                          amount: {
+                                            currency_code: 'USD',
+                                            value: orderdetaills?.totalPrice,
+                                          },
                                         },
-                                      },
-                                    ],
-                                  })
-                                }}
-                                // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                onSuccess={(details, data) => {
-                                  console.log('details')
-                                  console.log(details)
-                                  console.log('data')
-                                  console.log(data)
-                                  alert(
-                                    'Transaction completed by ' +
-                                      details.payer.name.given_name
-                                  )
-                                  dispatch(
-                                    payOrder(match?.params?.id, data, details)
-                                  )
-                                  history.push('/')
+                                      ],
+                                    })
+                                  }}
+                                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                  onSuccess={(details, data) => {
+                                    console.log('details')
+                                    console.log(details)
+                                    console.log('data')
+                                    console.log(data)
+                                    alert(
+                                      'Transaction completed by ' +
+                                        details.payer.name.given_name
+                                    )
+                                    dispatch(
+                                      payOrder(match?.params?.id, data, details)
+                                    )
+                                    history.push('/')
 
-                                  // OPTIONAL: Call your server to save the transaction
-                                  // return fetch("/paypal-transaction-complete", {
-                                  //   method: "post",
-                                  //   body: JSON.stringify({
-                                  //     orderID: data.orderID
-                                  //   })
-                                  // });
-                                }}
-                              />
-                            )
-                          ) : orderdetaills?.paymentMethod?.paymentmethod ==
-                            'Authorize.net' ? (
-                            <div className='authorizesty'>
-                              <h5 class='mb-3'>Authorize.Net</h5>
+                                    // OPTIONAL: Call your server to save the transaction
+                                    // return fetch("/paypal-transaction-complete", {
+                                    //   method: "post",
+                                    //   body: JSON.stringify({
+                                    //     orderID: data.orderID
+                                    //   })
+                                    // });
+                                  }}
+                                />
+                              )}
 
-                              <FormContainer
-                                environment='production'
-                                onError={onErrorHandler}
-                                onSuccess={onSuccessHandler}
-                                amount={Number(orderdetaills?.totalPrice)}
-                                component={FormComponent}
-                                clientKey={clientKey}
-                                apiLoginId={apiLoginId}
-                              />
-                            </div>
-                          ) : null}
+                              <div className='authorizesty'>
+                                <h5 class='mb-3'>Authorize.Net</h5>
+
+                                <FormContainer
+                                  environment='production'
+                                  onError={onErrorHandler}
+                                  onSuccess={onSuccessHandler}
+                                  amount={Number(orderdetaills?.totalPrice)}
+                                  component={FormComponent}
+                                  clientKey={clientKey}
+                                  apiLoginId={apiLoginId}
+                                />
+                              </div>
+                            </>
+                          )}
                         </div>
 
                         {orderdetaills?.status == 'Paid' && (

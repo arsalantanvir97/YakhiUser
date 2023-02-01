@@ -18,19 +18,40 @@ import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
 import addPayPalScript from '../utils/addPayPalScript'
+import SezzleWidget from 'sezzle-react-widget'
+import { AcceptHosted, FormComponent, FormContainer } from 'react-authorize-net'
+import Toasty from '../utils/toast'
 
-const Donate = () => {
+const Donate = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
-  const [amount, setamount] = useState(0)
+  const [amount, setamount] = useState(1)
   const [notes, setnotes] = useState('')
   const [clientid, setclientid] = useState('')
+  const [clientKey, setclientKey] = useState('')
+  const [apiLoginId, setapiLoginId] = useState('')
+  const [merchantId, setmerchantId] = useState('')
 
   const [sdkReady, setSdkReady] = useState(false)
 
-  useEffect(() => {
+  useEffect(async () => {
+    const resss = await axios.get(`${baseURL}/config/authorize`)
+    setclientKey(resss?.data?.loginid)
+    setapiLoginId(resss?.data?.transactionkey)
+    const res2ss = await axios.get(`${baseURL}/config/sezzle`)
+    setmerchantId(res2ss?.data?.keyid)
+
     addPayPalScript({ setclientid, setSdkReady })
   }, [])
+
+  const onSuccessHandler = (response) => {
+    history.push('/')
+  }
+
+  const onErrorHandler = (error) => {
+    console.log('error', error)
+    Toasty('error', error)
+  }
   return (
     <>
       <Header />
@@ -79,40 +100,40 @@ const Donate = () => {
                                 <div className='row justify-content-md-center'>
                                   <div className='col-md-12 mt-2'>
                                     {/* first and last name */}
-                                    {/* <div className="row">
-                                      <div className="col-md-12 mt-3 text-left">
-                                        <label htmlFor className="my-label">
+                                    <div className='row'>
+                                      <div className='col-md-12 mt-3 text-left'>
+                                        <label htmlFor className='my-label'>
                                           Enter Amount
                                         </label>
                                         <input
-                                          type="number"
-                                          className="form-control my-textbox"
-                                          placeholder="Ex: 1000"
+                                          type='number'
+                                          className='form-control my-textbox'
+                                          placeholder='Ex: 1000'
                                           value={amount}
                                           onChange={(e) => {
-                                            setamount(e.target.value);
+                                            setamount(e.target.value)
                                           }}
                                         />
                                       </div>
-                                    </div> */}
+                                    </div>
                                     {/* Your Message*/}
-                                    {/* <div className="row">
-                                      <div className="col-md-12 mt-3 text-left">
-                                        <label htmlFor className="my-label">
+                                    <div className='row'>
+                                      <div className='col-md-12 mt-3 text-left'>
+                                        <label htmlFor className='my-label'>
                                           Enter Notes
                                         </label>
                                         <textarea
-                                          className="form-control"
-                                          id="exampleFormControlTextarea1"
-                                          placeholder="Notes"
+                                          className='form-control'
+                                          id='exampleFormControlTextarea1'
+                                          placeholder='Notes'
                                           rows={5}
                                           value={notes}
                                           onChange={(e) => {
-                                            setnotes(e.target.value);
+                                            setnotes(e.target.value)
                                           }}
                                         />
                                       </div>
-                                    </div> */}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -149,13 +170,17 @@ const Donate = () => {
                     <div className='row justify-content-between align-items-center'>
                       <div className='col-lg-5 col-md-6 col-12'>
                         <div className='pay-with'>
-                          <img
+                          {/* <img
                             src='images/paypal-option.png'
                             alt=''
                             className='img-fluid'
-                          />
+                          /> */}
                         </div>
-                        {sdkReady && (
+                        <SezzleWidget
+                          price={String(amount)}
+                          merchantId={merchantId}
+                        />
+                        {!sdkReady ? null : (
                           <PayPalButton
                             options={{
                               clientId: clientid,
@@ -168,7 +193,7 @@ const Donate = () => {
                                     description: 'REZERWACJA',
                                     amount: {
                                       currency_code: 'USD',
-                                      value: 100,
+                                      value: amount,
                                     },
                                   },
                                 ],
@@ -185,6 +210,8 @@ const Donate = () => {
                                   details.payer.name.given_name
                               )
 
+                              history.push('/')
+
                               // OPTIONAL: Call your server to save the transaction
                               // return fetch("/paypal-transaction-complete", {
                               //   method: "post",
@@ -195,6 +222,20 @@ const Donate = () => {
                             }}
                           />
                         )}
+
+                        <div className='authorizesty'>
+                          <h5 class='mb-3'>Authorize.Net</h5>
+
+                          <FormContainer
+                            environment='production'
+                            onError={onErrorHandler}
+                            onSuccess={onSuccessHandler}
+                            amount={Number(amount)}
+                            component={FormComponent}
+                            clientKey={clientKey}
+                            apiLoginId={apiLoginId}
+                          />
+                        </div>
                       </div>
                       <div className='col-lg-5 col-md-6 col-12'>
                         <div className='pay-with'>
@@ -203,13 +244,17 @@ const Donate = () => {
                             alt=''
                             className='img-fluid'
                           />
+                          {/* <h4>$YahkiAwakenedLLC</h4> */}
+                          <Link
+                            onClick={() => {
+                              window.open('https://cash.app/$YahkiAwakenedLLC/')
+                            }}
+                            to='#'
+                            className='btn maroon-btn-solid mx-auto my-4 '
+                          >
+                            Donate with Cash App
+                          </Link>
                         </div>
-                        <Link
-                          to='#'
-                          className='btn maroon-btn-solid mx-auto my-4 '
-                        >
-                          Donate with Cash App
-                        </Link>
                       </div>
                     </div>
                   </div>

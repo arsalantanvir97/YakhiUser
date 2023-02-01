@@ -26,8 +26,12 @@ import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
 import ImageLazyLoad from '../components/ImageLazyLoad'
 import { userPaymentInfos } from '../actions/userAction'
+import csc from 'country-state-city'
 
-const Checkout = ({ history }) => {
+import Autocomplete from '../components/Autocomplete'
+import Select from 'react-select'
+
+const Checkout = ({ history, location, match }) => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress, cartItems, paymentInfo } = cart
   console.log('shippingAddress', shippingAddress)
@@ -81,12 +85,54 @@ const Checkout = ({ history }) => {
     shippingcountry: shippingAddress?.shippingcountry,
     shippingstate: shippingAddress?.shippingstate,
     paymentmethod: userInfo?.paymentinfo?.paymentmethod,
-    cardholdername: userInfo?.paymentinfo?.cardholdername,
+    cardholderfirstname: userInfo?.paymentinfo?.cardholderfirstname,
+    cardholderlastname: userInfo?.paymentinfo?.cardholderlastname,
     cardnumber: userInfo?.paymentinfo?.cardnumber,
     cvvnumber: userInfo?.paymentinfo?.cvvnumber,
     expirydate: userInfo?.paymentinfo?.expirydate,
   })
 
+  const countries = csc.getAllCountries()
+
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.id,
+    ...country,
+  }))
+  const updatedStates = (countryId) =>
+    csc
+      .getStatesOfCountry(countryId)
+      .map((state) => ({ label: state.name, value: state.id, ...state }))
+  const updatedCities = (stateId) =>
+    csc
+      .getCitiesOfState(stateId)
+      .map((city) => ({ label: city.name, value: city.id, ...city }))
+  const handleLocation = (
+    latitude,
+    longitude,
+    address,
+    city,
+    state,
+    country,
+    zip_code
+  ) => {
+    setAllValues({ ...allValues, billingaddress: address })
+    // setaddress(address)
+    // setgeolocation([latitude, longitude])
+  }
+  const handleLocation2 = (
+    latitude,
+    longitude,
+    address,
+    city,
+    state,
+    country,
+    zip_code
+  ) => {
+    setAllValues({ ...allValues, shippingaddress: address })
+    // setaddress(address)
+    // setgeolocation([latitude, longitude])
+  }
   const togglecheckoutHandler = async () => {
     console.log('togglecheckoutHandler')
     settogglecheckout(togglecheckout + 1)
@@ -107,9 +153,9 @@ const Checkout = ({ history }) => {
       const res = await axios.post(
         `${baseURL}/tax/gettaxdetails`,
         {
-          state: allValues?.shippingstate
-            ? allValues?.shippingstate
-            : allValues?.billingstate,
+          state: allValues?.shippingstate?.name
+            ? allValues?.shippingstate?.name
+            : allValues?.billingstate?.name,
         },
         config
       )
@@ -138,17 +184,17 @@ const Checkout = ({ history }) => {
           billingfirstname: allValues?.billingfirstname,
           billinglastname: allValues?.billinglastname,
           billingaddress: allValues?.billingaddress,
-          billingcity: allValues?.billingcity,
+          billingcity: allValues?.billingcity?.name,
           billingzipcode: allValues?.billingzipcode,
-          billingcountry: allValues?.billingcountry,
-          billingstate: allValues?.billingstate,
+          billingcountry: allValues?.billingcountry?.name,
+          billingstate: allValues?.billingstate?.name,
           shippingfirstname: allValues?.shippingfirstname,
           shippinglastname: allValues?.shippinglastname,
           shippingaddress: allValues?.shippingaddress,
-          shippingcity: allValues?.shippingcity,
+          shippingcity: allValues?.shippingcity?.name,
           shippingzipcode: allValues?.shippingzipcode,
-          shippingcountry: allValues?.shippingcountry,
-          shippingstate: allValues?.shippingstate,
+          shippingcountry: allValues?.shippingcountry?.name,
+          shippingstate: allValues?.shippingstate?.name,
         })
       )
     } else {
@@ -159,8 +205,9 @@ const Checkout = ({ history }) => {
     console.log('savePaymentMethodHandler')
     settogglecheckout(togglecheckout + 1)
     const body = {
-      paymentmethod: allValues?.paymentmethod,
-      cardholdername: allValues?.cardholdername,
+      paymentmethod: 'Card',
+      cardholderfirstname: allValues?.cardholderfirstname,
+      cardholderlastname: allValues?.cardholderlastname,
       cardnumber: allValues?.cardnumber,
       cvvnumber: allValues?.cvvnumber,
       expirydate: allValues?.expirydate,
@@ -198,8 +245,9 @@ const Checkout = ({ history }) => {
     setloading(true)
     try {
       const paymentMethod = {
-        paymentmethod: allValues?.paymentmethod,
-        cardholdername: allValues?.cardholdername,
+        paymentmethod: 'Card',
+        cardholderfirstname: allValues?.cardholderfirstname,
+        cardholderlastname: allValues?.cardholderlastname,
         cardnumber: allValues?.cardnumber,
         cvvnumber: allValues?.cvvnumber,
         expirydate: allValues?.expirydate,
@@ -380,29 +428,76 @@ const Checkout = ({ history }) => {
                                         onChange={changeHandler}
                                       />
                                     </div>
-                                    <div className='col-12 mb-4'>
-                                      <label>Address*</label>
-                                      <textarea
-                                        className='form-control'
-                                        id='exampleFormControlTextarea1'
-                                        placeholder='Enter Address'
-                                        rows={5}
-                                        value={allValues?.billingaddress}
-                                        name='billingaddress'
-                                        onChange={changeHandler}
-                                      />
-                                    </div>
                                   </div>
                                   <div className='row mb-4'>
                                     <div className='col-6 mb-4'>
+                                      <label>Country*</label>
+                                      <Select
+                                        id='billingcountry'
+                                        name='billingcountry'
+                                        label='country'
+                                        options={updatedCountries}
+                                        value={allValues?.billingcountry}
+                                        onChange={(value) => {
+                                          setAllValues({
+                                            ...allValues,
+                                            billingcountry: value,
+                                            billingstate: null,
+                                            billingcity: null,
+                                          })
+                                        }}
+                                      />{' '}
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>State*</label>
+                                      <Select
+                                        id='billingstate'
+                                        name='billingstate'
+                                        options={updatedStates(
+                                          allValues.billingcountry
+                                            ? allValues.billingcountry.value
+                                            : null
+                                        )}
+                                        value={allValues.billingstate}
+                                        onChange={(value) => {
+                                          setAllValues({
+                                            ...allValues,
+                                            billingstate: value,
+                                            billingcity: null,
+                                          })
+                                        }}
+                                      />{' '}
+                                    </div>
+                                    <div className='col-6 mb-4'>
                                       <label>City*</label>
-                                      <input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Enter City'
-                                        name='billingcity'
-                                        value={allValues?.billingcity}
-                                        onChange={changeHandler}
+                                      <Select
+                                        id='city'
+                                        name='city'
+                                        options={updatedCities(
+                                          allValues.billingstate
+                                            ? allValues.billingstate.value
+                                            : null
+                                        )}
+                                        value={allValues.billingcity}
+                                        onChange={(value) => {
+                                          setAllValues({
+                                            ...allValues,
+                                            billingcity: value,
+                                          })
+                                          // setFormState({
+                                          //   ...formState,
+                                          //   sender: {
+                                          //     ...formState?.sender,
+                                          //     city: value.name,
+                                          //   },
+                                          // })
+                                        }}
+                                      />
+                                    </div>
+                                    <div className='col-12 mb-4'>
+                                      <label>Address*</label>
+                                      <Autocomplete
+                                        handleLocation={handleLocation}
                                       />
                                     </div>
                                     <div className='col-6 mb-4'>
@@ -416,53 +511,6 @@ const Checkout = ({ history }) => {
                                         max={5}
                                         className='form-control'
                                       />
-                                    </div>
-                                    <div className='col-6 mb-4'>
-                                      <label>Country*</label>
-                                      {/* <input
-                                      type='text'
-                                      className='form-control'
-                                      placeholder='Enter Country'
-                                      value={allValues?.billingcountry}
-                                      name='billingcountry'
-                                      onChange={changeHandler}
-                                    /> */}
-                                      <select
-                                        className='form-control'
-                                        name='billingcountry'
-                                        onChange={changeHandler}
-                                        value={allValues?.billingcountry}
-                                      >
-                                        <option value disabled={true}>
-                                          Select
-                                        </option>
-                                        {countries?.map((count) => (
-                                          <option value={count}>{count}</option>
-                                        ))}
-                                      </select>
-                                    </div>
-                                    <div className='col-6 mb-4'>
-                                      <label>State*</label>
-                                      <select
-                                        className='form-control'
-                                        name='billingstate'
-                                        onChange={changeHandler}
-                                        value={allValues?.billingstate}
-                                      >
-                                        <option value disabled={true}>
-                                          Select
-                                        </option>{' '}
-                                        <USStates />
-                                      </select>
-                                      {/* <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Enter State"
-                                      value={billingstate}
-                                      onChange={(e) => {
-                                        setbillingstate(e.target.value);
-                                      }}
-                                    /> */}
                                     </div>
                                     <div className='col-12'>
                                       <div className='ship-to-different'>
@@ -511,27 +559,74 @@ const Checkout = ({ history }) => {
                                           onChange={changeHandler}
                                         />
                                       </div>
-                                      <div className='col-12 mb-4'>
-                                        <label>Address*</label>
-                                        <textarea
-                                          className='form-control'
-                                          id='exampleFormControlTextarea1'
-                                          placeholder='Enter Address'
-                                          rows={5}
-                                          name='shippingaddress'
-                                          value={allValues?.shippingaddress}
-                                          onChange={changeHandler}
-                                        />
+                                      <div className='col-6 mb-4'>
+                                        <label>Country*</label>
+                                        <Select
+                                          id='shippingcountry'
+                                          name='shippingcountry'
+                                          label='country'
+                                          options={updatedCountries}
+                                          value={allValues?.shippingcountry}
+                                          onChange={(value) => {
+                                            setAllValues({
+                                              ...allValues,
+                                              shippingcountry: value,
+                                              shippingstate: null,
+                                              shippingcity: null,
+                                            })
+                                          }}
+                                        />{' '}
+                                      </div>
+                                      <div className='col-6 mb-4'>
+                                        <label>State*</label>
+                                        <Select
+                                          id='shippingstate'
+                                          name='shippingstate'
+                                          options={updatedStates(
+                                            allValues.shippingcountry
+                                              ? allValues.shippingcountry.value
+                                              : null
+                                          )}
+                                          value={allValues.shippingstate}
+                                          onChange={(value) => {
+                                            setAllValues({
+                                              ...allValues,
+                                              shippingstate: value,
+                                              shippingcity: null,
+                                            })
+                                          }}
+                                        />{' '}
                                       </div>
                                       <div className='col-6 mb-4'>
                                         <label>City*</label>
-                                        <input
-                                          type='text'
-                                          className='form-control'
-                                          placeholder='Enter City'
-                                          name='shippingcity'
-                                          value={allValues?.shippingcity}
-                                          onChange={changeHandler}
+                                        <Select
+                                          id='city'
+                                          name='city'
+                                          options={updatedCities(
+                                            allValues.shippingstate
+                                              ? allValues.shippingstate.value
+                                              : null
+                                          )}
+                                          value={allValues.shippingcity}
+                                          onChange={(value) => {
+                                            setAllValues({
+                                              ...allValues,
+                                              shippingcity: value,
+                                            })
+                                            // setFormState({
+                                            //   ...formState,
+                                            //   sender: {
+                                            //     ...formState?.sender,
+                                            //     city: value.name,
+                                            //   },
+                                            // })
+                                          }}
+                                        />
+                                      </div>
+                                      <div className='col-12 mb-4'>
+                                        <label>Address*</label>
+                                        <Autocomplete
+                                          handleLocation={handleLocation2}
                                         />
                                       </div>
                                       <div className='col-6 mb-4'>
@@ -545,46 +640,6 @@ const Checkout = ({ history }) => {
                                           max={5}
                                           className='form-control'
                                         />
-                                      </div>
-                                      <div className='col-6 mb-4'>
-                                        <label>Country*</label>
-                                        {/* <input 
-                                       type='text'
-                                       className='form-control'
-                                       placeholder='Enter Country'
-                                       name='shippingcountry'
-                                       onChange={changeHandler}
-                                       value={allValues?.shippingcountry}
-                                     /> */}
-                                        <select
-                                          className='form-control'
-                                          name='shippingcountry'
-                                          onChange={changeHandler}
-                                          value={allValues?.shippingcountry}
-                                        >
-                                          <option value disabled={true}>
-                                            Select
-                                          </option>
-                                          {countries?.map((count) => (
-                                            <option value={count}>
-                                              {count}
-                                            </option>
-                                          ))}
-                                        </select>
-                                      </div>
-                                      <div className='col-6 mb-4'>
-                                        <label>State*</label>
-                                        <select
-                                          className='form-control'
-                                          name='shippingstate'
-                                          onChange={changeHandler}
-                                          value={allValues?.shippingstate}
-                                        >
-                                          <option value disabled={true}>
-                                            Select
-                                          </option>{' '}
-                                          <USStates />
-                                        </select>
                                       </div>
                                     </div>
                                   )}
@@ -723,10 +778,10 @@ const Checkout = ({ history }) => {
                           <div className='row'>
                             <div className='col-xl-7 col-lg-7 col-md-10'>
                               <div className='checkout-form'>
-                                <h3 className='mt-3'>SELECT PAYMENT METHOD</h3>
+                                {/* <h3 className='mt-3'>SELECT PAYMENT METHOD</h3> */}
                                 <form>
                                   <div className='row my-4'>
-                                    <div className='col-md-12'>
+                                    {/* <div className='col-md-12'>
                                       <div className='d-flex justify-content-between'>
                                         <div className=''>
                                           <div className='payment-method'>
@@ -809,19 +864,30 @@ const Checkout = ({ history }) => {
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
+                                    </div> */}
 
                                     <div className='col-12 mt-1'>
                                       <h4>Payment</h4>
                                     </div>
-                                    <div className='col-12 mb-4'>
-                                      <label>Card Holder Name*</label>
+                                    <div className='col-6 mb-4'>
+                                      <label>Card Holder First Name*</label>
                                       <input
                                         type='text'
                                         className='form-control'
-                                        placeholder='Enter Card Holder Name'
-                                        name='cardholdername'
-                                        value={allValues?.cardholdername}
+                                        placeholder='Enter Card Holder First Name'
+                                        name='cardholderfirstname'
+                                        value={allValues?.cardholderfirstname}
+                                        onChange={changeHandler}
+                                      />
+                                    </div>
+                                    <div className='col-6 mb-4'>
+                                      <label>Card Holder First Name*</label>
+                                      <input
+                                        type='text'
+                                        className='form-control'
+                                        placeholder='Enter Card Holder Last Name'
+                                        name='cardholderlastname'
+                                        value={allValues?.cardholderlastname}
                                         onChange={changeHandler}
                                       />
                                     </div>
@@ -1280,19 +1346,23 @@ const Checkout = ({ history }) => {
 
                                   <div className='row mt-4'>
                                     <div className='col-12 text-center'>
-                                      <Link
-                                        to='#'
-                                        className='btn red-btn-solid mt-lg-4 mt-3 mx-auto py-2 px-4 text-capitalize'
-                                        data-toggle='modal'
-                                        data-target='#confirmOrder'
-                                        onClick={
-                                          cart.cartItems === 0
-                                            ? null
-                                            : placeOrderHandler
-                                        }
-                                      >
-                                        Place Order
-                                      </Link>
+                                      {!loading ? (
+                                        <Link
+                                          to='#'
+                                          className='btn red-btn-solid mt-lg-4 mt-3 mx-auto py-2 px-4 text-capitalize'
+                                          data-toggle='modal'
+                                          data-target='#confirmOrder'
+                                          onClick={
+                                            cart.cartItems === 0
+                                              ? null
+                                              : placeOrderHandler
+                                          }
+                                        >
+                                          Place Order
+                                        </Link>
+                                      ) : (
+                                        <i className='fas fa-spinner fa-pulse'></i>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -1346,15 +1416,17 @@ const Checkout = ({ history }) => {
                               ? setshowmodal(1)
                               : togglecheckout == 0 &&
                                 allValues?.email &&
-                                allValues?.phone &&
-                                allValues?.billingfirstname &&
-                                allValues?.billinglastname &&
-                                allValues?.billingaddress &&
-                                allValues?.billingcity &&
-                                allValues?.billingzipcode &&
-                                allValues?.billingcountry &&
-                                allValues?.billingstate
-                              ? // allValues?.shippingfirstname &&
+                                allValues?.phone
+                              ? // &&
+                                // allValues?.billingfirstname &&
+                                // allValues?.billinglastname &&
+                                // allValues?.billingaddress &&
+                                // allValues?.billingcity &&
+                                // allValues?.billingzipcode &&
+                                // allValues?.billingcountry &&
+                                // allValues?.billingstate
+
+                                // allValues?.shippingfirstname &&
                                 // allValues?.shippinglastname &&
                                 // allValues?.shippingaddress &&
                                 // allValues?.shippingcity &&
@@ -1363,8 +1435,9 @@ const Checkout = ({ history }) => {
                                 // allValues?.shippingstate
                                 saveShippingHandler()
                               : togglecheckout == 1 &&
-                                allValues?.paymentmethod &&
-                                allValues?.cardholdername &&
+                                // allValues?.paymentmethod &&
+                                allValues?.cardholderfirstname &&
+                                allValues?.cardholderlastname &&
                                 allValues?.cardnumber &&
                                 allValues?.cvvnumber
                               ? savePaymentMethodHandler()

@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux'
 import FeaturedProductsSlider from '../components/FeaturedProductsSlider'
 import AllHerbs from '../components/AllHerbs'
 import ImageLazyLoad from '../components/ImageLazyLoad'
+import ReactPlayer from 'react-player/lazy'
+
 const isWindowContext = typeof window !== 'undefined'
 
 const Index = ({ history }) => {
@@ -1144,15 +1146,24 @@ const Index = ({ history }) => {
               src='https://drive.google.com/file/d/1RbLabw2qJkQUjo0Yykuyheyo4EiZ7K65/preview'
             ></iframe> */}
             {videouri?.length > 0 && (
-              <video
+              <ReactPlayer
+                playing={true}
+                controls={true}
+                url={`${imageURL}${videouri}`}
+                light={`${imageURL}${thumbnail}`}
                 width='100%'
                 height='100%'
-                poster={`${imageURL}${thumbnail}`}
-                controls
-              >
-                <source src={`${imageURL}${videouri}`} type='video/mp4' />
-                Your browser does not support HTML video.
-              </video>
+              />
+
+              // <video
+              //   width='100%'
+              //   height='100%'
+              //   poster={`${imageURL}${thumbnail}`}
+              //   controls
+              // >
+              //   <source src={`${imageURL}${videouri}`} type='video/mp4' />
+              //   Your browser does not support HTML video.
+              // </video>
             )}
             {/* <iframe
               src=' https://www.veed.io/view/d348e815-0300-47dd-95c4-89187db63a63?sharingWidget=true&panel=share'
@@ -1193,7 +1204,7 @@ const Index = ({ history }) => {
               <ImageLazyLoad
                 src='images/yahki-awakened.png'
                 alt=''
-                classname='img-fluid w-55 mt-4'
+                classname='img-fluid w-100 mt-4'
               />
             </div>
           </div>

@@ -1,15 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
+const DamageClaims = ({ history }) => {
+  const submitHandler = () => {
+    Swal.fire({
+      icon: 'success',
+      title: '',
+      text: 'Form submitted successfully',
+      showConfirmButton: false,
+      timer: 1500,
+    })
+    history?.push('/')
+  }
 
-const DamageClaims = () => {
   return (
     <div className='container-fluid mt-5'>
-      <div className='row'>
-        <ToggleBack name={'Damage Claims'} />
+      <ToggleBack name={'Damage Claims'} />
 
+      <div className='row'>
         <div className='col-md-8 mx-auto text-center'>
-          <h4 className='sub-heading'>Complains</h4>
+          <h4 className='sub-heading'></h4>
           <h3 className='main-heading'>Damage Claims</h3>
           <p className='general-para mb-4'>
             A damage claim form must be submitted within 7 days after receiving
@@ -116,10 +128,11 @@ const DamageClaims = () => {
                           <label htmlFor className='my-label'>
                             Type of Damage <span className='red'>*</span>
                           </label>
-                          <select className='form-control'>
-                            <option>Select Type</option>
-                            <option>--</option>
-                          </select>
+                          <input
+                            type='text'
+                            className='form-control my-textbox'
+                            placeholder='Enter Type of Damage'
+                          />
                         </div>
                       </div>
                       {/* UPLOAD DAMAGE PHOTOS*/}
@@ -164,12 +177,13 @@ const DamageClaims = () => {
                       </div>
                       <div className='row mb-5'>
                         <div className='col-12 text-center'>
-                          <a
-                            href='#'
+                          <Link
+                            to='#'
+                            onClick={submitHandler}
                             className='btn red-btn-solid ml-0 px-5 py-2'
                           >
                             Submit
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
