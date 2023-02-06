@@ -110,106 +110,141 @@ const Header = () => {
                 </div>
                 <div className='col-md-6 text-center text-md-right'>
                   <ul className='list-inline topbar-links'>
-                    <li className='list-inline-item dropdown myaccount'>
+                    {userInfo ? (
+                      <li className='list-inline-item dropdown myaccount'>
+                        <Link
+                          className='dropdown-toggle '
+                          data-toggle='dropdown'
+                          aria-expanded='false'
+                          to={'#'}
+                          // onClick={() => {
+                          //   !userInfo && UnauthorizedAlert()
+                          // }}
+                        >
+                          <i className='fas fa-user-alt mr-2 ' />{' '}
+                          {userInfo ? 'My Account' : 'Login'}
+                        </Link>
+
+                        <div class='dropdown-menu'>
+                          <div>
+                            <Link
+                              className='dropdown-item'
+                              style={{
+                                backgroundColor: '#fff !important',
+                                color: '#000 !important',
+                              }}
+                              to={userInfo ? '/EditProfile' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                            >
+                              Account Details
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              className='dropdown-item'
+                              to={userInfo ? '/MyCart' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                            >
+                              View My Cart
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              className='dropdown-item'
+                              to={userInfo ? '/Checkout' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                            >
+                              Checkout
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              className='dropdown-item'
+                              to={userInfo ? '/WishList' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                            >
+                              Wishlist
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              className='dropdown-item'
+                              to={userInfo ? '/OrderLog' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                            >
+                              Order Tracking
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              className='dropdown-item'
+                              to={userInfo ? '/DamageClaims' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                            >
+                              Damage Claims
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              className='dropdown-item'
+                              to={userInfo ? '/AppointmentLogs' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                              // className="dropdown-item"
+                            >
+                              My Appointments
+                            </Link>
+                          </div>
+                          <button
+                            className='dropdown-item'
+                            type='button'
+                            onClick={() => {
+                              logOutHandler()
+                            }}
+                          >
+                            Logout
+                          </button>
+                        </div>
+                      </li>
+                    ) : (
+                      <li className='list-inline-item'>
+                        <Link
+                          to='#'
+                          className='mr-2'
+                          data-toggle='modal'
+                          data-target='#loginModal'
+                        >
+                          <i className='far fa-user pr-2' />
+                          Login
+                        </Link>
+                      </li>
+                    )}
+                    <li className='list-inline-item'>
                       <Link
-                        className='dropdown-toggle '
-                        data-toggle='dropdown'
-                        aria-expanded='false'
-                        to={'#'}
-                        // onClick={() => {
-                        //   !userInfo && UnauthorizedAlert()
-                        // }}
+                        className='position-relative'
+                        to={userInfo ? '/MyCart' : '#'}
+                        onClick={() => {
+                          !userInfo && UnauthorizedAlert()
+                        }}
                       >
-                        <i className='fas fa-user-alt mr-2 ' />{' '}
-                        {userInfo ? 'My Account' : 'Login'}
+                        <i className='fas fa-shopping-bag pr-3' />
+                        My Cart
+                        <span className='cart-count'>{cartItems?.length}</span>
                       </Link>
-
-                      <div class='dropdown-menu'>
-                        <div>
-                          <Link
-                            className='dropdown-item'
-                            style={{
-                              backgroundColor: '#fff !important',
-                              color: '#000 !important',
-                            }}
-                            to={userInfo ? '/EditProfile' : '#'}
-                            onClick={() => {
-                              !userInfo && UnauthorizedAlert()
-                            }}
-                          >
-                            Account Details
-                          </Link>
-                        </div>
-                        <div>
-                          <Link
-                            className='dropdown-item'
-                            to={userInfo ? '/MyCart' : '#'}
-                            onClick={() => {
-                              !userInfo && UnauthorizedAlert()
-                            }}
-                          >
-                            View My Cart
-                          </Link>
-                        </div>
-                        <div>
-                          <Link
-                            className='dropdown-item'
-                            to={userInfo ? '/Checkout' : '#'}
-                            onClick={() => {
-                              !userInfo && UnauthorizedAlert()
-                            }}
-                          >
-                            Checkout
-                          </Link>
-                        </div>
-                        <div>
-                          <Link
-                            className='dropdown-item'
-                            to={userInfo ? '/WishList' : '#'}
-                            onClick={() => {
-                              !userInfo && UnauthorizedAlert()
-                            }}
-                          >
-                            Wishlist
-                          </Link>
-                        </div>
-                        <div>
-                          <Link
-                            className='dropdown-item'
-                            to={userInfo ? '/OrderLog' : '#'}
-                            onClick={() => {
-                              !userInfo && UnauthorizedAlert()
-                            }}
-                          >
-                            Order Tracking
-                          </Link>
-                        </div>
-                        <div>
-                          <Link
-                            className='dropdown-item'
-                            to={userInfo ? '/DamageClaims' : '#'}
-                            onClick={() => {
-                              !userInfo && UnauthorizedAlert()
-                            }}
-                          >
-                            Damage Claims
-                          </Link>
-                        </div>
-                        <div>
-                          <Link
-                            className='dropdown-item'
-                            to={userInfo ? '/AppointmentLogs' : '#'}
-                            onClick={() => {
-                              !userInfo && UnauthorizedAlert()
-                            }}
-                            // className="dropdown-item"
-                          >
-                            My Appointments
-                          </Link>
-                        </div>
-                      </div>
                     </li>
-
                     <li className='list-inline-item'>
                       <Link
                         to={userInfo ? '/AppointmentLogs' : '#'}
@@ -898,7 +933,7 @@ const Header = () => {
                         </li>
                         <li className='nav-item'>
                           <ul className='list-inline menu-icons'>
-                            {userInfo ? (
+                            {/* {userInfo ? (
                               <li className='list-inline-item'>
                                 <div className='btn-group'>
                                   <button
@@ -913,24 +948,13 @@ const Header = () => {
                                     </a>{' '}
                                   </button>
                                   <div className='dropdown-menu dropdown-menu-right'>
-                                    {/* <button className="dropdown-item" type="button">
-                                Action
-                              </button> */}
+                                    
                                     <Link
                                       className='dropdown-item'
                                       to='/EditProfile'
                                     >
                                       My Account
                                     </Link>
-                                    <button
-                                      className='dropdown-item'
-                                      type='button'
-                                      onClick={() => {
-                                        logOutHandler()
-                                      }}
-                                    >
-                                      Logout
-                                    </button>
                                   </div>
                                 </div>
                               </li>
@@ -945,7 +969,7 @@ const Header = () => {
                                   <i className='far fa-user' />
                                 </Link>
                               </li>
-                            )}
+                            )} */}
                             {userInfo && (
                               <li className='list-inline-item'>
                                 <Link to='/Notification' className='mr-2'>
@@ -969,21 +993,7 @@ const Header = () => {
                                 <i className='far fa-heart' />
                               </Link>
                             </li>
-                            <li className='list-inline-item'>
-                              <div className='position-relative'>
-                                <Link
-                                  to={userInfo ? '/MyCart' : '#'}
-                                  onClick={() => {
-                                    !userInfo && UnauthorizedAlert()
-                                  }}
-                                >
-                                  <i className='fas fa-shopping-bag' />
-                                  <span className='cart-count'>
-                                    {cartItems?.length}
-                                  </span>
-                                </Link>
-                              </div>
-                            </li>
+
                             <li className='list-inline-item'>
                               <select name id='switcher'>
                                 <option value>USD</option>

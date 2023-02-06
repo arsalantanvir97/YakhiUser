@@ -17,7 +17,7 @@ const HerbalTherapy = () => {
                     <img
                       src='images/de-vaxxed-detailed-img.jpg'
                       alt=''
-                      className='img-fluid h-100'
+                      className='img-fluid '
                     />
                   </div>
                 </div>

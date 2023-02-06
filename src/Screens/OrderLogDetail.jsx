@@ -139,7 +139,7 @@ const OrderLogDetail = ({ match, history }) => {
           />
         </div>
       )}
-      <div className='container-fluid mt-5'>
+      <div className='container-fluid '>
         <div className='row'>
           <div className='col-md-11 mx-auto'>
             <ToggleBack name={`Order Details`} />

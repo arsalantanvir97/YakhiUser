@@ -75,7 +75,7 @@ const PackageLevelTwo = ({ match, history }) => {
                     <img
                       src='/images/product-main.png'
                       alt=''
-                      className='img-fluid h-100'
+                      className='img-fluid '
                     />
                   </div>
                   <div className='row'>

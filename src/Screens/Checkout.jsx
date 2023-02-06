@@ -95,6 +95,7 @@ const Checkout = ({ history, location, match }) => {
   const countries = csc.getAllCountries()
 
   const updatedCountries = countries.map((country) => ({
+    // defaultValue: 'United States',
     label: country.name,
     value: country.id,
     ...country,

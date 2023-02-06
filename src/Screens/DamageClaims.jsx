@@ -16,12 +16,12 @@ const DamageClaims = ({ history }) => {
   }
 
   return (
-    <div className='container-fluid mt-5'>
+    <div className='container-fluid '>
       <ToggleBack name={'Damage Claims'} />
 
       <div className='row'>
         <div className='col-md-8 mx-auto text-center'>
-          <h4 className='sub-heading'></h4>
+          <h4 className='sub-heading mt-1'></h4>
           <h3 className='main-heading'>Damage Claims</h3>
           <p className='general-para mb-4'>
             A damage claim form must be submitted within 7 days after receiving

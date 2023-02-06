@@ -18,7 +18,7 @@ import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
 import addPayPalScript from '../utils/addPayPalScript'
-import SezzleWidget from 'sezzle-react-widget'
+// import SezzleWidget from 'sezzle-react-widget'
 import { AcceptHosted, FormComponent, FormContainer } from 'react-authorize-net'
 import Toasty from '../utils/toast'
 
@@ -30,7 +30,7 @@ const Donate = ({ history }) => {
   const [clientid, setclientid] = useState('')
   const [clientKey, setclientKey] = useState('')
   const [apiLoginId, setapiLoginId] = useState('')
-  const [merchantId, setmerchantId] = useState('')
+  // const [merchantId, setmerchantId] = useState('')
 
   const [sdkReady, setSdkReady] = useState(false)
 
@@ -38,8 +38,8 @@ const Donate = ({ history }) => {
     const resss = await axios.get(`${baseURL}/config/authorize`)
     setclientKey(resss?.data?.loginid)
     setapiLoginId(resss?.data?.transactionkey)
-    const res2ss = await axios.get(`${baseURL}/config/sezzle`)
-    setmerchantId(res2ss?.data?.keyid)
+    // const res2ss = await axios.get(`${baseURL}/config/sezzle`)
+    // setmerchantId(res2ss?.data?.keyid)
 
     addPayPalScript({ setclientid, setSdkReady })
   }, [])
@@ -176,10 +176,10 @@ const Donate = ({ history }) => {
                             className='img-fluid'
                           /> */}
                         </div>
-                        <SezzleWidget
+                        {/* <SezzleWidget
                           price={String(amount)}
                           merchantId={merchantId}
-                        />
+                        /> */}
                         {!sdkReady ? null : (
                           <PayPalButton
                             options={{

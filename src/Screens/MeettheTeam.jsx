@@ -21,7 +21,7 @@ const data = [
   },
   {
     name: 'Cierra',
-    title: '-Lead Herbalist and Supervisor',
+    title: 'Lead Herbalist and Supervisor',
     // email: "candice@yahkiawakened.com",
     image: 'images/Cierra.png',
   },
@@ -45,7 +45,7 @@ const data = [
   },
   {
     name: 'CANDICE',
-    title: '-Herbal Associate & Processer',
+    title: 'Herbal Associate & Processer',
     // email: 'candice@yahkiawakened.com',
     image: 'images/Candice-Nelson.png',
   },

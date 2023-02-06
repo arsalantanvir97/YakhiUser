@@ -16,7 +16,7 @@ const Events = () => {
   const [events, setevents] = useState([])
   const [name, setname] = useState('')
   const [email, setemail] = useState('')
-  const [occupation, setoccupation] = useState('')
+  // const [occupation, setoccupation] = useState('')
   const [id, setid] = useState('')
 
   const getEvents = async () => {
@@ -31,7 +31,7 @@ const Events = () => {
   }, [])
   const submitHandler = async () => {
     try {
-      const body = { name, email, event: id, occupation }
+      const body = { name, email, event: id }
       const res = await api.post(`/event/bookevent`, body)
       if (res?.status == 203) {
         await Swal.fire({
@@ -56,7 +56,7 @@ const Events = () => {
       setevents('')
       setname('')
       setemail('')
-      setoccupation('')
+      // setoccupation('')
       setid('')
     } catch (error) {}
   }
@@ -334,7 +334,7 @@ const Events = () => {
                         }}
                       />
                     </div>
-                    <div className='mb-3'>
+                    {/* <div className='mb-3'>
                       <label>
                         Occupation<span className='text-red'>*</span>
                       </label>
@@ -354,14 +354,13 @@ const Events = () => {
                         <option value={'Law'}>Law</option>
                         <option value={'Health'}>Health</option>
                       </select>
-                    </div>
+                    </div> */}
                     <div className='text-center'>
                       <button
                         onClick={() => {
-                          name?.length > 0 &&
-                          email?.length > 0 &&
-                          occupation?.length > 0
-                            ? submitHandler()
+                          name?.length > 0 && email?.length > 0
+                            ? // occupation?.length > 0
+                              submitHandler()
                             : Toasty(
                                 'error',
                                 `Please fill out all the required fields`

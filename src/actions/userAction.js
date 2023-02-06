@@ -95,7 +95,7 @@ export const becomemember = (body, history) => async (dispatch) => {
     //   }
   } catch (error) {
     console.log('error', error)
-    Toasty('error', 'error?.response?.data?.message')
+    Toasty('error', 'A user with this email already exists')
 
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -127,7 +127,7 @@ export const userPaymentInfos = (body) => async (dispatch) => {
     //   }
   } catch (error) {
     console.log('error', error)
-    Toasty('error', 'error?.response?.data?.message')
+    Toasty('error', error?.response?.data?.message)
 
     dispatch({
       type: USER_LOGIN_FAIL,

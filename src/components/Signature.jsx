@@ -40,7 +40,7 @@ export class Signature extends Component {
             Clear
           </button>
           <button className={styles.buttons} onClick={this.trim}>
-            Trim
+            Save
           </button>
         </div>
         {trimmedDataURL ? (

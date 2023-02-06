@@ -34,7 +34,7 @@ const DetailsofProduct = ({
             <ToggleBack name={product?.name} />
             {/* product grid and add to cart option */}
             <section className='product-grid'>
-              <div className='row align-items-start justify-content-center my-5 py-5'>
+              <div className='row align-items-start justify-content-center py-5 '>
                 <div className='col-lg-6 col-md-8'>
                   <div className='p-view-main'>
                     <ImageLazyLoad

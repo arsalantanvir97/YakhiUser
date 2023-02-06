@@ -105,17 +105,17 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     yourinfodiagnosis: shippingAddress?.yourinfodiagnosis,
     yourinfodoc_schedule: shippingAddress?.yourinfodoc_schedule,
 
-    email: shippingAddress?.email,
-    phone: shippingAddress?.phone,
+    // email: shippingAddress?.email,
+    // phone: shippingAddress?.phone,
 
-    firstName: shippingAddress?.firstName,
+    // firstName: shippingAddress?.firstName,
     // reasonformedic: shippingAddress?.reasonformedic,
-    currentmedic: shippingAddress?.currentmedic,
+    // currentmedic: shippingAddress?.currentmedic,
     allergics: shippingAddress?.allergics,
 
-    age: shippingAddress?.age,
-    weight: shippingAddress?.weight,
-    height: shippingAddress?.height,
+    // age: shippingAddress?.age,
+    // weight: shippingAddress?.weight,
+    // height: shippingAddress?.height,
     // govtid: shippingAddress?.govtid,
 
     // doc_schedule: shippingAddress?.doc_schedule,
@@ -198,93 +198,89 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     const emailvalidation = validateEmail(allValues?.email)
     console.log('emmmm', emailvalidation)
     console.log('saveShippingHandler')
-    if (emailvalidation == true) {
-      console.log('saveShippingHandler')
-      settogglecheckout(togglecheckout + 1)
-      const config = {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      }
-      console.log(
-        'allValues?.shippingstate',
-        allValues?.shippingstate,
-        allValues?.billingstate
-      )
-      const res = await axios.post(
-        `${baseURL}/tax/gettaxdetails`,
-        {
-          state: allValues?.shippingstate?.name
-            ? allValues?.shippingstate?.name
-            : allValues?.billingstate?.name,
-        },
-        config
-      )
-      console.log('res2ss', res)
-      if (res?.data?.tax == null) {
-        settaxofstate(0)
-      } else {
-        settaxofstate(res?.data?.tax?.percent)
-      }
-      console.log(
-        'res?.data?.tax?.percent',
-        res?.data?.tax?.percent,
-        res?.data?.tax,
-        product?.price * quantity
-      )
-      setshippingPrice(0)
-      settaxPrice(
-        Number(res?.data?.tax == null ? 0 : res?.data?.tax?.percent / 100) *
-          Number(product?.price * quantity)
-      )
-      settotalPrice(Number(product?.price * quantity) + Number(taxPrice))
-      dispatch(
-        saveShippingAddress({
-          yourinfofirstName: allValues?.yourinfofirstName,
-          yourinfolastName: allValues?.yourinfolastName,
-          yourinfoemail: allValues?.yourinfoemail,
-          yourinfophone: allValues?.yourinfophone,
-          yourinfoage: allValues?.yourinfoage,
-          yourinfoheight: allValues?.yourinfoheight,
-          yourinfoweight: allValues?.yourinfoweight,
-          yourinfoethnicity: allValues?.yourinfoethnicity,
-          yourinfoconsultaionfor: allValues?.yourinfoconsultaionfor,
-          yourinfosetcurrentmedication: allValues?.yourinfosetcurrentmedication,
-          // yourinforeason: allValues?.yourinforeason,
-          yourinfodiagnosis: allValues?.yourinfodiagnosis,
-          yourinfodoc_schedule: allValues?.yourinfodoc_schedule?.name,
-
-          email: allValues?.email,
-          // doc_schedule: allValues?.doc_schedule?.name,
-          signature: shippingAddress?.signature,
-          disclaimer: allValues?.disclaimer,
-          phone: allValues?.phone,
-          billingfirstname: allValues?.billingfirstname,
-          billinglastname: allValues?.billinglastname,
-          billingaddress: allValues?.billingaddress,
-          billingcity: allValues?.billingcity?.name,
-          billingzipcode: allValues?.billingzipcode,
-          billingcountry: allValues?.billingcountry?.name,
-          billingstate: allValues?.billingstate?.name,
-          shippingfirstname: allValues?.shippingfirstname,
-          shippinglastname: allValues?.shippinglastname,
-          shippingaddress: allValues?.shippingaddress,
-          shippingcity: allValues?.shippingcity?.name,
-          shippingzipcode: allValues?.shippingzipcode,
-          shippingcountry: allValues?.shippingcountry?.name,
-          shippingstate: allValues?.shippingstate?.name,
-        })
-      )
-      // Swal.fire({
-      //   icon: 'info',
-      //   title: '',
-      //   text: 'Please recheck your address, the address will not be changed',
-      //   showConfirmButton: false,
-      //   timer: 1500,
-      // })
-    } else {
-      Toasty('error', `Please enter a valid email`)
+    console.log('saveShippingHandler')
+    settogglecheckout(togglecheckout + 1)
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     }
+    console.log(
+      'allValues?.shippingstate',
+      allValues?.shippingstate,
+      allValues?.billingstate
+    )
+    const res = await axios.post(
+      `${baseURL}/tax/gettaxdetails`,
+      {
+        state: allValues?.shippingstate?.name
+          ? allValues?.shippingstate?.name
+          : allValues?.billingstate?.name,
+      },
+      config
+    )
+    console.log('res2ss', res)
+    if (res?.data?.tax == null) {
+      settaxofstate(0)
+    } else {
+      settaxofstate(res?.data?.tax?.percent)
+    }
+    console.log(
+      'res?.data?.tax?.percent',
+      res?.data?.tax?.percent,
+      res?.data?.tax,
+      product?.price * quantity
+    )
+    setshippingPrice(0)
+    settaxPrice(
+      Number(res?.data?.tax == null ? 0 : res?.data?.tax?.percent / 100) *
+        Number(product?.price * quantity)
+    )
+    settotalPrice(Number(product?.price * quantity) + Number(taxPrice))
+    dispatch(
+      saveShippingAddress({
+        yourinfofirstName: allValues?.yourinfofirstName,
+        yourinfolastName: allValues?.yourinfolastName,
+        yourinfoemail: allValues?.yourinfoemail,
+        yourinfophone: allValues?.yourinfophone,
+        yourinfoage: allValues?.yourinfoage,
+        yourinfoheight: allValues?.yourinfoheight,
+        yourinfoweight: allValues?.yourinfoweight,
+        yourinfoethnicity: allValues?.yourinfoethnicity,
+        yourinfoconsultaionfor: allValues?.yourinfoconsultaionfor,
+        yourinfosetcurrentmedication: allValues?.yourinfosetcurrentmedication,
+        // yourinforeason: allValues?.yourinforeason,
+        yourinfodiagnosis: allValues?.yourinfodiagnosis,
+        yourinfodoc_schedule: allValues?.yourinfodoc_schedule?.name,
+
+        email: allValues?.email,
+        // doc_schedule: allValues?.doc_schedule?.name,
+        signature: shippingAddress?.signature,
+        disclaimer: allValues?.disclaimer,
+        phone: allValues?.phone,
+        billingfirstname: allValues?.billingfirstname,
+        billinglastname: allValues?.billinglastname,
+        billingaddress: allValues?.billingaddress,
+        billingcity: allValues?.billingcity?.name,
+        billingzipcode: allValues?.billingzipcode,
+        billingcountry: allValues?.billingcountry?.name,
+        billingstate: allValues?.billingstate?.name,
+        shippingfirstname: allValues?.shippingfirstname,
+        shippinglastname: allValues?.shippinglastname,
+        shippingaddress: allValues?.shippingaddress,
+        shippingcity: allValues?.shippingcity?.name,
+        shippingzipcode: allValues?.shippingzipcode,
+        shippingcountry: allValues?.shippingcountry?.name,
+        shippingstate: allValues?.shippingstate?.name,
+      })
+    )
+    // Swal.fire({
+    //   icon: 'info',
+    //   title: '',
+    //   text: 'Please recheck your address, the address will not be changed',
+    //   showConfirmButton: false,
+    //   timer: 1500,
+    // })
   }
   const savePaymentMethodHandler = async (e) => {
     console.log('savePaymentMethodHandler')
@@ -591,7 +587,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         name='yourinfoethnicity'
                                       />
                                     </div>
-                                    <div className='col-md-6'>
+                                    <div className='col-md-12'>
                                       <label>
                                         Geo'Genetic For
                                         <span className='red'>*</span>
@@ -610,6 +606,19 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                         </option>
                                         <Diseases />
                                       </select>
+                                    </div>
+                                    <div className='col-md-6'>
+                                      <label>
+                                        Allergies <span className='red'>*</span>
+                                      </label>
+                                      <input
+                                        className='form-control'
+                                        placeholder='Enter Allergies'
+                                        type='text'
+                                        value={allValues?.allergics}
+                                        onChange={changeHandler}
+                                        name='allergics'
+                                      />
                                     </div>
                                     <div className='col-md-6'>
                                       <label>
@@ -813,7 +822,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                             <div className='col-xl-7 col-lg-7 col-md-10'>
                               <div className='checkout-form'>
                                 <div className=''>
-                                  <div className='consultation-form'>
+                                  {/* <div className='consultation-form'>
                                     <div className='form-group'>
                                       <div className='form-row'>
                                         <div className='col-md-6'>
@@ -887,7 +896,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                             name='reasonformedic'
                                           />
                                         </div> */}
-                                        <div className='col-md-6'>
+                                  {/* <div className='col-md-6'>
                                           <label>
                                             Current Medication{' '}
                                             <span className='red'>*</span>
@@ -900,22 +909,9 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                             onChange={changeHandler}
                                             name='currentmedic'
                                           />
-                                        </div>
-                                        <div className='col-md-6'>
-                                          <label>
-                                            Allergies{' '}
-                                            <span className='red'>*</span>
-                                          </label>
-                                          <input
-                                            className='form-control'
-                                            placeholder='Enter Allergies'
-                                            type='text'
-                                            value={allValues?.allergics}
-                                            onChange={changeHandler}
-                                            name='allergics'
-                                          />
-                                        </div>
-                                        {/* <div className='row mb-0'>
+                                        </div> */}
+
+                                  {/* <div className='row mb-0'>
                                           <div className='col-6 mb-4'>
                                             <label>
                                               Upload Valid Government Issued ID*
@@ -939,16 +935,16 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                               )}
                                             </label>
                                           </div>
-                                        </div> */}
+                                        </div> 
                                       </div>
                                     </div>
-                                  </div>
+                                  </div> */}
                                 </div>
 
-                                <div style={{ height: 20 }}></div>
-                                <h3> ADDRESS</h3>
+                                {/* <div style={{ height: 20 }}></div> */}
+                                {/* <h3> ADDRESS</h3> */}
                                 {/* Personal info */}
-                                <div className='row mb-4'>
+                                {/* <div className='row mb-4'>
                                   <div className='col-12'>
                                     <h4>PERSONAL INFORMATION</h4>
                                   </div>
@@ -973,7 +969,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                       onChange={setAllValues}
                                     />
                                   </div>
-                                </div>
+                                </div> */}
 
                                 <p className='summary-value'>
                                   DISCLAIMER: The following GeoGenetic protocol
@@ -984,6 +980,17 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                                   list but included based on your healing needs
                                   and specifications.
                                 </p>
+                                <div className='col mt-3 ship-to-different left-align'>
+                                  <div className='checkbox-group'>
+                                    <input
+                                      type='checkbox'
+                                      id='html'
+                                      value={allValues?.disclaimer}
+                                      onChange={changeHandler}
+                                    />
+                                    <label htmlFor='html'>Disclaimer </label>
+                                  </div>
+                                </div>
                                 {/* Billing Address */}
                                 <div className='row mb-4'>
                                   <div className='col-12 mb-4'>
@@ -1915,7 +1922,7 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
                               // allValues?.yourinfodiagnosis
                               inctogglehandler()
                             : togglecheckout == 1 &&
-                              allValues?.email &&
+                              // allValues?.email &&
                               // allValues?.doc_schedule?.name?.length > 0 &&
                               // allValues?.phone &&
                               // allValues?.billingfirstname &&
