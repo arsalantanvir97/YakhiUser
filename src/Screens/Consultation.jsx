@@ -140,7 +140,7 @@ const Consultation = ({ history }) => {
 
   const onErrorHandler = (error) => {
     console.log('error', error)
-    Toasty('error', error)
+    Toasty('error', 'Payment unsuccessful')
   }
   useEffect(() => {
     addPayPalScript({ setclientid, setSdkReady })

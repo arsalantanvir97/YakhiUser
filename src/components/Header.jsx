@@ -222,10 +222,10 @@ const Header = () => {
                     ) : (
                       <li className='list-inline-item'>
                         <Link
-                          to='#'
+                          to='/Login'
                           className='mr-2'
-                          data-toggle='modal'
-                          data-target='#loginModal'
+                          // data-toggle='modal'
+                          // data-target='#loginModal'
                         >
                           <i className='far fa-user pr-2' />
                           Login
@@ -797,7 +797,10 @@ const Header = () => {
                           <a
                             target={'_self'}
                             className='nav-link'
-                            href='/Consultation'
+                            href={userInfo ? '/Consultation' : '#'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
                           >
                             Consultations
                           </a>
@@ -876,8 +879,11 @@ const Header = () => {
                         <li className='nav-item'>
                           <a
                             className='nav-link'
-                            href='/Events'
+                            href={userInfo ? '/Events' : '#'}
                             target={'_self'}
+                            onClick={() => {
+                              !userInfo && UnauthorizedAlert()
+                            }}
                             // data-toggle="modal"
                             // data-target="#detoxModal"
                           >

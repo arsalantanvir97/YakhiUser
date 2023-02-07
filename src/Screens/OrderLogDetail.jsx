@@ -73,7 +73,7 @@ const OrderLogDetail = ({ match, history }) => {
 
   const onErrorHandler = (error) => {
     console.log('error', error)
-    Toasty('error', error)
+    Toasty('error', 'Payment unsuccessful')
   }
   // async function handleToken(token) {
   //   setloading(true)
@@ -462,7 +462,8 @@ const OrderLogDetail = ({ match, history }) => {
                                 <h5 class='mb-3'>Authorize.Net</h5>
 
                                 <FormContainer
-                                  environment='production'
+                                  // environment='production'
+                                  formType={userInfo?.paymentinfo?.cardnumber}
                                   onError={onErrorHandler}
                                   onSuccess={onSuccessHandler}
                                   amount={Number(orderdetaills?.totalPrice)}

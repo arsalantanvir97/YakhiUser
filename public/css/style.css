@@ -254,7 +254,12 @@ span.cart-count {
   line-height: 17px;
   width: max-content;
 }
-
+.eventVideo img, .eventVideo video{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    aspect-ratio: 16/9;
+}
 
 .checkout-form .autocomplete-dropdown-container>div {
   padding: 7px 10px;

@@ -3,12 +3,19 @@ import AllHerbs from '../components/AllHerbs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import MainHeader from '../components/MainHeader'
-import Calendar from 'react-calendar'
+// import Calendar from 'react-calendar'
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+
 import ToggleBack from '../components/ToggleBack'
 import api, { baseURL, imageURL } from '../utils/api'
 import moment from 'moment'
 import Toasty from '../utils/toast'
 import Swal from 'sweetalert2'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+moment.locale('en-GB')
+const localizer = momentLocalizer(moment)
+
+// const allViews = Object.keys(Calendar.Views).map((k) => Calendar.Views[k])
 
 const Events = () => {
   const [value, onChange] = useState(new Date())
@@ -16,6 +23,8 @@ const Events = () => {
   const [events, setevents] = useState([])
   const [name, setname] = useState('')
   const [email, setemail] = useState('')
+  const [usetbookings, setusetbookings] = useState('')
+
   // const [occupation, setoccupation] = useState('')
   const [id, setid] = useState('')
 
@@ -32,6 +41,7 @@ const Events = () => {
   const submitHandler = async () => {
     try {
       const body = { name, email, event: id }
+      console.log('body', body)
       const res = await api.post(`/event/bookevent`, body)
       if (res?.status == 203) {
         await Swal.fire({
@@ -60,6 +70,16 @@ const Events = () => {
       setid('')
     } catch (error) {}
   }
+  const getUserEvents = async () => {
+    try {
+      const res = await api.get(`/event/userBookings`)
+      setusetbookings(res?.data?.bookings)
+    } catch (error) {}
+  }
+
+  useEffect(() => {
+    console.log('usetbookings', usetbookings)
+  }, [usetbookings])
   return (
     <>
       <section
@@ -132,6 +152,7 @@ const Events = () => {
                       aria-controls='nav-calendar-view'
                       aria-selected='false'
                       onClick={() => {
+                        getUserEvents()
                         setshowcalendar(true)
                       }}
                     >
@@ -233,7 +254,7 @@ const Events = () => {
                             <div className='text-center'>
                               <button
                                 onClick={() => {
-                                  setid(event.id)
+                                  setid(event._id)
                                 }}
                                 className='btn btnBook'
                                 data-toggle='modal'
@@ -256,23 +277,37 @@ const Events = () => {
                   </div>
                 </div>{' '}
                 {showcalendar && (
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      backgroundColor: 'reds',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    {' '}
-                    <Calendar
-                      onChange={onChange}
-                      value={value}
-                      backgroundColor='#720215'
-                    />
-                  </div>
+                  // <div
+                  //   style={{
+                  //     width: '100%',
+                  //     height: '100%',
+                  //     backgroundColor: 'reds',
+                  //     display: 'flex',
+                  //     justifyContent: 'center',
+                  //     alignItems: 'center',
+                  //   }}
+                  // >
+                  //   {' '}
+                  //   <Calendar
+                  //     onChange={onChange}
+                  //     value={value}
+                  //     backgroundColor='#720215'
+                  //   />
+                  // </div>
+                  <Calendar
+                    events={usetbookings}
+                    // step={60}
+                    // views={allViews}
+                    localizer={localizer}
+                    // defaultDate={new Date(2015, 3, 1)}
+                    popup={false}
+                    startAccessor='start'
+                    endAccessor='end'
+                    style={{ height: 500 }}
+                    onShowMore={(events, date) =>
+                      this.setState({ showModal: true, events })
+                    }
+                  />
                 )}
               </div>
             </div>

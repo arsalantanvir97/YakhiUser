@@ -2,19 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import { countries } from '../utils/countries'
 
 import { saveShippingAddress, savePaymentMethod } from '../actions/cartAction'
 import { createGeoGeneticsOrder } from '../actions/orderAction'
-import DatePicker from 'react-datepicker'
 import { baseURL, imageURL } from '../utils/api'
 import Toasty from '../utils/toast'
 import InputNumber from '../components/InputNumber'
 import InputPhone from '../components/InputPhone'
 import { validateEmail } from '../utils/ValidateEmail'
 import axios from 'axios'
-import moment from 'moment'
-import USStates from '../components/USStates'
 import { Signature } from '../components/Signature'
 import AllHerbs from '../components/AllHerbs'
 import Diseases from '../components/Diseases'
@@ -184,15 +180,21 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     setAllValues({ ...allValues, shippingaddress: address })
   }
   const togglecheckoutHandler = async () => {
+    window.scrollTo(0, 0)
+
     console.log('togglecheckoutHandler')
     settogglecheckout(togglecheckout + 1)
   }
 
   const inctogglehandler = () => {
+    window.scrollTo(0, 0)
+
     settogglecheckout(togglecheckout + 1)
   }
 
   const saveShippingHandler = async (e) => {
+    window.scrollTo(0, 0)
+
     setshowmodal(2)
 
     const emailvalidation = validateEmail(allValues?.email)
@@ -283,6 +285,8 @@ const GeoGeneticsCheckout = ({ history, location, match }) => {
     // })
   }
   const savePaymentMethodHandler = async (e) => {
+    window.scrollTo(0, 0)
+
     console.log('savePaymentMethodHandler')
     settogglecheckout(togglecheckout + 1)
     const body = {

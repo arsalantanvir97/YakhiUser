@@ -135,10 +135,12 @@ const Checkout = ({ history, location, match }) => {
     // setgeolocation([latitude, longitude])
   }
   const togglecheckoutHandler = async () => {
+    window.scrollTo(0, 0)
     console.log('togglecheckoutHandler')
     settogglecheckout(togglecheckout + 1)
   }
   const saveShippingHandler = async (e) => {
+    window.scrollTo(0, 0)
     setshowmodal(2)
     const emailvalidation = validateEmail(allValues?.email)
     console.log('emmmm', emailvalidation)
@@ -203,6 +205,7 @@ const Checkout = ({ history, location, match }) => {
     }
   }
   const savePaymentMethodHandler = async (e) => {
+    window.scrollTo(0, 0)
     console.log('savePaymentMethodHandler')
     settogglecheckout(togglecheckout + 1)
     const body = {
@@ -1472,7 +1475,7 @@ const Checkout = ({ history, location, match }) => {
           aria-hidden='true'
         >
           <div
-            className='modal-dialog modal-md modal-dialog-centered '
+            className='modal-dialog modal-md modal-dialog-centered'
             role='document'
           >
             <div className='modal-content py-5'>
@@ -1484,6 +1487,15 @@ const Checkout = ({ history, location, match }) => {
                   <h2 className=' mt-2'>
                     Please recheck your address, the address will not be changed
                   </h2>
+                  <button
+                    type='button'
+                    className='btn red-btn-solid mt-3'
+                    // id='prevBtn'
+                    data-dismiss='modal'
+                    aria-label='Close'
+                  >
+                    OK
+                  </button>
                 </div>
               </div>
             </div>
