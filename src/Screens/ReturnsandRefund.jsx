@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { Link } from 'react-router-dom'
@@ -6,7 +6,14 @@ import PrivateRouteSlider from '../components/PrivateRouteSlider'
 import MainHeader from '../components/MainHeader'
 import AllHerbs from '../components/AllHerbs'
 import ToggleBack from '../components/ToggleBack'
+import UnauthorizedAlert from '../components/UnauthorizedAlert'
+import { useSelector } from 'react-redux'
 const ReturnsandRefund = () => {
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  
+  
   return (
     <>
       <Header />
@@ -45,9 +52,15 @@ const ReturnsandRefund = () => {
                     tracking number because this info is necessary to process a
                     damage form.
                   </p>
-                  <Link to='#' className='btn red-btn-solid mt-lg-4 mt-3'>
+                  <Link
+                              className='btn red-btn-solid mt-lg-4 mt-3'
+                              to={userInfo ? '/DamageClaims' : '#'}
+                              onClick={() => {
+                                !userInfo && UnauthorizedAlert()
+                              }}
+                            >
                     Submit A Damage Claim
-                  </Link>
+                            </Link>
                   <p className='mt-3'>
                     We do not issue refunds on any premium membership
                     subscription purchases whatsoever. You are free to

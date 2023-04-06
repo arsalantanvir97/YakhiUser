@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import AllHerbs from '../components/AllHerbs'
+import DatePicker from 'react-datepicker'
 import ToggleBack from '../components/ToggleBack'
+import { validateEmail } from '../utils/ValidateEmail'
+import Toasty from '../utils/toast'
+import api from '../utils/api'
 const DamageClaims = ({ history }) => {
+  const [firstName, setfirstName] = useState()
+  const [lastName, setlastName] = useState()
+
+  const [email, setemail] = useState()
+  const [order, setorder] = useState()
+  const [contact, setcontact] = useState()
+  const [damage, setdamage] = useState()
+  const [date, setdate] = useState()
+
+  const [description, setdescription] = useState()
+  const [image, setimage] = useState()
+
   const submitHandler = () => {
     Swal.fire({
       icon: 'success',
@@ -13,6 +29,46 @@ const DamageClaims = ({ history }) => {
       timer: 1500,
     })
     history?.push('/')
+  }
+  const filedocsHandler = (e) => {
+    const file = e.target.files[0];
+    setimage(file);
+
+
+
+  }
+  const submitData = async () => {
+    const emailvalidation = validateEmail(email)
+    if (emailvalidation == true) {
+      if (firstName?.length > 0 && email.length > 0) {
+        const formData = new FormData()
+        formData.append('user_image', image)
+        formData.append('firstName', firstName)
+        formData.append('lastName', lastName)
+        formData.append('email', email)
+        formData.append('order', order)
+        formData.append('contact', contact)
+        formData.append('damage', damage)
+        formData.append('date', date)
+        formData.append('description', description)
+
+        const body=formData
+        const res = await api.post('/dispute/createDispute', body)
+        Swal.fire({
+          icon: 'success',
+          title: '',
+          text: 'Form submitted successfully',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+        history?.push('/')
+
+      } else {
+        Toasty('error', `Please fill out all the required fields`)
+      }
+    } else {
+      Toasty('error', `Please enter a valid email`)
+    }
   }
 
   return (
@@ -60,6 +116,7 @@ const DamageClaims = ({ history }) => {
                             type='text'
                             className='form-control my-textbox'
                             placeholder='Enter First Name'
+                            value={firstName} onChange={(e) => { setfirstName(e.target.value) }}
                           />
                         </div>
                         <div className='col-md-6 mt-3'>
@@ -70,6 +127,8 @@ const DamageClaims = ({ history }) => {
                             type='text'
                             className='form-control my-textbox'
                             placeholder='Enter Last Name'
+                            value={lastName} onChange={(e) => { setlastName(e.target.value) }}
+
                           />
                         </div>
                       </div>
@@ -83,6 +142,8 @@ const DamageClaims = ({ history }) => {
                             type='email'
                             className='form-control my-textbox'
                             placeholder='Enter Email Address'
+                            value={email} onChange={(e) => { setemail(e.target.value) }}
+
                           />
                         </div>
                         <div className='col-md-6 mt-3'>
@@ -93,6 +154,8 @@ const DamageClaims = ({ history }) => {
                             type='tel'
                             className='form-control my-textbox'
                             placeholder='Enter Contact Number'
+                            value={contact} onChange={(e) => { setcontact(e.target.value) }}
+
                           />
                         </div>
                       </div>
@@ -106,20 +169,23 @@ const DamageClaims = ({ history }) => {
                             type='email'
                             className='form-control my-textbox'
                             placeholder='Enter Order Number'
+                            value={order} onChange={(e) => { setorder(e.target.value) }}
+
                           />
                         </div>
                         <div className='col-md-6 mt-3'>
                           <label htmlFor className='my-label'>
                             Date Received <span className='red'>*</span>
                           </label>
-                          <input
-                            placeholder='Select Date'
+                          <DatePicker
+                            minDate={new Date()}
+                            selected={date}
+                            onChange={(date) =>
+                              setdate(date)
+                            }
                             className='textbox-n'
-                            type='text'
-                            onfocusin="(this.type='date')"
-                            onfocusout="(this.type='text')"
-                            id='date'
                           />
+
                         </div>
                       </div>
                       {/* type of damage selection */}
@@ -132,6 +198,8 @@ const DamageClaims = ({ history }) => {
                             type='text'
                             className='form-control my-textbox'
                             placeholder='Enter Type of Damage'
+                            value={damage} onChange={(e) => { setdamage(e.target.value) }}
+
                           />
                         </div>
                       </div>
@@ -157,6 +225,9 @@ const DamageClaims = ({ history }) => {
                             type='file'
                             accept='image/*'
                             placeholder='Browse Images'
+                            onChange={filedocsHandler}
+
+
                           />
                         </div>
                       </div>
@@ -171,7 +242,7 @@ const DamageClaims = ({ history }) => {
                             id='exampleFormControlTextarea1'
                             placeholder='Enter Discription'
                             rows={5}
-                            defaultValue={''}
+                            value={description} onChange={(e) => { setdescription(e.target.value) }}
                           />
                         </div>
                       </div>
@@ -179,7 +250,7 @@ const DamageClaims = ({ history }) => {
                         <div className='col-12 text-center'>
                           <Link
                             to='#'
-                            onClick={submitHandler}
+                            onClick={submitData}
                             className='btn red-btn-solid ml-0 px-5 py-2'
                           >
                             Submit

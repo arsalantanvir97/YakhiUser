@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 import moment from 'moment'
 import StripeCheckout from 'react-stripe-checkout'
-import { SunspotLoader } from 'react-awesome-loaders'
+// import { SunspotLoader } from 'react-awesome-loaders'
 import { PayPalButton } from 'react-paypal-button-v2'
 import {
   SquarePaymentsForm,
@@ -131,12 +131,7 @@ const OrderLogDetail = ({ match, history }) => {
             zIndex: 1111111111111,
           }}
         >
-          <SunspotLoader
-            gradientColors={['#000']}
-            shadowColor={'#FFF'}
-            desktopSize={'50px'}
-            mobileSize={'35px'}
-          />
+        <Loader/>
         </div>
       )}
       <div className='container-fluid '>
