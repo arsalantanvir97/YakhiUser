@@ -4,6 +4,7 @@ import React, { lazy, Suspense, useEffect } from 'react'
 import Loaderr from './components/Loaderr'
 
 import PrivateRoute from './components/PrivateRoute'
+import api from './utils/api'
 const Login = lazy(() => import('./Screens/Login'))
 const Signup = lazy(() => import('./Screens/Signup'))
 const Index = lazy(() => import('./Screens/Index'))
@@ -79,6 +80,12 @@ function App() {
   useEffect(() => {
     return <ScrollToTop />
   }, [])
+
+
+  useEffect(async() => {
+    await api.post('/auth/setPageView', {url:window?.location?.pathname})
+  }, [window?.location?.pathname])
+  
   return (
     <Suspense fallback={<Loaderr />}>
       <Router basename='/'>

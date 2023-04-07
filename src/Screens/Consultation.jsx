@@ -174,6 +174,7 @@ const Consultation = ({ history }) => {
         age,
         height,
         weight,
+        amount,
         ethnicity,
         consultaionfor,
         currentmedication,
@@ -215,6 +216,7 @@ const Consultation = ({ history }) => {
         email,
         age,
         height,
+        amount,
         weight,
         ethnicity,
         consultaionfor,
@@ -331,16 +333,16 @@ const Consultation = ({ history }) => {
             window.innerWidth > 1300
               ? '670px'
               : window.innerWidth > 1200
-              ? '490px'
-              : window.innerWidth > 1100
-              ? '440px'
-              : window.innerWidth > 925
-              ? '400px'
-              : window.innerWidth > 780
-              ? '335px'
-              : window.innerWidth > 445
-              ? '275px'
-              : '120px',
+                ? '490px'
+                : window.innerWidth > 1100
+                  ? '440px'
+                  : window.innerWidth > 925
+                    ? '400px'
+                    : window.innerWidth > 780
+                      ? '335px'
+                      : window.innerWidth > 445
+                        ? '275px'
+                        : '120px',
         }}
       ></section>
       <section className='about-page' style={{ paddingTop: 0 }}>
@@ -407,8 +409,8 @@ const Consultation = ({ history }) => {
                           showform == 2
                             ? 'step active'
                             : showform > 2
-                            ? 'step finish'
-                            : null
+                              ? 'step finish'
+                              : null
                         }
                       >
                         <div className='step-icon'>
@@ -421,8 +423,8 @@ const Consultation = ({ history }) => {
                           showform == 3
                             ? 'step active'
                             : showform > 3
-                            ? 'step finish'
-                            : null
+                              ? 'step finish'
+                              : null
                         }
                       >
                         <div className='step-icon'>
@@ -696,7 +698,7 @@ const Consultation = ({ history }) => {
                       {/* Consultation: <span>30 Minutes @ $100.00</span> */}
                     </p>
                   </div>
-                ) : showform == 3 ? (
+                ) : showform == 5 ? (
                   <div className=''>
                     <div className='consultation-form'>
                       <div className='form-group'>
@@ -845,7 +847,7 @@ const Consultation = ({ history }) => {
                                       console.log(data)
                                       alert(
                                         'Transaction completed by ' +
-                                          details.payer.name.given_name
+                                        details.payer.name.given_name
                                       )
 
                                       setshowform(
@@ -892,7 +894,7 @@ const Consultation = ({ history }) => {
                       </div>
                     </div>
                   </div>
-                ) : showform == 4 ? (
+                ) : showform == 3 ? (
                   <div className=''>
                     <div className='consultation-form'>
                       <p>
@@ -906,6 +908,7 @@ const Consultation = ({ history }) => {
                       </p>
                       <p>
                         <input
+                          type='password'
                           placeholder='Password...'
                           value={confirmationpassword}
                           onChange={(e) => {
@@ -935,10 +938,8 @@ const Consultation = ({ history }) => {
                       showform == 1
                         ? saveConsultationAddressHandler()
                         : showform == 2
-                        ? chooseAppointmentHandler()
-                        : showform == 3 && paymentconfirm == true
-                        ? setshowform(showform + 1)
-                        : showform == 4 && confirmationHandler()
+                          ? chooseAppointmentHandler()
+                          : showform == 3 && confirmationHandler()
                     }}
                   >
                     Continue
