@@ -698,7 +698,7 @@ const Consultation = ({ history }) => {
                       {/* Consultation: <span>30 Minutes @ $100.00</span> */}
                     </p>
                   </div>
-                ) : showform == 5 ? (
+                ) : showform == 3 ? (
                   <div className=''>
                     <div className='consultation-form'>
                       <div className='form-group'>
@@ -894,7 +894,7 @@ const Consultation = ({ history }) => {
                       </div>
                     </div>
                   </div>
-                ) : showform == 3 ? (
+                ) : showform == 4 ? (
                   <div className=''>
                     <div className='consultation-form'>
                       <p>
@@ -939,7 +939,9 @@ const Consultation = ({ history }) => {
                         ? saveConsultationAddressHandler()
                         : showform == 2
                           ? chooseAppointmentHandler()
-                          : showform == 3 && confirmationHandler()
+                          : showform == 3 && paymentconfirm == true
+                            ? setshowform(showform + 1)
+                            : showform == 4 && confirmationHandler()
                     }}
                   >
                     Continue
