@@ -100,7 +100,7 @@ const EditProfile = ({ history }) => {
     if (arr?.includes(1)) {
       Toasty('error', `Quantity of all items must be greater than 0`)
     } else {
-      history?.push('/Checkout')
+      history?.push('#')
     }
   }
   const addToCartHandler = async (productId, qty) => {

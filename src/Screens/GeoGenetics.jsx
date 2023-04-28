@@ -226,9 +226,10 @@ const GeoGenetics = ({ history }) => {
                             onClick={() => {
                               !userInfo
                                 ? UnauthorizedAlert()
-                                : history?.push(
-                                    `/GeoGeneticsCheckout/${geo?._id}?qty=${1}`
-                                  )
+                                :null
+                                // : history?.push(
+                                //     `/GeoGeneticsCheckout/${geo?._id}?qty=${1}`
+                                //   )
                             }}
                             title='Add to cart'
                           >
@@ -319,11 +320,12 @@ const GeoGenetics = ({ history }) => {
                                 onClick={() => {
                                   !userInfo
                                     ? UnauthorizedAlert()
-                                    : history?.push(
-                                        `/GeoGeneticsCheckout/${
-                                          geo?._id
-                                        }?qty=${1}`
-                                      )
+                                    :null
+                                    //  history?.push(
+                                    //     `/GeoGeneticsCheckout/${
+                                    //       geo?._id
+                                    //     }?qty=${1}`
+                                    //   )
                                 }}
                                 className='cart-_button'
                                 title='Add to cart'

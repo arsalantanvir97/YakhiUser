@@ -155,7 +155,7 @@ const Header = () => {
                           <div>
                             <Link
                               className='dropdown-item'
-                              to={userInfo ? '/Checkout' : '#'}
+                              to={userInfo ? '#' : '#'}
                               onClick={() => {
                                 !userInfo && UnauthorizedAlert()
                               }}

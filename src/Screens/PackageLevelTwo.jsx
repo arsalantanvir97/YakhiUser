@@ -16,7 +16,7 @@ const PackageLevelTwo = ({ match, history }) => {
   const [userwishlist, setuserwishlist] = useState([])
   const addToCartHandler = async () => {
     console.log('addToCartHandler')
-    history.push(`/GeoGeneticsCheckout/${match.params.id}?qty=${quantity}`)
+    // history.push(`/GeoGeneticsCheckout/${match.params.id}?qty=${quantity}`)
   }
 
   const subQuantity = async () => {

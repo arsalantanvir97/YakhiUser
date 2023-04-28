@@ -45,7 +45,7 @@ const MyCart = ({ match, location, history }) => {
     if (arr?.includes(1)) {
       Toasty('error', `Quantity of all items must be greater than 0`)
     } else {
-      history?.push('/Checkout')
+      history?.push('#')
     }
   }
   return (

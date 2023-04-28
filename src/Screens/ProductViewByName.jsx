@@ -59,7 +59,7 @@ const ProductViewByName = ({ match, history }) => {
   const addToCartHandler = async () => {
     if (product?.category?.categorytitle == "Geo'Genetics") {
       console.log("abc");
-      history?.push(`/GeoGeneticsCheckout/${product?._id}?qty=${quantity}`);
+      // history?.push(`/GeoGeneticsCheckout/${product?._id}?qty=${quantity}`);
     } else {
       console.log("addToCartHandler");
       history.push(`/MyCart/${product?._id}?qty=${quantity}`);

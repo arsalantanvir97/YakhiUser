@@ -142,7 +142,8 @@ const Capsules = ({ history, match }) => {
   const addToCartHandler = async (product, productId, qty) => {
     if (product?.geotype) {
       console.log('abc')
-      history?.push(`/GeoGeneticsCheckout/${productId}?qty=${qty}`)
+      
+      // history?.push(`/GeoGeneticsCheckout/${productId}?qty=${qty}`)
     } else {
       console.log('addToCartHandler')
       history.push(`/MyCart/${productId}?qty=${qty}`)
