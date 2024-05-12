@@ -22,6 +22,16 @@ Welcome to the user panel documentation for Yahki, our modern e-commerce platfor
   - Update your personal information, such as shipping address and contact details.
 - **Search Functionality**:
   - Easily find products using our search feature, with options to filter by category, price range, and more.
+    
+## Technologies Used
+
+- **React**: JavaScript library for building user interfaces.
+- **React Query**: Data fetching and caching are managed using React Query, ensuring efficient data loading and synchronization.
+- **Recoil**: Application state is managed using Recoil, providing a simple and intuitive way to share state across components.
+- **React Router**: Library for handling routing in React applications.
+- **Lazy Loading**: Components are lazily loaded to improve initial loading times and optimize performance.
+- **Semantic UI React**: UI framework for building responsive and accessible web apps.
+- **Other Dependencies**: Check `package.json` for a full list.
 
 ## Usage
 
