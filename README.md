@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Yahki User Panel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the user panel documentation for Yahki, our modern e-commerce platform. This section provides an overview of the features available to users for browsing products, managing orders, interacting with the shopping cart, wishlist, and more.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Product Browsing**:
+  - Explore our extensive catalog of products, filtered by category, price range, and latest arrivals.
+- **Product Rating & Review**:
+  - Rate and review products to share your experience with other users.
+- **Shopping Cart**:
+  - Easily add products to your cart, review your selections, and proceed to checkout with confidence.
+- **Wishlist**:
+  - Save your favorite products for future purchase consideration, creating a personalized shopping experience.
+- **Order Management**:
+  - View your order history, track the status of your orders, and manage delivery details.
+- **User Authentication**:
+  - Securely sign up and log in to your account using email and password credentials.
+- **Product Rating & Review**:
+  - Rate and review products to share your experience with other users.
+- **Profile Management**:
+  - Update your personal information, such as shipping address and contact details.
+- **Search Functionality**:
+  - Easily find products using our search feature, with options to filter by category, price range, and more.
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To access the user panel features, you'll need to sign up for an account or log in if you already have one. Once logged in, you can browse products, add items to your cart or wishlist, manage your orders, and update your profile information as needed.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Visit [Yahki Awakened](https://yahkiawakened.com/) to access the user panel and start exploring our platform today!
